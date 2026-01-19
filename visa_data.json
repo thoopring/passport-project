@@ -1,0 +1,1160 @@
+[
+  {
+    "origin": "South Korea",
+    "destination": "Afghanistan",
+    "requirement": "Travel banned[2]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Albania",
+    "requirement": "Visa not required[3]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Algeria",
+    "requirement": "Visa required[4]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Andorra",
+    "requirement": "Visa not required[5]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Angola",
+    "requirement": "Visa not required[6]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Antigua and Barbuda",
+    "requirement": "Visa not required[9]",
+    "notes": "6 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Argentina",
+    "requirement": "Visa not required[10]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Armenia",
+    "requirement": "Visa not required[11]",
+    "notes": "180 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Australia",
+    "requirement": "Electronic Travel Authority[13]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Austria",
+    "requirement": "Visa not required[15]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Azerbaijan",
+    "requirement": "eVisa / Visa on arrival[16][17]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bahamas",
+    "requirement": "Visa not required[19]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bahrain",
+    "requirement": "eVisa / Visa on arrival[20]",
+    "notes": "14 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bangladesh",
+    "requirement": "Visa on arrival[21]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Barbados",
+    "requirement": "Visa not required[23]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Belarus",
+    "requirement": "Visa not required / eVisa[24][25]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Belgium",
+    "requirement": "Visa not required[27]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Belize",
+    "requirement": "Visa not required[28]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Benin",
+    "requirement": "eVisa[29][30]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bhutan",
+    "requirement": "eVisa[31][32]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bolivia",
+    "requirement": "Visa not required[33][34]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bosnia and Herzegovina",
+    "requirement": "Visa not required[35]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Botswana",
+    "requirement": "Visa not required[36]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Brazil",
+    "requirement": "Visa not required[37]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Brunei",
+    "requirement": "Visa not required[38]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Bulgaria",
+    "requirement": "Visa not required[39]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Burkina Faso",
+    "requirement": "eVisa[40][41]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Burundi",
+    "requirement": "Online Visa / Visa on arrival[42][43]",
+    "notes": "1 month"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Cambodia",
+    "requirement": "eVisa / Visa on arrival[44][45]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Cameroon",
+    "requirement": "eVisa[48][49]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Canada",
+    "requirement": "Electronic Travel Authorization[50]",
+    "notes": "6 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Cape Verde",
+    "requirement": "Visa on arrival[52][53]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Central African Republic",
+    "requirement": "Visa required[55]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Chad",
+    "requirement": "eVisa[56]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Chile",
+    "requirement": "Visa not required[57]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "China",
+    "requirement": "Visa not required[58][59]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Colombia",
+    "requirement": "Visa not required[63]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Comoros",
+    "requirement": "Visa on arrival[64]",
+    "notes": "45 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Republic of the Congo",
+    "requirement": "Visa required[65]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Democratic Republic of the Congo",
+    "requirement": "eVisa[66][67]",
+    "notes": "7 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Costa Rica",
+    "requirement": "Visa not required[71]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Côte d'Ivoire",
+    "requirement": "eVisa[72][73]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Croatia",
+    "requirement": "Visa not required[74]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Cuba",
+    "requirement": "eVisa[75][76]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Cyprus",
+    "requirement": "Visa not required[77]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Czech Republic",
+    "requirement": "Visa not required[78]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Denmark",
+    "requirement": "Visa not required[79]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Djibouti",
+    "requirement": "eVisa[80][81]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Dominica",
+    "requirement": "Visa not required[82]",
+    "notes": "6 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Dominican Republic",
+    "requirement": "Visa not required[83]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Ecuador",
+    "requirement": "Visa not required[84]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Egypt",
+    "requirement": "eVisa / Visa on arrival[85][86]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "El Salvador",
+    "requirement": "Visa not required[87]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Equatorial Guinea",
+    "requirement": "eVisa[88][89]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Eritrea",
+    "requirement": "Visa required[90]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Estonia",
+    "requirement": "Visa not required[91]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Eswatini",
+    "requirement": "Visa not required[92]",
+    "notes": "30 days[93]"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Ethiopia",
+    "requirement": "eVisa / Visa on arrival[94]",
+    "notes": "up to 90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Fiji",
+    "requirement": "Visa not required[97]",
+    "notes": "4 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Finland",
+    "requirement": "Visa not required[98]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "France",
+    "requirement": "Visa not required[99]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Gabon",
+    "requirement": "eVisa[100]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Gambia",
+    "requirement": "Visa required[102]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Georgia",
+    "requirement": "Visa not required[103]",
+    "notes": "1 year"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Germany",
+    "requirement": "Visa not required[104]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Ghana",
+    "requirement": "Visa required[105]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Greece",
+    "requirement": "Visa not required[106]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Grenada",
+    "requirement": "Visa not required[107]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Guatemala",
+    "requirement": "Visa not required[108]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Guinea",
+    "requirement": "eVisa[109][110]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Guinea-Bissau",
+    "requirement": "Visa on arrival[111]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Guyana",
+    "requirement": "Visa not required[112]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Haiti",
+    "requirement": "Travel banned[113]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Honduras",
+    "requirement": "Visa not required[115]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Hungary",
+    "requirement": "Visa not required[116]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Iceland",
+    "requirement": "Visa not required[117]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "India",
+    "requirement": "eVisa / Visa on arrival[118][119]",
+    "notes": "60 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Indonesia",
+    "requirement": "e-VOA / Visa on arrival[123]",
+    "notes": "30 days[124]"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Iran",
+    "requirement": "eVisa[125][126]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Iraq",
+    "requirement": "Travel banned[128][129]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Ireland",
+    "requirement": "Visa not required[130]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Israel",
+    "requirement": "Electronic Travel Authorization[131][132]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Italy",
+    "requirement": "Visa not required[135]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Jamaica",
+    "requirement": "Visa not required[136]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Japan",
+    "requirement": "Visa not required[137]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Jordan",
+    "requirement": "eVisa / Visa on arrival[138][139]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Kazakhstan",
+    "requirement": "Visa not required[140]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Kenya",
+    "requirement": "Electronic Travel Authorization[141][142]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Kiribati",
+    "requirement": "Visa not required[144]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "North Korea",
+    "requirement": "Particular visit regime[145]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Kuwait",
+    "requirement": "eVisa / Visa on arrival[147][148]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Kyrgyzstan",
+    "requirement": "Visa not required[149]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Laos",
+    "requirement": "Visa not required[150][151]",
+    "notes": "30 days[152]"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Latvia",
+    "requirement": "Visa not required[154]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Lebanon",
+    "requirement": "Free visa on arrival[155]",
+    "notes": "1 month"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Lesotho",
+    "requirement": "Visa not required[157]",
+    "notes": "60 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Liberia",
+    "requirement": "e-VOA[158][159]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Libya",
+    "requirement": "Travel banned[160][161]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Liechtenstein",
+    "requirement": "Visa not required[162]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Lithuania",
+    "requirement": "Visa not required[163]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Luxembourg",
+    "requirement": "Visa not required[164]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Madagascar",
+    "requirement": "eVisa / Visa on arrival[165][166]",
+    "notes": "60 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Malawi",
+    "requirement": "eVisa / Visa on arrival[167][168]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Malaysia",
+    "requirement": "Visa not required[169]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Maldives",
+    "requirement": "Free visa on arrival[170]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Mali",
+    "requirement": "Travel banned[171]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Malta",
+    "requirement": "Visa not required[174]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Marshall Islands",
+    "requirement": "Visa on arrival[175]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Mauritania",
+    "requirement": "eVisa[176][177]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Mauritius",
+    "requirement": "Visa not required[178]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Mexico",
+    "requirement": "Visa not required[179]",
+    "notes": "180 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Micronesia",
+    "requirement": "Visa not required[180]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Moldova",
+    "requirement": "Visa not required[181]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Monaco",
+    "requirement": "Visa not required[182]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Mongolia",
+    "requirement": "Visa not required[183]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Montenegro",
+    "requirement": "Visa not required[184]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Morocco",
+    "requirement": "Visa not required[185]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Mozambique",
+    "requirement": "Visa not required[186][187]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Myanmar",
+    "requirement": "eVisa / Visa on arrival[188][189]",
+    "notes": "28 days / 30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Namibia",
+    "requirement": "eVisa / Visa on arrival[192][193]",
+    "notes": "3 months / 90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Nauru",
+    "requirement": "Visa required[194]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Nepal",
+    "requirement": "Online Visa / Visa on arrival[195]",
+    "notes": "90 days[196]"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Netherlands",
+    "requirement": "Visa not required[197]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "New Zealand",
+    "requirement": "Electronic Travel Authority[198]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Nicaragua",
+    "requirement": "Visa not required[202]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Niger",
+    "requirement": "Travel banned[203]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Nigeria",
+    "requirement": "eVisa[206][207]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "North Macedonia",
+    "requirement": "Visa not required[208]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Norway",
+    "requirement": "Visa not required[209]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Oman",
+    "requirement": "Visa not required / eVisa[210]",
+    "notes": "14 days / 30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Pakistan",
+    "requirement": "eVisa[212][213]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Palau",
+    "requirement": "Free visa on arrival[214]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Panama",
+    "requirement": "Visa not required[215]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Papua New Guinea",
+    "requirement": "eVisa[216][217]",
+    "notes": "60 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Paraguay",
+    "requirement": "Visa not required[218]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Peru",
+    "requirement": "Visa not required[219]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Philippines",
+    "requirement": "Visa not required / eVisa[220]",
+    "notes": "30 days / 3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Poland",
+    "requirement": "Visa not required[224]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Portugal",
+    "requirement": "Visa not required[225]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Qatar",
+    "requirement": "Visa not required[226]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Romania",
+    "requirement": "Visa not required[227]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Russia",
+    "requirement": "Visa not required[228]",
+    "notes": "60 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Rwanda",
+    "requirement": "eVisa / Visa on arrival[232][233]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Saint Kitts and Nevis",
+    "requirement": "Electronic Travel Authorisation[234][235]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Saint Lucia",
+    "requirement": "Visa not required[236]",
+    "notes": "6 weeks"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Saint Vincent and the Grenadines",
+    "requirement": "Visa not required[237]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Samoa",
+    "requirement": "Entry permit on arrival[238]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "San Marino",
+    "requirement": "Visa not required[239]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "São Tomé and Príncipe",
+    "requirement": "Visa not required[240]",
+    "notes": "15 days[241]"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Saudi Arabia",
+    "requirement": "eVisa / Visa on arrival[242][243]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Senegal",
+    "requirement": "Visa not required[244]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Serbia",
+    "requirement": "Visa not required[245]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Seychelles",
+    "requirement": "Electronic Border System[246][247]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Sierra Leone",
+    "requirement": "eVisa / Visa on arrival[248][249]",
+    "notes": "3 months / 30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Singapore",
+    "requirement": "Visa not required[250]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Slovakia",
+    "requirement": "Visa not required[251]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Slovenia",
+    "requirement": "Visa not required[252]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Solomon Islands",
+    "requirement": "Free Visitor's Permit on arrival[253]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Somalia",
+    "requirement": "Travel banned[254]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "South Africa",
+    "requirement": "Visa not required [255]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "South Sudan",
+    "requirement": "eVisa[256][257]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Spain",
+    "requirement": "Visa not required[258]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Sri Lanka",
+    "requirement": "ETA / Visa on arrival[259][260]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Sudan",
+    "requirement": "Travel banned[261]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Suriname",
+    "requirement": "Visa not required[262][263]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Sweden",
+    "requirement": "Visa not required[266]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Switzerland",
+    "requirement": "Visa not required[267][268]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Syria",
+    "requirement": "Travel banned[269][270]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Tajikistan",
+    "requirement": "Visa not required / eVisa[271]",
+    "notes": "30 days / 60 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Tanzania",
+    "requirement": "eVisa / Visa on arrival[273][274]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Thailand",
+    "requirement": "Visa not required[275]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Timor-Leste",
+    "requirement": "Visa on arrival[276]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Togo",
+    "requirement": "eVisa[277][278]",
+    "notes": "15 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Tonga",
+    "requirement": "Free visa on arrival[279]",
+    "notes": "31 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Trinidad and Tobago",
+    "requirement": "Visa not required[280]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Tunisia",
+    "requirement": "Visa not required[281]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Turkey",
+    "requirement": "Visa not required[282]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Turkmenistan",
+    "requirement": "Visa required[283]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Tuvalu",
+    "requirement": "Free visa on arrival[284]",
+    "notes": "1 month"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Uganda",
+    "requirement": "eVisa[285][286]",
+    "notes": "3 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Ukraine",
+    "requirement": "Travel banned[287]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "United Arab Emirates",
+    "requirement": "Visa not required[288]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "United Kingdom",
+    "requirement": "Electronic Travel Authorisation[289][290]",
+    "notes": "6 months"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "United States",
+    "requirement": "Visa Waiver Program[291][292]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Uruguay",
+    "requirement": "Visa not required[296]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Uzbekistan",
+    "requirement": "Visa not required[297]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Vanuatu",
+    "requirement": "Visa not required[298]",
+    "notes": "120 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Vatican City",
+    "requirement": "Visa not required[299]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Venezuela",
+    "requirement": "Visa not required[300]",
+    "notes": "90 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Vietnam",
+    "requirement": "Visa not required[301]",
+    "notes": "45 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Yemen",
+    "requirement": "Travel banned[303]",
+    "notes": "nan"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Zambia",
+    "requirement": "Visa not required[304]",
+    "notes": "30 days"
+  },
+  {
+    "origin": "South Korea",
+    "destination": "Zimbabwe",
+    "requirement": "eVisa / Visa on arrival[305][306]",
+    "notes": "1 month"
+  }
+]
