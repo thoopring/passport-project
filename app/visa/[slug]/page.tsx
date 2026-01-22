@@ -62,14 +62,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     notFound();
   }
 
-  const isVisaFree = visa.requirement.toLowerCase().includes("visa not required") || visa.requirement.toLowerCase().includes("visa free");
+  // 🧹 [데이터 대청소] 🧹
+  
+  // 1. 각주 제거 ([1], [2] 등 삭제)
+  const cleanRequirement = visa.requirement.replace(/\[.*?\]/g, "").trim();
+
+  // 2. 비자 상태에 따른 색상 설정 (청소된 텍스트 기준)
+  const isVisaFree = cleanRequirement.toLowerCase().includes("visa not required") || cleanRequirement.toLowerCase().includes("visa free");
   const statusColor = isVisaFree ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800";
   const statusIcon = isVisaFree ? "✅" : "⚠️";
 
-  // nan 처리
-  const cleanNotes = (visa.notes && visa.notes.toLowerCase() !== "nan") ? visa.notes : null;
+  // 3. 'nan' 노트 제거
+  const cleanNotes = (visa.notes && visa.notes.toLowerCase() !== "nan") ? visa.notes.replace(/\[.*?\]/g, "").trim() : null;
   
-  // 🚨 [수정 완료] 숫자 0 비교 제거 (글자 '0'하고만 비교)
+  // 4. 인구 0명 제거
   const cleanPopulation = (visa.population && visa.population !== '0') ? visa.population : null;
 
   return (
@@ -82,6 +88,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
         <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
           
+          {/* 헤더 */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-10 sm:px-10 text-center sm:text-left">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 shadow-sm">
               {visa.origin} ✈️ {visa.destination}
@@ -93,11 +100,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <div className="p-6 sm:p-10 space-y-8">
             
+            {/* 비자 상태 (이제 [2] 같은 숫자 안 나옴!) */}
             <div className={`rounded-2xl p-6 ${statusColor} border border-opacity-20 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-sm`}>
               <div className="text-4xl">{statusIcon}</div>
               <div>
                 <h2 className="text-sm font-bold uppercase tracking-wider opacity-70 mb-1">Current Status</h2>
-                <p className="text-3xl font-bold tracking-tight">{visa.requirement}</p>
+                {/* 👇 깨끗해진 텍스트 표시 */}
+                <p className="text-3xl font-bold tracking-tight">{cleanRequirement}</p>
                 {visa.allowed_stay && (
                   <p className="mt-2 text-lg font-medium inline-block bg-white bg-opacity-60 px-3 py-1 rounded-lg">
                     📅 Allowed Stay: {visa.allowed_stay}
@@ -106,6 +115,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
+            {/* 노트 */}
             {cleanNotes && (
               <div className="bg-orange-50 rounded-xl p-6 border border-orange-100 flex gap-4">
                 <div className="text-2xl">📝</div>
@@ -116,6 +126,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             )}
 
+            {/* 여행 정보 */}
             <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
               <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-2">
                 <span className="text-xl">🌍</span>
@@ -143,6 +154,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
+            {/* eSIM 광고 (가짜 쿠폰 코드는 삭제함) */}
             <div className="mt-8 pt-6">
               <div className="bg-gray-900 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black opacity-100 z-0"></div>
@@ -164,9 +176,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                     Get eSIM for {visa.destination} 📲
                   </a>
                   
-                  <p className="text-sm text-gray-400 mt-6 bg-gray-800 inline-block px-4 py-1 rounded-full border border-gray-700">
+                  {/* 👇 나중에 진짜 코드 받으면 주석 풀고 수정하세요! */}
+                  {/* <p className="text-sm text-gray-400 mt-6 bg-gray-800 inline-block px-4 py-1 rounded-full border border-gray-700">
                     Use code <span className="text-yellow-400 font-bold">PASSPORT10</span> for 10% OFF
-                  </p>
+                  </p> 
+                  */}
                 </div>
               </div>
             </div>
