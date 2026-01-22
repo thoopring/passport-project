@@ -1,168 +1,161 @@
-import fs from 'fs';
-import path from 'path';
-import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+// 👇 데이터 파일 가져오기
+import visaDataRaw from "../../../visa_data.json"; 
 
-// ==========================================
-// 💰 [수익화 설정]
-// ==========================================
-const AFFILIATE_LINKS = {
-  airalo: "https://airalo.pxf.io/2anR7A", 
-  agoda: "https://www.agoda.com",   
-  ivisa: "https://www.ivisa.com"    
-};
-
-async function getVisaData() {
-  const filePath = path.join(process.cwd(), 'visa_data.json');
-  if (!fs.existsSync(filePath)) return [];
-  const jsonData = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(jsonData);
+// 1. 데이터 타입 정의 (수정됨: passport -> origin)
+interface VisaData {
+  origin: string;      // 👈 여기가 핵심! (데이터에 맞춰 이름 변경)
+  destination: string;
+  requirement: string;
+  allowed_stay?: string;
+  notes?: string;
+  capital?: string;
+  currency?: string;
+  region?: string;
+  population?: string;
+  languages?: string;
 }
 
-function cleanText(text: string) {
-  if (!text || text === 'nan') return "No additional details available.";
-  return text.replace(/\[.*?\]/g, '').trim();
+// JSON 데이터를 TypeScript 타입으로 변환
+const visaData: VisaData[] = visaDataRaw as VisaData[];
+
+// 2. Slug 만드는 함수 (수정됨: origin 사용)
+function createSlug(destination: string, origin: string) {
+  const p = origin.toLowerCase().replace(/\s+/g, "-");
+  const d = destination.toLowerCase().replace(/\s+/g, "-");
+  return `${p}-to-${d}`; 
 }
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+// 3. 미리 페이지 경로 생성
+export async function generateStaticParams() {
+  return visaData.map((visa) => ({
+    slug: createSlug(visa.destination, visa.origin), // 👈 passport -> origin
+  }));
+}
 
-// 1. 메타데이터 생성 (SEO)
-export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
-  const slugParts = slug.split('-to-');
-  if (slugParts.length < 2) return { title: 'Visa Information' };
-
-  // URL에서 출발지(Origin)와 도착지(Dest) 알아내기
-  const originSlug = slugParts[0]; // 'south-korea' or 'united-states'
-  const destSlug = slugParts[1];
+// 4. 메타데이터 생성
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
   
-  const originName = originSlug === 'united-states' ? 'United States' : 'South Korea';
-  const targetCountry = destSlug.replace(/-/g, ' '); 
+  const visa = visaData.find(
+    (v) => createSlug(v.destination, v.origin) === resolvedParams.slug
+  );
+
+  if (!visa) return { title: "Visa Info Not Found" };
 
   return {
-    title: `${originName} to ${targetCountry}: Visa Requirements (2026)`,
-    description: `Do ${originName} citizens need a visa for ${targetCountry}? Check entry rules, eSIM, and hotels.`,
+    title: `${visa.origin} to ${visa.destination}: Visa Requirements`,
+    description: `Do ${visa.origin} citizens need a visa for ${visa.destination}? Check the latest requirements, allowed stay, and travel essentials like currency and capital.`,
   };
 }
 
-// 2. 페이지 내용 빌드
-export default async function VisaDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const data = await getVisaData();
-  
-  // URL 분석: 예) united-states-to-japan
-  const slugParts = slug.split('-to-');
-  if (slugParts.length < 2) return notFound();
+// 5. 실제 페이지 화면 그리기
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
 
-  const originSlug = slugParts[0]; 
-  const targetDestSlug = slugParts[1]; 
+  const visa = visaData.find(
+    (v) => createSlug(v.destination, v.origin) === resolvedParams.slug
+  );
 
-  // ★ 핵심: 출발지(Origin)가 어디인지 결정
-  const originName = originSlug === 'united-states' ? 'United States' : 'South Korea';
+  if (!visa) {
+    notFound();
+  }
 
-  // 데이터 찾기 (출발지와 도착지가 모두 맞아야 함)
-  const item = data.find((d: any) => {
-    const d_dest = cleanText(d.destination).toLowerCase().replace(/ /g, '-');
-    const d_origin = d.origin || 'South Korea'; // 없을 경우 한국 기본값
-    return d_dest === targetDestSlug && d_origin === originName;
-  });
-
-  if (!item) return notFound();
-
-  const destination = cleanText(item.destination);
-  const requirement = cleanText(item.requirement);
-  const notes = cleanText(item.notes);
-  
-  // 비자 면제 여부 판단
-  const isFree = requirement.toLowerCase().includes('not required') || 
-                 requirement.toLowerCase().includes('visa free') ||
-                 requirement.toLowerCase().includes('freedom of movement') ||
-                 requirement.toLowerCase().includes('esta') || // 미국은 ESTA도 사실상 무비자 취급
-                 requirement.toLowerCase().includes('electronic travel authority');
+  // 비자 상태에 따른 색상 설정
+  const isVisaFree = visa.requirement.toLowerCase().includes("visa not required") || visa.requirement.toLowerCase().includes("visa free");
+  const statusColor = isVisaFree ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800";
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4">
-      <a href="/" className="mb-8 text-gray-500 hover:text-blue-600 font-medium">← Back to World Map</a>
-
-      <article className="bg-white max-w-2xl w-full shadow-xl rounded-3xl overflow-hidden border border-gray-100">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
         
-        {/* 헤더: 국기/색상 표시 */}
-        <div className={`${isFree ? 'bg-gradient-to-r from-green-500 to-emerald-600' : 'bg-gradient-to-r from-blue-800 to-indigo-900'} p-10 text-white text-center`}>
-          <div className="text-sm font-bold uppercase tracking-widest opacity-80 mb-2">
-             Passport: {originName} 🇺🇸🇰🇷
-          </div>
-          <h1 className="text-4xl font-extrabold mb-3 drop-shadow-md">
-             To ✈️ {destination}
-          </h1>
-          <p className="text-xl opacity-90 font-light">
-            Status: <span className="font-bold border-b-2 border-white/30 pb-1">{requirement}</span>
-          </p>
-        </div>
+        {/* 🔙 뒤로가기 버튼 */}
+        <Link href="/" className="text-blue-600 hover:text-blue-800 mb-6 inline-block font-medium">
+          &larr; Back to Country List
+        </Link>
 
-        <div className="p-8 space-y-8">
+        <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
           
-          {/* 요약 정보 */}
-          <div className="bg-gray-50 p-6 rounded-2xl border border-gray-200 shadow-inner">
-            <h3 className="font-bold text-gray-700 mb-2 flex items-center gap-2">
-              📌 Entry Details for {originName} Citizens
-            </h3>
-            <p className="text-gray-800 leading-relaxed">{notes || "Check with the nearest embassy for details."}</p>
+          {/* 헤더 섹션 */}
+          <div className="bg-blue-600 px-6 py-8 sm:px-10">
+            <h1 className="text-3xl font-extrabold text-white tracking-tight">
+              {visa.origin} ✈️ {visa.destination}
+            </h1>
+            <p className="mt-2 text-blue-100 text-lg">
+              Visa requirements for travelers
+            </p>
           </div>
 
-          {/* FAQ */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Travel FAQ</h2>
-            <div className="space-y-3">
-              <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden open:ring-2 open:ring-blue-100 transition-all" open>
-                <summary className="font-semibold cursor-pointer p-4 hover:bg-gray-50 flex justify-between items-center text-gray-800">
-                  Do {originName} citizens need a visa?
-                  <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-                </summary>
-                <div className="px-4 pb-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
-                  Currently, for <strong>{originName}</strong> passport holders, the status is: <strong>{requirement}</strong>.
-                </div>
-              </details>
+          <div className="p-6 sm:p-10 space-y-8">
+            
+            {/* 1. 비자 상태 카드 */}
+            <div className={`rounded-xl p-6 ${statusColor} border border-opacity-20`}>
+              <h2 className="text-lg font-bold uppercase tracking-wide opacity-70 mb-1">Visa Status</h2>
+              <p className="text-2xl font-bold">{visa.requirement}</p>
+              {visa.allowed_stay && (
+                <p className="mt-2 text-lg font-medium">📅 Allowed Stay: {visa.allowed_stay}</p>
+              )}
             </div>
-          </div>
 
-          {/* 수익화 섹션 */}
-          <div className="pt-6 border-t border-gray-100">
-             <h3 className="text-lg font-bold mb-4 text-center text-gray-800">Travel Essentials for {destination}</h3>
-             
-             <div className="space-y-3">
-                <a href={AFFILIATE_LINKS.airalo} target="_blank" rel="nofollow noopener" 
-                   className="flex items-center justify-between w-full bg-gray-900 hover:bg-black text-white font-bold py-4 px-6 rounded-xl transition shadow-lg transform hover:-translate-y-1">
-                   <div className="flex flex-col text-left">
-                     <span className="text-xs text-gray-400 font-normal">Data Roaming</span>
-                     <span>📲 Get {destination} eSIM (Instant)</span>
-                   </div>
-                   <span className="text-2xl">→</span>
+            {/* 2. 추가 정보 (Notes) */}
+            {visa.notes && (
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-gray-900 font-bold mb-2">📝 Important Notes</h3>
+                <p className="text-gray-700 leading-relaxed">{visa.notes}</p>
+              </div>
+            )}
+
+            {/* 3. 여행 필수 정보 섹션 */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900">🌍 Travel Essentials for {visa.destination}</h3>
+              </div>
+              <div className="p-6 grid grid-cols-2 gap-y-6 gap-x-4">
+                {/* 수도 */}
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Capital City</p>
+                  <p className="font-medium text-gray-900 mt-1">{visa.capital || "Check details"}</p>
+                </div>
+                {/* 화폐 */}
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Currency</p>
+                  <p className="font-medium text-gray-900 mt-1">{visa.currency || "Local Currency"}</p>
+                </div>
+                {/* 지역 */}
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Region</p>
+                  <p className="font-medium text-gray-900 mt-1">{visa.region || "Global"}</p>
+                </div>
+                {/* 인구 */}
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Population</p>
+                  <p className="font-medium text-gray-900 mt-1">{visa.population || "-"}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. eSIM 광고 버튼 */}
+            <div className="mt-8 pt-8 border-t border-gray-100">
+              <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-6 text-center shadow-lg transform transition hover:scale-[1.02] duration-200">
+                <h3 className="text-white font-bold text-xl mb-2">Don't lose connection in {visa.destination}!</h3>
+                <p className="text-gray-300 mb-6">Get high-speed data at local rates with an eSIM.</p>
+                <a 
+                  href="https://airalo.pxf.io/2anR7A" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block w-full sm:w-auto bg-white text-gray-900 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors"
+                >
+                  Get {visa.destination} eSIM 📲
                 </a>
+                <p className="text-xs text-gray-500 mt-4">* Use code <strong>PASSPORT10</strong> for discount</p>
+              </div>
+            </div>
 
-                {isFree ? (
-                   <a href={AFFILIATE_LINKS.agoda} target="_blank" rel="nofollow noopener" 
-                      className="flex items-center justify-between w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition shadow-md">
-                      <div className="flex flex-col text-left">
-                        <span className="text-xs text-blue-200 font-normal">Accommodation</span>
-                        <span>🏨 Top Hotels in {destination}</span>
-                      </div>
-                   </a>
-                ) : (
-                   <a href={AFFILIATE_LINKS.ivisa} target="_blank" rel="nofollow noopener" 
-                      className="flex items-center justify-between w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl transition shadow-md">
-                      <div className="flex flex-col text-left">
-                        <span className="text-xs text-orange-100 font-normal">Paperwork</span>
-                        <span>🛂 Apply for Visa Online</span>
-                      </div>
-                   </a>
-                )}
-             </div>
-             <p className="mt-6 text-xs text-center text-gray-400">*Affiliate Disclaimer included.</p>
           </div>
-
         </div>
-      </article>
+      </div>
     </div>
   );
 }
