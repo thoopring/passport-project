@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 // 💰 [수익화 설정]
 // ==========================================
 const AFFILIATE_LINKS = {
-  airalo: "https://www.airalo.com", 
+  airalo: "https://airalo.pxf.io/2anR7A", 
   agoda: "https://www.agoda.com",   
   ivisa: "https://www.ivisa.com"    
 };
