@@ -1,24 +1,16 @@
 import { MetadataRoute } from 'next';
-import fs from 'fs';
-import path from 'path';
+// 👇 데이터 파일 경로 (app 폴더 상위에 있는 경우)
+import visaDataRaw from '../visa_data.json'; 
 
-function getVisaData() {
-  const filePath = path.join(process.cwd(), 'visa_data.json');
-  if (!fs.existsSync(filePath)) return [];
-  const jsonData = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(jsonData);
+interface VisaData {
+  origin: string;
+  destination: string;
 }
 
-function cleanText(text: string) {
-    if (!text || text === 'nan') return "";
-    return text.replace(/\[.*?\]/g, '').trim(); 
-}
+const visaData: VisaData[] = visaDataRaw as VisaData[];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // ★ 파트너님의 진짜 주소
-  const baseUrl = 'https://passport-project.vercel.app'; 
-
-  const data = getVisaData();
+  const baseUrl = 'https://passport-project.vercel.app';
 
   // 1. 메인 페이지
   const routes = [
@@ -30,21 +22,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // 2. 400개 국가별 페이지 자동 생성 (한국 + 미국)
-  const visaRoutes = data.map((item: any) => {
-    const destination = cleanText(item.destination);
-    const destSlug = destination.toLowerCase().replace(/ /g, '-');
-    
-    // 출발지(Origin)에 따라 URL 앞부분을 다르게 만듭니다.
-    const originSlug = (item.origin === 'United States') ? 'united-states' : 'south-korea';
-    
-    return {
-      url: `${baseUrl}/visa/${originSlug}-to-${destSlug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    };
-  });
+  // 2. 비자 상세 페이지 자동 생성
+  // 🚨 page.tsx와 로직을 100% 일치시켜야 404 에러가 안 납니다!
+  const visaRoutes = visaData
+    .filter((visa) => {
+      // 이름이 너무 긴 불량 데이터 제외 (page.tsx와 동일하게)
+      if (visa.destination.length > 50) return false;
+      if (!visa.destination || !visa.origin) return false;
+      return true;
+    })
+    .map((visa) => {
+      // 슬러그 생성 로직 (특수문자 제거 등 page.tsx와 동일하게)
+      const p = visa.origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      const d = visa.destination.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      const slug = `${p}-to-${d}`;
+
+      return {
+        url: `${baseUrl}/visa/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      };
+    });
 
   return [...routes, ...visaRoutes];
 }
