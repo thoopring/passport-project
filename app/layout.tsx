@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-// 👇 1. GoogleTagManager 불러오기
+// 👇 GTM은 그대로 유지!
 import { GoogleTagManager } from '@next/third-parties/google'
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Passport Power: South Korea",
@@ -33,12 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* 👇 2. GTM ID 심기 (복잡한 script 태그 대신 이거 한 줄이면 끝입니다!) */}
+      {/* 👇 GTM ID는 파트너님 것으로 유지 */}
       <GoogleTagManager gtmId="GTM-TPRWDJ9X" />
       
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      {/* 폰트 설정 제거하고 깔끔하게 유지 */}
+      <body className="antialiased">
         {children}
       </body>
     </html>
