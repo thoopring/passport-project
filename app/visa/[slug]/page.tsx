@@ -22,7 +22,6 @@ interface VisaData {
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
 
-// 🔥 인기 여행지 리스트
 const POPULAR_DESTINATIONS = {
   "South Korea": ["Japan", "Vietnam", "Thailand", "Philippines", "Taiwan", "Guam"],
   "United States": ["Mexico", "Canada", "United Kingdom", "Italy", "France", "Japan"]
@@ -72,7 +71,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     notFound();
   }
 
-  // 데이터 청소
+  // 데이터 청소 및 처리
   const cleanRequirement = visa.requirement.replace(/\[.*?\]/g, "").trim();
   const isVisaFree = cleanRequirement.toLowerCase().includes("visa not required") || cleanRequirement.toLowerCase().includes("visa free");
   const statusColor = isVisaFree ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800";
@@ -91,16 +90,29 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     .filter((v) => v.origin === visa.origin && targetPopularList.includes(v.destination) && v.destination !== visa.destination)
     .slice(0, 4);
 
-  // 🏨 [수익화 1] 호텔 검색 링크 (Hotellook)
-  // 파트너님의 ID (Marker)
-  const affiliateID = "491612"; 
-  const hotelLink = `https://search.hotellook.com/hotels?marker=${affiliateID}&language=en&location=${visa.destination}`;
+  // 💰 [수익화 링크 모음] - 승인 전에는 검색 결과로 이동
+  const affiliateID = "491612"; // Travelpayouts Marker
 
-  // 🎡 [수익화 2] 투어 검색 링크 (Viator) - 승인 전에는 검색 결과로 이동
+  // 1. 호텔 (Hotellook -> Booking/Agoda 비교)
+  const hotelLink = `https://search.hotellook.com/hotels?marker=${affiliateID}&language=en&location=${visa.destination}`;
+  
+  // 2. 항공권 (Aviasales) - [신규]
+  const flightLink = `https://www.aviasales.com/search?marker=${affiliateID}`; 
+
+  // 3. 투어 (Viator / GetYourGuide) - [신규]
+  //    미국/유럽 등 지역에 따라 나중에 분기 처리가능. 지금은 Viator 우선.
   const tourLink = `https://www.viator.com/searchResults/all?text=${visa.destination}`;
 
-  // 🛡️ [수익화 3] 보험 링크 (Insubuy) - 승인 전에는 메인으로 이동
+  // 4. 보험 (Insubuy) - [신규]
   const insuranceLink = "https://www.insubuy.com/";
+
+  // 5. VPN (NordVPN) - [신규]
+  const vpnLink = "https://nordvpn.com/";
+
+  // 6. 기차 (Rail Europe) - [신규: 유럽일 때만 표시하는 로직]
+  const isEurope = visa.region === "Europe";
+  const trainLink = "https://www.raileurope.com/";
+
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -137,7 +149,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
-            {/* 노트 */}
+            {/* 중요 노트 */}
             {cleanNotes && (
               <div className="bg-orange-50 rounded-xl p-6 border border-orange-100 flex gap-4">
                 <div className="text-2xl">📝</div>
@@ -192,90 +204,88 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
-            {/* 👇 [수익화 핵심] 여행 준비 4단 콤보 (eSIM + Hotel + Tours + Insurance) */}
+            {/* 👇 [최종 수익화 그리드] 2x3 레이아웃 (반응형) */}
             <div className="mt-8">
               <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                <span className="mr-2">🎒</span> Trip Planner for {visa.destination}
+                <span className="mr-2">🎒</span> Complete Travel Toolkit
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 
-                {/* 1. Airalo (eSIM) - 데이터 */}
-                <div className="bg-gray-900 rounded-xl p-5 text-center shadow-lg relative overflow-hidden group hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                {/* 1. Airalo (eSIM) */}
+                <div className="bg-gray-900 rounded-xl p-5 text-center shadow-md relative overflow-hidden group hover:scale-[1.02] transition-transform duration-200">
                   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black opacity-100 z-0"></div>
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-2xl">📶</span>
-                      <h3 className="text-white font-bold text-lg">Internet</h3>
+                  <div className="relative z-10 flex flex-col h-full justify-between">
+                    <div>
+                        <div className="text-2xl mb-1">📶</div>
+                        <h3 className="text-white font-bold text-lg">Internet</h3>
+                        <p className="text-gray-400 text-xs mb-3">No roaming fees</p>
                     </div>
-                    <p className="text-gray-400 text-sm mb-4">Don't pay roaming fees.</p>
-                    <a 
-                      href="https://airalo.pxf.io/2anR7A" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-500 transition-colors"
-                    >
-                      Get eSIM 📲
-                    </a>
+                    <a href="https://airalo.pxf.io/2anR7A" target="_blank" rel="noopener noreferrer" className="block w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-500 transition-colors text-sm">Get eSIM 📲</a>
                   </div>
                 </div>
 
-                {/* 2. Hotel (Booking.com via Hotellook) - 숙소 */}
+                {/* 2. Aviasales (Flights) - 신규 */}
+                <div className="bg-sky-50 rounded-xl p-5 text-center shadow-md border border-sky-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                    <div>
+                        <div className="text-2xl mb-1">✈️</div>
+                        <h3 className="text-gray-900 font-bold text-lg">Cheap Flights</h3>
+                        <p className="text-gray-500 text-xs mb-3">Compare airlines</p>
+                    </div>
+                    <a href={flightLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-sky-500 text-white font-bold py-2 rounded-lg hover:bg-sky-400 transition-colors text-sm">Find Flights 🛫</a>
+                </div>
+
+                {/* 3. Hotellook (Hotel) */}
                 <div className="bg-blue-50 rounded-xl p-5 text-center shadow-md border border-blue-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-2xl">🏨</span>
-                      <h3 className="text-gray-900 font-bold text-lg">Hotel</h3>
+                    <div>
+                        <div className="text-2xl mb-1">🏨</div>
+                        <h3 className="text-gray-900 font-bold text-lg">Hotels</h3>
+                        <p className="text-gray-500 text-xs mb-3">Best deals</p>
                     </div>
-                    <p className="text-gray-500 text-sm mb-4">Best places to stay.</p>
-                  </div>
-                  <a 
-                    href={hotelLink}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition-colors"
-                  >
-                    Find Hotels 🛏️
-                  </a>
+                    <a href={hotelLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-blue-900 text-white font-bold py-2 rounded-lg hover:bg-blue-800 transition-colors text-sm">Find Hotels 🛏️</a>
                 </div>
 
-                {/* 3. Viator (Tours) - 투어 & 액티비티 */}
+                {/* 4. Viator (Tours) */}
                 <div className="bg-green-50 rounded-xl p-5 text-center shadow-md border border-green-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-2xl">🎡</span>
-                      <h3 className="text-gray-900 font-bold text-lg">Tours</h3>
+                    <div>
+                        <div className="text-2xl mb-1">🎡</div>
+                        <h3 className="text-gray-900 font-bold text-lg">Tours</h3>
+                        <p className="text-gray-500 text-xs mb-3">Top activities</p>
                     </div>
-                    <p className="text-gray-500 text-sm mb-4">Top rated activities.</p>
-                  </div>
-                  <a 
-                    href={tourLink}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-500 transition-colors"
-                  >
-                    Find Activities 🎫
-                  </a>
+                    <a href={tourLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-green-600 text-white font-bold py-2 rounded-lg hover:bg-green-500 transition-colors text-sm">Book Tours 🎫</a>
                 </div>
 
-                 {/* 4. Insurance (Insubuy) - 여행자 보험 */}
+                 {/* 5. Insubuy (Insurance) */}
                  <div className="bg-orange-50 rounded-xl p-5 text-center shadow-md border border-orange-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-2xl">🛡️</span>
-                      <h3 className="text-gray-900 font-bold text-lg">Insurance</h3>
+                    <div>
+                        <div className="text-2xl mb-1">🛡️</div>
+                        <h3 className="text-gray-900 font-bold text-lg">Insurance</h3>
+                        <p className="text-gray-500 text-xs mb-3">Safety first</p>
                     </div>
-                    <p className="text-gray-500 text-sm mb-4">Safe travel requirement.</p>
-                  </div>
-                  <a 
-                    href={insuranceLink}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-400 transition-colors"
-                  >
-                    Get Insured 🏥
-                  </a>
+                    <a href={insuranceLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-500 text-white font-bold py-2 rounded-lg hover:bg-orange-400 transition-colors text-sm">Get Insured 🏥</a>
                 </div>
+
+                {/* 6. NordVPN (VPN) - 신규 */}
+                <div className="bg-gray-100 rounded-xl p-5 text-center shadow-md border border-gray-200 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                    <div>
+                        <div className="text-2xl mb-1">🔐</div>
+                        <h3 className="text-gray-900 font-bold text-lg">VPN</h3>
+                        <p className="text-gray-500 text-xs mb-3">Secure Wi-Fi</p>
+                    </div>
+                    <a href={vpnLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-gray-700 text-white font-bold py-2 rounded-lg hover:bg-gray-600 transition-colors text-sm">Get Safe 💻</a>
+                </div>
+
+                {/* 7. [조건부 렌더링] Rail Europe (기차) - 유럽일 때만 등장 */}
+                {isEurope && (
+                     <div className="bg-red-50 rounded-xl p-5 text-center shadow-md border border-red-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                     <div>
+                         <div className="text-2xl mb-1">🚆</div>
+                         <h3 className="text-gray-900 font-bold text-lg">Trains</h3>
+                         <p className="text-gray-500 text-xs mb-3">Eurail & Tickets</p>
+                     </div>
+                     <a href={trainLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-red-600 text-white font-bold py-2 rounded-lg hover:bg-red-500 transition-colors text-sm">Book Trains 🎫</a>
+                 </div>
+                )}
 
               </div>
             </div>
