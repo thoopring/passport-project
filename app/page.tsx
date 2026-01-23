@@ -109,6 +109,15 @@ export default function Home() {
             Discover travel freedom with <span className="font-bold text-yellow-300">{selectedOrigin}</span> passport.
           </p>
 
+          <div className="flex justify-center gap-4 mb-8">
+            <Link 
+              href="/blog"
+              className="inline-flex items-center px-6 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold hover:bg-white/30 transition-all shadow-lg"
+            >
+              <span>📰 Travel Blog</span>
+            </Link>
+          </div>
+
           {/* 🔘 여권 선택 슬라이더 */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {ORIGIN_COUNTRIES.map((country) => (
