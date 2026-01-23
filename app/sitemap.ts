@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-// 👇 데이터 파일 경로 (app 폴더 상위에 있는 경우)
 import visaDataRaw from '../visa_data.json'; 
 
 interface VisaData {
@@ -9,33 +8,44 @@ interface VisaData {
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
 
+// 🛠️ page.tsx와 100% 동일한 슬러그 생성 함수 (중요!)
+function createSlug(destination: string, origin: string) {
+  const p = origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  const d = destination.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  return `${p}-to-${d}`; 
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  // ⚠️ 실제 배포된 도메인 주소 (마지막에 슬래시 / 없어야 함)
   const baseUrl = 'https://passport-project.vercel.app';
 
-  // 1. 메인 페이지
-  const routes = [
+  // 1. 고정 페이지 (메인, 블로그)
+  const staticRoutes = [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 1,
     },
+    {
+      url: `${baseUrl}/blog`, // 👈 블로그 메인도 검색엔진에 알려줍니다.
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
   ];
 
-  // 2. 비자 상세 페이지 자동 생성
-  // 🚨 page.tsx와 로직을 100% 일치시켜야 404 에러가 안 납니다!
+  // 2. 비자 상세 페이지 자동 생성 (동적)
   const visaRoutes = visaData
     .filter((visa) => {
-      // 이름이 너무 긴 불량 데이터 제외 (page.tsx와 동일하게)
-      if (visa.destination.length > 50) return false;
-      if (!visa.destination || !visa.origin) return false;
+      // 🚨 page.tsx의 필터링 로직과 동일해야 404 에러가 안 납니다.
+      if (visa.destination.length > 50) return false;      // 너무 긴 이름 제외
+      if (!visa.destination || !visa.origin) return false; // 데이터 없는 경우 제외
+      if (/^\d/.test(visa.destination)) return false;      // 숫자로 시작하는 오타 데이터 제외
       return true;
     })
     .map((visa) => {
-      // 슬러그 생성 로직 (특수문자 제거 등 page.tsx와 동일하게)
-      const p = visa.origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-      const d = visa.destination.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-      const slug = `${p}-to-${d}`;
+      const slug = createSlug(visa.destination, visa.origin);
 
       return {
         url: `${baseUrl}/visa/${slug}`,
@@ -45,5 +55,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  return [...routes, ...visaRoutes];
+  return [...staticRoutes, ...visaRoutes];
 }
