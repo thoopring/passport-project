@@ -7,7 +7,7 @@
   --foreground: #171717;
 }
 
-/* 👇 핵심 변경: @media 대신 .dark 클래스를 사용해야 토글 버튼이 먹힙니다! */
+/* 다크모드 설정 */
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -17,12 +17,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  
-  /* 다크모드 전환 시 눈이 편안하도록 부드러운 전환 효과 추가 */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 👇 지도(Map) 클릭했을 때 생기는 못생긴 테두리 제거 */
+/* 지도 클릭 시 파란 테두리 제거 */
 .rsm-geography:focus {
   outline: none !important;
 }
