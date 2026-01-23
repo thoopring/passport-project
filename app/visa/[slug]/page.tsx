@@ -14,7 +14,6 @@ interface VisaData {
   region?: string;
   population?: string;
   languages?: string;
-  // 👇 새로 추가된 여행 데이터 타입 정의
   plug_type?: string;
   emergency_number?: string;
   greeting?: string;
@@ -22,6 +21,12 @@ interface VisaData {
 }
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
+
+// 🔥 인기 여행지 리스트 (하드코딩)
+const POPULAR_DESTINATIONS = {
+  "South Korea": ["Japan", "Vietnam", "Thailand", "Philippines", "Taiwan", "Guam"],
+  "United States": ["Mexico", "Canada", "United Kingdom", "Italy", "France", "Japan"]
+};
 
 function createSlug(destination: string, origin: string) {
   const p = origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -75,9 +80,30 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const cleanNotes = (visa.notes && visa.notes.toLowerCase() !== "nan") ? visa.notes.replace(/\[.*?\]/g, "").trim() : null;
   const cleanPopulation = (visa.population && visa.population !== '0') ? visa.population : null;
 
+  // 🕸️ [거미줄 1] 인접 국가 추천 (같은 Region, 다른 나라)
+  const nearbyVisas = visaData
+    .filter((v) => 
+      v.origin === visa.origin && 
+      v.region === visa.region && 
+      v.destination !== visa.destination &&
+      v.destination.length < 50 // 긴 이름 제외
+    )
+    .sort(() => 0.5 - Math.random()) // 랜덤 섞기
+    .slice(0, 4); // 4개만 뽑기
+
+  // 🕸️ [거미줄 2] 인기 국가 추천 (리스트에 있는 나라)
+  const targetPopularList = POPULAR_DESTINATIONS[visa.origin as keyof typeof POPULAR_DESTINATIONS] || [];
+  const popularVisas = visaData
+    .filter((v) => 
+      v.origin === visa.origin && 
+      targetPopularList.includes(v.destination) && 
+      v.destination !== visa.destination
+    )
+    .slice(0, 4);
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto"> {/* 폭을 좀 더 넓혔습니다 (3xl -> 4xl) */}
+      <div className="max-w-4xl mx-auto">
         
         <Link href="/" className="text-gray-500 hover:text-blue-600 mb-6 inline-flex items-center font-medium transition-colors">
           <span className="mr-2">←</span> Back to Country List
@@ -97,7 +123,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <div className="p-6 sm:p-10 space-y-8">
             
-            {/* 1. 비자 상태 */}
+            {/* 비자 상태 */}
             <div className={`rounded-2xl p-6 ${statusColor} border border-opacity-20 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-sm`}>
               <div className="text-4xl">{statusIcon}</div>
               <div>
@@ -122,15 +148,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             )}
 
-            {/* 2. [업그레이드] 여행 필수 정보 (8개 항목 그리드) */}
+            {/* 여행 필수 정보 */}
             <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
               <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-2">
                 <span className="text-xl">🌍</span>
                 <h3 className="text-lg font-bold text-gray-900">Travel Essentials for {visa.destination}</h3>
               </div>
               <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
-                
-                {/* 기존 정보 */}
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Capital</p>
                   <p className="font-semibold text-gray-900">{visa.capital || "Check details"}</p>
@@ -139,8 +163,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Currency</p>
                   <p className="font-semibold text-gray-900">{visa.currency || "Local Currency"}</p>
                 </div>
-                
-                {/* 👇 신규 추가 정보 (아이콘 강조) */}
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">🔌 Plug & Voltage</p>
                   <p className="font-semibold text-gray-900 text-sm">{visa.plug_type || "Check Adapter"}</p>
@@ -157,8 +179,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">🗣️ Say Hello</p>
                   <p className="font-semibold text-gray-900 text-sm">{visa.greeting || "Hello"}</p>
                 </div>
-
-                {/* 나머지 기존 정보 */}
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Region</p>
                   <p className="font-semibold text-gray-900">{visa.region || "Global"}</p>
@@ -176,7 +196,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <div className="mt-8 pt-6">
               <div className="bg-gray-900 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black opacity-100 z-0"></div>
-                
                 <div className="relative z-10">
                   <h3 className="text-white font-bold text-2xl mb-3">
                     Need Internet in {visa.destination}?
@@ -184,7 +203,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   <p className="text-gray-300 mb-8 text-lg">
                     Avoid roaming charges. Get an eSIM instantly.
                   </p>
-                  
                   <a 
                     href="https://airalo.pxf.io/2anR7A" 
                     target="_blank" 
@@ -196,6 +214,54 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 </div>
               </div>
             </div>
+
+            {/* 👇 [NEW] 거미줄 추천 섹션 (Nearby Countries) */}
+            {nearbyVisas.length > 0 && (
+              <div className="mt-12 pt-8 border-t border-gray-100">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">📍 Nearby Destinations in {visa.region}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  {nearbyVisas.map((v) => (
+                    <Link 
+                      key={v.destination} 
+                      href={`/visa/${createSlug(v.destination, v.origin)}`}
+                      className="block group bg-gray-50 rounded-xl p-4 hover:bg-blue-50 hover:shadow-md transition-all border border-gray-100"
+                    >
+                      <div className="flex justify-between items-start">
+                        <span className="font-bold text-gray-800 group-hover:text-blue-700">{v.destination}</span>
+                        <span className="text-xl">✈️</span>
+                      </div>
+                      <div className="mt-2 text-xs text-gray-500 font-medium bg-white inline-block px-2 py-1 rounded border border-gray-200">
+                        {v.requirement.replace(/\[.*?\]/g, "").slice(0, 15)}...
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 👇 [NEW] 인기 여행지 섹션 (Popular Destinations) */}
+            {popularVisas.length > 0 && (
+              <div className="mt-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">🔥 Popular with {visa.origin} Travelers</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  {popularVisas.map((v) => (
+                    <Link 
+                      key={v.destination} 
+                      href={`/visa/${createSlug(v.destination, v.origin)}`}
+                      className="block group bg-white rounded-xl p-4 hover:shadow-md transition-all border border-gray-200"
+                    >
+                      <div className="flex justify-between items-start">
+                        <span className="font-bold text-gray-800 group-hover:text-blue-700">{v.destination}</span>
+                        <span className="text-xl">🌟</span>
+                      </div>
+                      <div className="mt-2 text-xs text-blue-600 font-bold">
+                        View Requirements →
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
           </div>
         </div>
