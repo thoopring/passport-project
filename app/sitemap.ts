@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
-import visaDataRaw from '../visa_data.json'; 
+import visaDataRaw from '../visa_data.json';
+import { BLOG_POSTS } from './blog/data'; // 👈 블로그 데이터 가져오기
 
 interface VisaData {
   origin: string;
@@ -8,7 +9,6 @@ interface VisaData {
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
 
-// 🛠️ page.tsx와 100% 동일한 슬러그 생성 함수 (중요!)
 function createSlug(destination: string, origin: string) {
   const p = origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   const d = destination.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -16,10 +16,10 @@ function createSlug(destination: string, origin: string) {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // ⚠️ 실제 배포된 도메인 주소 (마지막에 슬래시 / 없어야 함)
-  const baseUrl = 'https://passport-project.vercel.app';
+  // ⚠️ 본인의 배포 도메인으로 꼭 확인하세요!
+  const baseUrl = 'https://passport-project.vercel.app'; 
 
-  // 1. 고정 페이지 (메인, 블로그)
+  // 1. 고정 페이지
   const staticRoutes = [
     {
       url: baseUrl,
@@ -28,32 +28,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/blog`, // 👈 블로그 메인도 검색엔진에 알려줍니다.
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
   ];
 
-  // 2. 비자 상세 페이지 자동 생성 (동적)
+  // 2. 블로그 상세 페이지들 (새로 추가된 부분!) 👇
+  const blogRoutes = Object.keys(BLOG_POSTS).map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(), // 혹은 BLOG_POSTS[slug].date 사용 가능
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  // 3. 비자 데이터 페이지들
   const visaRoutes = visaData
     .filter((visa) => {
-      // 🚨 page.tsx의 필터링 로직과 동일해야 404 에러가 안 납니다.
-      if (visa.destination.length > 50) return false;      // 너무 긴 이름 제외
-      if (!visa.destination || !visa.origin) return false; // 데이터 없는 경우 제외
-      if (/^\d/.test(visa.destination)) return false;      // 숫자로 시작하는 오타 데이터 제외
+      if (visa.destination.length > 50) return false;
+      if (!visa.destination || !visa.origin) return false;
+      if (/^\d/.test(visa.destination)) return false;
       return true;
     })
     .map((visa) => {
       const slug = createSlug(visa.destination, visa.origin);
-
       return {
         url: `${baseUrl}/visa/${slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
-        priority: 0.8,
+        priority: 0.5, // 블로그보다 우선순위 살짝 낮춤
       };
     });
 
-  return [...staticRoutes, ...visaRoutes];
+  return [...staticRoutes, ...blogRoutes, ...visaRoutes];
 }
