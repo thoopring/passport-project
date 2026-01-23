@@ -22,7 +22,7 @@ interface VisaData {
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
 
-// 🔥 인기 여행지 리스트 (하드코딩)
+// 🔥 인기 여행지 리스트
 const POPULAR_DESTINATIONS = {
   "South Korea": ["Japan", "Vietnam", "Thailand", "Philippines", "Taiwan", "Guam"],
   "United States": ["Mexico", "Canada", "United Kingdom", "Italy", "France", "Japan"]
@@ -80,26 +80,27 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const cleanNotes = (visa.notes && visa.notes.toLowerCase() !== "nan") ? visa.notes.replace(/\[.*?\]/g, "").trim() : null;
   const cleanPopulation = (visa.population && visa.population !== '0') ? visa.population : null;
 
-  // 🕸️ [거미줄 1] 인접 국가 추천 (같은 Region, 다른 나라)
+  // 거미줄 로직
   const nearbyVisas = visaData
-    .filter((v) => 
-      v.origin === visa.origin && 
-      v.region === visa.region && 
-      v.destination !== visa.destination &&
-      v.destination.length < 50 // 긴 이름 제외
-    )
-    .sort(() => 0.5 - Math.random()) // 랜덤 섞기
-    .slice(0, 4); // 4개만 뽑기
+    .filter((v) => v.origin === visa.origin && v.region === visa.region && v.destination !== visa.destination && v.destination.length < 50)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 4);
 
-  // 🕸️ [거미줄 2] 인기 국가 추천 (리스트에 있는 나라)
   const targetPopularList = POPULAR_DESTINATIONS[visa.origin as keyof typeof POPULAR_DESTINATIONS] || [];
   const popularVisas = visaData
-    .filter((v) => 
-      v.origin === visa.origin && 
-      targetPopularList.includes(v.destination) && 
-      v.destination !== visa.destination
-    )
+    .filter((v) => v.origin === visa.origin && targetPopularList.includes(v.destination) && v.destination !== visa.destination)
     .slice(0, 4);
+
+  // 🏨 [수익화 1] 호텔 검색 링크 (Hotellook)
+  // 파트너님의 ID (Marker)
+  const affiliateID = "491612"; 
+  const hotelLink = `https://search.hotellook.com/hotels?marker=${affiliateID}&language=en&location=${visa.destination}`;
+
+  // 🎡 [수익화 2] 투어 검색 링크 (Viator) - 승인 전에는 검색 결과로 이동
+  const tourLink = `https://www.viator.com/searchResults/all?text=${visa.destination}`;
+
+  // 🛡️ [수익화 3] 보험 링크 (Insubuy) - 승인 전에는 메인으로 이동
+  const insuranceLink = "https://www.insubuy.com/";
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -111,7 +112,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
         <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
           
-          {/* 헤더 */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-10 sm:px-10 text-center sm:text-left">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 shadow-sm">
               {visa.origin} ✈️ {visa.destination}
@@ -137,7 +137,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
-            {/* 중요 노트 */}
+            {/* 노트 */}
             {cleanNotes && (
               <div className="bg-orange-50 rounded-xl p-6 border border-orange-100 flex gap-4">
                 <div className="text-2xl">📝</div>
@@ -192,30 +192,95 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
-            {/* eSIM 광고 */}
-            <div className="mt-8 pt-6">
-              <div className="bg-gray-900 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black opacity-100 z-0"></div>
-                <div className="relative z-10">
-                  <h3 className="text-white font-bold text-2xl mb-3">
-                    Need Internet in {visa.destination}?
-                  </h3>
-                  <p className="text-gray-300 mb-8 text-lg">
-                    Avoid roaming charges. Get an eSIM instantly.
-                  </p>
+            {/* 👇 [수익화 핵심] 여행 준비 4단 콤보 (eSIM + Hotel + Tours + Insurance) */}
+            <div className="mt-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                <span className="mr-2">🎒</span> Trip Planner for {visa.destination}
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                {/* 1. Airalo (eSIM) - 데이터 */}
+                <div className="bg-gray-900 rounded-xl p-5 text-center shadow-lg relative overflow-hidden group hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black opacity-100 z-0"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-2xl">📶</span>
+                      <h3 className="text-white font-bold text-lg">Internet</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm mb-4">Don't pay roaming fees.</p>
+                    <a 
+                      href="https://airalo.pxf.io/2anR7A" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-500 transition-colors"
+                    >
+                      Get eSIM 📲
+                    </a>
+                  </div>
+                </div>
+
+                {/* 2. Hotel (Booking.com via Hotellook) - 숙소 */}
+                <div className="bg-blue-50 rounded-xl p-5 text-center shadow-md border border-blue-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-2xl">🏨</span>
+                      <h3 className="text-gray-900 font-bold text-lg">Hotel</h3>
+                    </div>
+                    <p className="text-gray-500 text-sm mb-4">Best places to stay.</p>
+                  </div>
                   <a 
-                    href="https://airalo.pxf.io/2anR7A" 
+                    href={hotelLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-block w-full sm:w-auto bg-blue-600 text-white font-bold py-4 px-10 rounded-full hover:bg-blue-500 hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    className="block w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition-colors"
                   >
-                    Get eSIM for {visa.destination} 📲
+                    Find Hotels 🛏️
                   </a>
                 </div>
+
+                {/* 3. Viator (Tours) - 투어 & 액티비티 */}
+                <div className="bg-green-50 rounded-xl p-5 text-center shadow-md border border-green-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-2xl">🎡</span>
+                      <h3 className="text-gray-900 font-bold text-lg">Tours</h3>
+                    </div>
+                    <p className="text-gray-500 text-sm mb-4">Top rated activities.</p>
+                  </div>
+                  <a 
+                    href={tourLink}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-500 transition-colors"
+                  >
+                    Find Activities 🎫
+                  </a>
+                </div>
+
+                 {/* 4. Insurance (Insubuy) - 여행자 보험 */}
+                 <div className="bg-orange-50 rounded-xl p-5 text-center shadow-md border border-orange-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-2xl">🛡️</span>
+                      <h3 className="text-gray-900 font-bold text-lg">Insurance</h3>
+                    </div>
+                    <p className="text-gray-500 text-sm mb-4">Safe travel requirement.</p>
+                  </div>
+                  <a 
+                    href={insuranceLink}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-400 transition-colors"
+                  >
+                    Get Insured 🏥
+                  </a>
+                </div>
+
               </div>
             </div>
 
-            {/* 👇 [NEW] 거미줄 추천 섹션 (Nearby Countries) */}
+            {/* 거미줄 추천 (Nearby) */}
             {nearbyVisas.length > 0 && (
               <div className="mt-12 pt-8 border-t border-gray-100">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">📍 Nearby Destinations in {visa.region}</h3>
@@ -239,7 +304,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
             )}
 
-            {/* 👇 [NEW] 인기 여행지 섹션 (Popular Destinations) */}
+            {/* 인기 국가 추천 */}
             {popularVisas.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">🔥 Popular with {visa.origin} Travelers</h3>
