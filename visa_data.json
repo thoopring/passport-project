@@ -8,7 +8,11 @@
         "region": "Asia",
         "currency": "Afghan afghani (AFN)",
         "languages": "Dari, Pashto, Turkmen",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -19,7 +23,11 @@
         "region": "Europe",
         "currency": "Albanian lek (ALL)",
         "languages": "Albanian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -30,7 +38,11 @@
         "region": "Africa",
         "currency": "Algerian dinar (DZD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -41,7 +53,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Catalan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -52,7 +68,11 @@
         "region": "Africa",
         "currency": "Angolan kwanza (AOA)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -63,7 +83,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -74,7 +98,11 @@
         "region": "Americas",
         "currency": "Argentine peso (ARS)",
         "languages": "Guaraní, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / I (220V)",
+        "emergency_number": "911",
+        "greeting": "Hola",
+        "best_time_to_visit": "Oct-Nov, Mar-Apr"
     },
     {
         "origin": "South Korea",
@@ -85,7 +113,11 @@
         "region": "Asia",
         "currency": "Armenian dram (AMD)",
         "languages": "Armenian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -96,7 +128,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type I (230V)",
+        "emergency_number": "000",
+        "greeting": "G'day",
+        "best_time_to_visit": "Sep-Nov, Mar-May"
     },
     {
         "origin": "South Korea",
@@ -107,7 +143,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Austro-Bavarian German",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -118,7 +158,11 @@
         "region": "Asia",
         "currency": "Azerbaijani manat (AZN)",
         "languages": "Azerbaijani, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -129,7 +173,11 @@
         "region": "Americas",
         "currency": "Bahamian dollar (BSD), United States dollar (USD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -140,7 +188,11 @@
         "region": "Asia",
         "currency": "Bahraini dinar (BHD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -151,7 +203,11 @@
         "region": "Asia",
         "currency": "Bangladeshi taka (BDT)",
         "languages": "Bengali",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -162,7 +218,11 @@
         "region": "Americas",
         "currency": "Barbadian dollar (BBD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -173,7 +233,11 @@
         "region": "Europe",
         "currency": "Belarusian ruble (BYN)",
         "languages": "Belarusian, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -184,7 +248,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "German, French, Dutch",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -195,7 +263,11 @@
         "region": "Americas",
         "currency": "Belize dollar (BZD)",
         "languages": "Belizean Creole, English, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -206,7 +278,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -217,7 +293,11 @@
         "region": "Asia",
         "currency": "Bhutanese ngultrum (BTN), Indian rupee (INR)",
         "languages": "Dzongkha",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -228,7 +308,11 @@
         "region": "Americas",
         "currency": "Bolivian boliviano (BOB)",
         "languages": "Aymara, Guaraní, Quechua, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -239,7 +323,11 @@
         "region": "Europe",
         "currency": "Bosnia and Herzegovina convertible mark (BAM)",
         "languages": "Bosnian, Croatian, Serbian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -250,7 +338,11 @@
         "region": "Africa",
         "currency": "Botswana pula (BWP)",
         "languages": "English, Tswana",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -261,7 +353,11 @@
         "region": "Americas",
         "currency": "Brazilian real (BRL)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type N (127V/220V)",
+        "emergency_number": "190 (Police), 192 (Amb)",
+        "greeting": "Olá",
+        "best_time_to_visit": "Sep-Oct"
     },
     {
         "origin": "South Korea",
@@ -272,7 +368,11 @@
         "region": "Asia",
         "currency": "Brunei dollar (BND), Singapore dollar (SGD)",
         "languages": "Malay",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -283,7 +383,11 @@
         "region": "Europe",
         "currency": "Bulgarian lev (BGN)",
         "languages": "Bulgarian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -294,7 +398,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -305,7 +413,11 @@
         "region": "Africa",
         "currency": "Burundian franc (BIF)",
         "languages": "French, Kirundi",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -316,7 +428,11 @@
         "region": "Asia",
         "currency": "Cambodian riel (KHR), United States dollar (USD)",
         "languages": "Khmer",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -327,7 +443,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -338,7 +458,11 @@
         "region": "Americas",
         "currency": "Canadian dollar (CAD)",
         "languages": "English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (120V)",
+        "emergency_number": "911",
+        "greeting": "Hello / Bonjour",
+        "best_time_to_visit": "Jun-Sep"
     },
     {
         "origin": "South Korea",
@@ -349,7 +473,11 @@
         "region": "Africa",
         "currency": "Cape Verdean escudo (CVE)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -360,7 +488,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French, Sango",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -371,7 +503,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "Arabic, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -382,7 +518,11 @@
         "region": "Americas",
         "currency": "Chilean peso (CLP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -393,7 +533,11 @@
         "region": "Asia",
         "currency": "Chinese yuan (CNY)",
         "languages": "Chinese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / I / C (220V)",
+        "emergency_number": "110 (Police), 120 (Amb)",
+        "greeting": "Ni Hao (니 하오)",
+        "best_time_to_visit": "Sep-Oct, Apr-May"
     },
     {
         "origin": "South Korea",
@@ -404,7 +548,11 @@
         "region": "Americas",
         "currency": "Colombian peso (COP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -415,7 +563,11 @@
         "region": "Africa",
         "currency": "Comorian franc (KMF)",
         "languages": "Arabic, French, Comorian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -426,7 +578,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French, Kikongo, Lingala",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -437,7 +593,11 @@
         "region": "Africa",
         "currency": "Congolese franc (CDF)",
         "languages": "French, Kikongo, Lingala, Tshiluba, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -448,7 +608,11 @@
         "region": "Americas",
         "currency": "Costa Rican colón (CRC)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -459,7 +623,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -470,7 +638,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Croatian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -481,7 +653,11 @@
         "region": "Americas",
         "currency": "Cuban convertible peso (CUC), Cuban peso (CUP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -492,7 +668,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Greek, Turkish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -503,7 +683,11 @@
         "region": "Europe",
         "currency": "Czech koruna (CZK)",
         "languages": "Czech, Slovak",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -514,7 +698,11 @@
         "region": "Europe",
         "currency": "Danish krone (DKK)",
         "languages": "Danish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -525,7 +713,11 @@
         "region": "Africa",
         "currency": "Djiboutian franc (DJF)",
         "languages": "Arabic, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -536,7 +728,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -547,7 +743,11 @@
         "region": "Americas",
         "currency": "Dominican peso (DOP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -558,7 +758,11 @@
         "region": "Americas",
         "currency": "United States dollar (USD)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -569,7 +773,11 @@
         "region": "Africa",
         "currency": "Egyptian pound (EGP)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -580,7 +788,11 @@
         "region": "Americas",
         "currency": "United States dollar (USD)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -591,7 +803,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French, Portuguese, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -602,7 +818,11 @@
         "region": "Africa",
         "currency": "Eritrean nakfa (ERN)",
         "languages": "Arabic, English, Tigrinya",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -613,7 +833,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Estonian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -624,7 +848,11 @@
         "region": "Africa",
         "currency": "Swazi lilangeni (SZL), South African rand (ZAR)",
         "languages": "English, Swazi",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -635,7 +863,11 @@
         "region": "Africa",
         "currency": "Ethiopian birr (ETB)",
         "languages": "Amharic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -646,7 +878,11 @@
         "region": "Oceania",
         "currency": "Fijian dollar (FJD)",
         "languages": "English, Fijian, Fiji Hindi",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -657,7 +893,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Finnish, Swedish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -668,7 +908,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / E (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Bonjour (봉쥬르)",
+        "best_time_to_visit": "Apr-Jun, Sep-Nov"
     },
     {
         "origin": "South Korea",
@@ -679,7 +923,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -690,7 +938,11 @@
         "region": "Africa",
         "currency": "dalasi (GMD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -701,7 +953,11 @@
         "region": "Asia",
         "currency": "lari (GEL)",
         "languages": "Georgian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -712,7 +968,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "German",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Guten Tag (구텐 탁)",
+        "best_time_to_visit": "May-Sep"
     },
     {
         "origin": "South Korea",
@@ -723,7 +983,11 @@
         "region": "Africa",
         "currency": "Ghanaian cedi (GHS)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -734,7 +998,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Greek",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -745,7 +1013,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -756,7 +1028,11 @@
         "region": "Americas",
         "currency": "Guatemalan quetzal (GTQ)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -767,7 +1043,11 @@
         "region": "Africa",
         "currency": "Guinean franc (GNF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -778,7 +1058,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "Portuguese, Upper Guinea Creole",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -789,7 +1073,11 @@
         "region": "Americas",
         "currency": "Guyanese dollar (GYD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -800,7 +1088,11 @@
         "region": "Americas",
         "currency": "Haitian gourde (HTG)",
         "languages": "French, Haitian Creole",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -811,7 +1103,11 @@
         "region": "Americas",
         "currency": "Honduran lempira (HNL)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -822,7 +1118,11 @@
         "region": "Europe",
         "currency": "Hungarian forint (HUF)",
         "languages": "Hungarian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -833,7 +1133,11 @@
         "region": "Europe",
         "currency": "Icelandic króna (ISK)",
         "languages": "Icelandic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -844,7 +1148,11 @@
         "region": "Asia",
         "currency": "Indian rupee (INR)",
         "languages": "English, Hindi, Tamil",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / D / M (230V)",
+        "emergency_number": "112",
+        "greeting": "Namaste",
+        "best_time_to_visit": "Oct-Mar"
     },
     {
         "origin": "South Korea",
@@ -855,7 +1163,11 @@
         "region": "Asia",
         "currency": "Indonesian rupiah (IDR)",
         "languages": "Indonesian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (230V)",
+        "emergency_number": "110 (Police), 118 (Amb)",
+        "greeting": "Halo / Apa Kabar",
+        "best_time_to_visit": "May-Sep"
     },
     {
         "origin": "South Korea",
@@ -866,7 +1178,11 @@
         "region": "Asia",
         "currency": "Iranian rial (IRR)",
         "languages": "Persian (Farsi)",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -877,7 +1193,11 @@
         "region": "Asia",
         "currency": "Iraqi dinar (IQD)",
         "languages": "Arabic, Aramaic, Sorani",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -888,7 +1208,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "English, Irish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -899,7 +1223,11 @@
         "region": "Asia",
         "currency": "Israeli new shekel (ILS)",
         "languages": "Arabic, Hebrew",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -910,7 +1238,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Italian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F / L (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Ciao (챠오)",
+        "best_time_to_visit": "May-Jun, Sep-Oct"
     },
     {
         "origin": "South Korea",
@@ -921,7 +1253,11 @@
         "region": "Americas",
         "currency": "Jamaican dollar (JMD)",
         "languages": "English, Jamaican Patois",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -932,7 +1268,11 @@
         "region": "Asia",
         "currency": "Japanese yen (JPY)",
         "languages": "Japanese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (100V)",
+        "emergency_number": "110 (Police), 119 (Amb)",
+        "greeting": "Konnichiwa (こんにちは)",
+        "best_time_to_visit": "Mar-May, Sep-Nov"
     },
     {
         "origin": "South Korea",
@@ -943,7 +1283,11 @@
         "region": "Asia",
         "currency": "Jordanian dinar (JOD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -954,7 +1298,11 @@
         "region": "Asia",
         "currency": "Kazakhstani tenge (KZT)",
         "languages": "Kazakh, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -965,7 +1313,11 @@
         "region": "Africa",
         "currency": "Kenyan shilling (KES)",
         "languages": "English, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -976,7 +1328,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD), Kiribati dollar (KID)",
         "languages": "English, Gilbertese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -987,7 +1343,11 @@
         "region": "Asia",
         "currency": "North Korean won (KPW)",
         "languages": "Korean",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -998,7 +1358,11 @@
         "region": "Asia",
         "currency": "Kuwaiti dinar (KWD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1009,7 +1373,11 @@
         "region": "Asia",
         "currency": "Kyrgyzstani som (KGS)",
         "languages": "Kyrgyz, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1020,7 +1388,11 @@
         "region": "Asia",
         "currency": "Lao kip (LAK)",
         "languages": "Lao",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1031,7 +1403,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Latvian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1042,7 +1418,11 @@
         "region": "Asia",
         "currency": "Lebanese pound (LBP)",
         "languages": "Arabic, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1053,7 +1433,11 @@
         "region": "Africa",
         "currency": "Lesotho loti (LSL), South African rand (ZAR)",
         "languages": "English, Sotho",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1064,7 +1448,11 @@
         "region": "Africa",
         "currency": "Liberian dollar (LRD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1075,7 +1463,11 @@
         "region": "Africa",
         "currency": "Libyan dinar (LYD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1086,7 +1478,11 @@
         "region": "Europe",
         "currency": "Swiss franc (CHF)",
         "languages": "German",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1097,7 +1493,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Lithuanian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1108,7 +1508,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "German, French, Luxembourgish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1119,7 +1523,11 @@
         "region": "Africa",
         "currency": "Malagasy ariary (MGA)",
         "languages": "French, Malagasy",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1130,7 +1538,11 @@
         "region": "Africa",
         "currency": "Malawian kwacha (MWK)",
         "languages": "English, Chewa",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1141,7 +1553,11 @@
         "region": "Asia",
         "currency": "Malaysian ringgit (MYR)",
         "languages": "English, Malay",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type G (240V)",
+        "emergency_number": "999",
+        "greeting": "Selamat Datang",
+        "best_time_to_visit": "Dec-Feb, Jun-Aug"
     },
     {
         "origin": "South Korea",
@@ -1152,7 +1568,11 @@
         "region": "Asia",
         "currency": "Maldivian rufiyaa (MVR)",
         "languages": "Maldivian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1163,7 +1583,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1174,7 +1598,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "English, Maltese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1185,7 +1613,11 @@
         "region": "Oceania",
         "currency": "United States dollar (USD)",
         "languages": "English, Marshallese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1196,7 +1628,11 @@
         "region": "Africa",
         "currency": "Mauritanian ouguiya (MRU)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1207,7 +1643,11 @@
         "region": "Africa",
         "currency": "Mauritian rupee (MUR)",
         "languages": "English, French, Mauritian Creole",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1218,7 +1658,11 @@
         "region": "Americas",
         "currency": "Mexican peso (MXN)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (127V)",
+        "emergency_number": "911",
+        "greeting": "Hola",
+        "best_time_to_visit": "Dec-Apr"
     },
     {
         "origin": "South Korea",
@@ -1229,7 +1673,11 @@
         "region": "Oceania",
         "currency": "Unknown",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1240,7 +1688,11 @@
         "region": "Europe",
         "currency": "Moldovan leu (MDL)",
         "languages": "Moldavian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1251,7 +1703,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1262,7 +1718,11 @@
         "region": "Asia",
         "currency": "Mongolian tögrög (MNT)",
         "languages": "Mongolian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1273,7 +1733,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Montenegrin",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1284,7 +1748,11 @@
         "region": "Africa",
         "currency": "Moroccan dirham (MAD)",
         "languages": "Arabic, Berber",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1295,7 +1763,11 @@
         "region": "Africa",
         "currency": "Mozambican metical (MZN)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1306,7 +1778,11 @@
         "region": "Asia",
         "currency": "Burmese kyat (MMK)",
         "languages": "Burmese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1317,7 +1793,11 @@
         "region": "Africa",
         "currency": "Namibian dollar (NAD), South African rand (ZAR)",
         "languages": "Afrikaans, German, English, Herero, Khoekhoe, Kwangali, Lozi, Ndonga, Tswana",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1328,7 +1808,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD)",
         "languages": "English, Nauru",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1339,7 +1823,11 @@
         "region": "Asia",
         "currency": "Nepalese rupee (NPR)",
         "languages": "Nepali",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1350,7 +1838,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Dutch",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1361,7 +1853,11 @@
         "region": "Oceania",
         "currency": "New Zealand dollar (NZD)",
         "languages": "English, Māori, New Zealand Sign Language",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type I (230V)",
+        "emergency_number": "111",
+        "greeting": "Kia Ora",
+        "best_time_to_visit": "Dec-Mar"
     },
     {
         "origin": "South Korea",
@@ -1372,7 +1868,11 @@
         "region": "Americas",
         "currency": "Nicaraguan córdoba (NIO)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1383,7 +1883,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1394,7 +1898,11 @@
         "region": "Africa",
         "currency": "Nigerian naira (NGN)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1405,7 +1913,11 @@
         "region": "Europe",
         "currency": "denar (MKD)",
         "languages": "Macedonian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1416,7 +1928,11 @@
         "region": "Europe",
         "currency": "Norwegian krone (NOK)",
         "languages": "Norwegian Nynorsk, Norwegian Bokmål, Sami",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1427,7 +1943,11 @@
         "region": "Asia",
         "currency": "Omani rial (OMR)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1438,7 +1958,11 @@
         "region": "Asia",
         "currency": "Pakistani rupee (PKR)",
         "languages": "English, Urdu",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1449,7 +1973,11 @@
         "region": "Oceania",
         "currency": "United States dollar (USD)",
         "languages": "English, Palauan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1460,7 +1988,11 @@
         "region": "Americas",
         "currency": "Panamanian balboa (PAB), United States dollar (USD)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1471,7 +2003,11 @@
         "region": "Oceania",
         "currency": "Papua New Guinean kina (PGK)",
         "languages": "English, Hiri Motu, Tok Pisin",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1482,7 +2018,11 @@
         "region": "Americas",
         "currency": "Paraguayan guaraní (PYG)",
         "languages": "Guaraní, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1493,7 +2033,11 @@
         "region": "Americas",
         "currency": "Peruvian sol (PEN)",
         "languages": "Aymara, Quechua, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1504,7 +2048,11 @@
         "region": "Asia",
         "currency": "Philippine peso (PHP)",
         "languages": "English, Filipino",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B / C (220V)",
+        "emergency_number": "911",
+        "greeting": "Kumusta (쿠무스타)",
+        "best_time_to_visit": "Dec-Feb"
     },
     {
         "origin": "South Korea",
@@ -1515,7 +2063,11 @@
         "region": "Europe",
         "currency": "Polish złoty (PLN)",
         "languages": "Polish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1526,7 +2078,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1537,7 +2093,11 @@
         "region": "Asia",
         "currency": "Qatari riyal (QAR)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1548,7 +2108,11 @@
         "region": "Europe",
         "currency": "Romanian leu (RON)",
         "languages": "Romanian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1559,7 +2123,11 @@
         "region": "Europe",
         "currency": "Russian ruble (RUB)",
         "languages": "Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1570,7 +2138,11 @@
         "region": "Africa",
         "currency": "Rwandan franc (RWF)",
         "languages": "English, French, Kinyarwanda",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1581,7 +2153,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1592,7 +2168,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1603,7 +2183,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1614,7 +2198,11 @@
         "region": "Oceania",
         "currency": "Samoan tālā (WST)",
         "languages": "English, Samoan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1625,7 +2213,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Italian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1636,7 +2228,11 @@
         "region": "Africa",
         "currency": "São Tomé and Príncipe dobra (STN)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1647,7 +2243,11 @@
         "region": "Asia",
         "currency": "Saudi riyal (SAR)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1658,7 +2258,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1669,7 +2273,11 @@
         "region": "Europe",
         "currency": "Serbian dinar (RSD)",
         "languages": "Serbian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1680,7 +2288,11 @@
         "region": "Africa",
         "currency": "Seychellois rupee (SCR)",
         "languages": "Seychellois Creole, English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1691,7 +2303,11 @@
         "region": "Africa",
         "currency": "Sierra Leonean leone (SLL)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1702,7 +2318,11 @@
         "region": "Asia",
         "currency": "Singapore dollar (SGD)",
         "languages": "English, Malay, Tamil, Chinese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type G (230V)",
+        "emergency_number": "999 (Police), 995 (Amb)",
+        "greeting": "Hello / Ni Hao",
+        "best_time_to_visit": "Feb-Apr"
     },
     {
         "origin": "South Korea",
@@ -1713,7 +2333,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Slovak",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1724,7 +2348,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Slovene",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1735,7 +2363,11 @@
         "region": "Oceania",
         "currency": "Solomon Islands dollar (SBD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1746,7 +2378,11 @@
         "region": "Africa",
         "currency": "Somali shilling (SOS)",
         "languages": "Arabic, Somali",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1757,7 +2393,11 @@
         "region": "Africa",
         "currency": "South African rand (ZAR)",
         "languages": "Afrikaans, English, Southern Ndebele, Northern Sotho, Southern Sotho, Swazi, Tswana, Tsonga, Venda, Xhosa, Zulu",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1768,7 +2408,11 @@
         "region": "Africa",
         "currency": "South Sudanese pound (SSP)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1779,7 +2423,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Hola (올라)",
+        "best_time_to_visit": "Apr-Jun, Sep-Oct"
     },
     {
         "origin": "South Korea",
@@ -1790,7 +2438,11 @@
         "region": "Asia",
         "currency": "Sri Lankan rupee (LKR)",
         "languages": "Sinhala, Tamil",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1801,7 +2453,11 @@
         "region": "Africa",
         "currency": "Sudanese pound (SDG)",
         "languages": "Arabic, English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1812,7 +2468,11 @@
         "region": "Americas",
         "currency": "Surinamese dollar (SRD)",
         "languages": "Dutch",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1823,7 +2483,11 @@
         "region": "Europe",
         "currency": "Swedish krona (SEK)",
         "languages": "Swedish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1834,7 +2498,11 @@
         "region": "Europe",
         "currency": "Swiss franc (CHF)",
         "languages": "French, Swiss German, Italian, Romansh",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type J (230V)",
+        "emergency_number": "117 (Police), 144 (Amb)",
+        "greeting": "Grüezi / Bonjour",
+        "best_time_to_visit": "Jun-Sep, Dec-Mar"
     },
     {
         "origin": "South Korea",
@@ -1845,7 +2513,11 @@
         "region": "Asia",
         "currency": "Syrian pound (SYP)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1856,7 +2528,11 @@
         "region": "Asia",
         "currency": "Tajikistani somoni (TJS)",
         "languages": "Russian, Tajik",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1867,7 +2543,11 @@
         "region": "Africa",
         "currency": "Tanzanian shilling (TZS)",
         "languages": "English, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1878,7 +2558,11 @@
         "region": "Asia",
         "currency": "Thai baht (THB)",
         "languages": "Thai",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / C (220V)",
+        "emergency_number": "191 (Police), 1669 (Amb)",
+        "greeting": "Sawasdee (사와디캅/카)",
+        "best_time_to_visit": "Nov-Feb"
     },
     {
         "origin": "South Korea",
@@ -1889,7 +2573,11 @@
         "region": "Asia",
         "currency": "United States dollar (USD)",
         "languages": "Portuguese, Tetum",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1900,7 +2588,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1911,7 +2603,11 @@
         "region": "Oceania",
         "currency": "Tongan paʻanga (TOP)",
         "languages": "English, Tongan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1922,7 +2618,11 @@
         "region": "Americas",
         "currency": "Trinidad and Tobago dollar (TTD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1933,7 +2633,11 @@
         "region": "Africa",
         "currency": "Tunisian dinar (TND)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1944,7 +2648,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Type C / F (220V)",
+        "emergency_number": "112",
+        "greeting": "Merhaba (메르하바)",
+        "best_time_to_visit": "Apr-May, Sep-Nov"
     },
     {
         "origin": "South Korea",
@@ -1955,7 +2663,11 @@
         "region": "Asia",
         "currency": "Turkmenistan manat (TMT)",
         "languages": "Russian, Turkmen",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1966,7 +2678,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD), Tuvaluan dollar (TVD)",
         "languages": "English, Tuvaluan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1977,7 +2693,11 @@
         "region": "Africa",
         "currency": "Ugandan shilling (UGX)",
         "languages": "English, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1988,7 +2708,11 @@
         "region": "Europe",
         "currency": "Ukrainian hryvnia (UAH)",
         "languages": "Ukrainian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -1999,7 +2723,11 @@
         "region": "Asia",
         "currency": "United Arab Emirates dirham (AED)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2010,7 +2738,11 @@
         "region": "Europe",
         "currency": "British pound (GBP)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type G (230V)",
+        "emergency_number": "999 or 112",
+        "greeting": "Hello",
+        "best_time_to_visit": "May-Sep"
     },
     {
         "origin": "South Korea",
@@ -2021,7 +2753,11 @@
         "region": "Americas",
         "currency": "United States dollar (USD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (120V)",
+        "emergency_number": "911",
+        "greeting": "Hello",
+        "best_time_to_visit": "All Year (Depends on Region)"
     },
     {
         "origin": "South Korea",
@@ -2032,7 +2768,11 @@
         "region": "Americas",
         "currency": "Uruguayan peso (UYU)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2043,7 +2783,11 @@
         "region": "Asia",
         "currency": "Uzbekistani soʻm (UZS)",
         "languages": "Russian, Uzbek",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2054,7 +2798,11 @@
         "region": "Oceania",
         "currency": "Vanuatu vatu (VUV)",
         "languages": "Bislama, English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2065,7 +2813,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Italian, Latin",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2076,7 +2828,11 @@
         "region": "Americas",
         "currency": "Venezuelan bolívar soberano (VES)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2087,7 +2843,11 @@
         "region": "Asia",
         "currency": "Vietnamese đồng (VND)",
         "languages": "Vietnamese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / C / G (220V)",
+        "emergency_number": "113 (Police), 115 (Amb)",
+        "greeting": "Xin Chào (신 짜오)",
+        "best_time_to_visit": "Nov-Apr"
     },
     {
         "origin": "South Korea",
@@ -2098,7 +2858,11 @@
         "region": "Asia",
         "currency": "Yemeni rial (YER)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2109,7 +2873,11 @@
         "region": "Africa",
         "currency": "Zambian kwacha (ZMW)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "South Korea",
@@ -2120,7 +2888,11 @@
         "region": "Africa",
         "currency": "Botswana pula (BWP), Chinese yuan (CNY), Euro (EUR), British pound (GBP), Indian rupee (INR), Japanese yen (JPY), United States dollar (USD), South African rand (ZAR), Zimbabwean bonds (ZWB)",
         "languages": "Chibarwe, English, Kalanga, Khoisan, Ndau, Northern Ndebele, Chewa, Shona, Sotho, Tonga, Tswana, Tsonga, Venda, Xhosa, Zimbabwean Sign Language",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2131,7 +2903,11 @@
         "region": "Asia",
         "currency": "Afghan afghani (AFN)",
         "languages": "Dari, Pashto, Turkmen",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2142,7 +2918,11 @@
         "region": "Europe",
         "currency": "Albanian lek (ALL)",
         "languages": "Albanian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2153,7 +2933,11 @@
         "region": "Africa",
         "currency": "Algerian dinar (DZD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2164,7 +2948,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Catalan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2175,7 +2963,11 @@
         "region": "Africa",
         "currency": "Angolan kwanza (AOA)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2186,7 +2978,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2197,7 +2993,11 @@
         "region": "Americas",
         "currency": "Argentine peso (ARS)",
         "languages": "Guaraní, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / I (220V)",
+        "emergency_number": "911",
+        "greeting": "Hola",
+        "best_time_to_visit": "Oct-Nov, Mar-Apr"
     },
     {
         "origin": "United States",
@@ -2208,7 +3008,11 @@
         "region": "Asia",
         "currency": "Armenian dram (AMD)",
         "languages": "Armenian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2219,7 +3023,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type I (230V)",
+        "emergency_number": "000",
+        "greeting": "G'day",
+        "best_time_to_visit": "Sep-Nov, Mar-May"
     },
     {
         "origin": "United States",
@@ -2230,7 +3038,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Austro-Bavarian German",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2241,7 +3053,11 @@
         "region": "Asia",
         "currency": "Azerbaijani manat (AZN)",
         "languages": "Azerbaijani, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2252,7 +3068,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2263,7 +3083,11 @@
         "region": "Asia",
         "currency": "Bahraini dinar (BHD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2274,7 +3098,11 @@
         "region": "Asia",
         "currency": "Bangladeshi taka (BDT)",
         "languages": "Bengali",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2285,7 +3113,11 @@
         "region": "Americas",
         "currency": "Barbadian dollar (BBD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2296,7 +3128,11 @@
         "region": "Europe",
         "currency": "Belarusian ruble (BYN)",
         "languages": "Belarusian, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2307,7 +3143,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "German, French, Dutch",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2318,7 +3158,11 @@
         "region": "Americas",
         "currency": "Belize dollar (BZD)",
         "languages": "Belizean Creole, English, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2329,7 +3173,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2340,7 +3188,11 @@
         "region": "Asia",
         "currency": "Bhutanese ngultrum (BTN), Indian rupee (INR)",
         "languages": "Dzongkha",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2351,7 +3203,11 @@
         "region": "Americas",
         "currency": "Bolivian boliviano (BOB)",
         "languages": "Aymara, Guaraní, Quechua, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2362,7 +3218,11 @@
         "region": "Europe",
         "currency": "Bosnia and Herzegovina convertible mark (BAM)",
         "languages": "Bosnian, Croatian, Serbian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2373,7 +3233,11 @@
         "region": "Africa",
         "currency": "Botswana pula (BWP)",
         "languages": "English, Tswana",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2384,7 +3248,11 @@
         "region": "Americas",
         "currency": "Brazilian real (BRL)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type N (127V/220V)",
+        "emergency_number": "190 (Police), 192 (Amb)",
+        "greeting": "Olá",
+        "best_time_to_visit": "Sep-Oct"
     },
     {
         "origin": "United States",
@@ -2395,7 +3263,11 @@
         "region": "Asia",
         "currency": "Brunei dollar (BND), Singapore dollar (SGD)",
         "languages": "Malay",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2406,7 +3278,11 @@
         "region": "Europe",
         "currency": "Bulgarian lev (BGN)",
         "languages": "Bulgarian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2417,7 +3293,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2428,7 +3308,11 @@
         "region": "Africa",
         "currency": "Burundian franc (BIF)",
         "languages": "French, Kirundi",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2439,7 +3323,11 @@
         "region": "Asia",
         "currency": "Cambodian riel (KHR), United States dollar (USD)",
         "languages": "Khmer",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2450,7 +3338,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2461,7 +3353,11 @@
         "region": "Americas",
         "currency": "Canadian dollar (CAD)",
         "languages": "English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (120V)",
+        "emergency_number": "911",
+        "greeting": "Hello / Bonjour",
+        "best_time_to_visit": "Jun-Sep"
     },
     {
         "origin": "United States",
@@ -2472,7 +3368,11 @@
         "region": "Africa",
         "currency": "Cape Verdean escudo (CVE)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2483,7 +3383,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French, Sango",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2494,7 +3398,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "Arabic, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2505,7 +3413,11 @@
         "region": "Americas",
         "currency": "Chilean peso (CLP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2516,7 +3428,11 @@
         "region": "Asia",
         "currency": "Chinese yuan (CNY)",
         "languages": "Chinese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / I / C (220V)",
+        "emergency_number": "110 (Police), 120 (Amb)",
+        "greeting": "Ni Hao (니 하오)",
+        "best_time_to_visit": "Sep-Oct, Apr-May"
     },
     {
         "origin": "United States",
@@ -2527,7 +3443,11 @@
         "region": "Americas",
         "currency": "Colombian peso (COP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2538,7 +3458,11 @@
         "region": "Africa",
         "currency": "Comorian franc (KMF)",
         "languages": "Arabic, French, Comorian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2549,7 +3473,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French, Kikongo, Lingala",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2560,7 +3488,11 @@
         "region": "Africa",
         "currency": "Congolese franc (CDF)",
         "languages": "French, Kikongo, Lingala, Tshiluba, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2571,7 +3503,11 @@
         "region": "Americas",
         "currency": "Costa Rican colón (CRC)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2582,7 +3518,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2593,7 +3533,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Croatian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2604,7 +3548,11 @@
         "region": "Americas",
         "currency": "Cuban convertible peso (CUC), Cuban peso (CUP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2615,7 +3563,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Greek, Turkish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2626,7 +3578,11 @@
         "region": "Europe",
         "currency": "Czech koruna (CZK)",
         "languages": "Czech, Slovak",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2637,7 +3593,11 @@
         "region": "Europe",
         "currency": "Danish krone (DKK)",
         "languages": "Danish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2648,7 +3608,11 @@
         "region": "Africa",
         "currency": "Djiboutian franc (DJF)",
         "languages": "Arabic, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2659,7 +3623,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2670,7 +3638,11 @@
         "region": "Americas",
         "currency": "Dominican peso (DOP)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2681,7 +3653,11 @@
         "region": "Americas",
         "currency": "United States dollar (USD)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2692,7 +3668,11 @@
         "region": "Africa",
         "currency": "Egyptian pound (EGP)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2703,7 +3683,11 @@
         "region": "Americas",
         "currency": "United States dollar (USD)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2714,7 +3698,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French, Portuguese, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2725,7 +3713,11 @@
         "region": "Africa",
         "currency": "Eritrean nakfa (ERN)",
         "languages": "Arabic, English, Tigrinya",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2736,7 +3728,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Estonian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2747,7 +3743,11 @@
         "region": "Africa",
         "currency": "Swazi lilangeni (SZL), South African rand (ZAR)",
         "languages": "English, Swazi",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2758,7 +3758,11 @@
         "region": "Africa",
         "currency": "Ethiopian birr (ETB)",
         "languages": "Amharic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2769,7 +3773,11 @@
         "region": "Oceania",
         "currency": "Fijian dollar (FJD)",
         "languages": "English, Fijian, Fiji Hindi",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2780,7 +3788,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Finnish, Swedish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2791,7 +3803,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / E (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Bonjour (봉쥬르)",
+        "best_time_to_visit": "Apr-Jun, Sep-Nov"
     },
     {
         "origin": "United States",
@@ -2802,7 +3818,11 @@
         "region": "Africa",
         "currency": "Central African CFA franc (XAF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2813,7 +3833,11 @@
         "region": "Africa",
         "currency": "dalasi (GMD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2824,7 +3848,11 @@
         "region": "Asia",
         "currency": "lari (GEL)",
         "languages": "Georgian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2835,7 +3863,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "German",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Guten Tag (구텐 탁)",
+        "best_time_to_visit": "May-Sep"
     },
     {
         "origin": "United States",
@@ -2846,7 +3878,11 @@
         "region": "Africa",
         "currency": "Ghanaian cedi (GHS)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2857,7 +3893,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Greek",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2868,7 +3908,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2879,7 +3923,11 @@
         "region": "Americas",
         "currency": "Guatemalan quetzal (GTQ)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2890,7 +3938,11 @@
         "region": "Africa",
         "currency": "Guinean franc (GNF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2901,7 +3953,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "Portuguese, Upper Guinea Creole",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2912,7 +3968,11 @@
         "region": "Americas",
         "currency": "Guyanese dollar (GYD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2923,7 +3983,11 @@
         "region": "Americas",
         "currency": "Haitian gourde (HTG)",
         "languages": "French, Haitian Creole",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2934,7 +3998,11 @@
         "region": "Americas",
         "currency": "Honduran lempira (HNL)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2945,7 +4013,11 @@
         "region": "Europe",
         "currency": "Hungarian forint (HUF)",
         "languages": "Hungarian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2956,7 +4028,11 @@
         "region": "Europe",
         "currency": "Icelandic króna (ISK)",
         "languages": "Icelandic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -2967,7 +4043,11 @@
         "region": "Asia",
         "currency": "Indian rupee (INR)",
         "languages": "English, Hindi, Tamil",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / D / M (230V)",
+        "emergency_number": "112",
+        "greeting": "Namaste",
+        "best_time_to_visit": "Oct-Mar"
     },
     {
         "origin": "United States",
@@ -2978,7 +4058,11 @@
         "region": "Asia",
         "currency": "Indonesian rupiah (IDR)",
         "languages": "Indonesian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (230V)",
+        "emergency_number": "110 (Police), 118 (Amb)",
+        "greeting": "Halo / Apa Kabar",
+        "best_time_to_visit": "May-Sep"
     },
     {
         "origin": "United States",
@@ -2989,7 +4073,11 @@
         "region": "Asia",
         "currency": "Iranian rial (IRR)",
         "languages": "Persian (Farsi)",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3000,7 +4088,11 @@
         "region": "Asia",
         "currency": "Iraqi dinar (IQD)",
         "languages": "Arabic, Aramaic, Sorani",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3011,7 +4103,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "English, Irish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3022,7 +4118,11 @@
         "region": "Asia",
         "currency": "Israeli new shekel (ILS)",
         "languages": "Arabic, Hebrew",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3033,7 +4133,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Italian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F / L (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Ciao (챠오)",
+        "best_time_to_visit": "May-Jun, Sep-Oct"
     },
     {
         "origin": "United States",
@@ -3044,7 +4148,11 @@
         "region": "Americas",
         "currency": "Jamaican dollar (JMD)",
         "languages": "English, Jamaican Patois",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3055,7 +4163,11 @@
         "region": "Asia",
         "currency": "Japanese yen (JPY)",
         "languages": "Japanese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (100V)",
+        "emergency_number": "110 (Police), 119 (Amb)",
+        "greeting": "Konnichiwa (こんにちは)",
+        "best_time_to_visit": "Mar-May, Sep-Nov"
     },
     {
         "origin": "United States",
@@ -3066,7 +4178,11 @@
         "region": "Asia",
         "currency": "Jordanian dinar (JOD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3077,7 +4193,11 @@
         "region": "Asia",
         "currency": "Kazakhstani tenge (KZT)",
         "languages": "Kazakh, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3088,7 +4208,11 @@
         "region": "Africa",
         "currency": "Kenyan shilling (KES)",
         "languages": "English, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3099,7 +4223,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD), Kiribati dollar (KID)",
         "languages": "English, Gilbertese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3110,7 +4238,11 @@
         "region": "Asia",
         "currency": "North Korean won (KPW)",
         "languages": "Korean",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3121,7 +4253,11 @@
         "region": "Asia",
         "currency": "South Korean won (KRW)",
         "languages": "Korean",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (220V)",
+        "emergency_number": "112 (Police), 119 (Fire)",
+        "greeting": "Annyeonghaseyo (안녕하세요)",
+        "best_time_to_visit": "Sep-Nov, Apr-Jun"
     },
     {
         "origin": "United States",
@@ -3132,7 +4268,11 @@
         "region": "Asia",
         "currency": "Kuwaiti dinar (KWD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3143,7 +4283,11 @@
         "region": "Asia",
         "currency": "Kyrgyzstani som (KGS)",
         "languages": "Kyrgyz, Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3154,7 +4298,11 @@
         "region": "Asia",
         "currency": "Lao kip (LAK)",
         "languages": "Lao",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3165,7 +4313,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Latvian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3176,7 +4328,11 @@
         "region": "Asia",
         "currency": "Lebanese pound (LBP)",
         "languages": "Arabic, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3187,7 +4343,11 @@
         "region": "Africa",
         "currency": "Lesotho loti (LSL), South African rand (ZAR)",
         "languages": "English, Sotho",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3198,7 +4358,11 @@
         "region": "Africa",
         "currency": "Liberian dollar (LRD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3209,7 +4373,11 @@
         "region": "Africa",
         "currency": "Libyan dinar (LYD)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3220,7 +4388,11 @@
         "region": "Europe",
         "currency": "Swiss franc (CHF)",
         "languages": "German",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3231,7 +4403,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Lithuanian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3242,7 +4418,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "German, French, Luxembourgish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3253,7 +4433,11 @@
         "region": "Africa",
         "currency": "Malagasy ariary (MGA)",
         "languages": "French, Malagasy",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3264,7 +4448,11 @@
         "region": "Africa",
         "currency": "Malawian kwacha (MWK)",
         "languages": "English, Chewa",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3275,7 +4463,11 @@
         "region": "Asia",
         "currency": "Malaysian ringgit (MYR)",
         "languages": "English, Malay",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type G (240V)",
+        "emergency_number": "999",
+        "greeting": "Selamat Datang",
+        "best_time_to_visit": "Dec-Feb, Jun-Aug"
     },
     {
         "origin": "United States",
@@ -3286,7 +4478,11 @@
         "region": "Asia",
         "currency": "Maldivian rufiyaa (MVR)",
         "languages": "Maldivian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3297,7 +4493,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3308,7 +4508,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "English, Maltese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3319,7 +4523,11 @@
         "region": "Oceania",
         "currency": "United States dollar (USD)",
         "languages": "English, Marshallese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3330,7 +4538,11 @@
         "region": "Africa",
         "currency": "Mauritanian ouguiya (MRU)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3341,7 +4553,11 @@
         "region": "Africa",
         "currency": "Mauritian rupee (MUR)",
         "languages": "English, French, Mauritian Creole",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3352,7 +4568,11 @@
         "region": "Americas",
         "currency": "Mexican peso (MXN)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (127V)",
+        "emergency_number": "911",
+        "greeting": "Hola",
+        "best_time_to_visit": "Dec-Apr"
     },
     {
         "origin": "United States",
@@ -3363,7 +4583,11 @@
         "region": "Oceania",
         "currency": "Unknown",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3374,7 +4598,11 @@
         "region": "Europe",
         "currency": "Moldovan leu (MDL)",
         "languages": "Moldavian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3385,7 +4613,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3396,7 +4628,11 @@
         "region": "Asia",
         "currency": "Mongolian tögrög (MNT)",
         "languages": "Mongolian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3407,7 +4643,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Montenegrin",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3418,7 +4658,11 @@
         "region": "Africa",
         "currency": "Moroccan dirham (MAD)",
         "languages": "Arabic, Berber",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3429,7 +4673,11 @@
         "region": "Africa",
         "currency": "Mozambican metical (MZN)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3440,7 +4688,11 @@
         "region": "Asia",
         "currency": "Burmese kyat (MMK)",
         "languages": "Burmese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3451,7 +4703,11 @@
         "region": "Africa",
         "currency": "Namibian dollar (NAD), South African rand (ZAR)",
         "languages": "Afrikaans, German, English, Herero, Khoekhoe, Kwangali, Lozi, Ndonga, Tswana",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3462,7 +4718,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD)",
         "languages": "English, Nauru",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3473,7 +4733,11 @@
         "region": "Asia",
         "currency": "Nepalese rupee (NPR)",
         "languages": "Nepali",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3484,7 +4748,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Dutch",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3495,7 +4763,11 @@
         "region": "Oceania",
         "currency": "New Zealand dollar (NZD)",
         "languages": "English, Māori, New Zealand Sign Language",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type I (230V)",
+        "emergency_number": "111",
+        "greeting": "Kia Ora",
+        "best_time_to_visit": "Dec-Mar"
     },
     {
         "origin": "United States",
@@ -3506,7 +4778,11 @@
         "region": "Americas",
         "currency": "Nicaraguan córdoba (NIO)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3517,7 +4793,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3528,7 +4808,11 @@
         "region": "Africa",
         "currency": "Nigerian naira (NGN)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3539,7 +4823,11 @@
         "region": "Europe",
         "currency": "denar (MKD)",
         "languages": "Macedonian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3550,7 +4838,11 @@
         "region": "Europe",
         "currency": "Norwegian krone (NOK)",
         "languages": "Norwegian Nynorsk, Norwegian Bokmål, Sami",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3561,7 +4853,11 @@
         "region": "Asia",
         "currency": "Omani rial (OMR)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3572,7 +4868,11 @@
         "region": "Asia",
         "currency": "Pakistani rupee (PKR)",
         "languages": "English, Urdu",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3583,7 +4883,11 @@
         "region": "Oceania",
         "currency": "United States dollar (USD)",
         "languages": "English, Palauan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3594,7 +4898,11 @@
         "region": "Americas",
         "currency": "Panamanian balboa (PAB), United States dollar (USD)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3605,7 +4913,11 @@
         "region": "Oceania",
         "currency": "Papua New Guinean kina (PGK)",
         "languages": "English, Hiri Motu, Tok Pisin",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3616,7 +4928,11 @@
         "region": "Americas",
         "currency": "Paraguayan guaraní (PYG)",
         "languages": "Guaraní, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3627,7 +4943,11 @@
         "region": "Americas",
         "currency": "Peruvian sol (PEN)",
         "languages": "Aymara, Quechua, Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3638,7 +4958,11 @@
         "region": "Asia",
         "currency": "Philippine peso (PHP)",
         "languages": "English, Filipino",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B / C (220V)",
+        "emergency_number": "911",
+        "greeting": "Kumusta (쿠무스타)",
+        "best_time_to_visit": "Dec-Feb"
     },
     {
         "origin": "United States",
@@ -3649,7 +4973,11 @@
         "region": "Europe",
         "currency": "Polish złoty (PLN)",
         "languages": "Polish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3660,7 +4988,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3671,7 +5003,11 @@
         "region": "Asia",
         "currency": "Qatari riyal (QAR)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3682,7 +5018,11 @@
         "region": "Europe",
         "currency": "Romanian leu (RON)",
         "languages": "Romanian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3693,7 +5033,11 @@
         "region": "Europe",
         "currency": "Russian ruble (RUB)",
         "languages": "Russian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3704,7 +5048,11 @@
         "region": "Africa",
         "currency": "Rwandan franc (RWF)",
         "languages": "English, French, Kinyarwanda",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3715,7 +5063,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3726,7 +5078,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3737,7 +5093,11 @@
         "region": "Americas",
         "currency": "Eastern Caribbean dollar (XCD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3748,7 +5108,11 @@
         "region": "Oceania",
         "currency": "Samoan tālā (WST)",
         "languages": "English, Samoan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3759,7 +5123,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Italian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3770,7 +5138,11 @@
         "region": "Africa",
         "currency": "São Tomé and Príncipe dobra (STN)",
         "languages": "Portuguese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3781,7 +5153,11 @@
         "region": "Asia",
         "currency": "Saudi riyal (SAR)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3792,7 +5168,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3803,7 +5183,11 @@
         "region": "Europe",
         "currency": "Serbian dinar (RSD)",
         "languages": "Serbian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3814,7 +5198,11 @@
         "region": "Africa",
         "currency": "Seychellois rupee (SCR)",
         "languages": "Seychellois Creole, English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3825,7 +5213,11 @@
         "region": "Africa",
         "currency": "Sierra Leonean leone (SLL)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3836,7 +5228,11 @@
         "region": "Asia",
         "currency": "Singapore dollar (SGD)",
         "languages": "English, Malay, Tamil, Chinese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type G (230V)",
+        "emergency_number": "999 (Police), 995 (Amb)",
+        "greeting": "Hello / Ni Hao",
+        "best_time_to_visit": "Feb-Apr"
     },
     {
         "origin": "United States",
@@ -3847,7 +5243,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Slovak",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3858,7 +5258,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Slovene",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3869,7 +5273,11 @@
         "region": "Oceania",
         "currency": "Solomon Islands dollar (SBD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3880,7 +5288,11 @@
         "region": "Africa",
         "currency": "Somali shilling (SOS)",
         "languages": "Arabic, Somali",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3891,7 +5303,11 @@
         "region": "Africa",
         "currency": "South African rand (ZAR)",
         "languages": "Afrikaans, English, Southern Ndebele, Northern Sotho, Southern Sotho, Swazi, Tswana, Tsonga, Venda, Xhosa, Zulu",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3902,7 +5318,11 @@
         "region": "Africa",
         "currency": "South Sudanese pound (SSP)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3913,7 +5333,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type C / F (230V)",
+        "emergency_number": "112 (Euro Emergency)",
+        "greeting": "Hola (올라)",
+        "best_time_to_visit": "Apr-Jun, Sep-Oct"
     },
     {
         "origin": "United States",
@@ -3924,7 +5348,11 @@
         "region": "Asia",
         "currency": "Sri Lankan rupee (LKR)",
         "languages": "Sinhala, Tamil",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3935,7 +5363,11 @@
         "region": "Africa",
         "currency": "Sudanese pound (SDG)",
         "languages": "Arabic, English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3946,7 +5378,11 @@
         "region": "Americas",
         "currency": "Surinamese dollar (SRD)",
         "languages": "Dutch",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3957,7 +5393,11 @@
         "region": "Europe",
         "currency": "Swedish krona (SEK)",
         "languages": "Swedish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3968,7 +5408,11 @@
         "region": "Europe",
         "currency": "Swiss franc (CHF)",
         "languages": "French, Swiss German, Italian, Romansh",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type J (230V)",
+        "emergency_number": "117 (Police), 144 (Amb)",
+        "greeting": "Grüezi / Bonjour",
+        "best_time_to_visit": "Jun-Sep, Dec-Mar"
     },
     {
         "origin": "United States",
@@ -3979,7 +5423,11 @@
         "region": "Asia",
         "currency": "Syrian pound (SYP)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -3990,7 +5438,11 @@
         "region": "Asia",
         "currency": "New Taiwan dollar (TWD)",
         "languages": "Chinese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / B (110V)",
+        "emergency_number": "110 (Police), 119 (Amb)",
+        "greeting": "Ni Hao (니 하오)",
+        "best_time_to_visit": "Oct-Dec"
     },
     {
         "origin": "United States",
@@ -4001,7 +5453,11 @@
         "region": "Asia",
         "currency": "Tajikistani somoni (TJS)",
         "languages": "Russian, Tajik",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4012,7 +5468,11 @@
         "region": "Africa",
         "currency": "Tanzanian shilling (TZS)",
         "languages": "English, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4023,7 +5483,11 @@
         "region": "Asia",
         "currency": "Thai baht (THB)",
         "languages": "Thai",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / C (220V)",
+        "emergency_number": "191 (Police), 1669 (Amb)",
+        "greeting": "Sawasdee (사와디캅/카)",
+        "best_time_to_visit": "Nov-Feb"
     },
     {
         "origin": "United States",
@@ -4034,7 +5498,11 @@
         "region": "Asia",
         "currency": "United States dollar (USD)",
         "languages": "Portuguese, Tetum",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4045,7 +5513,11 @@
         "region": "Africa",
         "currency": "West African CFA franc (XOF)",
         "languages": "French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4056,7 +5528,11 @@
         "region": "Oceania",
         "currency": "Tongan paʻanga (TOP)",
         "languages": "English, Tongan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4067,7 +5543,11 @@
         "region": "Americas",
         "currency": "Trinidad and Tobago dollar (TTD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4078,7 +5558,11 @@
         "region": "Africa",
         "currency": "Tunisian dinar (TND)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4089,7 +5573,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Type C / F (220V)",
+        "emergency_number": "112",
+        "greeting": "Merhaba (메르하바)",
+        "best_time_to_visit": "Apr-May, Sep-Nov"
     },
     {
         "origin": "United States",
@@ -4100,7 +5588,11 @@
         "region": "Asia",
         "currency": "Turkmenistan manat (TMT)",
         "languages": "Russian, Turkmen",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4111,7 +5603,11 @@
         "region": "Oceania",
         "currency": "Australian dollar (AUD), Tuvaluan dollar (TVD)",
         "languages": "English, Tuvaluan",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4122,7 +5618,11 @@
         "region": "Africa",
         "currency": "Ugandan shilling (UGX)",
         "languages": "English, Swahili",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4133,7 +5633,11 @@
         "region": "Europe",
         "currency": "Ukrainian hryvnia (UAH)",
         "languages": "Ukrainian",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4144,7 +5648,11 @@
         "region": "Asia",
         "currency": "United Arab Emirates dirham (AED)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4155,7 +5663,11 @@
         "region": "Europe",
         "currency": "British pound (GBP)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type G (230V)",
+        "emergency_number": "999 or 112",
+        "greeting": "Hello",
+        "best_time_to_visit": "May-Sep"
     },
     {
         "origin": "United States",
@@ -4166,7 +5678,11 @@
         "region": "Americas",
         "currency": "Uruguayan peso (UYU)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4177,7 +5693,11 @@
         "region": "Asia",
         "currency": "Uzbekistani soʻm (UZS)",
         "languages": "Russian, Uzbek",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4188,7 +5708,11 @@
         "region": "Oceania",
         "currency": "Vanuatu vatu (VUV)",
         "languages": "Bislama, English, French",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4199,7 +5723,11 @@
         "region": "Europe",
         "currency": "Euro (EUR)",
         "languages": "Italian, Latin",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4210,7 +5738,11 @@
         "region": "Americas",
         "currency": "Venezuelan bolívar soberano (VES)",
         "languages": "Spanish",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4221,7 +5753,11 @@
         "region": "Asia",
         "currency": "Vietnamese đồng (VND)",
         "languages": "Vietnamese",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Type A / C / G (220V)",
+        "emergency_number": "113 (Police), 115 (Amb)",
+        "greeting": "Xin Chào (신 짜오)",
+        "best_time_to_visit": "Nov-Apr"
     },
     {
         "origin": "United States",
@@ -4232,7 +5768,11 @@
         "region": "Asia",
         "currency": "Yemeni rial (YER)",
         "languages": "Arabic",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4243,7 +5783,11 @@
         "region": "Africa",
         "currency": "Zambian kwacha (ZMW)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4254,7 +5798,11 @@
         "region": "Africa",
         "currency": "Botswana pula (BWP), Chinese yuan (CNY), Euro (EUR), British pound (GBP), Indian rupee (INR), Japanese yen (JPY), United States dollar (USD), South African rand (ZAR), Zimbabwean bonds (ZWB)",
         "languages": "Chibarwe, English, Kalanga, Khoisan, Ndau, Northern Ndebele, Chewa, Shona, Sotho, Tonga, Tswana, Tsonga, Venda, Xhosa, Zimbabwean Sign Language",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4265,7 +5813,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4276,7 +5828,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4287,7 +5843,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4298,7 +5858,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4309,7 +5873,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4320,7 +5888,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4331,7 +5903,11 @@
         "region": "Global",
         "currency": "Local Currency",
         "languages": "Local Language",
-        "population": "-"
+        "population": "-",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     },
     {
         "origin": "United States",
@@ -4342,6 +5918,10 @@
         "region": "Americas",
         "currency": "United States dollar (USD)",
         "languages": "English",
-        "population": "0"
+        "population": "0",
+        "plug_type": "Check Adapter",
+        "emergency_number": "112 (Global GSM)",
+        "greeting": "Hello",
+        "best_time_to_visit": "Check Season"
     }
 ]
