@@ -1374,5 +1374,4 @@ export const BLOG_POSTS: Record<string, BlogPost> = {
       <p class="text-center">Have you ever been to "The Room"? Share your border crossing horror stories in the comments so I don't feel so alone! 👇😅</p>
     `,
     },
-
 };
