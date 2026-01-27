@@ -1288,4 +1288,91 @@ export const BLOG_POSTS: Record<string, BlogPost> = {
     </p>
   `,
     },
+
+    // --- 16. Immigration Horror Story (New!) ---
+    'secondary-inspection-interrogation-story': {
+        category: 'Survival Guide',
+        title: '“Please Step This Way” — My 2 Hours in the Airport Interrogation Room (And How to Avoid It) 👮‍♂️🛑',
+        date: '2026-01-24', // 오늘 날짜!
+        excerpt: 'I did nothing wrong. I had a valid passport. Yet I ended up in the dreaded "Secondary Room." Here is exactly what happened and the 3 words you should NEVER say to an immigration officer.',
+        content: `
+      <p class="lead">It’s every traveler’s nightmare. You step up to the immigration booth, smile, hand over your passport, and wait for the stamp. But the stamp doesn’t come.</p>
+
+      <p>Instead, the officer stops typing. He frowns at his screen. He picks up the phone.</p>
+      
+      <p>Then he looks at you and says the four scariest words in travel:</p>
+      <blockquote>“Please step this way.”</blockquote>
+
+      <p>I was pulled into "Secondary Inspection" at London Heathrow Airport last year. I sat in a windowless room for two hours, watched my phone get confiscated, and honestly thought I was getting deported. Here is my story — and how you can make sure this never happens to you.</p>
+
+      <h2>The Mistake: I Said Too Much 🤐</h2>
+      <p>The officer asked a simple question: <em>“What is the purpose of your visit?”</em></p>
+      
+      <p>A smart traveler says: <strong>“Tourism.”</strong></p>
+      
+      <p>I, unfortunately, decided to be a chatty storyteller. I said:<br>
+      <em>“Well, I’m here to see some friends, maybe check out some co-working spaces, I do some freelance writing online so I might work a bit in cafes, and maybe visit Scotland if I have time…”</em></p>
+
+      <p><strong>Boom. Red flag.</strong></p>
+      
+      <p>To an immigration officer, “freelance work” sounds like “illegal employment.” Within 30 seconds, an escort officer was walking me to <em>The Room</em>.</p>
+
+      <h2>Inside “The Room” (It’s Not Like the Movies)</h2>
+      <p>It wasn’t a dark dungeon. It looked like a boring DMV waiting room. Fluorescent lights. Uncomfortable chairs. A TV playing news on mute.</p>
+      
+      <p>But the vibe was heavy.</p>
+      <ul>
+        <li><strong>No phones allowed.</strong> I had to turn mine off. No texting my friend waiting outside.</li>
+        <li><strong>No questions allowed.</strong> When I asked “How long will this take?”, the guard just said “Wait for your name.”</li>
+        <li><strong>The other people:</strong> A crying student, a confused family, and a guy who looked like he was definitely hiding something.</li>
+      </ul>
+
+      <p>I sat there for 90 minutes. My mind raced. <em>Did I delete that meme from my phone? Do I have enough money in my bank account? Are they booking my flight home right now?</em></p>
+
+      <h2>The Interrogation</h2>
+      <p>Finally, my name was called. I walked to a desk where a stern officer held my passport.</p>
+      
+      <p><strong>Officer:</strong> “You said you are working here?”<br>
+      <strong>Me (Panic sweating):</strong> “No! I mean, I have a job back home. I just answer emails sometimes. I am here to spend money, not earn it.”</p>
+      
+      <p>He asked to see:</p>
+      <ol>
+        <li><strong>My return flight ticket</strong> (Thank god I had it printed).</li>
+        <li><strong>My bank app</strong> (To prove I could afford my trip).</li>
+        <li><strong>My hotel booking</strong>.</li>
+      </ol>
+      
+      <p>He scrutinized everything. He typed for what felt like an eternity. Then, finally, he stamped my passport.</p>
+      
+      <p>“Enjoy your holiday. And next time? Keep it simple.”</p>
+
+      <h2>3 Rules to Avoid Secondary Inspection</h2>
+      <p>I learned my lesson the hard way. Now, I follow these rules religiously.</p>
+
+      <h3>Rule #1: The "Tourism" Rule</h3>
+      <p>Unless you have a specific work visa, your purpose is <strong>Tourism</strong>. Visiting friends? Tourism. Going to a conference? Business/Tourism. Checking emails? Tourism. Do not mention "work," "freelance," or "finding clients."</p>
+
+      <h3>Rule #2: Don’t Be Chatty</h3>
+      <p>Immigration officers are not your new friends. They are professionals looking for inconsistencies.<br>
+      <strong>Officer:</strong> “How long are you staying?”<br>
+      <strong>Bad Answer:</strong> “I don’t know, maybe 2 weeks, maybe 3 if I like it…”<br>
+      <strong>Good Answer:</strong> “14 days.”</p>
+
+      <h3>Rule #3: Have "The Bundle" Ready</h3>
+      <p>Never rely on airport Wi-Fi to load your documents. Always have these saved offline (or printed):</p>
+      <ul>
+        <li>Return flight confirmation (Most important!)</li>
+        <li>First night’s accommodation address</li>
+        <li>Bank statement or banking app ready to show</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+      <p>Getting pulled aside doesn’t mean you are a criminal. It often just means you triggered a random check or said something confusing. If it happens:</p>
+      <p><strong>Stay calm. Be polite. Tell the truth (but briefly).</strong></p>
+      <p>And for the love of god, never say you’re going to “work a little bit” on a tourist visa.</p>
+
+      <p class="text-center">Have you ever been to "The Room"? Share your border crossing horror stories in the comments so I don't feel so alone! 👇😅</p>
+    `,
+    },
+
 };
