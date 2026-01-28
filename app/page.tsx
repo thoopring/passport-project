@@ -3,8 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import visaDataRaw from "../visa_data.json"; 
-// 👇 방금 만든 지도 컴포넌트를 가져옵니다 (경로 중요!)
 import WorldMap from "../components/WorldMap"; 
+import TravelFortune from "../components/TravelFortune"; // 신규 컴포넌트
 
 // 1. 데이터 타입 정의
 interface VisaData {
@@ -40,9 +40,8 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [darkMode, setDarkMode] = useState(false);
 
-  // 다크 모드 초기화 및 토글 로직
+  // 다크 모드 로직 (유지)
   useEffect(() => {
-    // 사용자의 브라우저 설정이나 이전 설정을 확인
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -88,170 +87,283 @@ export default function Home() {
   }, [selectedOrigin, searchTerm]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-[#FFFBF0] text-[#1a4d2e]'}`}>
       
-      {/* 🌙 다크모드 토글 버튼 (우측 상단 고정) */}
+      {/* 🌙 다크모드 토글 */}
       <button 
         onClick={toggleDarkMode}
-        className="fixed top-4 right-4 z-50 p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-2xl shadow-lg hover:scale-110 transition-transform cursor-pointer"
+        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-2xl shadow-lg hover:scale-110 transition-transform cursor-pointer"
       >
         {darkMode ? "☀️" : "🌙"}
       </button>
 
-      {/* 🟦 헤더 섹션 */}
-      <div className="bg-gradient-to-br from-blue-900 to-blue-700 dark:from-gray-900 dark:to-gray-800 text-white pb-24 pt-12 px-4 shadow-lg rounded-b-[3rem] transition-all">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="text-6xl mb-4 animate-bounce">🌍</div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
-            Passport Power Rank
+      {/* =========================================
+          1. HERO SECTION (New Brand Color)
+         ========================================= */}
+      <div className="relative bg-[#1a4d2e] text-[#FFFBF0] pt-24 pb-32 px-6 overflow-hidden rounded-b-[4rem] shadow-2xl">
+        {/* 장식용 패턴 */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="inline-block mb-4 px-4 py-1 rounded-full border border-[#ff9f1c] text-[#ff9f1c] text-sm font-bold tracking-widest uppercase animate-fade-in">
+            Travel Smarter, Not Harder
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight font-serif leading-tight">
+            Don't Just Travel.<br/>
+            <span className="text-[#ff9f1c]">Travel Smarter.</span>
           </h1>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Discover travel freedom with <span className="font-bold text-yellow-300">{selectedOrigin}</span> passport.
+          
+          <p className="text-xl md:text-2xl opacity-80 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            Check visa rules instantly, discover hidden gems, and unlock your passport's full potential.
           </p>
 
-          <div className="flex justify-center gap-4 mb-8">
-            <Link 
-              href="/blog"
-              className="inline-flex items-center px-6 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold hover:bg-white/30 transition-all shadow-lg"
-            >
-              <span>📰 Travel Blog</span>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <a href="#map-section" className="bg-[#ff9f1c] text-[#1a4d2e] font-bold py-4 px-10 rounded-full hover:bg-[#ffbf69] transition shadow-lg transform hover:-translate-y-1">
+              Explore the Map 🗺️
+            </a>
+            <Link href="/blog" className="border-2 border-[#FFFBF0] text-[#FFFBF0] font-bold py-4 px-10 rounded-full hover:bg-[#FFFBF0] hover:text-[#1a4d2e] transition">
+              Read Survival Guides 📖
             </Link>
           </div>
 
-          {/* 🔘 여권 선택 슬라이더 */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {ORIGIN_COUNTRIES.map((country) => (
-              <button 
-                key={country.name}
-                onClick={() => setSelectedOrigin(country.name)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all duration-200 ${
-                  selectedOrigin === country.name 
-                  ? "bg-white text-blue-900 shadow-xl transform scale-105 ring-4 ring-blue-300" 
-                  : "bg-blue-800/50 text-blue-200 hover:bg-blue-600/50"
-                }`}
-              >
-                <span className="text-xl">{country.flag}</span>
-                <span className="hidden sm:inline">{country.name}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* 📊 대시보드 통계 카드 */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-green-300">{stats.visaFree}</div>
-              <div className="text-sm text-blue-100">Visa Free</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-yellow-300">{stats.visaOnArrival}</div>
-              <div className="text-sm text-blue-100">On Arrival</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-cyan-300">{stats.eSim}</div>
-              <div className="text-sm text-blue-100">e-Visa</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-red-300">{stats.required}</div>
-              <div className="text-sm text-blue-100">Required</div>
+          {/* 여권 선택 슬라이더 (Hero 안으로 이동) */}
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/10 inline-block max-w-4xl w-full">
+            <p className="text-sm text-white/60 mb-4 uppercase tracking-wider font-bold">Select Your Passport</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {ORIGIN_COUNTRIES.map((country) => (
+                <button 
+                  key={country.name}
+                  onClick={() => setSelectedOrigin(country.name)}
+                  className={`flex items-center gap-2 px-4 py-3 rounded-full font-bold transition-all duration-300 ${
+                    selectedOrigin === country.name 
+                    ? "bg-[#ff9f1c] text-[#1a4d2e] shadow-lg transform scale-105" 
+                    : "bg-[#1a4d2e]/50 border border-white/20 text-white hover:bg-white/10"
+                  }`}
+                >
+                  <span className="text-xl">{country.flag}</span>
+                  <span className="hidden sm:inline">{country.name}</span>
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* 🏳️ 메인 콘텐츠 */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 mb-20 relative z-10">
-        
-        {/* 🗺️ 인터랙티브 지도 (신규 추가!) */}
-        <div className="mb-12 shadow-2xl rounded-3xl overflow-hidden border-4 border-white dark:border-gray-700 bg-white dark:bg-gray-800">
+      {/* =========================================
+          2. FUN SECTION: Travel Fortune
+         ========================================= */}
+      <section className="-mt-16 mb-20 relative z-20 px-4">
+        <TravelFortune />
+      </section>
+
+      {/* =========================================
+          3. MAP & STATS SECTION
+         ========================================= */}
+      <div id="map-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif text-[#1a4d2e] dark:text-[#ff9f1c]">
+            Where can <span className="underline decoration-[#ff9f1c]">{selectedOrigin}</span> take you?
+          </h2>
+          <p className="text-lg opacity-70">
+             Explore visa requirements on the interactive map below.
+          </p>
+        </div>
+
+        {/* 대시보드 통계 카드 */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
+            <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-1">{stats.visaFree}</div>
+            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Visa Free</div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-yellow-500">
+            <div className="text-4xl font-bold text-yellow-600 dark:text-yellow-400 mb-1">{stats.visaOnArrival}</div>
+            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">On Arrival</div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-cyan-500">
+            <div className="text-4xl font-bold text-cyan-600 dark:text-cyan-400 mb-1">{stats.eSim}</div>
+            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">e-Visa</div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-red-500">
+            <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-1">{stats.required}</div>
+            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Visa Required</div>
+          </div>
+        </div>
+
+        {/* 지도 컴포넌트 */}
+        <div className="shadow-2xl rounded-3xl overflow-hidden border-4 border-white dark:border-gray-700 bg-[#aed9e0]/20 dark:bg-gray-800">
            <WorldMap selectedOrigin={selectedOrigin} visaData={visaData} />
         </div>
-
-        {/* 🔍 검색창 */}
-        <div className="max-w-2xl mx-auto mb-10 relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-200"></div>
-          <input 
-            type="text" 
-            placeholder={`Search destination (e.g., Vietnam, Italy)...`}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="relative w-full px-6 py-4 text-lg rounded-2xl border-none shadow-xl focus:ring-4 focus:ring-blue-500/50 outline-none text-gray-800 dark:text-gray-100 dark:bg-gray-800 placeholder-gray-400"
-          />
-          <span className="absolute right-6 top-4 text-2xl text-gray-400">🔍</span>
-        </div>
-
-        {/* 📦 결과 카드 그리드 */}
-        {filteredData.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredData.map((visa, index) => {
-              const cleanReq = visa.requirement.replace(/\[.*?\]/g, "").trim();
-              
-              let statusStyle = "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300";
-              let icon = "🔒";
-              const reqLower = cleanReq.toLowerCase();
-
-              if (reqLower.includes("visa not required") || reqLower.includes("visa free")) {
-                statusStyle = "bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800";
-                icon = "✨";
-              } else if (reqLower.includes("visa on arrival")) {
-                statusStyle = "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800";
-                icon = "🛬";
-              } else if (reqLower.includes("electronic") || reqLower.includes("evisa")) {
-                statusStyle = "bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900/30 dark:text-cyan-400 dark:border-cyan-800";
-                icon = "💻";
-              } else if (reqLower.includes("banned") || reqLower.includes("refused")) {
-                statusStyle = "bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800";
-                icon = "🚫";
-              } else {
-                 statusStyle = "bg-orange-50 text-orange-800 border-orange-100 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800";
-                 icon = "📝";
-              }
-
-              const slug = createSlug(visa.destination, visa.origin);
-
-              return (
-                <Link href={`/visa/${slug}`} key={`${visa.origin}-${visa.destination}-${index}`} className="block group">
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-3">
-                        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
-                          {visa.destination}
-                        </h2>
-                        <span className="text-2xl">{icon}</span>
-                      </div>
-                      
-                      <div className={`inline-block px-3 py-1 rounded-lg text-xs font-bold border ${statusStyle} mb-2`}>
-                        {cleanReq}
-                      </div>
-                    </div>
-                    
-                    <div className="mt-4 flex items-center justify-between text-sm text-gray-400">
-                      <span>View details</span>
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-            <span className="text-6xl block mb-4">🤔</span>
-            <p className="text-xl text-gray-500 dark:text-gray-400 font-medium">
-              No results for "{searchTerm}"
-            </p>
-            <p className="text-gray-400 dark:text-gray-500 mt-2">Try searching for a different country.</p>
-          </div>
-        )}
       </div>
 
-      {/* 푸터 */}
-      <footer className="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 mt-12 py-10 text-center">
-        <p className="text-gray-400 font-medium">
-          © 2026 Passport Power.
-        </p>
-        <p className="text-xs text-gray-300 dark:text-gray-600 mt-2">
-          Empowering travelers from 🇰🇷 🇺🇸 🇬🇧 🇨🇦 🇦🇺 🇩🇪 🇫🇷 🇯🇵
-        </p>
+      {/* =========================================
+          4. SEARCH & LIST SECTION
+         ========================================= */}
+      <div className="bg-white dark:bg-gray-900 py-20 px-4 rounded-t-[3rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* 검색창 */}
+          <div className="max-w-2xl mx-auto mb-16 relative">
+             <div className="absolute -inset-1 bg-gradient-to-r from-[#1a4d2e] to-[#ff9f1c] rounded-2xl blur opacity-20 group-hover:opacity-100 transition duration-200"></div>
+             <input 
+               type="text" 
+               placeholder={`Search destination (e.g., Vietnam, Italy)...`}
+               value={searchTerm}
+               onChange={(e) => setSearchTerm(e.target.value)}
+               className="relative w-full px-8 py-5 text-xl rounded-2xl border-none shadow-2xl focus:ring-4 focus:ring-[#ff9f1c]/50 outline-none text-gray-800 dark:text-gray-100 dark:bg-gray-800 placeholder-gray-400"
+             />
+             <span className="absolute right-6 top-5 text-2xl text-gray-400">🔍</span>
+          </div>
+
+          {/* 결과 그리드 */}
+          {filteredData.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredData.map((visa, index) => {
+                const cleanReq = visa.requirement.replace(/\[.*?\]/g, "").trim();
+                
+                let statusStyle = "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300";
+                let icon = "🔒";
+                const reqLower = cleanReq.toLowerCase();
+
+                if (reqLower.includes("visa not required") || reqLower.includes("visa free")) {
+                  statusStyle = "bg-green-100 text-green-800 border-green-200";
+                  icon = "✨";
+                } else if (reqLower.includes("visa on arrival")) {
+                  statusStyle = "bg-yellow-100 text-yellow-800 border-yellow-200";
+                  icon = "🛬";
+                } else if (reqLower.includes("electronic") || reqLower.includes("evisa")) {
+                  statusStyle = "bg-cyan-100 text-cyan-800 border-cyan-200";
+                  icon = "💻";
+                } else if (reqLower.includes("banned") || reqLower.includes("refused")) {
+                  statusStyle = "bg-red-100 text-red-800 border-red-200";
+                  icon = "🚫";
+                }
+
+                const slug = createSlug(visa.destination, visa.origin);
+
+                return (
+                  <Link href={`/visa/${slug}`} key={`${visa.origin}-${visa.destination}-${index}`} className="block group">
+                    <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-[#ff9f1c] h-full flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-start mb-3">
+                          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition-colors line-clamp-1">
+                            {visa.destination}
+                          </h2>
+                          <span className="text-2xl">{icon}</span>
+                        </div>
+                        <div className={`inline-block px-3 py-1 rounded-lg text-xs font-bold border ${statusStyle} mb-2`}>
+                          {cleanReq}
+                        </div>
+                      </div>
+                      <div className="mt-4 flex items-center justify-between text-sm text-gray-400 font-medium">
+                        <span>View details</span>
+                        <span className="text-[#ff9f1c] group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <span className="text-6xl block mb-4">🤔</span>
+              <p className="text-xl text-gray-500 font-medium">No results found.</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* =========================================
+          5. BLOG TEASER SECTION (New!)
+         ========================================= */}
+      <div className="bg-[#FFFBF0] dark:bg-gray-900 py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a4d2e] dark:text-[#ff9f1c] font-serif mb-4">
+              Latest Survival Guides
+            </h2>
+            <p className="text-lg opacity-70 max-w-2xl mx-auto">
+              Real stories, scam warnings, and money-saving tips from the road.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <Link href="/blog/thailand-cambodia-visa-run-guide-2026" className="group cursor-pointer">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center text-white text-4xl">🏃‍♂️</div>
+                <div className="p-6">
+                  <div className="text-xs font-bold text-[#ff9f1c] mb-2 uppercase tracking-wide">Visa Run</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition">
+                    Bangkok to Poipet Visa Run Guide (2026)
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
+                    Don't get scammed at the border. Here is the exact cost breakdown and map of the "Fake Consulate".
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* Card 2 */}
+            <Link href="/blog/secondary-inspection-interrogation-story" className="group cursor-pointer">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-r from-gray-700 to-black flex items-center justify-center text-white text-4xl">👮‍♂️</div>
+                <div className="p-6">
+                  <div className="text-xs font-bold text-red-500 mb-2 uppercase tracking-wide">Horror Story</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition">
+                    My 2 Hours in the Airport Interrogation Room
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
+                    I did nothing wrong, but I said the wrong thing. Here are the 3 words you should NEVER say to immigration.
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* Card 3 */}
+            <Link href="/blog/digital-nomad-dating-visa-love" className="group cursor-pointer">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-r from-pink-400 to-purple-500 flex items-center justify-center text-white text-4xl">💘</div>
+                <div className="p-6">
+                  <div className="text-xs font-bold text-pink-500 mb-2 uppercase tracking-wide">Lifestyle</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition">
+                    Digital Nomad Dating & Visas
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
+                    Which country has the best visa for finding love? We analyzed Bali, Lisbon, and Mexico City.
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          
+          <div className="text-center mt-16">
+            <Link href="/blog" className="inline-block px-8 py-4 border-2 border-[#1a4d2e] text-[#1a4d2e] dark:border-[#ff9f1c] dark:text-[#ff9f1c] font-bold rounded-full hover:bg-[#1a4d2e] hover:text-white dark:hover:bg-[#ff9f1c] dark:hover:text-black transition uppercase tracking-widest text-sm">
+              View All Guides →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-[#1a4d2e] text-[#FFFBF0] mt-0 py-16 text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-4xl mb-6">🌍</div>
+          <h3 className="text-2xl font-serif font-bold mb-4">Passport Power Project</h3>
+          <p className="opacity-70 mb-8">
+            Empowering travelers to cross borders with confidence.<br/>
+            Built by nomads, for nomads.
+          </p>
+          <div className="flex justify-center gap-6 text-sm font-bold opacity-80">
+            <Link href="/blog" className="hover:text-[#ff9f1c] transition">Blog</Link>
+            <Link href="#" className="hover:text-[#ff9f1c] transition">About</Link>
+            <Link href="#" className="hover:text-[#ff9f1c] transition">Disclaimer</Link>
+          </div>
+          <p className="text-xs opacity-40 mt-12">
+            © 2026 Passport Power. Not affiliated with any government agency.
+          </p>
+        </div>
       </footer>
     </div>
   );
