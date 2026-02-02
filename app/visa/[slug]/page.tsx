@@ -93,11 +93,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   // 💰 [수익화 링크 모음] - 승인 전에는 검색 결과로 이동
   const affiliateID = "491612"; // Travelpayouts Marker
 
-  // 1. 호텔 (Hotellook -> Booking/Agoda 비교)
-  const hotelLink = `https://search.hotellook.com/hotels?marker=${affiliateID}&language=en&location=${visa.destination}`;
+// 1. 호텔 (Agoda)
+  // 꿀팁: 주신 링크 뒤에 "&city=..."를 붙여서, 고객이 보고 있는 나라(destination)의 호텔이 바로 뜨게 만들었습니다.
+  const hotelLink = `https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1956855&hl=en-us&city=${visa.destination}`;
   
-  // 2. 항공권 (Aviasales) - [신규]
-  const flightLink = `https://www.aviasales.com/search?marker=${affiliateID}`; 
+  // 2. 항공권 (Aviasales)
+  const flightLink = "https://aviasales.tpx.lu/M1CWAKTJ";
 
   // 3. 투어 (Viator / GetYourGuide) - [신규]
   //    미국/유럽 등 지역에 따라 나중에 분기 처리가능. 지금은 Viator 우선.
