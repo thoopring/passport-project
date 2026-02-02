@@ -4,7 +4,8 @@ import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import visaDataRaw from "../visa_data.json"; 
 import WorldMap from "../components/WorldMap"; 
-import TravelFortune from "../components/TravelFortune"; // 신규 컴포넌트
+import TravelFortune from "../components/TravelFortune"; 
+import AffiliateSection from "../components/AffiliateSection"; // ✅ 1. 돈 버는 섹션 추가
 
 // 1. 데이터 타입 정의
 interface VisaData {
@@ -40,7 +41,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [darkMode, setDarkMode] = useState(false);
 
-  // 다크 모드 로직 (유지)
+  // 다크 모드 로직
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setDarkMode(true);
@@ -76,7 +77,6 @@ export default function Home() {
       return originMatch && searchMatch;
     });
 
-    // 통계 계산
     const statsData = visaData.filter(v => v.origin.toLowerCase() === selectedOrigin.toLowerCase());
     const visaFree = statsData.filter(v => v.requirement.toLowerCase().includes("visa not required") || v.requirement.toLowerCase().includes("visa free")).length;
     const visaOnArrival = statsData.filter(v => v.requirement.toLowerCase().includes("visa on arrival")).length;
@@ -97,11 +97,8 @@ export default function Home() {
         {darkMode ? "☀️" : "🌙"}
       </button>
 
-      {/* =========================================
-          1. HERO SECTION (New Brand Color)
-         ========================================= */}
+      {/* 1. HERO SECTION */}
       <div className="relative bg-[#1a4d2e] text-[#FFFBF0] pt-24 pb-32 px-6 overflow-hidden rounded-b-[4rem] shadow-2xl">
-        {/* 장식용 패턴 */}
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
@@ -128,7 +125,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 여권 선택 슬라이더 (Hero 안으로 이동) */}
+          {/* 여권 선택 슬라이더 */}
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/10 inline-block max-w-4xl w-full">
             <p className="text-sm text-white/60 mb-4 uppercase tracking-wider font-bold">Select Your Passport</p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -151,16 +148,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* =========================================
-          2. FUN SECTION: Travel Fortune
-         ========================================= */}
+      {/* 2. FUN SECTION: Travel Fortune */}
       <section className="-mt-16 mb-20 relative z-20 px-4">
         <TravelFortune />
       </section>
 
-      {/* =========================================
-          3. MAP & STATS SECTION
-         ========================================= */}
+      {/* 3. MAP & STATS SECTION */}
       <div id="map-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif text-[#1a4d2e] dark:text-[#ff9f1c]">
@@ -171,7 +164,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* 대시보드 통계 카드 */}
+        {/* 통계 카드 */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
             <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-1">{stats.visaFree}</div>
@@ -191,15 +184,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 지도 컴포넌트 */}
+        {/* 지도 */}
         <div className="shadow-2xl rounded-3xl overflow-hidden border-4 border-white dark:border-gray-700 bg-[#aed9e0]/20 dark:bg-gray-800">
            <WorldMap selectedOrigin={selectedOrigin} visaData={visaData} />
         </div>
       </div>
 
-      {/* =========================================
-          4. SEARCH & LIST SECTION
-         ========================================= */}
+      {/* ✅ 2. [추가] 수익화 섹션 (지도 바로 아래 배치) */}
+      <AffiliateSection />
+
+      {/* 4. SEARCH & LIST SECTION */}
       <div className="bg-white dark:bg-gray-900 py-20 px-4 rounded-t-[3rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
         <div className="max-w-7xl mx-auto">
           
@@ -221,11 +215,9 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredData.map((visa, index) => {
                 const cleanReq = visa.requirement.replace(/\[.*?\]/g, "").trim();
-                
                 let statusStyle = "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300";
                 let icon = "🔒";
                 const reqLower = cleanReq.toLowerCase();
-
                 if (reqLower.includes("visa not required") || reqLower.includes("visa free")) {
                   statusStyle = "bg-green-100 text-green-800 border-green-200";
                   icon = "✨";
@@ -243,8 +235,11 @@ export default function Home() {
                 const slug = createSlug(visa.destination, visa.origin);
 
                 return (
-                  <Link href={`/visa/${slug}`} key={`${visa.origin}-${visa.destination}-${index}`} className="block group">
-                    <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-[#ff9f1c] h-full flex flex-col justify-between">
+                  // ✅ 3. [수정] 카드 구조 변경 (호텔 버튼 추가를 위해 div로 감쌈)
+                  <div key={`${visa.origin}-${visa.destination}-${index}`} className="flex flex-col justify-between bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-[#ff9f1c] h-full">
+                    
+                    {/* 상단: 비자 상세 페이지 링크 */}
+                    <Link href={`/visa/${slug}`} className="block group flex-grow">
                       <div>
                         <div className="flex justify-between items-start mb-3">
                           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition-colors line-clamp-1">
@@ -260,8 +255,18 @@ export default function Home() {
                         <span>View details</span>
                         <span className="text-[#ff9f1c] group-hover:translate-x-1 transition-transform">→</span>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+
+                    {/* ✅ 4. [추가] 아고다 호텔 예약 버튼 */}
+                    <a 
+                      href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1956855&hl=en-us" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 block w-full text-center py-3 rounded-xl bg-[#ff9f1c]/10 text-[#ff9f1c] font-bold text-sm hover:bg-[#ff9f1c] hover:text-white transition shadow-sm border border-[#ff9f1c]/20"
+                    >
+                      🏨 Check Hotels in {visa.destination}
+                    </a>
+                  </div>
                 );
               })}
             </div>
@@ -274,9 +279,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* =========================================
-          5. BLOG TEASER SECTION (New!)
-         ========================================= */}
+      {/* 5. BLOG TEASER SECTION */}
       <div className="bg-[#FFFBF0] dark:bg-gray-900 py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -289,7 +292,6 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Card 1 */}
             <Link href="/blog/thailand-cambodia-visa-run-guide-2026" className="group cursor-pointer">
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
                 <div className="h-48 bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center text-white text-4xl">🏃‍♂️</div>
@@ -305,7 +307,6 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Card 2 */}
             <Link href="/blog/secondary-inspection-interrogation-story" className="group cursor-pointer">
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
                 <div className="h-48 bg-gradient-to-r from-gray-700 to-black flex items-center justify-center text-white text-4xl">👮‍♂️</div>
@@ -321,7 +322,6 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Card 3 */}
             <Link href="/blog/digital-nomad-dating-visa-love" className="group cursor-pointer">
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
                 <div className="h-48 bg-gradient-to-r from-pink-400 to-purple-500 flex items-center justify-center text-white text-4xl">💘</div>
