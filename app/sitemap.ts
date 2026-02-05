@@ -17,7 +17,7 @@ function createSlug(destination: string, origin: string) {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // ⚠️ 본인의 배포 도메인으로 꼭 확인하세요!
-  const baseUrl = 'https://passport-project.vercel.app'; 
+  const baseUrl = 'https://checkvisamap.com/'; 
 
   // 1. 고정 페이지
   const staticRoutes = [

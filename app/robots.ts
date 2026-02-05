@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
  
 export default function robots(): MetadataRoute.Robots {
   // 파트너님의 실제 도메인
-  const baseUrl = 'https://passport-project.vercel.app';
+  const baseUrl = 'https://checkvisamap.com';
  
   return {
     rules: {
