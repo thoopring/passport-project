@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-// 👇 GTM (기존 유지)
-import { GoogleTagManager } from '@next/third-parties/google';
-// 👇 스크립트 추가를 위한 도구 가져오기
+// 👇 GTM과 GA4를 위한 도구 가져오기 (GoogleAnalytics 추가됨)
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
+// 👇 스크립트 추가를 위한 도구
 import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: "Passport Power: South Korea",
   description: "Check visa requirements for South Korean citizens to 190+ countries.",
   verification: {
-    // 구글 서치 콘솔 (기존 유지)
+    // 🔍 구글 서치 콘솔 인증
     google: "R31CCusp43HzLDTuTSiA9NnWNWi4KI2wGd4fKTEnF6I",
   },
   other: {
-    // 🏨 2. 아고다 파트너 인증 태그 (여기 추가됨!)
+    // 🏨 아고다 파트너 인증 (필요시 값 입력, 없으면 비워둠)
     "agd-partner-manual-verification": "", 
   },
 };
@@ -25,19 +25,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* GTM (기존 유지) */}
+      {/* 🏷️ 1. 구글 태그 매니저 (GTM) */}
       <GoogleTagManager gtmId="GTM-TPRWDJ9X" />
       
       <body className="antialiased">
         {children}
 
-        {/* ✈️ 1. 트래블페이아웃(Travelpayouts) 인증 스크립트 (여기 추가됨!) */}
-        {/* Next.js 방식대로 최적화해서 넣었습니다. */}
+        {/* ✈️ 2. 트래블페이아웃(Travelpayouts) 인증 스크립트 */}
         <Script 
           id="travelpayouts-verification"
           src="https://emrld.cc/NDkxNjEy.js?t=491612"
           strategy="afterInteractive"
         />
+
+        {/* 📊 3. 구글 애널리틱스 (GA4) - 방금 받은 ID 적용 완료! */}
+        <GoogleAnalytics gaId="G-3LF8H03QZG" />
       </body>
     </html>
   );
