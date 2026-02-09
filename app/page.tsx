@@ -357,7 +357,7 @@ export default function Home() {
           </p>
           <div className="flex justify-center gap-6 text-sm font-bold opacity-80">
             <Link href="/blog" className="hover:text-[#ff9f1c] transition">Blog</Link>
-            <Link href="#" className="hover:text-[#ff9f1c] transition">About</Link>
+            <Link href="/about" className="hover:text-[#ff9f1c] transition">About</Link>
             <Link href="#" className="hover:text-[#ff9f1c] transition">Disclaimer</Link>
           </div>
           <p className="text-xs opacity-40 mt-12">
