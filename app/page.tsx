@@ -63,7 +63,7 @@ export default function Home() {
       localStorage.theme = 'dark';
       setDarkMode(true);
     }
-  }, []);
+  };
 
   // 3. 실시간 필터링 및 통계 계산
   const { filteredData, stats } = useMemo(() => {
@@ -103,7 +103,7 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          {/* 👇 로고 이미지 추가 (여기!) */}
+          {/* 👇 로고 이미지 추가 */}
           <div className="flex justify-center mb-8 animate-fade-in-down">
             <Image 
               src="/logo.png" 
