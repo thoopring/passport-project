@@ -2,10 +2,11 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image"; // 🖼️ 로고 사용을 위해 추가
 import visaDataRaw from "../visa_data.json"; 
 import WorldMap from "../components/WorldMap"; 
 import TravelFortune from "../components/TravelFortune"; 
-import AffiliateSection from "../components/AffiliateSection"; // ✅ 1. 돈 버는 섹션 추가
+import AffiliateSection from "../components/AffiliateSection"; 
 
 // 1. 데이터 타입 정의
 interface VisaData {
@@ -62,7 +63,7 @@ export default function Home() {
       localStorage.theme = 'dark';
       setDarkMode(true);
     }
-  };
+  }, []);
 
   // 3. 실시간 필터링 및 통계 계산
   const { filteredData, stats } = useMemo(() => {
@@ -102,6 +103,18 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
+          {/* 👇 로고 이미지 추가 (여기!) */}
+          <div className="flex justify-center mb-8 animate-fade-in-down">
+            <Image 
+              src="/logo.png" 
+              alt="Check Visa Map Logo" 
+              width={140} 
+              height={140} 
+              className="drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+              priority
+            />
+          </div>
+
           <div className="inline-block mb-4 px-4 py-1 rounded-full border border-[#ff9f1c] text-[#ff9f1c] text-sm font-bold tracking-widest uppercase animate-fade-in">
             Travel Smarter, Not Harder
           </div>
@@ -160,7 +173,7 @@ export default function Home() {
             Where can <span className="underline decoration-[#ff9f1c]">{selectedOrigin}</span> take you?
           </h2>
           <p className="text-lg opacity-70">
-             Explore visa requirements on the interactive map below.
+              Explore visa requirements on the interactive map below.
           </p>
         </div>
 
@@ -235,7 +248,7 @@ export default function Home() {
                 const slug = createSlug(visa.destination, visa.origin);
 
                 return (
-                  // ✅ 3. [수정] 카드 구조 변경 (호텔 버튼 추가를 위해 div로 감쌈)
+                  // ✅ 3. [수정] 카드 구조 변경
                   <div key={`${visa.origin}-${visa.destination}-${index}`} className="flex flex-col justify-between bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-[#ff9f1c] h-full">
                     
                     {/* 상단: 비자 상세 페이지 링크 */}
