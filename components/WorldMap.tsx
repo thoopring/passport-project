@@ -3,97 +3,113 @@
 import React, { memo, useState } from "react";
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 
-// 전 세계 지도 데이터 (TopoJSON)
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 interface MapProps {
   selectedOrigin: string;
-  visaData: any[];
+  visaData: { origin: string; destination: string; requirement: string }[];
 }
+
+const STATUS_COLORS = {
+  light: {
+    home: "#3b82f6",
+    free: "#22c55e",
+    arrival: "#eab308",
+    evisa: "#06b6d4",
+    banned: "#ef4444",
+    required: "#f87171",
+    noData: "#e5e5e5",
+    stroke: "#ffffff",
+  },
+  dark: {
+    home: "#60a5fa",
+    free: "#4ade80",
+    arrival: "#facc15",
+    evisa: "#22d3ee",
+    banned: "#f87171",
+    required: "#fb923c",
+    noData: "#262626",
+    stroke: "#141414",
+  },
+};
 
 const WorldMap = ({ selectedOrigin, visaData }: MapProps) => {
   const [tooltipContent, setTooltipContent] = useState("");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
-  // 국가별 색상 결정 함수
-  const getCountryColor = (countryName: string) => {
-    const normalizedName = countryName.toLowerCase();
-    
-    // 내 여권 국가 (파란색)
-    if (normalizedName === selectedOrigin.toLowerCase()) return "#3b82f6"; 
+  const getColor = (countryName: string) => {
+    const colors = STATUS_COLORS.light;
+    const normalized = countryName.toLowerCase();
 
-    // 비자 데이터 찾기
-    const visaInfo = visaData.find(v => 
-      v.origin.toLowerCase() === selectedOrigin.toLowerCase() &&
-      (v.destination.toLowerCase() === normalizedName || v.destination.toLowerCase().includes(normalizedName))
+    if (normalized === selectedOrigin.toLowerCase()) return colors.home;
+
+    const visa = visaData.find(
+      (v) =>
+        v.origin.toLowerCase() === selectedOrigin.toLowerCase() &&
+        (v.destination.toLowerCase() === normalized ||
+          v.destination.toLowerCase().includes(normalized))
     );
 
-    if (!visaInfo) return "#D6D6DA"; // 데이터 없음 (회색)
+    if (!visa) return colors.noData;
 
-    const req = visaInfo.requirement.toLowerCase();
-    if (req.includes("visa not required") || req.includes("visa free")) return "#4ade80"; // 무비자 (초록)
-    if (req.includes("visa on arrival")) return "#facc15"; // 도착비자 (노랑)
-    if (req.includes("electronic") || req.includes("evisa")) return "#22d3ee"; // e-비자 (하늘)
-    if (req.includes("banned") || req.includes("refused")) return "#ef4444"; // 금지 (빨강)
-    
-    return "#f87171"; // 비자 필요 (연한 빨강)
+    const req = visa.requirement.toLowerCase();
+    if (req.includes("visa not required") || req.includes("visa free")) return colors.free;
+    if (req.includes("visa on arrival")) return colors.arrival;
+    if (req.includes("electronic") || req.includes("evisa")) return colors.evisa;
+    if (req.includes("banned") || req.includes("refused")) return colors.banned;
+    return colors.required;
   };
 
   return (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] bg-blue-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-inner border border-gray-200 dark:border-gray-700 transition-colors duration-500 group cursor-grab active:cursor-grabbing">
-      
-      {/* 맵 타이틀 */}
-      <div className="absolute top-4 left-6 z-10 pointer-events-none">
-        <h3 className="text-gray-900 dark:text-white font-bold text-lg opacity-80 shadow-black drop-shadow-md">
-          🗺️ Live Visa Map
-        </h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400">Scroll to Zoom / Drag to Move</p>
-      </div>
-
-      {/* 툴팁 */}
+    <div className="relative w-full aspect-[2/1] bg-[var(--surface-secondary)] rounded-2xl overflow-hidden border border-[var(--border-light)] cursor-grab active:cursor-grabbing">
+      {/* Tooltip */}
       {tooltipContent && (
-        <div 
-            className="fixed z-50 bg-gray-900/90 text-white text-xs px-3 py-2 rounded-lg shadow-xl pointer-events-none transform -translate-x-1/2 -translate-y-full border border-gray-700 backdrop-blur-sm whitespace-nowrap"
-            style={{ left: mousePosition.x, top: mousePosition.y - 15 }}
+        <div
+          className="fixed z-50 pointer-events-none"
+          style={{ left: tooltipPos.x, top: tooltipPos.y - 12 }}
         >
+          <div className="relative -translate-x-1/2 -translate-y-full bg-[var(--text-primary)] text-[var(--background)] text-caption font-medium px-3 py-1.5 rounded-lg shadow-elevated whitespace-nowrap">
             {tooltipContent}
+            <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[var(--text-primary)]" />
+          </div>
         </div>
       )}
 
-      <ComposableMap projectionConfig={{ scale: 160 }} className="w-full h-full">
+      <ComposableMap
+        projectionConfig={{ scale: 155, center: [10, 5] }}
+        className="w-full h-full"
+        style={{ background: "transparent" }}
+      >
         <ZoomableGroup>
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => {
-                const countryName = geo.properties.name;
-                const fillColor = getCountryColor(countryName);
-
+                const name = geo.properties.name;
+                const fill = getColor(name);
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={fillColor}
-                    stroke="#FFFFFF"
-                    strokeWidth={0.5}
+                    fill={fill}
+                    stroke="var(--surface-primary)"
+                    strokeWidth={0.4}
                     style={{
-                      default: { outline: "none", transition: "all 250ms" },
-                      hover: { fill: "#333", outline: "none", stroke: "#FFF", strokeWidth: 1, cursor: "pointer" },
+                      default: { outline: "none", transition: "fill 200ms" },
+                      hover: { fill: "#1a1a1a", outline: "none", cursor: "pointer" },
                       pressed: { outline: "none" },
                     }}
                     onMouseEnter={() => {
-                        const visaInfo = visaData.find(v => 
-                            v.origin.toLowerCase() === selectedOrigin.toLowerCase() &&
-                            (v.destination.toLowerCase() === countryName.toLowerCase() || v.destination.toLowerCase().includes(countryName.toLowerCase()))
-                        );
-                        const status = visaInfo ? visaInfo.requirement.replace(/\[.*?\]/g, "") : "Data Not Found";
-                        setTooltipContent(`${countryName}: ${status}`);
+                      const visa = visaData.find(
+                        (v) =>
+                          v.origin.toLowerCase() === selectedOrigin.toLowerCase() &&
+                          (v.destination.toLowerCase() === name.toLowerCase() ||
+                            v.destination.toLowerCase().includes(name.toLowerCase()))
+                      );
+                      const status = visa ? visa.requirement.replace(/\[.*?\]/g, "").trim() : "No data";
+                      setTooltipContent(`${name} \u00b7 ${status}`);
                     }}
-                    onMouseMove={(e) => {
-                        setMousePosition({ x: e.clientX, y: e.clientY });
-                    }}
-                    onMouseLeave={() => {
-                      setTooltipContent("");
-                    }}
+                    onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
+                    onMouseLeave={() => setTooltipContent("")}
                   />
                 );
               })
@@ -101,13 +117,25 @@ const WorldMap = ({ selectedOrigin, visaData }: MapProps) => {
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
-      
-      {/* 범례 (Legend) */}
-      <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur p-3 rounded-xl shadow-lg text-xs flex flex-col gap-2 dark:text-gray-200 pointer-events-none">
-        <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-400"></span> Visa Free</div>
-        <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-yellow-400"></span> On Arrival</div>
-        <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-cyan-400"></span> e-Visa</div>
-        <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-400"></span> Required</div>
+
+      {/* Legend */}
+      <div className="absolute bottom-3 right-3 glass rounded-xl px-3 py-2.5 flex flex-wrap gap-x-4 gap-y-1.5 text-caption font-medium text-[var(--text-secondary)]">
+        {[
+          { color: STATUS_COLORS.light.free, label: "Visa Free" },
+          { color: STATUS_COLORS.light.arrival, label: "On Arrival" },
+          { color: STATUS_COLORS.light.evisa, label: "e-Visa" },
+          { color: STATUS_COLORS.light.required, label: "Required" },
+        ].map((item) => (
+          <div key={item.label} className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: item.color }} />
+            {item.label}
+          </div>
+        ))}
+      </div>
+
+      {/* Controls hint */}
+      <div className="absolute top-3 left-3 text-caption text-[var(--text-muted)] font-medium">
+        Scroll to zoom \u00b7 Drag to pan
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import visaDataRaw from "../../../visa_data.json"; 
+import visaDataRaw from "../../../visa_data.json";
 
 interface VisaData {
   origin: string;
@@ -22,116 +22,96 @@ interface VisaData {
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
 
-const POPULAR_DESTINATIONS = {
+const POPULAR_DESTINATIONS: Record<string, string[]> = {
   "South Korea": ["Japan", "Vietnam", "Thailand", "Philippines", "Taiwan", "Guam"],
-  "United States": ["Mexico", "Canada", "United Kingdom", "Italy", "France", "Japan"]
+  "United States": ["Mexico", "Canada", "United Kingdom", "Italy", "France", "Japan"],
 };
 
 function createSlug(destination: string, origin: string) {
   const p = origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   const d = destination.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-  return `${p}-to-${d}`; 
+  return `${p}-to-${d}`;
 }
 
 export async function generateStaticParams() {
   return visaData
-    .filter((visa) => {
-      if (visa.destination.length > 50) return false;
-      if (!visa.destination || !visa.origin) return false;
-      return true;
-    })
-    .map((visa) => ({
-      slug: createSlug(visa.destination, visa.origin),
-    }));
+    .filter((visa) => visa.destination.length <= 50 && visa.destination && visa.origin)
+    .map((visa) => ({ slug: createSlug(visa.destination, visa.origin) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-
-  const visa = visaData.find(
-    (v) => createSlug(v.destination, v.origin) === resolvedParams.slug
-  );
-
+  const { slug } = await params;
+  const visa = visaData.find((v) => createSlug(v.destination, v.origin) === slug);
   if (!visa) return { title: "Visa Info Not Found" };
 
   const title = `${visa.origin} to ${visa.destination}: Visa Requirements 2026`;
   const description = `${visa.origin} passport holders: Check ${visa.destination} visa requirements, allowed stay, travel essentials, currency, emergency numbers & best time to visit.`;
-  const url = `https://checkvisamap.com/visa/${resolvedParams.slug}`;
+  const url = `https://checkvisamap.com/visa/${slug}`;
 
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      type: "article",
-      siteName: "Passport Power",
-      images: [{ url: "https://checkvisamap.com/og-image.png", width: 1200, height: 630 }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
+    openGraph: { title, description, url, type: "article", siteName: "Passport Power", images: [{ url: "https://checkvisamap.com/og-image.png", width: 1200, height: 630 }] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
+  const visa = visaData.find((v) => createSlug(v.destination, v.origin) === resolvedParams.slug);
+  if (!visa) notFound();
 
-  const visa = visaData.find(
-    (v) => createSlug(v.destination, v.origin) === resolvedParams.slug
-  );
+  const cleanReq = visa.requirement.replace(/\[.*?\]/g, "").trim();
+  const reqLower = cleanReq.toLowerCase();
+  const isVisaFree = reqLower.includes("visa not required") || reqLower.includes("visa free");
+  const isOnArrival = reqLower.includes("visa on arrival");
+  const isEVisa = reqLower.includes("electronic") || reqLower.includes("evisa");
+  const isBanned = reqLower.includes("banned") || reqLower.includes("refused");
 
-  if (!visa) {
-    notFound();
-  }
+  let statusStyle = { bg: "bg-red-50 dark:bg-red-950/20", border: "border-red-100 dark:border-red-900", text: "text-red-700 dark:text-red-400", dot: "bg-red-500" };
+  if (isVisaFree) statusStyle = { bg: "bg-green-50 dark:bg-green-950/20", border: "border-green-100 dark:border-green-900", text: "text-green-700 dark:text-green-400", dot: "bg-green-500" };
+  else if (isOnArrival) statusStyle = { bg: "bg-amber-50 dark:bg-amber-950/20", border: "border-amber-100 dark:border-amber-900", text: "text-amber-700 dark:text-amber-400", dot: "bg-amber-500" };
+  else if (isEVisa) statusStyle = { bg: "bg-cyan-50 dark:bg-cyan-950/20", border: "border-cyan-100 dark:border-cyan-900", text: "text-cyan-700 dark:text-cyan-400", dot: "bg-cyan-500" };
 
-  // 데이터 청소 및 처리
-  const cleanRequirement = visa.requirement.replace(/\[.*?\]/g, "").trim();
-  const isVisaFree = cleanRequirement.toLowerCase().includes("visa not required") || cleanRequirement.toLowerCase().includes("visa free");
-  const statusColor = isVisaFree ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800";
-  const statusIcon = isVisaFree ? "✅" : "⚠️";
-  const cleanNotes = (visa.notes && visa.notes.toLowerCase() !== "nan") ? visa.notes.replace(/\[.*?\]/g, "").trim() : null;
-  const cleanPopulation = (visa.population && visa.population !== '0') ? visa.population : null;
+  const cleanNotes = visa.notes && visa.notes.toLowerCase() !== "nan" ? visa.notes.replace(/\[.*?\]/g, "").trim() : null;
+  const cleanPop = visa.population && visa.population !== "0" ? visa.population : null;
 
-  // 거미줄 로직
   const nearbyVisas = visaData
     .filter((v) => v.origin === visa.origin && v.region === visa.region && v.destination !== visa.destination && v.destination.length < 50)
     .sort(() => 0.5 - Math.random())
-    .slice(0, 4);
+    .slice(0, 6);
 
-  const targetPopularList = POPULAR_DESTINATIONS[visa.origin as keyof typeof POPULAR_DESTINATIONS] || [];
+  const popularList = POPULAR_DESTINATIONS[visa.origin] || [];
   const popularVisas = visaData
-    .filter((v) => v.origin === visa.origin && targetPopularList.includes(v.destination) && v.destination !== visa.destination)
+    .filter((v) => v.origin === visa.origin && popularList.includes(v.destination) && v.destination !== visa.destination)
     .slice(0, 4);
 
-  // 💰 [수익화 링크 모음] - 승인 전에는 검색 결과로 이동
-  const affiliateID = "491612"; // Travelpayouts Marker
-
-// 1. 호텔 (Agoda)
-  // 꿀팁: 주신 링크 뒤에 "&city=..."를 붙여서, 고객이 보고 있는 나라(destination)의 호텔이 바로 뜨게 만들었습니다.
   const hotelLink = `https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1956855&hl=en-us&city=${visa.destination}`;
-  
-  // 2. 항공권 (Aviasales)
   const flightLink = "https://aviasales.tpx.lu/M1CWAKTJ";
-
-  // 3. 투어 (Viator / GetYourGuide) - [신규]
-  //    미국/유럽 등 지역에 따라 나중에 분기 처리가능. 지금은 Viator 우선.
   const tourLink = `https://www.viator.com/searchResults/all?text=${visa.destination}`;
-
-  // 4. 보험 (Insubuy) - [신규]
-  const insuranceLink = "https://www.insubuy.com/";
-
-  // 5. VPN (NordVPN) - [신규]
-  const vpnLink = "https://nordvpn.com/";
-
-  // 6. 기차 (Rail Europe) - [신규: 유럽일 때만 표시하는 로직]
   const isEurope = visa.region === "Europe";
-  const trainLink = "https://www.raileurope.com/";
 
+  const essentials = [
+    { label: "Capital", value: visa.capital },
+    { label: "Currency", value: visa.currency },
+    { label: "Plug Type", value: visa.plug_type },
+    { label: "Emergency", value: visa.emergency_number || "112" },
+    { label: "Best Season", value: visa.best_time_to_visit },
+    { label: "Greeting", value: visa.greeting },
+    { label: "Region", value: visa.region },
+    ...(cleanPop ? [{ label: "Population", value: cleanPop }] : []),
+  ];
+
+  const travelTools = [
+    { name: "Flights", desc: "Compare airlines", href: flightLink, color: "bg-sky-50 dark:bg-sky-950/20 border-sky-100 dark:border-sky-900 text-sky-700 dark:text-sky-300" },
+    { name: "Hotels", desc: `Stay in ${visa.destination}`, href: hotelLink, color: "bg-violet-50 dark:bg-violet-950/20 border-violet-100 dark:border-violet-900 text-violet-700 dark:text-violet-300" },
+    { name: "eSIM", desc: "Stay connected", href: "https://airalo.pxf.io/2anR7A", color: "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-100 dark:border-emerald-900 text-emerald-700 dark:text-emerald-300" },
+    { name: "Tours", desc: "Top activities", href: tourLink, color: "bg-orange-50 dark:bg-orange-950/20 border-orange-100 dark:border-orange-900 text-orange-700 dark:text-orange-300" },
+    { name: "Insurance", desc: "Travel safe", href: "https://www.insubuy.com/", color: "bg-rose-50 dark:bg-rose-950/20 border-rose-100 dark:border-rose-900 text-rose-700 dark:text-rose-300" },
+    { name: "VPN", desc: "Secure Wi-Fi", href: "https://nordvpn.com/", color: "bg-slate-50 dark:bg-slate-950/20 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300" },
+    ...(isEurope ? [{ name: "Trains", desc: "Eurail passes", href: "https://www.raileurope.com/", color: "bg-red-50 dark:bg-red-950/20 border-red-100 dark:border-red-900 text-red-700 dark:text-red-300" }] : []),
+  ];
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -151,249 +131,157 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         name: `Do ${visa.origin} citizens need a visa for ${visa.destination}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `${cleanRequirement}${visa.allowed_stay ? `. Allowed stay: ${visa.allowed_stay}` : ""}${cleanNotes ? `. ${cleanNotes}` : ""}`,
+          text: `${cleanReq}${visa.allowed_stay ? `. Allowed stay: ${visa.allowed_stay}` : ""}${cleanNotes ? `. ${cleanNotes}` : ""}`,
         },
       },
-      ...(visa.capital ? [{
-        "@type": "Question",
-        name: `What is the capital of ${visa.destination}?`,
-        acceptedAnswer: { "@type": "Answer", text: visa.capital },
-      }] : []),
-      ...(visa.currency ? [{
-        "@type": "Question",
-        name: `What currency is used in ${visa.destination}?`,
-        acceptedAnswer: { "@type": "Answer", text: visa.currency },
-      }] : []),
+      ...(visa.capital ? [{ "@type": "Question", name: `What is the capital of ${visa.destination}?`, acceptedAnswer: { "@type": "Answer", text: visa.capital } }] : []),
+      ...(visa.currency ? [{ "@type": "Question", name: `What currency is used in ${visa.destination}?`, acceptedAnswer: { "@type": "Answer", text: visa.currency } }] : []),
     ],
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[var(--background)] py-8 px-4 sm:px-6 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="max-w-4xl mx-auto">
 
-        <Link href="/" className="text-gray-500 hover:text-blue-600 mb-6 inline-flex items-center font-medium transition-colors">
-          <span className="mr-2">←</span> Back to Country List
-        </Link>
+      <div className="max-w-3xl mx-auto">
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-caption text-[var(--text-muted)] mb-6">
+          <Link href="/" className="hover:text-[var(--text-primary)] transition">Home</Link>
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+          <span className="text-[var(--text-secondary)]">{visa.destination}</span>
+        </div>
 
-        <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
-          
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-10 sm:px-10 text-center sm:text-left">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 shadow-sm">
-              {visa.origin} ✈️ {visa.destination}
-            </h1>
-            <p className="text-blue-100 text-lg font-medium opacity-90">
-              Essential Travel Guide & Visa Info
-            </p>
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-display-lg text-[var(--text-primary)] mb-2">
+            {visa.origin} &rarr; {visa.destination}
+          </h1>
+          <p className="text-body-md text-[var(--text-secondary)]">Visa requirements &amp; travel essentials</p>
+        </div>
+
+        {/* Status Card */}
+        <div className={`${statusStyle.bg} border ${statusStyle.border} rounded-2xl p-6 mb-6`}>
+          <div className="flex items-start gap-4">
+            <div className={`w-3 h-3 rounded-full mt-1.5 shrink-0 ${statusStyle.dot}`} />
+            <div>
+              <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-1">Visa Requirement</p>
+              <p className={`text-display-sm ${statusStyle.text}`}>{cleanReq}</p>
+              {visa.allowed_stay && (
+                <p className="text-body-sm text-[var(--text-secondary)] mt-2">
+                  Allowed stay: <span className="font-semibold text-[var(--text-primary)]">{visa.allowed_stay}</span>
+                </p>
+              )}
+            </div>
           </div>
+        </div>
 
-          <div className="p-6 sm:p-10 space-y-8">
-            
-            {/* 비자 상태 */}
-            <div className={`rounded-2xl p-6 ${statusColor} border border-opacity-20 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-sm`}>
-              <div className="text-4xl">{statusIcon}</div>
-              <div>
-                <h2 className="text-sm font-bold uppercase tracking-wider opacity-70 mb-1">Visa Requirement</h2>
-                <p className="text-3xl font-bold tracking-tight">{cleanRequirement}</p>
-                {visa.allowed_stay && (
-                  <p className="mt-2 text-lg font-medium inline-block bg-white bg-opacity-60 px-3 py-1 rounded-lg">
-                    📅 Allowed Stay: {visa.allowed_stay}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {/* 중요 노트 */}
-            {cleanNotes && (
-              <div className="bg-orange-50 rounded-xl p-6 border border-orange-100 flex gap-4">
-                <div className="text-2xl">📝</div>
-                <div>
-                  <h3 className="text-gray-900 font-bold mb-1">Important Notes</h3>
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{cleanNotes}</p>
-                </div>
-              </div>
-            )}
-
-            {/* 여행 필수 정보 */}
-            <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-              <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-2">
-                <span className="text-xl">🌍</span>
-                <h3 className="text-lg font-bold text-gray-900">Travel Essentials for {visa.destination}</h3>
-              </div>
-              <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Capital</p>
-                  <p className="font-semibold text-gray-900">{visa.capital || "Check details"}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Currency</p>
-                  <p className="font-semibold text-gray-900">{visa.currency || "Local Currency"}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">🔌 Plug & Voltage</p>
-                  <p className="font-semibold text-gray-900 text-sm">{visa.plug_type || "Check Adapter"}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">📞 Emergency</p>
-                  <p className="font-semibold text-gray-900 text-sm">{visa.emergency_number || "112 (GSM)"}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">☀️ Best Season</p>
-                  <p className="font-semibold text-gray-900 text-sm">{visa.best_time_to_visit || "Check Season"}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">🗣️ Say Hello</p>
-                  <p className="font-semibold text-gray-900 text-sm">{visa.greeting || "Hello"}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Region</p>
-                  <p className="font-semibold text-gray-900">{visa.region || "Global"}</p>
-                </div>
-                {cleanPopulation && (
-                  <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Population</p>
-                    <p className="font-semibold text-gray-900">{cleanPopulation}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* 👇 [최종 수익화 그리드] 2x3 레이아웃 (반응형) */}
-            <div className="mt-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                <span className="mr-2">🎒</span> Complete Travel Toolkit
-              </h3>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                
-                {/* 1. Airalo (eSIM) */}
-                <div className="bg-gray-900 rounded-xl p-5 text-center shadow-md relative overflow-hidden group hover:scale-[1.02] transition-transform duration-200">
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black opacity-100 z-0"></div>
-                  <div className="relative z-10 flex flex-col h-full justify-between">
-                    <div>
-                        <div className="text-2xl mb-1">📶</div>
-                        <h3 className="text-white font-bold text-lg">Internet</h3>
-                        <p className="text-gray-400 text-xs mb-3">No roaming fees</p>
-                    </div>
-                    <a href="https://airalo.pxf.io/2anR7A" target="_blank" rel="noopener noreferrer" className="block w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-500 transition-colors text-sm">Get eSIM 📲</a>
-                  </div>
-                </div>
-
-                {/* 2. Aviasales (Flights) - 신규 */}
-                <div className="bg-sky-50 rounded-xl p-5 text-center shadow-md border border-sky-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                    <div>
-                        <div className="text-2xl mb-1">✈️</div>
-                        <h3 className="text-gray-900 font-bold text-lg">Cheap Flights</h3>
-                        <p className="text-gray-500 text-xs mb-3">Compare airlines</p>
-                    </div>
-                    <a href={flightLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-sky-500 text-white font-bold py-2 rounded-lg hover:bg-sky-400 transition-colors text-sm">Find Flights 🛫</a>
-                </div>
-
-                {/* 3. Hotellook (Hotel) */}
-                <div className="bg-blue-50 rounded-xl p-5 text-center shadow-md border border-blue-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                    <div>
-                        <div className="text-2xl mb-1">🏨</div>
-                        <h3 className="text-gray-900 font-bold text-lg">Hotels</h3>
-                        <p className="text-gray-500 text-xs mb-3">Best deals</p>
-                    </div>
-                    <a href={hotelLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-blue-900 text-white font-bold py-2 rounded-lg hover:bg-blue-800 transition-colors text-sm">Find Hotels 🛏️</a>
-                </div>
-
-                {/* 4. Viator (Tours) */}
-                <div className="bg-green-50 rounded-xl p-5 text-center shadow-md border border-green-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                    <div>
-                        <div className="text-2xl mb-1">🎡</div>
-                        <h3 className="text-gray-900 font-bold text-lg">Tours</h3>
-                        <p className="text-gray-500 text-xs mb-3">Top activities</p>
-                    </div>
-                    <a href={tourLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-green-600 text-white font-bold py-2 rounded-lg hover:bg-green-500 transition-colors text-sm">Book Tours 🎫</a>
-                </div>
-
-                 {/* 5. Insubuy (Insurance) */}
-                 <div className="bg-orange-50 rounded-xl p-5 text-center shadow-md border border-orange-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                    <div>
-                        <div className="text-2xl mb-1">🛡️</div>
-                        <h3 className="text-gray-900 font-bold text-lg">Insurance</h3>
-                        <p className="text-gray-500 text-xs mb-3">Safety first</p>
-                    </div>
-                    <a href={insuranceLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-orange-500 text-white font-bold py-2 rounded-lg hover:bg-orange-400 transition-colors text-sm">Get Insured 🏥</a>
-                </div>
-
-                {/* 6. NordVPN (VPN) - 신규 */}
-                <div className="bg-gray-100 rounded-xl p-5 text-center shadow-md border border-gray-200 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                    <div>
-                        <div className="text-2xl mb-1">🔐</div>
-                        <h3 className="text-gray-900 font-bold text-lg">VPN</h3>
-                        <p className="text-gray-500 text-xs mb-3">Secure Wi-Fi</p>
-                    </div>
-                    <a href={vpnLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-gray-700 text-white font-bold py-2 rounded-lg hover:bg-gray-600 transition-colors text-sm">Get Safe 💻</a>
-                </div>
-
-                {/* 7. [조건부 렌더링] Rail Europe (기차) - 유럽일 때만 등장 */}
-                {isEurope && (
-                     <div className="bg-red-50 rounded-xl p-5 text-center shadow-md border border-red-100 hover:scale-[1.02] transition-transform duration-200 flex flex-col justify-between">
-                     <div>
-                         <div className="text-2xl mb-1">🚆</div>
-                         <h3 className="text-gray-900 font-bold text-lg">Trains</h3>
-                         <p className="text-gray-500 text-xs mb-3">Eurail & Tickets</p>
-                     </div>
-                     <a href={trainLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-red-600 text-white font-bold py-2 rounded-lg hover:bg-red-500 transition-colors text-sm">Book Trains 🎫</a>
-                 </div>
-                )}
-
-              </div>
-            </div>
-
-            {/* 거미줄 추천 (Nearby) */}
-            {nearbyVisas.length > 0 && (
-              <div className="mt-12 pt-8 border-t border-gray-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">📍 Nearby Destinations in {visa.region}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                  {nearbyVisas.map((v) => (
-                    <Link 
-                      key={v.destination} 
-                      href={`/visa/${createSlug(v.destination, v.origin)}`}
-                      className="block group bg-gray-50 rounded-xl p-4 hover:bg-blue-50 hover:shadow-md transition-all border border-gray-100"
-                    >
-                      <div className="flex justify-between items-start">
-                        <span className="font-bold text-gray-800 group-hover:text-blue-700">{v.destination}</span>
-                        <span className="text-xl">✈️</span>
-                      </div>
-                      <div className="mt-2 text-xs text-gray-500 font-medium bg-white inline-block px-2 py-1 rounded border border-gray-200">
-                        {v.requirement.replace(/\[.*?\]/g, "").slice(0, 15)}...
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* 인기 국가 추천 */}
-            {popularVisas.length > 0 && (
-              <div className="mt-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">🔥 Popular with {visa.origin} Travelers</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                  {popularVisas.map((v) => (
-                    <Link 
-                      key={v.destination} 
-                      href={`/visa/${createSlug(v.destination, v.origin)}`}
-                      className="block group bg-white rounded-xl p-4 hover:shadow-md transition-all border border-gray-200"
-                    >
-                      <div className="flex justify-between items-start">
-                        <span className="font-bold text-gray-800 group-hover:text-blue-700">{v.destination}</span>
-                        <span className="text-xl">🌟</span>
-                      </div>
-                      <div className="mt-2 text-xs text-blue-600 font-bold">
-                        View Requirements →
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
+        {/* Notes */}
+        {cleanNotes && (
+          <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900 rounded-xl p-5 mb-6">
+            <p className="text-caption uppercase font-semibold text-amber-700 dark:text-amber-400 mb-1.5">Important Note</p>
+            <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">{cleanNotes}</p>
           </div>
+        )}
+
+        {/* Travel Essentials */}
+        <div className="bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl overflow-hidden mb-6">
+          <div className="px-6 py-4 border-b border-[var(--border-light)]">
+            <h2 className="text-body-md font-semibold text-[var(--text-primary)]">Travel Essentials</h2>
+          </div>
+          <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {essentials.map((item) => (
+              <div key={item.label}>
+                <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-1">{item.label}</p>
+                <p className="text-body-sm font-medium text-[var(--text-primary)]">{item.value || "N/A"}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Travel Tools */}
+        <div className="mb-8">
+          <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-3 tracking-wider">
+            Book your trip
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+            {travelTools.map((tool) => (
+              <a
+                key={tool.name}
+                href={tool.href}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className={`${tool.color} border rounded-xl p-3.5 hover-lift group text-center`}
+              >
+                <p className="font-semibold text-body-sm">{tool.name}</p>
+                <p className="text-caption opacity-70 mt-0.5">{tool.desc}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Nearby Destinations */}
+        {nearbyVisas.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-body-md font-semibold text-[var(--text-primary)] mb-4">
+              Nearby in {visa.region}
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {nearbyVisas.map((v) => {
+                const vReq = v.requirement.toLowerCase();
+                const isFree = vReq.includes("visa not required") || vReq.includes("visa free");
+                return (
+                  <Link
+                    key={v.destination}
+                    href={`/visa/${createSlug(v.destination, v.origin)}`}
+                    className="flex items-center justify-between p-3 bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-xl hover:border-[var(--text-muted)] transition group"
+                  >
+                    <div className="min-w-0">
+                      <p className="font-medium text-body-sm text-[var(--text-primary)] truncate group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">{v.destination}</p>
+                      <p className={`text-caption font-medium mt-0.5 ${isFree ? "text-green-600 dark:text-green-400" : "text-[var(--text-muted)]"}`}>
+                        {v.requirement.replace(/\[.*?\]/g, "").trim().slice(0, 20)}
+                      </p>
+                    </div>
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition">
+                      <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Popular */}
+        {popularVisas.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-body-md font-semibold text-[var(--text-primary)] mb-4">
+              Popular with {visa.origin} travelers
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {popularVisas.map((v) => (
+                <Link
+                  key={v.destination}
+                  href={`/visa/${createSlug(v.destination, v.origin)}`}
+                  className="p-3 bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-xl hover:border-brand-400 transition text-center group"
+                >
+                  <p className="font-medium text-body-sm text-[var(--text-primary)] group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">{v.destination}</p>
+                  <p className="text-caption text-brand-600 dark:text-brand-400 font-medium mt-1">View &rarr;</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Back CTA */}
+        <div className="text-center pt-8 border-t border-[var(--border-light)]">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--text-primary)] text-[var(--background)] font-semibold rounded-xl hover:opacity-90 transition"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12l-4-4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+            Back to Visa Map
+          </Link>
         </div>
       </div>
     </div>

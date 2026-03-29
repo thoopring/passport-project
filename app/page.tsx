@@ -2,40 +2,44 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"; // 🖼️ 로고 사용을 위해 추가
-import visaDataRaw from "../visa_data.json"; 
-import WorldMap from "../components/WorldMap"; 
-import TravelFortune from "../components/TravelFortune"; 
+import Image from "next/image";
+import visaDataRaw from "../visa_data.json";
+import WorldMap from "../components/WorldMap";
 import AffiliateSection from "../components/AffiliateSection";
 import NewsletterSignup from "../components/NewsletterSignup";
+import PassportComparison from "../components/PassportComparison";
+import DestinationRoulette from "../components/DestinationRoulette";
+import ScrollReveal from "../components/ScrollReveal";
+import { BLOG_POSTS } from "./blog/data";
 
-// 1. 데이터 타입 정의
 interface VisaData {
   origin: string;
   destination: string;
   requirement: string;
   allowed_stay?: string;
   notes?: string;
+  region?: string;
+  capital?: string;
+  best_time_to_visit?: string;
 }
 
 const visaData: VisaData[] = visaDataRaw as VisaData[];
 
-// 2. 지원하는 8개 여권 목록
 const ORIGIN_COUNTRIES = [
-  { name: "South Korea", flag: "🇰🇷", code: "KR" },
-  { name: "United States", flag: "🇺🇸", code: "US" },
-  { name: "United Kingdom", flag: "🇬🇧", code: "UK" },
-  { name: "Canada", flag: "🇨🇦", code: "CA" },
-  { name: "Australia", flag: "🇦🇺", code: "AU" },
-  { name: "Germany", flag: "🇩🇪", code: "DE" },
-  { name: "France", flag: "🇫🇷", code: "FR" },
-  { name: "Japan", flag: "🇯🇵", code: "JP" },
+  { name: "South Korea", flag: "\ud83c\uddf0\ud83c\uddf7", code: "KR" },
+  { name: "United States", flag: "\ud83c\uddfa\ud83c\uddf8", code: "US" },
+  { name: "United Kingdom", flag: "\ud83c\uddec\ud83c\udde7", code: "UK" },
+  { name: "Canada", flag: "\ud83c\udde8\ud83c\udde6", code: "CA" },
+  { name: "Australia", flag: "\ud83c\udde6\ud83c\uddfa", code: "AU" },
+  { name: "Germany", flag: "\ud83c\udde9\ud83c\uddea", code: "DE" },
+  { name: "France", flag: "\ud83c\uddeb\ud83c\uddf7", code: "FR" },
+  { name: "Japan", flag: "\ud83c\uddef\ud83c\uddf5", code: "JP" },
 ];
 
 function createSlug(destination: string, origin: string) {
   const p = origin.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   const d = destination.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-  return `${p}-to-${d}`; 
+  return `${p}-to-${d}`;
 }
 
 export default function Home() {
@@ -43,348 +47,350 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [darkMode, setDarkMode] = useState(false);
 
-  // 다크 모드 로직
   useEffect(() => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
       setDarkMode(true);
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
       setDarkMode(false);
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
   const toggleDarkMode = () => {
     if (darkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
       setDarkMode(false);
     } else {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
       setDarkMode(true);
     }
   };
 
-  // 3. 실시간 필터링 및 통계 계산
   const { filteredData, stats } = useMemo(() => {
     const filtered = visaData.filter((visa) => {
       if (visa.destination.length > 50) return false;
       if (!visa.destination || !visa.origin) return false;
-      if (/^\d/.test(visa.destination)) return false; 
-      
+      if (/^\d/.test(visa.destination)) return false;
       const originMatch = visa.origin.toLowerCase() === selectedOrigin.toLowerCase();
       const searchMatch = visa.destination.toLowerCase().includes(searchTerm.toLowerCase());
-
       return originMatch && searchMatch;
     });
 
-    const statsData = visaData.filter(v => v.origin.toLowerCase() === selectedOrigin.toLowerCase());
-    const visaFree = statsData.filter(v => v.requirement.toLowerCase().includes("visa not required") || v.requirement.toLowerCase().includes("visa free")).length;
-    const visaOnArrival = statsData.filter(v => v.requirement.toLowerCase().includes("visa on arrival")).length;
-    const eSim = statsData.filter(v => v.requirement.toLowerCase().includes("electronic") || v.requirement.toLowerCase().includes("evisa")).length;
-    const required = statsData.length - (visaFree + visaOnArrival + eSim);
+    const all = visaData.filter((v) => v.origin.toLowerCase() === selectedOrigin.toLowerCase());
+    const visaFree = all.filter(
+      (v) => v.requirement.toLowerCase().includes("visa not required") || v.requirement.toLowerCase().includes("visa free")
+    ).length;
+    const visaOnArrival = all.filter((v) => v.requirement.toLowerCase().includes("visa on arrival")).length;
+    const eVisa = all.filter(
+      (v) => v.requirement.toLowerCase().includes("electronic") || v.requirement.toLowerCase().includes("evisa")
+    ).length;
+    const required = all.length - (visaFree + visaOnArrival + eVisa);
 
-    return { filteredData: filtered, stats: { visaFree, visaOnArrival, eSim, required } };
+    return { filteredData: filtered, stats: { visaFree, visaOnArrival, eVisa, required, total: all.length } };
   }, [selectedOrigin, searchTerm]);
 
+  const blogPosts = useMemo(
+    () =>
+      Object.entries(BLOG_POSTS)
+        .map(([slug, post]) => ({ slug, ...post }))
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3),
+    []
+  );
+
+  const selectedFlag = ORIGIN_COUNTRIES.find((c) => c.name === selectedOrigin)?.flag;
+
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-[#FFFBF0] text-[#1a4d2e]'}`}>
-      
-      {/* 🌙 다크모드 토글 */}
-      <button 
-        onClick={toggleDarkMode}
-        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-2xl shadow-lg hover:scale-110 transition-transform cursor-pointer"
-      >
-        {darkMode ? "☀️" : "🌙"}
-      </button>
+    <div className="min-h-screen transition-colors duration-300">
+      {/* ===== Top Navigation ===== */}
+      <nav className="fixed top-0 left-0 right-0 z-50 glass">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <Image src="/logo.png" alt="Passport Power" width={28} height={28} className="group-hover:scale-105 transition-transform" />
+            <span className="font-bold text-body-sm text-[var(--text-primary)] tracking-tight hidden sm:block">
+              Passport Power
+            </span>
+          </Link>
+          <div className="flex items-center gap-1">
+            <Link href="/blog" className="px-3 py-1.5 text-body-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition rounded-lg hover:bg-[var(--surface-secondary)]">
+              Blog
+            </Link>
+            <Link href="/about" className="px-3 py-1.5 text-body-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition rounded-lg hover:bg-[var(--surface-secondary)]">
+              About
+            </Link>
+            <button
+              onClick={toggleDarkMode}
+              className="ml-1 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[var(--surface-secondary)] transition text-[var(--text-secondary)]"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </nav>
 
-      {/* 1. HERO SECTION */}
-      <div className="relative bg-[#1a4d2e] text-[#FFFBF0] pt-24 pb-32 px-6 overflow-hidden rounded-b-[4rem] shadow-2xl">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-        
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          {/* 👇 로고 이미지 추가 */}
-          <div className="flex justify-center mb-8 animate-fade-in-down">
-            <Image 
-              src="/logo.png" 
-              alt="Check Visa Map Logo" 
-              width={140} 
-              height={140} 
-              className="drop-shadow-2xl hover:scale-105 transition-transform duration-300"
-              priority
-            />
+      {/* ===== Hero Section ===== */}
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-caption font-semibold text-brand-700 dark:text-brand-300 mb-6 animate-fade-down">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
+            190+ countries \u00b7 8 passports \u00b7 Real-time data
           </div>
 
-          <div className="inline-block mb-4 px-4 py-1 rounded-full border border-[#ff9f1c] text-[#ff9f1c] text-sm font-bold tracking-widest uppercase animate-fade-in">
-            Travel Smarter, Not Harder
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight font-serif leading-tight">
-            Don't Just Travel.<br/>
-            <span className="text-[#ff9f1c]">Travel Smarter.</span>
+          <h1 className="text-display-xl md:text-[5.5rem] md:leading-[1.02] text-[var(--text-primary)] mb-6 animate-fade-up">
+            Know before<br />
+            <span className="gradient-text">you go.</span>
           </h1>
-          
-          <p className="text-xl md:text-2xl opacity-80 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            Check visa rules instantly, discover hidden gems, and unlock your passport's full potential.
+
+          <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            Check visa requirements instantly. No government jargon, no outdated wikis.
+            Just clear answers for your next trip.
           </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <a href="#map-section" className="bg-[#ff9f1c] text-[#1a4d2e] font-bold py-4 px-10 rounded-full hover:bg-[#ffbf69] transition shadow-lg transform hover:-translate-y-1">
-              Explore the Map 🗺️
-            </a>
-            <Link href="/blog" className="border-2 border-[#FFFBF0] text-[#FFFBF0] font-bold py-4 px-10 rounded-full hover:bg-[#FFFBF0] hover:text-[#1a4d2e] transition">
-              Read Survival Guides 📖
-            </Link>
-          </div>
-
-          {/* 여권 선택 슬라이더 */}
-          <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/10 inline-block max-w-4xl w-full">
-            <p className="text-sm text-white/60 mb-4 uppercase tracking-wider font-bold">Select Your Passport</p>
-            <div className="flex flex-wrap justify-center gap-3">
+          {/* Passport Selector */}
+          <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-3 tracking-wider">
+              Select your passport
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
               {ORIGIN_COUNTRIES.map((country) => (
-                <button 
+                <button
                   key={country.name}
                   onClick={() => setSelectedOrigin(country.name)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-full font-bold transition-all duration-300 ${
-                    selectedOrigin === country.name 
-                    ? "bg-[#ff9f1c] text-[#1a4d2e] shadow-lg transform scale-105" 
-                    : "bg-[#1a4d2e]/50 border border-white/20 text-white hover:bg-white/10"
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-body-sm font-medium transition-all duration-200 cursor-pointer ${
+                    selectedOrigin === country.name
+                      ? "bg-[var(--text-primary)] text-[var(--background)] shadow-elevated scale-[1.02]"
+                      : "bg-[var(--surface-primary)] border border-[var(--border-light)] text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)]"
                   }`}
                 >
-                  <span className="text-xl">{country.flag}</span>
+                  <span className="text-lg leading-none">{country.flag}</span>
                   <span className="hidden sm:inline">{country.name}</span>
                 </button>
               ))}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* 2. FUN SECTION: Travel Fortune */}
-      <section className="-mt-16 mb-20 relative z-20 px-4">
-        <TravelFortune />
       </section>
 
-      {/* 3. MAP & STATS SECTION */}
-      <div id="map-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif text-[#1a4d2e] dark:text-[#ff9f1c]">
-            Where can <span className="underline decoration-[#ff9f1c]">{selectedOrigin}</span> take you?
-          </h2>
-          <p className="text-lg opacity-70">
-              Explore visa requirements on the interactive map below.
+      {/* ===== Stats Bar ===== */}
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-8">
+          <div className="grid grid-cols-4 gap-3">
+            {[
+              { label: "Visa Free", value: stats.visaFree, color: "text-green-600 dark:text-green-400", bg: "bg-green-50 dark:bg-green-950/30 border-green-100 dark:border-green-900" },
+              { label: "On Arrival", value: stats.visaOnArrival, color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/30 border-amber-100 dark:border-amber-900" },
+              { label: "e-Visa", value: stats.eVisa, color: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30 border-cyan-100 dark:border-cyan-900" },
+              { label: "Required", value: stats.required, color: "text-red-500 dark:text-red-400", bg: "bg-red-50 dark:bg-red-950/30 border-red-100 dark:border-red-900" },
+            ].map((stat) => (
+              <div key={stat.label} className={`${stat.bg} border rounded-xl p-4 text-center`}>
+                <div className={`text-display-sm md:text-display-md font-bold ${stat.color}`}>{stat.value}</div>
+                <div className="text-caption font-semibold text-[var(--text-muted)] uppercase mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== Map Section ===== */}
+      <ScrollReveal>
+        <section id="map-section" className="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <h2 className="text-display-sm text-[var(--text-primary)]">
+                {selectedFlag} {selectedOrigin} Visa Map
+              </h2>
+              <p className="text-body-sm text-[var(--text-secondary)] mt-1">
+                Interactive map showing visa requirements worldwide
+              </p>
+            </div>
+          </div>
+          <WorldMap selectedOrigin={selectedOrigin} visaData={visaData} />
+        </section>
+      </ScrollReveal>
+
+      {/* ===== Partners ===== */}
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+          <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-3 tracking-wider">
+            Travel partners
           </p>
-        </div>
+          <AffiliateSection />
+        </section>
+      </ScrollReveal>
 
-        {/* 통계 카드 */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
-            <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-1">{stats.visaFree}</div>
-            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Visa Free</div>
-          </div>
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-yellow-500">
-            <div className="text-4xl font-bold text-yellow-600 dark:text-yellow-400 mb-1">{stats.visaOnArrival}</div>
-            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">On Arrival</div>
-          </div>
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-cyan-500">
-            <div className="text-4xl font-bold text-cyan-600 dark:text-cyan-400 mb-1">{stats.eSim}</div>
-            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">e-Visa</div>
-          </div>
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-l-4 border-red-500">
-            <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-1">{stats.required}</div>
-            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Visa Required</div>
-          </div>
-        </div>
-
-        {/* 지도 */}
-        <div className="shadow-2xl rounded-3xl overflow-hidden border-4 border-white dark:border-gray-700 bg-[#aed9e0]/20 dark:bg-gray-800">
-           <WorldMap selectedOrigin={selectedOrigin} visaData={visaData} />
-        </div>
-      </div>
-
-      {/* ✅ 2. [추가] 수익화 섹션 (지도 바로 아래 배치) */}
-      <AffiliateSection />
-
-      {/* 4. SEARCH & LIST SECTION */}
-      <div className="bg-white dark:bg-gray-900 py-20 px-4 rounded-t-[3rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* 검색창 */}
-          <div className="max-w-2xl mx-auto mb-16 relative">
-             <div className="absolute -inset-1 bg-gradient-to-r from-[#1a4d2e] to-[#ff9f1c] rounded-2xl blur opacity-20 group-hover:opacity-100 transition duration-200"></div>
-             <input 
-               type="text" 
-               placeholder={`Search destination (e.g., Vietnam, Italy)...`}
-               value={searchTerm}
-               onChange={(e) => setSearchTerm(e.target.value)}
-               className="relative w-full px-8 py-5 text-xl rounded-2xl border-none shadow-2xl focus:ring-4 focus:ring-[#ff9f1c]/50 outline-none text-gray-800 dark:text-gray-100 dark:bg-gray-800 placeholder-gray-400"
-             />
-             <span className="absolute right-6 top-5 text-2xl text-gray-400">🔍</span>
+      {/* ===== Search & Destinations ===== */}
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+            <div>
+              <h2 className="text-display-sm text-[var(--text-primary)]">All Destinations</h2>
+              <p className="text-body-sm text-[var(--text-secondary)] mt-1">
+                {filteredData.length} countries available for {selectedOrigin} passport
+              </p>
+            </div>
+            <div className="relative w-full md:w-80">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)]">
+                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+              </svg>
+              <input
+                type="text"
+                placeholder="Search destinations..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-xl text-body-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500/40 transition"
+              />
+            </div>
           </div>
 
-          {/* 결과 그리드 */}
           {filteredData.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {filteredData.map((visa, index) => {
                 const cleanReq = visa.requirement.replace(/\[.*?\]/g, "").trim();
-                let statusStyle = "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300";
-                let icon = "🔒";
                 const reqLower = cleanReq.toLowerCase();
+                let statusColor = "bg-surface-100 text-surface-600 border-surface-200";
+                let dotColor = "bg-surface-400";
+
                 if (reqLower.includes("visa not required") || reqLower.includes("visa free")) {
-                  statusStyle = "bg-green-100 text-green-800 border-green-200";
-                  icon = "✨";
+                  statusColor = "bg-green-50 text-green-700 dark:bg-green-950/40 dark:text-green-400 border-green-100 dark:border-green-900";
+                  dotColor = "bg-green-500";
                 } else if (reqLower.includes("visa on arrival")) {
-                  statusStyle = "bg-yellow-100 text-yellow-800 border-yellow-200";
-                  icon = "🛬";
+                  statusColor = "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400 border-amber-100 dark:border-amber-900";
+                  dotColor = "bg-amber-500";
                 } else if (reqLower.includes("electronic") || reqLower.includes("evisa")) {
-                  statusStyle = "bg-cyan-100 text-cyan-800 border-cyan-200";
-                  icon = "💻";
+                  statusColor = "bg-cyan-50 text-cyan-700 dark:bg-cyan-950/40 dark:text-cyan-400 border-cyan-100 dark:border-cyan-900";
+                  dotColor = "bg-cyan-500";
                 } else if (reqLower.includes("banned") || reqLower.includes("refused")) {
-                  statusStyle = "bg-red-100 text-red-800 border-red-200";
-                  icon = "🚫";
+                  statusColor = "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400 border-red-100 dark:border-red-900";
+                  dotColor = "bg-red-500";
                 }
 
                 const slug = createSlug(visa.destination, visa.origin);
 
                 return (
-                  // ✅ 3. [수정] 카드 구조 변경
-                  <div key={`${visa.origin}-${visa.destination}-${index}`} className="flex flex-col justify-between bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-[#ff9f1c] h-full">
-                    
-                    {/* 상단: 비자 상세 페이지 링크 */}
-                    <Link href={`/visa/${slug}`} className="block group flex-grow">
-                      <div>
-                        <div className="flex justify-between items-start mb-3">
-                          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition-colors line-clamp-1">
-                            {visa.destination}
-                          </h2>
-                          <span className="text-2xl">{icon}</span>
-                        </div>
-                        <div className={`inline-block px-3 py-1 rounded-lg text-xs font-bold border ${statusStyle} mb-2`}>
-                          {cleanReq}
-                        </div>
+                  <Link
+                    key={`${visa.origin}-${visa.destination}-${index}`}
+                    href={`/visa/${slug}`}
+                    className="group flex items-center justify-between p-4 bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-xl hover:border-[var(--text-muted)] hover:shadow-card transition-all duration-200"
+                  >
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-body-sm text-[var(--text-primary)] group-hover:text-brand-600 dark:group-hover:text-brand-400 transition truncate">
+                        {visa.destination}
+                      </h3>
+                      <div className={`inline-flex items-center gap-1.5 mt-1.5 px-2 py-0.5 rounded-md text-caption font-medium border ${statusColor}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
+                        {cleanReq.length > 25 ? cleanReq.slice(0, 25) + "..." : cleanReq}
                       </div>
-                      <div className="mt-4 flex items-center justify-between text-sm text-gray-400 font-medium">
-                        <span>View details</span>
-                        <span className="text-[#ff9f1c] group-hover:translate-x-1 transition-transform">→</span>
-                      </div>
-                    </Link>
-
-                    {/* ✅ 4. [추가] 아고다 호텔 예약 버튼 */}
-                    <a 
-                      href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1956855&hl=en-us" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 block w-full text-center py-3 rounded-xl bg-[#ff9f1c]/10 text-[#ff9f1c] font-bold text-sm hover:bg-[#ff9f1c] hover:text-white transition shadow-sm border border-[#ff9f1c]/20"
-                    >
-                      🏨 Check Hotels in {visa.destination}
-                    </a>
-                  </div>
+                    </div>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-3 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition -translate-x-1 group-hover:translate-x-0">
+                      <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
                 );
               })}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <span className="text-6xl block mb-4">🤔</span>
-              <p className="text-xl text-gray-500 font-medium">No results found.</p>
+            <div className="text-center py-16">
+              <p className="text-body-lg text-[var(--text-muted)] font-medium">No destinations found</p>
+              <p className="text-body-sm text-[var(--text-muted)] mt-1">Try a different search term</p>
             </div>
           )}
-        </div>
-      </div>
+        </section>
+      </ScrollReveal>
 
-      {/* 5. BLOG TEASER SECTION */}
-      <div className="bg-[#FFFBF0] dark:bg-gray-900 py-24 px-4">
+      {/* ===== Interactive Tools ===== */}
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+          <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-4 tracking-wider">
+            Explore & Compare
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <PassportComparison visaData={visaData} />
+            <DestinationRoulette visaData={visaData} selectedOrigin={selectedOrigin} />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== Blog Section ===== */}
+      <ScrollReveal>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <h2 className="text-display-sm text-[var(--text-primary)]">Travel Stories & Guides</h2>
+              <p className="text-body-sm text-[var(--text-secondary)] mt-1">
+                Real experiences and practical tips from the road
+              </p>
+            </div>
+            <Link href="/blog" className="text-body-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline underline-offset-2 hidden sm:block">
+              View all
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {blogPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl overflow-hidden hover-lift"
+              >
+                <div className="h-40 bg-gradient-to-br from-brand-100 to-brand-50 dark:from-brand-950 dark:to-surface-900 flex items-center justify-center">
+                  <span className="text-caption font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">{post.category}</span>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold text-body-md text-[var(--text-primary)] group-hover:text-brand-600 dark:group-hover:text-brand-400 transition mb-2 line-clamp-2 leading-snug">
+                    {post.title}
+                  </h3>
+                  <p className="text-body-sm text-[var(--text-secondary)] line-clamp-2 mb-3">{post.excerpt}</p>
+                  <span className="text-caption text-[var(--text-muted)]">{post.date}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-6 sm:hidden">
+            <Link href="/blog" className="text-body-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline underline-offset-2">
+              View all stories
+            </Link>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== Newsletter ===== */}
+      <ScrollReveal>
+        <section className="max-w-3xl mx-auto px-4 sm:px-6 mb-20">
+          <NewsletterSignup />
+        </section>
+      </ScrollReveal>
+
+      {/* ===== Footer ===== */}
+      <footer className="border-t border-[var(--border-light)] py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a4d2e] dark:text-[#ff9f1c] font-serif mb-4">
-              Latest Survival Guides
-            </h2>
-            <p className="text-lg opacity-70 max-w-2xl mx-auto">
-              Real stories, scam warnings, and money-saving tips from the road.
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-2.5">
+              <Image src="/logo.png" alt="Passport Power" width={24} height={24} />
+              <span className="font-bold text-body-sm text-[var(--text-primary)]">Passport Power</span>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-6 text-body-sm font-medium text-[var(--text-secondary)]">
+              <Link href="/blog" className="hover:text-[var(--text-primary)] transition">Blog</Link>
+              <Link href="/about" className="hover:text-[var(--text-primary)] transition">About</Link>
+              <Link href="/privacy" className="hover:text-[var(--text-primary)] transition">Privacy</Link>
+              <Link href="/disclaimer" className="hover:text-[var(--text-primary)] transition">Disclaimer</Link>
+            </div>
+
+            <p className="text-caption text-[var(--text-muted)]">
+              &copy; 2026 Passport Power. Not affiliated with any government.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Link href="/blog/thailand-cambodia-visa-run-guide-2026" className="group cursor-pointer">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
-                <div className="h-48 bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center text-white text-4xl">🏃‍♂️</div>
-                <div className="p-6">
-                  <div className="text-xs font-bold text-[#ff9f1c] mb-2 uppercase tracking-wide">Visa Run</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition">
-                    Bangkok to Poipet Visa Run Guide (2026)
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
-                    Don't get scammed at the border. Here is the exact cost breakdown and map of the "Fake Consulate".
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            <Link href="/blog/secondary-inspection-interrogation-story" className="group cursor-pointer">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
-                <div className="h-48 bg-gradient-to-r from-gray-700 to-black flex items-center justify-center text-white text-4xl">👮‍♂️</div>
-                <div className="p-6">
-                  <div className="text-xs font-bold text-red-500 mb-2 uppercase tracking-wide">Horror Story</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition">
-                    My 2 Hours in the Airport Interrogation Room
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
-                    I did nothing wrong, but I said the wrong thing. Here are the 3 words you should NEVER say to immigration.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            <Link href="/blog/digital-nomad-dating-visa-love" className="group cursor-pointer">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
-                <div className="h-48 bg-gradient-to-r from-pink-400 to-purple-500 flex items-center justify-center text-white text-4xl">💘</div>
-                <div className="p-6">
-                  <div className="text-xs font-bold text-pink-500 mb-2 uppercase tracking-wide">Lifestyle</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-[#1a4d2e] dark:group-hover:text-[#ff9f1c] transition">
-                    Digital Nomad Dating & Visas
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3">
-                    Which country has the best visa for finding love? We analyzed Bali, Lisbon, and Mexico City.
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          
-          <div className="text-center mt-16">
-            <Link href="/blog" className="inline-block px-8 py-4 border-2 border-[#1a4d2e] text-[#1a4d2e] dark:border-[#ff9f1c] dark:text-[#ff9f1c] font-bold rounded-full hover:bg-[#1a4d2e] hover:text-white dark:hover:bg-[#ff9f1c] dark:hover:text-black transition uppercase tracking-widest text-sm">
-              View All Guides →
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Newsletter Section */}
-      <div className="py-20 px-4 bg-[#FFFBF0] dark:bg-gray-900">
-        <div className="max-w-3xl mx-auto">
-          <NewsletterSignup />
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-[#1a4d2e] text-[#FFFBF0] mt-0 py-16 text-center">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-4xl mb-6">🌍</div>
-          <h3 className="text-2xl font-serif font-bold mb-4">Passport Power Project</h3>
-          <p className="opacity-70 mb-8">
-            Empowering travelers to cross borders with confidence.<br/>
-            Built by nomads, for nomads.
-          </p>
-          <div className="flex justify-center gap-6 text-sm font-bold opacity-80">
-            <Link href="/blog" className="hover:text-[#ff9f1c] transition">Blog</Link>
-            <Link href="/about" className="hover:text-[#ff9f1c] transition">About</Link>
-            <Link href="/privacy" className="hover:text-[#ff9f1c] transition">Privacy Policy</Link>
-            <Link href="/disclaimer" className="hover:text-[#ff9f1c] transition">Disclaimer</Link>
-          </div>
-          <p className="text-xs opacity-40 mt-12">
-            © 2026 Passport Power. Not affiliated with any government agency.
-          </p>
         </div>
       </footer>
     </div>
