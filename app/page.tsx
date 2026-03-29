@@ -6,7 +6,8 @@ import Image from "next/image"; // 🖼️ 로고 사용을 위해 추가
 import visaDataRaw from "../visa_data.json"; 
 import WorldMap from "../components/WorldMap"; 
 import TravelFortune from "../components/TravelFortune"; 
-import AffiliateSection from "../components/AffiliateSection"; 
+import AffiliateSection from "../components/AffiliateSection";
+import NewsletterSignup from "../components/NewsletterSignup";
 
 // 1. 데이터 타입 정의
 interface VisaData {
@@ -359,6 +360,13 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Newsletter Section */}
+      <div className="py-20 px-4 bg-[#FFFBF0] dark:bg-gray-900">
+        <div className="max-w-3xl mx-auto">
+          <NewsletterSignup />
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="bg-[#1a4d2e] text-[#FFFBF0] mt-0 py-16 text-center">
         <div className="max-w-4xl mx-auto px-4">
@@ -371,7 +379,8 @@ export default function Home() {
           <div className="flex justify-center gap-6 text-sm font-bold opacity-80">
             <Link href="/blog" className="hover:text-[#ff9f1c] transition">Blog</Link>
             <Link href="/about" className="hover:text-[#ff9f1c] transition">About</Link>
-            <Link href="#" className="hover:text-[#ff9f1c] transition">Disclaimer</Link>
+            <Link href="/privacy" className="hover:text-[#ff9f1c] transition">Privacy Policy</Link>
+            <Link href="/disclaimer" className="hover:text-[#ff9f1c] transition">Disclaimer</Link>
           </div>
           <p className="text-xs opacity-40 mt-12">
             © 2026 Passport Power. Not affiliated with any government agency.

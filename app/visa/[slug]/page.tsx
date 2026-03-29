@@ -47,16 +47,34 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  
+
   const visa = visaData.find(
     (v) => createSlug(v.destination, v.origin) === resolvedParams.slug
   );
 
   if (!visa) return { title: "Visa Info Not Found" };
 
+  const title = `${visa.origin} to ${visa.destination}: Visa Requirements 2026`;
+  const description = `${visa.origin} passport holders: Check ${visa.destination} visa requirements, allowed stay, travel essentials, currency, emergency numbers & best time to visit.`;
+  const url = `https://checkvisamap.com/visa/${resolvedParams.slug}`;
+
   return {
-    title: `${visa.origin} to ${visa.destination}: Visa Requirements`,
-    description: `Check visa requirements, power plugs, emergency numbers, and best time to visit ${visa.destination}.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      siteName: "Passport Power",
+      images: [{ url: "https://checkvisamap.com/og-image.png", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -115,10 +133,46 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const trainLink = "https://www.raileurope.com/";
 
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://checkvisamap.com" },
+      { "@type": "ListItem", position: 2, name: `${visa.origin} to ${visa.destination}`, item: `https://checkvisamap.com/visa/${resolvedParams.slug}` },
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Do ${visa.origin} citizens need a visa for ${visa.destination}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${cleanRequirement}${visa.allowed_stay ? `. Allowed stay: ${visa.allowed_stay}` : ""}${cleanNotes ? `. ${cleanNotes}` : ""}`,
+        },
+      },
+      ...(visa.capital ? [{
+        "@type": "Question",
+        name: `What is the capital of ${visa.destination}?`,
+        acceptedAnswer: { "@type": "Answer", text: visa.capital },
+      }] : []),
+      ...(visa.currency ? [{
+        "@type": "Question",
+        name: `What currency is used in ${visa.destination}?`,
+        acceptedAnswer: { "@type": "Answer", text: visa.currency },
+      }] : []),
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="max-w-4xl mx-auto">
-        
+
         <Link href="/" className="text-gray-500 hover:text-blue-600 mb-6 inline-flex items-center font-medium transition-colors">
           <span className="mr-2">←</span> Back to Country List
         </Link>

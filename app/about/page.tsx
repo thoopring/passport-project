@@ -3,9 +3,22 @@
 import Link from "next/link";
 
 export default function AboutPage() {
+  // JSON-LD for About page
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Passport Power",
+    description: "We built Passport Power because we were scared at the airport. A free visa checker for travelers worldwide.",
+    url: "https://checkvisamap.com/about",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Passport Power",
+      email: "hello@checkvisamap.com",
+    },
+  };
   return (
     <div className="min-h-screen bg-[#FFFBF0] dark:bg-gray-900 text-[#1a4d2e] dark:text-gray-100 font-sans transition-colors duration-300">
-      
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
       {/* 1. 네비게이션 (심플하게 홈으로 가는 버튼) */}
       <nav className="p-6 flex justify-between items-center max-w-7xl mx-auto">
         <Link href="/" className="text-2xl font-black font-serif tracking-tighter hover:text-[#ff9f1c] transition">

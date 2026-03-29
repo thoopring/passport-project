@@ -3,8 +3,16 @@ import Link from 'next/link';
 import { BLOG_POSTS } from './data';
 
 export const metadata = {
-  title: 'Travel Visa Guide & Tips | Passport Power',
-  description: 'Real stories, visa warnings, and tips for smart travelers.',
+  title: 'Travel Visa Guide & Tips',
+  description: 'Real stories, visa warnings, scam alerts, and money-saving tips for smart travelers. Guides for digital nomads and frequent flyers.',
+  alternates: { canonical: 'https://checkvisamap.com/blog' },
+  openGraph: {
+    title: 'Travel Visa Guide & Tips | Passport Power',
+    description: 'Real stories, visa warnings, and tips for smart travelers.',
+    url: 'https://checkvisamap.com/blog',
+    type: 'website',
+    siteName: 'Passport Power',
+  },
 };
 
 export default function BlogHome() {
