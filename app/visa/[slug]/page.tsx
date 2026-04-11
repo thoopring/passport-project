@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import visaDataRaw from "../../../visa_data.json";
+import AffiliateLink from "../../../components/AffiliateLink";
+import TripPlannerCTA from "../../../components/TripPlannerCTA";
 
 interface VisaData {
   origin: string;
@@ -87,10 +89,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     .filter((v) => v.origin === visa.origin && popularList.includes(v.destination) && v.destination !== visa.destination)
     .slice(0, 4);
 
-  const hotelLink = `https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1956855&hl=en-us&city=${visa.destination}`;
+  const hotelLink = `https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1956855&hl=en-us&city=${encodeURIComponent(visa.destination)}`;
   const flightLink = "https://aviasales.tpx.lu/M1CWAKTJ";
-  const tourLink = `https://www.viator.com/searchResults/all?text=${visa.destination}`;
-  const isEurope = visa.region === "Europe";
 
   const essentials = [
     { label: "Capital", value: visa.capital },
@@ -104,13 +104,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   ];
 
   const travelTools = [
-    { name: "Flights", desc: "Compare airlines", href: flightLink, color: "bg-sky-50 dark:bg-sky-950/20 border-sky-100 dark:border-sky-900 text-sky-700 dark:text-sky-300" },
     { name: "Hotels", desc: `Stay in ${visa.destination}`, href: hotelLink, color: "bg-violet-50 dark:bg-violet-950/20 border-violet-100 dark:border-violet-900 text-violet-700 dark:text-violet-300" },
+    { name: "Flights", desc: "Compare airlines", href: flightLink, color: "bg-sky-50 dark:bg-sky-950/20 border-sky-100 dark:border-sky-900 text-sky-700 dark:text-sky-300" },
     { name: "eSIM", desc: "Stay connected", href: "https://airalo.pxf.io/2anR7A", color: "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-100 dark:border-emerald-900 text-emerald-700 dark:text-emerald-300" },
-    { name: "Tours", desc: "Top activities", href: tourLink, color: "bg-orange-50 dark:bg-orange-950/20 border-orange-100 dark:border-orange-900 text-orange-700 dark:text-orange-300" },
-    { name: "Insurance", desc: "Travel safe", href: "https://www.insubuy.com/", color: "bg-rose-50 dark:bg-rose-950/20 border-rose-100 dark:border-rose-900 text-rose-700 dark:text-rose-300" },
-    { name: "VPN", desc: "Secure Wi-Fi", href: "https://nordvpn.com/", color: "bg-slate-50 dark:bg-slate-950/20 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300" },
-    ...(isEurope ? [{ name: "Trains", desc: "Eurail passes", href: "https://www.raileurope.com/", color: "bg-red-50 dark:bg-red-950/20 border-red-100 dark:border-red-900 text-red-700 dark:text-red-300" }] : []),
   ];
 
   const breadcrumbSchema = {
@@ -176,6 +172,15 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         </div>
 
+        {/* Trip Planner CTA — primary monetization */}
+        <div className="mb-6">
+          <TripPlannerCTA
+            destination={visa.destination}
+            destinationCountry={visa.destination}
+            origin={visa.origin}
+          />
+        </div>
+
         {/* Notes */}
         {cleanNotes && (
           <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900 rounded-xl p-5 mb-6">
@@ -199,23 +204,23 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         </div>
 
-        {/* Travel Tools */}
+        {/* Travel Tools — secondary, for visitors who already booked their trip */}
         <div className="mb-8">
           <p className="text-caption uppercase font-semibold text-[var(--text-muted)] mb-3 tracking-wider">
-            Book your trip
+            Already booked? Tools you might need
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             {travelTools.map((tool) => (
-              <a
+              <AffiliateLink
                 key={tool.name}
                 href={tool.href}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className={`${tool.color} border rounded-xl p-3.5 hover-lift group text-center`}
+                category="visa_detail_tool"
+                label={`${tool.name}_${visa.destination}`}
+                className={`${tool.color} border rounded-xl p-3.5 hover-lift group text-center block`}
               >
                 <p className="font-semibold text-body-sm">{tool.name}</p>
                 <p className="text-caption opacity-70 mt-0.5">{tool.desc}</p>
-              </a>
+              </AffiliateLink>
             ))}
           </div>
         </div>

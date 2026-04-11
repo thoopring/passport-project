@@ -1,5 +1,7 @@
 "use client";
 
+import AffiliateLink from "./AffiliateLink";
+
 const PARTNERS = [
   {
     name: "Flights",
@@ -40,11 +42,11 @@ export default function AffiliateSection() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       {PARTNERS.map((p) => (
-        <a
+        <AffiliateLink
           key={p.name}
           href={p.href}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
+          category="home_partners"
+          label={p.name}
           className={`flex items-center gap-4 p-4 rounded-xl border ${p.color} hover-lift group`}
         >
           <div className="shrink-0 opacity-60 group-hover:opacity-100 transition">{p.icon}</div>
@@ -55,7 +57,7 @@ export default function AffiliateSection() {
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-auto opacity-0 group-hover:opacity-60 transition -translate-x-1 group-hover:translate-x-0">
             <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </a>
+        </AffiliateLink>
       ))}
     </div>
   );
