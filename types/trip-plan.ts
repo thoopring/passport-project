@@ -96,6 +96,12 @@ export const PlanRequestSchema = z.object({
 
   /** Output language for the generated plan. Defaults to English. */
   locale: LocaleSchema.optional(),
+
+  /** Referral code from /r/[code] cookie at draft creation time. */
+  referredByCode: z.string().max(16).optional(),
+
+  /** Promo code applied at checkout (P10). */
+  promoCode: z.string().max(32).optional(),
 });
 export type PlanRequest = z.infer<typeof PlanRequestSchema>;
 

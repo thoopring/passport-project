@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getPlan } from "../../../lib/plans";
 import PlanView from "../../../components/PlanView";
+import ShareReferralCard from "../../../components/ShareReferralCard";
+import { getOrCreateReferralCode } from "../../../lib/referrals";
 
 export const dynamic = "force-dynamic";
 
@@ -56,7 +58,24 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
     return <Centered>Plan not available.</Centered>;
   }
 
-  return <PlanView plan={record.plan} downloadHref={`/api/plan/${id}/pdf`} />;
+  // Best-effort referral code lookup. Failure (e.g. Supabase down) shouldn't
+  // block the plan from rendering — just hide the share card.
+  let shareUrl: string | null = null;
+  try {
+    const code = await getOrCreateReferralCode(record.email);
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
+    shareUrl = `${baseUrl}/r/${code}`;
+  } catch (err) {
+    console.error("getOrCreateReferralCode failed (non-fatal)", err);
+  }
+
+  return (
+    <PlanView
+      plan={record.plan}
+      downloadHref={`/api/plan/${id}/pdf`}
+      bottomCta={shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
+    />
+  );
 }
 
 function Centered({ children }: { children: React.ReactNode }) {

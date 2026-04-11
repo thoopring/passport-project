@@ -157,6 +157,10 @@
     "generatingTitle": "あなたの旅程を作成中です",
     "generatingSubtitle": "通常30〜60秒かかります。準備ができ次第、リンクをメールでお送りします。",
     "generatingRefresh": "更新",
-    "paymentReceived": "お支払い受領"
+    "paymentReceived": "お支払い受領",
+    "shareTitle": "シェアして次の旅程を無料に",
+    "shareSubtitle": "友人があなたのリンクで初めて購入すると、無料の旅程1件をプレゼント。",
+    "shareCopy": "リンクをコピー",
+    "shareCopied": "コピーしました!"
   }
 }

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { PlanRequestSchema } from "../../../../types/trip-plan";
 import { createDraftPlan } from "../../../../lib/plans";
 import { getActiveLocale } from "../../../../i18n/request";
+import { REFERRAL_COOKIE } from "../../../../lib/referrals";
 
 /**
  * POST /api/plan/draft
@@ -18,6 +20,13 @@ export async function POST(req: NextRequest) {
     // Inject the user's active locale unless the client already specified one.
     if (!body.locale) {
       body.locale = await getActiveLocale();
+    }
+
+    // Capture the referral cookie if present (P9)
+    if (!body.referredByCode) {
+      const cookieStore = await cookies();
+      const refCode = cookieStore.get(REFERRAL_COOKIE)?.value;
+      if (refCode) body.referredByCode = refCode;
     }
 
     const parsed = PlanRequestSchema.safeParse(body);

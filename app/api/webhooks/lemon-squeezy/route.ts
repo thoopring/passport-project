@@ -9,6 +9,7 @@ import {
 } from "../../../../lib/plans";
 import { generateTripPlan } from "../../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../../lib/email";
+import { awardCredit } from "../../../../lib/referrals";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -90,6 +91,13 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
       destination: plan.request.destination,
       locale: plan.request.locale,
     });
+
+    // Award referral credit if this purchase came from a /r/[code] click (P9)
+    if (plan.request.referredByCode) {
+      await awardCredit(plan.request.referredByCode, plan.email).catch((err) => {
+        console.error("awardCredit failed (non-fatal)", { planId, err });
+      });
+    }
   } catch (err) {
     const reason = err instanceof Error ? err.message : String(err);
     console.error("generateAndDeliver failed", { planId, reason });

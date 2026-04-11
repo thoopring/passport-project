@@ -157,6 +157,10 @@
     "generatingTitle": "正在生成您的计划",
     "generatingSubtitle": "通常需要 30-60 秒。准备好后我们会立即通过电子邮件发送链接。",
     "generatingRefresh": "刷新",
-    "paymentReceived": "已收到付款"
+    "paymentReceived": "已收到付款",
+    "shareTitle": "分享本站,免费获取下一份行程",
+    "shareSubtitle": "当朋友通过您的链接首次购买时,我们将为您赠送一份免费行程。",
+    "shareCopy": "复制链接",
+    "shareCopied": "已复制!"
   }
 }

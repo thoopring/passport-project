@@ -435,7 +435,7 @@ Verify: Generate Tokyo plan PDF. Day 2 has "Did you know? Shibuya Crossing has u
 
 ---
 
-### ☐ P9 — Referral program
+### ☑ P9 — Referral program (DONE 2026-04-11)
 
 **Goal:** Each user gets a referral link. When a friend signs up + buys their first plan, the referrer gets a free plan credit.
 

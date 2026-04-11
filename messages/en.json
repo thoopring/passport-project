@@ -157,6 +157,10 @@
     "generatingTitle": "We're building your plan",
     "generatingSubtitle": "This usually takes 30 to 60 seconds. We'll email you the link as soon as it's ready.",
     "generatingRefresh": "Refresh",
-    "paymentReceived": "Payment received"
+    "paymentReceived": "Payment received",
+    "shareTitle": "Share this site, get your next plan free",
+    "shareSubtitle": "When a friend buys their first plan with your link, we credit you a free one.",
+    "shareCopy": "Copy link",
+    "shareCopied": "Copied!"
   }
 }
