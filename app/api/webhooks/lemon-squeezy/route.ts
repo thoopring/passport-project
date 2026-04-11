@@ -88,6 +88,7 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
       to: plan.email,
       planId,
       destination: plan.request.destination,
+      locale: plan.request.locale,
     });
   } catch (err) {
     const reason = err instanceof Error ? err.message : String(err);

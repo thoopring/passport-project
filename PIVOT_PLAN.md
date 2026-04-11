@@ -271,7 +271,48 @@ Verify: Use the browse skill or `/qa` skill to walk this end-to-end. Confirm log
 
 ---
 
-### ☐ P4 — i18n (en / zh / ko / ja)
+### ☑ P4 — i18n via next-intl (DONE 2026-04-11; cookie-based, no URL restructure)
+
+> **Deviation:** Skipped the planned `app/[locale]/...` directory restructure
+> in favor of a cookie-based locale model. Reason: moving 1593+ visa pages
+> under a `[locale]` segment would have required 301 redirects for every
+> existing URL and risked tanking established Search Console rankings. The
+> cookie-based approach uses next-intl's `getRequestConfig` reading from
+> `NEXT_LOCALE` cookie + `Accept-Language` header.
+>
+> Trade-off: every page is now server-rendered (the root layout calls
+> `getLocale()` which reads cookies, making the whole tree dynamic). The
+> 1594 visa pages lost static prerendering. Vercel CDN caches them after
+> first request so user-perceived perf is fine, but origin load is higher.
+> Revisit with route groups (`(localized)`/`(static)`) if this becomes a
+> bottleneck.
+>
+> What shipped:
+> - 4 message JSONs (en/ko/ja/zh) covering wizard step 1, loading screen,
+>   popups, samples gallery, sample view, plan view.
+> - `i18n/locales.ts` (client-safe constants) + `i18n/request.ts` (server,
+>   uses next/headers).
+> - Layout wraps everything with `NextIntlClientProvider` and a fixed-position
+>   `LocaleSwitcher` (top-right).
+> - PlanWizardStep1, /plan/loading, /samples, /samples/[slug], /plan/[id],
+>   PlanView all use translations.
+> - `locale` added to `PlanRequestSchema`. `/api/plan/draft` injects the
+>   active locale from cookie before saving.
+> - Claude generator's user prompt now includes a per-locale instruction
+>   block telling Claude to write user-visible strings in the target language
+>   while keeping place names in native script.
+> - `lib/email.ts` is fully localized for all 4 languages (subject, heading,
+>   body, button labels).
+>
+> Skipped (acceptable for v1):
+> - Localization of the home page (it's a giant client component with the
+>   visa map — needs separate refactor).
+> - Localization of visa detail pages, blog posts, about/privacy/disclaimer
+>   (English-only for now).
+> - Localized sample plan content (samples remain English; only the chrome
+>   around them is localized).
+> - Localized PDF labels (PDF stays English in v1; Claude-generated content
+>   inside the PDF will be in the user's locale).
 
 **Goal:** All UI strings localized; AI-generated plans output in user's chosen language.
 

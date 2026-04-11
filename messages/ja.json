@@ -1,0 +1,157 @@
+{
+  "common": {
+    "siteName": "Passport Power",
+    "currency": "USD",
+    "price": "$4",
+    "delivery": "モバイルウェブリンク + PDF · お支払い後数分でお届け",
+    "back": "戻る",
+    "continue": "続ける",
+    "skip": "スキップ"
+  },
+  "locale": {
+    "switcherLabel": "言語",
+    "en": "English",
+    "ko": "한국어",
+    "ja": "日本語",
+    "zh": "中文"
+  },
+  "wizard": {
+    "step1": {
+      "headline": "分単位で計画される、あなたの旅。",
+      "subtitle": "簡単な3つの質問だけ。残りはAIがすべて処理します — ホテル、空港アクセス、レストラン、スマホで持ち歩けるルートマップまで。",
+      "badge": "$4 · モバイルリンク + PDF · 数分でお届け",
+      "destinationLabel": "どこへ行きますか?",
+      "destinationPlaceholder": "例: 東京",
+      "countryLabel": "国",
+      "countryPlaceholder": "例: 日本",
+      "daysLabel": "何日間ですか?",
+      "budgetLabel": "予算は?",
+      "budgetBudget": "節約",
+      "budgetBudgetHint": "ホステル、屋台、公共交通",
+      "budgetMidrange": "中級",
+      "budgetMidrangeHint": "4つ星、レストラン",
+      "budgetLuxury": "ラグジュアリー",
+      "budgetLuxuryHint": "5つ星、ファインダイニング",
+      "submit": "AI分析を開始 →"
+    },
+    "loading": {
+      "badge": "AIがあなたの旅を分析中",
+      "headline": "{destination}の旅程を作成中",
+      "subtitle": "数千のデータポイントを照合しています。お待ちいただく間、いくつかの質問にお答えください。よりパーソナライズされた旅程をお作りします。",
+      "redirecting": "セキュアな決済ページへリダイレクト中…",
+      "startOver": "最初から"
+    },
+    "popup": {
+      "travelerType": {
+        "title": "誰と一緒に旅行しますか?",
+        "solo": "一人旅",
+        "soloHint": "私だけ",
+        "couple": "カップル",
+        "coupleHint": "大人2人",
+        "family": "家族",
+        "familyHint": "大人 + 子供",
+        "friends": "友人",
+        "friendsHint": "大人3人以上",
+        "senior": "シニア",
+        "seniorHint": "ゆったりペース"
+      },
+      "adults": {
+        "title": "大人は何人ですか?",
+        "placeholder": "例: 4"
+      },
+      "children": {
+        "title": "お子様は何人で、何歳ですか?",
+        "subtitle": "年齢がわかると、ペースや訪問先を調整できます。",
+        "numberLabel": "子供の人数",
+        "textLabel": "年齢",
+        "placeholder": "例: 4, 7"
+      },
+      "stroller": {
+        "title": "ベビーカーは必要ですか?",
+        "subtitle": "必要であれば、段差のないルートを選びます。"
+      },
+      "airport": {
+        "title": "どの空港に到着しますか?",
+        "subtitle": "ターミナルに近いホテルを選びます。",
+        "placeholder": "例: NRT または成田"
+      },
+      "hotelBooked": {
+        "title": "ホテルは予約済みですか?"
+      },
+      "hotelName": {
+        "title": "どこに泊まりますか?",
+        "subtitle": "名前だけ教えてください — その周辺で旅程を組みます。",
+        "placeholder": "例: パークハイアット東京"
+      },
+      "interests": {
+        "title": "何に興味がありますか?",
+        "subtitle": "最大6つまで選択できます。",
+        "food": "グルメ",
+        "culture": "文化",
+        "history": "歴史",
+        "nature": "自然",
+        "shopping": "ショッピング",
+        "nightlife": "ナイトライフ",
+        "adventure": "アドベンチャー",
+        "relaxation": "リラックス",
+        "photography": "写真"
+      },
+      "pace": {
+        "title": "どのくらいのペースで動きたいですか?",
+        "relaxed": "ゆっくり",
+        "relaxedHint": "1日3-4箇所",
+        "balanced": "バランス型",
+        "balancedHint": "1日5-6箇所",
+        "packed": "ぎっしり",
+        "packedHint": "1日7-9箇所"
+      },
+      "email": {
+        "title": "旅程の送付先メールアドレスは?",
+        "subtitle": "シークレットリンクとPDFをメールでお送りします。",
+        "placeholder": "you@example.com"
+      },
+      "yes": "はい",
+      "no": "いいえ",
+      "continue": "続ける →",
+      "skip": "スキップ"
+    }
+  },
+  "samples": {
+    "metaTitle": "サンプル旅程",
+    "metaDescription": "東京、パリ、バンコク、ソウルの厳選されたサンプル旅程をご覧ください。$4でどんなものを受け取れるかが正確にわかります。",
+    "badge": "サンプル旅程 · 購入前に品質を確認",
+    "headline": "$4の旅程はこんな感じです。",
+    "subtitle": "無料トライアルはありません。代わりに、4つの本格的なサンプル旅程をご用意しました。クリックして自分の旅程を読むようにお読みください。",
+    "readSample": "サンプル全文を読む →",
+    "ctaHeadline": "気に入りましたか?",
+    "ctaSubtitle": "どんな都市でも、あなたの日程・人数・予算に合わせてこのような旅程をお作りします。",
+    "ctaButton": "私の旅を計画する — $4",
+    "sampleHeader": "サンプル旅程",
+    "sampleCtaTitle": "このサンプルが気に入りましたか?",
+    "sampleCtaHeadline": "あなたの旅のための旅程を入手",
+    "sampleCtaSubtitle": "同じ深さで、あなたの日程・人数・予算に合わせて作成されます。モバイルウェブリンク + PDFを数分でお届け。",
+    "sampleCtaButton": "私の旅を計画する — $4",
+    "sampleCtaCaption": "サインアップ不要 · サブスクリプションなし",
+    "backToGallery": "← すべてのサンプル旅程"
+  },
+  "plan": {
+    "yourTripPlan": "あなたの旅程",
+    "downloadPdf": "PDFをダウンロード",
+    "hotel": "ホテル",
+    "airportToHotel": "空港 → ホテル",
+    "day": "Day",
+    "practicalInfo": "実用情報",
+    "budget": "予算",
+    "packing": "持ち物",
+    "tips": "コツ",
+    "back": "← Passport Powerに戻る",
+    "draftMessage": "この旅程は開始されましたが、未払いです。",
+    "draftStartOver": "新しい旅程を作成",
+    "failedTitle": "申し訳ありません。旅程の生成に失敗しました。",
+    "failedRefund": "返金処理をいたします。お困りの場合はcontact@checkvisamap.comまでメールください。",
+    "generatingTitle": "あなたの旅程を作成中です",
+    "generatingSubtitle": "通常30〜60秒かかります。準備ができ次第、リンクをメールでお送りします。",
+    "generatingRefresh": "更新",
+    "paymentReceived": "お支払い受領"
+  }
+}

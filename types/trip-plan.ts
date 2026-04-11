@@ -59,6 +59,9 @@ export type BudgetTier = z.infer<typeof BudgetTierSchema>;
 export const PaceSchema = z.enum(["relaxed", "balanced", "packed"]);
 export type Pace = z.infer<typeof PaceSchema>;
 
+export const LocaleSchema = z.enum(["en", "ko", "ja", "zh"]);
+export type PlanLocale = z.infer<typeof LocaleSchema>;
+
 export const PlanRequestSchema = z.object({
   destination: z.string().min(2).max(80),
   destinationCountry: z.string().min(2).max(80),
@@ -90,6 +93,9 @@ export const PlanRequestSchema = z.object({
 
   email: z.string().email(),
   notes: z.string().max(1000).optional(),
+
+  /** Output language for the generated plan. Defaults to English. */
+  locale: LocaleSchema.optional(),
 });
 export type PlanRequest = z.infer<typeof PlanRequestSchema>;
 

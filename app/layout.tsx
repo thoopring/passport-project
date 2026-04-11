@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import LocaleSwitcher from "../components/LocaleSwitcher";
 
 const SITE_URL = "https://checkvisamap.com";
 const SITE_NAME = "Check Visa Map | Passport Power";
@@ -103,13 +106,16 @@ const websiteSchema = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <script
           type="application/ld+json"
@@ -123,7 +129,12 @@ export default function RootLayout({
       <GoogleTagManager gtmId="GTM-TPRWDJ9X" />
 
       <body className="antialiased">
-        {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <div className="fixed top-4 right-4 z-40">
+            <LocaleSwitcher />
+          </div>
+          {children}
+        </NextIntlClientProvider>
 
         <Script
           id="travelpayouts-verification"

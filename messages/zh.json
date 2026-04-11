@@ -1,0 +1,157 @@
+{
+  "common": {
+    "siteName": "Passport Power",
+    "currency": "USD",
+    "price": "$4",
+    "delivery": "移动网页链接 + PDF · 付款后几分钟内送达",
+    "back": "返回",
+    "continue": "继续",
+    "skip": "跳过"
+  },
+  "locale": {
+    "switcherLabel": "语言",
+    "en": "English",
+    "ko": "한국어",
+    "ja": "日本語",
+    "zh": "中文"
+  },
+  "wizard": {
+    "step1": {
+      "headline": "分钟级精准规划的旅行。",
+      "subtitle": "三个简单问题。AI 处理其余一切 — 酒店、机场交通、餐厅,以及可装在手机里的路线图。",
+      "badge": "$4 · 移动链接 + PDF · 几分钟内送达",
+      "destinationLabel": "您要去哪里?",
+      "destinationPlaceholder": "例如:东京",
+      "countryLabel": "国家",
+      "countryPlaceholder": "例如:日本",
+      "daysLabel": "几天行程?",
+      "budgetLabel": "您的预算是?",
+      "budgetBudget": "经济",
+      "budgetBudgetHint": "青旅、街边小吃、公共交通",
+      "budgetMidrange": "中档",
+      "budgetMidrangeHint": "四星酒店、餐厅用餐",
+      "budgetLuxury": "豪华",
+      "budgetLuxuryHint": "五星酒店、精致餐饮",
+      "submit": "开始 AI 分析 →"
+    },
+    "loading": {
+      "badge": "AI 正在分析您的旅行",
+      "headline": "正在生成您的{destination}行程",
+      "subtitle": "我们正在交叉分析数千个数据点。请在等待时回答几个简短问题,以便为您量身定制行程。",
+      "redirecting": "正在跳转到安全结账页面…",
+      "startOver": "重新开始"
+    },
+    "popup": {
+      "travelerType": {
+        "title": "您和谁一起旅行?",
+        "solo": "独自",
+        "soloHint": "只有我",
+        "couple": "情侣",
+        "coupleHint": "两位成人",
+        "family": "家庭",
+        "familyHint": "成人 + 儿童",
+        "friends": "朋友",
+        "friendsHint": "3 位以上成人",
+        "senior": "老年",
+        "seniorHint": "悠闲节奏"
+      },
+      "adults": {
+        "title": "几位成人?",
+        "placeholder": "例如:4"
+      },
+      "children": {
+        "title": "几个孩子,各多大?",
+        "subtitle": "年龄帮助我们选择合适的节奏和景点。",
+        "numberLabel": "孩子数量",
+        "textLabel": "年龄",
+        "placeholder": "例如:4, 7"
+      },
+      "stroller": {
+        "title": "需要婴儿车吗?",
+        "subtitle": "如果需要,我们会选择无台阶路线。"
+      },
+      "airport": {
+        "title": "您将抵达哪个机场?",
+        "subtitle": "我们会选择靠近航站楼的酒店。",
+        "placeholder": "例如:NRT 或成田"
+      },
+      "hotelBooked": {
+        "title": "您是否已预订酒店?"
+      },
+      "hotelName": {
+        "title": "您住在哪里?",
+        "subtitle": "只需告诉我们名字 — 我们会以此规划路线。",
+        "placeholder": "例如:东京柏悦酒店"
+      },
+      "interests": {
+        "title": "您最感兴趣的是什么?",
+        "subtitle": "最多选择 6 项。",
+        "food": "美食",
+        "culture": "文化",
+        "history": "历史",
+        "nature": "自然",
+        "shopping": "购物",
+        "nightlife": "夜生活",
+        "adventure": "冒险",
+        "relaxation": "放松",
+        "photography": "摄影"
+      },
+      "pace": {
+        "title": "您希望以多快的节奏游览?",
+        "relaxed": "悠闲",
+        "relaxedHint": "每天 3-4 个景点",
+        "balanced": "平衡",
+        "balancedHint": "每天 5-6 个景点",
+        "packed": "紧凑",
+        "packedHint": "每天 7-9 个景点"
+      },
+      "email": {
+        "title": "我们应该把行程发到哪里?",
+        "subtitle": "我们会通过电子邮件发送私密链接 + PDF。",
+        "placeholder": "you@example.com"
+      },
+      "yes": "是",
+      "no": "否",
+      "continue": "继续 →",
+      "skip": "跳过"
+    }
+  },
+  "samples": {
+    "metaTitle": "示例旅行计划",
+    "metaDescription": "浏览精心策划的东京、巴黎、曼谷和首尔示例旅行计划。准确了解您花 $4 能得到什么。",
+    "badge": "示例计划 · 购买前查看质量",
+    "headline": "$4 的计划长这样。",
+    "subtitle": "我们没有免费试用。相反,这里有四份真实的完整示例计划。点击任意一份,以阅读您自己计划的方式来阅读它。",
+    "readSample": "查看完整示例 →",
+    "ctaHeadline": "喜欢您看到的吗?",
+    "ctaSubtitle": "为任何城市获取这样的计划,根据您的日期、人数和预算量身定制。",
+    "ctaButton": "规划我的旅行 — $4",
+    "sampleHeader": "示例计划",
+    "sampleCtaTitle": "喜欢这个示例吗?",
+    "sampleCtaHeadline": "为您的旅行获取一份",
+    "sampleCtaSubtitle": "相同的深度,根据您的日期、人数、预算撰写。移动网页链接 + PDF 几分钟内送达。",
+    "sampleCtaButton": "规划我的旅行 — $4",
+    "sampleCtaCaption": "无需注册 · 无订阅",
+    "backToGallery": "← 所有示例计划"
+  },
+  "plan": {
+    "yourTripPlan": "您的旅行计划",
+    "downloadPdf": "下载 PDF",
+    "hotel": "酒店",
+    "airportToHotel": "机场 → 酒店",
+    "day": "Day",
+    "practicalInfo": "实用信息",
+    "budget": "预算",
+    "packing": "行李",
+    "tips": "贴士",
+    "back": "← 返回 Passport Power",
+    "draftMessage": "此计划已开始但尚未付款。",
+    "draftStartOver": "开始新计划",
+    "failedTitle": "抱歉,计划生成失败。",
+    "failedRefund": "我们将处理退款。如需帮助,请发邮件至 contact@checkvisamap.com。",
+    "generatingTitle": "正在生成您的计划",
+    "generatingSubtitle": "通常需要 30-60 秒。准备好后我们会立即通过电子邮件发送链接。",
+    "generatingRefresh": "刷新",
+    "paymentReceived": "已收到付款"
+  }
+}

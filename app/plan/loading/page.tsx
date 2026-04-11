@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import LaborIllusionLog from "../../../components/LaborIllusionLog";
 import TravelTrivia from "../../../components/TravelTrivia";
 import QuestionPopup, { type QuestionDef } from "../../../components/QuestionPopup";
@@ -40,6 +41,8 @@ declare global {
 function LoadingInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("wizard.loading");
+  const tp = useTranslations("wizard.popup");
 
   const [data, setData] = useState<WizardData>(() => ({
     destination: searchParams.get("dest") ?? "",
@@ -61,7 +64,7 @@ function LoadingInner() {
   }, [data.destination, router]);
 
   // Build queue dynamically — depends on current data so adapts as user answers
-  const questions = buildQuestionQueue(data);
+  const questions = buildQuestionQueue(data, tp);
 
   // Schedule next popup
   useEffect(() => {
@@ -82,7 +85,7 @@ function LoadingInner() {
     setData(newData);
 
     // Recompute queue with new data and decide if we're done
-    const newQueue = buildQuestionQueue(newData);
+    const newQueue = buildQuestionQueue(newData, tp);
     const newIndex = questionIndex + 1;
     setQuestionIndex(newIndex);
 
@@ -183,14 +186,13 @@ function LoadingInner() {
         <div className="text-center mb-10">
           <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-caption font-semibold text-brand-700 dark:text-brand-300 mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
-            AI is analyzing your trip
+            {t("badge")}
           </p>
           <h1 className="text-display-lg text-[var(--text-primary)]">
-            Building your {data.destination} plan
+            {t("headline", { destination: data.destination })}
           </h1>
           <p className="text-body-md text-[var(--text-secondary)] mt-3 max-w-lg mx-auto">
-            We&rsquo;re cross-referencing thousands of data points. While you wait, answer a few
-            quick questions so we can tailor it to you.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -211,14 +213,14 @@ function LoadingInner() {
               onClick={() => router.push("/plan/new")}
               className="block mt-2 text-body-sm underline"
             >
-              Start over
+              {t("startOver")}
             </button>
           </div>
         )}
 
         {submitting && !error && (
           <p className="text-center text-body-sm text-[var(--text-muted)] mt-6">
-            Redirecting to secure checkout…
+            {t("redirecting")}
           </p>
         )}
       </div>
@@ -246,48 +248,49 @@ export default function LoadingPage() {
 // Question queue + answer application
 // ─────────────────────────────────────────
 
-function buildQuestionQueue(data: WizardData): QuestionDef[] {
+type Translator = (key: string) => string;
+
+function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
   const queue: QuestionDef[] = [];
 
   queue.push({
     id: "travelerType",
-    title: "Who's going on this trip?",
+    title: tp("travelerType.title"),
     type: "single-chip",
     options: [
-      { value: "solo", label: "Solo", hint: "Just me" },
-      { value: "couple", label: "Couple", hint: "Two adults" },
-      { value: "family-with-kids", label: "Family", hint: "Adults + kids" },
-      { value: "group-of-friends", label: "Friends", hint: "3+ adults" },
-      { value: "senior", label: "Senior", hint: "Easier pace" },
+      { value: "solo", label: tp("travelerType.solo"), hint: tp("travelerType.soloHint") },
+      { value: "couple", label: tp("travelerType.couple"), hint: tp("travelerType.coupleHint") },
+      { value: "family-with-kids", label: tp("travelerType.family"), hint: tp("travelerType.familyHint") },
+      { value: "group-of-friends", label: tp("travelerType.friends"), hint: tp("travelerType.friendsHint") },
+      { value: "senior", label: tp("travelerType.senior"), hint: tp("travelerType.seniorHint") },
     ],
   });
 
-  // Adults — only ask if traveler type doesn't imply count
   if (data.travelerType && !["solo", "couple"].includes(data.travelerType)) {
     queue.push({
       id: "adults",
-      title: "How many adults?",
+      title: tp("adults.title"),
       type: "number",
-      placeholder: "e.g. 4",
+      placeholder: tp("adults.placeholder"),
     });
   }
 
   if (data.travelerType === "family-with-kids") {
     queue.push({
       id: "children",
-      title: "How many kids, and how old?",
-      subtitle: "Ages help us pick the right pace and stops.",
+      title: tp("children.title"),
+      subtitle: tp("children.subtitle"),
       type: "number+text",
-      numberLabel: "Number of kids",
-      textLabel: "Ages",
-      placeholder: "e.g. 4, 7",
+      numberLabel: tp("children.numberLabel"),
+      textLabel: tp("children.textLabel"),
+      placeholder: tp("children.placeholder"),
     });
 
     if ((data.children ?? 0) > 0) {
       queue.push({
         id: "stroller",
-        title: "Will you need a stroller?",
-        subtitle: "We'll pick step-free routes if so.",
+        title: tp("stroller.title"),
+        subtitle: tp("stroller.subtitle"),
         type: "yes-no",
       });
     }
@@ -295,66 +298,66 @@ function buildQuestionQueue(data: WizardData): QuestionDef[] {
 
   queue.push({
     id: "airport",
-    title: "Which airport will you fly into?",
-    subtitle: "We'll pick a hotel close to your terminal.",
+    title: tp("airport.title"),
+    subtitle: tp("airport.subtitle"),
     type: "text",
-    placeholder: "e.g. NRT or Narita",
+    placeholder: tp("airport.placeholder"),
   });
 
   queue.push({
     id: "hotelBooked",
-    title: "Have you already booked a hotel?",
+    title: tp("hotelBooked.title"),
     type: "yes-no",
   });
 
   if (data.hotelBooked === true) {
     queue.push({
       id: "hotelName",
-      title: "Where are you staying?",
-      subtitle: "Just the name — we'll route around it.",
+      title: tp("hotelName.title"),
+      subtitle: tp("hotelName.subtitle"),
       type: "text",
-      placeholder: "e.g. Park Hyatt Tokyo",
+      placeholder: tp("hotelName.placeholder"),
       optional: true,
     });
   }
 
   queue.push({
     id: "interests",
-    title: "What are you most into?",
-    subtitle: "Pick up to 6.",
+    title: tp("interests.title"),
+    subtitle: tp("interests.subtitle"),
     type: "multi-chip",
     minSelections: 1,
     maxSelections: 6,
     options: [
-      { value: "food", label: "Food" },
-      { value: "culture", label: "Culture" },
-      { value: "history", label: "History" },
-      { value: "nature", label: "Nature" },
-      { value: "shopping", label: "Shopping" },
-      { value: "nightlife", label: "Nightlife" },
-      { value: "adventure", label: "Adventure" },
-      { value: "relaxation", label: "Relaxation" },
-      { value: "photography", label: "Photography" },
+      { value: "food", label: tp("interests.food") },
+      { value: "culture", label: tp("interests.culture") },
+      { value: "history", label: tp("interests.history") },
+      { value: "nature", label: tp("interests.nature") },
+      { value: "shopping", label: tp("interests.shopping") },
+      { value: "nightlife", label: tp("interests.nightlife") },
+      { value: "adventure", label: tp("interests.adventure") },
+      { value: "relaxation", label: tp("interests.relaxation") },
+      { value: "photography", label: tp("interests.photography") },
     ],
   });
 
   queue.push({
     id: "pace",
-    title: "How fast do you want to move?",
+    title: tp("pace.title"),
     type: "single-chip",
     options: [
-      { value: "relaxed", label: "Relaxed", hint: "3-4 stops/day" },
-      { value: "balanced", label: "Balanced", hint: "5-6 stops/day" },
-      { value: "packed", label: "Packed", hint: "7-9 stops/day" },
+      { value: "relaxed", label: tp("pace.relaxed"), hint: tp("pace.relaxedHint") },
+      { value: "balanced", label: tp("pace.balanced"), hint: tp("pace.balancedHint") },
+      { value: "packed", label: tp("pace.packed"), hint: tp("pace.packedHint") },
     ],
   });
 
   queue.push({
     id: "email",
-    title: "Where should we send your plan?",
-    subtitle: "We'll email the secret link + PDF.",
+    title: tp("email.title"),
+    subtitle: tp("email.subtitle"),
     type: "email",
-    placeholder: "you@example.com",
+    placeholder: tp("email.placeholder"),
   });
 
   return queue;

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import type { BudgetTier } from "../../../types/trip-plan";
 
 interface PlanWizardStep1Props {
@@ -9,12 +10,6 @@ interface PlanWizardStep1Props {
   defaultCountry: string;
   defaultOrigin: string;
 }
-
-const BUDGET_OPTIONS: { value: BudgetTier; label: string; hint: string }[] = [
-  { value: "budget", label: "Budget", hint: "Hostels, street food, transit" },
-  { value: "midrange", label: "Mid-range", hint: "4-star, sit-down meals" },
-  { value: "luxury", label: "Luxury", hint: "5-star, fine dining" },
-];
 
 /**
  * Step 1 of the trip planner wizard. Collects ONLY destination, duration, and
@@ -28,10 +23,17 @@ export default function PlanWizardStep1({
   defaultOrigin,
 }: PlanWizardStep1Props) {
   const router = useRouter();
+  const t = useTranslations("wizard.step1");
   const [destination, setDestination] = useState(defaultDestination);
   const [destinationCountry, setDestinationCountry] = useState(defaultCountry);
   const [durationDays, setDurationDays] = useState(5);
   const [budgetTier, setBudgetTier] = useState<BudgetTier>("midrange");
+
+  const budgetOptions: { value: BudgetTier; label: string; hint: string }[] = [
+    { value: "budget", label: t("budgetBudget"), hint: t("budgetBudgetHint") },
+    { value: "midrange", label: t("budgetMidrange"), hint: t("budgetMidrangeHint") },
+    { value: "luxury", label: t("budgetLuxury"), hint: t("budgetLuxuryHint") },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,7 +65,7 @@ export default function PlanWizardStep1({
       <div>
         <label className="block">
           <span className="block text-caption font-semibold text-[var(--text-secondary)] mb-1.5">
-            Where are you going? <span className="text-red-500">*</span>
+            {t("destinationLabel")} <span className="text-red-500">*</span>
           </span>
           <input
             type="text"
@@ -73,7 +75,7 @@ export default function PlanWizardStep1({
               setDestination(e.target.value);
               if (!destinationCountry) setDestinationCountry(e.target.value);
             }}
-            placeholder="e.g. Tokyo"
+            placeholder={t("destinationPlaceholder")}
             className={inputClass}
             autoFocus
           />
@@ -81,13 +83,13 @@ export default function PlanWizardStep1({
         {destination && destinationCountry !== destination && (
           <label className="block mt-3">
             <span className="block text-caption font-semibold text-[var(--text-secondary)] mb-1.5">
-              Country
+              {t("countryLabel")}
             </span>
             <input
               type="text"
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
-              placeholder="e.g. Japan"
+              placeholder={t("countryPlaceholder")}
               className={inputClass}
             />
           </label>
@@ -96,7 +98,7 @@ export default function PlanWizardStep1({
 
       <label className="block">
         <span className="block text-caption font-semibold text-[var(--text-secondary)] mb-1.5">
-          How many days? <span className="text-red-500">*</span>
+          {t("daysLabel")} <span className="text-red-500">*</span>
         </span>
         <input
           type="number"
@@ -111,10 +113,10 @@ export default function PlanWizardStep1({
 
       <div>
         <span className="block text-caption font-semibold text-[var(--text-secondary)] mb-2">
-          What&rsquo;s your budget? <span className="text-red-500">*</span>
+          {t("budgetLabel")} <span className="text-red-500">*</span>
         </span>
         <div className="grid grid-cols-3 gap-2">
-          {BUDGET_OPTIONS.map((opt) => (
+          {budgetOptions.map((opt) => (
             <button
               key={opt.value}
               type="button"
@@ -136,11 +138,8 @@ export default function PlanWizardStep1({
         type="submit"
         className="w-full px-6 py-4 bg-[var(--text-primary)] text-[var(--background)] font-semibold rounded-xl hover:opacity-90 transition"
       >
-        Start AI analysis →
+        {t("submit")}
       </button>
-      <p className="text-center text-caption text-[var(--text-muted)]">
-        $4 · Mobile web link + PDF · Delivered in minutes after payment
-      </p>
     </form>
   );
 }

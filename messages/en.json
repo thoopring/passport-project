@@ -1,0 +1,157 @@
+{
+  "common": {
+    "siteName": "Passport Power",
+    "currency": "USD",
+    "price": "$4",
+    "delivery": "Mobile web link + PDF · Delivered in minutes after payment",
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip"
+  },
+  "locale": {
+    "switcherLabel": "Language",
+    "en": "English",
+    "ko": "한국어",
+    "ja": "日本語",
+    "zh": "中文"
+  },
+  "wizard": {
+    "step1": {
+      "headline": "Your trip, planned to the minute.",
+      "subtitle": "Three quick questions. Our AI handles the rest — hotel, airport transit, restaurants, and a route map you can carry on your phone.",
+      "badge": "$4 · Mobile link + PDF delivered in minutes",
+      "destinationLabel": "Where are you going?",
+      "destinationPlaceholder": "e.g. Tokyo",
+      "countryLabel": "Country",
+      "countryPlaceholder": "e.g. Japan",
+      "daysLabel": "How many days?",
+      "budgetLabel": "What's your budget?",
+      "budgetBudget": "Budget",
+      "budgetBudgetHint": "Hostels, street food, transit",
+      "budgetMidrange": "Mid-range",
+      "budgetMidrangeHint": "4-star, sit-down meals",
+      "budgetLuxury": "Luxury",
+      "budgetLuxuryHint": "5-star, fine dining",
+      "submit": "Start AI analysis →"
+    },
+    "loading": {
+      "badge": "AI is analyzing your trip",
+      "headline": "Building your {destination} plan",
+      "subtitle": "We're cross-referencing thousands of data points. While you wait, answer a few quick questions so we can tailor it to you.",
+      "redirecting": "Redirecting to secure checkout…",
+      "startOver": "Start over"
+    },
+    "popup": {
+      "travelerType": {
+        "title": "Who's going on this trip?",
+        "solo": "Solo",
+        "soloHint": "Just me",
+        "couple": "Couple",
+        "coupleHint": "Two adults",
+        "family": "Family",
+        "familyHint": "Adults + kids",
+        "friends": "Friends",
+        "friendsHint": "3+ adults",
+        "senior": "Senior",
+        "seniorHint": "Easier pace"
+      },
+      "adults": {
+        "title": "How many adults?",
+        "placeholder": "e.g. 4"
+      },
+      "children": {
+        "title": "How many kids, and how old?",
+        "subtitle": "Ages help us pick the right pace and stops.",
+        "numberLabel": "Number of kids",
+        "textLabel": "Ages",
+        "placeholder": "e.g. 4, 7"
+      },
+      "stroller": {
+        "title": "Will you need a stroller?",
+        "subtitle": "We'll pick step-free routes if so."
+      },
+      "airport": {
+        "title": "Which airport will you fly into?",
+        "subtitle": "We'll pick a hotel close to your terminal.",
+        "placeholder": "e.g. NRT or Narita"
+      },
+      "hotelBooked": {
+        "title": "Have you already booked a hotel?"
+      },
+      "hotelName": {
+        "title": "Where are you staying?",
+        "subtitle": "Just the name — we'll route around it.",
+        "placeholder": "e.g. Park Hyatt Tokyo"
+      },
+      "interests": {
+        "title": "What are you most into?",
+        "subtitle": "Pick up to 6.",
+        "food": "Food",
+        "culture": "Culture",
+        "history": "History",
+        "nature": "Nature",
+        "shopping": "Shopping",
+        "nightlife": "Nightlife",
+        "adventure": "Adventure",
+        "relaxation": "Relaxation",
+        "photography": "Photography"
+      },
+      "pace": {
+        "title": "How fast do you want to move?",
+        "relaxed": "Relaxed",
+        "relaxedHint": "3-4 stops/day",
+        "balanced": "Balanced",
+        "balancedHint": "5-6 stops/day",
+        "packed": "Packed",
+        "packedHint": "7-9 stops/day"
+      },
+      "email": {
+        "title": "Where should we send your plan?",
+        "subtitle": "We'll email the secret link + PDF.",
+        "placeholder": "you@example.com"
+      },
+      "yes": "Yes",
+      "no": "No",
+      "continue": "Continue →",
+      "skip": "Skip"
+    }
+  },
+  "samples": {
+    "metaTitle": "Sample trip plans",
+    "metaDescription": "Browse hand-curated sample trip plans for Tokyo, Paris, Bangkok, and Seoul. See exactly what you'll get when you order yours for $4.",
+    "badge": "Sample plans · See the quality before you buy",
+    "headline": "What a $4 plan actually looks like.",
+    "subtitle": "We don't do free trials. Instead, here are four real, full-length sample plans. Click any one to read it the way you'll read your own.",
+    "readSample": "Read full sample →",
+    "ctaHeadline": "Like what you see?",
+    "ctaSubtitle": "Get a plan like this for any city, tailored to your dates, group, and budget.",
+    "ctaButton": "Plan my trip — $4",
+    "sampleHeader": "Sample plan",
+    "sampleCtaTitle": "Like this sample?",
+    "sampleCtaHeadline": "Get one for your trip",
+    "sampleCtaSubtitle": "Same depth, written for your dates, your group, your budget. Mobile web link + PDF in minutes.",
+    "sampleCtaButton": "Plan my trip — $4",
+    "sampleCtaCaption": "No signup · No subscription",
+    "backToGallery": "← All sample plans"
+  },
+  "plan": {
+    "yourTripPlan": "Your trip plan",
+    "downloadPdf": "Download PDF",
+    "hotel": "Hotel",
+    "airportToHotel": "Airport → Hotel",
+    "day": "Day",
+    "practicalInfo": "Practical info",
+    "budget": "Budget",
+    "packing": "Packing",
+    "tips": "Tips",
+    "back": "← Back to Passport Power",
+    "draftMessage": "This plan was started but never paid for.",
+    "draftStartOver": "Start a new plan",
+    "failedTitle": "Sorry, plan generation failed.",
+    "failedRefund": "We'll process a refund. Email contact@checkvisamap.com if you need help.",
+    "generatingTitle": "We're building your plan",
+    "generatingSubtitle": "This usually takes 30 to 60 seconds. We'll email you the link as soon as it's ready.",
+    "generatingRefresh": "Refresh",
+    "paymentReceived": "Payment received"
+  }
+}

@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { listSamples } from "../../lib/samples";
 
-export const metadata: Metadata = {
-  title: "Sample trip plans — Passport Power",
-  description:
-    "Browse hand-curated sample trip plans for Tokyo, Paris, Bangkok, and Seoul. See exactly what you'll get when you order yours for $4.",
-  alternates: { canonical: "https://checkvisamap.com/samples" },
-  openGraph: {
-    title: "Sample trip plans — Passport Power",
-    description:
-      "Hand-curated sample trip plans for Tokyo, Paris, Bangkok, and Seoul. The quality bar for every $4 plan.",
-    url: "https://checkvisamap.com/samples",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("samples");
+  return {
+    title: `${t("metaTitle")} — Passport Power`,
+    description: t("metaDescription"),
+    alternates: { canonical: "https://checkvisamap.com/samples" },
+    openGraph: {
+      title: `${t("metaTitle")} — Passport Power`,
+      description: t("metaDescription"),
+      url: "https://checkvisamap.com/samples",
+      type: "website",
+    },
+  };
+}
 
-export default function SamplesGalleryPage() {
+export default async function SamplesGalleryPage() {
+  const t = await getTranslations("samples");
   const samples = listSamples();
 
   return (
@@ -26,14 +29,11 @@ export default function SamplesGalleryPage() {
         <div className="text-center mb-12">
           <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-caption font-semibold text-brand-700 dark:text-brand-300 mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
-            Sample plans · See the quality before you buy
+            {t("badge")}
           </p>
-          <h1 className="text-display-lg text-[var(--text-primary)] mb-3">
-            What a $4 plan actually looks like.
-          </h1>
+          <h1 className="text-display-lg text-[var(--text-primary)] mb-3">{t("headline")}</h1>
           <p className="text-body-md text-[var(--text-secondary)] max-w-xl mx-auto">
-            We don&rsquo;t do free trials. Instead, here are four real, full-length sample plans.
-            Click any one to read it the way you&rsquo;ll read your own.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function SamplesGalleryPage() {
                   {sample.tagline}
                 </p>
                 <p className="text-caption text-brand-600 dark:text-brand-400 font-semibold mt-3 group-hover:underline">
-                  Read full sample →
+                  {t("readSample")}
                 </p>
               </div>
             </Link>
@@ -79,17 +79,14 @@ export default function SamplesGalleryPage() {
 
         {/* Bottom CTA */}
         <div className="mt-12 bg-[var(--text-primary)] text-[var(--background)] rounded-2xl p-8 sm:p-10 text-center">
-          <h2 className="text-display-md font-bold">Like what you see?</h2>
-          <p className="text-body-md opacity-80 mt-3 max-w-md mx-auto">
-            Get a plan like this for any city, tailored to your dates, group, and budget.
-          </p>
+          <h2 className="text-display-md font-bold">{t("ctaHeadline")}</h2>
+          <p className="text-body-md opacity-80 mt-3 max-w-md mx-auto">{t("ctaSubtitle")}</p>
           <Link
             href="/plan/new"
             className="inline-block mt-6 px-7 py-3.5 bg-white text-[var(--text-primary)] font-bold rounded-xl hover:opacity-90 transition"
           >
-            Plan my trip — $4
+            {t("ctaButton")}
           </Link>
-          <p className="text-caption opacity-60 mt-4">Mobile web link + PDF · Delivered in minutes</p>
         </div>
       </div>
     </div>

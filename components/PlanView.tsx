@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import PlanMap from "./PlanMap";
 import type { TripPlan } from "../types/trip-plan";
 
@@ -6,7 +7,7 @@ interface PlanViewProps {
   plan: TripPlan;
   /** PDF download URL — real plans only; samples should leave this undefined. */
   downloadHref?: string;
-  /** Header label, e.g. "Your trip plan" or "Sample plan". */
+  /** Header label override; defaults to localized "Your trip plan". */
   headerLabel?: string;
   /** Optional CTA rendered at the bottom (samples render the "$4 paywall" card here). */
   bottomCta?: React.ReactNode;
@@ -20,20 +21,23 @@ interface PlanViewProps {
  *
  * Server Component — PlanMap is the only client boundary inside.
  */
-export default function PlanView({
+export default async function PlanView({
   plan,
   downloadHref,
-  headerLabel = "Your trip plan",
+  headerLabel,
   bottomCta,
-  backLink = { href: "/", label: "← Back to Passport Power" },
+  backLink,
 }: PlanViewProps) {
+  const t = await getTranslations("plan");
+  const resolvedHeaderLabel = headerLabel ?? t("yourTripPlan");
+  const resolvedBackLink = backLink ?? { href: "/", label: t("back") };
   return (
     <div className="min-h-screen bg-[var(--background)] py-10 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <p className="text-caption uppercase tracking-wider font-semibold text-brand-600 dark:text-brand-400">
-            {headerLabel}
+            {resolvedHeaderLabel}
           </p>
           <h1 className="text-display-lg text-[var(--text-primary)] mt-1">{plan.destination}</h1>
           <p className="text-body-md text-[var(--text-secondary)] mt-1">
@@ -49,7 +53,7 @@ export default function PlanView({
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
               </svg>
-              Download PDF
+              {t("downloadPdf")}
             </a>
           )}
         </div>
@@ -68,7 +72,7 @@ export default function PlanView({
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <div className="bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl p-6">
             <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-wider mb-2">
-              Hotel
+              {t("hotel")}
             </p>
             <h3 className="text-body-lg font-semibold text-[var(--text-primary)]">
               {plan.hotel.name}{" "}
@@ -89,7 +93,7 @@ export default function PlanView({
 
           <div className="bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl p-6">
             <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-wider mb-2">
-              Airport → Hotel
+              {t("airportToHotel")}
             </p>
             <h3 className="text-body-lg font-semibold text-[var(--text-primary)]">
               {plan.airportTransit.method}
@@ -112,7 +116,7 @@ export default function PlanView({
             <div className="flex items-baseline justify-between mb-4">
               <div>
                 <p className="text-caption uppercase font-semibold text-brand-600 dark:text-brand-400 tracking-wider">
-                  Day {day.dayNumber}
+                  {t("day")} {day.dayNumber}
                 </p>
                 <h2 className="text-body-lg font-semibold text-[var(--text-primary)] mt-0.5">
                   {day.theme}
@@ -161,30 +165,34 @@ export default function PlanView({
         {(plan.generalTips?.length || plan.packingTips?.length || plan.budgetEstimate) && (
           <div className="bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl p-6 mb-6">
             <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-wider mb-4">
-              Practical info
+              {t("practicalInfo")}
             </p>
             {plan.budgetEstimate && (
               <p className="text-body-sm mb-3">
-                <span className="font-semibold text-[var(--text-primary)]">Budget: </span>
+                <span className="font-semibold text-[var(--text-primary)]">{t("budget")}: </span>
                 <span className="text-[var(--text-secondary)]">{plan.budgetEstimate}</span>
               </p>
             )}
             {plan.packingTips?.length ? (
               <div className="mb-3">
-                <p className="font-semibold text-body-sm text-[var(--text-primary)] mb-1">Packing</p>
+                <p className="font-semibold text-body-sm text-[var(--text-primary)] mb-1">
+                  {t("packing")}
+                </p>
                 <ul className="text-body-sm text-[var(--text-secondary)] space-y-1">
-                  {plan.packingTips.map((t, i) => (
-                    <li key={i}>· {t}</li>
+                  {plan.packingTips.map((tip, i) => (
+                    <li key={i}>· {tip}</li>
                   ))}
                 </ul>
               </div>
             ) : null}
             {plan.generalTips?.length ? (
               <div>
-                <p className="font-semibold text-body-sm text-[var(--text-primary)] mb-1">Tips</p>
+                <p className="font-semibold text-body-sm text-[var(--text-primary)] mb-1">
+                  {t("tips")}
+                </p>
                 <ul className="text-body-sm text-[var(--text-secondary)] space-y-1">
-                  {plan.generalTips.map((t, i) => (
-                    <li key={i}>· {t}</li>
+                  {plan.generalTips.map((tip, i) => (
+                    <li key={i}>· {tip}</li>
                   ))}
                 </ul>
               </div>
@@ -195,8 +203,11 @@ export default function PlanView({
         {bottomCta && <div className="mb-6">{bottomCta}</div>}
 
         <div className="text-center pt-6">
-          <Link href={backLink.href} className="text-body-sm text-[var(--text-muted)] hover:underline">
-            {backLink.label}
+          <Link
+            href={resolvedBackLink.href}
+            className="text-body-sm text-[var(--text-muted)] hover:underline"
+          >
+            {resolvedBackLink.label}
           </Link>
         </div>
       </div>

@@ -1,0 +1,157 @@
+{
+  "common": {
+    "siteName": "Passport Power",
+    "currency": "USD",
+    "price": "$4",
+    "delivery": "모바일 웹 링크 + PDF · 결제 후 몇 분 안에 전달",
+    "back": "뒤로",
+    "continue": "계속",
+    "skip": "건너뛰기"
+  },
+  "locale": {
+    "switcherLabel": "언어",
+    "en": "English",
+    "ko": "한국어",
+    "ja": "日本語",
+    "zh": "中文"
+  },
+  "wizard": {
+    "step1": {
+      "headline": "분 단위로 계획된 당신의 여행.",
+      "subtitle": "세 가지 간단한 질문이면 됩니다. AI가 호텔, 공항 이동, 식당, 그리고 휴대폰에 담아 다닐 수 있는 경로 지도까지 모두 처리해드립니다.",
+      "badge": "$4 · 모바일 링크 + PDF · 몇 분 안에 전달",
+      "destinationLabel": "어디로 가시나요?",
+      "destinationPlaceholder": "예: 도쿄",
+      "countryLabel": "국가",
+      "countryPlaceholder": "예: 일본",
+      "daysLabel": "며칠 일정인가요?",
+      "budgetLabel": "예산은 어떻게 되시나요?",
+      "budgetBudget": "알뜰",
+      "budgetBudgetHint": "호스텔, 길거리 음식, 대중교통",
+      "budgetMidrange": "중간",
+      "budgetMidrangeHint": "4성급, 일반 식당",
+      "budgetLuxury": "럭셔리",
+      "budgetLuxuryHint": "5성급, 파인 다이닝",
+      "submit": "AI 분석 시작 →"
+    },
+    "loading": {
+      "badge": "AI가 여행을 분석 중입니다",
+      "headline": "{destination} 일정을 만들고 있어요",
+      "subtitle": "수천 개의 데이터를 교차 분석하고 있습니다. 기다리시는 동안 몇 가지 질문에 답해주시면 더 정확하게 맞춤 제작해 드릴 수 있어요.",
+      "redirecting": "안전한 결제 페이지로 이동 중…",
+      "startOver": "처음부터 다시"
+    },
+    "popup": {
+      "travelerType": {
+        "title": "누구와 함께 가시나요?",
+        "solo": "혼자",
+        "soloHint": "나 혼자",
+        "couple": "커플",
+        "coupleHint": "성인 2명",
+        "family": "가족",
+        "familyHint": "성인 + 아이",
+        "friends": "친구들",
+        "friendsHint": "성인 3명 이상",
+        "senior": "시니어",
+        "seniorHint": "여유로운 일정"
+      },
+      "adults": {
+        "title": "성인은 몇 명인가요?",
+        "placeholder": "예: 4"
+      },
+      "children": {
+        "title": "아이는 몇 명이고, 몇 살인가요?",
+        "subtitle": "나이에 따라 일정 속도와 장소가 달라집니다.",
+        "numberLabel": "아이 수",
+        "textLabel": "나이",
+        "placeholder": "예: 4, 7"
+      },
+      "stroller": {
+        "title": "유모차가 필요하신가요?",
+        "subtitle": "필요하시면 계단 없는 경로로 안내드립니다."
+      },
+      "airport": {
+        "title": "어느 공항으로 도착하시나요?",
+        "subtitle": "터미널과 가까운 호텔을 골라드립니다.",
+        "placeholder": "예: ICN 또는 인천"
+      },
+      "hotelBooked": {
+        "title": "호텔은 이미 예약하셨나요?"
+      },
+      "hotelName": {
+        "title": "어디서 묵으시나요?",
+        "subtitle": "이름만 알려주시면 그 위치를 중심으로 일정을 짜드립니다.",
+        "placeholder": "예: 파크 하얏트 도쿄"
+      },
+      "interests": {
+        "title": "무엇에 가장 관심이 있으세요?",
+        "subtitle": "최대 6개까지 선택하세요.",
+        "food": "음식",
+        "culture": "문화",
+        "history": "역사",
+        "nature": "자연",
+        "shopping": "쇼핑",
+        "nightlife": "야간 문화",
+        "adventure": "모험",
+        "relaxation": "휴식",
+        "photography": "사진"
+      },
+      "pace": {
+        "title": "얼마나 빠르게 움직이고 싶으세요?",
+        "relaxed": "여유롭게",
+        "relaxedHint": "하루 3-4곳",
+        "balanced": "보통",
+        "balancedHint": "하루 5-6곳",
+        "packed": "꽉 채워서",
+        "packedHint": "하루 7-9곳"
+      },
+      "email": {
+        "title": "어디로 일정을 보내드릴까요?",
+        "subtitle": "비공개 링크와 PDF를 이메일로 보내드립니다.",
+        "placeholder": "you@example.com"
+      },
+      "yes": "예",
+      "no": "아니오",
+      "continue": "계속 →",
+      "skip": "건너뛰기"
+    }
+  },
+  "samples": {
+    "metaTitle": "샘플 여행 계획",
+    "metaDescription": "도쿄, 파리, 방콕, 서울에 대한 직접 큐레이팅된 샘플 여행 계획을 살펴보세요. $4에 무엇을 받게 되는지 미리 확인하실 수 있습니다.",
+    "badge": "샘플 계획 · 구매 전 품질 확인",
+    "headline": "$4 여행 계획은 이렇게 생겼습니다.",
+    "subtitle": "무료 체험은 없습니다. 대신 네 가지 실제 풀버전 샘플 계획을 준비했어요. 클릭해서 본인의 계획을 보듯 읽어보세요.",
+    "readSample": "샘플 전체 보기 →",
+    "ctaHeadline": "마음에 드시나요?",
+    "ctaSubtitle": "어느 도시든, 당신의 일정과 인원, 예산에 맞춰 이런 계획을 받으실 수 있습니다.",
+    "ctaButton": "내 여행 계획하기 — $4",
+    "sampleHeader": "샘플 계획",
+    "sampleCtaTitle": "이 샘플이 마음에 드시나요?",
+    "sampleCtaHeadline": "당신의 여행을 위한 계획 받기",
+    "sampleCtaSubtitle": "같은 깊이로, 당신의 일정과 인원, 예산에 맞춰 작성됩니다. 모바일 웹 링크 + PDF가 몇 분 안에 도착합니다.",
+    "sampleCtaButton": "내 여행 계획하기 — $4",
+    "sampleCtaCaption": "회원가입 없음 · 구독 없음",
+    "backToGallery": "← 모든 샘플 계획"
+  },
+  "plan": {
+    "yourTripPlan": "당신의 여행 계획",
+    "downloadPdf": "PDF 다운로드",
+    "hotel": "호텔",
+    "airportToHotel": "공항 → 호텔",
+    "day": "Day",
+    "practicalInfo": "실용 정보",
+    "budget": "예산",
+    "packing": "준비물",
+    "tips": "팁",
+    "back": "← Passport Power로 돌아가기",
+    "draftMessage": "이 계획은 시작되었지만 결제되지 않았습니다.",
+    "draftStartOver": "새 계획 시작하기",
+    "failedTitle": "죄송합니다. 계획 생성에 실패했습니다.",
+    "failedRefund": "환불 처리해드립니다. 문제가 있으시면 contact@checkvisamap.com으로 이메일 주세요.",
+    "generatingTitle": "계획을 만들고 있습니다",
+    "generatingSubtitle": "보통 30-60초 정도 걸립니다. 준비되는 대로 이메일로 링크를 보내드릴게요.",
+    "generatingRefresh": "새로고침",
+    "paymentReceived": "결제 완료"
+  }
+}

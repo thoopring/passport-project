@@ -124,6 +124,13 @@ You must return a single JSON object matching this exact schema. No prose before
   "generalTips": ["optional array", "of general tips for this destination"]
 }`;
 
+const LOCALE_INSTRUCTIONS: Record<string, string> = {
+  en: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in English.",
+  ko: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Korean (한국어). Place names, hotel names, and street addresses stay in their original native script with optional Romanization in parentheses on first mention. Numbers and prices stay in their original format. Use polite endings (-습니다 / -ㅂ니다) consistently.",
+  ja: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Japanese (日本語). Place names stay in Japanese script with English in parentheses on first mention if it's a foreign destination. Use です/ます polite forms consistently.",
+  zh: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Simplified Chinese (简体中文). Place names stay in their native script with Pinyin in parentheses on first mention. Use formal but warm tone.",
+};
+
 function buildUserPrompt(req: PlanRequest): string {
   const childInfo =
     req.children > 0
@@ -137,6 +144,9 @@ function buildUserPrompt(req: PlanRequest): string {
   const hotelInfo = req.hotelBooked
     ? `Hotel: ALREADY BOOKED${req.hotelName ? ` (${req.hotelName})` : ""}. Do NOT recommend a different hotel — anchor the itinerary around this location.`
     : "Hotel: Recommend one matched to the arrival airport and traveler profile.";
+
+  const locale = req.locale ?? "en";
+  const localeInstruction = LOCALE_INSTRUCTIONS[locale] ?? LOCALE_INSTRUCTIONS.en;
 
   return `Generate a detailed ${req.durationDays}-day trip plan for the following traveler.
 
@@ -155,6 +165,8 @@ Budget tier: ${req.budgetTier}
 Pace: ${req.pace}
 
 ${req.notes ? `Additional notes from the traveler: ${req.notes}` : ""}
+
+OUTPUT LANGUAGE: ${localeInstruction}
 
 Return the complete trip plan as a single JSON object matching the schema in the system prompt. No prose, no markdown — pure JSON only.`;
 }
