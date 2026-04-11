@@ -160,7 +160,14 @@ Verify: `npm run dev`, manually walk through `/plan/new` → submit → redirect
 
 ---
 
-### ☐ P1 — Remove free teaser, build sample plans gallery
+### ☑ P1 — Sample plans gallery (DONE 2026-04-11; deletions deferred to P3)
+
+> **Deviation:** Deletion of `app/plan/[id]/preview/*` and `generateTeaserDay()`
+> was deferred from P1 to P3. Reason: P1's deletion would break the form-submit
+> flow (PlanForm currently redirects to `/preview`). Keeping preview alive until
+> P3's labor-illusion loading screen replaces it makes every commit shippable
+> in isolation. PlanView extraction and samples gallery (the additive parts of
+> P1) shipped clean.
 
 **Goal:** Replace the live free teaser (Req 7 says no free trial) with a curated **sample plan gallery** users can browse to gauge quality. Form submit → straight to checkout (via labor-illusion loading from P3).
 
