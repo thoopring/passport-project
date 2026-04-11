@@ -417,7 +417,7 @@ Verify: Plan view shows affiliate sidebar, clicks fire GA `affiliate_click` even
 
 ---
 
-### ☐ P8 — Fun travel facts in PDF
+### ☑ P8 — Fun travel facts in PDF (DONE 2026-04-11)
 
 **Goal:** Each PDF day page includes 1 fun fact about a stop or the city (Req 13).
 

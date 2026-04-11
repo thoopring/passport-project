@@ -8,6 +8,7 @@ import {
   Link,
 } from "@react-pdf/renderer";
 import type { TripPlan } from "../../types/trip-plan";
+import { pickTrivia } from "../trivia";
 
 /**
  * PlanDocument — react-pdf renderer for the printable trip plan PDF.
@@ -119,6 +120,27 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 4,
   },
+  triviaCard: {
+    backgroundColor: "#fff7e6",
+    border: `0.5pt solid ${colors.accent}`,
+    borderRadius: 6,
+    padding: 10,
+    marginTop: 14,
+  },
+  triviaLabel: {
+    fontSize: 9,
+    fontFamily: "Helvetica-Bold",
+    color: colors.accent,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+    marginBottom: 4,
+  },
+  triviaText: {
+    fontSize: 10,
+    color: colors.text,
+    lineHeight: 1.5,
+    fontStyle: "italic",
+  },
 });
 
 interface Props {
@@ -209,41 +231,62 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
       </Page>
 
       {/* Days */}
-      {plan.days.map((day) => (
-        <Page key={day.dayNumber} size="A4" style={styles.page}>
-          <View style={styles.header}>
-            <Text style={styles.brand}>
-              Day {day.dayNumber} of {plan.durationDays}
-            </Text>
-            <Text style={styles.h1}>{day.theme}</Text>
-            <Text style={styles.muted}>{day.summary}</Text>
-          </View>
+      {plan.days.map((day, dayIdx) => {
+        // Pick a deterministic-ish trivia fact per day so the same plan
+        // renders the same facts on every download. We use day index modulo
+        // the available pool, after picking a shuffled set of facts for the
+        // country.
+        const triviaPool = pickTrivia(plan.destinationCountry, plan.days.length + 2);
+        const triviaForDay = triviaPool[dayIdx % triviaPool.length];
 
-          {day.stops.map((stop) => (
-            <View key={stop.order} style={styles.stop} wrap={false}>
-              <View style={styles.stopHeader}>
-                <Text style={styles.stopTime}>{stop.time}</Text>
-                <Text style={styles.stopName}>{stop.name}</Text>
-                <Text style={styles.stopType}>{stop.type}</Text>
-              </View>
-              {stop.area && <Text style={styles.muted}>{stop.area}</Text>}
-              <Text style={styles.stopDesc}>{stop.description}</Text>
-              <Text style={styles.stopMeta}>
-                {stop.duration}
-                {stop.estimatedCost ? ` · ${stop.estimatedCost}` : ""}
-                {stop.transitFromPrev ? ` · ${stop.transitFromPrev}` : ""}
+        return (
+          <Page key={day.dayNumber} size="A4" style={styles.page}>
+            <View style={styles.header}>
+              <Text style={styles.brand}>
+                Day {day.dayNumber} of {plan.durationDays}
               </Text>
-              {stop.bookingTip && (
-                <Text style={[styles.stopMeta, { color: colors.accent, fontFamily: "Helvetica-Bold" }]}>
-                  Tip: {stop.bookingTip}
-                </Text>
-              )}
+              <Text style={styles.h1}>{day.theme}</Text>
+              <Text style={styles.muted}>{day.summary}</Text>
             </View>
-          ))}
 
-          <Text style={styles.footer}>checkvisamap.com</Text>
-        </Page>
-      ))}
+            {day.stops.map((stop) => (
+              <View key={stop.order} style={styles.stop} wrap={false}>
+                <View style={styles.stopHeader}>
+                  <Text style={styles.stopTime}>{stop.time}</Text>
+                  <Text style={styles.stopName}>{stop.name}</Text>
+                  <Text style={styles.stopType}>{stop.type}</Text>
+                </View>
+                {stop.area && <Text style={styles.muted}>{stop.area}</Text>}
+                <Text style={styles.stopDesc}>{stop.description}</Text>
+                <Text style={styles.stopMeta}>
+                  {stop.duration}
+                  {stop.estimatedCost ? ` · ${stop.estimatedCost}` : ""}
+                  {stop.transitFromPrev ? ` · ${stop.transitFromPrev}` : ""}
+                </Text>
+                {stop.bookingTip && (
+                  <Text
+                    style={[
+                      styles.stopMeta,
+                      { color: colors.accent, fontFamily: "Helvetica-Bold" },
+                    ]}
+                  >
+                    Tip: {stop.bookingTip}
+                  </Text>
+                )}
+              </View>
+            ))}
+
+            {triviaForDay && (
+              <View style={styles.triviaCard} wrap={false}>
+                <Text style={styles.triviaLabel}>Did you know?</Text>
+                <Text style={styles.triviaText}>{triviaForDay}</Text>
+              </View>
+            )}
+
+            <Text style={styles.footer}>checkvisamap.com</Text>
+          </Page>
+        );
+      })}
 
       {/* Tips page (optional) */}
       {(plan.packingTips?.length || plan.generalTips?.length || plan.budgetEstimate) && (
