@@ -365,7 +365,7 @@ Verify: Use a VPN or set `x-vercel-ip-country=KR` header in dev. Confirm banner 
 
 ---
 
-### ☐ P6 — Route optimization (auto-reorder waypoints)
+### ☑ P6 — Route optimization second pass (DONE 2026-04-11)
 
 **Goal:** Currently the system prompt tells Claude to "cluster geographically" but doesn't explicitly run an optimization pass. Strengthen this so days never zigzag.
 

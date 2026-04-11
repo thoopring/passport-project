@@ -3,6 +3,7 @@ import {
   PlanRequest,
   TripPlan,
   TripPlanSchema,
+  type Day,
 } from "../../types/trip-plan";
 
 /**
@@ -61,7 +62,7 @@ CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
 
 8. Each Stop must have: order (1-indexed within the day), time (24h "HH:MM"), type (sight/meal/activity/transit/rest/shopping), name, coords [lng, lat], duration, description (2-3 sentences with WHY this stop matters), and transitFromPrev (how to get there from the previous stop in walking/transit minutes).
 
-9. Stops within a day MUST be geographically clustered to minimize backtracking. Do not zigzag across the city.
+9. Stops within a day MUST be geographically clustered to minimize backtracking. Do not zigzag across the city. EXAMPLE OF BAD ZIGZAG: morning at the western shrine, lunch in the eastern downtown, afternoon back at the central park, dinner back east. EXAMPLE OF GOOD CLUSTERING: morning at western shrine, lunch at western district café, afternoon walking east through the central park, dinner in the eastern downtown. The route from stop 1 to stop N should be a coherent geographic path, not a star pattern.
 
 10. The airportTransit object must give the actual best option (e.g., "Narita Express to Tokyo Station, then JR Yamanote line"), with realistic duration and cost.
 
@@ -215,15 +216,116 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
 
   // First attempt
   let raw = await callClaude();
+  let parsed: TripPlan;
   try {
-    const parsed = extractJson(raw);
-    return TripPlanSchema.parse(parsed);
+    parsed = TripPlanSchema.parse(extractJson(raw));
   } catch (firstErr) {
     const errMsg = firstErr instanceof Error ? firstErr.message : String(firstErr);
-    // Retry once with the error fed back
     raw = await callClaude(errMsg);
-    const parsed = extractJson(raw);
-    return TripPlanSchema.parse(parsed);
+    parsed = TripPlanSchema.parse(extractJson(raw));
   }
+
+  // Second pass: route optimization. Reorder stops within each day to
+  // minimize zigzagging. Best-effort — failures fall back to the original
+  // order rather than failing the whole plan.
+  try {
+    const optimizedDays = await Promise.all(
+      parsed.days.map((day) => optimizeDayRoute(day, anthropic).catch(() => day)),
+    );
+    parsed = { ...parsed, days: optimizedDays };
+  } catch (err) {
+    console.error("Route optimization pass failed (non-fatal)", err);
+  }
+
+  return parsed;
+}
+
+/**
+ * Cheap second-pass optimizer. Sends only the stops + coords + types for ONE
+ * day to Claude and asks for a reordering that minimizes total walking
+ * distance while keeping meals at sane times. Renumbers `order` and shifts
+ * `time` slots based on the new sequence, preserving meal anchors.
+ *
+ * Cost: ~$0.005-0.01 per day (haiku-tier output, ~500 tokens). Skipped if
+ * the day has fewer than 4 stops (nothing to optimize).
+ */
+export async function optimizeDayRoute(
+  day: Day,
+  anthropic: Anthropic,
+): Promise<Day> {
+  if (day.stops.length < 4) return day;
+
+  const stopList = day.stops
+    .map(
+      (s, i) =>
+        `${i}: ${s.type} | ${s.name} | [${s.coords[0]}, ${s.coords[1]}] | ${s.time} | ${s.duration}`,
+    )
+    .join("\n");
+
+  const prompt = `You are a route optimizer for a single day of a travel itinerary.
+
+Day theme: ${day.theme}
+
+Current stops (index: type | name | [lng, lat] | scheduled_time | duration):
+${stopList}
+
+Your task: Return a JSON array of integers representing the OPTIMAL reordering
+of these indices that minimizes total walking distance between consecutive
+stops while respecting these constraints:
+
+1. Meal stops (type "meal") must occur at sensible meal times:
+   - First meal of the day: 11:30-13:30 (lunch)
+   - Second meal of the day: 18:00-20:30 (dinner)
+   - Pre-noon meal stops can stay in place if they're breakfast (before 10:00)
+2. The first stop should be the geographically northernmost OR the one closest
+   to the current first stop's hotel area (preserve morning anchor).
+3. Keep clusters of stops in the same neighborhood adjacent (do NOT split them).
+4. If reordering wouldn't materially improve the route (already well-clustered),
+   return the original order.
+
+Output: ONLY a JSON array of integers, e.g. [0, 2, 1, 3, 4]. No prose, no
+markdown, no explanation. Length must equal the number of input stops.`;
+
+  const response = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 200,
+    messages: [{ role: "user", content: prompt }],
+  });
+
+  const textBlock = response.content.find((b) => b.type === "text");
+  if (!textBlock || textBlock.type !== "text") return day;
+
+  const cleaned = textBlock.text
+    .trim()
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
+
+  let newOrder: unknown;
+  try {
+    newOrder = JSON.parse(cleaned);
+  } catch {
+    return day;
+  }
+
+  if (
+    !Array.isArray(newOrder) ||
+    newOrder.length !== day.stops.length ||
+    !newOrder.every(
+      (n) => typeof n === "number" && Number.isInteger(n) && n >= 0 && n < day.stops.length,
+    ) ||
+    new Set(newOrder).size !== newOrder.length
+  ) {
+    return day;
+  }
+
+  // Apply reorder, renumber order field, preserve original times (Claude
+  // already chose meal times reasonably; only the SEQUENCE changes)
+  const reordered = (newOrder as number[]).map((origIdx, newIdx) => {
+    const stop = day.stops[origIdx];
+    return { ...stop, order: newIdx + 1 };
+  });
+
+  return { ...day, stops: reordered };
 }
 
