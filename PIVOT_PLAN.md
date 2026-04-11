@@ -518,7 +518,7 @@ Verify: Lighthouse SEO check. Confirm visa pages still rank for visa keywords AN
 
 ---
 
-### ☐ P12 — API setup guide doc
+### ☑ P12 — docs/SETUP.md (DONE 2026-04-11)
 
 **Goal:** Single doc the user (and future you) can follow to provision all third-party accounts.
 
