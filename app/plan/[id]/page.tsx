@@ -18,14 +18,17 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
 
   // Status states
   if (record.status === "draft") {
+    // Drafts shouldn't normally exist anymore — the loading screen creates a
+    // draft and immediately routes to checkout. If a user lands here it's
+    // either an abandoned draft or a stale link. Send them to start over.
     return (
       <Centered>
-        <p className="text-body-md mb-4">This plan hasn&rsquo;t been paid for yet.</p>
+        <p className="text-body-md mb-4">This plan was started but never paid for.</p>
         <Link
-          href={`/plan/${id}/preview`}
+          href="/plan/new"
           className="inline-block px-6 py-3 bg-[var(--text-primary)] text-[var(--background)] rounded-xl font-semibold"
         >
-          Continue
+          Start a new plan
         </Link>
       </Centered>
     );

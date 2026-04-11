@@ -196,7 +196,7 @@ Verify: `/samples` lists 4 cards. Each `/samples/tokyo-5d-couple` renders a beau
 
 ---
 
-### ☐ P2 — Progressive disclosure form (3 questions → wizard)
+### ☑ P2 — Progressive disclosure form (DONE 2026-04-11; merged with P3)
 
 **Goal:** First screen asks ONLY: destination, duration, budget. Hit "Start AI analysis" → enter labor-illusion screen (P3) → between fake-loading steps, popup the remaining questions one at a time.
 
@@ -226,7 +226,13 @@ Verify: Browser walk-through. Land on `/plan/new`, see only 3 fields. Click star
 
 ---
 
-### ☐ P3 — Labor illusion loading screen
+### ☑ P3 — Labor illusion loading screen (DONE 2026-04-11; merged with P2)
+
+> **Deviation:** P2 and P3 were committed as a single unit because they're a
+> tightly coupled UX feature — splitting them would have left the form-submit
+> flow broken for one commit. The merged commit also handled the P1-deferred
+> deletions: `app/plan/[id]/preview/*`, `app/plan/new/PlanForm.tsx`, and
+> `generateTeaserDay()` in `lib/generator/claude.ts`.
 
 **Goal:** Between "Start AI analysis" and "redirect to LemonSqueezy checkout", show a screen that **feels like real AI work** with rolling progress logs and travel content. Mid-load, popup the questions from P2.
 

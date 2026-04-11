@@ -50,7 +50,7 @@ CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
    - "balanced": 5-6 stops, normal pacing
    - "packed": 7-9 stops, early starts, efficient transit
 
-5. If children are present (family-with-kids), EVERY day must include kid-friendly stops, shorter walks between stops, and at least one bathroom-accessible meal stop. Flag stops with kidFriendly: true.
+5. If children are present (family-with-kids), EVERY day must include kid-friendly stops, shorter walks between stops, and at least one bathroom-accessible meal stop. Flag stops with kidFriendly: true. If strollerNeeded is true, every walking distance MUST be stroller-accessible (no stairs-only routes, no cobblestones-only paths). If hasInfant is true, every day must include a quiet/rest stop and a meal venue with a baby-changing facility.
 
 6. Budget tier MUST be honored:
    - "budget": street food, hostels/3-star, free attractions, public transit
@@ -64,6 +64,8 @@ CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
 9. Stops within a day MUST be geographically clustered to minimize backtracking. Do not zigzag across the city.
 
 10. The airportTransit object must give the actual best option (e.g., "Narita Express to Tokyo Station, then JR Yamanote line"), with realistic duration and cost.
+
+11. If hotelBooked is true in the request, you MUST still produce a hotel object — but use the user's hotelName (if provided) and pin it in the area they likely stayed. Set the rationale to a one-sentence note like "Per your booking — itinerary is built around this location." Do NOT recommend an alternative hotel. The airportTransit and daily routing must use this hotel as the anchor.
 
 OUTPUT FORMAT — STRICT JSON ONLY:
 
@@ -127,8 +129,14 @@ function buildUserPrompt(req: PlanRequest): string {
     req.children > 0
       ? ` Travelling with ${req.children} child(ren)${
           req.childrenAges?.length ? ` (ages: ${req.childrenAges.join(", ")})` : ""
+        }${req.strollerNeeded ? ", stroller required" : ""}${
+          req.hasInfant ? ", has infant aged 2 or under" : ""
         }.`
       : "";
+
+  const hotelInfo = req.hotelBooked
+    ? `Hotel: ALREADY BOOKED${req.hotelName ? ` (${req.hotelName})` : ""}. Do NOT recommend a different hotel — anchor the itinerary around this location.`
+    : "Hotel: Recommend one matched to the arrival airport and traveler profile.";
 
   return `Generate a detailed ${req.durationDays}-day trip plan for the following traveler.
 
@@ -138,6 +146,8 @@ Arrival airport: ${req.arrivalAirport}${
     req.arrivalTerminal ? ` (Terminal ${req.arrivalTerminal})` : ""
   }
 ${req.startDate ? `Start date: ${req.startDate}` : ""}
+
+${hotelInfo}
 
 Travelers: ${req.travelerType}, ${req.adults} adult(s)${childInfo}
 Interests: ${req.interests.join(", ")}
@@ -205,49 +215,3 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
   }
 }
 
-/**
- * Cheaper teaser used for the free preview before payment.
- * Generates only day 1 to entice purchase. ~$0.03 per call.
- */
-export interface TeaserPlan {
-  overview: string;
-  hotelTeaser: string;
-  day1: {
-    theme: string;
-    stops: { time: string; name: string; description: string }[];
-  };
-}
-
-export async function generateTeaserDay(req: PlanRequest): Promise<TeaserPlan> {
-  const anthropic = getClient();
-
-  const teaserPrompt = `Generate a teaser preview for a paid trip plan. Output a single JSON object only:
-
-{
-  "overview": "2-sentence enticing intro to the trip for this traveler",
-  "hotelTeaser": "1-sentence hint about the recommended hotel area (don't name the hotel)",
-  "day1": {
-    "theme": "short theme name",
-    "stops": [
-      { "time": "09:00", "name": "well-known place name", "description": "1 sentence" },
-      { "time": "11:00", "name": "...", "description": "..." },
-      { "time": "13:00", "name": "...", "description": "..." }
-    ]
-  }
-}
-
-Use only well-known, real places. 3 stops max. JSON only, no prose.`;
-
-  const response = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 1000,
-    system: teaserPrompt,
-    messages: [{ role: "user", content: buildUserPrompt(req) }],
-  });
-
-  const textBlock = response.content.find((b) => b.type === "text");
-  if (!textBlock || textBlock.type !== "text") {
-    throw new Error("Claude teaser returned no text");
-  }
-  return extractJson(textBlock.text) as TeaserPlan;
-}

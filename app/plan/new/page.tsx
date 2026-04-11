@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PlanForm from "./PlanForm";
+import PlanWizardStep1 from "./PlanWizardStep1";
 
 export const metadata: Metadata = {
   title: "Build your trip plan — Passport Power",
@@ -34,12 +34,12 @@ export default async function NewPlanPage({ searchParams }: PageProps) {
             Your trip, planned to the minute.
           </h1>
           <p className="text-body-md text-[var(--text-secondary)] max-w-lg mx-auto">
-            Tell us about your trip. We&rsquo;ll send a day-by-day itinerary with the right
-            hotel, airport transit, restaurants, and a route map you can carry on your phone.
+            Three quick questions. Our AI handles the rest — hotel, airport transit,
+            restaurants, and a route map you can carry on your phone.
           </p>
         </div>
 
-        <PlanForm
+        <PlanWizardStep1
           defaultDestination={params.dest ?? ""}
           defaultCountry={params.country ?? params.dest ?? ""}
           defaultOrigin={params.origin ?? ""}

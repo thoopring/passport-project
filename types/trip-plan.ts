@@ -74,6 +74,15 @@ export const PlanRequestSchema = z.object({
   adults: z.number().int().min(1).max(20),
   children: z.number().int().min(0).max(20).default(0),
   childrenAges: z.array(z.number().int().min(0).max(17)).optional(),
+  /** True if any child needs a stroller — affects walking distances and venue picks. */
+  strollerNeeded: z.boolean().optional(),
+  /** True if any child is age 2 or under — adds bathroom-changing-table and quiet-time logic. */
+  hasInfant: z.boolean().optional(),
+
+  /** Already booked a hotel? If true, the generator skips hotel recommendations. */
+  hotelBooked: z.boolean().optional(),
+  /** Optional hotel name when hotelBooked is true — informs route planning around it. */
+  hotelName: z.string().max(120).optional(),
 
   interests: z.array(InterestSchema).min(1).max(6),
   budgetTier: BudgetTierSchema,
