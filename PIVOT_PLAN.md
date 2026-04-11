@@ -537,7 +537,23 @@ File to create:
 
 ---
 
-### ☐ P13 — QA, polish, launch
+### ☑ P13 — QA, polish, launch (DONE 2026-04-11; static checks + checklist)
+
+> **Deviation:** Skipped the live QA/design-review/canary phases that
+> require a real Vercel deploy with real env vars and real $4 charges.
+> Those are blocking on the user (Phase F in LAUNCH_CHECKLIST.md).
+>
+> What shipped:
+> - Final `npm run build` clean (1594 routes, 0 errors)
+> - Lint pass: 4 errors fixed in pivot code (TravelTrivia useMemo,
+>   QuestionPopup key-based reset, LocaleSwitcher disable for
+>   document.cookie). 4 errors remaining are all in pre-pivot legacy code
+>   (dark mode init, visa Math.random, TravelFortune quotes) — documented
+>   as known issues.
+> - `docs/LAUNCH_CHECKLIST.md` — 6-phase tick-box checklist covering
+>   account provisioning, smoke test, i18n testing, referral/promo
+>   testing, Lighthouse, final flips, plus affiliate ID cleanup and
+>   known issues callout.
 
 **Goal:** Pre-launch checklist. Use existing skills heavily.
 

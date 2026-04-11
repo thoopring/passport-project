@@ -14,7 +14,8 @@ export default function LocaleSwitcher() {
   const [pending, startTransition] = useTransition();
 
   const setLocale = (locale: Locale) => {
-    // Cookie expires in 1 year, sitewide path
+    // Cookie write is a deliberate side effect inside an event handler.
+    // eslint-disable-next-line react-hooks/immutability
     document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
     startTransition(() => {
       window.location.reload();

@@ -230,6 +230,7 @@ function LoadingInner() {
 
       {activeQuestion && (
         <QuestionPopup
+          key={activeQuestion.id}
           question={activeQuestion}
           onAnswer={handleAnswer}
           onSkip={activeQuestion.optional ? handleSkip : undefined}

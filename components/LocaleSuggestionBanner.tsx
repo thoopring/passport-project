@@ -20,6 +20,11 @@ export default function LocaleSuggestionBanner() {
   const [suggested, setSuggested] = useState<Locale | null>(null);
 
   useEffect(() => {
+    // This is a "subscribe to external system" effect — the SUGGEST_LOCALE
+    // cookie is set by middleware before this component mounts, and we
+    // need to read it once on mount to decide whether to render the banner.
+    // The setState call below is the legitimate sync point, not a cascading
+    // render trigger.
     const match = document.cookie.match(/(?:^|;\s*)SUGGEST_LOCALE=([^;]+)/);
     if (!match) return;
     const raw = match[1] as Locale;
@@ -29,6 +34,7 @@ export default function LocaleSuggestionBanner() {
       document.cookie = "SUGGEST_LOCALE=; path=/; max-age=0";
       return;
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSuggested(raw);
   }, [currentLocale]);
 

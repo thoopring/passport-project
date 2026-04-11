@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export interface QuestionDef {
   id: string;
@@ -33,6 +33,10 @@ interface QuestionPopupProps {
  * Single-question modal overlay used inside the labor-illusion loading screen.
  * Centered, blocking, with a single primary CTA. Designed to feel like a fun
  * mid-loading "20 questions" — not a chore.
+ *
+ * Parent should pass `key={question.id}` so React remounts (and resets all
+ * input state) when the question changes — that's why this component does
+ * not need a useEffect to reset state.
  */
 export default function QuestionPopup({ question, onAnswer, onSkip }: QuestionPopupProps) {
   const [singleValue, setSingleValue] = useState<string | null>(null);
@@ -40,15 +44,6 @@ export default function QuestionPopup({ question, onAnswer, onSkip }: QuestionPo
   const [numberValue, setNumberValue] = useState<number | "">("");
   const [textValue, setTextValue] = useState("");
   const [yesNoValue, setYesNoValue] = useState<boolean | null>(null);
-
-  // Reset state when question changes
-  useEffect(() => {
-    setSingleValue(null);
-    setMultiValue([]);
-    setNumberValue("");
-    setTextValue("");
-    setYesNoValue(null);
-  }, [question.id]);
 
   const canSubmit = (() => {
     if (question.optional) return true;

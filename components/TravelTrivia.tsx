@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { pickTrivia } from "../lib/trivia";
 
 interface TravelTriviaProps {
@@ -18,16 +18,19 @@ export default function TravelTrivia({
   destinationCountry,
   rotateMs = 7000,
 }: TravelTriviaProps) {
-  const [facts, setFacts] = useState<string[]>([]);
+  // Derived state — picked once per destinationCountry change. The shuffled
+  // order is stable for the lifetime of the country prop.
+  const facts = useMemo(
+    () => pickTrivia(destinationCountry, 8),
+    [destinationCountry],
+  );
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    setFacts(pickTrivia(destinationCountry, 8));
-    setIndex(0);
-  }, [destinationCountry]);
-
-  useEffect(() => {
     if (facts.length === 0) return;
+    // Reset to 0 when facts change (legitimate sync with the facts derivation).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIndex(0);
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % facts.length);
     }, rotateMs);
