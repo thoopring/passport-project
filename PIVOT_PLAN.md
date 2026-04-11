@@ -386,7 +386,11 @@ Verify: Generate a 5-day Tokyo plan. Check `PlanMap` for any day where the polyl
 
 ---
 
-### ☐ P7 — Affiliate integration in plan output (natural placement)
+### ☑ P7 — Natural affiliate integration in plan output (DONE 2026-04-11)
+
+> **Note:** Klook, Viator, and Insubuy IDs are still placeholders. Build
+> URLs work but track to generic search pages. Real partner signups still
+> needed before launch (called out in P12 setup doc).
 
 **Goal:** Embed affiliate links in the generated plan **subtly** — feels like helpful concierge, not a sales pitch (Req 15).
 

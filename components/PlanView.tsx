@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import PlanMap from "./PlanMap";
+import PlanAffiliateBar from "./PlanAffiliateBar";
 import type { TripPlan } from "../types/trip-plan";
 
 interface PlanViewProps {
@@ -67,6 +68,12 @@ export default async function PlanView({
         <div className="mb-6">
           <PlanMap plan={plan} />
         </div>
+
+        {/* Affiliate toolkit (web only, not PDF) */}
+        <PlanAffiliateBar
+          destination={plan.destination}
+          destinationCountry={plan.destinationCountry}
+        />
 
         {/* Hotel + Transit */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
