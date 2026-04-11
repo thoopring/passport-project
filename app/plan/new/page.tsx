@@ -17,7 +17,12 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-  searchParams: Promise<{ dest?: string; country?: string; origin?: string }>;
+  searchParams: Promise<{
+    dest?: string;
+    country?: string;
+    origin?: string;
+    promo?: string;
+  }>;
 }
 
 export default async function NewPlanPage({ searchParams }: PageProps) {
@@ -43,6 +48,7 @@ export default async function NewPlanPage({ searchParams }: PageProps) {
           defaultDestination={params.dest ?? ""}
           defaultCountry={params.country ?? params.dest ?? ""}
           defaultOrigin={params.origin ?? ""}
+          defaultPromoCode={params.promo}
         />
       </div>
     </div>

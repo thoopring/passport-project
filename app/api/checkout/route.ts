@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getPlan, markPlanPaid, setPlanGenerating, savePlanResult, setPlanFailed } from "../../../lib/plans";
 import { createCheckoutUrl } from "../../../lib/lemonsqueezy";
 import { consumePlanCredit } from "../../../lib/referrals";
+import { validatePromoCode, redeemPromoCode } from "../../../lib/promo";
 import { generateTripPlan } from "../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../lib/email";
 
@@ -34,17 +35,31 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check for an unused plan credit on this email (P9 referrals + P10 promos)
+    // 1. Promo code path — if a free promo is attached to the plan, redeem
+    //    it atomically and skip LS entirely.
+    if (plan.request.promoCode) {
+      const promo = await validatePromoCode(plan.request.promoCode);
+      if (promo && promo.discount_type === "free") {
+        const redeemed = await redeemPromoCode(plan.request.promoCode);
+        if (redeemed) {
+          await markPlanPaid(planId, `promo:${plan.request.promoCode}`);
+          generateAndDeliver(planId).catch((err) => {
+            console.error("Promo generation pipeline failed", { planId, err });
+          });
+          const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
+          return NextResponse.json({ url: `${baseUrl}/plan/${planId}?paid=1` });
+        }
+      }
+    }
+
+    // 2. Referral credit path — if buyer has an unused plan credit, consume
+    //    it and skip LS.
     const consumed = await consumePlanCredit(plan.email, planId);
     if (consumed) {
-      // Skip LemonSqueezy entirely. Mark paid + kick off generation.
       await markPlanPaid(planId, "credit:" + planId);
-
-      // Fire-and-forget generation pipeline so we can return quickly
       generateAndDeliver(planId).catch((err) => {
         console.error("Free credit generation pipeline failed", { planId, err });
       });
-
       const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
       return NextResponse.json({ url: `${baseUrl}/plan/${planId}?paid=1` });
     }

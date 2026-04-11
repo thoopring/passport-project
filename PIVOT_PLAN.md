@@ -467,7 +467,12 @@ Verify: Two test emails. A buys plan, gets code. A's link → cookie → B opens
 
 ---
 
-### ☐ P10 — Promo / free-use codes
+### ☑ P10 — Promo codes (DONE 2026-04-11; URL-param flow, free codes only for v1)
+
+> **Deviation:** v1 supports only `discount_type = 'free'`. Promo codes are
+> applied via URL parameter (`/plan/new?promo=LAUNCH50`) — no popup field
+> in the wizard. Percent/fixed discounts are wired into the schema for
+> later use via LemonSqueezy preset discounts.
 
 **Goal:** Marketing codes that grant free or discounted plans (Req 9).
 

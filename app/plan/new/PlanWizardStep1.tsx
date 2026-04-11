@@ -9,6 +9,7 @@ interface PlanWizardStep1Props {
   defaultDestination: string;
   defaultCountry: string;
   defaultOrigin: string;
+  defaultPromoCode?: string;
 }
 
 /**
@@ -21,6 +22,7 @@ export default function PlanWizardStep1({
   defaultDestination,
   defaultCountry,
   defaultOrigin,
+  defaultPromoCode,
 }: PlanWizardStep1Props) {
   const router = useRouter();
   const t = useTranslations("wizard.step1");
@@ -46,6 +48,7 @@ export default function PlanWizardStep1({
       budget: budgetTier,
     });
     if (defaultOrigin) params.set("origin", defaultOrigin);
+    if (defaultPromoCode) params.set("promo", defaultPromoCode);
 
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
       window.gtag("event", "plan_wizard_started", {

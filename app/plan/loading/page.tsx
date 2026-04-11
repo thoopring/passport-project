@@ -30,6 +30,7 @@ interface WizardData {
   interests?: Interest[];
   pace?: Pace;
   email?: string;
+  promoCode?: string;
 }
 
 declare global {
@@ -49,6 +50,7 @@ function LoadingInner() {
     destinationCountry: searchParams.get("country") ?? searchParams.get("dest") ?? "",
     durationDays: parseInt(searchParams.get("days") ?? "5", 10) || 5,
     budgetTier: (searchParams.get("budget") as BudgetTier) || "midrange",
+    promoCode: searchParams.get("promo") ?? undefined,
   }));
 
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -130,6 +132,7 @@ function LoadingInner() {
         budgetTier: finalData.budgetTier,
         pace: finalData.pace,
         email: finalData.email,
+        promoCode: finalData.promoCode,
       };
 
       const draftRes = await fetch("/api/plan/draft", {
