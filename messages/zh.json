@@ -13,7 +13,12 @@
     "en": "English",
     "ko": "한국어",
     "ja": "日本語",
-    "zh": "中文"
+    "zh": "中文",
+    "suggestKo": "切换为中文?",
+    "suggestJa": "切换为中文?",
+    "suggestZh": "切换为中文?",
+    "suggestSwitch": "切换",
+    "suggestDismiss": "不用"
   },
   "wizard": {
     "step1": {

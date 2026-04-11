@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import LocaleSwitcher from "../components/LocaleSwitcher";
+import LocaleSuggestionBanner from "../components/LocaleSuggestionBanner";
 
 const SITE_URL = "https://checkvisamap.com";
 const SITE_NAME = "Check Visa Map | Passport Power";
@@ -130,6 +131,7 @@ export default async function RootLayout({
 
       <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <LocaleSuggestionBanner />
           <div className="fixed top-4 right-4 z-40">
             <LocaleSwitcher />
           </div>

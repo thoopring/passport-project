@@ -348,7 +348,7 @@ Verify: `/ko/plan/new` loads in Korean. Fill form → final plan generated in Ko
 
 ---
 
-### ☐ P5 — Geo-IP language prompt
+### ☑ P5 — Geo-IP locale suggestion banner (DONE 2026-04-11)
 
 **Goal:** First-visit users land in English, but if their IP is in JP/CN/TW/HK/KR, show a non-intrusive top banner: "한국어로 보시겠어요? [Switch] [No thanks]".
 

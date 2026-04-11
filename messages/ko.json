@@ -13,7 +13,12 @@
     "en": "English",
     "ko": "한국어",
     "ja": "日本語",
-    "zh": "中文"
+    "zh": "中文",
+    "suggestKo": "한국어로 보시겠어요?",
+    "suggestJa": "한국어로 보시겠어요?",
+    "suggestZh": "한국어로 보시겠어요?",
+    "suggestSwitch": "전환",
+    "suggestDismiss": "괜찮아요"
   },
   "wizard": {
     "step1": {
