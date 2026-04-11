@@ -139,22 +139,55 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* ===== Hero Section ===== */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-4">
+      {/* ===== Trip Planner Hero (P11 — planner-first) ===== */}
+      <section className="pt-28 pb-12 md:pt-36 md:pb-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-caption font-semibold text-brand-700 dark:text-brand-300 mb-6 animate-fade-down">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
-            190+ countries \u00b7 8 passports \u00b7 Real-time data
+            $4 · AI-personalized · Mobile link + PDF
           </div>
 
           <h1 className="text-display-xl md:text-[5.5rem] md:leading-[1.02] text-[var(--text-primary)] mb-6 animate-fade-up">
-            Know before<br />
-            <span className="gradient-text">you go.</span>
+            Plan your trip<br />
+            <span className="gradient-text">in 60 seconds.</span>
           </h1>
 
-          <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Check visa requirements instantly. No government jargon, no outdated wikis.
-            Just clear answers for your next trip.
+          <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            Three quick questions and our AI builds your full itinerary — hotel, airport
+            transit, restaurants, and a route map you can carry on your phone.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <Link
+              href="/plan/new"
+              className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--text-primary)] text-[var(--background)] font-bold rounded-xl hover:opacity-90 transition shadow-elevated min-w-[220px]"
+            >
+              Plan my trip — $4
+            </Link>
+            <Link
+              href="/samples"
+              className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--surface-primary)] text-[var(--text-primary)] font-bold rounded-xl border border-[var(--border-light)] hover:border-[var(--text-muted)] transition min-w-[220px]"
+            >
+              See sample plans
+            </Link>
+          </div>
+          <p className="text-caption text-[var(--text-muted)] mt-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            No signup · No subscription · Delivered in minutes
+          </p>
+        </div>
+      </section>
+
+      {/* ===== Visa Map Hero (now secondary) ===== */}
+      <section className="pb-12 md:pb-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-wider mb-3">
+            Or — explore visa requirements
+          </p>
+          <h2 className="text-display-md text-[var(--text-primary)] mb-3">
+            Know before you go.
+          </h2>
+          <p className="text-body-md text-[var(--text-secondary)] max-w-xl mx-auto mb-8">
+            Check visa requirements for 190+ countries instantly.
           </p>
 
           {/* Passport Selector */}

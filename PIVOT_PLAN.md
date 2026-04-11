@@ -500,7 +500,7 @@ Verify: Manually insert a free code via SQL. Use it in checkout. Plan marked pai
 
 ---
 
-### ☐ P11 — Visa site funnel rewire
+### ☑ P11 — Visa site funnel rewire (DONE 2026-04-11)
 
 **Goal:** Visa pages drive traffic to the planner. Audit existing CTAs and tighten copy.
 

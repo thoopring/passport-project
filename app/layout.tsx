@@ -8,8 +8,8 @@ import LocaleSwitcher from "../components/LocaleSwitcher";
 import LocaleSuggestionBanner from "../components/LocaleSuggestionBanner";
 
 const SITE_URL = "https://checkvisamap.com";
-const SITE_NAME = "Check Visa Map | Passport Power";
-const SITE_DESCRIPTION = "Check visa requirements for 190+ countries instantly. Interactive visa map for 8 major passports. Free travel tool for digital nomads and travelers.";
+const SITE_NAME = "Passport Power — AI Trip Planner from $4";
+const SITE_DESCRIPTION = "Personalized AI trip plans for $4. Hotel, airport transit, daily itinerary, restaurants, and route map. Plus visa requirements for 190+ countries.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
