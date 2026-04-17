@@ -26,9 +26,10 @@ create table if not exists public.promo_codes (
   updated_at        timestamptz not null default now()
 );
 
-create index if not exists promo_codes_active_idx
-  on public.promo_codes (code)
-  where expires_at is null or expires_at > now();
+-- Note: `code` is PRIMARY KEY so lookups by code are already O(log n).
+-- A partial index with `expires_at > now()` is rejected by Postgres
+-- (functions in index predicates must be IMMUTABLE; now() is STABLE),
+-- and redundant with the PK anyway. Expiry is filtered at query time.
 
 drop trigger if exists promo_codes_set_updated_at on public.promo_codes;
 create trigger promo_codes_set_updated_at
