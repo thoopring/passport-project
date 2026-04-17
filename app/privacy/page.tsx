@@ -1,86 +1,109 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Check Visa Map (Passport Power). Learn how we handle your data.",
+  description: "Privacy Policy for Passport Power. Learn how we handle your data.",
   alternates: { canonical: "https://checkvisamap.com/privacy" },
 };
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-3xl mx-auto">
-        <Link href="/" className="text-blue-600 hover:underline mb-8 inline-flex items-center gap-2 font-medium">
-          <span>←</span> Back to Home
-        </Link>
+    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+      <Header />
 
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-8 tracking-tight">Privacy Policy</h1>
-        <p className="text-gray-500 mb-8">Last updated: March 29, 2026</p>
+      <main className="max-w-3xl mx-auto w-full px-4 sm:px-6 py-16">
+        <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
+          Legal
+        </p>
+        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-3">
+          Privacy Policy
+        </h1>
+        <p className="text-body-sm text-[var(--text-muted)] mb-10">Last updated: April 17, 2026</p>
 
-        <div className="prose prose-lg prose-gray max-w-none">
-          <h2>1. Information We Collect</h2>
-          <p>
-            <strong>Check Visa Map</strong> (&quot;Passport Power&quot;, &quot;we&quot;, &quot;us&quot;) respects your privacy. We collect minimal information:
-          </p>
+        <div className="prose prose-lg max-w-none text-[var(--text-secondary)] prose-strong:text-[var(--text-primary)]">
+          <h2>1. Information we collect</h2>
           <ul>
-            <li><strong>Analytics Data:</strong> We use Google Analytics 4 and Google Tag Manager to collect anonymous usage data including pages visited, time spent, device type, and geographic region. No personally identifiable information is collected through analytics.</li>
-            <li><strong>Email Address:</strong> If you voluntarily subscribe to our newsletter, we collect your email address solely for sending travel updates and deals.</li>
-            <li><strong>Cookies:</strong> We use essential cookies for site functionality (dark mode preference) and third-party cookies from Google Analytics and our advertising partners.</li>
+            <li>
+              <strong>Trip plan inputs:</strong> When you order a plan, you provide a destination,
+              duration, budget range, email, and a few preferences. We store this with the generated
+              plan so we can re-deliver it to you.
+            </li>
+            <li>
+              <strong>Email address:</strong> Required to deliver your plan. We do not add you to any
+              marketing list unless you explicitly opt in.
+            </li>
+            <li>
+              <strong>Analytics:</strong> Google Analytics 4 and Google Tag Manager collect anonymous
+              usage data (pages visited, device type, geographic region). No PII is collected through
+              analytics.
+            </li>
+            <li>
+              <strong>Cookies:</strong> Essential cookies for locale preference and referral attribution.
+              Third-party cookies from analytics and affiliate partners.
+            </li>
           </ul>
 
-          <h2>2. How We Use Your Information</h2>
+          <h2>2. How we use your information</h2>
           <ul>
-            <li>To improve our website and user experience</li>
-            <li>To send newsletter updates (only if subscribed)</li>
-            <li>To analyze traffic patterns and optimize content</li>
-            <li>To display relevant advertisements through Google AdSense</li>
+            <li>To generate and deliver the trip plan you ordered</li>
+            <li>To process payment via LemonSqueezy</li>
+            <li>To improve the site and the AI&apos;s output quality</li>
+            <li>To credit referral rewards</li>
           </ul>
 
-          <h2>3. Third-Party Services</h2>
-          <p>We use the following third-party services that may collect data:</p>
+          <h2>3. Third-party services</h2>
           <ul>
-            <li><strong>Google Analytics / Google Tag Manager</strong> - Website analytics</li>
-            <li><strong>Google AdSense</strong> - Display advertising</li>
-            <li><strong>Agoda, Aviasales, Airalo, Viator</strong> - Affiliate partnerships (clicking links may set tracking cookies)</li>
-            <li><strong>Travelpayouts</strong> - Affiliate network tracking</li>
+            <li><strong>Anthropic (Claude API)</strong> — generates your plan from your inputs</li>
+            <li><strong>Supabase</strong> — stores plans, referrals, promo codes</li>
+            <li><strong>LemonSqueezy</strong> — processes payment</li>
+            <li><strong>Resend</strong> — delivers your plan email</li>
+            <li><strong>Mapbox</strong> — renders your route map</li>
+            <li><strong>Google Analytics / Google Tag Manager</strong> — site analytics</li>
+            <li><strong>Agoda, Aviasales, Airalo</strong> — affiliate partners (clicks may set tracking cookies)</li>
           </ul>
 
-          <h2>4. Affiliate Disclosure</h2>
+          <h2>4. Affiliate disclosure</h2>
           <p>
-            This website contains affiliate links. When you click on these links and make a purchase, we may earn a commission at no additional cost to you. This helps us keep the site free for all travelers.
+            This site contains affiliate links. When you click on these links and make a purchase,
+            we may earn a commission at no additional cost to you.
           </p>
 
-          <h2>5. Your Rights</h2>
-          <p>You have the right to:</p>
+          <h2>5. Your rights</h2>
           <ul>
-            <li>Opt out of analytics tracking (use browser Do Not Track setting)</li>
-            <li>Unsubscribe from our newsletter at any time</li>
-            <li>Request deletion of your data by contacting us</li>
-            <li>Disable cookies in your browser settings</li>
+            <li>Request deletion of your plan and email by contacting us</li>
+            <li>Opt out of analytics via browser Do Not Track</li>
+            <li>Disable cookies in your browser</li>
           </ul>
 
-          <h2>6. Data Security</h2>
+          <h2>6. Data security</h2>
           <p>
-            We implement reasonable security measures to protect your information. However, no method of transmission over the Internet is 100% secure.
+            We implement reasonable security measures to protect your information. However, no method
+            of transmission over the Internet is 100% secure.
           </p>
 
-          <h2>7. Children&apos;s Privacy</h2>
+          <h2>7. Children&apos;s privacy</h2>
           <p>
-            Our service is not directed to children under 13. We do not knowingly collect personal information from children.
+            Our service is not directed to children under 13. We do not knowingly collect personal
+            information from children.
           </p>
 
-          <h2>8. Changes to This Policy</h2>
+          <h2>8. Changes to this policy</h2>
           <p>
-            We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date.
+            We may update this policy from time to time. Changes will be posted here with an updated
+            date.
           </p>
 
-          <h2>9. Contact Us</h2>
+          <h2>9. Contact</h2>
           <p>
-            For any questions about this Privacy Policy, contact us at: <a href="mailto:hello@checkvisamap.com" className="text-blue-600">hello@checkvisamap.com</a>
+            For any questions, email{" "}
+            <a href="mailto:hello@checkvisamap.com">hello@checkvisamap.com</a>.
           </p>
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
-import Script from 'next/script';
+import { Inter, Fraunces } from "next/font/google";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import LocaleSwitcher from "../components/LocaleSwitcher";
 import LocaleSuggestionBanner from "../components/LocaleSuggestionBanner";
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-display",
+});
+
 const SITE_URL = "https://checkvisamap.com";
-const SITE_NAME = "Passport Power — AI Trip Planner from $4";
-const SITE_DESCRIPTION = "Personalized AI trip plans for $4. Hotel, airport transit, daily itinerary, restaurants, and route map. Plus visa requirements for 190+ countries.";
+const SITE_NAME = "Passport Power — AI trip plans from $4";
+const SITE_DESCRIPTION =
+  "Personalized AI trip plans for $4. Hotel, airport transit, day-by-day itinerary, restaurants, and a route map — delivered in minutes.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -19,18 +35,24 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    "visa requirements", "passport power", "visa free countries", "travel visa check",
-    "visa map", "digital nomad visa", "visa on arrival", "e-visa",
-    "travel requirements 2026", "passport index", "visa checker",
-    "South Korea visa", "US visa", "Japan visa", "UK visa",
+    "AI trip planner",
+    "personalized travel itinerary",
+    "travel planning AI",
+    "trip itinerary generator",
+    "custom travel plan",
+    "Tokyo itinerary",
+    "Paris itinerary",
+    "Bangkok itinerary",
+    "Seoul itinerary",
+    "travel route map",
   ],
   authors: [{ name: "Passport Power Team", url: SITE_URL }],
   creator: "Passport Power",
   publisher: "Passport Power",
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
   openGraph: {
     type: "website",
@@ -44,7 +66,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Passport Power - Check Visa Requirements for 190+ Countries",
+        alt: "Passport Power — AI trip plans from $4",
       },
     ],
   },
@@ -76,7 +98,6 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD Organization Schema
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -91,20 +112,11 @@ const organizationSchema = {
   },
 };
 
-// JSON-LD WebSite Schema (enables sitelinks search box in Google)
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Passport Power",
   url: SITE_URL,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/?search={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default async function RootLayout({
@@ -116,7 +128,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -132,9 +144,6 @@ export default async function RootLayout({
       <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <LocaleSuggestionBanner />
-          <div className="fixed top-4 right-4 z-40">
-            <LocaleSwitcher />
-          </div>
           {children}
         </NextIntlClientProvider>
 

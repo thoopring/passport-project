@@ -1,9 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "We built Passport Power because we were scared at the airport. A free visa checker for travelers worldwide.",
+  description:
+    "Why we built Passport Power — an AI trip planner that writes a real itinerary in minutes.",
   alternates: { canonical: "https://checkvisamap.com/about" },
 };
 
@@ -11,89 +14,86 @@ const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "About Passport Power",
-  description: "We built Passport Power because we were scared at the airport.",
+  description:
+    "Why we built Passport Power — an AI trip planner that writes a real itinerary in minutes.",
   url: "https://checkvisamap.com/about",
   mainEntity: { "@type": "Organization", name: "Passport Power", email: "hello@checkvisamap.com" },
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)]">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
+    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+      <Header />
 
-      {/* Nav */}
-      <nav className="max-w-3xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-body-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12l-4-4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-          Home
-        </Link>
-        <Link href="/" className="text-body-sm font-bold text-[var(--text-primary)]">Passport Power</Link>
-      </nav>
+      <main className="max-w-3xl mx-auto w-full px-4 sm:px-6 py-16">
+        <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-6">
+          About
+        </p>
+        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-10 leading-tight">
+          Trip planning should take minutes, not weekends.
+        </h1>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-        {/* Header */}
-        <div className="mb-16">
-          <span className="text-caption font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-4 block">Our Story</span>
-          <h1 className="text-display-lg md:text-display-xl text-[var(--text-primary)] mb-6 leading-tight">
-            We built this because we panicked at the airport.
-          </h1>
-          <p className="text-body-lg text-[var(--text-secondary)] leading-relaxed">
-            Traveling should be about freedom, not bureaucracy. We are digital nomads who got tired of confusing visa rules.
+        <div className="prose prose-lg max-w-none text-[var(--text-secondary)] prose-p:leading-relaxed prose-strong:text-[var(--text-primary)]">
+          <p>
+            We built Passport Power because a short trip still eats a whole weekend to plan.
+            You open thirty tabs, save twenty restaurants, cross-check them against a hotel
+            that has not been booked yet, then get to the destination and walk backwards twice.
+          </p>
+          <p>
+            We made one small tool that fixes one part of that. Answer a few questions,
+            and our AI returns a day-by-day plan with a real route map — hotels near transit,
+            restaurants near each stop, opening hours and kid-friendliness accounted for.
+            You get a link you can open on your phone, and a PDF you can keep offline.
+          </p>
+          <p>
+            <strong>One plan is $4.</strong> No signup, no subscription. If the plan fails or
+            the AI returns something wrong, we refund you.
           </p>
         </div>
 
-        {/* Story */}
-        <div className="prose prose-lg max-w-none mb-16
-          prose-p:text-[var(--text-secondary)] prose-p:leading-relaxed
-          prose-strong:text-[var(--text-primary)]
-          prose-blockquote:border-brand-500 prose-blockquote:text-[var(--text-secondary)]
-        ">
-          <p>
-            It happened in 2024. Standing at the check-in counter, ready to board a flight to Vietnam.
-            The airline staff looked at the passport and shook her head.
-          </p>
-          <blockquote>
-            <p>&ldquo;Your e-visa has a typo in your middle name. You cannot board.&rdquo;</p>
-          </blockquote>
-          <p>
-            Panic. Flight leaving in 2 hours. $400 lost. Trip missed.
-            That&apos;s when we realized: <strong>official government websites are confusing, and Wikipedia is often outdated.</strong>
-          </p>
-          <p>
-            So we built <strong>Passport Power</strong> &mdash; a simple, visual tool to check visa requirements instantly.
-            No legal jargon. Just clear &ldquo;Go&rdquo; or &ldquo;No Go&rdquo; answers.
-          </p>
+        <div className="mt-14 grid sm:grid-cols-3 gap-4">
+          <Value
+            title="Clear over clever"
+            desc="We don't generate poetry. We give you opening hours, addresses, and short walks."
+          />
+          <Value
+            title="Real places"
+            desc="The AI is grounded in a curated place library. No hallucinated restaurants."
+          />
+          <Value
+            title="Honest pricing"
+            desc="One fixed price, no upsells. Refund if the plan is broken."
+          />
         </div>
 
-        {/* Values */}
-        <div className="grid sm:grid-cols-3 gap-4 mb-16">
-          {[
-            { title: "Speed First", desc: "We verify rules so you don't have to read 10-page PDFs." },
-            { title: "Real Experience", desc: "Tips from real travelers, not copy-pasted law text." },
-            { title: "Always Free", desc: "This tool is free forever. We survive on affiliate support." },
-          ].map((v) => (
-            <div key={v.title} className="p-5 bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-xl">
-              <h3 className="font-semibold text-body-md text-[var(--text-primary)] mb-2">{v.title}</h3>
-              <p className="text-body-sm text-[var(--text-secondary)]">{v.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center py-12 border-t border-[var(--border-light)]">
-          <h2 className="text-display-sm text-[var(--text-primary)] mb-6">Ready to explore?</h2>
+        <div className="mt-16 pt-10 border-t border-[var(--border-subtle)] text-center">
           <Link
-            href="/"
-            className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-soft"
+            href="/plan/new"
+            className="inline-flex items-center gap-2 bg-[var(--brand-primary)] text-white font-medium px-6 py-3 rounded-md hover:opacity-90 transition"
           >
-            Check Visa Map
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Plan a trip — $4
+            <span aria-hidden="true">→</span>
           </Link>
-          <p className="text-caption text-[var(--text-muted)] mt-8">
+          <p className="text-caption text-[var(--text-muted)] mt-6">
             Contact: hello@checkvisamap.com
           </p>
         </div>
-      </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+function Value({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="p-5 bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg">
+      <h3 className="font-display text-body-md text-[var(--text-primary)] mb-2">{title}</h3>
+      <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">{desc}</p>
     </div>
   );
 }
