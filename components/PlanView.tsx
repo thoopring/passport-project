@@ -36,7 +36,7 @@ export default async function PlanView({
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-2">
               {resolvedHeaderLabel}
             </p>
-            <h1 className="font-display text-display-lg text-[var(--text-primary)] leading-tight">
+            <h1 className="text-display-lg text-[var(--text-primary)] leading-tight">
               {plan.destination}
             </h1>
             <p className="text-body-md text-[var(--text-secondary)] mt-2">
@@ -79,7 +79,7 @@ export default async function PlanView({
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
                 {t("hotel")}
               </p>
-              <h3 className="font-display text-body-lg text-[var(--text-primary)]">
+              <h3 className="text-body-lg text-[var(--text-primary)]">
                 {plan.hotel.name}{" "}
                 <span className="text-[var(--text-muted)] font-normal">{plan.hotel.priceTier}</span>
               </h3>
@@ -100,7 +100,7 @@ export default async function PlanView({
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
                 {t("airportToHotel")}
               </p>
-              <h3 className="font-display text-body-lg text-[var(--text-primary)]">
+              <h3 className="text-body-lg text-[var(--text-primary)]">
                 {plan.airportTransit.method}
               </h3>
               <p className="text-body-sm text-[var(--text-secondary)] mt-1">
@@ -123,7 +123,7 @@ export default async function PlanView({
                   <p className="text-caption uppercase font-semibold text-[var(--accent-primary)] tracking-[0.14em]">
                     {t("day")} {day.dayNumber}
                   </p>
-                  <h2 className="font-display text-display-sm text-[var(--text-primary)] mt-1">
+                  <h2 className="text-display-sm text-[var(--text-primary)] mt-1">
                     {day.theme}
                   </h2>
                 </div>

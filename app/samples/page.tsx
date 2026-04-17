@@ -34,7 +34,7 @@ export default async function SamplesGalleryPage() {
           <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
             {t("badge")}
           </p>
-          <h1 className="font-display text-display-lg md:text-display-xl text-[var(--text-primary)] mb-4 leading-tight">
+          <h1 className="text-display-lg md:text-display-xl text-[var(--text-primary)] mb-4 leading-tight">
             {t("headline")}
           </h1>
           <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto">
@@ -53,7 +53,7 @@ export default async function SamplesGalleryPage() {
               <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">
                 {sample.audience}
               </p>
-              <h2 className="font-display text-display-sm text-[var(--text-primary)] mb-2 group-hover:text-[var(--brand-primary)] transition">
+              <h2 className="text-display-sm text-[var(--text-primary)] mb-2 group-hover:text-[var(--brand-primary)] transition">
                 {sample.plan.destination}
               </h2>
               <p className="text-body-sm text-[var(--text-muted)] mb-4">
@@ -72,7 +72,7 @@ export default async function SamplesGalleryPage() {
 
         {/* Bottom CTA */}
         <div className="mt-16 border-t border-[var(--border-subtle)] pt-12 text-center">
-          <h2 className="font-display text-display-md text-[var(--text-primary)] mb-3">
+          <h2 className="text-display-md text-[var(--text-primary)] mb-3">
             {t("ctaHeadline")}
           </h2>
           <p className="text-body-md text-[var(--text-secondary)] max-w-md mx-auto mb-7">

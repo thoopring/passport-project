@@ -78,7 +78,7 @@ export default async function BlogPost({
             <span className="text-caption text-[var(--text-muted)]">·</span>
             <span className="text-caption text-[var(--text-muted)]">{post.date}</span>
           </div>
-          <h1 className="font-display text-display-lg md:text-display-xl text-[var(--text-primary)] leading-tight mb-4">
+          <h1 className="text-display-lg md:text-display-xl text-[var(--text-primary)] leading-tight mb-4">
             {post.title}
           </h1>
           <p className="text-body-lg text-[var(--text-secondary)]">{post.excerpt}</p>
@@ -98,7 +98,7 @@ export default async function BlogPost({
         />
 
         <div className="mt-16 pt-10 border-t border-[var(--border-subtle)] text-center">
-          <h3 className="font-display text-display-sm text-[var(--text-primary)] mb-3">
+          <h3 className="text-display-sm text-[var(--text-primary)] mb-3">
             Plan a trip next.
           </h3>
           <p className="text-body-sm text-[var(--text-secondary)] mb-6">

@@ -33,7 +33,7 @@ export default function AboutPage() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-6">
           About
         </p>
-        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-10 leading-tight">
+        <h1 className="text-display-lg text-[var(--text-primary)] mb-10 leading-tight">
           Trip planning should take minutes, not weekends.
         </h1>
 
@@ -92,7 +92,7 @@ export default function AboutPage() {
 function Value({ title, desc }: { title: string; desc: string }) {
   return (
     <div className="p-5 bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg">
-      <h3 className="font-display text-body-md text-[var(--text-primary)] mb-2">{title}</h3>
+      <h3 className="text-body-md text-[var(--text-primary)] mb-2">{title}</h3>
       <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">{desc}</p>
     </div>
   );
