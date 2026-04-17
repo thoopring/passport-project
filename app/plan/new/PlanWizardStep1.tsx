@@ -10,6 +10,7 @@ interface PlanWizardStep1Props {
   defaultCountry: string;
   defaultOrigin: string;
   defaultPromoCode?: string;
+  autoFocus?: boolean;
 }
 
 /**
@@ -23,6 +24,7 @@ export default function PlanWizardStep1({
   defaultCountry,
   defaultOrigin,
   defaultPromoCode,
+  autoFocus = true,
 }: PlanWizardStep1Props) {
   const router = useRouter();
   const t = useTranslations("wizard.step1");
@@ -80,7 +82,7 @@ export default function PlanWizardStep1({
             }}
             placeholder={t("destinationPlaceholder")}
             className={inputClass}
-            autoFocus
+            autoFocus={autoFocus}
           />
         </label>
         {destination && destinationCountry !== destination && (
@@ -139,7 +141,7 @@ export default function PlanWizardStep1({
 
       <button
         type="submit"
-        className="w-full px-6 py-4 bg-[var(--text-primary)] text-[var(--background)] font-semibold rounded-xl hover:opacity-90 transition"
+        className="w-full px-6 py-3.5 bg-[var(--brand-primary)] text-white font-medium rounded-md hover:opacity-90 transition"
       >
         {t("submit")}
       </button>
@@ -148,4 +150,4 @@ export default function PlanWizardStep1({
 }
 
 const inputClass =
-  "w-full px-4 py-2.5 bg-[var(--background)] border border-[var(--border-light)] rounded-xl text-body-md text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500/40 transition";
+  "w-full px-4 py-2.5 bg-white border border-[var(--border-light)] rounded-md text-body-md text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition";

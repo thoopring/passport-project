@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
@@ -9,23 +9,15 @@ import LocaleSuggestionBanner from "../components/LocaleSuggestionBanner";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-sans",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-display",
 });
 
 const SITE_URL = "https://checkvisamap.com";
 const SITE_NAME = "Passport Power — AI trip plans from $4";
 const SITE_DESCRIPTION =
-  "Personalized AI trip plans for $4. Hotel, airport transit, day-by-day itinerary, restaurants, and a route map — delivered in minutes.";
+  "Answer three questions and get a full trip plan in minutes. Hotel, airport transit, day-by-day itinerary, restaurants, and a route map. $4 per plan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -128,7 +120,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang={locale} className={inter.variable}>
       <head>
         <script
           type="application/ld+json"
