@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 import PlanWizardStep1 from "./PlanWizardStep1";
 
 export const metadata: Metadata = {
@@ -30,27 +32,33 @@ export default async function NewPlanPage({ searchParams }: PageProps) {
   const t = await getTranslations("wizard.step1");
 
   return (
-    <div className="min-h-screen bg-[var(--background)] py-12 px-4 sm:px-6">
-      <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-caption font-semibold text-brand-700 dark:text-brand-300 mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
-            {t("badge")}
-          </p>
-          <h1 className="text-display-lg text-[var(--text-primary)] mb-3">{t("headline")}</h1>
-          <p className="text-body-md text-[var(--text-secondary)] max-w-lg mx-auto">
-            {t("subtitle")}
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+      <Header showCta={false} />
 
-        <PlanWizardStep1
-          defaultDestination={params.dest ?? ""}
-          defaultCountry={params.country ?? params.dest ?? ""}
-          defaultOrigin={params.origin ?? ""}
-          defaultPromoCode={params.promo}
-        />
-      </div>
+      <main className="flex-1 py-16 px-4 sm:px-6">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
+              {t("badge")}
+            </p>
+            <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-4 leading-tight">
+              {t("headline")}
+            </h1>
+            <p className="text-body-md text-[var(--text-secondary)] max-w-lg mx-auto">
+              {t("subtitle")}
+            </p>
+          </div>
+
+          <PlanWizardStep1
+            defaultDestination={params.dest ?? ""}
+            defaultCountry={params.country ?? params.dest ?? ""}
+            defaultOrigin={params.origin ?? ""}
+            defaultPromoCode={params.promo}
+          />
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

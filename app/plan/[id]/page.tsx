@@ -4,6 +4,8 @@ import { getTranslations } from "next-intl/server";
 import { getPlan } from "../../../lib/plans";
 import PlanView from "../../../components/PlanView";
 import ShareReferralCard from "../../../components/ShareReferralCard";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 import { getOrCreateReferralCode } from "../../../lib/referrals";
 
 export const dynamic = "force-dynamic";
@@ -80,8 +82,12 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
 
 function Centered({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 text-center">
-      <div>{children}</div>
+    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+      <Header />
+      <main className="flex-1 flex items-center justify-center p-6 text-center">
+        <div>{children}</div>
+      </main>
+      <Footer />
     </div>
   );
 }
@@ -94,23 +100,29 @@ interface GeneratingStateProps {
 
 function GeneratingState({ id, justPaid, t }: GeneratingStateProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="max-w-md text-center">
-        {justPaid && (
-          <p className="text-caption uppercase tracking-wider font-semibold text-brand-600 dark:text-brand-400 mb-2">
-            {t("paymentReceived")}
-          </p>
-        )}
-        <h1 className="text-display-md text-[var(--text-primary)] mb-3">{t("generatingTitle")}</h1>
-        <p className="text-body-md text-[var(--text-secondary)] mb-6">{t("generatingSubtitle")}</p>
-        <a
-          href={`/plan/${id}`}
-          className="inline-block px-6 py-3 bg-[var(--text-primary)] text-[var(--background)] rounded-xl font-semibold"
-        >
-          {t("generatingRefresh")}
-        </a>
-        <p className="text-caption text-[var(--text-muted)] mt-4">Plan ID: {id}</p>
-      </div>
+    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+      <Header />
+      <main className="flex-1 flex items-center justify-center p-6">
+        <div className="max-w-md text-center">
+          {justPaid && (
+            <p className="text-caption uppercase tracking-[0.18em] font-semibold text-[var(--accent-primary)] mb-3">
+              {t("paymentReceived")}
+            </p>
+          )}
+          <h1 className="font-display text-display-md text-[var(--text-primary)] mb-3">
+            {t("generatingTitle")}
+          </h1>
+          <p className="text-body-md text-[var(--text-secondary)] mb-6">{t("generatingSubtitle")}</p>
+          <a
+            href={`/plan/${id}`}
+            className="inline-block px-6 py-3 bg-[var(--brand-primary)] text-white rounded-md font-medium hover:opacity-90 transition"
+          >
+            {t("generatingRefresh")}
+          </a>
+          <p className="text-caption text-[var(--text-muted)] mt-6">Plan ID: {id}</p>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
