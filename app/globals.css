@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Design Tokens ========== */
+/* ========== Design Tokens — Layla-lean warm editorial ========== */
 :root {
-  --background: #FFFFFF;
-  --foreground: #0A0A0A;
+  --background: #F5EFE4;
+  --foreground: #141517;
   --surface-primary: #FFFFFF;
-  --surface-secondary: #FAFAFA;
-  --border-light: #E5E5E5;
-  --border-subtle: #F0F0F0;
-  --text-primary: #0A0A0A;
-  --text-secondary: #525252;
-  --text-muted: #A3A3A3;
-  --brand-primary: #1D4ED8;
-  --brand-dark: #1E3A8A;
-  --accent-primary: #1D4ED8;
+  --surface-secondary: #F9F4EB;
+  --border-light: #E5DFD4;
+  --border-subtle: #EEE8DC;
+  --text-primary: #141517;
+  --text-secondary: #6E6B64;
+  --text-muted: #9B978D;
+  --brand-primary: #D4442B;
+  --brand-dark: #92291A;
+  --accent-primary: #D4442B;
 }
 
 /* ========== Base ========== */
@@ -28,52 +28,50 @@ body {
 }
 
 /* ========== Scrollbar ========== */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #D4D4D4;
-  border-radius: 3px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CEC7B8; border-radius: 3px; }
 
 /* ========== Selection ========== */
 ::selection {
-  background: rgba(29, 78, 216, 0.18);
+  background: rgba(212, 68, 43, 0.20);
   color: inherit;
 }
 
-/* ========== Hover Lift (subtle) ========== */
+/* ========== Hover Lift ========== */
 .hover-lift {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.2s;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s;
 }
 .hover-lift:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px -8px rgba(10,10,10,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -14px rgba(20,21,23,0.14);
 }
 
 /* ========== Shimmer Loading ========== */
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(10,10,10,0.05) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(20,21,23,0.06) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
 
 /* ========== Prose ========== */
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
 .prose a {
   color: var(--brand-primary);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
-.prose h2 {
-  font-weight: 600;
-  letter-spacing: -0.018em;
-}
-.prose h3 {
-  font-weight: 600;
-  letter-spacing: -0.012em;
+
+/* ========== Serif display helper ========== */
+.serif {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
 }

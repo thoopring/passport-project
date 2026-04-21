@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
@@ -12,6 +13,8 @@ interface PlanViewProps {
   headerLabel?: string;
   bottomCta?: React.ReactNode;
   backLink?: { href: string; label: string };
+  /** Optional Unsplash hero photo rendered at top of detail (sample pages). */
+  heroImage?: string;
 }
 
 export default async function PlanView({
@@ -20,6 +23,7 @@ export default async function PlanView({
   headerLabel,
   bottomCta,
   backLink,
+  heroImage,
 }: PlanViewProps) {
   const t = await getTranslations("plan");
   const resolvedHeaderLabel = headerLabel ?? t("yourTripPlan");
@@ -29,17 +33,33 @@ export default async function PlanView({
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <Header />
 
-      <main className="flex-1 py-10 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
+      <main className="flex-1">
+        {/* Destination hero photo (samples only) */}
+        {heroImage && (
+          <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 pt-8">
+            <div className="relative aspect-[21/9] rounded-[12px] overflow-hidden bg-[var(--surface-secondary)]">
+              <Image
+                src={heroImage}
+                alt={`${plan.destination} — ${plan.durationDays}-day itinerary`}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 1040px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
           {/* Header block */}
           <div className="mb-10">
-            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-2">
+            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
               {resolvedHeaderLabel}
             </p>
-            <h1 className="text-display-lg text-[var(--text-primary)] leading-tight">
+            <h1 className="font-display text-[2.75rem] sm:text-[3.5rem] text-[var(--text-primary)] leading-[1.04] tracking-[-0.018em]">
               {plan.destination}
             </h1>
-            <p className="text-body-md text-[var(--text-secondary)] mt-2">
+            <p className="text-body-md text-[var(--text-secondary)] mt-3">
               {plan.durationDays}-day itinerary · {plan.destinationCountry}
             </p>
             {downloadHref && (
@@ -58,7 +78,7 @@ export default async function PlanView({
           </div>
 
           {/* Overview */}
-          <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg p-6 mb-6">
+          <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-6">
             <p className="text-body-md text-[var(--text-primary)] leading-relaxed">{plan.overview}</p>
           </div>
 
@@ -75,13 +95,13 @@ export default async function PlanView({
 
           {/* Hotel + Transit */}
           <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg p-6">
+            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6">
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
                 {t("hotel")}
               </p>
-              <h3 className="text-body-lg text-[var(--text-primary)]">
+              <h3 className="font-display text-[1.375rem] text-[var(--text-primary)] leading-snug">
                 {plan.hotel.name}{" "}
-                <span className="text-[var(--text-muted)] font-normal">{plan.hotel.priceTier}</span>
+                <span className="text-[var(--text-muted)] font-normal text-body-md">{plan.hotel.priceTier}</span>
               </h3>
               <p className="text-body-sm text-[var(--text-secondary)] mt-1">
                 {plan.hotel.area} · {plan.hotel.address}
@@ -96,11 +116,11 @@ export default async function PlanView({
               </p>
             </div>
 
-            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg p-6">
+            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6">
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
                 {t("airportToHotel")}
               </p>
-              <h3 className="text-body-lg text-[var(--text-primary)]">
+              <h3 className="font-display text-[1.375rem] text-[var(--text-primary)] leading-snug">
                 {plan.airportTransit.method}
               </h3>
               <p className="text-body-sm text-[var(--text-secondary)] mt-1">
@@ -116,14 +136,14 @@ export default async function PlanView({
           {plan.days.map((day) => (
             <div
               key={day.dayNumber}
-              className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg p-6 mb-4"
+              className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-4"
             >
               <div className="flex items-baseline justify-between mb-4">
                 <div>
-                  <p className="text-caption uppercase font-semibold text-[var(--accent-primary)] tracking-[0.14em]">
+                  <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
                     {t("day")} {day.dayNumber}
                   </p>
-                  <h2 className="text-display-sm text-[var(--text-primary)] mt-1">
+                  <h2 className="font-display text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
                     {day.theme}
                   </h2>
                 </div>
@@ -170,7 +190,7 @@ export default async function PlanView({
 
           {/* Tips */}
           {(plan.generalTips?.length || plan.packingTips?.length || plan.budgetEstimate) && (
-            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-lg p-6 mb-6">
+            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-6">
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-4">
                 {t("practicalInfo")}
               </p>

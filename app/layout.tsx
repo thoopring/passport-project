@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
@@ -14,10 +14,18 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-display",
+});
+
 const SITE_URL = "https://checkvisamap.com";
 const SITE_NAME = "Passport Power — AI trip plans from $4";
 const SITE_DESCRIPTION =
-  "Answer three questions and get a full trip plan in minutes. Hotel, airport transit, day-by-day itinerary, restaurants, and a route map. $4 per plan.";
+  "Tell us your destination and budget, and we'll design a trip for you. Day-by-day itinerary with hotel, airport transit, restaurants, and a route map. $4 per plan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -68,9 +76,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [`${SITE_URL}/og-image.png`],
   },
-  alternates: {
-    canonical: SITE_URL,
-  },
+  alternates: { canonical: SITE_URL },
   robots: {
     index: true,
     follow: true,
@@ -85,9 +91,7 @@ export const metadata: Metadata = {
   verification: {
     google: "R31CCusp43HzLDTuTSiA9NnWNWi4KI2wGd4fKTEnF6I",
   },
-  other: {
-    "agd-partner-manual-verification": "",
-  },
+  other: { "agd-partner-manual-verification": "" },
 };
 
 const organizationSchema = {
@@ -120,7 +124,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale} className={`${inter.variable} ${instrumentSerif.variable}`}>
       <head>
         <script
           type="application/ld+json"

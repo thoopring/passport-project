@@ -18,7 +18,7 @@ export default function Disclaimer() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
           Legal
         </p>
-        <h1 className="text-display-lg text-[var(--text-primary)] mb-3">
+        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-3">
           Disclaimer
         </h1>
         <p className="text-body-sm text-[var(--text-muted)] mb-10">Last updated: April 17, 2026</p>

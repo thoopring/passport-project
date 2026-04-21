@@ -109,7 +109,7 @@ function GeneratingState({ id, justPaid, t }: GeneratingStateProps) {
               {t("paymentReceived")}
             </p>
           )}
-          <h1 className="text-display-md text-[var(--text-primary)] mb-3">
+          <h1 className="font-display text-display-md text-[var(--text-primary)] mb-3">
             {t("generatingTitle")}
           </h1>
           <p className="text-body-md text-[var(--text-secondary)] mb-6">{t("generatingSubtitle")}</p>

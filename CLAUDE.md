@@ -50,11 +50,13 @@ supabase/migrations/        - 0001_plans, 0002_referrals, 0003_promo_codes
 ```
 
 ## Design System
-- **Palette**: cream background `#F5EFE4`, navy primary `#0F2A3F`, muted gold accent `#B8935A`
-- **Fonts**: Fraunces (serif display) + Inter (sans body), loaded via `next/font/google`
-- **No dark mode** (cream background is the single surface)
-- **Tone**: editorial, spacious, restrained — borrowed from luxury travel brands but
-  calibrated for a $4 product (no giant hero photos, no aspirational photography)
+See **DESIGN.md** in the repo root for the full design system. Always read it before
+making visual or UI decisions. Summary:
+- Layla-lean aesthetic (photo-forward travel editorial + clean utility)
+- **Palette:** warm paper `#F5EFE4` bg, ink `#141517`, vermilion accent `#D4442B`
+- **Fonts:** Instrument Serif (display) + Inter (body), via `next/font/google`
+- **No dark mode**
+- Photography from Unsplash (free) — required on marketing surfaces
 
 ## Key Conventions
 - Slug format: `{destination}-{days}d-{audience}` for samples (e.g. `tokyo-4d-couple`)

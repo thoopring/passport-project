@@ -8,10 +8,10 @@ interface HeaderProps {
 export default function Header({ showCta = true }: HeaderProps) {
   return (
     <header className="w-full border-b border-[var(--border-subtle)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link
           href="/"
-          className="text-[1.05rem] font-semibold tracking-tight text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition"
+          className="font-display text-[1.5rem] tracking-tight text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition"
         >
           Passport Power
         </Link>
@@ -41,7 +41,7 @@ export default function Header({ showCta = true }: HeaderProps) {
           {showCta && (
             <Link
               href="/"
-              className="ml-2 px-3.5 py-1.5 bg-[var(--brand-primary)] text-white text-body-sm font-medium rounded-md hover:opacity-90 transition"
+              className="ml-2 px-4 py-2 bg-[var(--brand-primary)] text-white text-body-sm font-medium rounded-md hover:opacity-90 transition"
             >
               Plan my trip
             </Link>

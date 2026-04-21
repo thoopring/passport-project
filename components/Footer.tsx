@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--border-subtle)] mt-auto">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
         <div className="flex items-baseline gap-3">
-          <span className="font-semibold text-body-md text-[var(--text-primary)]">
+          <span className="font-display text-[1.25rem] text-[var(--text-primary)]">
             Passport Power
           </span>
           <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">

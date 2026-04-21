@@ -43,7 +43,7 @@ export default async function SamplePlanPage({ params }: PageProps) {
       <p className="text-caption uppercase tracking-wider opacity-70 font-semibold">
         {t("sampleCtaTitle")}
       </p>
-      <h2 className="text-display-md font-bold mt-2">{t("sampleCtaHeadline")}</h2>
+      <h2 className="font-display text-display-md mt-2">{t("sampleCtaHeadline")}</h2>
       <p className="text-body-md opacity-80 mt-3 max-w-md mx-auto">{t("sampleCtaSubtitle")}</p>
       <Link
         href={`/plan/new?dest=${encodeURIComponent(sample.plan.destination)}&country=${encodeURIComponent(sample.plan.destinationCountry)}`}
@@ -61,6 +61,7 @@ export default async function SamplePlanPage({ params }: PageProps) {
       headerLabel={t("sampleHeader")}
       bottomCta={cta}
       backLink={{ href: "/samples", label: t("backToGallery") }}
+      heroImage={sample.heroImage}
     />
   );
 }

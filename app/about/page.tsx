@@ -33,7 +33,7 @@ export default function AboutPage() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-6">
           About
         </p>
-        <h1 className="text-display-lg text-[var(--text-primary)] mb-10 leading-tight">
+        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-10 leading-[1.04]">
           Trip planning should take minutes, not weekends.
         </h1>
 

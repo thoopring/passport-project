@@ -30,7 +30,7 @@ export default function BlogHome() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
           Journal
         </p>
-        <h1 className="text-display-lg text-[var(--text-primary)] mb-4 leading-tight">
+        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-4 leading-[1.04]">
           Notes from the road.
         </h1>
         <p className="text-body-lg text-[var(--text-secondary)] mb-14">
@@ -65,7 +65,7 @@ export default function BlogHome() {
                   <span className="text-caption text-[var(--text-muted)]">·</span>
                   <span className="text-caption text-[var(--text-muted)]">{post.date}</span>
                 </div>
-                <h2 className="text-display-sm text-[var(--text-primary)] mb-2 group-hover:text-[var(--brand-primary)] transition">
+                <h2 className="font-display text-display-sm text-[var(--text-primary)] mb-2 group-hover:text-[var(--brand-primary)] transition">
                   {post.title}
                 </h2>
                 <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
