@@ -20,6 +20,61 @@
     "suggestSwitch": "Switch",
     "suggestDismiss": "No thanks"
   },
+  "homeWizard": {
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip →",
+    "progressOf": "{current} of {total}",
+    "destination": {
+      "question": "Where are you going?",
+      "placeholder": "Type a city",
+      "popular": "Popular destinations",
+      "cities": {
+        "tokyo": "Tokyo",
+        "paris": "Paris",
+        "bangkok": "Bangkok",
+        "seoul": "Seoul",
+        "barcelona": "Barcelona",
+        "istanbul": "Istanbul"
+      }
+    },
+    "travelerType": {
+      "question": "Who's going?",
+      "solo": "Just me",
+      "couple": "With my partner",
+      "family": "Family with kids",
+      "friends": "With friends"
+    },
+    "travelStyle": {
+      "question": "What kind of trip?",
+      "sightseeing": "Sightseeing",
+      "sightseeingHint": "Landmarks, museums, experiences",
+      "relaxation": "Relaxation",
+      "relaxationHint": "Easy pace, less walking",
+      "mixed": "A mix",
+      "mixedHint": "Balance of both"
+    },
+    "days": {
+      "question": "How many days?",
+      "customLabel": "Custom",
+      "unit": "days"
+    },
+    "budget": {
+      "question": "What's your budget?",
+      "budget": "Budget",
+      "budgetHint": "Hostels, street food, transit",
+      "midrange": "Mid-range",
+      "midrangeHint": "4-star, sit-down meals",
+      "luxury": "Luxury",
+      "luxuryHint": "5-star, fine dining"
+    },
+    "mustVisit": {
+      "question": "Any must-visit places?",
+      "subtitle": "Restaurants, landmarks, cafés… anything you don't want to miss",
+      "placeholder": "e.g. Meiji Jingu, Sushi Dai, Shibuya crossing"
+    },
+    "submit": "Plan my trip — $4"
+  },
   "wizard": {
     "step1": {
       "headline": "Your trip, planned to the minute.",

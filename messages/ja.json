@@ -20,6 +20,61 @@
     "suggestSwitch": "切り替え",
     "suggestDismiss": "結構です"
   },
+  "homeWizard": {
+    "back": "戻る",
+    "continue": "次へ",
+    "skip": "スキップ →",
+    "progressOf": "{current} / {total}",
+    "destination": {
+      "question": "どこへ行きますか?",
+      "placeholder": "都市名を入力",
+      "popular": "人気の旅先",
+      "cities": {
+        "tokyo": "東京",
+        "paris": "パリ",
+        "bangkok": "バンコク",
+        "seoul": "ソウル",
+        "barcelona": "バルセロナ",
+        "istanbul": "イスタンブール"
+      }
+    },
+    "travelerType": {
+      "question": "どなたと?",
+      "solo": "一人旅",
+      "couple": "パートナーと",
+      "family": "家族旅行",
+      "friends": "友達と"
+    },
+    "travelStyle": {
+      "question": "どんな旅がいい?",
+      "sightseeing": "観光メイン",
+      "sightseeingHint": "名所・博物館・体験をたくさん",
+      "relaxation": "のんびり",
+      "relaxationHint": "ゆっくり、歩き少なめ",
+      "mixed": "両方",
+      "mixedHint": "バランスよく"
+    },
+    "days": {
+      "question": "何日間?",
+      "customLabel": "自由入力",
+      "unit": "日"
+    },
+    "budget": {
+      "question": "予算は?",
+      "budget": "節約",
+      "budgetHint": "ホステル、屋台、公共交通",
+      "midrange": "中級",
+      "midrangeHint": "4つ星、レストラン",
+      "luxury": "ラグジュアリー",
+      "luxuryHint": "5つ星、ファインダイニング"
+    },
+    "mustVisit": {
+      "question": "絶対に行きたい場所はありますか?",
+      "subtitle": "レストラン、名所、カフェ… 自由にどうぞ",
+      "placeholder": "例: 明治神宮、寿司大、渋谷交差点"
+    },
+    "submit": "旅の計画を作る — $4"
+  },
   "wizard": {
     "step1": {
       "headline": "分単位で計画される、あなたの旅。",

@@ -11,6 +11,7 @@ import type {
   Interest,
   BudgetTier,
   Pace,
+  TravelStyle,
 } from "../../../types/trip-plan";
 
 interface WizardData {
@@ -19,6 +20,8 @@ interface WizardData {
   durationDays: number;
   budgetTier: BudgetTier;
   travelerType?: TravelerType;
+  travelStyle?: TravelStyle;
+  mustVisit?: string;
   adults?: number;
   children?: number;
   childrenAges?: number[];
@@ -45,13 +48,39 @@ function LoadingInner() {
   const t = useTranslations("wizard.loading");
   const tp = useTranslations("wizard.popup");
 
-  const [data, setData] = useState<WizardData>(() => ({
-    destination: searchParams.get("dest") ?? "",
-    destinationCountry: searchParams.get("country") ?? searchParams.get("dest") ?? "",
-    durationDays: parseInt(searchParams.get("days") ?? "5", 10) || 5,
-    budgetTier: (searchParams.get("budget") as BudgetTier) || "midrange",
-    promoCode: searchParams.get("promo") ?? undefined,
-  }));
+  const [data, setData] = useState<WizardData>(() => {
+    const rawTravelerType = searchParams.get("travelerType");
+    const allowedTravelerTypes: TravelerType[] = [
+      "solo",
+      "couple",
+      "family-with-kids",
+      "group-of-friends",
+      "senior",
+    ];
+    const travelerType =
+      rawTravelerType && (allowedTravelerTypes as string[]).includes(rawTravelerType)
+        ? (rawTravelerType as TravelerType)
+        : undefined;
+    const rawStyle = searchParams.get("travelStyle");
+    const allowedStyles: TravelStyle[] = ["sightseeing", "relaxation", "mixed"];
+    const travelStyle =
+      rawStyle && (allowedStyles as string[]).includes(rawStyle)
+        ? (rawStyle as TravelStyle)
+        : undefined;
+    // Pre-set adults count for solo/couple so the popup queue doesn't need to ask
+    const adults = travelerType === "solo" ? 1 : travelerType === "couple" ? 2 : undefined;
+    return {
+      destination: searchParams.get("dest") ?? "",
+      destinationCountry: searchParams.get("country") ?? searchParams.get("dest") ?? "",
+      durationDays: parseInt(searchParams.get("days") ?? "5", 10) || 5,
+      budgetTier: (searchParams.get("budget") as BudgetTier) || "midrange",
+      travelerType,
+      travelStyle,
+      mustVisit: searchParams.get("mustVisit") ?? undefined,
+      adults,
+      promoCode: searchParams.get("promo") ?? undefined,
+    };
+  });
 
   const [questionIndex, setQuestionIndex] = useState(0);
   const [activeQuestion, setActiveQuestion] = useState<QuestionDef | null>(null);
@@ -121,6 +150,8 @@ function LoadingInner() {
         durationDays: finalData.durationDays,
         arrivalAirport: finalData.arrivalAirport,
         travelerType: finalData.travelerType,
+        travelStyle: finalData.travelStyle,
+        mustVisit: finalData.mustVisit,
         adults: finalData.adults,
         children: finalData.children ?? 0,
         childrenAges: finalData.childrenAges,
@@ -257,20 +288,28 @@ type Translator = (key: string) => string;
 function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
   const queue: QuestionDef[] = [];
 
-  queue.push({
-    id: "travelerType",
-    title: tp("travelerType.title"),
-    type: "single-chip",
-    options: [
-      { value: "solo", label: tp("travelerType.solo"), hint: tp("travelerType.soloHint") },
-      { value: "couple", label: tp("travelerType.couple"), hint: tp("travelerType.coupleHint") },
-      { value: "family-with-kids", label: tp("travelerType.family"), hint: tp("travelerType.familyHint") },
-      { value: "group-of-friends", label: tp("travelerType.friends"), hint: tp("travelerType.friendsHint") },
-      { value: "senior", label: tp("travelerType.senior"), hint: tp("travelerType.seniorHint") },
-    ],
-  });
+  // Skip travelerType popup if home wizard already collected it.
+  if (!data.travelerType) {
+    queue.push({
+      id: "travelerType",
+      title: tp("travelerType.title"),
+      type: "single-chip",
+      options: [
+        { value: "solo", label: tp("travelerType.solo"), hint: tp("travelerType.soloHint") },
+        { value: "couple", label: tp("travelerType.couple"), hint: tp("travelerType.coupleHint") },
+        { value: "family-with-kids", label: tp("travelerType.family"), hint: tp("travelerType.familyHint") },
+        { value: "group-of-friends", label: tp("travelerType.friends"), hint: tp("travelerType.friendsHint") },
+        { value: "senior", label: tp("travelerType.senior"), hint: tp("travelerType.seniorHint") },
+      ],
+    });
+  }
 
-  if (data.travelerType && !["solo", "couple"].includes(data.travelerType)) {
+  // Ask adults count for group/family travelers (solo/couple are auto-set).
+  if (
+    data.travelerType &&
+    !["solo", "couple"].includes(data.travelerType) &&
+    !data.adults
+  ) {
     queue.push({
       id: "adults",
       title: tp("adults.title"),

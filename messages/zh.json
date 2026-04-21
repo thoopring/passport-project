@@ -20,6 +20,61 @@
     "suggestSwitch": "切换",
     "suggestDismiss": "不用"
   },
+  "homeWizard": {
+    "back": "返回",
+    "continue": "继续",
+    "skip": "跳过 →",
+    "progressOf": "{current} / {total}",
+    "destination": {
+      "question": "您要去哪里?",
+      "placeholder": "输入城市名",
+      "popular": "热门目的地",
+      "cities": {
+        "tokyo": "东京",
+        "paris": "巴黎",
+        "bangkok": "曼谷",
+        "seoul": "首尔",
+        "barcelona": "巴塞罗那",
+        "istanbul": "伊斯坦布尔"
+      }
+    },
+    "travelerType": {
+      "question": "和谁一起?",
+      "solo": "独自出行",
+      "couple": "和伴侣",
+      "family": "带孩子的家庭",
+      "friends": "和朋友"
+    },
+    "travelStyle": {
+      "question": "想要什么样的旅行?",
+      "sightseeing": "观光为主",
+      "sightseeingHint": "景点、博物馆、体验",
+      "relaxation": "度假为主",
+      "relaxationHint": "悠闲,少走路",
+      "mixed": "两者兼顾",
+      "mixedHint": "均衡安排"
+    },
+    "days": {
+      "question": "几天?",
+      "customLabel": "自定义",
+      "unit": "天"
+    },
+    "budget": {
+      "question": "预算是多少?",
+      "budget": "经济",
+      "budgetHint": "青旅、街边小吃、公共交通",
+      "midrange": "中档",
+      "midrangeHint": "四星酒店、餐厅用餐",
+      "luxury": "豪华",
+      "luxuryHint": "五星酒店、精致餐饮"
+    },
+    "mustVisit": {
+      "question": "有必去的地方吗?",
+      "subtitle": "餐厅、景点、咖啡馆… 自由填写",
+      "placeholder": "例如: 明治神宫、寿司大、涩谷十字路口"
+    },
+    "submit": "规划我的旅行 — $4"
+  },
   "wizard": {
     "step1": {
       "headline": "分钟级精准规划的旅行。",

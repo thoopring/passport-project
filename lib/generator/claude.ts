@@ -164,12 +164,25 @@ Travelers: ${req.travelerType}, ${req.adults} adult(s)${childInfo}
 Interests: ${req.interests.join(", ")}
 Budget tier: ${req.budgetTier}
 Pace: ${req.pace}
+${req.travelStyle ? `Trip style: ${req.travelStyle} — ${styleInstruction(req.travelStyle)}` : ""}
+${req.mustVisit ? `MUST-VISIT PLACES (integrate into the itinerary, prioritize placement by geography): ${req.mustVisit}` : ""}
 
 ${req.notes ? `Additional notes from the traveler: ${req.notes}` : ""}
 
 OUTPUT LANGUAGE: ${localeInstruction}
 
 Return the complete trip plan as a single JSON object matching the schema in the system prompt. No prose, no markdown — pure JSON only.`;
+}
+
+function styleInstruction(style: "sightseeing" | "relaxation" | "mixed"): string {
+  switch (style) {
+    case "sightseeing":
+      return "weight days toward landmarks, museums, and guided experiences; fill each day";
+    case "relaxation":
+      return "fewer stops per day, longer meal windows, include a spa/park/café block, minimize transit";
+    case "mixed":
+      return "balance one signature sight in the morning with an unhurried afternoon";
+  }
 }
 
 function extractJson(text: string): unknown {

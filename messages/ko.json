@@ -20,6 +20,61 @@
     "suggestSwitch": "전환",
     "suggestDismiss": "괜찮아요"
   },
+  "homeWizard": {
+    "back": "이전",
+    "continue": "다음",
+    "skip": "없어요 →",
+    "progressOf": "{current} / {total}",
+    "destination": {
+      "question": "어디로 가세요?",
+      "placeholder": "도시 이름을 입력하세요",
+      "popular": "인기 여행지",
+      "cities": {
+        "tokyo": "도쿄",
+        "paris": "파리",
+        "bangkok": "방콕",
+        "seoul": "서울",
+        "barcelona": "바르셀로나",
+        "istanbul": "이스탄불"
+      }
+    },
+    "travelerType": {
+      "question": "누구랑 가세요?",
+      "solo": "혼자",
+      "couple": "둘이",
+      "family": "가족과",
+      "friends": "친구들과"
+    },
+    "travelStyle": {
+      "question": "어떤 여행을 원하세요?",
+      "sightseeing": "관광 위주",
+      "sightseeingHint": "명소, 박물관, 체험을 많이",
+      "relaxation": "휴양 위주",
+      "relaxationHint": "여유롭게, 걷기 적게",
+      "mixed": "관광 & 휴양",
+      "mixedHint": "균형있게 둘 다"
+    },
+    "days": {
+      "question": "며칠 다녀오세요?",
+      "customLabel": "직접 입력",
+      "unit": "일"
+    },
+    "budget": {
+      "question": "예산은 어느 정도예요?",
+      "budget": "알뜰",
+      "budgetHint": "호스텔, 길거리 음식, 대중교통",
+      "midrange": "중간",
+      "midrangeHint": "4성급, 식당 식사",
+      "luxury": "럭셔리",
+      "luxuryHint": "5성급, 파인 다이닝"
+    },
+    "mustVisit": {
+      "question": "꼭 가고 싶은 곳 있으세요?",
+      "subtitle": "식당, 명소, 카페… 자유롭게",
+      "placeholder": "예: 메이지 신궁, 스시 다이, 시부야 크로싱"
+    },
+    "submit": "플랜 만들기 — $4"
+  },
   "wizard": {
     "step1": {
       "headline": "분 단위로 계획된 당신의 여행.",

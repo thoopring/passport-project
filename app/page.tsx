@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ChatHeroInput from "../components/ChatHeroInput";
+import HomeWizard from "../components/HomeWizard";
 import PlanMap from "../components/PlanMap";
 import { SAMPLE_PLANS, HOME_HERO_IMAGE, getSample } from "../lib/samples";
 
@@ -40,7 +40,7 @@ export default function Home() {
             </p>
 
             <div className="max-w-lg">
-              <ChatHeroInput />
+              <HomeWizard />
             </div>
 
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mt-8">

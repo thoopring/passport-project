@@ -59,6 +59,9 @@ export type BudgetTier = z.infer<typeof BudgetTierSchema>;
 export const PaceSchema = z.enum(["relaxed", "balanced", "packed"]);
 export type Pace = z.infer<typeof PaceSchema>;
 
+export const TravelStyleSchema = z.enum(["sightseeing", "relaxation", "mixed"]);
+export type TravelStyle = z.infer<typeof TravelStyleSchema>;
+
 export const LocaleSchema = z.enum(["en", "ko", "ja", "zh"]);
 export type PlanLocale = z.infer<typeof LocaleSchema>;
 
@@ -90,6 +93,12 @@ export const PlanRequestSchema = z.object({
   interests: z.array(InterestSchema).min(1).max(6),
   budgetTier: BudgetTierSchema,
   pace: PaceSchema,
+
+  /** Overall style: sightseeing-heavy, relaxation-focused, or a mix. Collected on home wizard. */
+  travelStyle: TravelStyleSchema.optional(),
+
+  /** Free-text list of places the user specifically wants to include in the plan. */
+  mustVisit: z.string().max(500).optional(),
 
   email: z.string().email(),
   notes: z.string().max(1000).optional(),
