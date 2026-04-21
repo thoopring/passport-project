@@ -128,7 +128,7 @@ export default function PlanWizardStep1({
               onClick={() => setBudgetTier(opt.value)}
               className={`px-3 py-2.5 rounded-xl text-left border transition cursor-pointer ${
                 budgetTier === opt.value
-                  ? "bg-[var(--text-primary)] text-[var(--background)] border-[var(--text-primary)]"
+                  ? "bg-[var(--lavender-soft)] text-[var(--text-primary)] border-[var(--lavender)]"
                   : "bg-[var(--surface-primary)] text-[var(--text-secondary)] border-[var(--border-light)] hover:border-[var(--text-muted)]"
               }`}
             >
@@ -141,7 +141,7 @@ export default function PlanWizardStep1({
 
       <button
         type="submit"
-        className="w-full px-6 py-3.5 bg-[var(--brand-primary)] text-white font-medium rounded-md hover:opacity-90 transition"
+        className="w-full px-6 py-3.5 bg-[#1A1A1A] text-white font-medium rounded-md hover:bg-black transition"
       >
         {t("submit")}
       </button>
