@@ -111,6 +111,13 @@
       "sampleButton": "See a sample first",
       "newTabNote": "Checkout opens in a new tab — keep this tab open",
       "startOver": "Start over",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "mustVisitEmpty": "None added",
+      "notesLabel": "Anything else we should know?",
+      "notesSubtitle": "Allergies, special requests, things to avoid — write whatever you'd tell a friend planning the trip",
+      "notesPlaceholder": "e.g. shellfish allergy, need an afternoon rest each day, prefer hotels with fewer stairs",
       "checkoutOpened": {
         "headline": "Checkout opened in a new tab",
         "subtitle": "Once payment completes, your plan will arrive by email (typically 2–5 min).",

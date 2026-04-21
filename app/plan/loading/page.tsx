@@ -33,8 +33,20 @@ interface WizardData {
   interests?: Interest[];
   pace?: Pace;
   email?: string;
+  /** Free-form extras the user adds at review — allergies, special requests, etc. */
+  notes?: string;
   promoCode?: string;
 }
+
+type EditableField =
+  | "destination"
+  | "durationDays"
+  | "travelerType"
+  | "travelStyle"
+  | "budgetTier"
+  | "interests"
+  | "mustVisit"
+  | "email";
 
 declare global {
   interface Window {
@@ -92,6 +104,7 @@ function LoadingInner() {
   const [reviewReady, setReviewReady] = useState(false);
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [popupBlocked, setPopupBlocked] = useState(false);
+  const [editingField, setEditingField] = useState<EditableField | null>(null);
 
   // Bail if user landed here without a destination
   useEffect(() => {
@@ -170,6 +183,7 @@ function LoadingInner() {
         budgetTier: data.budgetTier,
         pace: data.pace,
         email: data.email,
+        notes: data.notes,
         promoCode: data.promoCode,
       };
 
@@ -257,16 +271,195 @@ function LoadingInner() {
             </p>
           </div>
 
-          {/* Summary card */}
-          <div className="bg-white border border-[var(--border-light)] rounded-[14px] p-6 mb-8 space-y-3">
-            <SummaryRow label={tr("summaryDestination")} value={`${data.destination}, ${data.destinationCountry}`} />
-            <SummaryRow label={tr("summaryDuration")} value={`${data.durationDays}${th("days.unit")}`} />
-            {traveler && <SummaryRow label={tr("summaryTraveler")} value={traveler + (data.adults && data.adults > 2 ? ` · ${data.adults}` : "")} />}
-            {style && <SummaryRow label={tr("summaryStyle")} value={style} />}
-            <SummaryRow label={tr("summaryBudget")} value={budget} />
-            {interestLabels && <SummaryRow label={tr("summaryInterests")} value={interestLabels} />}
-            {data.mustVisit && <SummaryRow label={tr("summaryMustVisit")} value={data.mustVisit} />}
-            {data.email && <SummaryRow label={tr("summaryEmail")} value={data.email} />}
+          {/* Editable summary */}
+          <div className="bg-white border border-[var(--border-light)] rounded-[14px] p-5 sm:p-6 mb-6 divide-y divide-[var(--border-subtle)]">
+            <EditableRow
+              label={tr("summaryDestination")}
+              value={`${data.destination}, ${data.destinationCountry}`}
+              editing={editingField === "destination"}
+              onEdit={() => setEditingField("destination")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <DestinationEditor
+                initialDest={data.destination}
+                initialCountry={data.destinationCountry}
+                onSave={(dest, country) => {
+                  setData((p) => ({ ...p, destination: dest, destinationCountry: country || dest }));
+                  setEditingField(null);
+                }}
+                saveLabel={tr("save")}
+              />
+            </EditableRow>
+
+            <EditableRow
+              label={tr("summaryDuration")}
+              value={`${data.durationDays}${th("days.unit")}`}
+              editing={editingField === "durationDays"}
+              onEdit={() => setEditingField("durationDays")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <DaysEditor
+                initial={data.durationDays}
+                onSave={(n) => {
+                  setData((p) => ({ ...p, durationDays: n }));
+                  setEditingField(null);
+                }}
+                saveLabel={tr("save")}
+                unitLabel={th("days.unit")}
+              />
+            </EditableRow>
+
+            {traveler && (
+              <EditableRow
+                label={tr("summaryTraveler")}
+                value={traveler + (data.adults && data.adults > 2 ? ` · ${data.adults}` : "")}
+                editing={editingField === "travelerType"}
+                onEdit={() => setEditingField("travelerType")}
+                onCancel={() => setEditingField(null)}
+                editLabel={tr("edit")}
+                cancelLabel={tr("cancel")}
+              >
+                <TravelerEditor
+                  initial={data.travelerType}
+                  onSave={(t) => {
+                    const adults = t === "solo" ? 1 : t === "couple" ? 2 : data.adults;
+                    setData((p) => ({ ...p, travelerType: t, adults }));
+                    setEditingField(null);
+                  }}
+                  tp={tp}
+                />
+              </EditableRow>
+            )}
+
+            {style && (
+              <EditableRow
+                label={tr("summaryStyle")}
+                value={style}
+                editing={editingField === "travelStyle"}
+                onEdit={() => setEditingField("travelStyle")}
+                onCancel={() => setEditingField(null)}
+                editLabel={tr("edit")}
+                cancelLabel={tr("cancel")}
+              >
+                <StyleEditor
+                  initial={data.travelStyle}
+                  onSave={(s) => {
+                    setData((p) => ({ ...p, travelStyle: s }));
+                    setEditingField(null);
+                  }}
+                  th={th}
+                />
+              </EditableRow>
+            )}
+
+            <EditableRow
+              label={tr("summaryBudget")}
+              value={budget}
+              editing={editingField === "budgetTier"}
+              onEdit={() => setEditingField("budgetTier")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <BudgetEditor
+                initial={data.budgetTier}
+                onSave={(b) => {
+                  setData((p) => ({ ...p, budgetTier: b }));
+                  setEditingField(null);
+                }}
+                th={th}
+              />
+            </EditableRow>
+
+            {interestLabels && (
+              <EditableRow
+                label={tr("summaryInterests")}
+                value={interestLabels}
+                editing={editingField === "interests"}
+                onEdit={() => setEditingField("interests")}
+                onCancel={() => setEditingField(null)}
+                editLabel={tr("edit")}
+                cancelLabel={tr("cancel")}
+              >
+                <InterestsEditor
+                  initial={data.interests ?? []}
+                  onSave={(arr) => {
+                    setData((p) => ({ ...p, interests: arr }));
+                    setEditingField(null);
+                  }}
+                  tp={tp}
+                  saveLabel={tr("save")}
+                />
+              </EditableRow>
+            )}
+
+            <EditableRow
+              label={tr("summaryMustVisit")}
+              value={data.mustVisit || tr("mustVisitEmpty")}
+              valueMuted={!data.mustVisit}
+              editing={editingField === "mustVisit"}
+              onEdit={() => setEditingField("mustVisit")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <MustVisitEditor
+                initial={data.mustVisit ?? ""}
+                onSave={(v) => {
+                  setData((p) => ({ ...p, mustVisit: v.trim() || undefined }));
+                  setEditingField(null);
+                }}
+                saveLabel={tr("save")}
+                placeholder={th("mustVisit.placeholder")}
+              />
+            </EditableRow>
+
+            {data.email && (
+              <EditableRow
+                label={tr("summaryEmail")}
+                value={data.email}
+                editing={editingField === "email"}
+                onEdit={() => setEditingField("email")}
+                onCancel={() => setEditingField(null)}
+                editLabel={tr("edit")}
+                cancelLabel={tr("cancel")}
+              >
+                <EmailEditor
+                  initial={data.email}
+                  onSave={(v) => {
+                    setData((p) => ({ ...p, email: v }));
+                    setEditingField(null);
+                  }}
+                  saveLabel={tr("save")}
+                />
+              </EditableRow>
+            )}
+          </div>
+
+          {/* Extra notes field */}
+          <div className="bg-white border border-[var(--border-light)] rounded-[14px] p-5 sm:p-6 mb-6">
+            <label className="block">
+              <span className="block font-semibold text-body-md text-[var(--text-primary)] mb-1">
+                {tr("notesLabel")}
+              </span>
+              <span className="block text-body-sm text-[var(--text-secondary)] mb-3">
+                {tr("notesSubtitle")}
+              </span>
+              <textarea
+                value={data.notes ?? ""}
+                onChange={(e) =>
+                  setData((p) => ({ ...p, notes: e.target.value || undefined }))
+                }
+                placeholder={tr("notesPlaceholder")}
+                rows={3}
+                maxLength={1000}
+                className="w-full px-4 py-3 bg-[var(--surface-secondary)] border border-[var(--border-subtle)] rounded-[10px] text-body-md text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 resize-none transition"
+              />
+            </label>
           </div>
 
           {/* Checkout opened confirmation */}
@@ -391,13 +584,370 @@ function LoadingInner() {
   );
 }
 
-function SummaryRow({ label, value }: { label: string; value: string }) {
+// ─────────────────────────────────────────
+// Editable review row + field-specific editors
+// ─────────────────────────────────────────
+
+function EditableRow({
+  label,
+  value,
+  valueMuted,
+  editing,
+  onEdit,
+  onCancel,
+  editLabel,
+  cancelLabel,
+  children,
+}: {
+  label: string;
+  value: string;
+  valueMuted?: boolean;
+  editing: boolean;
+  onEdit: () => void;
+  onCancel: () => void;
+  editLabel: string;
+  cancelLabel: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="flex gap-3 text-body-sm">
-      <span className="shrink-0 w-20 sm:w-28 text-[var(--text-muted)] uppercase tracking-[0.1em] text-caption pt-0.5">
-        {label}
-      </span>
-      <span className="flex-1 text-[var(--text-primary)]">{value}</span>
+    <div className="py-3 first:pt-0 last:pb-0">
+      <div className="flex items-start gap-3">
+        <span className="shrink-0 w-20 sm:w-28 pt-0.5 text-caption uppercase tracking-[0.1em] text-[var(--text-muted)]">
+          {label}
+        </span>
+        <div className="flex-1 min-w-0">
+          {editing ? (
+            <div>{children}</div>
+          ) : (
+            <div className="flex items-center justify-between gap-3">
+              <span
+                className={`text-body-sm break-words ${
+                  valueMuted ? "text-[var(--text-muted)] italic" : "text-[var(--text-primary)]"
+                }`}
+              >
+                {value}
+              </span>
+              <button
+                type="button"
+                onClick={onEdit}
+                className="shrink-0 text-body-sm text-[var(--brand-primary)] hover:underline underline-offset-4"
+              >
+                {editLabel}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      {editing && (
+        <div className="mt-2 flex justify-end">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="text-body-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] underline-offset-4"
+          >
+            {cancelLabel}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SaveButton({ onClick, disabled, label }: { onClick: () => void; disabled?: boolean; label: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className="mt-2 px-4 py-2 bg-[#1A1A1A] text-white text-body-sm font-medium rounded-md hover:bg-black transition disabled:opacity-30"
+    >
+      {label}
+    </button>
+  );
+}
+
+function DestinationEditor({
+  initialDest,
+  initialCountry,
+  onSave,
+  saveLabel,
+}: {
+  initialDest: string;
+  initialCountry: string;
+  onSave: (dest: string, country: string) => void;
+  saveLabel: string;
+}) {
+  const [dest, setDest] = useState(initialDest);
+  const [country, setCountry] = useState(initialCountry);
+  return (
+    <div className="space-y-2">
+      <input
+        type="text"
+        value={dest}
+        onChange={(e) => setDest(e.target.value)}
+        className="w-full px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+      />
+      <input
+        type="text"
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+        className="w-full px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+      />
+      <SaveButton onClick={() => onSave(dest.trim(), country.trim())} disabled={!dest.trim()} label={saveLabel} />
+    </div>
+  );
+}
+
+const DAY_CHOICES = [2, 3, 4, 5, 7, 10, 14];
+
+function DaysEditor({
+  initial,
+  onSave,
+  saveLabel,
+  unitLabel,
+}: {
+  initial: number;
+  onSave: (n: number) => void;
+  saveLabel: string;
+  unitLabel: string;
+}) {
+  const [v, setV] = useState(initial);
+  return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap gap-2">
+        {DAY_CHOICES.map((n) => (
+          <button
+            key={n}
+            type="button"
+            onClick={() => setV(n)}
+            className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+              v === n
+                ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+                : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+            }`}
+          >
+            {n}
+            {unitLabel}
+          </button>
+        ))}
+      </div>
+      <input
+        type="number"
+        min={1}
+        max={30}
+        value={v}
+        onChange={(e) => {
+          const n = parseInt(e.target.value, 10);
+          if (!isNaN(n) && n >= 1 && n <= 30) setV(n);
+        }}
+        className="w-24 px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+      />
+      <div>
+        <SaveButton onClick={() => onSave(v)} label={saveLabel} />
+      </div>
+    </div>
+  );
+}
+
+function TravelerEditor({
+  initial,
+  onSave,
+  tp,
+}: {
+  initial: TravelerType | undefined;
+  onSave: (t: TravelerType) => void;
+  tp: (key: string) => string;
+}) {
+  const items: { v: TravelerType; k: string }[] = [
+    { v: "solo", k: "solo" },
+    { v: "couple", k: "couple" },
+    { v: "family-with-kids", k: "family" },
+    { v: "group-of-friends", k: "friends" },
+    { v: "senior", k: "senior" },
+  ];
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((it) => (
+        <button
+          key={it.v}
+          type="button"
+          onClick={() => onSave(it.v)}
+          className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+            initial === it.v
+              ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+              : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+          }`}
+        >
+          {tp(`travelerType.${it.k}`)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function StyleEditor({
+  initial,
+  onSave,
+  th,
+}: {
+  initial: TravelStyle | undefined;
+  onSave: (s: TravelStyle) => void;
+  th: (key: string) => string;
+}) {
+  const items: TravelStyle[] = ["sightseeing", "relaxation", "mixed"];
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((s) => (
+        <button
+          key={s}
+          type="button"
+          onClick={() => onSave(s)}
+          className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+            initial === s
+              ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+              : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+          }`}
+        >
+          {th(`travelStyle.${s}`)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function BudgetEditor({
+  initial,
+  onSave,
+  th,
+}: {
+  initial: BudgetTier;
+  onSave: (b: BudgetTier) => void;
+  th: (key: string) => string;
+}) {
+  const items: BudgetTier[] = ["budget", "midrange", "luxury"];
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((b) => (
+        <button
+          key={b}
+          type="button"
+          onClick={() => onSave(b)}
+          className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+            initial === b
+              ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+              : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+          }`}
+        >
+          {th(`budget.${b}`)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+const INTEREST_OPTIONS: Interest[] = [
+  "food",
+  "culture",
+  "history",
+  "nature",
+  "shopping",
+  "nightlife",
+  "adventure",
+  "relaxation",
+  "photography",
+];
+
+function InterestsEditor({
+  initial,
+  onSave,
+  tp,
+  saveLabel,
+}: {
+  initial: Interest[];
+  onSave: (arr: Interest[]) => void;
+  tp: (key: string) => string;
+  saveLabel: string;
+}) {
+  const [selected, setSelected] = useState<Interest[]>(initial);
+  const toggle = (i: Interest) => {
+    setSelected((prev) =>
+      prev.includes(i) ? prev.filter((x) => x !== i) : prev.length < 6 ? [...prev, i] : prev
+    );
+  };
+  return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap gap-2">
+        {INTEREST_OPTIONS.map((i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => toggle(i)}
+            className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+              selected.includes(i)
+                ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+                : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+            }`}
+          >
+            {tp(`interests.${i}`)}
+          </button>
+        ))}
+      </div>
+      <SaveButton
+        onClick={() => onSave(selected)}
+        disabled={selected.length === 0}
+        label={saveLabel}
+      />
+    </div>
+  );
+}
+
+function MustVisitEditor({
+  initial,
+  onSave,
+  saveLabel,
+  placeholder,
+}: {
+  initial: string;
+  onSave: (v: string) => void;
+  saveLabel: string;
+  placeholder: string;
+}) {
+  const [v, setV] = useState(initial);
+  return (
+    <div className="space-y-2">
+      <textarea
+        value={v}
+        onChange={(e) => setV(e.target.value)}
+        placeholder={placeholder}
+        rows={3}
+        maxLength={500}
+        className="w-full px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 resize-none"
+      />
+      <SaveButton onClick={() => onSave(v)} label={saveLabel} />
+    </div>
+  );
+}
+
+function EmailEditor({
+  initial,
+  onSave,
+  saveLabel,
+}: {
+  initial: string;
+  onSave: (v: string) => void;
+  saveLabel: string;
+}) {
+  const [v, setV] = useState(initial);
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  return (
+    <div className="space-y-2">
+      <input
+        type="email"
+        value={v}
+        onChange={(e) => setV(e.target.value)}
+        className="w-full px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+      />
+      <SaveButton onClick={() => onSave(v)} disabled={!valid} label={saveLabel} />
     </div>
   );
 }

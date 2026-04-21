@@ -118,6 +118,13 @@
       "sampleButton": "먼저 샘플 보기",
       "newTabNote": "결제는 새 창에서 열려요 · 지금 창은 그대로 두셔도 돼요",
       "startOver": "처음부터 다시 시작",
+      "edit": "변경",
+      "cancel": "취소",
+      "save": "저장",
+      "mustVisitEmpty": "추가한 곳 없음",
+      "notesLabel": "추가로 알려주실 내용 있으세요?",
+      "notesSubtitle": "알러지, 특별한 요청, 피하고 싶은 것 등 자유롭게 적어주세요",
+      "notesPlaceholder": "예: 해산물 알러지 있어요, 낮잠 시간 필요, 계단 적은 호텔로 부탁드려요",
       "checkoutOpened": {
         "headline": "결제 창을 열었어요",
         "subtitle": "결제가 완료되면 입력하신 이메일로 플랜을 보내드립니다 (보통 2~5분).",

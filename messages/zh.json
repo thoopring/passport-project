@@ -111,6 +111,13 @@
       "sampleButton": "先看看示例",
       "newTabNote": "支付将在新标签页打开 · 请保留当前标签页",
       "startOver": "重新开始",
+      "edit": "修改",
+      "cancel": "取消",
+      "save": "保存",
+      "mustVisitEmpty": "未添加",
+      "notesLabel": "还有什么要告诉我们的吗?",
+      "notesSubtitle": "过敏、特殊要求、想避开的东西等,请自由填写",
+      "notesPlaceholder": "例如:海鲜过敏、每天需要午休时间、希望选择楼梯少的酒店",
       "checkoutOpened": {
         "headline": "已打开支付标签页",
         "subtitle": "付款完成后,您的行程将通过邮件发送(通常 2–5 分钟)。",
