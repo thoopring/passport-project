@@ -85,9 +85,9 @@ const config: Config = {
         "4xl": "1.25rem",
       },
       boxShadow: {
-        "soft": "0 1px 2px rgba(42,24,46,0.05)",
-        "card": "0 2px 12px -4px rgba(42,24,46,0.08)",
-        "elevated": "0 12px 32px -12px rgba(42,24,46,0.14)",
+        "soft": "0 1px 2px rgba(10,10,10,0.04)",
+        "card": "0 2px 12px -4px rgba(10,10,10,0.06)",
+        "elevated": "0 12px 32px -12px rgba(10,10,10,0.10)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

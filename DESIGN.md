@@ -47,21 +47,24 @@
 
 ## Color
 
-Extracted directly from layla.ai HTML inspection on 2026-04-21.
+Extracted from layla.ai HTML inspection on 2026-04-21, then corrected after
+direct screenshot comparison revealed `#EAE8EA` was an element color (card/
+footer), not the page background.
 
 - **Approach:** Restrained. One mauve accent. Photography supplies color variety.
-- **Paper (background):** `#EAE8EA` — warm off-white / light gray. Layla's exact
-  background color. NOT cream, NOT pure white.
-- **Surface (cards):** `#FFFFFF` — white as a material, not the default.
-- **Surface secondary:** `#F4F4F4` — subtle tonal shift for nested surfaces.
-- **Ink (primary text):** `#2A182E` — **deep aubergine**. This is the signature
-  color. It's not black; it's a deep violet-brown. Layla's exact text color.
-- **Ink muted:** `#6B5E6F` — muted aubergine for secondary text and hairlines.
-- **Text muted (weakest):** `#9690A0` — captions, tertiary labels.
-- **Mauve (primary accent):** `#815652` — dusty rose / mauve, Layla's exact button
+- **Background:** `#FFFFFF` — pure white. Layla's actual page background.
+- **Surface secondary:** `#FAF9FA` — subtle warm-tinted off-white for nested surfaces.
+- **Ink (primary text):** `#0A0A0A` — near-black. Layla's text reads as pure
+  black in side-by-side comparison; aubergine was an earlier misread.
+- **Ink secondary:** `#525252` — muted gray for supporting text.
+- **Text muted (weakest):** `#9A9A9A` — captions, tertiary labels.
+- **Mauve (primary accent):** `#815652` — dusty rose / mauve, Layla's button
   and link accent. Used sparingly — 1–2 times per view.
-- **Border light:** `#DDDADE`
-- **Border subtle:** `#E4E0E4`
+- **Lavender soft:** `#EFE6FF` — for subtle backgrounds / focus states
+  (Layla's suggestion pill background family).
+- **Lavender:** `#CDB3FF` — for stronger emphasis (Layla's pill hover / active).
+- **Border light:** `#E8E4EA`
+- **Border subtle:** `#F2EFF3`
 - **Dark mode:** Not supported in v1.
 
 ## Spacing
@@ -115,6 +118,9 @@ Extracted directly from layla.ai HTML inspection on 2026-04-21.
 
 | Date | Decision | Rationale |
 |---|---|---|
-| 2026-04-21 | **Layla-exact palette via direct HTML extraction** | After 3 aesthetic rounds (cream+serif, white+cobalt, cream+serif+photos), user asked to MATCH Layla literally. Extracted `#EAE8EA` bg, `#2A182E` ink, `#815652` accent directly from layla.ai HTML source. |
+| 2026-04-21 | **Layla-exact palette via direct HTML extraction** | After 3 aesthetic rounds (cream+serif, white+cobalt, cream+serif+photos), user asked to MATCH Layla literally. Extracted palette + fonts directly from layla.ai HTML source. |
 | 2026-04-21 | **Bricolage Grotesque replaces Instrument Serif** | Discovered Layla uses FigGrotesk (sans), not serif. Earlier screenshot read-through was wrong. Bricolage Grotesque is closest OSS match on Google Fonts. |
-| 2026-04-21 | Keep photography as core ingredient | This was validated in P15 and Layla confirms — photos are non-negotiable for this aesthetic to work. |
+| 2026-04-21 | **Correction: bg = white, ink = near-black** | User provided side-by-side screenshot (`public/vs.png`). Revealed `#EAE8EA` was an element color, not the page bg; text was near-black, not aubergine. Corrected in P17. |
+| 2026-04-21 | **Correction: hero = left-text / right-photo grid** | Layla's side-by-side composition was missed. P17 home now uses `grid lg:grid-cols-[1.15fr_1fr]` with photo sticky on desktop, stacked on mobile. |
+| 2026-04-21 | Chat-style natural language input deferred to v1.1 | Layla uses a single free-text input instead of 3 separate form fields. Requires backend AI parsing. Kept 3-field wizard for launch. |
+| 2026-04-21 | Keep photography as core ingredient | Validated across P15, P16, P17 — photos are non-negotiable for this aesthetic. |

@@ -2,20 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Design Tokens — Layla-exact (warm off-white + aubergine + mauve) ========== */
+/* ========== Design Tokens — Layla-exact pass 2 (white bg + near-black ink + mauve CTA) ========== */
 :root {
-  --background: #EAE8EA;
-  --foreground: #2A182E;
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
   --surface-primary: #FFFFFF;
-  --surface-secondary: #F4F4F4;
-  --border-light: #DDDADE;
-  --border-subtle: #E4E0E4;
-  --text-primary: #2A182E;
-  --text-secondary: #6B5E6F;
-  --text-muted: #9690A0;
+  --surface-secondary: #FAF9FA;
+  --border-light: #E8E4EA;
+  --border-subtle: #F2EFF3;
+  --text-primary: #0A0A0A;
+  --text-secondary: #525252;
+  --text-muted: #9A9A9A;
   --brand-primary: #815652;
   --brand-dark: #543734;
   --accent-primary: #815652;
+  --lavender-soft: #EFE6FF;
+  --lavender: #CDB3FF;
 }
 
 /* ========== Base ========== */
@@ -30,7 +32,7 @@ body {
 /* ========== Scrollbar ========== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #C3BFC7; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #D4D4D4; border-radius: 3px; }
 
 /* ========== Selection ========== */
 ::selection {
@@ -46,12 +48,12 @@ body {
 }
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -14px rgba(42,24,46,0.16);
+  box-shadow: 0 14px 28px -14px rgba(10,10,10,0.12);
 }
 
 /* ========== Shimmer Loading ========== */
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(42,24,46,0.06) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(10,10,10,0.05) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
