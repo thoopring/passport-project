@@ -8,11 +8,13 @@ import { flattenStops, computeBounds } from "../lib/map";
 
 interface PlanMapProps {
   plan: TripPlan;
+  /** Optional fixed height in px. Defaults to 500. */
+  height?: number;
 }
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
 
-export default function PlanMap({ plan }: PlanMapProps) {
+export default function PlanMap({ plan, height = 500 }: PlanMapProps) {
   const flat = useMemo(() => flattenStops(plan), [plan]);
   const bounds = useMemo(() => computeBounds(plan), [plan]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -55,7 +57,7 @@ export default function PlanMap({ plan }: PlanMapProps) {
   }
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-[var(--border-light)]" style={{ height: 500 }}>
+    <div className="rounded-[12px] overflow-hidden border border-[var(--border-light)]" style={{ height }}>
       <Map
         mapboxAccessToken={TOKEN}
         initialViewState={initialViewState}
@@ -67,9 +69,9 @@ export default function PlanMap({ plan }: PlanMapProps) {
             id="route-line"
             type="line"
             paint={{
-              "line-color": "#1a4d2e",
+              "line-color": "#815652",
               "line-width": 3,
-              "line-opacity": 0.6,
+              "line-opacity": 0.7,
             }}
           />
         </Source>

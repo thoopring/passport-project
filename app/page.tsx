@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ChatHeroInput from "../components/ChatHeroInput";
+import PlanMap from "../components/PlanMap";
 import { SAMPLE_PLANS, HOME_HERO_IMAGE, getSample } from "../lib/samples";
 
 export const metadata: Metadata = {
@@ -131,6 +132,14 @@ export default function Home() {
               <p className="text-body-md text-[var(--text-primary)] leading-relaxed">
                 {tokyo.plan.overview}
               </p>
+            </div>
+
+            {/* Live Tokyo route map — numbered stops */}
+            <div className="mb-4">
+              <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-3">
+                Your route, mapped
+              </p>
+              <PlanMap plan={tokyo.plan} height={360} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-4 mb-4">
