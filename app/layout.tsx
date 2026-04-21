@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
@@ -14,10 +14,9 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
-const instrumentSerif = Instrument_Serif({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-display",
 });
@@ -49,11 +48,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Passport Power Team", url: SITE_URL }],
   creator: "Passport Power",
   publisher: "Passport Power",
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/icon.png",
-  },
+  icons: { icon: "/icon.png", shortcut: "/icon.png", apple: "/icon.png" },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -88,9 +83,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "R31CCusp43HzLDTuTSiA9NnWNWi4KI2wGd4fKTEnF6I",
-  },
+  verification: { google: "R31CCusp43HzLDTuTSiA9NnWNWi4KI2wGd4fKTEnF6I" },
   other: { "agd-partner-manual-verification": "" },
 };
 
@@ -124,7 +117,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${instrumentSerif.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${bricolage.variable}`}>
       <head>
         <script
           type="application/ld+json"

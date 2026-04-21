@@ -24,10 +24,8 @@ export default function Home() {
       <section className="pt-16 sm:pt-20 pb-10 px-4">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-10">
-            <h1 className="font-display text-[2.75rem] sm:text-[3.75rem] text-[var(--text-primary)] leading-[1.02] tracking-[-0.02em] mb-5">
-              Your trip,
-              <br />
-              <em className="italic">planned in minutes.</em>
+            <h1 className="font-display font-semibold text-[2.75rem] sm:text-[3.75rem] text-[var(--text-primary)] leading-[1.02] tracking-[-0.025em] mb-5">
+              Your trip. Planned in minutes.
             </h1>
             <p className="text-body-lg text-[var(--text-secondary)] max-w-md mx-auto">
               Tell us your destination and budget. We design a day-by-day trip for you —

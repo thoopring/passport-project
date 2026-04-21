@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Design Tokens — Layla-lean warm editorial ========== */
+/* ========== Design Tokens — Layla-exact (warm off-white + aubergine + mauve) ========== */
 :root {
-  --background: #F5EFE4;
-  --foreground: #141517;
+  --background: #EAE8EA;
+  --foreground: #2A182E;
   --surface-primary: #FFFFFF;
-  --surface-secondary: #F9F4EB;
-  --border-light: #E5DFD4;
-  --border-subtle: #EEE8DC;
-  --text-primary: #141517;
-  --text-secondary: #6E6B64;
-  --text-muted: #9B978D;
-  --brand-primary: #D4442B;
-  --brand-dark: #92291A;
-  --accent-primary: #D4442B;
+  --surface-secondary: #F4F4F4;
+  --border-light: #DDDADE;
+  --border-subtle: #E4E0E4;
+  --text-primary: #2A182E;
+  --text-secondary: #6B5E6F;
+  --text-muted: #9690A0;
+  --brand-primary: #815652;
+  --brand-dark: #543734;
+  --accent-primary: #815652;
 }
 
 /* ========== Base ========== */
@@ -30,11 +30,11 @@ body {
 /* ========== Scrollbar ========== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #CEC7B8; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #C3BFC7; border-radius: 3px; }
 
 /* ========== Selection ========== */
 ::selection {
-  background: rgba(212, 68, 43, 0.20);
+  background: rgba(129, 86, 82, 0.20);
   color: inherit;
 }
 
@@ -46,12 +46,12 @@ body {
 }
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -14px rgba(20,21,23,0.14);
+  box-shadow: 0 14px 28px -14px rgba(42,24,46,0.16);
 }
 
 /* ========== Shimmer Loading ========== */
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(20,21,23,0.06) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(42,24,46,0.06) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
@@ -60,18 +60,13 @@ body {
 .prose h1,
 .prose h2,
 .prose h3 {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-family: var(--font-display), Inter, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  color: var(--text-primary);
 }
 .prose a {
   color: var(--brand-primary);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-}
-
-/* ========== Serif display helper ========== */
-.serif {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
 }
