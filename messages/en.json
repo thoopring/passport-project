@@ -94,6 +94,30 @@
       "budgetLuxuryHint": "5-star, fine dining",
       "submit": "Plan my trip — $4"
     },
+    "review": {
+      "badge": "Ready to go",
+      "headline": "Your perfect {destination} plan, about to be built",
+      "subtitle": "Based on your answers we'll build the hotel, route, restaurants, and map — all in one. You'll receive it by email 2–5 minutes after checkout.",
+      "summaryDestination": "Destination",
+      "summaryDuration": "Duration",
+      "summaryTraveler": "Travelers",
+      "summaryStyle": "Style",
+      "summaryBudget": "Budget",
+      "summaryInterests": "Interests",
+      "summaryMustVisit": "Must visit",
+      "summaryEmail": "Email",
+      "payButton": "Build my plan · $4",
+      "payAgainButton": "Retry checkout",
+      "sampleButton": "See a sample first",
+      "newTabNote": "Checkout opens in a new tab — keep this tab open",
+      "startOver": "Start over",
+      "checkoutOpened": {
+        "headline": "Checkout opened in a new tab",
+        "subtitle": "Once payment completes, your plan will arrive by email (typically 2–5 min).",
+        "noPopup": "New tab didn't open?",
+        "openAgain": "Open manually"
+      }
+    },
     "loading": {
       "badge": "AI is analyzing your trip",
       "headline": "Building your {destination} plan",

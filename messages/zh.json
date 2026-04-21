@@ -94,6 +94,30 @@
       "budgetLuxuryHint": "五星酒店、精致餐饮",
       "submit": "规划我的旅行 — $4"
     },
+    "review": {
+      "badge": "准备就绪",
+      "headline": "{destination} 的完美行程,即将为您打造",
+      "subtitle": "根据您提供的信息,酒店·路线·餐厅·地图一次搞定。付款后 2–5 分钟内通过邮件发送。",
+      "summaryDestination": "目的地",
+      "summaryDuration": "天数",
+      "summaryTraveler": "同行",
+      "summaryStyle": "风格",
+      "summaryBudget": "预算",
+      "summaryInterests": "兴趣",
+      "summaryMustVisit": "必去地点",
+      "summaryEmail": "邮箱",
+      "payButton": "生成行程 · $4",
+      "payAgainButton": "重新支付",
+      "sampleButton": "先看看示例",
+      "newTabNote": "支付将在新标签页打开 · 请保留当前标签页",
+      "startOver": "重新开始",
+      "checkoutOpened": {
+        "headline": "已打开支付标签页",
+        "subtitle": "付款完成后,您的行程将通过邮件发送(通常 2–5 分钟)。",
+        "noPopup": "新标签页未打开?",
+        "openAgain": "手动打开"
+      }
+    },
     "loading": {
       "badge": "AI 正在分析您的旅行",
       "headline": "正在生成您的{destination}行程",

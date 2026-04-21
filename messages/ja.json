@@ -94,6 +94,30 @@
       "budgetLuxuryHint": "5つ星、ファインダイニング",
       "submit": "旅の計画を作る — $4"
     },
+    "review": {
+      "badge": "準備完了",
+      "headline": "{destination} 完璧な旅の計画を、今から作ります",
+      "subtitle": "いただいた情報でホテル・ルート・レストラン・地図まで全部。お支払い後、2〜5分でメールにお届けします。",
+      "summaryDestination": "目的地",
+      "summaryDuration": "期間",
+      "summaryTraveler": "同行者",
+      "summaryStyle": "スタイル",
+      "summaryBudget": "予算",
+      "summaryInterests": "興味",
+      "summaryMustVisit": "絶対行きたい場所",
+      "summaryEmail": "メール",
+      "payButton": "プランを作る · $4",
+      "payAgainButton": "支払いを再試行",
+      "sampleButton": "まずサンプルを見る",
+      "newTabNote": "支払いは新しいタブで開きます · このタブはそのままで大丈夫",
+      "startOver": "最初からやり直す",
+      "checkoutOpened": {
+        "headline": "支払いタブを開きました",
+        "subtitle": "支払いが完了すると、ご登録のメールにプランが届きます(通常2〜5分)。",
+        "noPopup": "新しいタブが開きませんでしたか?",
+        "openAgain": "手動で開く"
+      }
+    },
     "loading": {
       "badge": "AIがあなたの旅を分析中",
       "headline": "{destination}の旅程を作成中",

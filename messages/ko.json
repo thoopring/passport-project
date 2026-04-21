@@ -95,11 +95,35 @@
       "submit": "내 여행 계획하기 — $4"
     },
     "loading": {
-      "badge": "AI가 여행을 분석 중입니다",
+      "badge": "여행 정보 분석 중",
       "headline": "{destination} 일정을 만들고 있어요",
-      "subtitle": "수천 개의 데이터를 교차 분석하고 있습니다. 기다리시는 동안 몇 가지 질문에 답해주시면 더 정확하게 맞춤 제작해 드릴 수 있어요.",
+      "subtitle": "수천 개의 데이터를 교차 분석하고 있어요. 기다리시는 동안 몇 가지 질문에 답해주시면 더 정확하게 맞춤 제작해드립니다.",
       "redirecting": "안전한 결제 페이지로 이동 중…",
       "startOver": "처음부터 다시"
+    },
+    "review": {
+      "badge": "준비 완료",
+      "headline": "{destination} 완벽한 여행 계획, 지금 만들어드릴게요",
+      "subtitle": "답변해주신 정보로 호텔·루트·식당·지도까지 한 번에 만들어드립니다. 결제하시면 2~5분 내 이메일로 받으실 수 있어요.",
+      "summaryDestination": "목적지",
+      "summaryDuration": "기간",
+      "summaryTraveler": "동행",
+      "summaryStyle": "스타일",
+      "summaryBudget": "예산",
+      "summaryInterests": "관심사",
+      "summaryMustVisit": "꼭 가고 싶은 곳",
+      "summaryEmail": "이메일",
+      "payButton": "플랜 만들기 · $4",
+      "payAgainButton": "결제 다시 시도",
+      "sampleButton": "먼저 샘플 보기",
+      "newTabNote": "결제는 새 창에서 열려요 · 지금 창은 그대로 두셔도 돼요",
+      "startOver": "처음부터 다시 시작",
+      "checkoutOpened": {
+        "headline": "결제 창을 열었어요",
+        "subtitle": "결제가 완료되면 입력하신 이메일로 플랜을 보내드립니다 (보통 2~5분).",
+        "noPopup": "새 창이 안 열렸나요?",
+        "openAgain": "직접 열기"
+      }
     },
     "popup": {
       "travelerType": {

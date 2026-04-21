@@ -47,6 +47,8 @@ function LoadingInner() {
   const searchParams = useSearchParams();
   const t = useTranslations("wizard.loading");
   const tp = useTranslations("wizard.popup");
+  const tr = useTranslations("wizard.review");
+  const th = useTranslations("homeWizard");
 
   const [data, setData] = useState<WizardData>(() => {
     const rawTravelerType = searchParams.get("travelerType");
@@ -86,6 +88,10 @@ function LoadingInner() {
   const [activeQuestion, setActiveQuestion] = useState<QuestionDef | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Review screen gate: shown after popups complete, before checkout call.
+  const [reviewReady, setReviewReady] = useState(false);
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [popupBlocked, setPopupBlocked] = useState(false);
 
   // Bail if user landed here without a destination
   useEffect(() => {
@@ -121,49 +127,50 @@ function LoadingInner() {
     setQuestionIndex(newIndex);
 
     if (newIndex >= newQueue.length) {
-      // Brief "finalizing" pause then submit
-      setTimeout(() => void doSubmit(newData), 1800);
+      // All popups answered — show review screen (no longer auto-submits).
+      setTimeout(() => setReviewReady(true), 1500);
     }
   };
 
   const handleSkip = () => handleAnswer(null);
 
-  const doSubmit = async (finalData: WizardData) => {
+  const handlePay = async () => {
+    if (submitting) return;
     setSubmitting(true);
     setError(null);
+    setPopupBlocked(false);
     try {
-      // Validate required fields
       if (
-        !finalData.travelerType ||
-        !finalData.adults ||
-        !finalData.arrivalAirport ||
-        !finalData.interests?.length ||
-        !finalData.pace ||
-        !finalData.email
+        !data.travelerType ||
+        !data.adults ||
+        !data.arrivalAirport ||
+        !data.interests?.length ||
+        !data.pace ||
+        !data.email
       ) {
         throw new Error("Some answers are missing — please refresh and try again.");
       }
 
       const payload = {
-        destination: finalData.destination,
-        destinationCountry: finalData.destinationCountry || finalData.destination,
-        durationDays: finalData.durationDays,
-        arrivalAirport: finalData.arrivalAirport,
-        travelerType: finalData.travelerType,
-        travelStyle: finalData.travelStyle,
-        mustVisit: finalData.mustVisit,
-        adults: finalData.adults,
-        children: finalData.children ?? 0,
-        childrenAges: finalData.childrenAges,
-        strollerNeeded: finalData.strollerNeeded,
-        hasInfant: finalData.childrenAges?.some((a) => a <= 2),
-        hotelBooked: finalData.hotelBooked,
-        hotelName: finalData.hotelName,
-        interests: finalData.interests,
-        budgetTier: finalData.budgetTier,
-        pace: finalData.pace,
-        email: finalData.email,
-        promoCode: finalData.promoCode,
+        destination: data.destination,
+        destinationCountry: data.destinationCountry || data.destination,
+        durationDays: data.durationDays,
+        arrivalAirport: data.arrivalAirport,
+        travelerType: data.travelerType,
+        travelStyle: data.travelStyle,
+        mustVisit: data.mustVisit,
+        adults: data.adults,
+        children: data.children ?? 0,
+        childrenAges: data.childrenAges,
+        strollerNeeded: data.strollerNeeded,
+        hasInfant: data.childrenAges?.some((a) => a <= 2),
+        hotelBooked: data.hotelBooked,
+        hotelName: data.hotelName,
+        interests: data.interests,
+        budgetTier: data.budgetTier,
+        pace: data.pace,
+        email: data.email,
+        promoCode: data.promoCode,
       };
 
       const draftRes = await fetch("/api/plan/draft", {
@@ -180,7 +187,7 @@ function LoadingInner() {
       if (typeof window !== "undefined" && typeof window.gtag === "function") {
         window.gtag("event", "plan_draft_created", {
           event_category: "trip_planner",
-          event_label: finalData.destination,
+          event_label: data.destination,
         });
       }
 
@@ -203,26 +210,145 @@ function LoadingInner() {
         });
       }
 
-      window.location.href = url;
+      // Open checkout in a new tab. Keep the current page so the user has
+      // context (review summary + fallback link if the popup is blocked).
+      setCheckoutUrl(url);
+      const win = window.open(url, "_blank", "noopener,noreferrer");
+      if (!win) {
+        setPopupBlocked(true);
+      }
+      setSubmitting(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setSubmitting(false);
     }
   };
 
+  const handleSeeSample = () => {
+    window.open("/samples/tokyo-4d-couple", "_blank", "noopener,noreferrer");
+  };
+
   if (!data.destination) {
     return null; // redirect in flight
   }
 
+  // ──────────────── Review / Checkout screens ────────────────
+  if (reviewReady) {
+    const traveler = data.travelerType
+      ? tp(`travelerType.${travelerTypeShortKey(data.travelerType)}`)
+      : "";
+    const style = data.travelStyle ? th(`travelStyle.${data.travelStyle}`) : "";
+    const budget = th(`budget.${data.budgetTier}`);
+    const interestLabels =
+      data.interests?.map((i) => tp(`interests.${i}`)).join(" · ") ?? "";
+
+    return (
+      <div className="min-h-screen bg-[var(--background)] py-16 px-4 sm:px-6">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
+              {tr("badge")}
+            </p>
+            <h1 className="font-display font-bold text-display-lg text-[var(--text-primary)] leading-[1.05] mb-4 tracking-[-0.02em]">
+              {tr("headline", { destination: data.destination })}
+            </h1>
+            <p className="text-body-md text-[var(--text-secondary)] max-w-md mx-auto">
+              {tr("subtitle")}
+            </p>
+          </div>
+
+          {/* Summary card */}
+          <div className="bg-white border border-[var(--border-light)] rounded-[14px] p-6 mb-8 space-y-3">
+            <SummaryRow label={tr("summaryDestination")} value={`${data.destination}, ${data.destinationCountry}`} />
+            <SummaryRow label={tr("summaryDuration")} value={`${data.durationDays}${th("days.unit")}`} />
+            {traveler && <SummaryRow label={tr("summaryTraveler")} value={traveler + (data.adults && data.adults > 2 ? ` · ${data.adults}` : "")} />}
+            {style && <SummaryRow label={tr("summaryStyle")} value={style} />}
+            <SummaryRow label={tr("summaryBudget")} value={budget} />
+            {interestLabels && <SummaryRow label={tr("summaryInterests")} value={interestLabels} />}
+            {data.mustVisit && <SummaryRow label={tr("summaryMustVisit")} value={data.mustVisit} />}
+            {data.email && <SummaryRow label={tr("summaryEmail")} value={data.email} />}
+          </div>
+
+          {/* Checkout opened confirmation */}
+          {checkoutUrl && (
+            <div className="bg-[var(--lavender-soft)] border border-[var(--lavender)] rounded-[12px] p-5 mb-6">
+              <p className="font-semibold text-[var(--text-primary)] mb-1">
+                {tr("checkoutOpened.headline")}
+              </p>
+              <p className="text-body-sm text-[var(--text-secondary)]">
+                {tr("checkoutOpened.subtitle")}
+              </p>
+              {popupBlocked && (
+                <p className="text-body-sm mt-3">
+                  <span className="text-[var(--text-secondary)]">{tr("checkoutOpened.noPopup")} </span>
+                  <a
+                    href={checkoutUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-medium text-[var(--text-primary)]"
+                  >
+                    {tr("checkoutOpened.openAgain")}
+                  </a>
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Error */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-[12px] p-4 text-body-sm text-red-700 mb-6">
+              {error}
+            </div>
+          )}
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePay}
+              disabled={submitting}
+              className="flex-1 px-6 py-3.5 bg-[#1A1A1A] text-white font-medium rounded-md hover:bg-black transition disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+            >
+              {submitting ? "…" : checkoutUrl ? tr("payAgainButton") : tr("payButton")}
+              {!submitting && <span aria-hidden>→</span>}
+            </button>
+            <button
+              type="button"
+              onClick={handleSeeSample}
+              className="flex-1 sm:flex-none px-6 py-3.5 bg-transparent text-[var(--text-primary)] font-medium rounded-md border border-[var(--border-light)] hover:border-[var(--text-secondary)] transition inline-flex items-center justify-center gap-2"
+            >
+              {tr("sampleButton")}
+              <span aria-hidden>→</span>
+            </button>
+          </div>
+
+          <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] text-center mt-6">
+            {tr("newTabNote")}
+          </p>
+
+          <div className="text-center mt-4">
+            <button
+              type="button"
+              onClick={() => router.push("/")}
+              className="text-body-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition"
+            >
+              {tr("startOver")}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ──────────────── Loading / popup screen ────────────────
   return (
     <div className="min-h-screen bg-[var(--background)] py-12 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <p className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-caption font-semibold text-brand-700 dark:text-brand-300 mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
+          <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
             {t("badge")}
           </p>
-          <h1 className="text-display-lg text-[var(--text-primary)]">
+          <h1 className="font-display font-bold text-display-lg text-[var(--text-primary)] tracking-[-0.02em]">
             {t("headline", { destination: data.destination })}
           </h1>
           <p className="text-body-md text-[var(--text-secondary)] mt-3 max-w-lg mx-auto">
@@ -241,7 +367,7 @@ function LoadingInner() {
         </div>
 
         {error && (
-          <div className="mt-6 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900 rounded-xl p-4 text-body-sm text-red-700 dark:text-red-400">
+          <div className="mt-6 bg-red-50 border border-red-200 rounded-xl p-4 text-body-sm text-red-700">
             {error}
             <button
               onClick={() => router.push("/plan/new")}
@@ -250,12 +376,6 @@ function LoadingInner() {
               {t("startOver")}
             </button>
           </div>
-        )}
-
-        {submitting && !error && (
-          <p className="text-center text-body-sm text-[var(--text-muted)] mt-6">
-            {t("redirecting")}
-          </p>
         )}
       </div>
 
@@ -269,6 +389,27 @@ function LoadingInner() {
       )}
     </div>
   );
+}
+
+function SummaryRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex gap-3 text-body-sm">
+      <span className="shrink-0 w-20 sm:w-28 text-[var(--text-muted)] uppercase tracking-[0.1em] text-caption pt-0.5">
+        {label}
+      </span>
+      <span className="flex-1 text-[var(--text-primary)]">{value}</span>
+    </div>
+  );
+}
+
+// Map enum → short translation key used in wizard.popup.travelerType namespace.
+function travelerTypeShortKey(t: TravelerType): string {
+  if (t === "solo") return "solo";
+  if (t === "couple") return "couple";
+  if (t === "family-with-kids") return "family";
+  if (t === "group-of-friends") return "friends";
+  if (t === "senior") return "senior";
+  return "solo";
 }
 
 export default function LoadingPage() {
