@@ -1,6 +1,6 @@
 {
   "common": {
-    "siteName": "Passport Power",
+    "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
     "delivery": "모바일 웹 링크 + PDF · 결제 후 몇 분 안에 전달",
@@ -245,7 +245,7 @@
     "budget": "예산",
     "packing": "준비물",
     "tips": "팁",
-    "back": "← Passport Power로 돌아가기",
+    "back": "← gliddy로 돌아가기",
     "draftMessage": "이 계획은 시작되었지만 결제되지 않았습니다.",
     "draftStartOver": "새 계획 시작하기",
     "failedTitle": "죄송합니다. 계획 생성에 실패했습니다.",

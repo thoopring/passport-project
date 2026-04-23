@@ -6,14 +6,14 @@ import Footer from "../../components/Footer";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Passport Power is a single-purchase trip planner — $4 per plan. No subscription, no hidden fees, no account required.",
+    "gliddy is a single-purchase trip planner — $4 per plan. No subscription, no hidden fees, no account required.",
   alternates: { canonical: "https://checkvisamap.com/pricing" },
 };
 
 const offerSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: "Passport Power trip plan",
+  name: "gliddy trip plan",
   description:
     "Personalized, AI-generated trip plan delivered as a mobile-responsive web link plus a downloadable PDF.",
   offers: {

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Passport Power - Check Visa Requirements for 190+ Countries";
+export const alt = "gliddy — AI trip plans from $4";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -10,7 +10,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #1a4d2e 0%, #2d7a4a 50%, #1a4d2e 100%)",
+          background: "#FAFAFA",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -18,48 +18,64 @@ export default async function Image() {
           alignItems: "center",
           justifyContent: "center",
           fontFamily: "sans-serif",
-          color: "#FFFBF0",
+          color: "#0A0A0A",
           padding: "60px",
+          position: "relative",
         }}
       >
-        <div style={{ fontSize: 80, marginBottom: 10, display: "flex" }}>🌍</div>
+        {/* Subtle accent blob top-right */}
         <div
           style={{
-            fontSize: 56,
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: 400,
+            height: 400,
+            background: "#D4442B",
+            opacity: 0.08,
+            borderRadius: 9999,
+            transform: "translate(120px, -120px)",
+          }}
+        />
+        <div
+          style={{
+            fontSize: 128,
             fontWeight: 900,
             textAlign: "center",
-            lineHeight: 1.2,
-            marginBottom: 20,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            marginBottom: 28,
+            color: "#0A0A0A",
           }}
         >
-          Passport Power
+          gliddy
         </div>
         <div
           style={{
-            fontSize: 28,
-            opacity: 0.9,
+            fontSize: 36,
+            color: "#525252",
             textAlign: "center",
-            maxWidth: 800,
-            lineHeight: 1.5,
+            maxWidth: 900,
+            lineHeight: 1.35,
+            marginBottom: 40,
           }}
         >
-          Check visa requirements for 190+ countries instantly
+          Your next trip, sorted. Day-by-day itinerary, hotel pick, route map.
         </div>
         <div
           style={{
-            marginTop: 40,
-            background: "#ff9f1c",
-            color: "#1a4d2e",
+            background: "#D4442B",
+            color: "#FFFFFF",
             padding: "16px 40px",
-            borderRadius: 50,
-            fontSize: 24,
-            fontWeight: 700,
+            borderRadius: 10,
+            fontSize: 26,
+            fontWeight: 600,
           }}
         >
-          checkvisamap.com
+          $4 per plan · no subscription
         </div>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }

@@ -28,7 +28,7 @@ you prefer not to narrate in English).
 past the sample cards.
 
 **Narration / Caption**:
-> "Passport Power is an AI-powered trip planner. $4 per plan. Let me show
+> "gliddy is an AI-powered trip planner. $4 per plan. Let me show
 > you what you get."
 
 ---
@@ -95,7 +95,7 @@ Let it run for 5-8 seconds so the viewer sees the engagement.
 
 ### Scene 6 — Email + plan page (0:52 → 1:15)
 
-**Action**: Switch to your email inbox. The email from `Passport Power
+**Action**: Switch to your email inbox. The email from `gliddy
 <plans@checkvisamap.com>` should have arrived. Open it, click the link.
 
 The plan page loads. Quickly demonstrate:
@@ -146,7 +146,7 @@ Refund links in the Legal column.
   it's a real working product, not a mockup.
 - **Natural cursor movement.** Jittery/too-fast mouse looks staged.
 - **Optional intro/outro slide.** A 2-second title card at the start
-  ("Passport Power — demo") and a closing ("Questions? hello@checkvisamap.com")
+  ("gliddy — demo") and a closing ("Questions? hello@checkvisamap.com")
   adds polish but isn't required.
 
 ## Upload + paste into LS_APPROVAL.md

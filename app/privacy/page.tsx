@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Passport Power. Learn how we handle your data.",
+  description: "Privacy Policy for gliddy. Learn how we handle your data.",
   alternates: { canonical: "https://checkvisamap.com/privacy" },
 };
 

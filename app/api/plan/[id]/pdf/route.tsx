@@ -36,9 +36,9 @@ export async function GET(
   // destinations (e.g. "도쿄"), Claude often returns the destination field in
   // the user's locale, so we use a locale-agnostic ASCII filename and supply
   // the localized name via RFC 5987 `filename*=UTF-8''` for modern browsers.
-  const asciiName = `passport-power-${id.slice(0, 8)}.pdf`;
+  const asciiName = `gliddy-${id.slice(0, 8)}.pdf`;
   const utf8Name = encodeURIComponent(
-    `passport-power-${record.plan.destination}.pdf`,
+    `gliddy-${record.plan.destination}.pdf`,
   ).replace(/'/g, "%27");
 
   return new NextResponse(body, {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LocaleSwitcher from "./LocaleSwitcher";
+import BrandMark from "./BrandMark";
 
 interface HeaderProps {
   showCta?: boolean;
@@ -11,9 +12,10 @@ export default function Header({ showCta = true }: HeaderProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link
           href="/"
-          className="font-display text-[1.5rem] tracking-tight text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition"
+          className="text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition"
+          aria-label="gliddy — home"
         >
-          Passport Power
+          <BrandMark size={26} />
         </Link>
 
         <nav className="flex items-center gap-1">
@@ -24,10 +26,10 @@ export default function Header({ showCta = true }: HeaderProps) {
             Samples
           </Link>
           <Link
-            href="/blog"
+            href="/pricing"
             className="hidden sm:inline-block px-3 py-1.5 text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition"
           >
-            Journal
+            Pricing
           </Link>
           <Link
             href="/about"
@@ -40,7 +42,7 @@ export default function Header({ showCta = true }: HeaderProps) {
           </div>
           {showCta && (
             <Link
-              href="/"
+              href="/plan/new"
               className="ml-2 px-4 py-2 bg-[var(--brand-primary)] text-white text-body-sm font-medium rounded-md hover:opacity-90 transition"
             >
               Plan my trip

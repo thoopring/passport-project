@@ -1,6 +1,6 @@
 {
   "common": {
-    "siteName": "Passport Power",
+    "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
     "delivery": "Mobile web link + PDF · Delivered in minutes after payment",
@@ -245,7 +245,7 @@
     "budget": "Budget",
     "packing": "Packing",
     "tips": "Tips",
-    "back": "← Back to Passport Power",
+    "back": "← Back to gliddy",
     "draftMessage": "This plan was started but never paid for.",
     "draftStartOver": "Start a new plan",
     "failedTitle": "Sorry, plan generation failed.",

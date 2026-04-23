@@ -41,7 +41,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     orDownload: "Or download the PDF directly:",
     bookmarkNote:
       "Bookmark the link above so you can pull up your itinerary on the trip.",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
   ko: {
     subject: (d) => `${d} 여행 계획이 준비되었습니다`,
@@ -51,7 +51,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     orDownload: "또는 PDF를 직접 다운로드하세요:",
     bookmarkNote:
       "여행 중에 일정을 바로 열어보실 수 있도록 위 링크를 즐겨찾기에 추가하세요.",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
   ja: {
     subject: (d) => `${d}の旅程が完成しました`,
@@ -62,7 +62,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     orDownload: "またはPDFを直接ダウンロード:",
     bookmarkNote:
       "旅行中にすぐ開けるよう、上記リンクをブックマークしてください。",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
   zh: {
     subject: (d) => `您的${d}行程已准备好`,
@@ -71,7 +71,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     viewButton: "查看您的行程",
     orDownload: "或直接下载 PDF:",
     bookmarkNote: "请将上方链接加入书签,以便旅途中随时查看您的行程。",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
 };
 
@@ -87,7 +87,7 @@ function escapeHtml(s: string): string {
 export async function sendPlanReadyEmail(args: PlanReadyArgs): Promise<void> {
   const client = getClient();
   const from = Deno.env.get("RESEND_FROM_EMAIL") ||
-    "Passport Power <plans@checkvisamap.com>";
+    "gliddy <plans@checkvisamap.com>";
   const baseUrl = Deno.env.get("SITE_URL") || "https://checkvisamap.com";
   const planUrl = `${baseUrl}/plan/${args.planId}`;
   const pdfUrl = `${baseUrl}/api/plan/${args.planId}/pdf`;

@@ -75,7 +75,7 @@ for KYB purposes.
 
 ## 5) Product description
 
-**What it is.** Passport Power is an AI-powered trip-planning tool. The
+**What it is.** gliddy is an AI-powered trip-planning tool. The
 customer enters a destination, duration, arrival airport, a few interests,
 a pace preference, and a budget tier. Anthropic's Claude generates a
 personalized day-by-day itinerary — hotels, restaurants, attractions, and
@@ -116,7 +116,7 @@ Japanese, or Chinese, based on the customer's selection.
 If the plan contains a hallucinated place (an AI error), we refund on
 request within 14 days. See https://checkvisamap.com/refund.
 
-**What Passport Power is not.**
+**What gliddy is not.**
 - Not a booking service. We do not reserve hotels, flights, transit, or
   tables. We recommend; the customer books.
 - Not a travel agency. No human reviews the plan before delivery.

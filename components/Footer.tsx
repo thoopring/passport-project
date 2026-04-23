@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandMark from "./BrandMark";
 
 export default function Footer() {
   return (
@@ -6,9 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-6">
           <div className="flex items-baseline gap-3">
-            <span className="font-display text-[1.25rem] text-[var(--text-primary)]">
-              Passport Power
-            </span>
+            <BrandMark size={22} />
             <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
               AI trip plans · $4
             </span>
@@ -64,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row justify-between gap-3">
-          <p className="text-caption text-[var(--text-muted)]">© 2026 Passport Power · hello@checkvisamap.com</p>
+          <p className="text-caption text-[var(--text-muted)]">© 2026 gliddy · hello@checkvisamap.com</p>
           <p className="text-caption text-[var(--text-muted)]">
             Plans are AI-generated starting points. Verify details before travel.
           </p>

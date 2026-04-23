@@ -90,7 +90,7 @@
 | 🔴 | "do i need visa for [나라]" | "Do Americans Need a Visa for Thailand? (2026 Guide)" |
 | 🔴 | "e-visa [나라] application" | "How to Apply for India e-Visa: Step-by-Step 2026" |
 | 🟡 | "digital nomad visa 2026" | "Best Digital Nomad Visas in 2026: Complete Comparison" |
-| 🟡 | "passport ranking 2026" | "2026 Passport Power Ranking: Which Passport is #1?" |
+| 🟡 | "passport ranking 2026" | "2026 gliddy Ranking: Which Passport is #1?" |
 | 🟡 | "travel insurance for [지역]" | "Best Travel Insurance for Southeast Asia 2026" |
 | 🟢 | "visa run [나라]" | "Complete Visa Run Guide: Thailand to Laos 2026" |
 | 🟢 | "best esim for travel" | "Best eSIM for International Travel 2026 (Tested)" |

@@ -6,14 +6,14 @@ import { BLOG_POSTS } from "./data";
 
 export const metadata: Metadata = {
   title: "Journal",
-  description: "Notes, field reports, and writing from Passport Power.",
+  description: "Notes, field reports, and writing from gliddy.",
   alternates: { canonical: "https://checkvisamap.com/blog" },
   openGraph: {
-    title: "Journal | Passport Power",
-    description: "Notes, field reports, and writing from Passport Power.",
+    title: "Journal | gliddy",
+    description: "Notes, field reports, and writing from gliddy.",
     url: "https://checkvisamap.com/blog",
     type: "website",
-    siteName: "Passport Power",
+    siteName: "gliddy",
   },
 };
 

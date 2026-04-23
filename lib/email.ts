@@ -6,7 +6,7 @@ import type { PlanLocale } from "../types/trip-plan";
  *
  * Required env:
  *   RESEND_API_KEY
- *   RESEND_FROM_EMAIL    e.g. "Passport Power <plans@checkvisamap.com>"
+ *   RESEND_FROM_EMAIL    e.g. "gliddy <plans@checkvisamap.com>"
  *
  * The sender domain must be verified in Resend before production use.
  */
@@ -46,7 +46,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     viewButton: "View your plan",
     orDownload: "Or download the PDF directly:",
     bookmarkNote: "Bookmark the link above so you can pull up your itinerary on the trip.",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
   ko: {
     subject: (d) => `${d} 여행 계획이 준비되었습니다`,
@@ -55,7 +55,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     viewButton: "여행 계획 보기",
     orDownload: "또는 PDF를 직접 다운로드하세요:",
     bookmarkNote: "여행 중에 일정을 바로 열어보실 수 있도록 위 링크를 즐겨찾기에 추가하세요.",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
   ja: {
     subject: (d) => `${d}の旅程が完成しました`,
@@ -64,7 +64,7 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     viewButton: "旅程を見る",
     orDownload: "またはPDFを直接ダウンロード:",
     bookmarkNote: "旅行中にすぐ開けるよう、上記リンクをブックマークしてください。",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
   zh: {
     subject: (d) => `您的${d}行程已准备好`,
@@ -73,13 +73,13 @@ const COPY: Record<PlanLocale, LocalizedCopy> = {
     viewButton: "查看您的行程",
     orDownload: "或直接下载 PDF:",
     bookmarkNote: "请将上方链接加入书签,以便旅途中随时查看您的行程。",
-    brandLine: "Passport Power · checkvisamap.com",
+    brandLine: "gliddy · checkvisamap.com",
   },
 };
 
 export async function sendPlanReadyEmail(args: PlanReadyArgs): Promise<void> {
   const client = getClient();
-  const from = process.env.RESEND_FROM_EMAIL || "Passport Power <plans@checkvisamap.com>";
+  const from = process.env.RESEND_FROM_EMAIL || "gliddy <plans@checkvisamap.com>";
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
   const planUrl = `${baseUrl}/plan/${args.planId}`;
   const pdfUrl = `${baseUrl}/api/plan/${args.planId}/pdf`;
@@ -93,10 +93,10 @@ export async function sendPlanReadyEmail(args: PlanReadyArgs): Promise<void> {
   <h1 style="font-size: 24px; margin: 0 0 16px;">${escapeHtml(copy.heading(args.destination))}</h1>
   <p style="font-size: 15px; line-height: 1.6; color: #555;">${copy.intro}</p>
   <div style="margin: 28px 0;">
-    <a href="${planUrl}" style="display: inline-block; padding: 12px 22px; background: #1a4d2e; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 600;">${copy.viewButton}</a>
+    <a href="${planUrl}" style="display: inline-block; padding: 12px 22px; background: #D4442B; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600;">${copy.viewButton}</a>
   </div>
   <p style="font-size: 14px; color: #666;">${copy.orDownload}</p>
-  <p style="font-size: 14px;"><a href="${pdfUrl}" style="color: #1a4d2e;">${pdfUrl}</a></p>
+  <p style="font-size: 14px;"><a href="${pdfUrl}" style="color: #D4442B;">${pdfUrl}</a></p>
   <hr style="border: 0; border-top: 1px solid #eee; margin: 32px 0;" />
   <p style="font-size: 13px; color: #999;">${copy.bookmarkNote}</p>
   <p style="font-size: 13px; color: #999;">${copy.brandLine}</p>

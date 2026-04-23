@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 export const metadata: Metadata = {
   title: "Refund Policy",
   description:
-    "Refund policy for Passport Power — when we refund, when we don't, and how to request one. 14-day window, no-questions refunds for technical failures.",
+    "Refund policy for gliddy — when we refund, when we don't, and how to request one. 14-day window, no-questions refunds for technical failures.",
   alternates: { canonical: "https://checkvisamap.com/refund" },
 };
 

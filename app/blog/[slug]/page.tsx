@@ -29,7 +29,7 @@ export async function generateMetadata({
       url,
       type: "article",
       publishedTime: post.date,
-      siteName: "Passport Power",
+      siteName: "gliddy",
     },
     twitter: { card: "summary_large_image", title: post.title, description: post.excerpt },
   };
@@ -51,10 +51,10 @@ export default async function BlogPost({
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: { "@type": "Organization", name: "Passport Power", url: "https://checkvisamap.com" },
+    author: { "@type": "Organization", name: "gliddy", url: "https://checkvisamap.com" },
     publisher: {
       "@type": "Organization",
-      name: "Passport Power",
+      name: "gliddy",
       logo: { "@type": "ImageObject", url: "https://checkvisamap.com/logo.png" },
     },
     mainEntityOfPage: `https://checkvisamap.com/blog/${slug}`,

@@ -1,6 +1,6 @@
 {
   "common": {
-    "siteName": "Passport Power",
+    "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
     "delivery": "移动网页链接 + PDF · 付款后几分钟内送达",
@@ -245,7 +245,7 @@
     "budget": "预算",
     "packing": "行李",
     "tips": "贴士",
-    "back": "← 返回 Passport Power",
+    "back": "← 返回 gliddy",
     "draftMessage": "此计划已开始但尚未付款。",
     "draftStartOver": "开始新计划",
     "failedTitle": "抱歉,计划生成失败。",

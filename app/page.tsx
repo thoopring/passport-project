@@ -8,9 +8,9 @@ import PlanMap from "../components/PlanMap";
 import { SAMPLE_PLANS, HOME_HERO_IMAGE, getSample } from "../lib/samples";
 
 export const metadata: Metadata = {
-  title: "Trip plans from $4",
+  title: "Your next trip, sorted — $4",
   description:
-    "Tell us about your trip in plain English. We design a day-by-day plan for you — hotel, transit, restaurants, and a route map. Delivered in minutes.",
+    "Tell us where you're going. We draft the itinerary, pick the hotel, and map the route — delivered as a real plan in about a minute. $4 each, no subscription.",
   alternates: { canonical: "https://checkvisamap.com" },
 };
 
@@ -30,13 +30,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
             <h1 className="font-display font-bold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.0] tracking-[-0.03em] mb-6">
-              Your trip.
+              Your next trip,
               <br />
-              Planned in minutes.
+              sorted.
             </h1>
             <p className="text-body-lg text-[var(--text-secondary)] max-w-md mb-8">
-              Tell us about your trip in plain English. Our planner builds your full
-              itinerary — hotel, transit, restaurants, and a route map.
+              Tell us where you&apos;re going. We draft the itinerary, pick the hotel, and
+              map the route — usually in under a minute.
             </p>
 
             <div className="max-w-lg">
@@ -44,7 +44,7 @@ export default function Home() {
             </div>
 
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mt-8">
-              $4 per plan · No signup · Offline PDF
+              $4 per plan · No account · Offline PDF
             </p>
           </div>
 

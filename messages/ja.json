@@ -1,6 +1,6 @@
 {
   "common": {
-    "siteName": "Passport Power",
+    "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
     "delivery": "モバイルウェブリンク + PDF · お支払い後数分でお届け",
@@ -245,7 +245,7 @@
     "budget": "予算",
     "packing": "持ち物",
     "tips": "コツ",
-    "back": "← Passport Powerに戻る",
+    "back": "← gliddyに戻る",
     "draftMessage": "この旅程は開始されましたが、未払いです。",
     "draftStartOver": "新しい旅程を作成",
     "failedTitle": "申し訳ありません。旅程の生成に失敗しました。",

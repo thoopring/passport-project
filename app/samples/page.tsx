@@ -9,11 +9,11 @@ import { listSamples } from "../../lib/samples";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("samples");
   return {
-    title: `${t("metaTitle")} — Passport Power`,
+    title: `${t("metaTitle")} — gliddy`,
     description: t("metaDescription"),
     alternates: { canonical: "https://checkvisamap.com/samples" },
     openGraph: {
-      title: `${t("metaTitle")} — Passport Power`,
+      title: `${t("metaTitle")} — gliddy`,
       description: t("metaDescription"),
       url: "https://checkvisamap.com/samples",
       type: "website",

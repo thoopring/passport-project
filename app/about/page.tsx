@@ -6,18 +6,18 @@ import Footer from "../../components/Footer";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why we built Passport Power — an AI trip planner that writes a real itinerary in minutes.",
+    "Why we built gliddy — an AI trip planner that writes a real itinerary in minutes.",
   alternates: { canonical: "https://checkvisamap.com/about" },
 };
 
 const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "About Passport Power",
+  name: "About gliddy",
   description:
-    "Why we built Passport Power — an AI trip planner that writes a real itinerary in minutes.",
+    "Why we built gliddy — an AI trip planner that writes a real itinerary in minutes.",
   url: "https://checkvisamap.com/about",
-  mainEntity: { "@type": "Organization", name: "Passport Power", email: "hello@checkvisamap.com" },
+  mainEntity: { "@type": "Organization", name: "gliddy", email: "hello@checkvisamap.com" },
 };
 
 export default function AboutPage() {
@@ -39,7 +39,7 @@ export default function AboutPage() {
 
         <div className="prose prose-lg max-w-none text-[var(--text-secondary)] prose-p:leading-relaxed prose-strong:text-[var(--text-primary)]">
           <p>
-            We built Passport Power because a short trip still eats a whole weekend to plan.
+            We built gliddy because a short trip still eats a whole weekend to plan.
             You open thirty tabs, save twenty restaurants, cross-check them against a hotel
             that has not been booked yet, then get to the destination and walk backwards twice.
           </p>

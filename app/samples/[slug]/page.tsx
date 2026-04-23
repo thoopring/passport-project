@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = `${sample.plan.destination} sample plan — ${sample.plan.durationDays} days`;
   return {
-    title: `${title} · Passport Power`,
+    title: `${title} · gliddy`,
     description: sample.tagline,
     alternates: { canonical: `https://checkvisamap.com/samples/${slug}` },
     openGraph: {

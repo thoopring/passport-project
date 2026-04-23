@@ -1,4 +1,4 @@
-# Passport Power (AI Trip Planner)
+# gliddy (AI Trip Planner)
 
 ## Project Overview
 - **URL**: https://checkvisamap.com

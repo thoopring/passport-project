@@ -1,4 +1,4 @@
-# Design System — Passport Power
+# Design System — gliddy
 
 > Always read this file before making any visual or UI decisions. All font
 > choices, colors, spacing, and aesthetic direction live here. Do not deviate

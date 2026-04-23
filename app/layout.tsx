@@ -22,15 +22,15 @@ const bricolage = Bricolage_Grotesque({
 });
 
 const SITE_URL = "https://checkvisamap.com";
-const SITE_NAME = "Passport Power — AI trip plans from $4";
+const SITE_NAME = "gliddy — AI trip plans from $4";
 const SITE_DESCRIPTION =
-  "Tell us your destination and budget, and we'll design a trip for you. Day-by-day itinerary with hotel, airport transit, restaurants, and a route map. $4 per plan.";
+  "Tell us where you're going and we'll design the trip for you. Day-by-day itinerary, hotel pick matched to your airport, restaurants, and a route map. $4 per plan — no subscription.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_NAME,
-    template: "%s | Passport Power",
+    template: "%s | gliddy",
   },
   description: SITE_DESCRIPTION,
   keywords: [
@@ -44,16 +44,17 @@ export const metadata: Metadata = {
     "Bangkok itinerary",
     "Seoul itinerary",
     "travel route map",
+    "gliddy",
   ],
-  authors: [{ name: "Passport Power Team", url: SITE_URL }],
-  creator: "Passport Power",
-  publisher: "Passport Power",
+  authors: [{ name: "gliddy", url: SITE_URL }],
+  creator: "gliddy",
+  publisher: "gliddy",
   icons: { icon: "/icon.png", shortcut: "/icon.png", apple: "/icon.png" },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Passport Power",
+    siteName: "gliddy",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     images: [
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Passport Power — AI trip plans from $4",
+        alt: "gliddy — AI trip plans from $4",
       },
     ],
   },
@@ -90,7 +91,7 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Passport Power",
+  name: "gliddy",
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   description: SITE_DESCRIPTION,
@@ -104,7 +105,7 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Passport Power",
+  name: "gliddy",
   url: SITE_URL,
 };
 

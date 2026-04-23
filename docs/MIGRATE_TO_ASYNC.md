@@ -76,7 +76,7 @@ Edge Functions can't read `.env.local`. Set them once per project:
 ```bash
 supabase secrets set ANTHROPIC_API_KEY="sk-ant-xxxxxxxxxxxx"
 supabase secrets set RESEND_API_KEY="re_xxxxxxxxxxxx"
-supabase secrets set RESEND_FROM_EMAIL="Passport Power <plans@checkvisamap.com>"
+supabase secrets set RESEND_FROM_EMAIL="gliddy <plans@checkvisamap.com>"
 supabase secrets set SITE_URL="https://checkvisamap.com"
 ```
 

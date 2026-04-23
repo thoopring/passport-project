@@ -115,7 +115,7 @@ Hosted checkout. Fee is **5% + $0.50 per sale**, so a $4 plan nets ~$3.30.
 ### Setup
 
 1. Go to <https://app.lemonsqueezy.com> and sign up.
-2. Create a Store (name: Passport Power).
+2. Create a Store (name: gliddy).
 3. Products → New → Single payment, $4 USD.
    - Name: "Trip Plan"
    - Price: $4 USD
@@ -157,7 +157,7 @@ For sending the "your plan is ready" email after generation. Free tier:
 6. Set env vars:
    ```
    RESEND_API_KEY=re_xxx
-   RESEND_FROM_EMAIL=Passport Power <plans@checkvisamap.com>
+   RESEND_FROM_EMAIL=gliddy <plans@checkvisamap.com>
    ```
 
 The from-address must be on the verified domain. `plans@checkvisamap.com`
@@ -261,7 +261,7 @@ LEMON_SQUEEZY_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # Resend (email)
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-RESEND_FROM_EMAIL=Passport Power <plans@checkvisamap.com>
+RESEND_FROM_EMAIL=gliddy <plans@checkvisamap.com>
 
 # Mapbox (maps + PDF static map)
 MAPBOX_TOKEN=pk.eyJ1xxxxxxxxxxxxxxxxxxxxxxxxxxxx

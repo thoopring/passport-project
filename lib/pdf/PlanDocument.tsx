@@ -182,13 +182,13 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
   return (
     <Document
       title={`${plan.destination} trip plan`}
-      author="Passport Power"
+      author="gliddy"
       subject="Personalized trip itinerary"
     >
       {/* Cover */}
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <Text style={styles.brand}>Passport Power · Trip Plan</Text>
+          <Text style={styles.brand}>gliddy · Trip Plan</Text>
           <Text style={styles.h1}>{plan.destination}</Text>
           <Text style={styles.muted}>
             {plan.durationDays}-day itinerary · {plan.destinationCountry}
@@ -357,7 +357,7 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
 
           <View style={{ marginTop: 30 }}>
             <Text style={styles.muted}>
-              Trip plan generated for you by Passport Power. Have a great trip.
+              Trip plan generated for you by gliddy. Have a great trip.
             </Text>
             <Link src="https://checkvisamap.com" style={{ fontSize: 10, color: colors.brand, marginTop: 4 }}>
               checkvisamap.com

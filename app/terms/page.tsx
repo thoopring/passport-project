@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of Service for Passport Power — a one-time $4 AI trip planner. What you're buying, what we promise, and what we don't.",
+    "Terms of Service for gliddy — a one-time $4 AI trip planner. What you're buying, what we promise, and what we don't.",
   alternates: { canonical: "https://checkvisamap.com/terms" },
 };
 
@@ -25,9 +25,9 @@ export default function TermsPage() {
         <p className="text-body-sm text-[var(--text-muted)] mb-10">Last updated: April 23, 2026</p>
 
         <div className="prose prose-lg max-w-none text-[var(--text-secondary)] prose-strong:text-[var(--text-primary)]">
-          <h2>1. What Passport Power is</h2>
+          <h2>1. What gliddy is</h2>
           <p>
-            Passport Power is a digital product. You provide a destination, duration, and a few
+            gliddy is a digital product. You provide a destination, duration, and a few
             preferences; we generate a personalized trip itinerary using Anthropic&apos;s Claude
             language model and deliver it to your email as a private web link plus a downloadable
             PDF. Each $4 purchase buys one plan. There is no subscription, no recurring charge,
@@ -54,7 +54,7 @@ export default function TermsPage() {
           <h2>4. Price, billing, and currency</h2>
           <p>
             The price per plan is USD $4.00. Payment is processed by LemonSqueezy. Your statement
-            will show a charge from <strong>Lemon Squeezy · Passport Power</strong>. LemonSqueezy
+            will show a charge from <strong>Lemon Squeezy · gliddy</strong>. LemonSqueezy
             handles local currency conversion where applicable; the USD-equivalent amount is what
             you owe.
           </p>
@@ -97,7 +97,7 @@ export default function TermsPage() {
           <h2>8. Intellectual property</h2>
           <p>
             Your generated plan is licensed to you for personal travel use. The site design, brand,
-            system prompts, and underlying sample library remain the property of Passport Power.
+            system prompts, and underlying sample library remain the property of gliddy.
             You may share your plan link with travel companions; you may not repost it as public
             content without attribution.
           </p>
@@ -128,7 +128,7 @@ export default function TermsPage() {
 
           <h2>12. Limitation of liability</h2>
           <p>
-            To the maximum extent permitted by law, Passport Power&apos;s total liability to you
+            To the maximum extent permitted by law, gliddy&apos;s total liability to you
             for any claim arising from the service is limited to the amount you paid for the
             affected plan (typically $4 USD). We are not liable for indirect, incidental, special,
             consequential, or punitive damages, including lost profits, loss of data, or travel
@@ -137,7 +137,7 @@ export default function TermsPage() {
 
           <h2>13. Indemnification</h2>
           <p>
-            You agree to indemnify and hold Passport Power harmless from any claim arising out of
+            You agree to indemnify and hold gliddy harmless from any claim arising out of
             your use of the service, your breach of these Terms, or your violation of applicable
             law.
           </p>
