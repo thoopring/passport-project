@@ -1,0 +1,430 @@
+import type { TripPlan } from "../../types/trip-plan";
+
+/**
+ * Sample plan: London, 4 days, couple, midrange, balanced.
+ *
+ * Central London's best museums + markets + a day trip to Oxford.
+ * Hand-curated with real coordinates.
+ */
+const london4dCouple: TripPlan = {
+  destination: "London",
+  destinationCountry: "United Kingdom",
+  durationDays: 4,
+  overview:
+    "Four days for a couple who want classic London without the tour-bus feeling. You'll spend mornings in the world's best free museums, afternoons walking markets and royal parks, and one full day in Oxford. Hotel picked for walkability to the West End and a short Paddington Express to Heathrow.",
+  bestSeasonNote:
+    "May through early June and September through early October are the sweet spots — comfortable temperatures, long daylight, manageable crowds. July/August are hot and crowded; January is the cheapest but darkest.",
+  currencyTip:
+    "Pound Sterling (GBP). Cards and contactless everywhere — you can do 4 days in London and never touch cash. Tap your credit card on the Tube turnstiles; the daily cap (~£8.10) automatically kicks in.",
+  languageTip:
+    "English (UK variety). 'Ta' = thanks, 'cheers' = thanks + goodbye, 'sorted' = done. Pub ordering: go to the bar, don't wait to be served.",
+  emergencyNumber: "999 (all emergencies)",
+  hotel: {
+    name: "The Z Hotel Victoria",
+    area: "Victoria",
+    address: "19 Saint George's Dr, Pimlico",
+    coords: [-0.1447, 51.4921],
+    rationale:
+      "Victoria puts you 10 minutes from Buckingham Palace on foot, inside an express zone to Heathrow (Gatwick Express alternative), and on 4 Tube lines. Z Hotel's rooms are small-but-modern with waterfall showers, reliable wifi, and a decent lobby café — perfect for couples who'll be out all day.",
+    priceTier: "$$",
+    estimatedNightlyRate: "~$170/night",
+  },
+  airportTransit: {
+    method: "Heathrow Express → Paddington → Tube to Victoria",
+    duration: "~35 min",
+    cost: "~£30 one-way (or £5 on the slower Tube)",
+    instructions:
+      "From Heathrow (LHR), the Heathrow Express runs non-stop to Paddington in 15 minutes every 15 min. Buy online 2 weeks ahead for ~£18. From Paddington, take the Circle line to Victoria — 5 stops, 12 min. Budget: the Piccadilly Tube line goes direct to Victoria in 50 min for ~£5 peak / £3 off-peak. Tap your contactless card — no paper ticket needed.",
+  },
+  days: [
+    {
+      dayNumber: 1,
+      theme: "Westminster & South Bank",
+      summary:
+        "The classic London postcard corridor — Big Ben, Westminster Abbey, a river walk past Tate Modern, and a pub dinner.",
+      stops: [
+        {
+          order: 1,
+          time: "09:30",
+          type: "sight",
+          name: "Big Ben + Westminster Bridge",
+          area: "Westminster",
+          coords: [-0.1247, 51.5007],
+          duration: "45 min",
+          description:
+            "The Elizabeth Tower (containing Big Ben) was cleaned during 2017-2022 and looks like it did in 1859 — freshly Gothic. Walk across Westminster Bridge for the London Eye-framed photo everyone takes. The Parliament buildings are the same river-facing facade as every movie you've ever seen about London.",
+          estimatedCost: "Free",
+          transitFromPrev: "Tube District line from Victoria → Westminster, 5 min",
+        },
+        {
+          order: 2,
+          time: "10:30",
+          type: "sight",
+          name: "Westminster Abbey",
+          area: "Westminster",
+          address: "20 Deans Yd",
+          coords: [-0.1276, 51.4994],
+          duration: "2 hours",
+          description:
+            "Coronation church since 1066. Every English monarch except Edward V and VIII has been crowned here; Newton, Darwin, and Hawking are buried in the Scientists' Corner. The Lady Chapel's fan-vaulted ceiling is the reason to book audio guide + allow 2 hours.",
+          estimatedCost: "~£29",
+          bookingTip: "Book online 2-3 days ahead; Saturdays sell out 1 week in advance.",
+          transitFromPrev: "5 min walk",
+        },
+        {
+          order: 3,
+          time: "13:00",
+          type: "meal",
+          name: "Borough Market lunch",
+          area: "Southwark",
+          coords: [-0.0903, 51.5053],
+          duration: "1.5 hours",
+          description:
+            "London's oldest food market. Eat standing — grilled-cheese sandwiches from Kappacasein, paella from Brindisa, duck confit baguette from Le Marche du Quartier. The lunch you'll remember.",
+          estimatedCost: "~£18",
+          transitFromPrev: "Jubilee line from Westminster → London Bridge, 15 min",
+        },
+        {
+          order: 4,
+          time: "14:30",
+          type: "sight",
+          name: "Tate Modern",
+          area: "South Bank",
+          coords: [-0.0992, 51.5076],
+          duration: "2 hours",
+          description:
+            "A former power station turned into Europe's most important modern art museum. Free for the permanent collection. Rothko, Picasso, Bacon, Pollock. The 10th-floor viewing terrace is the best free view of St. Paul's Cathedral across the river.",
+          estimatedCost: "Free (special exhibits extra)",
+          transitFromPrev: "10 min walk along the river",
+        },
+        {
+          order: 5,
+          time: "17:00",
+          type: "sight",
+          name: "Millennium Bridge + St. Paul's exterior",
+          area: "South Bank → City",
+          coords: [-0.0984, 51.5101],
+          duration: "45 min",
+          description:
+            "Walk across the pedestrian Millennium Bridge toward St. Paul's. The exterior of Wren's 1710 masterpiece is still free to admire; skip the paid interior unless you're set on climbing the Whispering Gallery.",
+          estimatedCost: "Free",
+          transitFromPrev: "5 min walk",
+        },
+        {
+          order: 6,
+          time: "19:00",
+          type: "meal",
+          name: "The George Inn",
+          area: "Southwark",
+          address: "75-77 Borough High St.",
+          coords: [-0.0887, 51.5033],
+          duration: "1.5 hours",
+          description:
+            "The only remaining galleried coaching inn in London — 1677, owned by the National Trust. Proper pub dinner: fish & chips with mushy peas and a pint of real ale in a wood-paneled room. Dickens drank here.",
+          estimatedCost: "~£35 for two with drinks",
+          bookingTip: "Reserve on OpenTable — the dining room is small; the beer garden's first-come.",
+          transitFromPrev: "10 min walk",
+        },
+      ],
+    },
+    {
+      dayNumber: 2,
+      theme: "British Museum + Covent Garden + Soho",
+      summary:
+        "Morning at one of the world's great museums, afternoon of markets and Seven Dials, and dinner in Soho.",
+      stops: [
+        {
+          order: 1,
+          time: "09:30",
+          type: "sight",
+          name: "The British Museum",
+          area: "Bloomsbury",
+          address: "Great Russell St",
+          coords: [-0.1270, 51.5194],
+          duration: "3 hours",
+          description:
+            "Free. 8 million objects across 94 galleries. Focus: Rosetta Stone (Gallery 4), Parthenon Marbles (Gallery 18), Egyptian mummies (Galleries 62-63), Sutton Hoo treasures (Gallery 41). The Great Court glass ceiling is worth the trip alone.",
+          estimatedCost: "Free",
+          bookingTip: "Book a free timed-entry ticket online to skip the security queue.",
+          transitFromPrev: "Tube Victoria → Tottenham Court Rd, 15 min",
+        },
+        {
+          order: 2,
+          time: "13:00",
+          type: "meal",
+          name: "Flat Iron (Covent Garden)",
+          area: "Covent Garden",
+          address: "17-18 Henrietta St",
+          coords: [-0.1236, 51.5115],
+          duration: "1 hour",
+          description:
+            "£14 for a feather-steak with dripping chips, grilled tomato, and popcorn on arrival. A perfect London lunch that doesn't break the bank. No reservations — walk up, put your name down, they text when your table's ready.",
+          estimatedCost: "~£20/person",
+          transitFromPrev: "15 min walk",
+        },
+        {
+          order: 3,
+          time: "14:30",
+          type: "shopping",
+          name: "Covent Garden Market + Seven Dials",
+          area: "Covent Garden",
+          coords: [-0.1243, 51.5122],
+          duration: "1.5 hours",
+          description:
+            "The 1830 Covent Garden market building has craft stalls, two floors of shops, and free street performers doing actual trained opera. Walk north to Seven Dials for one-of-a-kind boutiques — Neal's Yard Remedies, the kale-coloured alley photo spot.",
+          estimatedCost: "Free unless you buy",
+          transitFromPrev: "5 min walk",
+        },
+        {
+          order: 4,
+          time: "16:30",
+          type: "sight",
+          name: "National Gallery",
+          area: "Trafalgar Square",
+          coords: [-0.1288, 51.5089],
+          duration: "1.5 hours",
+          description:
+            "Free. Skip the decorative wings and go straight to: Van Gogh's Sunflowers (Room 43), Leonardo's Virgin of the Rocks (Room 9), Turner's Fighting Temeraire (Room 34). 90 minutes is enough if you're selective.",
+          estimatedCost: "Free",
+          transitFromPrev: "15 min walk",
+        },
+        {
+          order: 5,
+          time: "18:30",
+          type: "sight",
+          name: "Trafalgar Square + Admiralty Arch walk",
+          area: "Whitehall",
+          coords: [-0.1281, 51.5074],
+          duration: "45 min",
+          description:
+            "Nelson's Column, lion statues, four plinths with rotating contemporary art. Walk the Mall towards Buckingham Palace for a late-light stroll past St. James's Park.",
+          estimatedCost: "Free",
+          transitFromPrev: "Built in",
+        },
+        {
+          order: 6,
+          time: "20:00",
+          type: "meal",
+          name: "Bocca di Lupo",
+          area: "Soho",
+          address: "12 Archer St",
+          coords: [-0.1334, 51.5103],
+          duration: "1.5 hours",
+          description:
+            "Regional Italian small plates in a Soho basement where every dish credits a specific Italian village. Order the vitello tonnato, the orecchiette with nduja, and the burrata — plus a glass of barolo. Counter seats at the kitchen are best.",
+          estimatedCost: "~£60/person with wine",
+          bookingTip: "Reserve 1 week ahead via their website for 20:00 prime; walk-in counter seats sometimes open.",
+          transitFromPrev: "10 min walk",
+        },
+      ],
+    },
+    {
+      dayNumber: 3,
+      theme: "Day trip: Oxford",
+      summary:
+        "A one-hour train ride to the university city — college quads, the Bodleian Library, a proper pub lunch, and back to London for dinner.",
+      stops: [
+        {
+          order: 1,
+          time: "08:30",
+          type: "transit",
+          name: "GWR train to Oxford",
+          area: "Paddington → Oxford",
+          coords: [-1.2599, 51.7535],
+          duration: "1 hour",
+          description:
+            "Great Western Railway direct from Paddington to Oxford every 30 min. Book an off-peak return online for ~£30/person. Sit on the right for Windsor Castle views in the distance.",
+          estimatedCost: "~£30 return",
+          transitFromPrev: "Tube to Paddington, 15 min",
+        },
+        {
+          order: 2,
+          time: "10:00",
+          type: "sight",
+          name: "Christ Church College",
+          area: "Oxford",
+          coords: [-1.2562, 51.7504],
+          duration: "1.5 hours",
+          description:
+            "The largest Oxford college, founded 1546 by Henry VIII. The Great Hall is the Harry Potter dining hall's actual inspiration (the film replicated it elsewhere). Tom Tower by Wren. Walk the meadows behind the college afterward.",
+          estimatedCost: "~£17",
+          bookingTip: "Opens at 10:00; arrive 09:45 to be first through.",
+          transitFromPrev: "10 min walk from train station",
+        },
+        {
+          order: 3,
+          time: "12:00",
+          type: "sight",
+          name: "Bodleian Library + Radcliffe Camera",
+          area: "Oxford",
+          coords: [-1.2540, 51.7536],
+          duration: "1.5 hours",
+          description:
+            "One of the oldest libraries in Europe (1602) and the circular Radcliffe Camera across from it (1749). The library tour (30 min) shows you the 15th-century Duke Humfrey's reading room. The Camera is just for the photo — it's not open to the public.",
+          estimatedCost: "~£9 for Bodleian tour",
+          transitFromPrev: "10 min walk",
+        },
+        {
+          order: 4,
+          time: "13:30",
+          type: "meal",
+          name: "The Turf Tavern",
+          area: "Oxford",
+          address: "4 Bath Pl",
+          coords: [-1.2521, 51.7539],
+          duration: "1.5 hours",
+          description:
+            "A 13th-century pub hidden down a cobbled alley, where Bill Clinton 'didn't inhale', Hawking drank, and Tolkien edited. Real ale, a proper Sunday roast (if Sunday), beams low enough you'll duck. The alley finding game is half the fun.",
+          estimatedCost: "~£25/person",
+          transitFromPrev: "5 min walk through St. Helen's Passage",
+        },
+        {
+          order: 5,
+          time: "15:30",
+          type: "sight",
+          name: "Magdalen College deer park + Addison's Walk",
+          area: "Oxford",
+          coords: [-1.2471, 51.7525],
+          duration: "1.5 hours",
+          description:
+            "Magdalen (pronounced 'maudlin') has a deer park, a bell tower, and a 2km looped riverside walk that C.S. Lewis used to do with Tolkien. An hour of slow green walking before the return train.",
+          estimatedCost: "~£8",
+          transitFromPrev: "15 min walk",
+        },
+        {
+          order: 6,
+          time: "18:00",
+          type: "transit",
+          name: "Return train to London",
+          area: "Oxford → Paddington",
+          coords: [-0.1755, 51.5154],
+          duration: "1 hour",
+          description:
+            "GWR back to Paddington. Use the time to rest — tomorrow is a museum + harrods day.",
+          estimatedCost: "Included in return",
+          transitFromPrev: "10 min walk to train station",
+        },
+        {
+          order: 7,
+          time: "20:00",
+          type: "meal",
+          name: "Dishoom King's Cross",
+          area: "King's Cross",
+          address: "5 Stable St",
+          coords: [-0.1267, 51.5359],
+          duration: "1.5 hours",
+          description:
+            "Irani-café-inspired Indian food in a gorgeous brick warehouse setting. Order the house black daal (simmered 24 hours), lamb biryani, and a chai. Dishoom is a London institution for a reason.",
+          estimatedCost: "~£40/person",
+          bookingTip: "Walk-in only for under 6 people — they text-queue you; expect 45-60 min wait at 20:00.",
+          transitFromPrev: "Tube from Paddington, 12 min",
+        },
+      ],
+    },
+    {
+      dayNumber: 4,
+      theme: "V&A + Harrods + send-off",
+      summary:
+        "One more great museum, a Harrods browse, afternoon tea, and a Paddington Express to Heathrow.",
+      stops: [
+        {
+          order: 1,
+          time: "09:30",
+          type: "sight",
+          name: "Victoria and Albert Museum",
+          area: "South Kensington",
+          address: "Cromwell Rd",
+          coords: [-0.1717, 51.4966],
+          duration: "2.5 hours",
+          description:
+            "Free. The world's largest decorative arts museum. Focus: Fashion Gallery (40), Jewellery Gallery (91), Cast Courts (46), Tipu's Tiger (41). The courtyard café in the John Madejski Garden is the prettiest museum café in London.",
+          estimatedCost: "Free",
+          transitFromPrev: "Tube District line, 10 min",
+        },
+        {
+          order: 2,
+          time: "12:30",
+          type: "shopping",
+          name: "Harrods",
+          area: "Knightsbridge",
+          address: "87-135 Brompton Rd",
+          coords: [-0.1631, 51.4994],
+          duration: "1.5 hours",
+          description:
+            "7 floors, 330 departments, a 120,000-square-meter cathedral of retail. Even if you're not buying, go for the Food Hall (ground floor rear) and the Egyptian-themed escalator. The toy department on 3rd is a destination in itself.",
+          estimatedCost: "Free unless you buy",
+          transitFromPrev: "15 min walk",
+        },
+        {
+          order: 3,
+          time: "14:30",
+          type: "meal",
+          name: "Afternoon tea at Fortnum & Mason",
+          area: "Piccadilly",
+          address: "181 Piccadilly",
+          coords: [-0.1379, 51.5089],
+          duration: "2 hours",
+          description:
+            "The proper London send-off. Fortnum's Diamond Jubilee Tea Salon on the 4th floor — finger sandwiches, scones with Cornish clotted cream, pastries, unlimited tea. A ritual that dates to the 1840s.",
+          estimatedCost: "~£80/person",
+          bookingTip: "Book 2-3 weeks ahead via their website for prime 14:00-15:30 slots; weekdays easier than weekends.",
+          transitFromPrev: "Tube Knightsbridge → Green Park, 10 min",
+        },
+        {
+          order: 4,
+          time: "17:00",
+          type: "shopping",
+          name: "Piccadilly + Regent Street walk",
+          area: "West End",
+          coords: [-0.1406, 51.5102],
+          duration: "1 hour",
+          description:
+            "Work off the scones. Walk Piccadilly past the Royal Academy, up to Piccadilly Circus for the Eros statue, then north up Regent Street for its curved Art Deco facade. Hamleys Toy Store at #188-196 is a must even if you're not a kid.",
+          estimatedCost: "Free",
+          transitFromPrev: "Walk",
+        },
+        {
+          order: 5,
+          time: "18:30",
+          type: "rest",
+          name: "Hotel stop + luggage",
+          area: "Victoria",
+          coords: [-0.1447, 51.4921],
+          duration: "1 hour",
+          description:
+            "Tube back to Victoria, collect bags from storage, freshen up. Depart for Paddington by 19:45 for 21:00 Heathrow Express; budget 3 hours before international flight.",
+          estimatedCost: "Free",
+          transitFromPrev: "Tube, 15 min",
+        },
+        {
+          order: 6,
+          time: "20:00",
+          type: "transit",
+          name: "Heathrow Express → LHR",
+          area: "Paddington → Heathrow",
+          coords: [-0.4515, 51.4700],
+          duration: "20 min",
+          description:
+            "Heathrow Express every 15 min. 15 minutes Paddington to LHR — fastest airport transit in Europe. Book ahead online for ~£18.",
+          estimatedCost: "~£18",
+          transitFromPrev: "Tube Circle line Victoria → Paddington, 10 min",
+        },
+      ],
+    },
+  ],
+  packingTips: [
+    "Waterproof shoes — London rain is light but constant",
+    "A compact umbrella (black, not bright) — the local style",
+    "One formal-ish outfit — afternoon tea, a nicer pub, the Bocca di Lupo dinner reward decent clothing",
+    "UK plug adapter (Type G) — completely different from both US and EU",
+  ],
+  budgetEstimate: "~£150-250/day for a couple excluding hotel (museum + pub lunch + nice dinner structure)",
+  generalTips: [
+    "Tap contactless everywhere on transit — daily cap kicks in automatically at ~£8.10",
+    "Stand right on escalators. Walk left. Londoners will exhale audibly if you block",
+    "Tipping: 10-12.5% at sit-down restaurants (often auto-added — check the bill)",
+    "Look RIGHT first when crossing — traffic drives on the left",
+  ],
+};
+
+export default london4dCouple;
