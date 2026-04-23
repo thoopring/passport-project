@@ -66,7 +66,9 @@ export function buildStaticMapUrl(plan: TripPlan, width = 800, height = 500): st
 
   const overlayStr = overlays.join(",");
   const style = "mapbox/streets-v12";
-  return `https://api.mapbox.com/styles/v1/${style}/static/${overlayStr}/auto/${width}x${height}@2x?access_token=${token}`;
+  // @react-pdf/renderer refuses to embed images without a recognized extension
+  // in the URL path. Mapbox supports `.png` as the format suffix.
+  return `https://api.mapbox.com/styles/v1/${style}/static/${overlayStr}/auto/${width}x${height}@2x.png?access_token=${token}`;
 }
 
 /**

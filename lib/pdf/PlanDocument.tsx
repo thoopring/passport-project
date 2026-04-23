@@ -6,9 +6,37 @@ import {
   StyleSheet,
   Image,
   Link,
+  Font,
 } from "@react-pdf/renderer";
+import fsSync from "node:fs";
+import pathLib from "node:path";
 import type { TripPlan } from "../../types/trip-plan";
 import { pickTrivia } from "../trivia";
+
+// Pretendard — single family with Latin + CJK (Korean/Japanese/Chinese) glyphs.
+// Default Helvetica has no CJK glyphs so non-English locales render the whole
+// plan as .notdef boxes. Register BEFORE any Document is instantiated.
+//
+// Regular and Bold are registered as two separate family names so existing
+// style definitions (fontFamily: "Pretendard-Bold") work with a literal
+// rename — no fontWeight refactor across dozens of call sites needed.
+//
+// Fonts are loaded from /public/fonts/ (bundled into the PDF lambda via
+// next.config's outputFileTracingIncludes). CDN hotlinking (jsdelivr/gh)
+// returned 403 in practice, so disk-backed loading is the only reliable option.
+const FONT_DIR = pathLib.join(process.cwd(), "public", "fonts");
+function loadFontAsDataUrl(filename: string): string {
+  const buf = fsSync.readFileSync(pathLib.join(FONT_DIR, filename));
+  return `data:font/otf;base64,${buf.toString("base64")}`;
+}
+Font.register({
+  family: "Pretendard",
+  src: loadFontAsDataUrl("Pretendard-Regular.otf"),
+});
+Font.register({
+  family: "Pretendard-Bold",
+  src: loadFontAsDataUrl("Pretendard-Bold.otf"),
+});
 
 /**
  * PlanDocument — react-pdf renderer for the printable trip plan PDF.
@@ -32,7 +60,7 @@ const colors = {
 const styles = StyleSheet.create({
   page: {
     padding: 40,
-    fontFamily: "Helvetica",
+    fontFamily: "Pretendard",
     fontSize: 11,
     color: colors.text,
     backgroundColor: "#FFFBF0",
@@ -45,26 +73,26 @@ const styles = StyleSheet.create({
   brand: {
     fontSize: 9,
     color: colors.brand,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     letterSpacing: 1,
     textTransform: "uppercase",
   },
   h1: {
     fontSize: 26,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     marginTop: 6,
     color: colors.text,
   },
   h2: {
     fontSize: 16,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     marginTop: 18,
     marginBottom: 6,
     color: colors.brand,
   },
   h3: {
     fontSize: 13,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     marginTop: 10,
     marginBottom: 4,
   },
@@ -80,7 +108,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", marginBottom: 4 },
   label: {
     width: 80,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     fontSize: 10,
     color: colors.muted,
     textTransform: "uppercase",
@@ -88,8 +116,8 @@ const styles = StyleSheet.create({
   value: { flex: 1, fontSize: 11 },
   stop: { marginBottom: 12, paddingBottom: 10, borderBottom: `0.3pt solid ${colors.border}` },
   stopHeader: { flexDirection: "row", justifyContent: "space-between", marginBottom: 3 },
-  stopTime: { fontFamily: "Helvetica-Bold", fontSize: 12, color: colors.brand },
-  stopName: { fontFamily: "Helvetica-Bold", fontSize: 12, color: colors.text, flex: 1, marginLeft: 10 },
+  stopTime: { fontFamily: "Pretendard-Bold", fontSize: 12, color: colors.brand },
+  stopName: { fontFamily: "Pretendard-Bold", fontSize: 12, color: colors.text, flex: 1, marginLeft: 10 },
   stopType: { fontSize: 9, color: colors.muted, textTransform: "uppercase" },
   stopDesc: { fontSize: 10, color: colors.text, lineHeight: 1.5, marginTop: 3 },
   stopMeta: { fontSize: 9, color: colors.muted, marginTop: 3 },
@@ -115,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brand,
     color: "#fff",
     fontSize: 9,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     padding: "3 8",
     borderRadius: 10,
     marginRight: 4,
@@ -129,17 +157,17 @@ const styles = StyleSheet.create({
   },
   triviaLabel: {
     fontSize: 9,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Pretendard-Bold",
     color: colors.accent,
     textTransform: "uppercase",
     letterSpacing: 0.5,
     marginBottom: 4,
   },
   triviaText: {
+    // Pretendard has no italic variant; relying on color contrast instead.
     fontSize: 10,
     color: colors.text,
     lineHeight: 1.5,
-    fontStyle: "italic",
   },
 });
 
@@ -171,7 +199,7 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
 
         <Text style={styles.h2}>Hotel</Text>
         <View style={styles.card}>
-          <Text style={{ fontFamily: "Helvetica-Bold", fontSize: 13 }}>
+          <Text style={{ fontFamily: "Pretendard-Bold", fontSize: 13 }}>
             {plan.hotel.name} <Text style={styles.muted}>· {plan.hotel.priceTier}</Text>
           </Text>
           <Text style={styles.muted}>
@@ -267,7 +295,7 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
                   <Text
                     style={[
                       styles.stopMeta,
-                      { color: colors.accent, fontFamily: "Helvetica-Bold" },
+                      { color: colors.accent, fontFamily: "Pretendard-Bold" },
                     ]}
                   >
                     Tip: {stop.bookingTip}
