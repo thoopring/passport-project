@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getPlan } from "../../../lib/plans";
 import PlanView from "../../../components/PlanView";
+import PostPaymentWait from "../../../components/PostPaymentWait";
 import ShareReferralCard from "../../../components/ShareReferralCard";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -41,7 +42,20 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
   }
 
   if (record.status === "paid" || record.status === "generating") {
-    return <GeneratingState id={id} justPaid={sp.paid === "1"} t={t} />;
+    // Engaging wait screen — broadcasts "paid" to the opener loading tab,
+    // polls status, shows progress + trivia. Replaces the prior static
+    // "title + refresh button" screen.
+    const destCountry = (record.request as { destinationCountry?: string })
+      ?.destinationCountry;
+    return (
+      <div className="min-h-screen flex flex-col bg-[var(--background)]">
+        <Header />
+        <main className="flex-1">
+          <PostPaymentWait planId={id} destinationCountry={destCountry} />
+        </main>
+        <Footer />
+      </div>
+    );
   }
 
   if (record.status === "failed") {
@@ -92,37 +106,3 @@ function Centered({ children }: { children: React.ReactNode }) {
   );
 }
 
-interface GeneratingStateProps {
-  id: string;
-  justPaid: boolean;
-  t: (key: string) => string;
-}
-
-function GeneratingState({ id, justPaid, t }: GeneratingStateProps) {
-  return (
-    <div className="min-h-screen flex flex-col bg-[var(--background)]">
-      <Header />
-      <main className="flex-1 flex items-center justify-center p-6">
-        <div className="max-w-md text-center">
-          {justPaid && (
-            <p className="text-caption uppercase tracking-[0.18em] font-semibold text-[var(--accent-primary)] mb-3">
-              {t("paymentReceived")}
-            </p>
-          )}
-          <h1 className="font-display text-display-md text-[var(--text-primary)] mb-3">
-            {t("generatingTitle")}
-          </h1>
-          <p className="text-body-md text-[var(--text-secondary)] mb-6">{t("generatingSubtitle")}</p>
-          <a
-            href={`/plan/${id}`}
-            className="inline-block px-6 py-3 bg-[var(--brand-primary)] text-white rounded-md font-medium hover:opacity-90 transition"
-          >
-            {t("generatingRefresh")}
-          </a>
-          <p className="text-caption text-[var(--text-muted)] mt-6">Plan ID: {id}</p>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
-}

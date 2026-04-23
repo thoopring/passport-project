@@ -105,6 +105,26 @@ function LoadingInner() {
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [popupBlocked, setPopupBlocked] = useState(false);
   const [editingField, setEditingField] = useState<EditableField | null>(null);
+  // Draft planId after checkout submission — needed for the BroadcastChannel
+  // listener so we only redirect on messages matching our plan.
+  const [draftPlanId, setDraftPlanId] = useState<string | null>(null);
+
+  // Listen for the "paid" broadcast from the checkout/wait tab. When the new
+  // tab (/plan/[id]?paid=1) mounts, it posts to this channel; we redirect the
+  // loading tab away from the stale review screen so the user doesn't see
+  // "retry payment" after successfully paying.
+  useEffect(() => {
+    if (typeof window === "undefined" || !("BroadcastChannel" in window)) return;
+    if (!draftPlanId) return;
+    const ch = new BroadcastChannel("passport-plan-sync");
+    ch.onmessage = (e) => {
+      const m = e.data as { type?: string; planId?: string };
+      if (m?.type === "paid" && m.planId === draftPlanId) {
+        router.replace(`/plan/${draftPlanId}`);
+      }
+    };
+    return () => ch.close();
+  }, [draftPlanId, router]);
 
   // Bail if user landed here without a destination
   useEffect(() => {
@@ -197,6 +217,7 @@ function LoadingInner() {
         throw new Error(body.error || "Failed to save your plan");
       }
       const { id } = await draftRes.json();
+      setDraftPlanId(id);
 
       if (typeof window !== "undefined" && typeof window.gtag === "function") {
         window.gtag("event", "plan_draft_created", {
