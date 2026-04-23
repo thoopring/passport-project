@@ -76,6 +76,19 @@ export const PlanRequestSchema = z.object({
   arrivalAirport: z.string().min(2).max(80),
   arrivalTerminal: z.string().max(20).optional(),
 
+  /**
+   * Optional free-text flight details. Claude parses natural language
+   * (e.g. "5/1 오후 2:30 NRT 도착", "Arrive 14:30 May 1 NRT") and uses it
+   * to buffer Day 1 around immigration + transit from the airport.
+   */
+  flightArrival: z.string().max(160).optional(),
+  /**
+   * Optional free-text departure flight — used to schedule Day N's last
+   * block as "hotel → airport arriving 2-3h ahead of international departure
+   * (1h for domestic)".
+   */
+  flightDeparture: z.string().max(160).optional(),
+
   travelerType: TravelerTypeSchema,
   adults: z.number().int().min(1).max(20),
   children: z.number().int().min(0).max(20).default(0),

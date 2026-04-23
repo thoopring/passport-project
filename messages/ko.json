@@ -166,6 +166,16 @@
         "subtitle": "터미널과 가까운 호텔을 골라드립니다.",
         "placeholder": "예: ICN 또는 인천"
       },
+      "flightArrival": {
+        "title": "도착편이 언제예요? (선택)",
+        "subtitle": "알려주시면 공항 도착 후 입국심사까지 감안해서 첫날 일정을 짜드려요.",
+        "placeholder": "예: 5/1 오후 2시 30분 NRT"
+      },
+      "flightDeparture": {
+        "title": "귀국편은요? (선택)",
+        "subtitle": "마지막 날 공항에 2~3시간 여유를 두고 스케줄을 마무리해요.",
+        "placeholder": "예: 5/4 오전 9시 HND"
+      },
       "hotelBooked": {
         "title": "호텔은 이미 예약하셨나요?"
       },

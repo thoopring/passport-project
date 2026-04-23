@@ -28,6 +28,8 @@ interface WizardData {
   strollerNeeded?: boolean;
   hasInfant?: boolean;
   arrivalAirport?: string;
+  flightArrival?: string;
+  flightDeparture?: string;
   hotelBooked?: boolean;
   hotelName?: string;
   interests?: Interest[];
@@ -189,6 +191,8 @@ function LoadingInner() {
         destinationCountry: data.destinationCountry || data.destination,
         durationDays: data.durationDays,
         arrivalAirport: data.arrivalAirport,
+        flightArrival: data.flightArrival,
+        flightDeparture: data.flightDeparture,
         travelerType: data.travelerType,
         travelStyle: data.travelStyle,
         mustVisit: data.mustVisit,
@@ -1059,6 +1063,27 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     placeholder: tp("airport.placeholder"),
   });
 
+  // Optional flight info — lets the prompt buffer Day 1 after immigration
+  // and land Day N at the airport with 2-3 hour lead time. Free-text because
+  // the model parses natural-language dates/times well.
+  queue.push({
+    id: "flightArrival",
+    title: tp("flightArrival.title"),
+    subtitle: tp("flightArrival.subtitle"),
+    type: "text",
+    placeholder: tp("flightArrival.placeholder"),
+    optional: true,
+  });
+
+  queue.push({
+    id: "flightDeparture",
+    title: tp("flightDeparture.title"),
+    subtitle: tp("flightDeparture.subtitle"),
+    type: "text",
+    placeholder: tp("flightDeparture.placeholder"),
+    optional: true,
+  });
+
   queue.push({
     id: "hotelBooked",
     title: tp("hotelBooked.title"),
@@ -1147,6 +1172,10 @@ function applyAnswer(prev: WizardData, q: QuestionDef, value: unknown): WizardDa
       return { ...prev, strollerNeeded: value as boolean };
     case "airport":
       return { ...prev, arrivalAirport: value as string };
+    case "flightArrival":
+      return { ...prev, flightArrival: (value as string) || undefined };
+    case "flightDeparture":
+      return { ...prev, flightDeparture: (value as string) || undefined };
     case "hotelBooked":
       return { ...prev, hotelBooked: value as boolean };
     case "hotelName":

@@ -166,6 +166,16 @@
         "subtitle": "我们会选择靠近航站楼的酒店。",
         "placeholder": "例如:NRT 或成田"
       },
+      "flightArrival": {
+        "title": "到达航班是什么时候?(可选)",
+        "subtitle": "我们会考虑入境手续时间,合理安排第一天的行程。",
+        "placeholder": "例:5/1 下午2点30分 NRT"
+      },
+      "flightDeparture": {
+        "title": "返程航班呢?(可选)",
+        "subtitle": "最后一天会预留 2-3 小时前往机场。",
+        "placeholder": "例:5/4 上午9点 HND"
+      },
       "hotelBooked": {
         "title": "您是否已预订酒店?"
       },

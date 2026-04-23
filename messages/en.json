@@ -166,6 +166,16 @@
         "subtitle": "We'll pick a hotel close to your terminal.",
         "placeholder": "e.g. NRT or Narita"
       },
+      "flightArrival": {
+        "title": "When is your arrival flight? (optional)",
+        "subtitle": "We'll schedule Day 1 around immigration and airport transit.",
+        "placeholder": "e.g. May 1, 2:30 PM NRT"
+      },
+      "flightDeparture": {
+        "title": "Your return flight? (optional)",
+        "subtitle": "We'll leave a 2-3 hour buffer before your departure on the last day.",
+        "placeholder": "e.g. May 4, 9:00 AM HND"
+      },
       "hotelBooked": {
         "title": "Have you already booked a hotel?"
       },

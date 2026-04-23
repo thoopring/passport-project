@@ -166,6 +166,16 @@
         "subtitle": "ターミナルに近いホテルを選びます。",
         "placeholder": "例: NRT または成田"
       },
+      "flightArrival": {
+        "title": "到着便は何時ですか?(任意)",
+        "subtitle": "入国審査後の時間を考慮して1日目の予定を組みます。",
+        "placeholder": "例: 5/1 午後2時30分 NRT"
+      },
+      "flightDeparture": {
+        "title": "帰国便は?(任意)",
+        "subtitle": "最終日は出発の2〜3時間前に空港へ向かうよう組みます。",
+        "placeholder": "例: 5/4 午前9時 HND"
+      },
       "hotelBooked": {
         "title": "ホテルは予約済みですか?"
       },

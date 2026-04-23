@@ -68,6 +68,12 @@ CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
 
 11. If hotelBooked is true in the request, you MUST still produce a hotel object — but use the user's hotelName (if provided) and pin it in the area they likely stayed. Set the rationale to a one-sentence note like "Per your booking — itinerary is built around this location." Do NOT recommend an alternative hotel. The airportTransit and daily routing must use this hotel as the anchor.
 
+12. FLIGHT-AWARE SCHEDULING. If the user provided flightArrival or flightDeparture free-text (parse natural language dates/times in any language), you MUST adjust the day-level plan:
+    - flightArrival present → Day 1's FIRST stop must be a type:"transit" block titled something like "Arrival · {airport}" at the stated landing time. Insert a realistic immigration + baggage buffer (60-90 min for international, 30 min for domestic) before the next stop. If arrival is late evening (after 18:00), reduce Day 1 to only airport → hotel → one low-energy stop (nearby dinner or lounge). Do NOT schedule sightseeing before immigration clearance time.
+    - flightDeparture present → Day N's FINAL stops must be a hotel check-out + transit block ending at the airport with a buffer BEFORE the stated departure time (3 hours for international, 1-1.5 hours for domestic). Remove any stops that would not realistically fit. Mark the last stop as type:"transit" titled like "Airport · {airport} for {flightTime} flight".
+    - Both: day count is still durationDays; the arrival and departure blocks COUNT as stops on Days 1 and N.
+    - If the user only provided flightDeparture but no flightArrival, assume a morning arrival on Day 1 and schedule normally from the airport.
+
 OUTPUT FORMAT — STRICT JSON ONLY:
 
 You must return a single JSON object matching this exact schema. No prose before or after. No markdown code fences. Just the raw JSON object.
@@ -166,6 +172,8 @@ Budget tier: ${req.budgetTier}
 Pace: ${req.pace}
 ${req.travelStyle ? `Trip style: ${req.travelStyle} — ${styleInstruction(req.travelStyle)}` : ""}
 ${req.mustVisit ? `MUST-VISIT PLACES (integrate into the itinerary, prioritize placement by geography): ${req.mustVisit}` : ""}
+${req.flightArrival ? `ARRIVAL FLIGHT: ${req.flightArrival} — parse the date/time and start Day 1 at the airport with immigration buffer per rule 12.` : ""}
+${req.flightDeparture ? `DEPARTURE FLIGHT: ${req.flightDeparture} — parse and end Day ${req.durationDays} at the airport with pre-flight buffer per rule 12.` : ""}
 
 ${req.notes ? `Additional notes from the traveler: ${req.notes}` : ""}
 
