@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { verifyWebhookSignature } from "../../../../lib/lemonsqueezy";
 import {
   getPlan,
@@ -27,10 +27,15 @@ export const maxDuration = 300;
  * If generation fails, mark the plan as failed so a manual refund can happen.
  *
  * NOTE: Lemon Squeezy expects a 200 response within ~30s on the webhook.
- * Sonnet generation may take 20-40s. We respond 200 immediately and run the
- * generation in the background (fire-and-forget) — using waitUntil where
- * possible. For Vercel, this needs maxDuration: 300 (Pro plan) for the
- * background work to actually complete.
+ * Sonnet generation takes 60-120s. We respond 200 immediately and run the
+ * generation via Next.js `after()` — which uses Vercel's waitUntil under the
+ * hood to keep the serverless function alive past the response, up to
+ * maxDuration (Pro plan required for the 300s ceiling).
+ *
+ * DO NOT replace `after()` with a bare fire-and-forget promise — Vercel
+ * terminates the isolate as soon as the response is sent, and the background
+ * work silently dies (observed 2026-04-23: plan stuck at status=paid with
+ * no generating transition).
  */
 export async function POST(req: NextRequest) {
   const rawBody = await req.text();
@@ -65,10 +70,15 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Run generation asynchronously so we can return 200 quickly.
-  // On Vercel we rely on maxDuration above to keep the function alive.
-  generateAndDeliver(planId, paymentId).catch((err) => {
-    console.error("Plan generation pipeline failed", { planId, err });
+  // Run generation after the 200 response is sent. `after()` keeps the
+  // serverless function alive via waitUntil; without it, Vercel kills the
+  // isolate and a bare fire-and-forget promise never completes.
+  after(async () => {
+    try {
+      await generateAndDeliver(planId, paymentId);
+    } catch (err) {
+      console.error("Plan generation pipeline failed", { planId, err });
+    }
   });
 
   return NextResponse.json({ ok: true });
