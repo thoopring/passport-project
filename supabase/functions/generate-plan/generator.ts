@@ -13,8 +13,8 @@ import {
 const MODEL = "claude-sonnet-4-5";
 const OPTIMIZE_MODEL = "claude-haiku-4-5-20251001";
 const MAX_OUTPUT_TOKENS = 8000;
-const MAIN_TIMEOUT_MS = 90_000; // 90s hard ceiling for main Claude call
-const OPT_TIMEOUT_MS = 15_000; // 15s per route-optimize call
+const MAIN_TIMEOUT_MS = 180_000; // 180s — Sonnet 4.5 + 8k tokens + non-EN locale can take 60-120s
+const OPT_TIMEOUT_MS = 20_000; // 20s per route-optimize call (Haiku, short output)
 
 function getApiKey(): string {
   const key = Deno.env.get("ANTHROPIC_API_KEY");

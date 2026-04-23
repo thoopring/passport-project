@@ -2,8 +2,8 @@
 
 > 터미널이 끊기거나 새 세션을 시작할 때 어디까지 했는지 빠르게 파악하는 라이브 스냅샷.
 >
-> **마지막 업데이트:** 2026-04-21
-> **워킹 트리:** clean
+> **마지막 업데이트:** 2026-04-23
+> **워킹 트리:** clean (정리 완료)
 
 ---
 
@@ -60,7 +60,19 @@
 
 ## ⏳ 다음 단계 — 사용자(MinSu) 차례
 
-**디자인 시스템 확정**됐으니 이제 런치 준비만 남음.
+**디자인 시스템 확정 + 결제/생성 아키텍처 확정**. 런치 준비만 남음.
+
+### 비동기 전환 시도 회고 (2026-04-22~23)
+
+Vercel Pro 비용 $20/월 피하려고 **Supabase Edge Function으로 생성 이관** 시도 →
+Free tier 150s wall clock에 막힘 (한국어 3일 플랜 실측 137s + optimize 15~20s = 155s).
+Supabase Pro도 $25/월이라 경제성 없음. **Vercel Pro로 복귀, 결제 완료.**
+자세한 회고는 `docs/MIGRATE_TO_ASYNC.md` 상단 노트. Edge Function 스캐폴딩은
+v1.1 Supabase Pro 업그레이드 시 재활용 가능하도록 코드 보관 (미배포).
+
+### 현재 생성 경로
+`LS webhook → app/api/webhooks/lemon-squeezy (maxDuration=300) → lib/generator/claude.ts`
+— Vercel Pro에서 300초 예산 안에 동기 생성. 코드는 처음부터 있었던 경로.
 
 완료:
 - [x] Anthropic API 키
@@ -68,14 +80,32 @@
 - [x] `.env.local` 부분 생성
 - [x] LemonSqueezy 스토어 + $4 상품 + API key
 - [x] 초기 Vercel 배포 (각 커밋 자동 빌드)
+- [x] **Vercel Pro 업그레이드** ← 2026-04-23 완료
+- [x] **TS 빌드 수정**: `tsconfig.json`에서 `supabase/functions/**` exclude
+      (Deno import가 Next 빌드를 깨뜨리던 것 수정)
+- [x] Edge Function 배포 제거 + 스캐폴딩 코드만 보존
 
 대기:
-- [ ] **디자인 3차 live 확인** — 이번 커밋 배포 후 사용자 평가 필요
-- [ ] Mapbox 토큰 + URL 제한 + env 반영
-- [ ] Resend 도메인 DKIM/SPF DNS + 검증
-- [ ] Vercel Pro 업그레이드 ($20/월)
-- [ ] LS 웹훅 (`/api/webhooks/lemon-squeezy`) secret → env → Redeploy
+- [ ] Mapbox 토큰 + URL 제한 + Vercel env 반영
+- [ ] Resend 도메인 DKIM/SPF DNS + 검증 + Vercel env
+- [ ] LS 웹훅 secret (`LEMON_SQUEEZY_WEBHOOK_SECRET`) → Vercel env → LS 대시보드에서 webhook URL 등록 (`https://checkvisamap.com/api/webhooks/lemon-squeezy`)
+- [ ] Vercel env 전체 확인 (아래 목록)
 - [ ] LAUNCH_CHECKLIST Phase B~F 스모크 테스트
+
+### Vercel 필수 env 체크리스트
+```
+ANTHROPIC_API_KEY
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
+LEMON_SQUEEZY_API_KEY
+LEMON_SQUEEZY_STORE_ID
+LEMON_SQUEEZY_VARIANT_ID
+LEMON_SQUEEZY_WEBHOOK_SECRET        ← 대기
+RESEND_API_KEY                       ← 대기
+RESEND_FROM_EMAIL                    ← 대기
+MAPBOX_TOKEN (또는 NEXT_PUBLIC_MAPBOX_TOKEN) ← 대기
+NEXT_PUBLIC_SITE_URL=https://checkvisamap.com
+```
 
 ### 검토 메모 (v1.1+)
 
@@ -108,7 +138,7 @@ git status --short
 
 ```
 ████████████████████ 100% (P0~P15 코드)
-██░░░░░░░░░░░░░░░░░░  ~15% (런치 — 계정 프로비저닝 진행 중)
+████████████░░░░░░░░  ~60% (런치 — Vercel Pro 결제 완료, env/DNS만 남음)
 ```
 
-**다음 액션:** Vercel 자동 빌드 후 새 디자인 live 확인.
+**다음 액션:** Mapbox 토큰 발급 → Resend DNS 검증 → LS webhook secret 생성 → Vercel env 등록 → LS 대시보드에서 webhook URL 등록 → 실제 $4 결제로 E2E 스모크.

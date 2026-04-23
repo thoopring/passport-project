@@ -2,14 +2,16 @@
 //
 // Triggered by a Supabase Database Webhook when a row in `plans` is UPDATED
 // with status='paid'. Orchestrates:
-//   1. Idempotency claim (paid → generating)
-//   2. Claude plan generation (20-60 seconds)
-//   3. Save plan JSON + status='complete'
-//   4. Resend email to the buyer
-//   5. Award referral credit if the purchase came via /r/[code]
+//   1. Idempotency claim (paid → generating)   — in request lifecycle
+//   2. Return 200 immediately                   — so the HTTP caller doesn't
+//      hit the Supabase 150s IDLE_TIMEOUT on the request itself
+//   3. Background (EdgeRuntime.waitUntil): Claude generation → save →
+//      email → referral credit. Errors flip status=failed with reason.
 //
-// On any failure → status='failed' with reason, and returns 500 so the
-// webhook retries (Supabase DB Webhooks auto-retry up to ~10 times).
+// Why background: Sonnet 4.5 with 8k tokens + locale translation can take
+// 60-120s, and Supabase Edge requests are killed after 150s of idle bytes.
+// EdgeRuntime.waitUntil keeps the worker alive past the HTTP response (up
+// to the Edge wall-clock ceiling, ~400s on Pro).
 //
 // Required secrets (supabase secrets set):
 //   ANTHROPIC_API_KEY
@@ -91,36 +93,52 @@ Deno.serve(async (req) => {
   const request = claimed.request as PlanRequest;
   const email = claimed.email as string;
 
-  try {
-    console.log(`[generate-plan] Generating for ${request.destination}`);
-    const generated = await generateTripPlan(request);
+  // Kick Claude generation into the background — the HTTP response returns
+  // immediately below so we don't hit the 150s idle timeout.
+  const work = (async () => {
+    try {
+      console.log(`[generate-plan] Generating for ${request.destination}`);
+      const generated = await generateTripPlan(request);
 
-    console.log(`[generate-plan] Saving result for planId=${planId}`);
-    await savePlanResult(planId, generated);
+      console.log(`[generate-plan] Saving result for planId=${planId}`);
+      await savePlanResult(planId, generated);
 
-    console.log(`[generate-plan] Sending email to ${email}`);
-    await sendPlanReadyEmail({
-      to: email,
-      planId,
-      destination: request.destination,
-      locale: request.locale,
-    });
-
-    // Referral credit is best-effort — don't fail the whole job
-    if (request.referredByCode) {
-      await awardCredit(request.referredByCode, email).catch((err) => {
-        console.error("awardCredit failed (non-fatal)", { planId, err });
+      console.log(`[generate-plan] Sending email to ${email}`);
+      await sendPlanReadyEmail({
+        to: email,
+        planId,
+        destination: request.destination,
+        locale: request.locale,
       });
-    }
 
-    console.log(`[generate-plan] Complete for planId=${planId}`);
-    return json({ ok: true, planId });
-  } catch (err) {
-    const reason = err instanceof Error ? err.message : String(err);
-    console.error("[generate-plan] FAILED", { planId, reason, err });
-    await setPlanFailed(planId, reason);
-    return json({ error: reason }, 500);
+      if (request.referredByCode) {
+        await awardCredit(request.referredByCode, email).catch((err) => {
+          console.error("awardCredit failed (non-fatal)", { planId, err });
+        });
+      }
+
+      console.log(`[generate-plan] Complete for planId=${planId}`);
+    } catch (err) {
+      const reason = err instanceof Error ? err.message : String(err);
+      console.error("[generate-plan] FAILED", { planId, reason, err });
+      await setPlanFailed(planId, reason).catch((e) =>
+        console.error("setPlanFailed also threw", e)
+      );
+    }
+  })();
+
+  // EdgeRuntime is Supabase's runtime handle. waitUntil keeps the isolate
+  // alive after the HTTP response is sent, up to the wall-clock ceiling.
+  // deno-lint-ignore no-explicit-any
+  const rt = (globalThis as any).EdgeRuntime;
+  if (rt && typeof rt.waitUntil === "function") {
+    rt.waitUntil(work);
+  } else {
+    console.warn("[generate-plan] EdgeRuntime.waitUntil unavailable — awaiting inline");
+    await work;
   }
+
+  return json({ ok: true, planId, status: "generating" });
 });
 
 // deno-lint-ignore no-explicit-any

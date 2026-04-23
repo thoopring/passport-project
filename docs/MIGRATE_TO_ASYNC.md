@@ -1,5 +1,34 @@
 # Migration: Sync Webhook → Async Edge Function
 
+> ## ⚠️ NOT ADOPTED (as of 2026-04-23)
+>
+> This migration was attempted and **blocked** on the Supabase **Free** tier.
+> We measured the real Anthropic latency for a 3-day Korean plan at ~137s
+> (hits the 8000-token ceiling). Adding the optimize pass (~15-20s) lands
+> total generation at ~155s, which exceeds Supabase Free's **150s wall-clock
+> ceiling** per Edge Function invocation — the isolate is killed mid-run.
+>
+> `EdgeRuntime.waitUntil()` does not help, because the wall clock is a
+> runtime limit, not a request-idle limit: the isolate itself is bounded.
+>
+> Economics:
+>
+> | Path                 | $/mo | Code       | Quality | Status                 |
+> |----------------------|-----:|------------|---------|------------------------|
+> | Vercel Pro (adopted) |  $20 | zero delta | 100%    | **launched**           |
+> | Supabase Pro         |  $25 | this dir   | 100%    | worse economics        |
+> | Edge Free + shrink   |   $0 | this dir   | degraded| rejected on quality    |
+>
+> The scaffold is kept in-repo for a possible v1.1 revisit if we ever pay
+> for Supabase Pro (400s wall clock) — at which point the code below is
+> still the correct deploy path. **Do not redeploy `generate-plan` on Free
+> tier** — the DB webhook will race the Vercel webhook and waste quota.
+>
+> `supabase/functions/` is excluded from `tsconfig.json` so the Deno-style
+> npm-prefix imports don't break the Next.js build.
+>
+> ---
+
 Moving Claude plan generation off the Vercel webhook and onto a Supabase
 Edge Function. This lets us stay on Vercel **Hobby** ($0) instead of Pro
 ($20/mo), and gives us proper queue-style retry/observability.
