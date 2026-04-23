@@ -13,17 +13,19 @@ import pathLib from "node:path";
 import type { TripPlan } from "../../types/trip-plan";
 import { pickTrivia } from "../trivia";
 
-// Pretendard — single family with Latin + CJK (Korean/Japanese/Chinese) glyphs.
-// Default Helvetica has no CJK glyphs so non-English locales render the whole
-// plan as .notdef boxes. Register BEFORE any Document is instantiated.
+// Noto Sans CJK KR — full CJK coverage (Korean + Japanese + Chinese
+// Unified Ideographs, 20,976 Han chars + 11,172 Hangul). Pretendard covered
+// Korean beautifully but was missing Japanese simplifications like 庁 used
+// in Tokyo place names, producing garbled glyphs in the PDF.
 //
-// Regular and Bold are registered as two separate family names so existing
-// style definitions (fontFamily: "Pretendard-Bold") work with a literal
-// rename — no fontWeight refactor across dozens of call sites needed.
+// Registered as "Pretendard" and "Pretendard-Bold" family names purely so
+// the existing StyleSheet definitions (fontFamily: "Pretendard-Bold")
+// continue to work with zero call-site changes. The actual glyph data
+// under the hood is Noto Sans CJK KR.
 //
-// Fonts are loaded from /public/fonts/ (bundled into the PDF lambda via
-// next.config's outputFileTracingIncludes). CDN hotlinking (jsdelivr/gh)
-// returned 403 in practice, so disk-backed loading is the only reliable option.
+// Fonts bundled at /public/fonts/ and included in the PDF lambda via
+// next.config's outputFileTracingIncludes. CDN hotlinking returns 403 in
+// practice, so disk-backed loading is the only reliable path.
 const FONT_DIR = pathLib.join(process.cwd(), "public", "fonts");
 function loadFontAsDataUrl(filename: string): string {
   const buf = fsSync.readFileSync(pathLib.join(FONT_DIR, filename));
@@ -31,11 +33,11 @@ function loadFontAsDataUrl(filename: string): string {
 }
 Font.register({
   family: "Pretendard",
-  src: loadFontAsDataUrl("Pretendard-Regular.otf"),
+  src: loadFontAsDataUrl("NotoSansCJKkr-Regular.otf"),
 });
 Font.register({
   family: "Pretendard-Bold",
-  src: loadFontAsDataUrl("Pretendard-Bold.otf"),
+  src: loadFontAsDataUrl("NotoSansCJKkr-Bold.otf"),
 });
 
 /**
