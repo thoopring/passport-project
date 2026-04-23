@@ -1,7 +1,8 @@
-// Claude trip plan generator — Deno port of lib/generator/claude.ts.
-// Uses npm: specifier for the Anthropic SDK.
+// Claude trip plan generator — Deno port using NATIVE FETCH (not the SDK).
+// The npm:@anthropic-ai/sdk appears to hang in Deno Deploy, so we call the
+// Anthropic HTTP API directly. Adds explicit AbortController timeouts so we
+// fail fast instead of consuming the full 150s Edge Function budget.
 
-import Anthropic from "npm:@anthropic-ai/sdk@0.87";
 import {
   type Day,
   type PlanRequest,
@@ -10,15 +11,97 @@ import {
 } from "./types.ts";
 
 const MODEL = "claude-sonnet-4-5";
+const OPTIMIZE_MODEL = "claude-haiku-4-5-20251001";
 const MAX_OUTPUT_TOKENS = 8000;
+const MAIN_TIMEOUT_MS = 90_000; // 90s hard ceiling for main Claude call
+const OPT_TIMEOUT_MS = 15_000; // 15s per route-optimize call
 
-let client: Anthropic | null = null;
-function getClient(): Anthropic {
-  if (client) return client;
-  const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
-  if (!apiKey) throw new Error("Missing ANTHROPIC_API_KEY");
-  client = new Anthropic({ apiKey });
-  return client;
+function getApiKey(): string {
+  const key = Deno.env.get("ANTHROPIC_API_KEY");
+  if (!key) throw new Error("Missing ANTHROPIC_API_KEY");
+  return key;
+}
+
+interface ClaudeMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+interface ClaudeResponse {
+  content: Array<{ type: string; text?: string }>;
+}
+
+async function callAnthropic(
+  opts: {
+    model: string;
+    max_tokens: number;
+    system?: string;
+    messages: ClaudeMessage[];
+    timeoutMs: number;
+    label: string;
+  },
+): Promise<string> {
+  const controller = new AbortController();
+  const t0 = Date.now();
+  const killer = setTimeout(() => {
+    console.error(
+      `[anthropic:${opts.label}] ABORT after ${opts.timeoutMs}ms`,
+    );
+    controller.abort();
+  }, opts.timeoutMs);
+
+  try {
+    console.log(
+      `[anthropic:${opts.label}] START model=${opts.model} max_tokens=${opts.max_tokens}`,
+    );
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": getApiKey(),
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model: opts.model,
+        max_tokens: opts.max_tokens,
+        ...(opts.system ? { system: opts.system } : {}),
+        messages: opts.messages,
+      }),
+      signal: controller.signal,
+    });
+
+    const elapsed = Math.round((Date.now() - t0) / 1000);
+    console.log(
+      `[anthropic:${opts.label}] RESPONSE status=${res.status} in ${elapsed}s`,
+    );
+
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(
+        `Anthropic ${res.status}: ${body.slice(0, 300)}`,
+      );
+    }
+
+    const data = (await res.json()) as ClaudeResponse;
+    const textBlock = data.content.find((b) => b.type === "text");
+    if (!textBlock || !textBlock.text) {
+      throw new Error("Anthropic returned no text content");
+    }
+    console.log(
+      `[anthropic:${opts.label}] DONE text_len=${textBlock.text.length}`,
+    );
+    return textBlock.text;
+  } catch (err) {
+    const elapsed = Math.round((Date.now() - t0) / 1000);
+    if ((err as Error).name === "AbortError") {
+      throw new Error(
+        `[anthropic:${opts.label}] timed out after ${elapsed}s`,
+      );
+    }
+    throw err;
+  } finally {
+    clearTimeout(killer);
+  }
 }
 
 const SYSTEM_PROMPT =
@@ -48,7 +131,7 @@ CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
 
 8. Each Stop must have: order (1-indexed within the day), time (24h "HH:MM"), type (sight/meal/activity/transit/rest/shopping), name, coords [lng, lat], duration, description (2-3 sentences with WHY this stop matters), and transitFromPrev (how to get there from the previous stop in walking/transit minutes).
 
-9. Stops within a day MUST be geographically clustered to minimize backtracking. Do not zigzag across the city. EXAMPLE OF BAD ZIGZAG: morning at the western shrine, lunch in the eastern downtown, afternoon back at the central park, dinner back east. EXAMPLE OF GOOD CLUSTERING: morning at western shrine, lunch at western district café, afternoon walking east through the central park, dinner in the eastern downtown. The route from stop 1 to stop N should be a coherent geographic path, not a star pattern.
+9. Stops within a day MUST be geographically clustered to minimize backtracking. Do not zigzag across the city. The route from stop 1 to stop N should be a coherent geographic path, not a star pattern.
 
 10. The airportTransit object must give the actual best option (e.g., "Narita Express to Tokyo Station, then JR Yamanote line"), with realistic duration and cost.
 
@@ -62,64 +145,32 @@ You must return a single JSON object matching this exact schema. No prose before
   "destination": string,
   "destinationCountry": string,
   "durationDays": number,
-  "overview": "2-3 sentence intro to why this trip will be great for THIS specific traveler",
-  "bestSeasonNote": "optional short note about the timing",
-  "currencyTip": "optional currency + payment tip",
-  "languageTip": "optional language tip",
+  "overview": "2-3 sentence intro",
+  "bestSeasonNote": "optional",
+  "currencyTip": "optional",
+  "languageTip": "optional",
   "emergencyNumber": "optional",
-  "hotel": {
-    "name": string,
-    "area": string,
-    "address": string,
-    "coords": [lng, lat],
-    "rationale": "why this hotel for this specific airport and traveler profile",
-    "priceTier": "$" | "$$" | "$$$" | "$$$$",
-    "estimatedNightlyRate": "optional, e.g. ~$120/night"
-  },
-  "airportTransit": {
-    "method": string,
-    "duration": string,
-    "cost": string,
-    "instructions": "step by step from gate to hotel"
-  },
+  "hotel": { "name", "area", "address", "coords": [lng, lat], "rationale", "priceTier": "$"|"$$"|"$$$"|"$$$$", "estimatedNightlyRate": "optional" },
+  "airportTransit": { "method", "duration", "cost", "instructions" },
   "days": [
-    {
-      "dayNumber": 1,
-      "theme": "short theme name",
-      "summary": "one sentence summary of the day",
-      "stops": [
-        {
-          "order": 1,
-          "time": "09:00",
-          "type": "sight",
-          "name": string,
-          "area": "optional neighbourhood",
-          "address": "optional",
-          "coords": [lng, lat],
-          "duration": "1.5 hours",
-          "description": "2-3 sentences about why this stop and what to do there",
-          "estimatedCost": "optional, e.g. ~$15",
-          "bookingTip": "optional, e.g. book 2 days ahead",
-          "kidFriendly": true,
-          "transitFromPrev": "optional, e.g. 10 min walk"
-        }
-      ]
-    }
+    { "dayNumber": 1, "theme", "summary", "stops": [
+      { "order": 1, "time": "09:00", "type": "sight"|"meal"|"activity"|"transit"|"rest"|"shopping", "name", "area": "optional", "address": "optional", "coords": [lng, lat], "duration", "description", "estimatedCost": "optional", "bookingTip": "optional", "kidFriendly": "optional", "transitFromPrev": "optional" }
+    ] }
   ],
-  "packingTips": ["optional array", "of short tips"],
-  "budgetEstimate": "optional, e.g. ~$80-120/day excluding hotel",
-  "generalTips": ["optional array", "of general tips for this destination"]
+  "packingTips": ["optional array"],
+  "budgetEstimate": "optional",
+  "generalTips": ["optional array"]
 }`;
 
 const LOCALE_INSTRUCTIONS: Record<string, string> = {
   en:
-    "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in English.",
+    "Write all user-facing strings in English.",
   ko:
-    "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Korean (한국어). Place names, hotel names, and street addresses stay in their original native script with optional Romanization in parentheses on first mention. Numbers and prices stay in their original format. Use polite endings (-습니다 / -ㅂ니다) consistently.",
+    "Write all user-facing strings in NATURAL Korean (한국어). Place names, hotel names, and street addresses stay in their original native script with optional Romanization in parentheses on first mention. Numbers and prices stay in their original format. Use polite endings (-습니다 / -ㅂ니다) consistently.",
   ja:
-    "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Japanese (日本語). Place names stay in Japanese script with English in parentheses on first mention if it's a foreign destination. Use です/ます polite forms consistently.",
+    "Write all user-facing strings in NATURAL Japanese (日本語). Place names stay in Japanese script with English in parentheses on first mention if it's a foreign destination. Use です/ます polite forms consistently.",
   zh:
-    "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Simplified Chinese (简体中文). Place names stay in their native script with Pinyin in parentheses on first mention. Use formal but warm tone.",
+    "Write all user-facing strings in NATURAL Simplified Chinese (简体中文). Place names stay in their native script with Pinyin in parentheses on first mention. Use formal but warm tone.",
 };
 
 function styleInstruction(style: string): string {
@@ -197,41 +248,20 @@ function extractJson(text: string): unknown {
 }
 
 export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
-  const anthropic = getClient();
+  const t0 = Date.now();
+  const messages: ClaudeMessage[] = [
+    { role: "user", content: buildUserPrompt(req) },
+  ];
 
-  const callClaude = async (correction?: string): Promise<string> => {
-    // deno-lint-ignore no-explicit-any
-    const messages: any[] = [
-      { role: "user", content: buildUserPrompt(req) },
-    ];
-    if (correction) {
-      messages.push({
-        role: "assistant",
-        content: "I will fix the issues and return valid JSON only.",
-      });
-      messages.push({
-        role: "user",
-        content:
-          `Your previous output failed validation:\n\n${correction}\n\nReturn the corrected JSON only.`,
-      });
-    }
+  let raw = await callAnthropic({
+    model: MODEL,
+    max_tokens: MAX_OUTPUT_TOKENS,
+    system: SYSTEM_PROMPT,
+    messages,
+    timeoutMs: MAIN_TIMEOUT_MS,
+    label: "main",
+  });
 
-    const response = await anthropic.messages.create({
-      model: MODEL,
-      max_tokens: MAX_OUTPUT_TOKENS,
-      system: SYSTEM_PROMPT,
-      messages,
-    });
-
-    // deno-lint-ignore no-explicit-any
-    const textBlock = response.content.find((b: any) => b.type === "text");
-    if (!textBlock || textBlock.type !== "text") {
-      throw new Error("Claude returned no text content");
-    }
-    return textBlock.text;
-  };
-
-  let raw = await callClaude();
   let parsed: TripPlan;
   try {
     parsed = TripPlanSchema.parse(extractJson(raw));
@@ -239,29 +269,59 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
     const errMsg = firstErr instanceof Error
       ? firstErr.message
       : String(firstErr);
-    raw = await callClaude(errMsg);
+    console.log(
+      `[generator] zod validation failed (retry #1): ${errMsg.slice(0, 120)}`,
+    );
+    const correction = [
+      ...messages,
+      { role: "assistant" as const, content: "I will fix the issues and return valid JSON only." },
+      {
+        role: "user" as const,
+        content:
+          `Your previous output failed validation:\n\n${errMsg}\n\nReturn the corrected JSON only.`,
+      },
+    ];
+    raw = await callAnthropic({
+      model: MODEL,
+      max_tokens: MAX_OUTPUT_TOKENS,
+      system: SYSTEM_PROMPT,
+      messages: correction,
+      timeoutMs: MAIN_TIMEOUT_MS,
+      label: "main-retry",
+    });
     parsed = TripPlanSchema.parse(extractJson(raw));
   }
+  console.log(
+    `[generator] main done at ${Math.round((Date.now() - t0) / 1000)}s, ${parsed.days.length} days`,
+  );
 
-  // Route optimization second pass — best effort, failures fall back
+  // Route optimization via Haiku — bounded parallel, per-call timeout
+  const tOpt = Date.now();
   try {
     const optimizedDays = await Promise.all(
       parsed.days.map((day) =>
-        optimizeDayRoute(day, anthropic).catch(() => day)
+        optimizeDayRoute(day).catch((err) => {
+          console.log(
+            `[generator] day ${day.dayNumber} optimize failed: ${
+              (err as Error).message.slice(0, 80)
+            }`,
+          );
+          return day;
+        })
       ),
     );
     parsed = { ...parsed, days: optimizedDays };
   } catch (err) {
     console.error("Route optimization pass failed (non-fatal)", err);
   }
+  console.log(
+    `[generator] optimize done at ${Math.round((Date.now() - tOpt) / 1000)}s; total ${Math.round((Date.now() - t0) / 1000)}s`,
+  );
 
   return parsed;
 }
 
-async function optimizeDayRoute(
-  day: Day,
-  anthropic: Anthropic,
-): Promise<Day> {
+async function optimizeDayRoute(day: Day): Promise<Day> {
   if (day.stops.length < 4) return day;
 
   const stopList = day.stops
@@ -273,41 +333,31 @@ async function optimizeDayRoute(
     )
     .join("\n");
 
-  const prompt = `You are a route optimizer for a single day of a travel itinerary.
+  const prompt =
+    `You are a route optimizer for a single day of a travel itinerary.
 
 Day theme: ${day.theme}
 
 Current stops (index: type | name | [lng, lat] | scheduled_time | duration):
 ${stopList}
 
-Your task: Return a JSON array of integers representing the OPTIMAL reordering
-of these indices that minimizes total walking distance between consecutive
-stops while respecting these constraints:
+Return a JSON array of integers representing the OPTIMAL reordering that minimizes total walking distance. Constraints:
+1. Meal stops must occur at sensible meal times (lunch 11:30-13:30, dinner 18:00-20:30). Pre-noon meals (<10:00) are breakfast — keep in place.
+2. First stop: geographically northernmost OR the one closest to the existing first stop (preserve morning anchor).
+3. Keep clusters in the same neighborhood adjacent.
+4. If already well-clustered, return the original order.
 
-1. Meal stops (type "meal") must occur at sensible meal times:
-   - First meal of the day: 11:30-13:30 (lunch)
-   - Second meal of the day: 18:00-20:30 (dinner)
-   - Pre-noon meal stops can stay in place if they're breakfast (before 10:00)
-2. The first stop should be the geographically northernmost OR the one closest
-   to the current first stop's hotel area (preserve morning anchor).
-3. Keep clusters of stops in the same neighborhood adjacent (do NOT split them).
-4. If reordering wouldn't materially improve the route (already well-clustered),
-   return the original order.
+Output: ONLY a JSON array of integers like [0,2,1,3,4]. No prose, no markdown. Length must equal the input.`;
 
-Output: ONLY a JSON array of integers, e.g. [0, 2, 1, 3, 4]. No prose, no
-markdown, no explanation. Length must equal the number of input stops.`;
-
-  const response = await anthropic.messages.create({
-    model: MODEL,
+  const raw = await callAnthropic({
+    model: OPTIMIZE_MODEL,
     max_tokens: 200,
     messages: [{ role: "user", content: prompt }],
+    timeoutMs: OPT_TIMEOUT_MS,
+    label: `opt-day${day.dayNumber}`,
   });
 
-  // deno-lint-ignore no-explicit-any
-  const textBlock = response.content.find((b: any) => b.type === "text");
-  if (!textBlock || textBlock.type !== "text") return day;
-
-  const cleaned = textBlock.text
+  const cleaned = raw
     .trim()
     .replace(/^```(?:json)?\s*/i, "")
     .replace(/```\s*$/i, "")
