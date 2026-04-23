@@ -50,50 +50,58 @@ export default async function PlanView({
           </div>
         )}
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-          {/* Header block */}
-          <div className="mb-10">
-            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
-              {resolvedHeaderLabel}
-            </p>
-            <h1 className="font-display text-[2.75rem] sm:text-[3.5rem] text-[var(--text-primary)] leading-[1.04] tracking-[-0.018em]">
-              {plan.destination}
-            </h1>
-            <p className="text-body-md text-[var(--text-secondary)] mt-3">
-              {plan.durationDays}-day itinerary · {plan.destinationCountry}
-            </p>
-            {downloadHref && (
-              <a
-                href={downloadHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-[var(--brand-primary)] text-white font-medium text-body-sm rounded-md hover:opacity-90 transition"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
-                </svg>
-                {t("downloadPdf")}
-              </a>
-            )}
-          </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+          {/* Two-column layout on desktop: main content left, sticky
+              affiliate sidebar right. On mobile, single column with the
+              affiliate bar inline after the map (see below). */}
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
+            <div className="min-w-0">
+              {/* Header block */}
+              <div className="mb-10">
+                <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
+                  {resolvedHeaderLabel}
+                </p>
+                <h1 className="font-display text-[2.75rem] sm:text-[3.5rem] text-[var(--text-primary)] leading-[1.04] tracking-[-0.018em]">
+                  {plan.destination}
+                </h1>
+                <p className="text-body-md text-[var(--text-secondary)] mt-3">
+                  {plan.durationDays}-day itinerary · {plan.destinationCountry}
+                </p>
+                {downloadHref && (
+                  <a
+                    href={downloadHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-[var(--brand-primary)] text-white font-medium text-body-sm rounded-md hover:opacity-90 transition"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    {t("downloadPdf")}
+                  </a>
+                )}
+              </div>
 
-          {/* Overview */}
-          <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-6">
-            <p className="text-body-md text-[var(--text-primary)] leading-relaxed">{plan.overview}</p>
-          </div>
+              {/* Overview */}
+              <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-6">
+                <p className="text-body-md text-[var(--text-primary)] leading-relaxed">{plan.overview}</p>
+              </div>
 
-          {/* Map */}
-          <div className="mb-6">
-            <PlanMap plan={plan} />
-          </div>
+              {/* Map */}
+              <div className="mb-6">
+                <PlanMap plan={plan} />
+              </div>
 
-          {/* Affiliate toolkit */}
-          <PlanAffiliateBar
-            destination={plan.destination}
-            destinationCountry={plan.destinationCountry}
-          />
+              {/* Mobile-only: affiliate bar inline after map. Hidden on lg+
+                  because the sticky sidebar version (below) takes over. */}
+              <div className="lg:hidden">
+                <PlanAffiliateBar
+                  destination={plan.destination}
+                  destinationCountry={plan.destinationCountry}
+                />
+              </div>
 
-          {/* Hotel + Transit */}
+              {/* Hotel + Transit */}
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6">
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
@@ -227,15 +235,27 @@ export default async function PlanView({
             </div>
           )}
 
-          {bottomCta && <div className="mb-6">{bottomCta}</div>}
+              {bottomCta && <div className="mb-6">{bottomCta}</div>}
 
-          <div className="text-center pt-6">
-            <Link
-              href={resolvedBackLink.href}
-              className="text-body-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:underline underline-offset-4 transition"
-            >
-              {resolvedBackLink.label}
-            </Link>
+              <div className="text-center pt-6">
+                <Link
+                  href={resolvedBackLink.href}
+                  className="text-body-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:underline underline-offset-4 transition"
+                >
+                  {resolvedBackLink.label}
+                </Link>
+              </div>
+            </div>
+
+            {/* Desktop-only sticky sidebar with the affiliate toolkit. */}
+            <aside className="hidden lg:block">
+              <div className="lg:sticky lg:top-24">
+                <PlanAffiliateBar
+                  destination={plan.destination}
+                  destinationCountry={plan.destinationCountry}
+                />
+              </div>
+            </aside>
           </div>
         </div>
       </main>
