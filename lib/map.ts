@@ -66,9 +66,14 @@ export function buildStaticMapUrl(plan: TripPlan, width = 800, height = 500): st
 
   const overlayStr = overlays.join(",");
   const style = "mapbox/streets-v12";
-  // @react-pdf/renderer refuses to embed images without a recognized extension
-  // in the URL path. Mapbox supports `.png` as the format suffix.
-  return `https://api.mapbox.com/styles/v1/${style}/static/${overlayStr}/auto/${width}x${height}@2x.png?access_token=${token}`;
+  // IMPORTANT: Do NOT add `.png` to the path — Mapbox's Static Images API
+  // returns 404 for `/WxH@2x.png`. Format is negotiated via the response
+  // Content-Type header. react-pdf detects image format from the response
+  // bytes (PNG magic number), not the URL path, so the extension-free URL
+  // is fine for it too. The earlier "Not valid image extension" error we
+  // hit pre-launch was actually react-pdf trying to parse a 403-Forbidden
+  // JSON body as an image, not a URL-extension issue.
+  return `https://api.mapbox.com/styles/v1/${style}/static/${overlayStr}/auto/${width}x${height}@2x?access_token=${token}`;
 }
 
 /**
