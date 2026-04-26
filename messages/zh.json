@@ -3,7 +3,7 @@
     "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
-    "delivery": "移动网页链接 + PDF · 付款后几分钟内送达",
+    "delivery": "移动链接 + PDF · 付款后 1~5 分钟送达",
     "back": "返回",
     "continue": "继续",
     "skip": "跳过"
@@ -14,15 +14,18 @@
     "ko": "한국어",
     "ja": "日本語",
     "zh": "中文",
-    "suggestKo": "切换为中文?",
-    "suggestJa": "切换为中文?",
+    "fr": "Français",
+    "suggestEn": "View this site in English?",
+    "suggestKo": "한국어로 보시겠어요?",
+    "suggestJa": "日本語で表示しますか?",
     "suggestZh": "切换为中文?",
+    "suggestFr": "Voir le site en français ?",
     "suggestSwitch": "切换",
     "suggestDismiss": "不用"
   },
   "homeWizard": {
     "back": "返回",
-    "continue": "继续",
+    "continue": "下一步",
     "skip": "跳过 →",
     "progressOf": "{current} / {total}",
     "destination": {
@@ -40,46 +43,47 @@
     },
     "travelerType": {
       "question": "和谁一起?",
-      "solo": "独自出行",
+      "solo": "一个人",
       "couple": "和伴侣",
-      "family": "带孩子的家庭",
-      "friends": "和朋友"
+      "family": "带孩子",
+      "friends": "和朋友",
+      "senior": "悠闲行程"
     },
     "travelStyle": {
-      "question": "想要什么样的旅行?",
+      "question": "想要哪种旅行?",
       "sightseeing": "观光为主",
       "sightseeingHint": "景点、博物馆、体验",
       "relaxation": "度假为主",
-      "relaxationHint": "悠闲,少走路",
+      "relaxationHint": "悠闲、少走路",
       "mixed": "两者兼顾",
       "mixedHint": "均衡安排"
     },
     "days": {
-      "question": "几天?",
+      "question": "几天的行程?",
       "customLabel": "自定义",
       "unit": "天"
     },
     "budget": {
-      "question": "预算是多少?",
+      "question": "预算多少?",
       "budget": "经济",
       "budgetHint": "青旅、街边小吃、公共交通",
       "midrange": "中档",
-      "midrangeHint": "四星酒店、餐厅用餐",
+      "midrangeHint": "四星酒店、餐厅",
       "luxury": "豪华",
       "luxuryHint": "五星酒店、精致餐饮"
     },
     "mustVisit": {
       "question": "有必去的地方吗?",
-      "subtitle": "餐厅、景点、咖啡馆… 自由填写",
-      "placeholder": "例如: 明治神宫、寿司大、涩谷十字路口"
+      "subtitle": "餐厅、景点、咖啡馆…… 自由填写",
+      "placeholder": "例如:明治神宫、寿司大、涩谷十字路口"
     },
-    "submit": "规划我的旅行 — $4"
+    "submit": "生成我的行程 — $4"
   },
   "wizard": {
     "step1": {
-      "headline": "分钟级精准规划的旅行。",
-      "subtitle": "三个简单问题。AI 处理其余一切 — 酒店、机场交通、餐厅,以及可装在手机里的路线图。",
-      "badge": "$4 · 移动链接 + PDF · 几分钟内送达",
+      "headline": "几分钟就完成的旅行规划。",
+      "subtitle": "回答三个简单问题就好。酒店、机场交通、餐厅,以及可装在手机里的路线图,我们一并搞定。",
+      "badge": "$4 · 移动链接 + PDF · 1~5 分钟送达",
       "destinationLabel": "您要去哪里?",
       "destinationPlaceholder": "例如:东京",
       "countryLabel": "国家",
@@ -89,15 +93,15 @@
       "budgetBudget": "经济",
       "budgetBudgetHint": "青旅、街边小吃、公共交通",
       "budgetMidrange": "中档",
-      "budgetMidrangeHint": "四星酒店、餐厅用餐",
+      "budgetMidrangeHint": "四星酒店、餐厅",
       "budgetLuxury": "豪华",
       "budgetLuxuryHint": "五星酒店、精致餐饮",
-      "submit": "规划我的旅行 — $4"
+      "submit": "生成我的行程 — $4"
     },
     "review": {
       "badge": "准备就绪",
-      "headline": "{destination} 的完美行程,即将为您打造",
-      "subtitle": "根据您提供的信息,酒店·路线·餐厅·地图一次搞定。付款后 2–5 分钟内通过邮件发送。",
+      "headline": "{destination} 的行程,马上为您生成",
+      "subtitle": "根据您填写的信息,酒店·路线·餐厅·地图一并搞定。付款后 1~5 分钟通过邮件送达。",
       "summaryDestination": "目的地",
       "summaryDuration": "天数",
       "summaryTraveler": "同行",
@@ -116,19 +120,19 @@
       "save": "保存",
       "mustVisitEmpty": "未添加",
       "notesLabel": "还有什么要告诉我们的吗?",
-      "notesSubtitle": "过敏、特殊要求、想避开的东西等,请自由填写",
-      "notesPlaceholder": "例如:海鲜过敏、每天需要午休时间、希望选择楼梯少的酒店",
+      "notesSubtitle": "过敏、特殊要求、想避开的事项,自由填写",
+      "notesPlaceholder": "例如:海鲜过敏、每天需要午休、希望选楼梯少的酒店",
       "checkoutOpened": {
         "headline": "已打开支付标签页",
-        "subtitle": "付款完成后,您的行程将通过邮件发送(通常 2–5 分钟)。",
+        "subtitle": "付款完成后,行程将通过邮件发送(通常 1~5 分钟)。",
         "noPopup": "新标签页未打开?",
         "openAgain": "手动打开"
       }
     },
     "loading": {
       "badge": "AI 正在分析您的旅行",
-      "headline": "正在生成您的{destination}行程",
-      "subtitle": "我们正在交叉分析数千个数据点。请在等待时回答几个简短问题,以便为您量身定制行程。",
+      "headline": "正在生成 {destination} 行程",
+      "subtitle": "我们正在交叉比对数千条数据。请在等待时回答几个简短问题,以便量身定制。",
       "redirecting": "正在跳转到安全结账页面…",
       "startOver": "重新开始"
     },
@@ -143,7 +147,7 @@
         "familyHint": "成人 + 儿童",
         "friends": "朋友",
         "friendsHint": "3 位以上成人",
-        "senior": "老年",
+        "senior": "长辈出游",
         "seniorHint": "悠闲节奏"
       },
       "adults": {
@@ -151,42 +155,42 @@
         "placeholder": "例如:4"
       },
       "children": {
-        "title": "几个孩子,各多大?",
-        "subtitle": "年龄帮助我们选择合适的节奏和景点。",
-        "numberLabel": "孩子数量",
+        "title": "几位儿童?各多大?",
+        "subtitle": "年龄帮助我们调整节奏和景点选择。",
+        "numberLabel": "儿童数量",
         "textLabel": "年龄",
         "placeholder": "例如:4, 7"
       },
       "stroller": {
         "title": "需要婴儿车吗?",
-        "subtitle": "如果需要,我们会选择无台阶路线。"
+        "subtitle": "如果需要,我们会安排无台阶路线。"
       },
       "airport": {
         "title": "您将抵达哪个机场?",
-        "subtitle": "我们会选择靠近航站楼的酒店。",
+        "subtitle": "我们会选靠近航站楼的酒店。",
         "placeholder": "例如:NRT 或成田"
       },
       "flightArrival": {
-        "title": "到达航班是什么时候?(可选)",
-        "subtitle": "我们会考虑入境手续时间,合理安排第一天的行程。",
-        "placeholder": "例:5/1 下午2点30分 NRT"
+        "title": "到达航班几点?(可选)",
+        "subtitle": "我们会预留入境手续时间,合理安排第一天行程。",
+        "placeholder": "例如:5/1 14:30 NRT"
       },
       "flightDeparture": {
         "title": "返程航班呢?(可选)",
-        "subtitle": "最后一天会预留 2-3 小时前往机场。",
-        "placeholder": "例:5/4 上午9点 HND"
+        "subtitle": "最后一天会预留 2~3 小时前往机场。",
+        "placeholder": "例如:5/4 09:00 HND"
       },
       "hotelBooked": {
-        "title": "您是否已预订酒店?"
+        "title": "酒店是否已预订?"
       },
       "hotelName": {
         "title": "您住在哪里?",
-        "subtitle": "只需告诉我们名字 — 我们会以此规划路线。",
+        "subtitle": "告诉我们名字就好,我们会以此规划路线。",
         "placeholder": "例如:东京柏悦酒店"
       },
       "interests": {
         "title": "您最感兴趣的是什么?",
-        "subtitle": "最多选择 6 项。",
+        "subtitle": "最多选 6 项。",
         "food": "美食",
         "culture": "文化",
         "history": "历史",
@@ -198,17 +202,17 @@
         "photography": "摄影"
       },
       "pace": {
-        "title": "您希望以多快的节奏游览?",
+        "title": "希望以多快的节奏游览?",
         "relaxed": "悠闲",
-        "relaxedHint": "每天 3-4 个景点",
-        "balanced": "平衡",
-        "balancedHint": "每天 5-6 个景点",
+        "relaxedHint": "每天 3~4 个景点",
+        "balanced": "均衡",
+        "balancedHint": "每天 5~6 个景点",
         "packed": "紧凑",
-        "packedHint": "每天 7-9 个景点"
+        "packedHint": "每天 7~9 个景点"
       },
       "email": {
-        "title": "我们应该把行程发到哪里?",
-        "subtitle": "我们会通过电子邮件发送私密链接 + PDF。",
+        "title": "把行程发到哪里?",
+        "subtitle": "我们会通过邮件发送私密链接 + PDF。",
         "placeholder": "you@example.com"
       },
       "yes": "是",
@@ -219,24 +223,24 @@
   },
   "samples": {
     "metaTitle": "示例旅行计划",
-    "metaDescription": "浏览精心策划的东京、巴黎、曼谷和首尔示例旅行计划。准确了解您花 $4 能得到什么。",
-    "badge": "示例计划 · 购买前查看质量",
-    "headline": "$4 的计划长这样。",
-    "subtitle": "我们没有免费试用。相反,这里有四份真实的完整示例计划。点击任意一份,以阅读您自己计划的方式来阅读它。",
+    "metaDescription": "浏览精心策划的东京、巴黎、曼谷、首尔等示例行程。准确了解花 $4 能得到什么。",
+    "badge": "示例行程 · 购买前查看质量",
+    "headline": "$4 的行程长这样。",
+    "subtitle": "我们没有免费试用。但这里有几份完整的真实示例行程。点击任意一份,以阅读自己行程的方式来看。",
     "readSample": "查看完整示例 →",
-    "ctaHeadline": "喜欢您看到的吗?",
-    "ctaSubtitle": "为任何城市获取这样的计划,根据您的日期、人数和预算量身定制。",
-    "ctaButton": "规划我的旅行 — $4",
-    "sampleHeader": "示例计划",
-    "sampleCtaTitle": "喜欢这个示例吗?",
-    "sampleCtaHeadline": "为您的旅行获取一份",
-    "sampleCtaSubtitle": "相同的深度,根据您的日期、人数、预算撰写。移动网页链接 + PDF 几分钟内送达。",
-    "sampleCtaButton": "规划我的旅行 — $4",
+    "ctaHeadline": "喜欢吗?",
+    "ctaSubtitle": "任何城市都可以,根据您的日期、人数和预算量身定制。",
+    "ctaButton": "生成我的行程 — $4",
+    "sampleHeader": "示例行程",
+    "sampleCtaTitle": "喜欢这份示例?",
+    "sampleCtaHeadline": "为您的旅行生成一份",
+    "sampleCtaSubtitle": "相同深度,根据您的日期、人数、预算撰写。移动链接 + PDF 在 1~5 分钟内送达。",
+    "sampleCtaButton": "生成我的行程 — $4",
     "sampleCtaCaption": "无需注册 · 无订阅",
-    "backToGallery": "← 所有示例计划"
+    "backToGallery": "← 所有示例行程"
   },
   "plan": {
-    "yourTripPlan": "您的旅行计划",
+    "yourTripPlan": "您的行程",
     "downloadPdf": "下载 PDF",
     "hotel": "酒店",
     "airportToHotel": "机场 → 酒店",
@@ -245,13 +249,13 @@
     "budget": "预算",
     "packing": "行李",
     "tips": "贴士",
-    "back": "← 返回 gliddy",
-    "draftMessage": "此计划已开始但尚未付款。",
-    "draftStartOver": "开始新计划",
-    "failedTitle": "抱歉,计划生成失败。",
-    "failedRefund": "我们将处理退款。如需帮助,请发邮件至 contact@checkvisamap.com。",
-    "generatingTitle": "正在生成您的计划",
-    "generatingSubtitle": "通常需要 30-60 秒。准备好后我们会立即通过电子邮件发送链接。",
+    "back": "← 返回 gliddy 首页",
+    "draftMessage": "此行程已开始但尚未付款。",
+    "draftStartOver": "开始新行程",
+    "failedTitle": "抱歉,行程生成失败。",
+    "failedRefund": "我们将处理退款。如需帮助,请发邮件至 hello@checkvisamap.com。",
+    "generatingTitle": "正在生成您的行程",
+    "generatingSubtitle": "通常需要 30~60 秒。准备好后我们会立即通过邮件发送链接。",
     "generatingRefresh": "刷新",
     "paymentReceived": "已收到付款",
     "wait": {
@@ -259,7 +263,7 @@
       "headline": "正在为您生成行程",
       "elapsed": "已用 {seconds} 秒",
       "planIdLabel": "Plan",
-      "emailHint": "准备好后我们会通过邮件发送链接,您可以关闭此标签页。",
+      "emailHint": "准备好后我们也会通过邮件发送链接,您可以关闭此标签页。",
       "stage": {
         "checking": "付款已确认。正在获取目的地信息…",
         "routing": "正在优化路线,这一步最耗时 🚶",
@@ -270,10 +274,10 @@
       "failedBadge": "生成失败",
       "failedTitle": "抱歉",
       "failedGeneric": "发生了意外错误。",
-      "failedRefund": "我们将自动处理退款。如需帮助,请发送邮件至 contact@checkvisamap.com。"
+      "failedRefund": "我们将自动处理退款。如需帮助,请发邮件至 hello@checkvisamap.com。"
     },
     "shareTitle": "分享本站,免费获取下一份行程",
-    "shareSubtitle": "当朋友通过您的链接首次购买时,我们将为您赠送一份免费行程。",
+    "shareSubtitle": "朋友通过您的链接首次购买,我们将赠送您一份免费行程。",
     "shareCopy": "复制链接",
     "shareCopied": "已复制!"
   }

@@ -3,7 +3,7 @@
     "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
-    "delivery": "モバイルウェブリンク + PDF · お支払い後数分でお届け",
+    "delivery": "モバイルリンク + PDF · 決済から1〜5分でお届け",
     "back": "戻る",
     "continue": "続ける",
     "skip": "スキップ"
@@ -14,9 +14,12 @@
     "ko": "한국어",
     "ja": "日本語",
     "zh": "中文",
-    "suggestKo": "日本語で表示しますか?",
+    "fr": "Français",
+    "suggestEn": "View this site in English?",
+    "suggestKo": "한국어로 보시겠어요?",
     "suggestJa": "日本語で表示しますか?",
-    "suggestZh": "日本語で表示しますか?",
+    "suggestZh": "切换为中文?",
+    "suggestFr": "Voir le site en français ?",
     "suggestSwitch": "切り替え",
     "suggestDismiss": "結構です"
   },
@@ -26,7 +29,7 @@
     "skip": "スキップ →",
     "progressOf": "{current} / {total}",
     "destination": {
-      "question": "どこへ行きますか?",
+      "question": "どちらへ行かれますか?",
       "placeholder": "都市名を入力",
       "popular": "人気の旅先",
       "cities": {
@@ -42,45 +45,46 @@
       "question": "どなたと?",
       "solo": "一人旅",
       "couple": "パートナーと",
-      "family": "家族旅行",
-      "friends": "友達と"
+      "family": "家族で",
+      "friends": "友達と",
+      "senior": "ゆっくりめ"
     },
     "travelStyle": {
-      "question": "どんな旅がいい?",
+      "question": "どんな旅にしますか?",
       "sightseeing": "観光メイン",
-      "sightseeingHint": "名所・博物館・体験をたくさん",
+      "sightseeingHint": "名所・博物館・体験中心",
       "relaxation": "のんびり",
-      "relaxationHint": "ゆっくり、歩き少なめ",
-      "mixed": "両方",
-      "mixedHint": "バランスよく"
+      "relaxationHint": "ゆったり、歩き少なめ",
+      "mixed": "ミックス",
+      "mixedHint": "観光と休息のバランス"
     },
     "days": {
-      "question": "何日間?",
+      "question": "何日間ですか?",
       "customLabel": "自由入力",
       "unit": "日"
     },
     "budget": {
-      "question": "予算は?",
+      "question": "予算はどのくらい?",
       "budget": "節約",
       "budgetHint": "ホステル、屋台、公共交通",
-      "midrange": "中級",
+      "midrange": "ミドル",
       "midrangeHint": "4つ星、レストラン",
       "luxury": "ラグジュアリー",
       "luxuryHint": "5つ星、ファインダイニング"
     },
     "mustVisit": {
       "question": "絶対に行きたい場所はありますか?",
-      "subtitle": "レストラン、名所、カフェ… 自由にどうぞ",
-      "placeholder": "例: 明治神宮、寿司大、渋谷交差点"
+      "subtitle": "レストラン、名所、カフェなど自由にどうぞ",
+      "placeholder": "例: 明治神宮、寿司大、渋谷スクランブル交差点"
     },
-    "submit": "旅の計画を作る — $4"
+    "submit": "旅程を作る — $4"
   },
   "wizard": {
     "step1": {
-      "headline": "分単位で計画される、あなたの旅。",
-      "subtitle": "簡単な3つの質問だけ。残りはAIがすべて処理します — ホテル、空港アクセス、レストラン、スマホで持ち歩けるルートマップまで。",
-      "badge": "$4 · モバイルリンク + PDF · 数分でお届け",
-      "destinationLabel": "どこへ行きますか?",
+      "headline": "数分で完成する、あなたの旅程。",
+      "subtitle": "簡単な3つの質問だけ。あとはホテル、空港アクセス、レストラン、スマホで持ち歩けるルートマップまで一気に作ります。",
+      "badge": "$4 · モバイルリンク + PDF · 1〜5分でお届け",
+      "destinationLabel": "どちらへ行かれますか?",
       "destinationPlaceholder": "例: 東京",
       "countryLabel": "国",
       "countryPlaceholder": "例: 日本",
@@ -88,16 +92,16 @@
       "budgetLabel": "予算は?",
       "budgetBudget": "節約",
       "budgetBudgetHint": "ホステル、屋台、公共交通",
-      "budgetMidrange": "中級",
+      "budgetMidrange": "ミドル",
       "budgetMidrangeHint": "4つ星、レストラン",
       "budgetLuxury": "ラグジュアリー",
       "budgetLuxuryHint": "5つ星、ファインダイニング",
-      "submit": "旅の計画を作る — $4"
+      "submit": "旅程を作る — $4"
     },
     "review": {
       "badge": "準備完了",
-      "headline": "{destination} 完璧な旅の計画を、今から作ります",
-      "subtitle": "いただいた情報でホテル・ルート・レストラン・地図まで全部。お支払い後、2〜5分でメールにお届けします。",
+      "headline": "{destination} の旅程、いますぐお作りします",
+      "subtitle": "いただいた情報をもとに、ホテル・ルート・レストラン・地図までまとめてお作りします。決済後、1〜5分でメールに届きます。",
       "summaryDestination": "目的地",
       "summaryDuration": "期間",
       "summaryTraveler": "同行者",
@@ -107,35 +111,35 @@
       "summaryMustVisit": "絶対行きたい場所",
       "summaryEmail": "メール",
       "payButton": "プランを作る · $4",
-      "payAgainButton": "支払いを再試行",
+      "payAgainButton": "決済をやり直す",
       "sampleButton": "まずサンプルを見る",
-      "newTabNote": "支払いは新しいタブで開きます · このタブはそのままで大丈夫",
+      "newTabNote": "決済は新しいタブで開きます · このタブはそのままで大丈夫",
       "startOver": "最初からやり直す",
       "edit": "変更",
       "cancel": "キャンセル",
       "save": "保存",
       "mustVisitEmpty": "なし",
-      "notesLabel": "その他に伝えたいこと",
-      "notesSubtitle": "アレルギー、特別な要望、避けたいことなど自由に",
-      "notesPlaceholder": "例: 甲殻類アレルギー、毎日昼寝の時間が必要、階段少なめのホテル希望",
+      "notesLabel": "他にお伝えしたいことは?",
+      "notesSubtitle": "アレルギー、特別な要望、避けたいことなど自由にどうぞ",
+      "notesPlaceholder": "例: 甲殻類アレルギー、毎日昼休憩が必要、階段の少ないホテルがいい",
       "checkoutOpened": {
-        "headline": "支払いタブを開きました",
-        "subtitle": "支払いが完了すると、ご登録のメールにプランが届きます(通常2〜5分)。",
+        "headline": "決済タブを開きました",
+        "subtitle": "決済が完了したら、ご登録のメールに旅程が届きます(通常1〜5分)。",
         "noPopup": "新しいタブが開きませんでしたか?",
         "openAgain": "手動で開く"
       }
     },
     "loading": {
-      "badge": "AIがあなたの旅を分析中",
-      "headline": "{destination}の旅程を作成中",
-      "subtitle": "数千のデータポイントを照合しています。お待ちいただく間、いくつかの質問にお答えください。よりパーソナライズされた旅程をお作りします。",
-      "redirecting": "セキュアな決済ページへリダイレクト中…",
+      "badge": "AIが旅を分析中",
+      "headline": "{destination} の旅程を作成中",
+      "subtitle": "数千のデータを照らし合わせています。お待ちの間、いくつか質問にお答えいただくとよりぴったりの旅程になります。",
+      "redirecting": "安全な決済ページへ移動中…",
       "startOver": "最初から"
     },
     "popup": {
       "travelerType": {
-        "title": "誰と一緒に旅行しますか?",
-        "solo": "一人旅",
+        "title": "誰と一緒に旅しますか?",
+        "solo": "一人",
         "soloHint": "私だけ",
         "couple": "カップル",
         "coupleHint": "大人2人",
@@ -152,14 +156,14 @@
       },
       "children": {
         "title": "お子様は何人で、何歳ですか?",
-        "subtitle": "年齢がわかると、ペースや訪問先を調整できます。",
+        "subtitle": "年齢がわかると、ペースや行き先を調整できます。",
         "numberLabel": "子供の人数",
         "textLabel": "年齢",
         "placeholder": "例: 4, 7"
       },
       "stroller": {
         "title": "ベビーカーは必要ですか?",
-        "subtitle": "必要であれば、段差のないルートを選びます。"
+        "subtitle": "必要な場合、段差のないルートを選びます。"
       },
       "airport": {
         "title": "どの空港に到着しますか?",
@@ -167,26 +171,26 @@
         "placeholder": "例: NRT または成田"
       },
       "flightArrival": {
-        "title": "到着便は何時ですか?(任意)",
-        "subtitle": "入国審査後の時間を考慮して1日目の予定を組みます。",
-        "placeholder": "例: 5/1 午後2時30分 NRT"
+        "title": "到着便の時刻は?(任意)",
+        "subtitle": "入国審査の時間も考慮して1日目の予定を組みます。",
+        "placeholder": "例: 5/1 14:30 NRT"
       },
       "flightDeparture": {
         "title": "帰国便は?(任意)",
         "subtitle": "最終日は出発の2〜3時間前に空港へ向かうよう組みます。",
-        "placeholder": "例: 5/4 午前9時 HND"
+        "placeholder": "例: 5/4 09:00 HND"
       },
       "hotelBooked": {
-        "title": "ホテルは予約済みですか?"
+        "title": "ホテルはもう予約済みですか?"
       },
       "hotelName": {
         "title": "どこに泊まりますか?",
-        "subtitle": "名前だけ教えてください — その周辺で旅程を組みます。",
+        "subtitle": "名前だけ教えてください。その周辺で旅程を組みます。",
         "placeholder": "例: パークハイアット東京"
       },
       "interests": {
         "title": "何に興味がありますか?",
-        "subtitle": "最大6つまで選択できます。",
+        "subtitle": "最大6つまで選べます。",
         "food": "グルメ",
         "culture": "文化",
         "history": "歴史",
@@ -198,16 +202,16 @@
         "photography": "写真"
       },
       "pace": {
-        "title": "どのくらいのペースで動きたいですか?",
+        "title": "どのくらいのペースで動きますか?",
         "relaxed": "ゆっくり",
-        "relaxedHint": "1日3-4箇所",
-        "balanced": "バランス型",
-        "balancedHint": "1日5-6箇所",
+        "relaxedHint": "1日3〜4箇所",
+        "balanced": "バランス",
+        "balancedHint": "1日5〜6箇所",
         "packed": "ぎっしり",
-        "packedHint": "1日7-9箇所"
+        "packedHint": "1日7〜9箇所"
       },
       "email": {
-        "title": "旅程の送付先メールアドレスは?",
+        "title": "旅程の送付先メールアドレス",
         "subtitle": "シークレットリンクとPDFをメールでお送りします。",
         "placeholder": "you@example.com"
       },
@@ -219,20 +223,20 @@
   },
   "samples": {
     "metaTitle": "サンプル旅程",
-    "metaDescription": "東京、パリ、バンコク、ソウルの厳選されたサンプル旅程をご覧ください。$4でどんなものを受け取れるかが正確にわかります。",
+    "metaDescription": "東京、パリ、バンコク、ソウルの厳選サンプル旅程をご覧ください。$4でどんな旅程が手に入るか、その場で確認できます。",
     "badge": "サンプル旅程 · 購入前に品質を確認",
     "headline": "$4の旅程はこんな感じです。",
-    "subtitle": "無料トライアルはありません。代わりに、4つの本格的なサンプル旅程をご用意しました。クリックして自分の旅程を読むようにお読みください。",
+    "subtitle": "無料トライアルはありません。代わりに、本格的なフル尺サンプル旅程をご用意しました。クリックして、自分の旅程を読むつもりでお読みください。",
     "readSample": "サンプル全文を読む →",
     "ctaHeadline": "気に入りましたか?",
-    "ctaSubtitle": "どんな都市でも、あなたの日程・人数・予算に合わせてこのような旅程をお作りします。",
-    "ctaButton": "私の旅を計画する — $4",
+    "ctaSubtitle": "どの都市でも、あなたの日程・人数・予算に合わせて同じような旅程をお作りします。",
+    "ctaButton": "私の旅程を作る — $4",
     "sampleHeader": "サンプル旅程",
-    "sampleCtaTitle": "このサンプルが気に入りましたか?",
-    "sampleCtaHeadline": "あなたの旅のための旅程を入手",
-    "sampleCtaSubtitle": "同じ深さで、あなたの日程・人数・予算に合わせて作成されます。モバイルウェブリンク + PDFを数分でお届け。",
-    "sampleCtaButton": "私の旅を計画する — $4",
-    "sampleCtaCaption": "サインアップ不要 · サブスクリプションなし",
+    "sampleCtaTitle": "このサンプルが気に入ったら",
+    "sampleCtaHeadline": "あなたの旅のための旅程を",
+    "sampleCtaSubtitle": "同じ深さで、あなたの日程・人数・予算に合わせて作成します。モバイルリンク + PDFが1〜5分で届きます。",
+    "sampleCtaButton": "私の旅程を作る — $4",
+    "sampleCtaCaption": "アカウント登録不要 · サブスクなし",
     "backToGallery": "← すべてのサンプル旅程"
   },
   "plan": {
@@ -245,35 +249,35 @@
     "budget": "予算",
     "packing": "持ち物",
     "tips": "コツ",
-    "back": "← gliddyに戻る",
-    "draftMessage": "この旅程は開始されましたが、未払いです。",
-    "draftStartOver": "新しい旅程を作成",
+    "back": "← gliddyホームへ",
+    "draftMessage": "この旅程は作成中ですが、まだ未払いです。",
+    "draftStartOver": "新しい旅程を作る",
     "failedTitle": "申し訳ありません。旅程の生成に失敗しました。",
-    "failedRefund": "返金処理をいたします。お困りの場合はcontact@checkvisamap.comまでメールください。",
-    "generatingTitle": "あなたの旅程を作成中です",
-    "generatingSubtitle": "通常30〜60秒かかります。準備ができ次第、リンクをメールでお送りします。",
+    "failedRefund": "返金処理いたします。お困りの場合は hello@checkvisamap.com までご連絡ください。",
+    "generatingTitle": "旅程を作成中です",
+    "generatingSubtitle": "通常30〜60秒ほどかかります。準備ができ次第、リンクをメールでお送りします。",
     "generatingRefresh": "更新",
-    "paymentReceived": "お支払い受領",
+    "paymentReceived": "決済完了",
     "wait": {
-      "paidBadge": "お支払い受領",
-      "headline": "あなたの旅程を作成中です",
-      "elapsed": "経過 {seconds}秒",
+      "paidBadge": "決済完了",
+      "headline": "旅程を作成中です",
+      "elapsed": "{seconds}秒経過",
       "planIdLabel": "Plan",
       "emailHint": "完成したらメールでもリンクをお送りします。このタブは閉じても大丈夫です。",
       "stage": {
         "checking": "決済を確認しました。目的地の情報を取得中…",
-        "routing": "最適なルートを組み立てています。ここが一番時間がかかります 🚶",
-        "sights": "見どころとお食事処を選定しています",
-        "polish": "各スポットの説明を仕上げています ✍️",
-        "almost": "もう少しで完成します…"
+        "routing": "最適なルートを組み立て中。ここが一番時間がかかります 🚶",
+        "sights": "見どころと食事処を選んでいます",
+        "polish": "各スポットの説明を仕上げ中 ✍️",
+        "almost": "もう少しで完成です…"
       },
       "failedBadge": "生成に失敗",
       "failedTitle": "申し訳ありません",
       "failedGeneric": "予期しないエラーが発生しました。",
-      "failedRefund": "自動的に返金処理をいたします。お困りの場合は contact@checkvisamap.com までご連絡ください。"
+      "failedRefund": "自動的に返金処理いたします。お困りの場合は hello@checkvisamap.com までご連絡ください。"
     },
     "shareTitle": "シェアして次の旅程を無料に",
-    "shareSubtitle": "友人があなたのリンクで初めて購入すると、無料の旅程1件をプレゼント。",
+    "shareSubtitle": "ご友人があなたのリンク経由で初めて購入されると、無料の旅程を1件プレゼント。",
     "shareCopy": "リンクをコピー",
     "shareCopied": "コピーしました!"
   }

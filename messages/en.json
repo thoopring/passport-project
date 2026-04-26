@@ -3,7 +3,7 @@
     "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
-    "delivery": "Mobile web link + PDF · Delivered in minutes after payment",
+    "delivery": "Mobile link + PDF · Delivered 1–5 min after checkout",
     "back": "Back",
     "continue": "Continue",
     "skip": "Skip"
@@ -14,9 +14,12 @@
     "ko": "한국어",
     "ja": "日本語",
     "zh": "中文",
-    "suggestKo": "View this site in Korean?",
-    "suggestJa": "View this site in Japanese?",
-    "suggestZh": "View this site in Chinese?",
+    "fr": "Français",
+    "suggestEn": "View this site in English?",
+    "suggestKo": "한국어로 보시겠어요?",
+    "suggestJa": "日本語で表示しますか?",
+    "suggestZh": "切换为中文?",
+    "suggestFr": "Voir le site en français ?",
     "suggestSwitch": "Switch",
     "suggestDismiss": "No thanks"
   },
@@ -43,7 +46,8 @@
       "solo": "Just me",
       "couple": "With my partner",
       "family": "Family with kids",
-      "friends": "With friends"
+      "friends": "With friends",
+      "senior": "Easier pace"
     },
     "travelStyle": {
       "question": "What kind of trip?",
@@ -70,16 +74,16 @@
     },
     "mustVisit": {
       "question": "Any must-visit places?",
-      "subtitle": "Restaurants, landmarks, cafés… anything you don't want to miss",
+      "subtitle": "Restaurants, landmarks, cafés — anything you don't want to miss",
       "placeholder": "e.g. Meiji Jingu, Sushi Dai, Shibuya crossing"
     },
     "submit": "Plan my trip — $4"
   },
   "wizard": {
     "step1": {
-      "headline": "Your trip, planned to the minute.",
-      "subtitle": "Three quick questions. Our AI handles the rest — hotel, airport transit, restaurants, and a route map you can carry on your phone.",
-      "badge": "$4 · Mobile link + PDF delivered in minutes",
+      "headline": "Your next trip, sorted in minutes.",
+      "subtitle": "Three quick questions and we handle the rest — hotel, airport transit, restaurants, and a route map you can carry on your phone.",
+      "badge": "$4 · Mobile link + PDF · Delivered in minutes",
       "destinationLabel": "Where are you going?",
       "destinationPlaceholder": "e.g. Tokyo",
       "countryLabel": "Country",
@@ -96,8 +100,8 @@
     },
     "review": {
       "badge": "Ready to go",
-      "headline": "Your perfect {destination} plan, about to be built",
-      "subtitle": "Based on your answers we'll build the hotel, route, restaurants, and map — all in one. You'll receive it by email 2–5 minutes after checkout.",
+      "headline": "Your {destination} plan, about to be built",
+      "subtitle": "We'll use your answers to put together the hotel, route, restaurants, and map. It lands in your inbox 1–5 minutes after checkout.",
       "summaryDestination": "Destination",
       "summaryDuration": "Duration",
       "summaryTraveler": "Travelers",
@@ -109,7 +113,7 @@
       "payButton": "Build my plan · $4",
       "payAgainButton": "Retry checkout",
       "sampleButton": "See a sample first",
-      "newTabNote": "Checkout opens in a new tab — keep this tab open",
+      "newTabNote": "Checkout opens in a new tab — keep this one open",
       "startOver": "Start over",
       "edit": "Edit",
       "cancel": "Cancel",
@@ -120,13 +124,13 @@
       "notesPlaceholder": "e.g. shellfish allergy, need an afternoon rest each day, prefer hotels with fewer stairs",
       "checkoutOpened": {
         "headline": "Checkout opened in a new tab",
-        "subtitle": "Once payment completes, your plan will arrive by email (typically 2–5 min).",
+        "subtitle": "Once payment goes through, your plan lands in your inbox (typically 1–5 minutes).",
         "noPopup": "New tab didn't open?",
-        "openAgain": "Open manually"
+        "openAgain": "Open it manually"
       }
     },
     "loading": {
-      "badge": "AI is analyzing your trip",
+      "badge": "Looking up your trip",
       "headline": "Building your {destination} plan",
       "subtitle": "We're cross-referencing thousands of data points. While you wait, answer a few quick questions so we can tailor it to you.",
       "redirecting": "Redirecting to secure checkout…",
@@ -159,21 +163,21 @@
       },
       "stroller": {
         "title": "Will you need a stroller?",
-        "subtitle": "We'll pick step-free routes if so."
+        "subtitle": "We'll route around stairs if so."
       },
       "airport": {
-        "title": "Which airport will you fly into?",
+        "title": "Which airport are you flying into?",
         "subtitle": "We'll pick a hotel close to your terminal.",
         "placeholder": "e.g. NRT or Narita"
       },
       "flightArrival": {
-        "title": "When is your arrival flight? (optional)",
-        "subtitle": "We'll schedule Day 1 around immigration and airport transit.",
+        "title": "When does your flight land? (optional)",
+        "subtitle": "We'll plan Day 1 around immigration and the airport transit.",
         "placeholder": "e.g. May 1, 2:30 PM NRT"
       },
       "flightDeparture": {
-        "title": "Your return flight? (optional)",
-        "subtitle": "We'll leave a 2-3 hour buffer before your departure on the last day.",
+        "title": "And your return flight? (optional)",
+        "subtitle": "We'll leave a 2–3 hour cushion before departure on the last day.",
         "placeholder": "e.g. May 4, 9:00 AM HND"
       },
       "hotelBooked": {
@@ -200,15 +204,15 @@
       "pace": {
         "title": "How fast do you want to move?",
         "relaxed": "Relaxed",
-        "relaxedHint": "3-4 stops/day",
+        "relaxedHint": "3–4 stops/day",
         "balanced": "Balanced",
-        "balancedHint": "5-6 stops/day",
+        "balancedHint": "5–6 stops/day",
         "packed": "Packed",
-        "packedHint": "7-9 stops/day"
+        "packedHint": "7–9 stops/day"
       },
       "email": {
         "title": "Where should we send your plan?",
-        "subtitle": "We'll email the secret link + PDF.",
+        "subtitle": "We'll email the private link + PDF.",
         "placeholder": "you@example.com"
       },
       "yes": "Yes",
@@ -219,10 +223,10 @@
   },
   "samples": {
     "metaTitle": "Sample trip plans",
-    "metaDescription": "Browse hand-curated sample trip plans for Tokyo, Paris, Bangkok, and Seoul. See exactly what you'll get when you order yours for $4.",
+    "metaDescription": "Browse hand-curated sample trip plans for Tokyo, Paris, Bangkok, Seoul and more. See exactly what you'll get when you order yours for $4.",
     "badge": "Sample plans · See the quality before you buy",
     "headline": "What a $4 plan actually looks like.",
-    "subtitle": "We don't do free trials. Instead, here are four real, full-length sample plans. Click any one to read it the way you'll read your own.",
+    "subtitle": "No free trials. Instead, real full-length sample plans you can read end-to-end. Click any one and read it like it's your own.",
     "readSample": "Read full sample →",
     "ctaHeadline": "Like what you see?",
     "ctaSubtitle": "Get a plan like this for any city, tailored to your dates, group, and budget.",
@@ -230,9 +234,9 @@
     "sampleHeader": "Sample plan",
     "sampleCtaTitle": "Like this sample?",
     "sampleCtaHeadline": "Get one for your trip",
-    "sampleCtaSubtitle": "Same depth, written for your dates, your group, your budget. Mobile web link + PDF in minutes.",
+    "sampleCtaSubtitle": "Same depth, written for your dates, your group, your budget. Mobile link + PDF in 1–5 minutes.",
     "sampleCtaButton": "Plan my trip — $4",
-    "sampleCtaCaption": "No signup · No subscription",
+    "sampleCtaCaption": "No account · No subscription",
     "backToGallery": "← All sample plans"
   },
   "plan": {
@@ -249,9 +253,9 @@
     "draftMessage": "This plan was started but never paid for.",
     "draftStartOver": "Start a new plan",
     "failedTitle": "Sorry, plan generation failed.",
-    "failedRefund": "We'll process a refund. Email contact@checkvisamap.com if you need help.",
+    "failedRefund": "We'll process a refund. Email hello@checkvisamap.com if you need help.",
     "generatingTitle": "We're building your plan",
-    "generatingSubtitle": "This usually takes 30 to 60 seconds. We'll email you the link as soon as it's ready.",
+    "generatingSubtitle": "This usually takes 30–60 seconds. We'll email the link as soon as it's ready.",
     "generatingRefresh": "Refresh",
     "paymentReceived": "Payment received",
     "wait": {
@@ -261,7 +265,7 @@
       "planIdLabel": "Plan",
       "emailHint": "We'll also email you the link when it's ready — feel free to close this tab.",
       "stage": {
-        "checking": "Payment confirmed. Fetching destination context…",
+        "checking": "Payment confirmed. Pulling destination context…",
         "routing": "Optimizing your day routes — this is the slowest step 🚶",
         "sights": "Picking the signature sights and meals",
         "polish": "Polishing the place descriptions ✍️",
@@ -270,9 +274,9 @@
       "failedBadge": "Generation failed",
       "failedTitle": "Something went wrong",
       "failedGeneric": "An unexpected error occurred.",
-      "failedRefund": "A refund is being processed automatically. Email contact@checkvisamap.com if you need help."
+      "failedRefund": "A refund is being processed automatically. Email hello@checkvisamap.com if you need help."
     },
-    "shareTitle": "Share this site, get your next plan free",
+    "shareTitle": "Share gliddy, get your next plan free",
     "shareSubtitle": "When a friend buys their first plan with your link, we credit you a free one.",
     "shareCopy": "Copy link",
     "shareCopied": "Copied!"

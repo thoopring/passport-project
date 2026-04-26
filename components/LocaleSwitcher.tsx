@@ -25,6 +25,7 @@ const LOCALE_FLAGS: Record<Locale, string> = {
   ko: "🇰🇷",
   ja: "🇯🇵",
   zh: "🇨🇳",
+  fr: "🇫🇷",
 };
 
 const LOCALE_ENGLISH: Record<Locale, string> = {
@@ -32,6 +33,7 @@ const LOCALE_ENGLISH: Record<Locale, string> = {
   ko: "Korean",
   ja: "Japanese",
   zh: "Chinese",
+  fr: "French",
 };
 
 export default function LocaleSwitcher() {

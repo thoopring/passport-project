@@ -1,0 +1,284 @@
+{
+  "common": {
+    "siteName": "gliddy",
+    "currency": "USD",
+    "price": "4 $",
+    "delivery": "Lien mobile + PDF · Livré 1 à 5 minutes après paiement",
+    "back": "Retour",
+    "continue": "Continuer",
+    "skip": "Passer"
+  },
+  "locale": {
+    "switcherLabel": "Langue",
+    "en": "English",
+    "ko": "한국어",
+    "ja": "日本語",
+    "zh": "中文",
+    "fr": "Français",
+    "suggestEn": "View this site in English?",
+    "suggestKo": "한국어로 보시겠어요?",
+    "suggestJa": "日本語で表示しますか?",
+    "suggestZh": "切换为中文?",
+    "suggestFr": "Voir le site en français ?",
+    "suggestSwitch": "Changer",
+    "suggestDismiss": "Non merci"
+  },
+  "homeWizard": {
+    "back": "Retour",
+    "continue": "Suivant",
+    "skip": "Passer →",
+    "progressOf": "{current} / {total}",
+    "destination": {
+      "question": "Où partez-vous ?",
+      "placeholder": "Saisissez une ville",
+      "popular": "Destinations populaires",
+      "cities": {
+        "tokyo": "Tokyo",
+        "paris": "Paris",
+        "bangkok": "Bangkok",
+        "seoul": "Séoul",
+        "barcelona": "Barcelone",
+        "istanbul": "Istanbul"
+      }
+    },
+    "travelerType": {
+      "question": "Avec qui partez-vous ?",
+      "solo": "Seul·e",
+      "couple": "En couple",
+      "family": "En famille",
+      "friends": "Entre amis",
+      "senior": "Rythme tranquille"
+    },
+    "travelStyle": {
+      "question": "Quel type de voyage ?",
+      "sightseeing": "Visites",
+      "sightseeingHint": "Monuments, musées, expériences",
+      "relaxation": "Détente",
+      "relaxationHint": "Rythme doux, peu de marche",
+      "mixed": "Un peu des deux",
+      "mixedHint": "Équilibre entre les deux"
+    },
+    "days": {
+      "question": "Combien de jours ?",
+      "customLabel": "Personnaliser",
+      "unit": "jours"
+    },
+    "budget": {
+      "question": "Quel est votre budget ?",
+      "budget": "Petit budget",
+      "budgetHint": "Auberges, street food, transports en commun",
+      "midrange": "Moyen",
+      "midrangeHint": "4 étoiles, restaurants",
+      "luxury": "Luxe",
+      "luxuryHint": "5 étoiles, gastronomie"
+    },
+    "mustVisit": {
+      "question": "Des incontournables ?",
+      "subtitle": "Restaurants, lieux, cafés… ce que vous ne voulez pas manquer",
+      "placeholder": "ex. Meiji Jingu, Sushi Dai, carrefour de Shibuya"
+    },
+    "submit": "Planifier mon voyage — 4 $"
+  },
+  "wizard": {
+    "step1": {
+      "headline": "Votre prochain voyage, prêt en quelques minutes.",
+      "subtitle": "Trois questions rapides et on s'occupe du reste — hôtel, transport depuis l'aéroport, restaurants et carte du parcours à emporter sur le téléphone.",
+      "badge": "4 $ · Lien mobile + PDF · Livré en quelques minutes",
+      "destinationLabel": "Où partez-vous ?",
+      "destinationPlaceholder": "ex. Tokyo",
+      "countryLabel": "Pays",
+      "countryPlaceholder": "ex. Japon",
+      "daysLabel": "Combien de jours ?",
+      "budgetLabel": "Quel budget ?",
+      "budgetBudget": "Petit budget",
+      "budgetBudgetHint": "Auberges, street food, transports",
+      "budgetMidrange": "Moyen",
+      "budgetMidrangeHint": "4 étoiles, restaurants",
+      "budgetLuxury": "Luxe",
+      "budgetLuxuryHint": "5 étoiles, gastronomie",
+      "submit": "Planifier mon voyage — 4 $"
+    },
+    "review": {
+      "badge": "Tout est prêt",
+      "headline": "Votre programme pour {destination}, on s'y met",
+      "subtitle": "On utilise vos réponses pour assembler l'hôtel, le parcours, les restaurants et la carte. Tout arrive dans votre boîte mail 1 à 5 minutes après le paiement.",
+      "summaryDestination": "Destination",
+      "summaryDuration": "Durée",
+      "summaryTraveler": "Voyageurs",
+      "summaryStyle": "Style",
+      "summaryBudget": "Budget",
+      "summaryInterests": "Centres d'intérêt",
+      "summaryMustVisit": "Incontournables",
+      "summaryEmail": "E-mail",
+      "payButton": "Créer mon plan · 4 $",
+      "payAgainButton": "Réessayer le paiement",
+      "sampleButton": "Voir un exemple",
+      "newTabNote": "Le paiement s'ouvre dans un nouvel onglet — gardez celui-ci ouvert",
+      "startOver": "Recommencer",
+      "edit": "Modifier",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "mustVisitEmpty": "Aucun ajouté",
+      "notesLabel": "Autre chose à savoir ?",
+      "notesSubtitle": "Allergies, demandes particulières, choses à éviter — comme à un ami qui planifie le voyage",
+      "notesPlaceholder": "ex. allergie aux fruits de mer, sieste l'après-midi, hôtels avec peu d'escaliers",
+      "checkoutOpened": {
+        "headline": "Paiement ouvert dans un nouvel onglet",
+        "subtitle": "Une fois le paiement validé, votre plan arrive par e-mail (généralement 1 à 5 minutes).",
+        "noPopup": "Le nouvel onglet ne s'est pas ouvert ?",
+        "openAgain": "Ouvrir manuellement"
+      }
+    },
+    "loading": {
+      "badge": "Analyse de votre voyage",
+      "headline": "Préparation de votre plan pour {destination}",
+      "subtitle": "On croise des milliers de données. En attendant, répondez à quelques questions pour qu'on personnalise au mieux.",
+      "redirecting": "Redirection vers le paiement sécurisé…",
+      "startOver": "Recommencer"
+    },
+    "popup": {
+      "travelerType": {
+        "title": "Avec qui partez-vous ?",
+        "solo": "Seul·e",
+        "soloHint": "Juste moi",
+        "couple": "En couple",
+        "coupleHint": "Deux adultes",
+        "family": "En famille",
+        "familyHint": "Adultes + enfants",
+        "friends": "Entre amis",
+        "friendsHint": "3 adultes ou plus",
+        "senior": "Senior",
+        "seniorHint": "Rythme plus tranquille"
+      },
+      "adults": {
+        "title": "Combien d'adultes ?",
+        "placeholder": "ex. 4"
+      },
+      "children": {
+        "title": "Combien d'enfants, et quel âge ?",
+        "subtitle": "L'âge nous aide à choisir le rythme et les étapes.",
+        "numberLabel": "Nombre d'enfants",
+        "textLabel": "Âges",
+        "placeholder": "ex. 4, 7"
+      },
+      "stroller": {
+        "title": "Avez-vous besoin d'une poussette ?",
+        "subtitle": "Si oui, on évitera les escaliers."
+      },
+      "airport": {
+        "title": "À quel aéroport arrivez-vous ?",
+        "subtitle": "On choisira un hôtel proche de votre terminal.",
+        "placeholder": "ex. CDG ou Roissy"
+      },
+      "flightArrival": {
+        "title": "À quelle heure atterrissez-vous ? (facultatif)",
+        "subtitle": "On planifiera le jour 1 en tenant compte de l'immigration et du transit aéroport.",
+        "placeholder": "ex. 1er mai, 14h30 CDG"
+      },
+      "flightDeparture": {
+        "title": "Et le vol retour ? (facultatif)",
+        "subtitle": "On laisse 2 à 3 heures de marge avant le départ le dernier jour.",
+        "placeholder": "ex. 4 mai, 9h00 CDG"
+      },
+      "hotelBooked": {
+        "title": "Avez-vous déjà réservé un hôtel ?"
+      },
+      "hotelName": {
+        "title": "Où logez-vous ?",
+        "subtitle": "Donnez-nous juste le nom — on construira l'itinéraire autour.",
+        "placeholder": "ex. Park Hyatt Paris-Vendôme"
+      },
+      "interests": {
+        "title": "Qu'est-ce qui vous intéresse le plus ?",
+        "subtitle": "Choisissez jusqu'à 6.",
+        "food": "Gastronomie",
+        "culture": "Culture",
+        "history": "Histoire",
+        "nature": "Nature",
+        "shopping": "Shopping",
+        "nightlife": "Vie nocturne",
+        "adventure": "Aventure",
+        "relaxation": "Détente",
+        "photography": "Photographie"
+      },
+      "pace": {
+        "title": "À quel rythme voulez-vous voyager ?",
+        "relaxed": "Tranquille",
+        "relaxedHint": "3–4 étapes / jour",
+        "balanced": "Équilibré",
+        "balancedHint": "5–6 étapes / jour",
+        "packed": "Intense",
+        "packedHint": "7–9 étapes / jour"
+      },
+      "email": {
+        "title": "Où vous envoyer votre plan ?",
+        "subtitle": "On vous envoie le lien privé + PDF par e-mail.",
+        "placeholder": "vous@exemple.com"
+      },
+      "yes": "Oui",
+      "no": "Non",
+      "continue": "Continuer →",
+      "skip": "Passer"
+    }
+  },
+  "samples": {
+    "metaTitle": "Exemples de plans de voyage",
+    "metaDescription": "Parcourez des plans de voyage exemples pour Tokyo, Paris, Bangkok, Séoul et plus. Voyez exactement ce que vous obtenez pour 4 $.",
+    "badge": "Exemples · Voyez la qualité avant d'acheter",
+    "headline": "Voici à quoi ressemble un plan à 4 $.",
+    "subtitle": "Pas d'essai gratuit. À la place, des exemples complets que vous pouvez lire de bout en bout. Cliquez sur n'importe lequel et lisez-le comme s'il était à vous.",
+    "readSample": "Lire l'exemple complet →",
+    "ctaHeadline": "Ça vous plaît ?",
+    "ctaSubtitle": "On crée le même type de plan pour n'importe quelle ville, adapté à vos dates, votre groupe et votre budget.",
+    "ctaButton": "Planifier mon voyage — 4 $",
+    "sampleHeader": "Exemple de plan",
+    "sampleCtaTitle": "Cet exemple vous plaît ?",
+    "sampleCtaHeadline": "Obtenez le vôtre",
+    "sampleCtaSubtitle": "Même profondeur, écrit pour vos dates, votre groupe, votre budget. Lien mobile + PDF en 1 à 5 minutes.",
+    "sampleCtaButton": "Planifier mon voyage — 4 $",
+    "sampleCtaCaption": "Pas de compte · Pas d'abonnement",
+    "backToGallery": "← Tous les exemples"
+  },
+  "plan": {
+    "yourTripPlan": "Votre plan de voyage",
+    "downloadPdf": "Télécharger le PDF",
+    "hotel": "Hôtel",
+    "airportToHotel": "Aéroport → Hôtel",
+    "day": "Jour",
+    "practicalInfo": "Infos pratiques",
+    "budget": "Budget",
+    "packing": "Bagages",
+    "tips": "Conseils",
+    "back": "← Retour à gliddy",
+    "draftMessage": "Ce plan a été commencé mais n'a pas été payé.",
+    "draftStartOver": "Créer un nouveau plan",
+    "failedTitle": "Désolé, la génération a échoué.",
+    "failedRefund": "On vous rembourse. Écrivez à hello@checkvisamap.com si vous avez besoin d'aide.",
+    "generatingTitle": "On prépare votre plan",
+    "generatingSubtitle": "Cela prend généralement 30 à 60 secondes. On vous envoie le lien par e-mail dès que c'est prêt.",
+    "generatingRefresh": "Actualiser",
+    "paymentReceived": "Paiement reçu",
+    "wait": {
+      "paidBadge": "Paiement reçu",
+      "headline": "On prépare votre plan de voyage",
+      "elapsed": "{seconds} s écoulées",
+      "planIdLabel": "Plan",
+      "emailHint": "On vous enverra aussi le lien par e-mail quand ce sera prêt — vous pouvez fermer cet onglet.",
+      "stage": {
+        "checking": "Paiement confirmé. Récupération des données de la destination…",
+        "routing": "Optimisation des trajets quotidiens — c'est l'étape la plus longue 🚶",
+        "sights": "Sélection des sites incontournables et des restaurants",
+        "polish": "On peaufine la description de chaque lieu ✍️",
+        "almost": "Presque terminé — encore un instant…"
+      },
+      "failedBadge": "Échec de la génération",
+      "failedTitle": "Une erreur est survenue",
+      "failedGeneric": "Une erreur inattendue s'est produite.",
+      "failedRefund": "Un remboursement est traité automatiquement. Écrivez à hello@checkvisamap.com si besoin."
+    },
+    "shareTitle": "Partagez gliddy, votre prochain plan est offert",
+    "shareSubtitle": "Quand un ami achète son premier plan avec votre lien, on vous offre le suivant.",
+    "shareCopy": "Copier le lien",
+    "shareCopied": "Copié !"
+  }
+}

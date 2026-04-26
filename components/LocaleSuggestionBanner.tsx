@@ -90,6 +90,7 @@ const SUGGEST_PROMPTS: Record<Locale, string> = {
   ko: "한국어로 보시겠어요?",
   ja: "日本語で表示しますか?",
   zh: "切换为中文?",
+  fr: "Voir le site en français ?",
 };
 
 const SUGGEST_BUTTON_SWITCH: Record<Locale, string> = {
@@ -97,6 +98,7 @@ const SUGGEST_BUTTON_SWITCH: Record<Locale, string> = {
   ko: "전환",
   ja: "切り替え",
   zh: "切换",
+  fr: "Changer",
 };
 
 const SUGGEST_BUTTON_DISMISS: Record<Locale, string> = {
@@ -104,4 +106,5 @@ const SUGGEST_BUTTON_DISMISS: Record<Locale, string> = {
   ko: "괜찮아요",
   ja: "結構です",
   zh: "不用",
+  fr: "Non merci",
 };

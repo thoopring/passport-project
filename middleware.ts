@@ -23,6 +23,13 @@ const COUNTRY_TO_LOCALE: Record<string, string> = {
   HK: "zh",
   MO: "zh",
   SG: "zh", // Singapore — Chinese is one of the official languages
+  FR: "fr",
+  BE: "fr", // Belgium — French is a primary official language
+  CH: "fr", // Switzerland — French in Romandy region
+  LU: "fr", // Luxembourg
+  MC: "fr", // Monaco
+  // Skip CA on purpose — majority anglophone; suggesting French to a Toronto
+  // user is more annoying than helpful. Quebec users can switch manually.
 };
 
 export function middleware(request: NextRequest) {

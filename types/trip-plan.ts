@@ -62,7 +62,7 @@ export type Pace = z.infer<typeof PaceSchema>;
 export const TravelStyleSchema = z.enum(["sightseeing", "relaxation", "mixed"]);
 export type TravelStyle = z.infer<typeof TravelStyleSchema>;
 
-export const LocaleSchema = z.enum(["en", "ko", "ja", "zh"]);
+export const LocaleSchema = z.enum(["en", "ko", "ja", "zh", "fr"]);
 export type PlanLocale = z.infer<typeof LocaleSchema>;
 
 export const PlanRequestSchema = z.object({
