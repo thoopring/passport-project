@@ -6,7 +6,9 @@
     "delivery": "Mobile link + PDF · Delivered 1–5 min after checkout",
     "back": "Back",
     "continue": "Continue",
-    "skip": "Skip"
+    "skip": "Skip",
+    "beta": "Open beta",
+    "betaTooltip": "We're in open beta — try it and tell us what could be better."
   },
   "locale": {
     "switcherLabel": "Language",

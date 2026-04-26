@@ -5,8 +5,10 @@
     "price": "$4",
     "delivery": "モバイルリンク + PDF · 決済から1〜5分でお届け",
     "back": "戻る",
-    "continue": "続ける",
-    "skip": "スキップ"
+    "continue": "次へ",
+    "skip": "スキップ",
+    "beta": "オープンベータ",
+    "betaTooltip": "現在オープンベータ期間中です。お試しいただき、ご感想をお聞かせください。"
   },
   "locale": {
     "switcherLabel": "言語",

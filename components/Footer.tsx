@@ -1,13 +1,15 @@
 import Link from "next/link";
 import BrandMark from "./BrandMark";
+import BetaBadge from "./BetaBadge";
 
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--border-subtle)] mt-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-6">
-          <div className="flex items-baseline gap-3">
+          <div className="flex items-baseline gap-3 flex-wrap">
             <BrandMark size={22} />
+            <BetaBadge variant="regular" />
             <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
               AI trip plans · $4
             </span>

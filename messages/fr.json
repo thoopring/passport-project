@@ -5,8 +5,10 @@
     "price": "4 $",
     "delivery": "Lien mobile + PDF · Livré 1 à 5 minutes après paiement",
     "back": "Retour",
-    "continue": "Continuer",
-    "skip": "Passer"
+    "continue": "Suivant",
+    "skip": "Passer",
+    "beta": "Bêta ouverte",
+    "betaTooltip": "Nous sommes en bêta ouverte — essayez et dites-nous ce qui peut être amélioré."
   },
   "locale": {
     "switcherLabel": "Langue",

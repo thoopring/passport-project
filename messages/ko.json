@@ -3,10 +3,12 @@
     "siteName": "gliddy",
     "currency": "USD",
     "price": "$4",
-    "delivery": "모바일 링크 + PDF · 결제 후 1~5분이면 도착",
+    "delivery": "모바일 링크 + PDF · 결제 후 1~5분 안에 도착",
     "back": "뒤로",
-    "continue": "계속",
-    "skip": "건너뛰기"
+    "continue": "다음",
+    "skip": "건너뛰기",
+    "beta": "오픈 베타",
+    "betaTooltip": "현재 오픈 베타 기간이에요. 사용해보시고 의견 주시면 큰 도움이 됩니다."
   },
   "locale": {
     "switcherLabel": "언어",
@@ -20,7 +22,7 @@
     "suggestJa": "日本語で表示しますか?",
     "suggestZh": "切换为中文?",
     "suggestFr": "Voir le site en français ?",
-    "suggestSwitch": "전환",
+    "suggestSwitch": "바꾸기",
     "suggestDismiss": "괜찮아요"
   },
   "homeWizard": {
@@ -30,7 +32,7 @@
     "progressOf": "{current} / {total}",
     "destination": {
       "question": "어디로 가세요?",
-      "placeholder": "도시 이름을 입력하세요",
+      "placeholder": "도시를 입력해주세요",
       "popular": "인기 여행지",
       "cities": {
         "tokyo": "도쿄",
@@ -47,16 +49,16 @@
       "couple": "둘이",
       "family": "가족과",
       "friends": "친구들과",
-      "senior": "여유롭게"
+      "senior": "여유로운 여행"
     },
     "travelStyle": {
       "question": "어떤 여행을 원하세요?",
       "sightseeing": "관광 위주",
-      "sightseeingHint": "명소·박물관·체험 가득",
+      "sightseeingHint": "명소, 박물관, 체험 중심",
       "relaxation": "휴양 위주",
-      "relaxationHint": "여유롭게, 적게 걷기",
+      "relaxationHint": "여유로운 일정, 걷기 적게",
       "mixed": "관광 & 휴양",
-      "mixedHint": "균형 있게 둘 다"
+      "mixedHint": "균형 있게"
     },
     "days": {
       "question": "며칠 다녀오세요?",
@@ -77,13 +79,13 @@
       "subtitle": "식당, 명소, 카페… 자유롭게 적어주세요",
       "placeholder": "예: 메이지 신궁, 스시 다이, 시부야 크로싱"
     },
-    "submit": "플랜 만들기 — $4"
+    "submit": "내 플랜 만들기 — $4"
   },
   "wizard": {
     "step1": {
-      "headline": "몇 분이면 완성되는 여행 계획.",
-      "subtitle": "간단한 질문 세 개만 답해주세요. 호텔, 공항 이동, 식당, 휴대폰에 담아 다닐 경로 지도까지 한 번에 만들어드려요.",
-      "badge": "$4 · 모바일 링크 + PDF · 1~5분 도착",
+      "headline": "다음 여행, 몇 분이면 끝.",
+      "subtitle": "질문 세 개만 답해주세요. 호텔, 공항 이동, 식당, 휴대폰에 담아 다닐 경로 지도까지 한 번에 만들어드려요.",
+      "badge": "$4 · 모바일 링크 + PDF · 1~5분 안에 도착",
       "destinationLabel": "어디로 가세요?",
       "destinationPlaceholder": "예: 도쿄",
       "countryLabel": "국가",
@@ -100,8 +102,8 @@
     },
     "loading": {
       "badge": "여행 정보 분석 중",
-      "headline": "{destination} 일정을 만들고 있어요",
-      "subtitle": "수천 개 데이터를 살펴보고 있어요. 그동안 몇 가지 질문 답해주시면 더 꼭 맞게 만들어드릴게요.",
+      "headline": "{destination} 일정을 짜고 있어요",
+      "subtitle": "수천 개 데이터를 살펴보는 중이에요. 그동안 몇 가지만 더 답해주시면 더 꼭 맞춰서 만들어드릴게요.",
       "redirecting": "안전한 결제 페이지로 이동 중…",
       "startOver": "처음부터 다시"
     },
@@ -117,10 +119,10 @@
       "summaryInterests": "관심사",
       "summaryMustVisit": "꼭 가고 싶은 곳",
       "summaryEmail": "이메일",
-      "payButton": "플랜 만들기 · $4",
+      "payButton": "내 플랜 만들기 · $4",
       "payAgainButton": "결제 다시 시도",
-      "sampleButton": "먼저 샘플 보기",
-      "newTabNote": "결제는 새 창에서 열려요 · 지금 창은 그대로 두세요",
+      "sampleButton": "샘플 먼저 보기",
+      "newTabNote": "결제는 새 창에서 열려요 · 이 창은 그대로 두셔도 돼요",
       "startOver": "처음부터 다시 시작",
       "edit": "변경",
       "cancel": "취소",
@@ -171,13 +173,13 @@
         "placeholder": "예: ICN 또는 인천"
       },
       "flightArrival": {
-        "title": "도착편 시간 알려주실래요? (선택)",
-        "subtitle": "공항 도착 + 입국심사 시간까지 감안해서 첫날 일정을 짜드려요.",
+        "title": "도착편 시간이 어떻게 되세요? (선택)",
+        "subtitle": "입국 심사까지 감안해서 첫날 일정을 짜드려요.",
         "placeholder": "예: 5/1 오후 2시 30분 NRT"
       },
       "flightDeparture": {
         "title": "귀국편은요? (선택)",
-        "subtitle": "마지막 날 공항에 2~3시간 여유 두고 마무리해요.",
+        "subtitle": "마지막 날 공항에 2~3시간 여유 두고 마무리해드려요.",
         "placeholder": "예: 5/4 오전 9시 HND"
       },
       "hotelBooked": {
@@ -190,7 +192,7 @@
       },
       "interests": {
         "title": "어떤 걸 좋아하세요?",
-        "subtitle": "최대 6개까지 선택할 수 있어요.",
+        "subtitle": "최대 6개까지 골라보세요.",
         "food": "음식",
         "culture": "문화",
         "history": "역사",
@@ -217,30 +219,30 @@
       },
       "yes": "네",
       "no": "아니요",
-      "continue": "계속 →",
+      "continue": "다음 →",
       "skip": "건너뛰기"
     }
   },
   "samples": {
-    "metaTitle": "샘플 여행 계획",
-    "metaDescription": "도쿄, 파리, 방콕, 서울 등 직접 만든 샘플 여행 계획을 둘러보세요. $4로 어떤 결과물을 받게 되는지 미리 확인하실 수 있어요.",
+    "metaTitle": "샘플 여행 플랜",
+    "metaDescription": "도쿄, 파리, 방콕, 서울 등 직접 큐레이션한 샘플 여행 플랜을 둘러보세요. $4로 어떤 결과물을 받는지 미리 확인하실 수 있어요.",
     "badge": "샘플 플랜 · 결제 전에 품질 확인",
     "headline": "$4 짜리 플랜은 이렇게 생겼어요.",
-    "subtitle": "무료 체험은 없어요. 대신 실제 풀버전 샘플 플랜을 준비해뒀어요. 클릭해서 본인 플랜이라 생각하고 읽어보세요.",
+    "subtitle": "무료 체험은 없어요. 대신 실제와 똑같은 풀버전 샘플 플랜을 준비해뒀어요. 클릭해서 본인 것이라 생각하고 읽어보세요.",
     "readSample": "샘플 전체 보기 →",
     "ctaHeadline": "마음에 드세요?",
     "ctaSubtitle": "어느 도시든, 본인의 일정·인원·예산에 맞춰 이런 플랜을 받으실 수 있어요.",
-    "ctaButton": "내 여행 계획 만들기 — $4",
+    "ctaButton": "내 플랜 만들기 — $4",
     "sampleHeader": "샘플 플랜",
     "sampleCtaTitle": "이 샘플이 마음에 드세요?",
     "sampleCtaHeadline": "내 여행을 위한 플랜 받기",
     "sampleCtaSubtitle": "같은 깊이로, 본인 일정·인원·예산에 맞춰 작성해드려요. 모바일 링크 + PDF가 1~5분 안에 도착해요.",
-    "sampleCtaButton": "내 여행 계획 만들기 — $4",
+    "sampleCtaButton": "내 플랜 만들기 — $4",
     "sampleCtaCaption": "회원가입 안 해도 돼요 · 구독료 없음",
     "backToGallery": "← 모든 샘플 플랜"
   },
   "plan": {
-    "yourTripPlan": "내 여행 계획",
+    "yourTripPlan": "내 여행 플랜",
     "downloadPdf": "PDF 다운로드",
     "hotel": "호텔",
     "airportToHotel": "공항 → 호텔",
@@ -250,12 +252,12 @@
     "packing": "준비물",
     "tips": "팁",
     "back": "← gliddy 홈으로",
-    "draftMessage": "이 플랜은 시작됐지만 아직 결제되지 않았어요.",
+    "draftMessage": "이 플랜은 시작은 됐지만 결제가 안 된 상태예요.",
     "draftStartOver": "새 플랜 시작하기",
-    "failedTitle": "죄송합니다. 플랜 생성에 실패했어요.",
-    "failedRefund": "환불 처리해 드릴게요. 문제 있으시면 hello@checkvisamap.com 으로 메일 주세요.",
+    "failedTitle": "죄송해요, 플랜 만들기에 실패했어요.",
+    "failedRefund": "환불 자동으로 처리해 드릴게요. 문제 있으시면 hello@checkvisamap.com 으로 메일 주세요.",
     "generatingTitle": "플랜을 만들고 있어요",
-    "generatingSubtitle": "보통 30~60초 정도 걸려요. 준비되는 대로 이메일로 링크 보내드릴게요.",
+    "generatingSubtitle": "보통 30~60초면 완성돼요. 준비되는 대로 이메일로 링크 보내드릴게요.",
     "generatingRefresh": "새로고침",
     "paymentReceived": "결제 완료",
     "wait": {
@@ -276,8 +278,8 @@
       "failedGeneric": "알 수 없는 오류가 났어요.",
       "failedRefund": "자동으로 환불 처리됩니다. 문제 있으시면 hello@checkvisamap.com 으로 연락주세요."
     },
-    "shareTitle": "공유하시면 다음 여행 플랜이 무료예요",
-    "shareSubtitle": "친구가 본인의 링크로 첫 플랜을 구매하면, 무료 플랜 한 건이 적립돼요.",
+    "shareTitle": "공유하시면 다음 플랜이 무료예요",
+    "shareSubtitle": "친구가 회원님 링크로 첫 플랜을 구매하면, 무료 플랜 한 건을 적립해 드려요.",
     "shareCopy": "링크 복사",
     "shareCopied": "복사됨!"
   }

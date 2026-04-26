@@ -5,8 +5,10 @@
     "price": "$4",
     "delivery": "移动链接 + PDF · 付款后 1~5 分钟送达",
     "back": "返回",
-    "continue": "继续",
-    "skip": "跳过"
+    "continue": "下一步",
+    "skip": "跳过",
+    "beta": "公测中",
+    "betaTooltip": "我们正处于公开测试阶段,欢迎您试用并提供反馈。"
   },
   "locale": {
     "switcherLabel": "语言",

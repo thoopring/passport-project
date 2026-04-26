@@ -1,6 +1,7 @@
 import Link from "next/link";
 import LocaleSwitcher from "./LocaleSwitcher";
 import BrandMark from "./BrandMark";
+import BetaBadge from "./BetaBadge";
 
 interface HeaderProps {
   showCta?: boolean;
@@ -12,10 +13,11 @@ export default function Header({ showCta = true }: HeaderProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link
           href="/"
-          className="text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition"
+          className="text-[var(--text-primary)] hover:text-[var(--brand-primary)] transition inline-flex items-center gap-2"
           aria-label="gliddy — home"
         >
           <BrandMark size={26} />
+          <BetaBadge variant="compact" />
         </Link>
 
         <nav className="flex items-center gap-1">
