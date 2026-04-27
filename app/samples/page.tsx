@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { listSamples } from "../../lib/samples";
+import { listSamplesLocalized } from "../../lib/samples";
+import type { Locale } from "../../i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("samples");
@@ -23,7 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function SamplesGalleryPage() {
   const t = await getTranslations("samples");
-  const samples = listSamples();
+  const tHome = await getTranslations("home");
+  const locale = (await getLocale()) as Locale;
+  const samples = await listSamplesLocalized(locale);
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
@@ -69,7 +72,10 @@ export default async function SamplesGalleryPage() {
                   {sample.plan.destination}
                 </h2>
                 <p className="text-body-sm text-[var(--text-muted)] mb-3">
-                  {sample.plan.durationDays} days · {sample.plan.destinationCountry}
+                  {tHome("cardDaysCountry", {
+                    count: sample.plan.durationDays,
+                    country: sample.plan.destinationCountry,
+                  })}
                 </p>
                 <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed mb-4">
                   {sample.tagline}

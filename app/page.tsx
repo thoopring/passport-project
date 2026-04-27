@@ -1,22 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomeWizard from "../components/HomeWizard";
 import PlanMap from "../components/PlanMap";
-import { SAMPLE_PLANS, HOME_HERO_IMAGES, getSample } from "../lib/samples";
+import { HOME_HERO_IMAGES, getSampleLocalized, listSamplesLocalized } from "../lib/samples";
+import type { Locale } from "../i18n/locales";
 
-export const metadata: Metadata = {
-  title: "Your next trip, sorted — $4",
-  description:
-    "Tell us where you're going. We draft the itinerary, pick the hotel, and map the route — delivered as a real plan in about a minute. $4 each, no subscription.",
-  alternates: { canonical: "https://checkvisamap.com" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("home");
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: "https://checkvisamap.com" },
+  };
+}
 
-export default function Home() {
-  const featured = SAMPLE_PLANS.slice(0, 3);
-  const tokyo = getSample("tokyo-4d-couple");
+export default async function Home() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("home");
+  const allSamples = await listSamplesLocalized(locale);
+  const featured = allSamples.slice(0, 3);
+  const tokyo = await getSampleLocalized("tokyo-4d-couple", locale);
   const day1 = tokyo?.plan.days[0];
   const previewStops = day1?.stops.slice(0, 3) ?? [];
   const remainingStops = (day1?.stops.length ?? 0) - previewStops.length;
@@ -30,13 +37,12 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
             <h1 className="font-fraunces font-semibold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.0] tracking-[-0.022em] mb-6">
-              Your next trip,
+              {t("heroHeadline1")}
               <br />
-              <em className="not-italic text-[var(--brand-primary)]">sorted.</em>
+              <em className="not-italic text-[var(--brand-primary)]">{t("heroHeadlineEm")}</em>
             </h1>
             <p className="text-body-lg text-[var(--text-secondary)] max-w-md mb-8">
-              Tell us where you&apos;re going. We draft the itinerary, pick the hotel, and
-              map the route — usually in under a minute.
+              {t("heroSubtitle")}
             </p>
 
             <div className="max-w-lg">
@@ -44,7 +50,7 @@ export default function Home() {
             </div>
 
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mt-8">
-              $4 per plan · No account · Offline PDF
+              {t("heroBadge")}
             </p>
           </div>
 
@@ -54,7 +60,7 @@ export default function Home() {
                 <Image
                   key={src}
                   src={src}
-                  alt="Travel inspiration — your next trip"
+                  alt="Travel inspiration"
                   fill
                   priority={i === 0}
                   sizes="(max-width: 1024px) 100vw, 520px"
@@ -71,10 +77,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 text-center">
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
-              Sample plans
+              {t("samplesEyebrow")}
             </p>
             <h2 className="font-display font-bold text-display-md text-[var(--text-primary)] tracking-[-0.02em]">
-              What your plan looks like.
+              {t("samplesHeadline")}
             </h2>
           </div>
 
@@ -88,7 +94,7 @@ export default function Home() {
                 <div className="relative aspect-[4/3] bg-[var(--surface-secondary)]">
                   <Image
                     src={s.heroImage}
-                    alt={`${s.plan.destination} — sample trip plan`}
+                    alt={s.plan.destination}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
                     className="object-cover"
@@ -102,7 +108,10 @@ export default function Home() {
                     {s.plan.destination}
                   </h3>
                   <p className="text-body-sm text-[var(--text-muted)] mb-3">
-                    {s.plan.durationDays} days · {s.plan.destinationCountry}
+                    {t("cardDaysCountry", {
+                      count: s.plan.durationDays,
+                      country: s.plan.destinationCountry,
+                    })}
                   </p>
                   <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
                     {s.tagline}
@@ -120,14 +129,13 @@ export default function Home() {
           <div className="max-w-3xl mx-auto">
             <div className="mb-12 text-center">
               <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
-                A real plan, unlocked
+                {t("previewEyebrow")}
               </p>
               <h2 className="font-display font-bold text-display-md text-[var(--text-primary)] leading-tight tracking-[-0.02em]">
-                Tokyo. Four days.
+                {t("previewHeadline")}
               </h2>
               <p className="text-body-md text-[var(--text-secondary)] mt-4 max-w-xl mx-auto">
-                A real plan we made for a couple on a mid-range budget. Read the first
-                chunks below — no login, no card.
+                {t("previewSubtitle")}
               </p>
             </div>
 
@@ -140,7 +148,7 @@ export default function Home() {
             {/* Live Tokyo route map — numbered stops */}
             <div className="mb-4">
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-3">
-                Your route, mapped
+                {t("previewRouteLabel")}
               </p>
               <PlanMap plan={tokyo.plan} height={360} />
             </div>
@@ -148,7 +156,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="bg-white border border-[var(--border-subtle)] rounded-[12px] p-6">
                 <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
-                  Hotel
+                  {t("previewHotel")}
                 </p>
                 <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] leading-snug">
                   {tokyo.plan.hotel.name}{" "}
@@ -166,7 +174,7 @@ export default function Home() {
 
               <div className="bg-white border border-[var(--border-subtle)] rounded-[12px] p-6">
                 <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-2">
-                  Airport transit
+                  {t("previewAirport")}
                 </p>
                 <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] leading-snug">
                   {tokyo.plan.airportTransit.method}
@@ -180,7 +188,7 @@ export default function Home() {
             <div className="bg-white border border-[var(--border-subtle)] rounded-[12px] p-6 mb-4">
               <div className="mb-4">
                 <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
-                  Day 1
+                  {t("previewDayLabel")}
                 </p>
                 <h3 className="font-display font-bold text-[1.5rem] text-[var(--text-primary)] leading-tight mt-1">
                   {day1.theme}
@@ -218,8 +226,7 @@ export default function Home() {
 
               {remainingStops > 0 && (
                 <p className="text-body-sm text-[var(--text-muted)] mt-6 pt-5 border-t border-[var(--border-subtle)]">
-                  …and {remainingStops} more stops on Day 1, plus Days 2–4 with restaurants,
-                  a packing list, and a route map.
+                  {t("previewMoreStops", { count: remainingStops })}
                 </p>
               )}
             </div>
@@ -229,15 +236,18 @@ export default function Home() {
                 href="/samples/tokyo-4d-couple"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[#1A1A1A] text-white font-medium hover:bg-black transition"
               >
-                Read the full Tokyo plan
+                {t("previewCtaButton")}
                 <span aria-hidden="true">→</span>
               </Link>
               <p className="text-caption text-[var(--text-muted)] mt-4">
-                Or see{" "}
-                <Link href="/samples" className="underline underline-offset-4 hover:text-[var(--text-primary)]">
-                  three more samples
+                {t("previewSecondaryPrefix")}{" "}
+                <Link
+                  href="/samples"
+                  className="underline underline-offset-4 hover:text-[var(--text-primary)]"
+                >
+                  {t("previewSecondaryLink")}
                 </Link>
-                .
+                {t("previewSecondarySuffix")}
               </p>
             </div>
           </div>

@@ -283,5 +283,28 @@
     "shareSubtitle": "朋友通过您的链接首次购买,我们将赠送您一份免费行程。",
     "shareCopy": "复制链接",
     "shareCopied": "已复制!"
+  },
+  "home": {
+    "metaTitle": "下一段旅程,一分钟搞定 — $4",
+    "metaDescription": "告诉我们目的地。酒店、机场接送、路线和地图—— 大约一分钟就能拿到一份真正可用的旅行计划。每份 $4,无订阅。",
+    "heroHeadline1": "下一段旅程,",
+    "heroHeadlineEm": "搞定了。",
+    "heroSubtitle": "告诉我们目的地。酒店、路线、地图—— 通常一分钟内就能拿到完成的计划。",
+    "heroBadge": "每份 $4 · 无需账号 · 离线PDF",
+    "samplesEyebrow": "样例计划",
+    "samplesHeadline": "你的计划长这样。",
+    "cardDaysCountry": "{count}天 · {country}",
+    "previewEyebrow": "真实计划,免费公开",
+    "previewHeadline": "东京。四天行程。",
+    "previewSubtitle": "为中等预算情侣量身定制的真实计划。无需注册、无需付款,先读前面几段。",
+    "previewRouteLabel": "地图上的行程动线",
+    "previewHotel": "酒店",
+    "previewAirport": "机场接送",
+    "previewDayLabel": "Day 1",
+    "previewMoreStops": "Day 1还有{count}个地点,Day 2~4 包含餐厅、行李清单和路线地图。",
+    "previewCtaButton": "阅读完整东京计划",
+    "previewSecondaryPrefix": "或者看",
+    "previewSecondaryLink": "另外3份样例",
+    "previewSecondarySuffix": "。"
   }
 }

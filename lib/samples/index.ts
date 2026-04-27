@@ -171,5 +171,30 @@ export async function getSampleLocalized(
   const translations = await loadLocaleTranslations(locale);
   const t = translations[slug];
   if (!t) return meta;
-  return { ...meta, plan: applyTranslation(meta.plan, t) };
+  return {
+    ...meta,
+    plan: applyTranslation(meta.plan, t),
+    ...(t.tagline !== undefined && { tagline: t.tagline }),
+    ...(t.audience !== undefined && { audience: t.audience }),
+  };
+}
+
+/**
+ * Locale-aware bulk lookup. Returns the gallery list with each entry's
+ * tagline/audience/destination/country swapped for translated variants
+ * where they exist. Use on the home + /samples gallery pages.
+ */
+export async function listSamplesLocalized(locale: Locale): Promise<SampleMeta[]> {
+  if (locale === "en") return SAMPLE_PLANS;
+  const translations = await loadLocaleTranslations(locale);
+  return SAMPLE_PLANS.map((meta) => {
+    const t = translations[meta.slug];
+    if (!t) return meta;
+    return {
+      ...meta,
+      plan: applyTranslation(meta.plan, t),
+      ...(t.tagline !== undefined && { tagline: t.tagline }),
+      ...(t.audience !== undefined && { audience: t.audience }),
+    };
+  });
 }

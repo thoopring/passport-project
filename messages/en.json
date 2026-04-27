@@ -283,5 +283,28 @@
     "shareSubtitle": "When a friend buys their first plan with your link, we credit you a free one.",
     "shareCopy": "Copy link",
     "shareCopied": "Copied!"
+  },
+  "home": {
+    "metaTitle": "Your next trip, sorted — $4",
+    "metaDescription": "Tell us where you're going. We draft the itinerary, pick the hotel, and map the route — delivered as a real plan in about a minute. $4 each, no subscription.",
+    "heroHeadline1": "Your next trip,",
+    "heroHeadlineEm": "sorted.",
+    "heroSubtitle": "Tell us where you're going. We draft the itinerary, pick the hotel, and map the route — usually in under a minute.",
+    "heroBadge": "$4 per plan · No account · Offline PDF",
+    "samplesEyebrow": "Sample plans",
+    "samplesHeadline": "What your plan looks like.",
+    "cardDaysCountry": "{count} days · {country}",
+    "previewEyebrow": "A real plan, unlocked",
+    "previewHeadline": "Tokyo. Four days.",
+    "previewSubtitle": "A real plan we made for a couple on a mid-range budget. Read the first chunks below — no login, no card.",
+    "previewRouteLabel": "Your route, mapped",
+    "previewHotel": "Hotel",
+    "previewAirport": "Airport transit",
+    "previewDayLabel": "Day 1",
+    "previewMoreStops": "…and {count} more stops on Day 1, plus Days 2–4 with restaurants, a packing list, and a route map.",
+    "previewCtaButton": "Read the full Tokyo plan",
+    "previewSecondaryPrefix": "Or see",
+    "previewSecondaryLink": "three more samples",
+    "previewSecondarySuffix": "."
   }
 }

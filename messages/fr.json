@@ -283,5 +283,28 @@
     "shareSubtitle": "Quand un ami achète son premier plan avec votre lien, on vous offre le suivant.",
     "shareCopy": "Copier le lien",
     "shareCopied": "Copié !"
+  },
+  "home": {
+    "metaTitle": "Votre prochain voyage, ficelé — 4 $",
+    "metaDescription": "Dites-nous où vous allez. On rédige l'itinéraire, on choisit l'hôtel et on cartographie la route — un vrai plan livré en une minute. 4 $ pièce, sans abonnement.",
+    "heroHeadline1": "Votre prochain voyage,",
+    "heroHeadlineEm": "ficelé.",
+    "heroSubtitle": "Dites-nous où vous allez. On s'occupe de l'itinéraire, de l'hôtel et de la carte — généralement en moins d'une minute.",
+    "heroBadge": "4 $ par plan · Sans compte · PDF hors ligne",
+    "samplesEyebrow": "Exemples de plans",
+    "samplesHeadline": "Voici à quoi ressemble votre plan.",
+    "cardDaysCountry": "{count} jours · {country}",
+    "previewEyebrow": "Un vrai plan, en accès libre",
+    "previewHeadline": "Tokyo. Quatre jours.",
+    "previewSubtitle": "Un vrai plan préparé pour un couple, budget intermédiaire. Pas d'inscription, pas de paiement — lisez le début ci-dessous.",
+    "previewRouteLabel": "Votre itinéraire, sur la carte",
+    "previewHotel": "Hôtel",
+    "previewAirport": "Trajet aéroport",
+    "previewDayLabel": "Jour 1",
+    "previewMoreStops": "…et {count} étapes de plus le Jour 1, plus les Jours 2–4 avec restaurants, liste à emporter et carte de l'itinéraire.",
+    "previewCtaButton": "Lire le plan Tokyo en entier",
+    "previewSecondaryPrefix": "Ou voir",
+    "previewSecondaryLink": "trois autres exemples",
+    "previewSecondarySuffix": "."
   }
 }

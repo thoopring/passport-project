@@ -18,6 +18,10 @@ import type { TripPlan, Day, Stop } from "../../types/trip-plan";
 import type { Locale } from "../../i18n/locales";
 
 export interface TripPlanI18n {
+  /** Gallery card teaser (SampleMeta-level, applied by getSampleLocalized). */
+  tagline?: string;
+  /** Gallery card audience label (SampleMeta-level, applied by getSampleLocalized). */
+  audience?: string;
   destination?: string;
   destinationCountry?: string;
   overview?: string;

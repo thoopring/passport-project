@@ -283,5 +283,28 @@
     "shareSubtitle": "ご友人があなたのリンク経由で初めて購入されると、無料の旅程を1件プレゼント。",
     "shareCopy": "リンクをコピー",
     "shareCopied": "コピーしました!"
+  },
+  "home": {
+    "metaTitle": "次の旅、すぐ整います — $4",
+    "metaDescription": "行き先を教えてください。ホテル、空港アクセス、ルート、地図まで——1分ほどで本物の旅行プランをお届けします。1件$4、サブスクなし。",
+    "heroHeadline1": "次の旅、",
+    "heroHeadlineEm": "整いました。",
+    "heroSubtitle": "行き先を教えてください。ホテル、ルート、地図——たいてい1分ほどで完成プランが届きます。",
+    "heroBadge": "1件 $4 · 会員登録不要 · オフラインPDF",
+    "samplesEyebrow": "サンプルプラン",
+    "samplesHeadline": "あなたのプランはこんな感じ。",
+    "cardDaysCountry": "{count}日間 · {country}",
+    "previewEyebrow": "実際のプラン、特別公開",
+    "previewHeadline": "東京、4日間。",
+    "previewSubtitle": "ミッドレンジ予算のカップル向けに作った本物のプランです。会員登録も決済もなしで、冒頭部分をご覧ください。",
+    "previewRouteLabel": "地図で見るルート",
+    "previewHotel": "ホテル",
+    "previewAirport": "空港アクセス",
+    "previewDayLabel": "Day 1",
+    "previewMoreStops": "Day 1にあと{count}スポット、Day 2〜4にはレストラン・持ち物リスト・ルート地図と続きます。",
+    "previewCtaButton": "東京プランを最後まで読む",
+    "previewSecondaryPrefix": "または",
+    "previewSecondaryLink": "他のサンプル3件",
+    "previewSecondarySuffix": "もどうぞ。"
   }
 }
