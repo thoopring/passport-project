@@ -1629,6 +1629,1173 @@ const fr: LocaleTranslations = {
       "Le coucher de soleil au sud de Central Park est le plus romantique des spots gratuits — au-delà des musées",
     ],
   },
+
+  "bali-5d-couple": {
+    tagline: "Cinq jours en couple — rizières d'Ubud, plage de Seminyak, coucher de soleil à Uluwatu.",
+    audience: "Couple · Détente · Milieu de gamme",
+    destination: "Bali",
+    destinationCountry: "Indonésie",
+    overview:
+      "Cinq jours sur deux bases — 2 nuits à Ubud pour les rizières et le yoga en vallée fluviale, 3 nuits à Seminyak pour la plage et les dîners au coucher du soleil. Une excursion à Uluwatu pour le temple du falaise. Rythme pour un couple qui veut autant de repos que de tourisme. L'essence de Bali n'est pas les monuments mais «la densité du temps» — entre le yoga de 7h du matin et le dîner aux chandelles de 21h, il y a de longues plages où regarder un arbre, regarder la mer, ou ne rien faire — c'est ce que Bali vend vraiment.",
+    bestSeasonNote:
+      "Mai, juin, septembre = zone douce — sec, peu humide, peu de monde. Évitez décembre-février (saison des pluies) et juillet-août (vacances européennes). Mars, le «Nyepi» (jour du silence) immobilise toute l'île 24h — vols arrêtés, magasins fermés, interdiction de sortir, lumières éteintes. C'est une expérience unique mais vérifiez la date 2 mois à l'avance. Fin octobre, la fête «Galungan» (jour férié hindou-balinais) couvre toutes les rues de «penjor» (mâts en bambou décorés) — magnifique mais la moitié des restaurants ferme.",
+    currencyTip:
+      "Roupie indonésienne (IDR). 15 000 IDR ≈ 1 €. Restaurants moyens-haut de gamme prennent la carte, warungs (petits restos) et marchés cash uniquement. ATM dans les konbini (Circle K, Indomaret) — les ATM de rue ont une histoire de skimming. Carte Wise / Curve = meilleurs taux. Les prix locaux sont incroyablement bas — nasi goreng 3 €, eau en bouteille 0,40 €, massage 1h 10 € à 6 personnes.",
+    languageTip:
+      "Bahasa Indonesia. «Terima kasih» (merci) universel. «Permisi» (excusez-moi), «Maaf» (désolé). Anglais fluent dans les zones touristiques, menus en anglais. Pack hors-ligne Google Translate avant le départ. Chauffeur Gojek/Grab qui ne parle pas anglais ? Tapez en français, il a Google Translate sur son téléphone.",
+    emergencyNumber: "112 (toutes urgences), 118 (ambulance)",
+    hotel: {
+      name: "The Oberoi Beach Resort (Seminyak)",
+      area: "Seminyak",
+      address: "Jl. Kayu Aya, Seminyak 80361",
+      rationale:
+        "Seminyak est la base unique optimale pour un couple — bord de mer, dîner à pied, 40 min de l'aéroport. Oberoi est un resort historique de 50 ans avec plage privée, ambiance adulte (pas d'enfants, plus calme), villas à toit de chaume avec jardin privé. 3-5 nuits ici, 1-2 à Ubud (voir Day 1). Le spa Oberoi est l'un des premiers à avoir popularisé le massage balinais — la masseuse fondatrice Made Asu, encore active, propose son massage Lomi-Lomi signature sur réservation.",
+      estimatedNightlyRate: "~220 €/nuit",
+    },
+    airportTransit: {
+      method: "DPS → Ubud transfert privé",
+      duration: "Environ 75 min",
+      cost: "~25 € (aller simple)",
+      instructions:
+        "Aéroport Ngurah Rai (DPS), demandez à votre hôtel d'Ubud (Komaneka at Bisma est un excellent choix) un transfert — chauffeur avec votre nom à la sortie. Les taxis aéroport sont chers (>50 € à prix monopolistique) ; Gojek/Grab interdits dans la zone d'arrivée mais autorisés au départ (de l'hôtel à l'aéroport oui, l'inverse non). Tard le soir ou avec gros bagages, prenez «Blue Bird Taxi» — seul taxi compteur légal de Bali.",
+    },
+    days: [
+      {
+        theme: "Arrivée → Ubud",
+        summary: "Atterrissage, voiture privée vers Ubud, check-in en villa avec vue sur vallée, soirée douce pour effacer le décalage.",
+        stops: [
+          {
+            name: "Aéroport DPS → Ubud",
+            area: "Sud de Bali → Centre",
+            duration: "1h30",
+            description: "Le chauffeur attend à la sortie avec votre nom. Une fois passé Denpasar, la route vers le nord traverse rizières et petits temples hindous — l'air humide porte le parfum mêlé de frangipanier et de fumée de cuisine.",
+            estimatedCost: "~25 €",
+            transitFromPrev: "Arrivée",
+          },
+          {
+            name: "Komaneka at Bisma (Ubud) — check-in",
+            area: "Ubud",
+            duration: "2h",
+            description: "Posez les bagages, plongez dans la piscine à débordement suspendue au-dessus de la vallée du Tjampuhan — au premier saut, vous comprenez instantanément pourquoi Bali s'appelle «l'île des dieux». L'hôtel sert un «jamu» gratuit l'après-midi (curcuma + citron + miel, herbes locales) — antidote au jet lag. De la piscine, vous entendez les cloches du temple à 10 km.",
+            estimatedCost: "Base Ubud ~180 €/nuit",
+            transitFromPrev: "Dépose chauffeur",
+          },
+          {
+            name: "Campuhan Ridge Walk",
+            area: "Ubud",
+            duration: "1h30",
+            description: "Sentier en béton plat de 2 km sur la crête entre deux vallées fluviales — herbes hautes des deux côtés, rayon doré de l'après-midi sur les épis. Départ à l'hôtel Ibah, marchez jusqu'à Karsa Kafe boire une eau de coco (5 €) — Karsa est dans une cabane en chaume au cœur des rizières, vous voyez les paysans récolter. Retour par un autre sentier, total 30 min — la promenade «sans but» typique d'Ubud.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "10 min à pied depuis l'hôtel",
+          },
+          {
+            name: "Mozaic Restaurant Gastronomique",
+            area: "Sanggingan",
+            address: "Jl. Raya Sanggingan",
+            duration: "2h",
+            description: "Menu dégustation technique française + ingrédients indonésiens dans une salle-jardin. Le «8-Course Discovery Menu» est l'incontournable — le chef cueille les ingrédients dans le jardin d'épices voisin, chaque plat associé à une épice indonésienne (curcuma, citronnelle, tamarin). En finale, le «Bali Coffee Soufflé», meilleur dessert d'Asie selon Asia 50 Best — café du plateau de Kintamani. Avec un brandy «Cap Tikus» local. Vous repartez en voulant acheter toutes les épices.",
+            estimatedCost: "~95 € avec vin",
+            bookingTip: "Réservez 1 semaine à l'avance sur le site. Fermé dimanche.",
+            transitFromPrev: "Voiture Gojek, environ 10 min",
+          },
+        ],
+      },
+      {
+        theme: "Ubud : rizières + temple + cascade",
+        summary: "Journée complète — rizières au lever du soleil, temple d'eau sacrée, baignade en cascade, danse rituelle le soir.",
+        stops: [
+          {
+            name: "Rizières Tegallalang (lever du soleil)",
+            area: "Tegallalang",
+            duration: "1h30",
+            description: "Système d'irrigation balinais millénaire (subak) sculpté dans la colline. Arrivée 6h45 — la brume se lève à 7h30, les bus touristiques arrivent à 9h. Descendez dans les terrasses pour la photo, les paysans posent une couronne hindoue traditionnelle sur votre tête — pourboire 1 €. Le «Bali Swing» (4 €) — 1 seconde pour devenir star Instagram suspendu au-dessus des rizières.",
+            estimatedCost: "Entrée ~2 € + balançoire ~3 €",
+            transitFromPrev: "Voiture hôtel, environ 20 min",
+          },
+          {
+            name: "Kawi Resto Rice Terrace",
+            area: "Tegallalang",
+            duration: "1h",
+            description: "Petit-déjeuner avec vue sur les terrasses. Pisang Goreng (banane frite, 1,80 €) + Nasi Goreng + café balinais corsé. Lieu sans chichi, la vue est le plat principal. Le café Kawi vient des hauts plateaux Kintamani — Arabica avec sucre roux et lait de coco, on l'appelle «Bali Coffee», bien différent de l'espresso italien.",
+            estimatedCost: "~12 €",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Pura Tirta Empul (temple d'eau sacrée)",
+            area: "Tampaksiring",
+            duration: "1h30",
+            description: "Temple du Xe siècle où les Hindous balinais font le rituel de purification «Melukat» — vous entrez par étapes dans 11 bouches d'eau souterraine pour laver les karmas. Vous pouvez participer (location sarong + ceinture 3 € à l'entrée), passer dans chaque bouche dans l'ordre. Apportez des vêtements de rechange. Si une femme a ses règles, elle ne doit pas entrer dans l'eau. Pas loin, le «Gunung Kawi» — tombeaux khmers en grottes, vaut le coup, mais 600 marches à descendre.",
+            estimatedCost: "Entrée ~3 € + sarong ~2 €",
+            transitFromPrev: "Voiture, environ 25 min",
+          },
+          {
+            name: "Warung Little Bird",
+            area: "Centre Ubud",
+            duration: "1h",
+            description: "Petit warung qui sert le rijsttafel indonésien typique (Nasi Campur — assiette de riz avec 12 petits accompagnements) à moitié prix d'un resto touristique. Options végétariennes excellentes. Une assiette à 8 €, deux personnes rassasiées, avec smoothie banane (2 €) et dessert traditionnel «Klepon» (boules de riz au sucre de palme et noix de coco, 1 €).",
+            estimatedCost: "~10 €",
+            transitFromPrev: "Voiture, environ 35 min retour Ubud",
+          },
+          {
+            name: "Cascade Tegenungan",
+            area: "Kemenuh",
+            duration: "2h",
+            description: "150 marches descendent jusqu'à un large bassin. Maillot sous les vêtements, séchez-vous sur les rochers, remontez. Moment «reset» typique de Bali — sauter dans la cascade lave 6 mois de stress. À côté, le «D'Tukad River Club» (20 € entrée) — piscine à débordement au bord du précipice, spot Instagram.",
+            estimatedCost: "Entrée ~1 €",
+            transitFromPrev: "Voiture, environ 25 min sud",
+          },
+          {
+            name: "Pura Dalem Ubud Kecak Fire Dance",
+            area: "Ubud",
+            duration: "1h30",
+            description: "60 hommes en chœur racontent l'histoire du Râmâyana, climax avec danse du feu. Tous les soirs à 19h30. Premier rang utile seulement pour la photo, le son est excellent partout. Le chœur encercle en répétant «cak-cak-cak», créant une ambiance épique — vous oubliez que c'est pour les touristes, vous entrez vraiment dans la mythologie hindoue.",
+            estimatedCost: "~8 €",
+            bookingTip: "18h30 à la billetterie, presque jamais épuisé.",
+            transitFromPrev: "10 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "Ubud → Seminyak",
+        summary: "Encore une matinée à Ubud puis transfert à Seminyak, mode plage.",
+        stops: [
+          {
+            name: "Yoga matinal à The Yoga Barn",
+            area: "Ubud",
+            duration: "1h30",
+            description: "Studio de yoga en bambou ouvert au-dessus des rizières. Cours hatha ou vinyasa drop-in, walk-in OK, tapis fournis. Même pour non-yogi, c'est «l'expérience signature d'Ubud» — à 7h du matin le soleil traverse le toit en bambou, brume au loin sur les rizières. C'est «l'early morning bliss» pur. Une séance 9 €. La moitié des profs sont des Occidentaux (NY, Londres) installés à Ubud, anglais sans souci.",
+            estimatedCost: "~9 €",
+            bookingTip: "Haute saison arrivez 20 min avant.",
+            transitFromPrev: "10 min à pied",
+          },
+          {
+            name: "Seniman Coffee Studio",
+            area: "Centre Ubud",
+            duration: "1h",
+            description: "Café d'origine unique balinaise torréfié maison. Asseyez-vous sur la chaise suspendue, sirotez un V60, mangez un sandwich. Le grand-père du 3e wave coffee à Ubud. Le proprio australien est rentré il y a quelques années, mais le local qui a repris continue. Grain Kintamani 11 € le 250 g — souvenir parfait.",
+            estimatedCost: "~9 €",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Conduite Ubud → Seminyak",
+            area: "Centre → Sud",
+            duration: "1h30",
+            description: "Chauffeur réservé via Komaneka. Route sud passe Batubulan (village de sculpteurs sur pierre) et trafic Denpasar. Possibilité de pause au Alas Harum café (et un autre tour de balançoire). Le chauffeur attend généralement 45 min puis continue — pourboire 4 €.",
+            estimatedCost: "~25 €",
+            transitFromPrev: "10 min à pied retour à l'hôtel",
+          },
+          {
+            name: "The Oberoi — check-in + plage",
+            area: "Seminyak",
+            duration: "3h",
+            description: "Check-in, maillot, plage privée de l'hôtel. Les chaises longues Oberoi sont réservées aux clients, commandez nasi goreng + bière Bintang (35 €) en cabana sur le sable — son des vagues = BGM gratuite. La plage privée a un maître-nageur, eau sûre, baignade tranquille.",
+            estimatedCost: "Déjeuner plage ~35 €",
+            transitFromPrev: "Arrivée chauffeur",
+          },
+          {
+            name: "Coucher de soleil à Double-Six Beach",
+            area: "Seminyak",
+            duration: "1h30",
+            description: "Marchez vers le sud sur le sable depuis Oberoi. À Double-Six, attrapez un beanbag de bar de plage (les rayures pastel de La Plancha sont la formule Instagram), commandez un cocktail (15 €), regardez le soleil sombrer dans l'océan Indien. Mai-septembre, la «Ku De Ta» beach party reçoit des DJ en tournée mondiale — plus cher mais inoubliable.",
+            estimatedCost: "Cocktail ~15 €",
+            transitFromPrev: "15 min à pied le long de la plage",
+          },
+          {
+            name: "Merah Putih",
+            area: "Seminyak",
+            address: "Jl. Petitenget",
+            duration: "2h",
+            description: "Salle bambou cathédrale haut de plafond. Cuisine indonésienne moderne du chef Made Suwarsa — Rendang à la peau croustillante, snapper grillé sambal matah. Premier dîner à Seminyak parfait. Avec vin rouge balinais «Hatten» (28 € la bouteille) — vins de plateau balinais, étonnamment bons. Le chef sort souvent saluer ses clients — détail qui vous fait sentir spécial.",
+            estimatedCost: "~65 €/personne",
+            bookingTip: "3-5 jours à l'avance sur le site, 19h30-20h30 prime time.",
+            transitFromPrev: "Gojek, environ 5 min",
+          },
+        ],
+      },
+      {
+        theme: "Excursion Uluwatu",
+        summary: "Demi-journée péninsule Bukit — Padang Padang plage secrète, temple du falaise, danse du feu au coucher du soleil.",
+        stops: [
+          {
+            name: "Conduite vers Uluwatu",
+            area: "Seminyak → Bukit",
+            duration: "1h",
+            description: "Chauffeur à la journée 45 € pour 8h. La route descend par Jimbaran et monte sur la péninsule Bukit — joli paysage. Dites au chauffeur que vous faites le «Uluwatu Loop» — il connaît la route et les bons points d'arrêt. Il attend jusqu'au coucher du soleil puis vous ramène à Seminyak, pourboire 7 €.",
+            estimatedCost: "Journée entière ~45 €",
+            transitFromPrev: "Hôtel chauffeur",
+          },
+          {
+            name: "Padang Padang Beach",
+            area: "Uluwatu",
+            duration: "2h",
+            description: "Petit escalier étroit entre rochers, petite anse de sable blanc. Lieu de tournage final de «Mange Prie Aime» — Julia Roberts retrouve Javier Bardem ici. Baignade, location de chaise longue, nasi goreng au stand. Attention : vagues fortes, ne nagez pas trop loin si vous n'êtes pas confiant.",
+            estimatedCost: "Entrée ~1 € + chaise ~3 €",
+            transitFromPrev: "Chauffeur",
+          },
+          {
+            name: "Single Fin (café surfeur falaise)",
+            area: "Uluwatu",
+            duration: "1h30",
+            description: "Suspendu sur la falaise face à Uluwatu Point — vague gauche de classe mondiale juste sous vos pieds. Tostadas thon (20 €) + bière fraîche (5 €). Regardez les pros surfer des vagues de 2,5 m. Tous les dimanches après-midi, «Sunday Session» DJ jusqu'à 23h — surfeurs du monde entier se rassemblent, toute la plage danse.",
+            estimatedCost: "~30 €",
+            transitFromPrev: "Chauffeur, environ 15 min",
+          },
+          {
+            name: "Pura Luhur Uluwatu (temple du falaise)",
+            area: "Uluwatu",
+            duration: "1h30",
+            description: "Temple hindou du XIe siècle sur falaise de 70 m. Location sarong à l'entrée (incluse dans le ticket). Attention aux macaques — ils volent lunettes, casquettes. Si volé, le gardien échange contre une banane (prévoir 1 €). Suivez les sentiers de chaque côté, vue sur la péninsule Bukit ouest et l'océan Indien. Le temple est réservé aux Hindous, mais le sentier est l'attraction.",
+            estimatedCost: "~4 €",
+            transitFromPrev: "Voiture, 5 min",
+          },
+          {
+            name: "Kecak Fire Dance au temple Uluwatu",
+            area: "Uluwatu",
+            duration: "1h",
+            description: "Amphithéâtre sur falaise, soleil qui se couche derrière les performeurs au-dessus de l'océan. Différent de la version Ubud — celle-ci est la version coucher de soleil carte postale. Achetez le billet à l'arrivée. Au climax, un feu est allumé et le héros (Râma) traverse les flammes — choc visuel, choc sonore, mémoire à vie.",
+            estimatedCost: "~10 €",
+            transitFromPrev: "5 min à pied du temple",
+          },
+          {
+            name: "BBQ fruits de mer à Jimbaran Bay",
+            area: "Jimbaran",
+            duration: "2h",
+            description: "Choisissez un seafood warung sur la plage — Menega ou Intan Seafood sont sûrs. Tables sur le sable, achat au poids de snapper grillé / homard / crevettes, le coucher de soleil est passé mais le bruit des vagues suffit. Romantique au possible — clair de lune, vagues, fumée du grill. 3-4 plats + riz + boissons à 45 € par personne. Le dîner emblématique de Bali.",
+            estimatedCost: "~45 €/personne",
+            transitFromPrev: "Chauffeur, environ 25 min nord",
+          },
+        ],
+      },
+      {
+        theme: "Dernier jour à Seminyak",
+        summary: "Spa le matin, déjeuner dans les rizières de Canggu, dernier coucher de soleil, transfert tardif vers l'aéroport.",
+        stops: [
+          {
+            name: "Bodyworks Spa",
+            area: "Seminyak",
+            address: "Jl. Kayu Jati",
+            duration: "2h",
+            description: "Massage balinais bien fait. Forfait 2h «Ritual» = massage + gommage + bain de fleurs. Moins cher que le spa de l'hôtel, meilleurs thérapeutes. Réservez Made Asu (la masseuse fondatrice — semi-retraitée mais vient parfois), son massage Lomi-Lomi est l'une des plus anciennes techniques d'Asie. L'huile essentielle «The Body Shop» peut être achetée séparément à emporter.",
+            estimatedCost: "~55 €/personne",
+            bookingTip: "Sur WhatsApp via le site 1 jour à l'avance.",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "The Lawn Canggu",
+            area: "Canggu",
+            duration: "2h",
+            description: "Restaurant + piscine + pelouse au bord de la mer. Bols poke, burgers, smoothies. Le déjeuner dont vous parlerez en rentrant. Canggu est devenu la «capitale des nomades digitaux» de Bali ces dernières années — la table à côté de vous accueille peut-être un programmeur de la Silicon Valley installé ici, ou un New-Yorkais qui a ouvert un café. L'air ambiant : «je suis en vacances mais ma vie est belle».",
+            estimatedCost: "~35 €",
+            transitFromPrev: "Voiture Gojek, environ 25 min nord",
+          },
+          {
+            name: "Tanah Lot Temple",
+            area: "Tabanan",
+            duration: "2h",
+            description: "Temple du XVIe siècle sur rocher accessible à marée basse. Visez 17h-18h pour le coucher du soleil. Le temple lui-même n'est pas ouvert aux étrangers, mais la promenade falaise et la vue sont l'essentiel. À l'entrée, grotte du «serpent sacré» (1 € pour voir, le serpent est vrai mais apprivoisé) — censé porter chance. Au coucher du soleil c'est bondé, mais une autre plage à 200 m vers le nord = panorama 180° pour vous seuls.",
+            estimatedCost: "~5 €",
+            transitFromPrev: "Voiture, environ 30 min",
+          },
+          {
+            name: "Sundara Beach Club (Four Seasons Jimbaran)",
+            area: "Jimbaran",
+            duration: "2h",
+            description: "Dernier dîner. Long deck de piscine sur la plage, torches tiki au crépuscule, fruits de mer et cocktails. Cher, mais c'est le «dîner d'adieu». Réservez table devant la plage — le service Four Seasons est irréprochable. «Bali Tasting Menu» 90 €/personne avec spécialités locales — Babi Guling (cochon de lait grillé) + salade Lawar + Rendang. Avec «Ke Indonesia Tasting» pack cocktails — 5 mini-cocktails infusés à 5 épices indonésiennes.",
+            estimatedCost: "~90 €/personne",
+            bookingTip: "5-7 jours à l'avance sur le site, créneau 18h30 coucher de soleil.",
+            transitFromPrev: "Voiture, environ 30 min sud",
+          },
+          {
+            name: "Sundara → DPS aéroport",
+            area: "Jimbaran → Aéroport",
+            duration: "30 min",
+            description: "Demandez au concierge Sundara de réserver. À cette heure, 30 min max jusqu'à l'aéroport. International, check-in 2h avant. Sur le trajet, le chauffeur met de la musique balinaise traditionnelle — gamelan percussif, votre cerveau rejoue les images des 5 derniers jours.",
+            estimatedCost: "~15 €",
+            transitFromPrev: "Voiture directement après le dîner",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Sarong (obligatoire dans les temples — sinon location à l'entrée)",
+      "Crème solaire reef-safe (interdite par certaines plages indonésiennes)",
+      "Imperméable léger même en saison sèche (averses fréquentes l'après-midi)",
+      "Spray anti-moustique DEET (essentiel pour les soirées à Ubud)",
+      "Tongs plage + une paire de sandales de marche pour les temples",
+      "Sac étanche pour téléphone — pour les baignades en mer ou sous cascade",
+      "Petite serviette de séchage rapide — moins encombrante qu'une serviette de bain",
+    ],
+    budgetEstimate: "Couple hors hôtel : 200-280 €/jour",
+    generalTips: [
+      "Téléchargez Gojek et Grab — taxis 24/7 en anglais, 1/4 du prix des chauffeurs de rue",
+      "ATM uniquement dans Circle K ou en banque — skimming attesté sur les ATM de rue",
+      "Eau en bouteille uniquement, glaçons des bons restos OK",
+      "Pourboire 10% apprécié mais non obligatoire. Porteur 5 000-10 000 IDR par bagage",
+      "Étiquette hindoue balinaise : ne marchez pas sur les Canang sari (petites offrandes en feuilles tressées sur le sol), ne passez pas devant les statues",
+      "Quartier club (Kuta, Legian) la nuit, attention — vols à l'arraché en moto sur appareils photo en bandoulière occasionnels",
+    ],
+  },
+
+  "taipei-3d-solo": {
+    tagline: "Trois jours en solo — marchés de nuit, Taipei 101, journée des lanternes à Jiufen.",
+    audience: "Solo · Économique",
+    destination: "Taipei",
+    destinationCountry: "Taïwan",
+    overview:
+      "Trois jours en solo à Taipei — la capitale asiatique la plus sous-estimée. Marchable, accueillante, obsédée par la nourriture. Ce plan tourne autour de trois axes : un marché de nuit chaque soir, une grande vue urbaine, et une excursion à Jiufen pour la maison de thé qui a inspiré «Le Voyage de Chihiro». Budget-friendly, la plupart des repas sous 9 €. La force de Taipei : «pas besoin de guide, tout est juste». Vous pouvez entrer les yeux fermés dans n'importe quelle gargote et ressortir satisfait — cette sécurité et ce confort sont uniques à Taipei.",
+    bestSeasonNote:
+      "Octobre-novembre et mars-avril sont les plus agréables. L'été (juin-septembre) chaud, humide, avec typhons ; l'hiver doux (~15°C) mais pluvieux. Fin mars, les cerisiers de Yangmingshan et Tamsui — pas inférieurs au Japon. 10 octobre «Double Dix» (Fête nationale), parade militaire et feux d'artifice devant le palais présidentiel. Évitez la semaine autour du Nouvel An lunaire (janvier-février) — beaucoup de restaurants ferment pour les fêtes familiales.",
+    currencyTip:
+      "Nouveau dollar taïwanais (NT$ ou TWD). 30 TWD ≈ 0,90 €. 7-Eleven et grands restaurants prennent la carte. Marchés de nuit cash uniquement. Procurez-vous une EasyCard en station de métro — transports + konbini. Cartes bancaires françaises passent en grands magasins et ATM, mais petits commerces restent en cash.",
+    languageTip:
+      "Mandarin standard. Métro et zones touristiques avec signalisation anglaise, marchés de nuit moins. Pointer du doigt résout tout. Un «Xièxiè» (merci) avec un léger hochement de tête est très apprécié — mais ne vous inclinez pas profondément, ce n'est pas la coutume taïwanaise.",
+    emergencyNumber: "110 (police), 119 (secours/pompiers), 1990 (hotline tourisme anglais)",
+    hotel: {
+      name: "Ximen Citizen Hotel",
+      area: "Ximending",
+      address: "No. 77, Kunming St., Wanhua District",
+      rationale:
+        "Ximending est le Shibuya de Taipei — rue piétonne, jeune, ouvert jusqu'à 2h du matin. Citizen Hotel est un hôtel d'affaires solide à prix 3 étoiles, à 2 min à pied du métro depuis le lobby. 15 min en MRT pour atteindre n'importe quelle zone majeure. À côté, les «Ximen Cinemas» abritent la plus grande salle IMAX de Taipei — un film à 12 €, moitié prix qu'à Paris, vous pouvez tester l'expérience taïwanaise (à la fin du film, personne ne se lève avant la fin du générique). Cuisine et lave-linge gratuits par étage — sauveur des longs séjours.",
+      estimatedNightlyRate: "~50 €/nuit",
+    },
+    airportTransit: {
+      method: "MRT Taoyuan Airport Line (Express) → Gare de Taipei",
+      duration: "Environ 45 min + 5 min métro",
+      cost: "~5 €",
+      instructions:
+        "Aéroport Taoyuan (TPE), suivez les panneaux MRT vers la ligne violette express (2 stations) jusqu'à la gare de Taipei en 35 min. Changez sur la ligne bleue, 1 station jusqu'à Ximen. Au guichet de billetterie, achetez une EasyCard (caution NT$100) — utilisée pour tous les paiements pendant 3 jours. Tout est balisé en chinois + anglais, sans souci. Après 23h, la ligne aéroport s'arrête — taxi de Taoyuan vers le centre 35-50 €.",
+    },
+    days: [
+      {
+        theme: "Centre Taipei + premier marché de nuit",
+        summary: "Temple Longshan, pèlerinage soupe nouilles bœuf, vue depuis le mont Xiangshan, dîner au marché Shilin.",
+        stops: [
+          {
+            name: "Temple Longshan",
+            area: "Wanhua",
+            address: "No. 211, Guangzhou St., Wanhua District",
+            duration: "1h",
+            description:
+              "Fondé en 1738, le temple le plus ancien et le plus atmosphérique de Taipei. Bouddhisme, taoïsme et religions populaires partagent le même autel — c'est l'épitomé du syncrétisme religieux taïwanais. Devant le hall principal, observez les locaux faire le «jiaobei» (divination par blocs de bois rouges en croissant) — deux faces visibles = «Sheng Bei» (le dieu approuve), une face une dos = «Xiao Bei» (le dieu rit, hésite), deux dos = «Wu Bei» (refus). Gratuit, ouvert dès 6h. Le «marché de nuit Huaxi» voisin (même quartier) est le quartier des serpents et massages depuis 100 ans, à voir le soir si vous êtes courageux — restos de soupe de serpent toujours là, vous voyez vraiment le serpent vivant être préparé.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Hôtel 5 min à pied",
+          },
+          {
+            name: "Lin Dong Fang (soupe nouilles bœuf)",
+            area: "Zhongshan",
+            address: "No. 274, Bade Rd., Zhongshan District",
+            duration: "1h",
+            description:
+              "Plat national taïwanais, institution depuis 40 ans. Commandez le bol «moitié tendons moitié muscle» — bouillon clair (qing tang) et bouillon brun (hong shao), les deux écoles d'un coup. Avant 11h15 pour éviter la queue de 30 min qui démarre à midi. Bouillon mijoté 12h sur os de bœuf, riche sans être gras — rien à voir avec la soupe à la chinoise du continent. Avec choucroute taïwanaise (renouvelable gratis) et huile pimentée à votre goût. 5 € le bol, vous chercherez votre prochain billet d'avion en sortant.",
+            estimatedCost: "~5 €",
+            transitFromPrev: "MRT bleue → rouge → Zhongxiao Fuxing, environ 15 min",
+          },
+          {
+            name: "Eslite Xinyi (librairie + lifestyle)",
+            area: "Xinyi",
+            duration: "1h30",
+            description:
+              "Librairie flagship 24h, le salon culturel de Taipei. 6 étages de livres, papeterie, théières, vêtements, café. Le rayon voyage anglais au 3e est excellent — vous trouvez des Lonely Planet sur des destinations rares introuvables ailleurs. Le «Bookstore Forum» d'Eslite organise des conférences culturelles gratuites le week-end (en chinois). Le rayon papeterie — l'un des plus qualitatifs d'Asie : marque-pages, carnets, pinceaux à calligraphie, à ramener.",
+            estimatedCost: "Avec un livre ~12 €",
+            transitFromPrev: "MRT rouge → Xiangshan, environ 10 min",
+          },
+          {
+            name: "Tour d'observation Taipei 101",
+            area: "Xinyi",
+            duration: "1h30",
+            description:
+              "Tour de 508 m, brièvement la plus haute du monde. L'observatoire intérieur 89e étage expose le «Tuned Mass Damper» — pendule de 660 tonnes qui stabilise l'immeuble pendant les typhons, vous pouvez monter le voir. La terrasse 91e étage en plein air est la vraie vue. Vers 17h = même billet pour jour + coucher de soleil + nuit. Le «Damper Baby» (peluche du pendule) est la mascotte du 91e étage — le Hello Kitty version Taipei à 7 € la peluche.",
+            estimatedCost: "~17 €",
+            bookingTip: "En ligne 1 jour à l'avance pour éviter la queue. Créneau coucher de soleil souvent épuisé.",
+            transitFromPrev: "10 min à pied",
+          },
+          {
+            name: "Randonnée Mont Xiangshan",
+            area: "Xinyi",
+            duration: "1h30",
+            description:
+              "20 min d'escaliers raides — l'angle le plus iconique pour Taipei 101. Le coucher de soleil ici est l'image emblématique de Taipei : la tour 101 dans le cadre du skyline Xinyi. Apportez de l'eau. Attention : escaliers glissants, baskets recommandées. Au sommet, 6 grands rochers, asseyez-vous sur les «6 Big Rocks» pour la photo de groupe (formule). À la descente, un sentier mène à la station MRT «Yongchun Xinyi» — évite les foules de l'aller.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "MRT Xiangshan jusqu'au début du sentier 10 min à pied",
+          },
+          {
+            name: "Marché de nuit Shilin",
+            area: "Shilin",
+            duration: "2h",
+            description:
+              "Le plus grand marché de nuit de Taipei. Cibles : omelette aux huîtres (oa-jian, 2 €), tofu puant (osez !), à l'entrée le «steak flambé au chalumeau» (10 €, grillé devant vous sur une plaque qui crache des flammes), bubble tea, granité de mangue (4,50 €). La halle souterraine est plus propre, l'extérieur plus animé. Le «Hao Da Da Chicken» (escalope de poulet géante, 4 €, plus grosse que votre visage) est immanquable — à manger en marchant, c'est la règle du marché de nuit. Samedi soir, queue qui s'étend sur des kilomètres ; venez tôt (18h30) pour un rythme plus doux.",
+            estimatedCost: "Plusieurs snacks ~16 €",
+            transitFromPrev: "MRT rouge → Jiantan, environ 25 min",
+          },
+        ],
+      },
+      {
+        theme: "Excursion : Jiufen + Shifen",
+        summary: "Train le long de la côte vers les lanternes des maisons de thé de Jiufen, lanternes célestes à Shifen au retour.",
+        stops: [
+          {
+            name: "Train TRA → Ruifang",
+            area: "Gare Taipei → Ruifang",
+            duration: "45 min",
+            description:
+              "À pied ou MRT jusqu'à la gare Taipei. Ticket de train régional taïwanais (TRA) jusqu'à Ruifang. Côté droit fenêtre — après les tunnels, vue sur la mer. En route, vous passez à Keelung (port industriel), avec ses gros cargos. Ticket à 2,50 €, pas besoin de réserver. Le train TRA est plus lent qu'un Shinkansen mais «authentique» — vous êtes assis avec des résidents, vendeurs ambulants passent avec des bento.",
+            estimatedCost: "~2,50 €",
+            transitFromPrev: "MRT jusqu'à la gare de Taipei, environ 5 min",
+          },
+          {
+            name: "Vieille rue de Jiufen",
+            area: "Jiufen",
+            duration: "3h",
+            description:
+              "Ancien village minier d'or transformé en village touristique atmosphérique. Escaliers étroits en pierre, lanternes rouges suspendues, maisons de thé surplombant la mer. «A-Mei Tea House» (carrefour Shuqi Lu) — inspiration de la maison de thé de Yubaba dans «Le Voyage de Chihiro», angle Instagram canonique, queue de 40 min le week-end. «Sii Dcha» ou «Jiufen Tea House» plus calmes, vue similaire. Une théière de thé taïwanais d'altitude + en-cas (11 €) à la maison de thé est l'expérience à vivre — le patron vous explique le rituel du thé, vous regardez la brume monter de la vallée, le phare lointain s'allumer sur le Pacifique.",
+            estimatedCost: "Thé ~11 €",
+            bookingTip: "Choisissez un jour de semaine, évitez absolument le samedi — Jiufen est envahi par les bus touristiques.",
+            transitFromPrev: "Bus 788 ou 1062 depuis Ruifang, environ 15 min",
+          },
+          {
+            name: "A-Gan Yi (boules de taro)",
+            area: "Jiufen",
+            duration: "30 min",
+            description:
+              "Snack le plus célèbre de Jiufen — boules de taro et patate douce moelleuses dans une soupe aux haricots rouges. Soupe chaude en hiver, glace pilée en été. 2,50 € le bol. Cash uniquement. La maison d'A-Gan-Yi est tout en haut des escaliers — vous mangez et regardez la ligne mer-montagne de Jiufen, c'est l'observatoire gratuit à côté de A-Mei.",
+            estimatedCost: "~2,50 €",
+            transitFromPrev: "Vieille rue 2 min à pied",
+          },
+          {
+            name: "Navette → Shifen",
+            area: "Jiufen → Shifen",
+            duration: "45 min",
+            description:
+              "Bus 788 retour à Ruifang, train TRA Pingxi line vers l'est jusqu'à Shifen. Ou shuttle direct (5 €). Le train est moins cher et la vue plus belle — la ligne traverse la vallée, on aperçoit déjà les lanternes célestes lâchées par d'autres aux gares précédentes. Cette ligne ouverte en 1929 était minière à l'origine, désormais c'est «la ligne romantique des lanternes» de Taïwan.",
+            estimatedCost: "~3 €",
+            transitFromPrev: "Bus retour Ruifang",
+          },
+          {
+            name: "Lanternes célestes à Shifen",
+            area: "Shifen",
+            duration: "1h",
+            description:
+              "Achetez une lanterne en papier au stand près de la gare (5 €), écrivez vos vœux des 4 côtés au pinceau (chinois, anglais, alphabet OK), lancez-la sur les rails quand aucun train ne passe. Touristique, mais magique au crépuscule — des dizaines de lanternes qui montent dans la vallée éclairée par le couchant, la vôtre parmi elles. Choisissez la lanterne 4 couleurs (richesse, santé, amour, carrière) ou 5 couleurs (7 €). C'est une activité familiale taïwanaise — les enfants à côté de vous écrivent «premier de la classe», vous écrivez «revenir l'an prochain».",
+            estimatedCost: "~5 €",
+            transitFromPrev: "Gare Shifen à pied",
+          },
+          {
+            name: "Cascade de Shifen",
+            area: "Shifen",
+            duration: "1h",
+            description:
+              "20 m de large, style Niagara. À pied 10 min depuis la zone des lanternes par un pont piéton. Plate-forme d'observation devant la cascade — en saison des pluies, brume qui monte de la cascade forme des arcs-en-ciel au coucher du soleil. L'école primaire de Shifen est juste à côté — vous entendez la cloche, c'est un vrai village de montagne, pas un décor touristique.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "10 min à pied",
+          },
+          {
+            name: "Marché de nuit Raohe",
+            area: "Songshan",
+            duration: "1h30",
+            description:
+              "Plus petit que Shilin, plus concentré — à l'entrée, «hujiao bing» (galette au poivre, cuite dans un four de terre, 2,50 €, vaut les 15 min de queue), soupe de côtes médicinale (4 €), une seule rue de 600 m, vous voyez tout. Le marché Raohe est «la meilleure de Taipei» selon les locaux, moins touristifié que Shilin. Pour la photo, l'arche de Raohe est le meilleur premier plan — l'enseigne néon arc-en-ciel «Raohe Night Market» brille dans la nuit.",
+            estimatedCost: "~10 €",
+            transitFromPrev: "Train → gare Songshan, total 1h",
+          },
+        ],
+      },
+      {
+        theme: "Mémorial Tchang Kaï-chek + Yongkang + Dadaocheng",
+        summary: "Mémorial, rue des foodies, le quartier le plus préservé de Taipei. Encore un xiao long bao avant l'aéroport.",
+        stops: [
+          {
+            name: "Mémorial Tchang Kaï-chek",
+            area: "Zhongzheng",
+            duration: "1h30",
+            description:
+              "Statue en bronze de 6,3 m de Tchang Kaï-chek dans un mémorial en marbre blanc. Toutes les heures pile, «cérémonie de relève des gardes» — 5 gardes en pas lents, rotations de fusil, marches, ordres criés, 15 min de cérémonie. Photo OK après (ne touchez pas les gardes). Devant le mémorial, vue lointaine sur Taipei 101 — contraste histoire-modernité. Au sous-sol du musée, voiture de Tchang Kaï-chek (Cadillac américaine des années 50), documents personnels, gratuit.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "MRT rouge → CKS Memorial Hall, environ 10 min",
+          },
+          {
+            name: "Din Tai Fung (Yongkang flagship)",
+            area: "Yongkang",
+            address: "No. 194, Xinyi Rd. Sec. 2",
+            duration: "1h",
+            description:
+              "Flagship 1972 de l'empire xiao long bao étoilé Michelin. Chaque xiao long bao a 18 plis — c'est le standard Din Tai Fung. Commandez xiao long bao (10 € les 10) + poulet ivre (8 €) + nouilles bœuf braisé (14 €) + xiao long bao chocolat dessert (6 €, étonnamment bon). Avant 11h15, vous entrez avant la ruée de 11h45. Pas de réservation pour moins de 4 personnes — en solo, attendez 10-15 min, la file avance vite. Bouquinerie à côté pour patienter.",
+            estimatedCost: "~32 €",
+            bookingTip: "Avant 11h15, vous entrez avant la ruée de 11h45. Pas de réservation pour moins de 4 personnes — en solo, attendez 10-15 min, la file avance vite.",
+            transitFromPrev: "CKS 15 min à pied",
+          },
+          {
+            name: "Promenade rue Yongkang",
+            area: "Da'an",
+            duration: "1h",
+            description:
+              "La rue à pied la plus agréable pour le foodie + shopping de Taipei. Smoothies, granités de mangue, cafés, boutiques. De Din Tai Fung à la station MRT en lèche-vitrine. «ICE MONSTER» granité de mangue (10 €) immanquable — mangue Aiwen taïwanaise (de saison mai-septembre), pudding par-dessus, haricots rouges en dessous, parfum de mangue si intense que vous oubliez tous les autres granités. «Lai Hao» est une boutique design taïwanaise — bijoux, foulards, petits cuirs, parfaits cadeaux à ramener.",
+            estimatedCost: "Une coupe ~6 €",
+            transitFromPrev: "À pied",
+          },
+          {
+            name: "Vieille rue Dadaocheng (rue Dihua)",
+            area: "Datong",
+            duration: "1h30",
+            description:
+              "Le quartier ancien le plus préservé de Taipei — boutiques à façade baroque de la fin de la dynastie Qing vendant épices séchées, thé, plantes médicinales, tissus. «Temple Xiahai City God» pour demander un fil rouge à Yue Lao (vieux dieu de l'amour, 1 € le fil), considéré comme le Yue Lao le plus efficace de Taïwan — vous voyez des étrangères en file. «ASW Tea House» au 1er étage est le meilleur bubble tea du vieux Dadaocheng — vue sur les baies vitrées du quartier ancien. Achetez un sachet de gâteaux «Pingan Gui» de Lit Tin Hsiang.",
+            estimatedCost: "~6 €",
+            transitFromPrev: "MRT verte → rouge → Daqiaotou, environ 15 min",
+          },
+          {
+            name: "Fuhang Soy Milk",
+            area: "Zhongzheng",
+            duration: "45 min",
+            description:
+              "Institution du petit-déj avec queue jusqu'à 10h chaque matin. Si vous y allez tard, essayez la branche ouverte l'après-midi proche. Lait de soja salé chaud + youtiao (beignet de pâte) + dan bing (crêpe à l'œuf) — trio classique du petit-déj taïwanais. Lait de soja salé 1,40 € le bol — différent de la version sucrée de Chine continentale, avec algue, échalotes frites, crevette séchée, sauce soja, huile de sésame. Le parc culturel «Huashan 1914» tout proche peut prolonger la balade.",
+            estimatedCost: "~5 €",
+            transitFromPrev: "MRT orange, environ 20 min",
+          },
+          {
+            name: "Parc Da'an Forest",
+            area: "Da'an",
+            duration: "45 min",
+            description:
+              "Le Central Park de Taipei. Pause avant l'aéroport — étang à tortues, piste de jogging, skyline urbain au-dessus des arbres. Achetez un thé d'herbes (qingcao cha) au stand du parc (3 €), asseyez-vous sur un banc, écoutez les cigales. Le week-end, «Da'an Forest Farmers Market» — produits bio taïwanais, achetez thé taïwanais, fruits secs, miel à ramener.",
+            estimatedCost: "~3 €",
+            transitFromPrev: "MRT rouge → Da'an Forest Park, environ 15 min",
+          },
+          {
+            name: "Retour aéroport Taoyuan",
+            area: "Da'an → TPE",
+            duration: "55 min",
+            description:
+              "MRT rouge jusqu'à la gare Taipei, change pour la ligne aéroport express. International 2h de marge, suffisant — sécurité Taoyuan rapide. Sur la ligne aéroport, vous repensez à ces 3 jours : feux d'artifice du marché de nuit, parfum du thé à Jiufen, douceur de la rue Yongkang, salé de Fuhang. Taipei en 3 jours fait de vous un «je veux revenir une 2e fois». La prochaine fois Hualien, Kenting, Taichung.",
+            estimatedCost: "~5 €",
+            transitFromPrev: "MRT",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Parapluie portatif — la pluie taipeïe est soudaine toute l'année",
+      "Petit porte-monnaie cash — la plupart des stands de marché de nuit ne prennent pas la carte",
+      "Pansements anti-ampoules — 15 000+ pas par jour, ampoules garanties",
+      "Petit éventail été — l'humidité est carrément étouffante",
+      "Veste chaude (hiver) — Taipei en hiver est doux mais l'intérieur n'est pas chauffé, vous aurez froid après la douche",
+      "Petits cadeaux pour hôte Airbnb — les Taïwanais valorisent les petites attentions, ça change l'accueil",
+    ],
+    budgetEstimate: "Hors hôtel : 50-70 €/jour",
+    generalTips: [
+      "EasyCard dès l'arrivée — MRT, bus, YouBike, konbini tout en un",
+      "Manger interdit dans le MRT — amende NT$1500-7500. Eau interdite aussi.",
+      "Pas de pourboire. Restos haut de gamme ajoutent 10% service",
+      "7-Eleven et FamilyMart sont vos amis — ATM, SIM, factures, ramen 2h du matin",
+      "Google Maps suffit, mais Citymapper plus précis — téléchargez à l'avance",
+      "Apple Pay arrive lentement à Taïwan, beaucoup de petits commerces restent en cash ou cartes locales",
+    ],
+  },
+
+  "hanoi-4d-solo": {
+    tagline: "Quatre jours en solo — pho dans le vieux quartier et excursion à la baie d'Halong.",
+    audience: "Solo · Économique",
+    destination: "Hanoï",
+    destinationCountry: "Vietnam",
+    overview:
+      "Quatre jours en solo à Hanoï — l'une des villes asiatiques les plus pleines de caractère. Chaos des scooters, pho à 1 € à l'aube, pagodes millénaires, et une seule «folie» : excursion à la baie d'Halong. Budget-friendly, vous tenez 3 repas en 10 €. La force d'Hanoï : «non packagée». La plupart des petites rues sont encore aux locaux, pas aux Airbnb. Vous êtes assis sur un tabouret en plastique à boire un café, à côté de vous une grand-mère vietnamienne vend du pho, des écoliers passent à vélo — la vraie vie de rue, déjà disparue à Bangkok ou Singapour.",
+    bestSeasonNote:
+      "Octobre-avril : saison sèche d'Hanoï, températures agréables. Mai-septembre : saison de mousson, pluies orageuses fréquentes l'après-midi mais on circule. Tết (Nouvel An lunaire, janvier-février) : beaucoup de restos ferment, à éviter. Septembre-octobre : automne le plus beau d'Hanoï — feuilles jaunes, air sec, ginkgos jaunes au bord du lac. La fin d'année a une ambiance de Noël prononcée — héritage de la période française, les églises catholiques se décorent.",
+    currencyTip:
+      "Dong vietnamien (VND). 24 000 VND ≈ 1 €. Hôtels et restos touristiques prennent la carte ; street food et restos locaux cash uniquement. Petites coupures (10k, 20k, 50k) en or — 0,40 €, 0,80 €, 2 €. Au distributeur de l'aéroport, retirez 1-2 millions de dongs (40-80 €). BIDV et Vietcombank sont les grandes banques locales, leurs ATM sont les plus fiables.",
+    languageTip:
+      "Vietnamien. «Cảm ơn» (merci) universel. Anglais limité hors hôtel, mais zones touristiques OK. Pack hors-ligne Google Translate vietnamien indispensable. Le plus simple = doigt + sourire — les Vietnamiens sont extrêmement amicaux, perdu, en 10 secondes quelqu'un vient vous aider.",
+    emergencyNumber: "113 (police), 115 (ambulance), 114 (pompiers), 113 ou 114 (hotline anglaise)",
+    hotel: {
+      name: "Hanoi La Siesta Classic Ma May",
+      area: "Vieux Quartier (36 rues anciennes)",
+      address: "94 Ma May St., Hoan Kiem District",
+      rationale:
+        "La rue Ma May est le cœur du Vieux Quartier — tous les stands de pho, les bia hoi (bières de rue), le marché nocturne du week-end sont à 5 min à pied. La Siesta est un petit hôtel boutique, service fiable, bar de toit pour le coucher du soleil, meilleur petit-déj-buffet du rapport qualité-prix. Le personnel parle anglais, chaleureux, vous donne une carte touristique dessinée à la main — votre première étape commence par leur recommandation, sans risque. Au cœur du Vieux Quartier, vous sortez à gauche et c'est déjà une petite ruelle, pas besoin de marcher loin.",
+      estimatedNightlyRate: "~75 €/nuit",
+    },
+    airportTransit: {
+      method: "Transfert hôtel ou bus aéroport 86",
+      duration: "Transfert ~45 min / Bus ~60 min",
+      cost: "Privé ~15 € / Bus ~1,50 €",
+      instructions:
+        "Aéroport international Noi Bai (HAN), le plus simple = transfert hôtel — chauffeur attend avec votre nom à la sortie. Option éco : bus aéroport 86 toutes les 20 min jusqu'au lac Hoan Kiem (~1h, 35 000 dongs). Au comptoir taxi, Grab/taxi ~20-25 €. Ne montez jamais dans un «taxi privé» qui vous aborde à la porte de l'aéroport — arnaque garantie à 99% : ils chargent 3× le prix, changent de voiture à mi-chemin pour facturer plus.",
+    },
+    days: [
+      {
+        theme: "Initiation au Vieux Quartier",
+        summary: "Check-in, balade dans les 36 rues anciennes, théâtre de marionnettes sur l'eau, bia hoi la moins chère d'Asie.",
+        stops: [
+          {
+            name: "La Siesta check-in + toit",
+            area: "Vieux Quartier",
+            duration: "1h",
+            description:
+              "Posez les bagages, douche, montez sur le toit. Une bière fraîche Saigon (2,50 €) avec la vue 360° sur les toits en tuiles rouges du Vieux Quartier — vous trouvez instantanément vos repères. Du toit, vous entendez la symphonie de klaxons des scooters — Hanoï a 3 millions de scooters par jour sur les routes, c'est la BO de la ville. La Siesta sert un thé d'après-midi gratuit 12-14h — rouleaux de printemps + café filtre, vous restez 1h à rêvasser.",
+            estimatedCost: "Bière ~2,50 €",
+            transitFromPrev: "Depuis l'aéroport",
+          },
+          {
+            name: "Lac Hoan Kiem + temple Ngoc Son",
+            area: "Hoan Kiem",
+            duration: "1h30",
+            description:
+              "Le cœur d'Hanoï. Tour du lac dans le sens antihoraire, traversez le pont rouge «The Huc» jusqu'à l'îlot du temple Ngoc Son. Le pont «The Huc» est un monument carte postale d'Hanoï — bois laqué rouge contre eau verte. Le temple abrite une tortue empaillée de plus de 1 000 kg — légende du XVe siècle où une tortue sacrée du lac aurait pris l'épée du roi (d'où «épée restituée»), le spécimen de 1968 est le dernier connu. À 5-6h du matin, vieux qui font tai-chi, jeunes qui courent, étudiants qui lisent sur les bancs — le matin le plus pur de la ville.",
+            estimatedCost: "Temple ~1 €",
+            transitFromPrev: "Hôtel 5 min à pied",
+          },
+          {
+            name: "36 rues anciennes",
+            area: "Vieux Quartier",
+            duration: "1h",
+            description:
+              "Les 36 rues du Vieux Quartier portent chacune le nom du produit historiquement vendu — Hang Bac (rue de l'argent), Hang Gai (soie), Hang Ma (papier votif), Hang Thiec (étain). Du lac, partez vers le nord par Hang Dao, tournez dans 4-5 rues, voyez ce qui survit. Hang Bac compte encore 30+ ateliers d'orfèvrerie, prix 1/3 de Paris. Hang Quat est tout en lanternes en soie rouge vietnamiennes (5 € à suspendre chez soi). Hang Gai abrite la boutique de la designer internationale Tia Le, robe traditionnelle ao dai sur mesure en 3 jours — prix 1/4 de Paris.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Inclus",
+          },
+          {
+            name: "Théâtre de marionnettes sur l'eau Thang Long",
+            area: "Hoan Kiem",
+            address: "57B Dinh Tien Hoang",
+            duration: "1h",
+            description:
+              "Art vietnamien du XIe siècle — marionnettes qui dansent sur scène d'eau jusqu'à la taille, manipulées par des perches derrière un rideau de bambou. Narration en vietnamien, mais la comédie visuelle a sa propre traduction. 50 min de spectacle + musique traditionnelle live (mono-corde, lune-lyre, flûtes). 10 saynètes : «Dragon-phénix», «Pêche», «Danse du feu»... 3-5 min chacune, rythme soutenu, pas de somnolence. Choisissez votre place dans la salle — rangs 3-5 au centre = optimal.",
+            estimatedCost: "~4 €",
+            bookingTip: "Achetez 30 min avant à la billetterie — les sessions 18h30 et 20h se remplissent en haute saison.",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Bun Cha Ta",
+            area: "Vieux Quartier",
+            address: "21 Nguyen Huu Huan",
+            duration: "1h",
+            description:
+              "Le plat signature d'Hanoï — boulettes de porc grillées trempées dans une sauce sucrée-salée, avec vermicelles et grosse pile d'herbes fraîches. Bun Cha Ta a la meilleure ambiance (vieille cour intérieure), la qualité ne baisse pas depuis le passage d'Obama et Anthony Bourdain en 2016. Combo Set (6 €) : bun cha + rouleaux frits + tisane locale. Au moment de commander, n'oubliez pas le mix «Bun» (vermicelles) + «Cha Ca» (poisson grillé) + «Nem» (rouleaux frits) — 3 saveurs en une.",
+            estimatedCost: "~6 €",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Coin Bia Hoi (Ta Hien + Luong Ngoc Quyen)",
+            area: "Vieux Quartier",
+            duration: "1h",
+            description:
+              "Asseyez-vous sur les petits tabourets rouges en plastique au coin de rue le plus célèbre d'Hanoï. La bia hoi à 5 000 dongs (0,20 €) est de la bière brassée le matin — sans conservateurs, doit être bue le jour même. Cacahuètes gratuites. Pas un bar concept, vraie nightlife de rue. Vous vous asseyez 5 min, l'Allemand à côté de vous engage la conversation. 3 bia hoi (0,60 €) + une part de poisson frit (1,50 €), puis vous partez — c'est l'essence de la nuit hanoïenne.",
+            estimatedCost: "~3 €",
+            transitFromPrev: "3 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "Excursion baie d'Halong",
+        summary: "L'unique luxe du voyage — journée entière de croisière entre 1 600 îles karstiques. Grottes, kayak, déjeuner fruits de mer.",
+        stops: [
+          {
+            name: "Navette → Halong",
+            area: "Vieux Quartier → Halong",
+            duration: "3h",
+            description:
+              "Croisière réservée vous prend dans les grands hôtels du Vieux Quartier vers 7h30-8h. Choisissez un opérateur croisière journée milieu de gamme (Bhaya, Indochina Junk, Paradise) — 35-65 €. 3h de route à l'est, une pause toilettes. Le chauffeur passe de la musique vietnamienne ou Spotify vietnamien — vous entendez les rythmes locaux, c'est la conversion culturelle.",
+            estimatedCost: "Compris dans la croisière",
+            transitFromPrev: "Hôtel pickup",
+          },
+          {
+            name: "Croisière baie d'Halong",
+            area: "Baie d'Halong",
+            duration: "5h",
+            description:
+              "Embarquement sur jonque traditionnelle, navigation entre îles karstiques sur eau émeraude. Programme classique : déjeuner sur le bateau (multiples plats de fruits de mer — crabes, crevettes, calamars, 6-8 produits locaux) ; kayak 45 min dans une lagune cachée ; visite grotte Sung Sot (Surprise) ou Thien Cung (Palais Céleste) ; baignade depuis le pont. Maître-nageur sur le bateau, eaux sûres. Vers 15-16h, «la montée du soleil» — phénomène lumineux unique à Halong.",
+            estimatedCost: "Croisière journée moyenne ~60 €",
+            bookingTip: "Réservez avec une agence sérieuse (Flamingo Travel, Threeland Travel) ; évitez les croisières low-cost à 20 € — sécurité des bateaux médiocre, accidents occasionnels.",
+            transitFromPrev: "Embarquement au port",
+          },
+          {
+            name: "Retour à Hanoï",
+            area: "Halong → Vieux Quartier",
+            duration: "3h",
+            description:
+              "Bus retour avec une pause. Arrivée hôtel 19h-19h30. Longue journée — récompensez-vous par un dîner tranquille proche de l'hôtel. Le chauffeur met une musique douce 15 min après le départ — vous vous endormez, ça suffit pour récupérer.",
+            estimatedCost: "Compris",
+            transitFromPrev: "Départ du port",
+          },
+          {
+            name: "Cha Ca La Vong (poisson au curcuma)",
+            area: "Vieux Quartier",
+            address: "14 Cha Ca St.",
+            duration: "1h",
+            description:
+              "Restaurant à plat unique depuis 1871 — poisson-chat mariné au curcuma sauté à table sur un brasier en terre cuite avec aneth et oignons verts, servi avec vermicelles, cacahuètes, sauce nuoc cham. Une seule chose au menu. Plus cher que la street food mais vaut le coup — c'est la «délicatesse concentrée» vietnamienne. 13 € par personne, partagé à 2-3.",
+            estimatedCost: "~13 €",
+            transitFromPrev: "Hôtel 10 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "Hanoï impérial",
+        summary: "Mausolée Hô Chi Minh, Temple de la Littérature, Train Street d'Hanoï, déjeuner au quartier français.",
+        stops: [
+          {
+            name: "Pho Gia Truyen (Bat Dan) — pho du matin",
+            area: "Vieux Quartier",
+            address: "49 Bat Dan St.",
+            duration: "45 min",
+            description:
+              "Selon les locaux, le meilleur pho bo (pho au bœuf) d'Hanoï. Faites la queue, commandez, payez, asseyez-vous — self-service. Slurpez bruyamment, ajoutez piment et citron. Ouvre 6h, ferme quand le bouillon est fini (vers 10h). Pho Gia Truyen utilise 30 kg d'os de bœuf mijotés 8h — bouillon clair et profond, contrairement au bouillon dense du sud chinois, plus proche d'un thé clair en couches. 3 € le bol. Vous ne choisissez pas le morceau — le maître donne le «combo signature» : tendons, jarret, tranches de bœuf cru ébouillantées dans la soupe.",
+            estimatedCost: "~3 €",
+            transitFromPrev: "Hôtel 7 min à pied",
+          },
+          {
+            name: "Mausolée Hô Chi Minh",
+            area: "Ba Dinh",
+            duration: "1h30",
+            description:
+              "Le corps embaumé de «l'oncle Hô» dans un mausolée en granit — sur la place Ba Dinh où il a déclaré l'indépendance face à la France en 1945. Code vestimentaire strict (épaules + genoux couverts, shorts interdits). Silence à l'intérieur, photo interdite. Fermé lundi et vendredi. Derrière le mausolée, le «Musée Hô Chi Minh» — bâtiment moderniste construit avec l'aide soviétique, raconte le parcours d'Hô Chi Minh, des études en France à la direction de l'indépendance vietnamienne. Gratuit, 2h pour tout voir.",
+            estimatedCost: "Gratuit",
+            bookingTip: "9h pour arriver — file rapide tôt, 45 min d'attente après 10h30.",
+            transitFromPrev: "Grab environ 15 min",
+          },
+          {
+            name: "Temple de la Littérature (Van Mieu)",
+            area: "Dong Da",
+            duration: "1h30",
+            description:
+              "Première université du Vietnam, fondée en 1070. 5 cours, pavillons, étang à dragon sculpté, 82 stèles portant les noms des lauréats des concours impériaux 1442-1779 — chacune sur une tortue de pierre. Le coin le plus confucianiste d'Hanoï — incarne l'influence chinoise sur le Vietnam. Fin juin, baccalauréat vietnamien, les parents viennent brûler de l'encens pour leurs enfants. Regardez attentivement les noms — beaucoup sont encore portés au Vietnam aujourd'hui.",
+            estimatedCost: "~1,50 €",
+            transitFromPrev: "Grab environ 10 min",
+          },
+          {
+            name: "Banh Mi 25",
+            area: "Vieux Quartier",
+            address: "25 Hang Ca",
+            duration: "45 min",
+            description:
+              "Le meilleur banh mi d'Hanoï. Baguette croustillante, pâté, porc grillé, carottes-radis marinés, coriandre, piment. Commandez le «Banh Mi 25 Special» (toutes viandes) — 2 €. Mangez sur le tabouret en plastique en face. Le banh mi est une trace de l'époque coloniale française — le Vietnam a rendu la baguette française plus croustillante, moins chère, plus quotidienne qu'en France. Doux produit du métissage culturel.",
+            estimatedCost: "~2 €",
+            transitFromPrev: "Grab environ 15 min",
+          },
+          {
+            name: "Train Street d'Hanoï",
+            area: "Hoan Kiem",
+            duration: "1h",
+            description:
+              "Ruelle résidentielle étroite avec un vrai train qui circule. Asseyez-vous dans un café ; à 15h20 ou 19h20, le train passe à 2 m de votre tasse de café. Accès via les cafés (50 000 dongs de couverture — frais gris pour autoriser le passage des touristes). Quand le train arrive, le café entier se fige — vous entendez le crissement métallique, sentez le sol vibrer, le train passe en grondant — expérience industrielle-résidentielle unique à Hanoï.",
+            estimatedCost: "~2 €",
+            bookingTip: "Horaires confirmés sur place — changent souvent. Les cafés vous le disent.",
+            transitFromPrev: "10 min à pied",
+          },
+          {
+            name: "Opéra d'Hanoï + Quartier Français",
+            area: "Quartier Français",
+            duration: "1h",
+            description:
+              "Opéra néoclassique de 1911 imitant l'Opéra de Paris. Sans spectacle, intérieur fermé, mais marchez dans les rues du Quartier Français environnant (Trang Tien, Ngo Quyen) — villas années 1920 et larges boulevards, contraste colonial avec le chaos du Vieux Quartier. Le «Sofitel Legend Metropole» voisin est l'hôtel colonial français de 1901 — Lady Diana, Charlie Chaplin, des Premiers ministres français y ont logé. Lobby visitable ; le «Bamboo Bar» à côté sert un cocktail oriental (12 €), assis près de la fenêtre centenaire — l'après-midi le plus luxueux du Vietnam.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Grab environ 10 min",
+          },
+          {
+            name: "Ngon Garden",
+            area: "Quartier Français",
+            address: "70 Nguyen Du",
+            duration: "1h30",
+            description:
+              "Food court en jardin, 50+ plats régionaux vietnamiens. Mix de hors-d'œuvre, soupes, grillades, desserts. Touriste-friendly mais qualité solide. Bon pour le dîner d'adieu. Combo «Pho Cuon» (rouleaux de vermicelles) + «Cha Ca» + «Banh Xeo» (crêpe vietnamienne) + «Cafe Sua Da» (café glacé) à 18 € couvre Nord-Centre-Sud. Tables en plein air sous lanternes vietnamiennes suspendues, pont en bois sur petit ruisseau — scène la plus romantique pour un adieu hanoïen.",
+            estimatedCost: "~18 €",
+            transitFromPrev: "10 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "Lac de l'Ouest + aéroport",
+        summary: "Pagode Tran Quoc, matin au lac de l'Ouest, dernier café à l'œuf, transfert calme à l'aéroport.",
+        stops: [
+          {
+            name: "Pagode Tran Quoc",
+            area: "Lac de l'Ouest",
+            address: "Thanh Nien Rd.",
+            duration: "1h",
+            description:
+              "La plus ancienne pagode d'Hanoï (541). Stupa rouge et or sur petit îlot du lac de l'Ouest, relié par chaussée. Moines passent devant les statues de bodhisattvas. Étang à lotus en été — pic juillet-août, photos magnifiques. Stèle «Tran Quoc» (Protection du Pays) — origine du nom vietnamien.",
+            estimatedCost: "Gratuit (offrande appréciée)",
+            transitFromPrev: "Grab environ 15 min",
+          },
+          {
+            name: "Café à l'œuf chez Giang Cafe",
+            area: "Vieux Quartier",
+            address: "39 Nguyen Huu Huan",
+            duration: "45 min",
+            description:
+              "Hanoï a inventé le café à l'œuf en 1946 quand le lait manquait. Giang est tenu par la famille fondatrice — jaunes d'œufs battus avec lait condensé sucré, posés sur expresso brûlant. Goût de tiramisu liquide. Montez l'escalier étroit jusqu'au petit étage — la décoration n'a pas changé depuis 70 ans. Une tasse 1 €, en commander deux. Avec sandwich «baguette vietnamienne» (3 €) — beurre, jambon, concombre, simple combo.",
+            estimatedCost: "~1 €",
+            transitFromPrev: "Grab environ 10 min",
+          },
+          {
+            name: "Marché Dong Xuan",
+            area: "Vieux Quartier",
+            duration: "1h",
+            description:
+              "Plus grand marché couvert d'Hanoï — 4 étages de vêtements, sacs, articles ménagers, contrefaçons, food court à l'arrière. Bonne adresse pour shopping de dernière minute (foulards en soie, café, thé au lotus). Marchandez 30-50% sous le premier prix annoncé. «Trung Nguyen» café moulu (4 € le sachet) — plus grande marque vietnamienne, plus puissant que l'indonésien. «Hoa Sen» thé au lotus (5 € le sachet) — thé vert fermenté dans une fleur de lotus, cadeau unique.",
+            estimatedCost: "Quelques cadeaux ~12 €",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Bun Rieu (40 Hang Tre)",
+            area: "Vieux Quartier",
+            duration: "1h",
+            description:
+              "Dernier repas local — Bun Rieu, soupe de vermicelles tomate-crabe spécifique au Nord-Vietnam, garnie de porc et tofu frit. Cuisine de rue où l'on mange sur petit tabouret. La grand-mère qui mijote la soupe est là depuis 1988. 2,50 € le bol. Bouillon aux petites tomates locales — sucré-acide, complètement différent d'une soupe à la tomate occidentale. C'est la cuisine «familiale» vietnamienne, après laquelle vous pensez «moi aussi je veux vieillir comme ça».",
+            estimatedCost: "~2,50 €",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Hôtel + récupération bagages",
+            area: "Vieux Quartier",
+            duration: "1h",
+            description: "Retour hôtel, douche si besoin, bagages de la consigne. Réservation transfert aéroport.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Retour aéroport Noi Bai",
+            area: "Vieux Quartier → HAN",
+            duration: "45 min",
+            description: "Transfert hôtel réservé. International, 3h de marge — sécurité Noi Bai lente. Duty free limité, mais la boîte cadeau «Trung Nguyen Coffee» (12 €) vaut le coup pour les amis. À l'aéroport, un «Pho 24» (chaîne de pho hanoïenne) — un dernier bol avant l'embarquement.",
+            estimatedCost: "~15 €",
+            transitFromPrev: "Transfert hôtel",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Sac bandoulière à fermeture éclair — les voleurs en scooter du Vieux Quartier arrachent les sacs lâches",
+      "Pantalon long ou jupe pour temples/mausolée",
+      "Gel hydroalcoolique — vous mangez souvent avec les mains",
+      "Petit parapluie ou poncho — averses fréquentes même en saison sèche",
+      "Ceinture porte-monnaie — ATM partout mais files longues",
+      "Anti-diarrhéique — les épices vietnamiennes peuvent surprendre votre estomac, gardez-en au cas où",
+      "Petits cadeaux pour amis locaux (chocolats français, parfum)— les Vietnamiens valorisent les petites attentions",
+    ],
+    budgetEstimate: "Hors hôtel : 30-50 €/jour (l'excursion baie d'Halong est le luxe — 60 € unique)",
+    generalTips: [
+      "Pour les taxis : utilisez Grab — prix fixe, transparent",
+      "Ne montez jamais dans un taxi «Mai Linh» qui vous aborde dans la rue — fausse compagnie",
+      "Traverser la rue : marchez lentement, à pas réguliers, les scooters vous évitent. Ne vous arrêtez jamais brusquement.",
+      "Pourboire non obligatoire mais arrondi à la pièce apprécié",
+      "SIM : à l'aéroport Viettel ou Vietnamobile eSIM (~7 € / 10 Go)",
+      "Les heures de repas vietnamiennes diffèrent de la France — petit-déj 5h-9h (pho de rue), déj 12h-13h, dîner 18h-20h",
+    ],
+  },
+
+  "london-4d-couple": {
+    tagline: "Quatre jours en couple — British Museum, Borough Market, journée à Oxford.",
+    audience: "Couple · Milieu de gamme",
+    destination: "Londres",
+    destinationCountry: "Royaume-Uni",
+    overview:
+      "Quatre jours pour le couple qui veut voir Londres sans «sensation de bus touristique». Matins dans les musées gratuits de niveau mondial, après-midis aux marchés et parcs royaux, une journée entière à Oxford. Hôtel choisi à Victoria — à pied du West End, Heathrow Express direct. La force de Londres : densité culturelle. British Museum, National Gallery, V&A, Tate Modern, tous gratuits — vous pouvez parcourir le condensé de la civilisation humaine en 3 jours. Ces 4 jours vous donnent envie d'y revenir plus longtemps — c'est la signature d'une «ville de culture».",
+    bestSeasonNote:
+      "Mai-début juin et septembre-début octobre : zone douce — climat tempéré, longues journées, foules tolérables. Juillet-août chaud et bondé, janvier le moins cher mais le plus sombre. Marchés de Noël (fin novembre-fin décembre) à Hyde Park Winter Wonderland, Covent Garden, Southbank Centre — Londres au plus festif. Feu d'artifice du Nouvel An sur la Tamise (gratuit, billet à réserver) parmi les plus grands d'Europe.",
+    currencyTip:
+      "Livre sterling (GBP). Carte et sans contact partout — 4 jours sans cash possibles. Tap sur tourniquet du métro, plafond journalier (~10 €) auto-activé. Cartes Visa/Mastercard françaises passent à 90% des endroits. Avant le départ, carte Wise ou Curve = taux 3-5% meilleur que les cartes bancaires françaises classiques.",
+    languageTip:
+      "Anglais britannique. «Ta» = merci, «cheers» = merci+au revoir, «sorted» = réglé. Pour commander au pub — directement au comptoir, pas attendre le service à table. Métro accent british très marqué, regardez l'écran. Pour demander la route, les Britanniques sont très amicaux — abordez quelqu'un, ils s'arrêtent et vous dessinent même un plan.",
+    emergencyNumber: "999 (toutes urgences)",
+    hotel: {
+      name: "The Z Hotel Victoria",
+      area: "Victoria",
+      address: "19 Saint George's Dr, Pimlico",
+      rationale:
+        "Victoria est à 10 min à pied de Buckingham Palace, sur la ligne Heathrow Express, intersection de 4 lignes de métro. Z Hotel chambres petites mais modernes — douche cascade, Wi-Fi fiable, café-restaurant lobby correct. Parfait pour les couples qui sont dehors toute la journée. Style design simple, photocopies des architectes londoniens célèbres aux murs — vous baignez aussi dans l'ambiance «ville de culture». Sainsbury's grand format à côté de la station Victoria, snacks tardifs faciles.",
+      estimatedNightlyRate: "~190 €/nuit",
+    },
+    airportTransit: {
+      method: "Heathrow Express → Paddington → Métro vers Victoria",
+      duration: "Environ 35 min",
+      cost: "~35 € (aller simple, ou métro plus lent ~5 €)",
+      instructions:
+        "Heathrow (LHR) Heathrow Express toutes les 15 min, non-stop Paddington 15 min. Réservez 2 semaines à l'avance ~20 € en ligne. À Paddington, prenez Circle line jusqu'à Victoria 5 stations 12 min. Option éco : Piccadilly métro direct Victoria 50 min, 5-7 € selon heure de pointe. Tapez votre Contactless — pas besoin de billet papier. À l'aéroport, Wise card ou carte de crédit internationale = meilleur taux que les distributeurs.",
+    },
+    days: [
+      {
+        theme: "Westminster & South Bank",
+        summary: "Le couloir cartes postales classique de Londres — Big Ben, Westminster Abbey, promenade de la Tamise jusqu'à Tate Modern, dîner pub.",
+        stops: [
+          {
+            name: "Big Ben + Westminster Bridge",
+            area: "Westminster",
+            duration: "45 min",
+            description:
+              "Elizabeth Tower (qui contient Big Ben) après le nettoyage 2017-2022 ressemble à 1859 — décor gothique frais. Traversez le pont, retournez-vous pour la photo classique avec London Eye en premier plan. Le Parlement est la même façade que dans tous les films britanniques. Si à 18h vous êtes sur le pont au moment du carillon, le son résonne 10 secondes sur la Tamise — un «moment immersif sonore» londonien.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Métro District Victoria → Westminster, environ 5 min",
+          },
+          {
+            name: "Westminster Abbey",
+            area: "Westminster",
+            address: "20 Deans Yd",
+            duration: "2h",
+            description:
+              "Église des couronnements depuis 1066. Sauf Edward V et VIII, tous les monarques anglais y ont été couronnés ; Newton, Darwin, Hawking reposent au «Coin des Scientifiques». La Lady Chapel et son plafond en éventail valent l'audioguide + 2h — terminé en 1503, prouesse inimitable de l'architecture médiévale en pierre. Au «Coin des Poètes», statues et stèles de Shakespeare, Dickens, les sœurs Brontë — pèlerinage des amateurs de littérature.",
+            estimatedCost: "~34 €",
+            bookingTip: "En ligne 2-3 jours à l'avance ; samedi épuisé 1 semaine à l'avance.",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "Déjeuner Borough Market",
+            area: "Southwark",
+            duration: "1h30",
+            description:
+              "Plus ancien marché alimentaire de Londres, fondé en 1014. Mangez debout — sandwich grilled cheese de Kappacasein (12 €) immanquable, fromage Raclette suisse fondu dans le sandwich = star du marché. Paella de Brindisa (15 €), 5 min à la commande. Baguette confit de canard de Le Marché du Quartier (12 €) — saveur d'un village du sud de la France. Le déjeuner que vous retiendrez. Le «Borough Market Kitchen» voisin a 100+ épices et ingrédients à ramener — Saint-Graal des foodies britanniques.",
+            estimatedCost: "~20 €",
+            transitFromPrev: "Jubilee Westminster → London Bridge, environ 15 min",
+          },
+          {
+            name: "Tate Modern",
+            area: "South Bank",
+            duration: "2h",
+            description:
+              "Ancienne centrale électrique transformée en musée d'art moderne le plus important d'Europe. Permanent gratuit. Rothko, Picasso, Bacon, Pollock — chaque nom a changé l'histoire de l'art. Terrasse 10e étage = vue gratuite sur St. Paul's Cathedral à travers la Tamise. Le «Turbine Hall» — hall central de 35 m de haut, expositions d'installations contemporaines géantes chaque année, gratuit — vous vous tenez au milieu de l'œuvre, vous en faites partie.",
+            estimatedCost: "Gratuit (expos spéciales payantes)",
+            transitFromPrev: "Au bord de la Tamise 10 min à pied",
+          },
+          {
+            name: "Millennium Bridge + extérieur St. Paul's",
+            area: "South Bank → City",
+            duration: "45 min",
+            description:
+              "Traversez le Millennium Bridge piéton vers St. Paul's. Le chef-d'œuvre de Wren de 1710 reste gratuit à admirer de l'extérieur — sauf si vous tenez à monter au Whispering Gallery, sautez l'intérieur payant. Le Millennium Bridge est «le pont du millénaire», construit en 1999 — fermé 10 jours après ouverture pour cause de balancement, renforcé pendant 2 ans. Aujourd'hui un des ponts les plus modernes de Londres ; J.K. Rowling le fait détruire par les Mangemorts dans Harry Potter 7.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "The George Inn",
+            area: "Southwark",
+            address: "75-77 Borough High St.",
+            duration: "1h30",
+            description:
+              "Seule auberge de relais à galerie restante de Londres — 1677, propriété National Trust. Vrai dîner pub : fish & chips avec mushy peas et une pinte de vraie ale dans la salle aux panneaux de bois. Dickens y a bu — son roman «Little Dorrit» a été écrit dans ce pub. Le Sunday Roast (rôti dominical) si vous y êtes dimanche est le dîner national — bœuf/poulet/porc rôti + pommes de terre + Yorkshire pudding + légumes + jus de viande, une portion suffit pour la journée.",
+            estimatedCost: "~50 € pour deux avec boissons",
+            bookingTip: "OpenTable — petite salle ; le beer garden est premier arrivé premier servi.",
+            transitFromPrev: "10 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "British Museum + Covent Garden + Soho",
+        summary: "Matin musée mondial, après-midi marchés et Seven Dials, dîner Soho.",
+        stops: [
+          {
+            name: "British Museum",
+            area: "Bloomsbury",
+            address: "Great Russell St",
+            duration: "3h",
+            description:
+              "Gratuit. 8 millions d'objets, 94 galeries. Ciblez : Rosetta Stone (salle 4), Marbres du Parthénon (18), momies égyptiennes (62-63), trésor de Sutton Hoo (41). Le Great Court à toit de verre vaut la visite — Norman Foster, 2000, plus grande place couverte du monde. Audioguide en français au lobby (5 €), 3h pour 50 pièces phares. La «Galerie chinoise» (33) est la plus grande zone non-britannique, bronzes Shang-Zhou, porcelaines Ming, laques Qing — vous ressentirez peut-être un «ils devraient rentrer chez eux», mais la conservation est excellente.",
+            estimatedCost: "Gratuit",
+            bookingTip: "Réservez le créneau gratuit en ligne pour éviter la file de sécurité.",
+            transitFromPrev: "Métro Victoria → Tottenham Court Rd, environ 15 min",
+          },
+          {
+            name: "Flat Iron (Covent Garden)",
+            area: "Covent Garden",
+            address: "17-18 Henrietta St",
+            duration: "1h",
+            description:
+              "£14 pour Feather Steak + frites au gras de bœuf + tomate grillée + popcorn d'accueil. Déjeuner londonien parfait sans vider le portefeuille. Pas de réservation — venez, donnez votre nom, ils vous textent. «Flat Iron» est la partie intérieure de l'omoplate du bœuf — quasi inexistant dans la cuisine traditionnelle britannique, ce restaurant l'a importé des USA et est devenu Michelin Bib Gourmand. Avec bière artisanale locale «Camden Hells» (5 €).",
+            estimatedCost: "~22 € par personne",
+            transitFromPrev: "15 min à pied",
+          },
+          {
+            name: "Marché de Covent Garden + Seven Dials",
+            area: "Covent Garden",
+            duration: "1h30",
+            description:
+              "Le bâtiment du marché de 1830 a stands d'artisans, magasins sur 2 étages, performances de rue gratuites par de vrais chanteurs d'opéra formés. Au nord, Seven Dials pour les marques uniques — Neal's Yard Remedies, ruelle couleur kale photogénique. Seven Dials, c'est «7 rues qui se croisent en 1 point» — héritage urbain du XVIIe siècle. Au centre, une colonne de pierre avec 7 cadrans solaires pointant chacun vers une rue — vous tournez sur vous-même, voyez 7 angles différents de Londres.",
+            estimatedCost: "Gratuit sans achat",
+            transitFromPrev: "5 min à pied",
+          },
+          {
+            name: "National Gallery",
+            area: "Trafalgar Square",
+            duration: "1h30",
+            description:
+              "Gratuit. Sautez les ailes décoratives, direct à : Tournesols de Van Gogh (43), Vierge aux rochers de Léonard (9), Le Téméraire de Turner (34). 90 min sélectives suffisent. «Tournesols» est la version londonienne (Van Gogh en a peint 5 — 3 en Europe, 1 au Japon, 1 à Londres) — jaune-vert intense, coups de pinceau rugueux, vous sentez le tremblement de l'artiste. Téléchargez l'app gratuite «National Gallery» — 50 œuvres majeures avec audioguide en français.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "15 min à pied",
+          },
+          {
+            name: "Trafalgar Square + Admiralty Arch",
+            area: "Whitehall",
+            duration: "45 min",
+            description:
+              "Colonne Nelson, statues de lions, 4e socle alterne d'art contemporain. Marchez sur The Mall vers Buckingham Palace — promenade en lumière douce du soir le long de St. James's Park. Cette route est «le défilé royal britannique» — couronnements, mariages royaux, funérailles de la reine passent par là. Drapeaux du Royaume-Uni accrochés en continu ; les jours importants, ils sont remplacés par les armoiries royales.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Inclus",
+          },
+          {
+            name: "Bocca di Lupo",
+            area: "Soho",
+            address: "12 Archer St",
+            duration: "1h30",
+            description:
+              "Sous-sol Soho, petites assiettes italiennes régionales — chaque plat indique son village italien. Vitello tonnato (veau froid à la sauce thon), orecchiette à la nduja (pâte de porc épicée), burrata + un verre de Barolo (top vin italien). Comptoir = la meilleure place. Le chef Jacob Kenedy est le porte-flambeau de la cuisine italienne à Londres ; son livre «Bocca» est le best-seller de cuisine italienne au Royaume-Uni. Au comptoir, le chef vous explique en italien approximatif l'origine de chaque plat.",
+            estimatedCost: "~70 € par personne avec vin",
+            bookingTip: "1 semaine à l'avance sur le site, 20h prime time. Walk-in au comptoir parfois libre.",
+            transitFromPrev: "10 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "Excursion : Oxford",
+        summary: "1h de train pour la ville universitaire — cour de collège, Bibliothèque Bodléienne, déjeuner pub authentique, dîner retour à Londres.",
+        stops: [
+          {
+            name: "Train GWR → Oxford",
+            area: "Paddington → Oxford",
+            duration: "1h",
+            description:
+              "Great Western Railway Paddington-Oxford direct toutes les 30 min. Aller-retour hors-pointe en ligne ~38 €/personne. Côté droit pour Windsor Castle au loin. La gare Paddington elle-même est un site — toit verre-acier de Brunel 1854, monument de la révolution industrielle. Wi-Fi gratuit dans le train, 1h pour un épisode Netflix.",
+            estimatedCost: "Aller-retour ~38 €",
+            transitFromPrev: "Métro vers Paddington, environ 15 min",
+          },
+          {
+            name: "Christ Church College",
+            area: "Oxford",
+            duration: "1h30",
+            description:
+              "Plus grand collège d'Oxford, fondé en 1546 par Henri VIII. Le Great Hall est l'inspiration de la salle à manger de Hogwarts dans Harry Potter (filmé ailleurs, mais l'inspiration est ici). Tom Tower de Wren. Marchez ensuite dans Christ Church Meadow derrière. Tom Quad (cour Tom) est la plus grande cour collégiale d'Angleterre — vous y ressentez 500 ans d'érudition. Le collège a produit 13 Premiers ministres britanniques, Lewis Carroll (auteur d'Alice au pays des merveilles) — «Alice» était la fille du doyen.",
+            estimatedCost: "~20 €",
+            bookingTip: "Ouvre 10h ; 9h45 pour entrer dans la première vague.",
+            transitFromPrev: "Gare 10 min à pied",
+          },
+          {
+            name: "Bibliothèque Bodléienne + Radcliffe Camera",
+            area: "Oxford",
+            duration: "1h30",
+            description:
+              "L'une des plus anciennes bibliothèques d'Europe (1602) et la circulaire Radcliffe Camera en face (1749). Visite guidée Bodléienne (30 min) montre la Duke Humfrey's Reading Room du XVe siècle — la bibliothèque de Hogwarts dans les films Harry Potter, c'est ici tournée. La Camera est juste pour la photo — pas ouverte au public. Bodléienne conserve 6 millions de livres, plus grande bibliothèque du Royaume-Uni après British Library — chaque livre publié au Royaume-Uni y est archivé.",
+            estimatedCost: "Tour Bodléienne ~10 €",
+            transitFromPrev: "10 min à pied",
+          },
+          {
+            name: "The Turf Tavern",
+            area: "Oxford",
+            address: "4 Bath Pl",
+            duration: "1h30",
+            description:
+              "Pub du XIIIe siècle caché dans une ruelle pavée — Bill Clinton y «n'a pas inhalé», Hawking y a bu, Tolkien y a édité. Vraie ale, vrai Sunday Roast (si dimanche), poutres si basses qu'on doit baisser la tête. Trouver l'allée fait la moitié du plaisir — l'entrée est au fond de St. Helen's Passage, 1 m de large. Devant la porte : «An Education in Intoxication» (l'éducation par l'ivresse) — un pub du XIIIe siècle toujours considéré comme la «2e salle de classe» des étudiants d'Oxford.",
+            estimatedCost: "~30 € par personne",
+            transitFromPrev: "St. Helen's Passage 5 min à pied",
+          },
+          {
+            name: "Magdalen College — parc aux daims + Addison's Walk",
+            area: "Oxford",
+            duration: "1h30",
+            description:
+              "Magdalen (prononcer «Maudlin») a un parc aux daims, une tour à cloche, et l'Addison's Walk — 2 km de promenade au bord d'eau que C.S. Lewis et Tolkien faisaient quotidiennement. 1h de marche verte, puis train retour. Les daims sont là depuis le XIVe siècle ; le 1er mai à 6h, le chœur du collège chante en latin «Hymnus Eucharisticus» depuis le sommet de la tour — tradition de 700 ans, à vérifier la date dans le journal d'Oxford.",
+            estimatedCost: "~9 €",
+            transitFromPrev: "15 min à pied",
+          },
+          {
+            name: "Train retour Londres",
+            area: "Oxford → Paddington",
+            duration: "1h",
+            description: "GWR retour à Paddington. Profitez pour vous reposer — demain musée + Harrods.",
+            estimatedCost: "Aller-retour inclus",
+            transitFromPrev: "10 min à pied jusqu'à la gare",
+          },
+          {
+            name: "Dishoom King's Cross",
+            area: "King's Cross",
+            address: "5 Stable St",
+            duration: "1h30",
+            description:
+              "Cuisine indienne style café irani de Bombay, dans un magnifique entrepôt en briques rouges. Black Daal signature (lentilles noires mijotées 24h) + biryani d'agneau + chai indien. Dishoom est une légende londonienne — Time Out l'a élu «meilleur restaurant de Londres» 5 ans de suite. Le brunch «Bacon Naan Roll» est la formule du week-end pour les Londoniens. King's Cross station vaut le coup — la voie 9¾ d'Harry Potter est ici (chariot factice gratuit pour photo dans la station), file de 30 min le week-end.",
+            estimatedCost: "~45 € par personne",
+            bookingTip: "Walk-in seulement pour moins de 6 personnes — file SMS, 45-60 min d'attente à 20h.",
+            transitFromPrev: "Métro Paddington, environ 12 min",
+          },
+        ],
+      },
+      {
+        theme: "V&A + Harrods + au revoir",
+        summary: "Encore un grand musée, shopping Harrods, thé de l'après-midi, puis Paddington Express vers Heathrow.",
+        stops: [
+          {
+            name: "Victoria and Albert Museum",
+            area: "South Kensington",
+            address: "Cromwell Rd",
+            duration: "2h30",
+            description:
+              "Gratuit. Plus grand musée d'arts décoratifs au monde. Ciblez : Galerie Mode (40), Galerie Bijouterie (91), Cast Courts (46), Tipu's Tiger (41). Café du jardin John Madejski — le plus beau café de musée de Londres. Les «Cast Courts» sont une folie victorienne — moulages en plâtre de sculptures italiennes (David de Michel-Ange) ramenés à Londres pour que les Anglais voient sans aller en Italie. Cette excentricité impériale «ramener le monde à la maison» est la salle la plus magique du V&A.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Métro District, environ 10 min",
+          },
+          {
+            name: "Harrods",
+            area: "Knightsbridge",
+            address: "87-135 Brompton Rd",
+            duration: "1h30",
+            description:
+              "7 étages, 330 départements, 120 000 m² de cathédrale du retail. Même sans achat, allez au Food Hall (RDC arrière) et à l'escalier égyptien. Le Toy Department au 3e est une destination — Disneyland miniature. L'Egyptian Escalator est l'un des escaliers mécaniques les plus connus de Londres — vrai marbre égyptien, hiéroglyphes, statues de pharaons, construit en 1997 par Mohamed Al-Fayed (ancien propriétaire) en mémoire de son fils Dodi (mort dans le même accident que Diana). Le Caviar Bar du Food Hall sert caviar + Champagne (90 €/personne) — brunch le plus cher de Londres.",
+            estimatedCost: "Gratuit sans achat",
+            transitFromPrev: "15 min à pied",
+          },
+          {
+            name: "Thé de l'après-midi chez Fortnum & Mason",
+            area: "Piccadilly",
+            address: "181 Piccadilly",
+            duration: "2h",
+            description:
+              "Adieu londonien officiel. Diamond Jubilee Tea Salon au 4e étage de Fortnum's — finger sandwiches, scones avec clotted cream de Cornouailles, pâtisseries, thé à volonté. Rituel des années 1840. «Royal Blend» est le thé créé par Fortnum's pour la reine Elizabeth — mélange Assam-Ceylan, thé matinal des gentlemen britanniques. Carte des thés 20+ variétés, le serveur vous fait sentir chacune. C'est «la culture britannique condensée», cela mérite un après-midi entier.",
+            estimatedCost: "~95 € par personne",
+            bookingTip: "2-3 semaines à l'avance sur le site, 14h-15h30 prime time ; semaine plus facile que week-end.",
+            transitFromPrev: "Métro Knightsbridge → Green Park, environ 10 min",
+          },
+          {
+            name: "Promenade Piccadilly + Regent Street",
+            area: "West End",
+            duration: "1h",
+            description:
+              "Digérez les scones. Sur Piccadilly devant Royal Academy, jusqu'à Piccadilly Circus pour la statue d'Eros, puis vers le nord sur Regent Street avec sa façade Art Déco courbée. Hamleys (n°188-196) — plus ancien magasin de jouets du monde (1881), 7 étages comme Disneyland, intéressant même pour adultes. Les illuminations de Noël de Regent Street (début nov-début janv) sont les plus magnifiques décorations de Noël de Londres — couloir doré sur toute la rue.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "À pied",
+          },
+          {
+            name: "Hôtel + récupération bagages",
+            area: "Victoria",
+            duration: "1h",
+            description: "Métro vers Victoria, bagages à la consigne, organisation. Quittez vers Paddington 19h45 pour Heathrow Express 21h ; 3h de marge international.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "Métro, environ 15 min",
+          },
+          {
+            name: "Heathrow Express → LHR",
+            area: "Paddington → Heathrow",
+            duration: "20 min",
+            description:
+              "Heathrow Express toutes les 15 min. Paddington-LHR 15 min — transit aéroport le plus rapide d'Europe. Réservez en ligne ~20 €. Duty free Heathrow Chanel, Burberry, Mulberry ont des éditions exclusives UK — moins chères qu'en France (le Royaume-Uni rembourse 14% de TVA aux non-résidents).",
+            estimatedCost: "~20 €",
+            transitFromPrev: "Métro Circle Victoria → Paddington, environ 10 min",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Chaussures imperméables — la pluie de Londres est légère mais persistante",
+      "Parapluie portatif (noir, pas couleur vive) — style local",
+      "Une tenue plus habillée — afternoon tea, bon pub, dîner Bocca di Lupo l'apprécient",
+      "Adaptateur UK (type G) — totalement différent de France et UE",
+      "Écharpe en laine fine — Londres est venté, intérieur frais",
+      "Carte Visa/Mastercard — la plupart des magasins UK acceptent les cartes françaises, mais quelques petits commerces et cafés n'acceptent que Visa/MC",
+      "Batterie externe — Google Maps consomme beaucoup à Londres",
+    ],
+    budgetEstimate: "Couple hors hôtel : 150-250 €/jour (musée + déjeuner pub + bon dîner)",
+    generalTips: [
+      "Tap Contactless directement pour les transports — plafond journalier auto-activé à ~10 €",
+      "Tenez la droite sur l'escalator, marchez à gauche. Si vous bloquez, les Londoniens soupirent ostensiblement",
+      "Pourboire : 10-12,5% au restaurant assis (souvent ajouté automatiquement — vérifiez le ticket)",
+      "Regardez d'abord à droite avant de traverser — circulation à gauche",
+      "App «Citymapper» — plus précis que Google Maps pour les transports londoniens",
+      "Apple Pay accepté quasi partout — vous pouvez vivre 4 jours avec juste votre téléphone",
+    ],
+  },
 };
 
 export default fr;
