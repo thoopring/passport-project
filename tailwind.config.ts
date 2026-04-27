@@ -11,31 +11,42 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        // Vermilion — DESIGN.md brand color, re-adopted after drift to mauve.
+        // Coral — primary brand. Friendlier than vermilion.
         brand: {
-          50: "#FDF2EF",
-          100: "#FADFD8",
-          200: "#F4B4A5",
-          300: "#EC8872",
-          400: "#E06241",
-          500: "#D4442B",
-          600: "#B03720",
-          700: "#8A2A18",
-          800: "#631E11",
-          900: "#40130A",
-          950: "#240905",
+          50: "#FFF5F4",
+          100: "#FFE4E0",
+          200: "#FFC4BC",
+          300: "#FFA098",
+          400: "#FF8580",
+          500: "#FF6B6B",
+          600: "#E04848",
+          700: "#B83333",
+          800: "#8A2424",
+          900: "#5C1818",
+          950: "#330C0C",
         },
+        // Soft Blue — secondary accent (sky/ocean). For badges, secondary
+        // CTAs, decorative dots, and breaking up coral monotony.
         accent: {
-          50: "#FDF2EF",
-          100: "#FADFD8",
-          200: "#F4B4A5",
-          300: "#EC8872",
-          400: "#E06241",
-          500: "#D4442B",
-          600: "#B03720",
-          700: "#8A2A18",
-          800: "#631E11",
-          900: "#40130A",
+          50: "#F1F8FD",
+          100: "#DCEEFA",
+          200: "#B6DBF4",
+          300: "#86C3EA",
+          400: "#5EB1E2",
+          500: "#4DA8DA",
+          600: "#2F88BB",
+          700: "#226A95",
+          800: "#194E6E",
+          900: "#10334A",
+        },
+        // Sand — tertiary warmth, for highlight cards and section breaks.
+        sand: {
+          50: "#FBF1E2",
+          100: "#F4DECB",
+          200: "#EBC9A8",
+          300: "#DCAC7E",
+          400: "#C99057",
+          500: "#B47840",
         },
         // Aubergine — ink scale for text + dark surfaces
         ink: {
@@ -66,7 +77,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Pretendard Variable", "Pretendard", "var(--font-sans)", "Inter", "system-ui", "-apple-system", "sans-serif"],
-        display: ["Pretendard Variable", "Pretendard", "var(--font-display)", "system-ui", "sans-serif"],
+        display: ["var(--font-fraunces)", "Pretendard Variable", "Pretendard", "Georgia", "serif"],
+        fraunces: ["var(--font-fraunces)", "Pretendard Variable", "Pretendard", "Georgia", "serif"],
         mono: ["JetBrains Mono", "Fira Code", "monospace"],
       },
       fontSize: {

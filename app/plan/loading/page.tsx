@@ -603,6 +603,8 @@ function LoadingInner() {
           question={activeQuestion}
           onAnswer={handleAnswer}
           onSkip={activeQuestion.optional ? handleSkip : undefined}
+          questionNumber={questionIndex + 1}
+          totalQuestions={questions.length}
         />
       )}
     </div>

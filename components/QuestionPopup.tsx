@@ -27,6 +27,10 @@ interface QuestionPopupProps {
   question: QuestionDef;
   onAnswer: (value: unknown) => void;
   onSkip?: () => void;
+  /** 1-based current question number; used for the playful progress callout. */
+  questionNumber?: number;
+  /** Total questions in the queue; together with questionNumber drives the "last question" tease. */
+  totalQuestions?: number;
 }
 
 /**
@@ -38,7 +42,25 @@ interface QuestionPopupProps {
  * input state) when the question changes — that's why this component does
  * not need a useEffect to reset state.
  */
-export default function QuestionPopup({ question, onAnswer, onSkip }: QuestionPopupProps) {
+export default function QuestionPopup({
+  question,
+  onAnswer,
+  onSkip,
+  questionNumber,
+  totalQuestions,
+}: QuestionPopupProps) {
+  // Playful progress callout — gives users a sense of "how much more?" and
+  // turns the wizard from "questionnaire" into "we're almost there together".
+  // Stays language-neutral via emoji + numbers; the localized parts come from
+  // the parent's `tp` translator already wrapped into question.title.
+  const progressLabel = (() => {
+    if (!questionNumber || !totalQuestions) return null;
+    if (questionNumber === totalQuestions) return "🎉  Last one!";
+    if (questionNumber === totalQuestions - 1) return "✨  Almost done";
+    if (questionNumber === 1) return "👋  Quick start";
+    if (questionNumber === Math.ceil(totalQuestions / 2)) return "💪  Halfway there";
+    return `${questionNumber} / ${totalQuestions}`;
+  })();
   const [singleValue, setSingleValue] = useState<string | null>(null);
   const [multiValue, setMultiValue] = useState<string[]>([]);
   const [numberValue, setNumberValue] = useState<number | "">("");
@@ -99,6 +121,11 @@ export default function QuestionPopup({ question, onAnswer, onSkip }: QuestionPo
       aria-modal="true"
     >
       <div className="w-full max-w-md bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl p-6 sm:p-7 shadow-2xl">
+        {progressLabel && (
+          <p className="text-caption uppercase tracking-[0.16em] text-[var(--accent-primary)] font-semibold mb-3">
+            {progressLabel}
+          </p>
+        )}
         <h3 className="text-display-sm font-bold text-[var(--text-primary)]">{question.title}</h3>
         {question.subtitle && (
           <p className="text-body-sm text-[var(--text-secondary)] mt-1">{question.subtitle}</p>

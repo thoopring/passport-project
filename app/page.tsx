@@ -29,10 +29,10 @@ export default function Home() {
       <section className="px-4 sm:px-6 pt-16 sm:pt-24 pb-24 sm:pb-32">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <h1 className="font-display font-bold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.0] tracking-[-0.03em] mb-6">
+            <h1 className="font-fraunces font-semibold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.0] tracking-[-0.022em] mb-6">
               Your next trip,
               <br />
-              sorted.
+              <em className="not-italic text-[var(--brand-primary)]">sorted.</em>
             </h1>
             <p className="text-body-lg text-[var(--text-secondary)] max-w-md mb-8">
               Tell us where you&apos;re going. We draft the itinerary, pick the hotel, and
@@ -49,14 +49,14 @@ export default function Home() {
           </div>
 
           <div className="order-1 lg:order-2">
-            <div className="quatrefoil relative w-full aspect-square max-w-[520px] mx-auto bg-[var(--surface-secondary)]">
+            <div className="quatrefoil relative w-full aspect-square max-w-[520px] mx-auto bg-[var(--surface-secondary)] overflow-hidden">
               <Image
                 src={HOME_HERO_IMAGE}
                 alt="A passport on a map — your next trip"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 520px"
-                className="object-cover"
+                className="object-cover hero-pan"
               />
             </div>
           </div>

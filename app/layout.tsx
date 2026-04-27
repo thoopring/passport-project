@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Bricolage_Grotesque } from "next/font/google";
+import { Inter, Bricolage_Grotesque, Fraunces } from "next/font/google";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
@@ -19,6 +19,17 @@ const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-display",
+});
+
+// Fraunces — modern serif for marketing headlines. Adds warmth + travel-
+// editorial character to the cleaner Pretendard body. Used via the
+// `.font-fraunces` utility class and inherited by `.prose h1/h2/h3`.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-fraunces",
 });
 
 const SITE_URL = "https://checkvisamap.com";
@@ -118,7 +129,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${bricolage.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${bricolage.variable} ${fraunces.variable}`}>
       <head>
         <script
           type="application/ld+json"

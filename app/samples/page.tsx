@@ -40,6 +40,9 @@ export default async function SamplesGalleryPage() {
           <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto">
             {t("subtitle")}
           </p>
+          <p className="text-caption uppercase tracking-[0.14em] text-[var(--accent-primary)] font-semibold max-w-xl mx-auto mt-5 inline-block px-3 py-1 rounded-full bg-[var(--accent-soft)]">
+            🌐 {t("languageNote")}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

@@ -4,29 +4,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Design Tokens — Clean Korean (near-white bg, vermilion accent, Pretendard) ========== */
-/* Replaces the prior cream+mauve palette. Goals:
-   - Near-white background so UI feels modern and not retro.
-   - Pretendard everywhere: one family with perfect Korean AND Latin coverage,
-     the de facto standard for Korean product design.
-   - Vermilion brand accent (original DESIGN.md brand color) instead of the
-     mauve/brown that had drifted in over iterations.
+/* ========== Design Tokens — Warm Coastal (travel excitement) ========== */
+/* Designed to feel like the first day of a coastal trip — warm white sun,
+   coral horizons, sky/ocean blues. Replaces the cleaner-but-sterile near-
+   white + vermilion system that read as "professional product" rather than
+   "your next adventure".
 */
 :root {
-  --background: #FAFAFA;
-  --foreground: #0A0A0A;
+  --background: #FFFCF7;          /* warm white — sun on paper */
+  --foreground: #161615;
   --surface-primary: #FFFFFF;
-  --surface-secondary: #F5F5F5;
-  --border-light: #EAEAEA;
-  --border-subtle: #F0F0F0;
-  --text-primary: #0A0A0A;
-  --text-secondary: #525252;
-  --text-muted: #9E9E9E;
-  --brand-primary: #D4442B;
-  --brand-dark: #A83520;
-  --accent-primary: #D4442B;
-  --lavender-soft: #F5EEFF;
-  --lavender: #C9B3FF;
+  --surface-secondary: #FBF7EE;   /* sand */
+  --border-light: #EDE6D6;
+  --border-subtle: #F4EFE3;
+  --text-primary: #161615;
+  --text-secondary: #5A5751;
+  --text-muted: #9C9789;
+
+  /* Coral — primary brand. Friendlier than vermilion, still confident. */
+  --brand-primary: #FF6B6B;
+  --brand-dark: #E04848;
+  --brand-soft: #FFE4E0;
+
+  /* Soft Blue — secondary, sky/ocean accent. Used for badges, secondary CTAs,
+     decorative dots, success states. */
+  --accent-primary: #4DA8DA;
+  --accent-dark: #2F88BB;
+  --accent-soft: #DCEEFA;
+
+  /* Sand — tertiary warmth, used for cards/highlights to break monotony. */
+  --sand-primary: #F4DECB;
+  --sand-soft: #FBF1E2;
+
+  /* Legacy keys retained for older components — point them to the new system. */
+  --lavender-soft: #DCEEFA;
+  --lavender: #4DA8DA;
 }
 
 /* ========== Base ========== */
@@ -46,7 +58,7 @@ body {
 
 /* ========== Selection ========== */
 ::selection {
-  background: rgba(212, 68, 43, 0.18);
+  background: rgba(255, 107, 107, 0.20);
   color: inherit;
 }
 
@@ -58,12 +70,12 @@ body {
 }
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -14px rgba(10,10,10,0.12);
+  box-shadow: 0 14px 28px -14px rgba(22,22,21,0.12);
 }
 
 /* ========== Shimmer Loading ========== */
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(10,10,10,0.05) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(22,22,21,0.05) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
@@ -80,13 +92,35 @@ body {
   mask-position: center;
 }
 
+/* ========== Hero Ken-Burns animation ========== */
+/* Slow zoom + pan on the hero photo to give it life without being distracting.
+   Lasts 24s; pauses naturally at the extremes of the keyframes. */
+@keyframes heroPan {
+  0%   { transform: scale(1.05) translate(0%, 0%); }
+  50%  { transform: scale(1.12) translate(-2%, -1%); }
+  100% { transform: scale(1.05) translate(0%, 0%); }
+}
+.hero-pan {
+  animation: heroPan 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ========== Display Font (Fraunces) ========== */
+/* Fraunces is loaded via next/font in layout.tsx. The display class is
+   applied to marketing headlines for warmth + character. */
+.font-fraunces {
+  font-family: var(--font-fraunces), "Pretendard Variable", Pretendard,
+    Georgia, serif;
+  font-feature-settings: "ss01", "ss02";
+}
+
 /* ========== Prose ========== */
 .prose h1,
 .prose h2,
 .prose h3 {
-  font-family: "Pretendard Variable", Pretendard, var(--font-display),
-    system-ui, sans-serif;
-  font-weight: 700;
+  font-family: var(--font-fraunces), "Pretendard Variable", Pretendard,
+    Georgia, serif;
+  font-weight: 600;
   letter-spacing: -0.018em;
   color: var(--text-primary);
 }

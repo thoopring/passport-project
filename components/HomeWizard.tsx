@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { searchCities } from "../lib/cities";
 
 type StepKey =
   | "destination"
@@ -76,6 +77,17 @@ export default function HomeWizard() {
   const [animating, setAnimating] = useState(false);
   const [customDays, setCustomDays] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
+  // Autocomplete UI state for the destination step
+  const [destFocused, setDestFocused] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
+
+  // Filter the curated city list by the current destination input.
+  // Empty until the user types — initial state is the popular-cities chips.
+  const suggestions = useMemo(() => {
+    return searchCities(answers.destination, 6);
+  }, [answers.destination]);
+  const showSuggestions =
+    destFocused && answers.destination.trim().length > 0 && suggestions.length > 0;
 
   const currentStep = ORDER[stepIdx];
   const destInputRef = useRef<HTMLInputElement>(null);
@@ -186,24 +198,99 @@ export default function HomeWizard() {
       >
         {currentStep === "destination" && (
           <StepBlock question={t("destination.question")}>
-            <input
-              ref={destInputRef}
-              type="text"
-              value={answers.destination}
-              onChange={(e) => {
-                const v = e.target.value;
-                setAnswers((a) => ({
-                  ...a,
-                  destination: v,
-                  destinationCountry: "", // clear when typing custom
-                }));
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && answers.destination.trim()) advance();
-              }}
-              placeholder={t("destination.placeholder")}
-              className="w-full px-5 py-4 bg-white border border-[var(--border-light)] rounded-[12px] text-[1.125rem] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
-            />
+            <div className="relative">
+              <input
+                ref={destInputRef}
+                type="text"
+                value={answers.destination}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setAnswers((a) => ({
+                    ...a,
+                    destination: v,
+                    destinationCountry: "", // clear when typing custom
+                  }));
+                  setActiveSuggestion(0);
+                }}
+                onFocus={() => setDestFocused(true)}
+                onBlur={() => {
+                  // Delay to allow mousedown on suggestion to register
+                  setTimeout(() => setDestFocused(false), 150);
+                }}
+                onKeyDown={(e) => {
+                  if (showSuggestions) {
+                    if (e.key === "ArrowDown") {
+                      e.preventDefault();
+                      setActiveSuggestion((i) => Math.min(i + 1, suggestions.length - 1));
+                      return;
+                    }
+                    if (e.key === "ArrowUp") {
+                      e.preventDefault();
+                      setActiveSuggestion((i) => Math.max(i - 1, 0));
+                      return;
+                    }
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      const pick = suggestions[activeSuggestion];
+                      setAnswers((a) => ({
+                        ...a,
+                        destination: pick.name,
+                        destinationCountry: pick.country,
+                      }));
+                      setDestFocused(false);
+                      advance();
+                      return;
+                    }
+                    if (e.key === "Escape") {
+                      setDestFocused(false);
+                      return;
+                    }
+                  }
+                  if (e.key === "Enter" && answers.destination.trim()) advance();
+                }}
+                placeholder={t("destination.placeholder")}
+                autoComplete="off"
+                className="w-full px-5 py-4 bg-white border border-[var(--border-light)] rounded-[12px] text-[1.125rem] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
+              />
+
+              {showSuggestions && (
+                <div className="absolute z-20 left-0 right-0 mt-2 bg-white border border-[var(--border-light)] rounded-[12px] shadow-card overflow-hidden">
+                  {suggestions.map((c, i) => (
+                    <button
+                      key={`${c.name}-${c.country}`}
+                      type="button"
+                      onMouseDown={(e) => {
+                        // Prevent input blur before click registers
+                        e.preventDefault();
+                      }}
+                      onClick={() => {
+                        setAnswers((a) => ({
+                          ...a,
+                          destination: c.name,
+                          destinationCountry: c.country,
+                        }));
+                        setDestFocused(false);
+                        advance();
+                      }}
+                      onMouseEnter={() => setActiveSuggestion(i)}
+                      className={`w-full flex items-baseline justify-between gap-3 px-4 py-3 text-left transition ${
+                        i === activeSuggestion
+                          ? "bg-[var(--accent-soft)]"
+                          : "hover:bg-[var(--surface-secondary)]"
+                      }`}
+                    >
+                      <span className="text-body-md text-[var(--text-primary)] font-medium">
+                        {c.name}
+                      </span>
+                      <span className="text-body-sm text-[var(--text-muted)] shrink-0">
+                        {c.country}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div className="mt-5">
               <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">
                 {t("destination.popular")}

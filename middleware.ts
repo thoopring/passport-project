@@ -35,10 +35,8 @@ const COUNTRY_TO_LOCALE: Record<string, string> = {
 export function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
-  // User already chose a locale — nothing to suggest.
+  // User already chose a locale — cookie wins, nothing to do.
   if (request.cookies.get("NEXT_LOCALE")) return response;
-  // User already dismissed the suggestion — don't bug them.
-  if (request.cookies.get("SUGGEST_DISMISSED")) return response;
 
   // Vercel Edge populates this header on every request in production.
   // In dev / non-Vercel envs it may be missing — skip silently.
@@ -53,14 +51,20 @@ export function middleware(request: NextRequest) {
   const suggestedLocale = COUNTRY_TO_LOCALE[country.toUpperCase()];
   if (!suggestedLocale) return response;
 
-  // Set the suggestion cookie. Short-lived (10 minutes) — just to bridge from
-  // edge middleware to the next client render. The banner will read it and
-  // either set NEXT_LOCALE (accept) or SUGGEST_DISMISSED (decline).
-  response.cookies.set("SUGGEST_LOCALE", suggestedLocale, {
+  // Per design feedback (priority: 1) IP country, 2) cookie): on a first-
+  // ever visit (no NEXT_LOCALE cookie), AUTO-SET the locale to the IP-based
+  // mapping rather than just suggesting via banner. Once set, the cookie
+  // wins on every subsequent request, so the user's manual choice via the
+  // language switcher always takes priority.
+  response.cookies.set("NEXT_LOCALE", suggestedLocale, {
     path: "/",
-    maxAge: 60 * 10,
+    maxAge: 60 * 60 * 24 * 365,
     sameSite: "lax",
   });
+
+  // Also clear any stale SUGGEST_LOCALE — we already auto-applied so the
+  // banner shouldn't fire.
+  response.cookies.set("SUGGEST_LOCALE", "", { path: "/", maxAge: 0 });
 
   return response;
 }
