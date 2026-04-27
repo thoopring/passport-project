@@ -107,6 +107,13 @@ function LoadingInner() {
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [popupBlocked, setPopupBlocked] = useState(false);
   const [editingField, setEditingField] = useState<EditableField | null>(null);
+  // Detect referral cookie on mount — drives the "$1 off coupon" chip on
+  // the review screen and tells the buyer the discount will auto-apply.
+  const [hasReferralCoupon, setHasReferralCoupon] = useState(false);
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    setHasReferralCoupon(/(?:^|;\s*)ref_code=/.test(document.cookie));
+  }, []);
   // Draft planId after checkout submission — needed for the BroadcastChannel
   // listener so we only redirect on messages matching our plan.
   const [draftPlanId, setDraftPlanId] = useState<string | null>(null);
@@ -516,6 +523,32 @@ function LoadingInner() {
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-[12px] p-4 text-body-sm text-red-700 mb-6">
               {error}
+            </div>
+          )}
+
+          {/* Referral coupon banner — appears when buyer arrived via /r/CODE.
+              The discount auto-applies at LS checkout. We surface it here so
+              the buyer sees the savings BEFORE paying, not as a surprise. */}
+          {hasReferralCoupon && (
+            <div className="mb-6 flex items-center gap-3 px-4 py-3 rounded-[12px] bg-gradient-to-r from-[var(--brand-soft)] to-[var(--accent-soft)] border border-[var(--brand-primary)]/20">
+              <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shrink-0 shadow-soft">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--brand-primary)]" aria-hidden>
+                  <path d="M20 12V8H6a2 2 0 1 1 0-4h12.5a.5.5 0 0 1 .5.5V12" />
+                  <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
+                  <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-body-sm font-semibold text-[var(--text-primary)]">
+                  추천 쿠폰 -$1 자동 적용
+                </p>
+                <p className="text-caption text-[var(--text-secondary)]">
+                  결제 페이지에서 $4 → $3 으로 차감돼요
+                </p>
+              </div>
+              <span className="text-body-md font-bold text-[var(--brand-primary)] tabular-nums shrink-0">
+                $3
+              </span>
             </div>
           )}
 

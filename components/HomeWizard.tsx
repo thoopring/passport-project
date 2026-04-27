@@ -2,8 +2,9 @@
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { searchCities } from "../lib/cities";
+import { useLocale, useTranslations } from "next-intl";
+import { searchCities, getCityDisplayName, getCityDisplayCountry } from "../lib/cities";
+import type { Locale } from "../i18n/locales";
 
 type StepKey =
   | "destination"
@@ -63,6 +64,7 @@ declare global {
 
 export default function HomeWizard() {
   const t = useTranslations("homeWizard");
+  const locale = useLocale() as Locale;
   const router = useRouter();
   const [stepIdx, setStepIdx] = useState(0);
   const [answers, setAnswers] = useState<Answers>({
@@ -255,38 +257,41 @@ export default function HomeWizard() {
 
               {showSuggestions && (
                 <div className="absolute z-20 left-0 right-0 mt-2 bg-white border border-[var(--border-light)] rounded-[12px] shadow-card overflow-hidden">
-                  {suggestions.map((c, i) => (
-                    <button
-                      key={`${c.name}-${c.country}`}
-                      type="button"
-                      onMouseDown={(e) => {
-                        // Prevent input blur before click registers
-                        e.preventDefault();
-                      }}
-                      onClick={() => {
-                        setAnswers((a) => ({
-                          ...a,
-                          destination: c.name,
-                          destinationCountry: c.country,
-                        }));
-                        setDestFocused(false);
-                        advance();
-                      }}
-                      onMouseEnter={() => setActiveSuggestion(i)}
-                      className={`w-full flex items-baseline justify-between gap-3 px-4 py-3 text-left transition ${
-                        i === activeSuggestion
-                          ? "bg-[var(--accent-soft)]"
-                          : "hover:bg-[var(--surface-secondary)]"
-                      }`}
-                    >
-                      <span className="text-body-md text-[var(--text-primary)] font-medium">
-                        {c.name}
-                      </span>
-                      <span className="text-body-sm text-[var(--text-muted)] shrink-0">
-                        {c.country}
-                      </span>
-                    </button>
-                  ))}
+                  {suggestions.map((c, i) => {
+                    const displayName = getCityDisplayName(c, locale);
+                    const displayCountry = getCityDisplayCountry(c, locale);
+                    return (
+                      <button
+                        key={`${c.name}-${c.country}`}
+                        type="button"
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => {
+                          setAnswers((a) => ({
+                            ...a,
+                            // Store the user's locale-specific name so the
+                            // input + downstream prompt match what they saw.
+                            destination: displayName,
+                            destinationCountry: displayCountry,
+                          }));
+                          setDestFocused(false);
+                          advance();
+                        }}
+                        onMouseEnter={() => setActiveSuggestion(i)}
+                        className={`w-full flex items-baseline justify-between gap-3 px-4 py-3 text-left transition ${
+                          i === activeSuggestion
+                            ? "bg-[var(--accent-soft)]"
+                            : "hover:bg-[var(--surface-secondary)]"
+                        }`}
+                      >
+                        <span className="text-body-md text-[var(--text-primary)] font-medium">
+                          {displayName}
+                        </span>
+                        <span className="text-body-sm text-[var(--text-muted)] shrink-0">
+                          {displayCountry}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>

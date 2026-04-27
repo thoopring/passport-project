@@ -20,6 +20,8 @@ interface CreateCheckoutOptions {
   planId: string;
   email: string;
   destination: string;
+  /** Optional LS discount code (created in LS dashboard) — auto-applies. */
+  discountCode?: string;
 }
 
 export async function createCheckoutUrl(opts: CreateCheckoutOptions): Promise<string> {
@@ -32,14 +34,21 @@ export async function createCheckoutUrl(opts: CreateCheckoutOptions): Promise<st
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
 
+  const checkoutData: Record<string, unknown> = {
+    email: opts.email,
+    custom: { plan_id: opts.planId },
+  };
+  if (opts.discountCode) {
+    // LS auto-applies the discount on the hosted checkout — buyer sees the
+    // line item already reduced before they enter card details.
+    checkoutData.discount_code = opts.discountCode;
+  }
+
   const body = {
     data: {
       type: "checkouts",
       attributes: {
-        checkout_data: {
-          email: opts.email,
-          custom: { plan_id: opts.planId },
-        },
+        checkout_data: checkoutData,
         product_options: {
           redirect_url: `${baseUrl}/plan/${opts.planId}?paid=1`,
           receipt_thank_you_note: `Your detailed ${opts.destination} trip plan is being generated. You'll receive an email within a few minutes with the PDF.`,

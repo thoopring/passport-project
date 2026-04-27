@@ -182,6 +182,117 @@ export const CITIES: CityOption[] = [
 ];
 
 /**
+ * Country names per locale. Only most-common destinations get full coverage;
+ * rest fall back to English. Adding a country here is a one-line addition.
+ */
+const COUNTRY_NAMES: Record<string, Record<string, string>> = {
+  Japan: { ko: "일본", ja: "日本", zh: "日本", fr: "Japon" },
+  "South Korea": { ko: "대한민국", ja: "韓国", zh: "韩国", fr: "Corée du Sud" },
+  China: { ko: "중국", ja: "中国", zh: "中国", fr: "Chine" },
+  "Hong Kong": { ko: "홍콩", ja: "香港", zh: "香港", fr: "Hong Kong" },
+  Taiwan: { ko: "대만", ja: "台湾", zh: "台湾", fr: "Taïwan" },
+  Macau: { ko: "마카오", ja: "マカオ", zh: "澳门", fr: "Macao" },
+  Thailand: { ko: "태국", ja: "タイ", zh: "泰国", fr: "Thaïlande" },
+  Singapore: { ko: "싱가포르", ja: "シンガポール", zh: "新加坡", fr: "Singapour" },
+  Malaysia: { ko: "말레이시아", ja: "マレーシア", zh: "马来西亚", fr: "Malaisie" },
+  Indonesia: { ko: "인도네시아", ja: "インドネシア", zh: "印度尼西亚", fr: "Indonésie" },
+  Vietnam: { ko: "베트남", ja: "ベトナム", zh: "越南", fr: "Vietnam" },
+  Philippines: { ko: "필리핀", ja: "フィリピン", zh: "菲律宾", fr: "Philippines" },
+  Cambodia: { ko: "캄보디아", ja: "カンボジア", zh: "柬埔寨", fr: "Cambodge" },
+  Laos: { ko: "라오스", ja: "ラオス", zh: "老挝", fr: "Laos" },
+  Myanmar: { ko: "미얀마", ja: "ミャンマー", zh: "缅甸", fr: "Myanmar" },
+  India: { ko: "인도", ja: "インド", zh: "印度", fr: "Inde" },
+  Nepal: { ko: "네팔", ja: "ネパール", zh: "尼泊尔", fr: "Népal" },
+  "Sri Lanka": { ko: "스리랑카", ja: "スリランカ", zh: "斯里兰卡", fr: "Sri Lanka" },
+  Maldives: { ko: "몰디브", ja: "モルディブ", zh: "马尔代夫", fr: "Maldives" },
+  France: { ko: "프랑스", ja: "フランス", zh: "法国", fr: "France" },
+  "United Kingdom": { ko: "영국", ja: "イギリス", zh: "英国", fr: "Royaume-Uni" },
+  Ireland: { ko: "아일랜드", ja: "アイルランド", zh: "爱尔兰", fr: "Irlande" },
+  Italy: { ko: "이탈리아", ja: "イタリア", zh: "意大利", fr: "Italie" },
+  Spain: { ko: "스페인", ja: "スペイン", zh: "西班牙", fr: "Espagne" },
+  Portugal: { ko: "포르투갈", ja: "ポルトガル", zh: "葡萄牙", fr: "Portugal" },
+  Germany: { ko: "독일", ja: "ドイツ", zh: "德国", fr: "Allemagne" },
+  Netherlands: { ko: "네덜란드", ja: "オランダ", zh: "荷兰", fr: "Pays-Bas" },
+  Belgium: { ko: "벨기에", ja: "ベルギー", zh: "比利时", fr: "Belgique" },
+  Austria: { ko: "오스트리아", ja: "オーストリア", zh: "奥地利", fr: "Autriche" },
+  Switzerland: { ko: "스위스", ja: "スイス", zh: "瑞士", fr: "Suisse" },
+  "Czech Republic": { ko: "체코", ja: "チェコ", zh: "捷克", fr: "République tchèque" },
+  Hungary: { ko: "헝가리", ja: "ハンガリー", zh: "匈牙利", fr: "Hongrie" },
+  Poland: { ko: "폴란드", ja: "ポーランド", zh: "波兰", fr: "Pologne" },
+  Denmark: { ko: "덴마크", ja: "デンマーク", zh: "丹麦", fr: "Danemark" },
+  Sweden: { ko: "스웨덴", ja: "スウェーデン", zh: "瑞典", fr: "Suède" },
+  Norway: { ko: "노르웨이", ja: "ノルウェー", zh: "挪威", fr: "Norvège" },
+  Finland: { ko: "핀란드", ja: "フィンランド", zh: "芬兰", fr: "Finlande" },
+  Iceland: { ko: "아이슬란드", ja: "アイスランド", zh: "冰岛", fr: "Islande" },
+  Greece: { ko: "그리스", ja: "ギリシャ", zh: "希腊", fr: "Grèce" },
+  Turkey: { ko: "튀르키예", ja: "トルコ", zh: "土耳其", fr: "Turquie" },
+  Croatia: { ko: "크로아티아", ja: "クロアチア", zh: "克罗地亚", fr: "Croatie" },
+  "United States": { ko: "미국", ja: "アメリカ", zh: "美国", fr: "États-Unis" },
+  Canada: { ko: "캐나다", ja: "カナダ", zh: "加拿大", fr: "Canada" },
+  Mexico: { ko: "멕시코", ja: "メキシコ", zh: "墨西哥", fr: "Mexique" },
+  Cuba: { ko: "쿠바", ja: "キューバ", zh: "古巴", fr: "Cuba" },
+  Brazil: { ko: "브라질", ja: "ブラジル", zh: "巴西", fr: "Brésil" },
+  Argentina: { ko: "아르헨티나", ja: "アルゼンチン", zh: "阿根廷", fr: "Argentine" },
+  Peru: { ko: "페루", ja: "ペルー", zh: "秘鲁", fr: "Pérou" },
+  Chile: { ko: "칠레", ja: "チリ", zh: "智利", fr: "Chili" },
+  Colombia: { ko: "콜롬비아", ja: "コロンビア", zh: "哥伦比亚", fr: "Colombie" },
+  Australia: { ko: "호주", ja: "オーストラリア", zh: "澳大利亚", fr: "Australie" },
+  "New Zealand": { ko: "뉴질랜드", ja: "ニュージーランド", zh: "新西兰", fr: "Nouvelle-Zélande" },
+  Fiji: { ko: "피지", ja: "フィジー", zh: "斐济", fr: "Fidji" },
+  "United Arab Emirates": { ko: "아랍에미리트", ja: "アラブ首長国連邦", zh: "阿联酋", fr: "Émirats arabes unis" },
+  Qatar: { ko: "카타르", ja: "カタール", zh: "卡塔尔", fr: "Qatar" },
+  Israel: { ko: "이스라엘", ja: "イスラエル", zh: "以色列", fr: "Israël" },
+  Jordan: { ko: "요르단", ja: "ヨルダン", zh: "约旦", fr: "Jordanie" },
+  Egypt: { ko: "이집트", ja: "エジプト", zh: "埃及", fr: "Égypte" },
+  Morocco: { ko: "모로코", ja: "モロッコ", zh: "摩洛哥", fr: "Maroc" },
+  "South Africa": { ko: "남아프리카", ja: "南アフリカ", zh: "南非", fr: "Afrique du Sud" },
+  Kenya: { ko: "케냐", ja: "ケニア", zh: "肯尼亚", fr: "Kenya" },
+  Tanzania: { ko: "탄자니아", ja: "タンザニア", zh: "坦桑尼亚", fr: "Tanzanie" },
+};
+
+const HANGUL_RE = /[가-힯]/;
+const KANA_RE = /[぀-ゟ゠-ヿ]/;
+const CJK_RE = /[一-鿿]/;
+
+/**
+ * Locale-aware city name. Picks the alias matching the locale's script:
+ *   ko → first alias containing Hangul
+ *   ja → first alias with kana, else CJK ideographs (kanji shared with ZH)
+ *   zh → first alias with CJK ideographs (no kana)
+ *   en/fr → canonical English name
+ *
+ * Falls back to canonical EN if no script-matching alias found. This avoids
+ * having to maintain 5 explicit name fields per city while still showing
+ * users their native script in the dropdown.
+ */
+export function getCityDisplayName(
+  city: CityOption,
+  locale: "en" | "ko" | "ja" | "zh" | "fr",
+): string {
+  if (locale === "en" || locale === "fr") return city.name;
+  for (const alias of city.aliases) {
+    if (locale === "ko" && HANGUL_RE.test(alias)) return alias;
+    if (locale === "ja" && KANA_RE.test(alias)) return alias;
+    if (locale === "ja" && CJK_RE.test(alias) && !HANGUL_RE.test(alias)) return alias;
+    if (locale === "zh" && CJK_RE.test(alias) && !KANA_RE.test(alias) && !HANGUL_RE.test(alias))
+      return alias;
+  }
+  return city.name;
+}
+
+/**
+ * Locale-aware country name. Looks up the curated COUNTRY_NAMES map; if the
+ * locale-specific name is missing, returns the English canonical name.
+ */
+export function getCityDisplayCountry(
+  city: CityOption,
+  locale: "en" | "ko" | "ja" | "zh" | "fr",
+): string {
+  if (locale === "en") return city.country;
+  return COUNTRY_NAMES[city.country]?.[locale] ?? city.country;
+}
+
+/**
  * Filter cities by a free-text query. Searches the canonical English name,
  * the country, and all aliases (lowercase, accent-insensitive). Returns the
  * top `limit` matches, prefix-matched first then substring.

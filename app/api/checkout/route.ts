@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getPlan, markPlanPaid, setPlanGenerating, savePlanResult, setPlanFailed } from "../../../lib/plans";
 import { createCheckoutUrl } from "../../../lib/lemonsqueezy";
-import { consumePlanCredit } from "../../../lib/referrals";
+import { consumePlanCredit, REFERRAL_COOKIE } from "../../../lib/referrals";
 import { validatePromoCode, redeemPromoCode } from "../../../lib/promo";
 import { generateTripPlan } from "../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../lib/email";
+
+/**
+ * LS discount code that's pre-configured (in the LS dashboard) to give $1
+ * off any plan. Applied automatically when the buyer arrived via /r/CODE.
+ * Override per-environment via env so test stores can use a separate code.
+ */
+const REFERRAL_DISCOUNT_CODE =
+  process.env.LEMON_SQUEEZY_REFERRAL_DISCOUNT_CODE || "REFERRAL1";
 
 /**
  * POST /api/checkout
@@ -64,14 +72,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ url: `${baseUrl}/plan/${planId}?paid=1` });
     }
 
-    // Normal Lemon Squeezy flow
+    // Normal Lemon Squeezy flow. If the buyer arrived via /r/CODE the
+    // referral cookie is set — pass the LS discount code so $1 comes off
+    // automatically at LS checkout (visible to buyer before payment).
+    const referralCode = req.cookies.get(REFERRAL_COOKIE)?.value;
     const url = await createCheckoutUrl({
       planId: plan.id,
       email: plan.email,
       destination: plan.request.destination,
+      discountCode: referralCode ? REFERRAL_DISCOUNT_CODE : undefined,
     });
 
-    return NextResponse.json({ url });
+    return NextResponse.json({ url, referralApplied: Boolean(referralCode) });
   } catch (err) {
     console.error("checkout failed", err);
     const message = err instanceof Error ? err.message : "Unknown error";

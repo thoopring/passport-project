@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomeWizard from "../components/HomeWizard";
 import PlanMap from "../components/PlanMap";
-import { SAMPLE_PLANS, HOME_HERO_IMAGE, getSample } from "../lib/samples";
+import { SAMPLE_PLANS, HOME_HERO_IMAGES, getSample } from "../lib/samples";
 
 export const metadata: Metadata = {
   title: "Your next trip, sorted — $4",
@@ -50,14 +50,17 @@ export default function Home() {
 
           <div className="order-1 lg:order-2">
             <div className="quatrefoil relative w-full aspect-square max-w-[520px] mx-auto bg-[var(--surface-secondary)] overflow-hidden">
-              <Image
-                src={HOME_HERO_IMAGE}
-                alt="A passport on a map — your next trip"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 520px"
-                className="object-cover hero-pan"
-              />
+              {HOME_HERO_IMAGES.map((src, i) => (
+                <Image
+                  key={src}
+                  src={src}
+                  alt="Travel inspiration — your next trip"
+                  fill
+                  priority={i === 0}
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className={`object-cover absolute inset-0 hero-fade-${i + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>

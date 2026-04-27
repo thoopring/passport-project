@@ -129,8 +129,21 @@ export const SAMPLE_PLANS: SampleMeta[] = [
   },
 ];
 
-/** Hero photo for the home banner — bright, hopeful, departure feeling. */
-export const HOME_HERO_IMAGE = UNSPLASH("photo-1469854523086-cc02fe5d8800");
+/** Hero photos for the home rotating banner. 4 vibrant travel scenes that
+ *  cross-fade every ~6 seconds. Each is universally recognized as "travel". */
+export const HOME_HERO_IMAGES = [
+  // Santorini blue domes — the wanderlust postcard
+  UNSPLASH("photo-1530841377377-3ff06c0ca713"),
+  // Tropical beach with palm trees and turquoise water
+  UNSPLASH("photo-1507525428034-b723cf961d3e"),
+  // Couple looking at sunset cliff view
+  UNSPLASH("photo-1488085061387-422e29b40080"),
+  // Hot air balloons at Cappadocia — magic-of-travel feel
+  UNSPLASH("photo-1641128324972-af3212f0f6bd"),
+];
+
+/** Legacy single-image export retained so existing samples links don't break. */
+export const HOME_HERO_IMAGE = HOME_HERO_IMAGES[0];
 
 export function getSample(slug: string): SampleMeta | undefined {
   return SAMPLE_PLANS.find((s) => s.slug === slug);
