@@ -4,20 +4,21 @@ import type { TripPlan } from "../../types/trip-plan";
  * Sample plan: London, 4 days, couple, midrange, balanced.
  *
  * Central London's best museums + markets + a day trip to Oxford.
- * Hand-curated with real coordinates.
+ * Hand-curated with real coordinates. Text fields are intentionally
+ * enriched beyond typical API output — samples are the conversion surface.
  */
 const london4dCouple: TripPlan = {
   destination: "London",
   destinationCountry: "United Kingdom",
   durationDays: 4,
   overview:
-    "Four days for a couple who want classic London without the tour-bus feeling. You'll spend mornings in the world's best free museums, afternoons walking markets and royal parks, and one full day in Oxford. Hotel picked for walkability to the West End and a short Paddington Express to Heathrow.",
+    "Four days for a couple who want classic London without the tour-bus feeling. You'll spend mornings in the world's best free museums, afternoons walking markets and royal parks, and one full day in Oxford. Hotel picked for walkability to the West End and a short Paddington Express to Heathrow. The strength of London is cultural density: British Museum, National Gallery, V&A, Tate Modern — all free; you can cover the highlights of human civilization in 3 days. These 4 days will make you want to return for longer — the signature of a 'culture city.'",
   bestSeasonNote:
-    "May through early June and September through early October are the sweet spots — comfortable temperatures, long daylight, manageable crowds. July/August are hot and crowded; January is the cheapest but darkest.",
+    "May through early June and September through early October are the sweet spots — comfortable temperatures, long daylight, manageable crowds. July/August are hot and crowded; January is the cheapest but darkest. Christmas markets (late November to late December) at Hyde Park's Winter Wonderland, Covent Garden, Southbank Centre — London at its most festive. New Year's Eve fireworks on the Thames (free with advance ticket) is among Europe's largest.",
   currencyTip:
-    "Pound Sterling (GBP). Cards and contactless everywhere — you can do 4 days in London and never touch cash. Tap your credit card on the Tube turnstiles; the daily cap (~£8.10) automatically kicks in.",
+    "Pound Sterling (GBP). Cards and contactless everywhere — you can do 4 days in London and never touch cash. Tap your credit card on the Tube turnstiles; the daily cap (~£8.10) automatically kicks in. Visa/Mastercard cards from your country work at 90% of places. Before you fly, get a Wise card or Curve — exchange rate 3-5% better than standard credit cards.",
   languageTip:
-    "English (UK variety). 'Ta' = thanks, 'cheers' = thanks + goodbye, 'sorted' = done. Pub ordering: go to the bar, don't wait to be served.",
+    "English (UK variety). 'Ta' = thanks, 'cheers' = thanks + goodbye, 'sorted' = done. Pub ordering: go to the bar, don't wait to be served. Tube announcements have strong British accent — watch the screen. For directions, Brits are extremely friendly — start a conversation, they'll stop and even sketch a map.",
   emergencyNumber: "999 (all emergencies)",
   hotel: {
     name: "The Z Hotel Victoria",
@@ -25,7 +26,7 @@ const london4dCouple: TripPlan = {
     address: "19 Saint George's Dr, Pimlico",
     coords: [-0.1447, 51.4921],
     rationale:
-      "Victoria puts you 10 minutes from Buckingham Palace on foot, inside an express zone to Heathrow (Gatwick Express alternative), and on 4 Tube lines. Z Hotel's rooms are small-but-modern with waterfall showers, reliable wifi, and a decent lobby café — perfect for couples who'll be out all day.",
+      "Victoria puts you 10 minutes from Buckingham Palace on foot, inside an express zone to Heathrow (Gatwick Express alternative), and on 4 Tube lines. Z Hotel's rooms are small-but-modern with waterfall showers, reliable wifi, and a decent lobby café — perfect for couples who'll be out all day. Clean simple design with prints of London's famous architects on the walls — even your sleeping hours are inside the 'culture city' atmosphere. A large Sainsbury's next to Victoria station for late-night snacks.",
     priceTier: "$$",
     estimatedNightlyRate: "~$170/night",
   },
@@ -34,7 +35,7 @@ const london4dCouple: TripPlan = {
     duration: "~35 min",
     cost: "~£30 one-way (or £5 on the slower Tube)",
     instructions:
-      "From Heathrow (LHR), the Heathrow Express runs non-stop to Paddington in 15 minutes every 15 min. Buy online 2 weeks ahead for ~£18. From Paddington, take the Circle line to Victoria — 5 stops, 12 min. Budget: the Piccadilly Tube line goes direct to Victoria in 50 min for ~£5 peak / £3 off-peak. Tap your contactless card — no paper ticket needed.",
+      "From Heathrow (LHR), the Heathrow Express runs non-stop to Paddington in 15 minutes every 15 min. Buy online 2 weeks ahead for ~£18. From Paddington, take the Circle line to Victoria — 5 stops, 12 min. Budget: the Piccadilly Tube line goes direct to Victoria in 50 min for ~£5 peak / £3 off-peak. Tap your contactless card — no paper ticket needed. At the airport, Wise or international credit card is the better-rate option.",
   },
   days: [
     {
@@ -52,7 +53,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1247, 51.5007],
           duration: "45 min",
           description:
-            "The Elizabeth Tower (containing Big Ben) was cleaned during 2017-2022 and looks like it did in 1859 — freshly Gothic. Walk across Westminster Bridge for the London Eye-framed photo everyone takes. The Parliament buildings are the same river-facing facade as every movie you've ever seen about London.",
+            "The Elizabeth Tower (containing Big Ben) was cleaned during 2017-2022 and looks like it did in 1859 — freshly Gothic. Walk across Westminster Bridge for the London Eye-framed photo everyone takes. The Parliament buildings are the same river-facing facade as every movie you've ever seen about London. If you're on the bridge at 6pm Big Ben strikes the hour, the chime echoes 10 seconds along the Thames — a London 'immersive sound moment.'",
           estimatedCost: "Free",
           transitFromPrev: "Tube District line from Victoria → Westminster, 5 min",
         },
@@ -66,7 +67,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1276, 51.4994],
           duration: "2 hours",
           description:
-            "Coronation church since 1066. Every English monarch except Edward V and VIII has been crowned here; Newton, Darwin, and Hawking are buried in the Scientists' Corner. The Lady Chapel's fan-vaulted ceiling is the reason to book audio guide + allow 2 hours.",
+            "Coronation church since 1066. Every English monarch except Edward V and VIII has been crowned here; Newton, Darwin, and Hawking are buried in the Scientists' Corner. The Lady Chapel's fan-vaulted ceiling is the reason to book audio guide + allow 2 hours — completed in 1503, an unrepeatable medieval architectural marvel in stone. In 'Poets' Corner' you can see statues and memorials for Shakespeare, Dickens, the Brontë sisters — pilgrimage for literature fans.",
           estimatedCost: "~£29",
           bookingTip: "Book online 2-3 days ahead; Saturdays sell out 1 week in advance.",
           transitFromPrev: "5 min walk",
@@ -80,7 +81,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.0903, 51.5053],
           duration: "1.5 hours",
           description:
-            "London's oldest food market. Eat standing — grilled-cheese sandwiches from Kappacasein, paella from Brindisa, duck confit baguette from Le Marche du Quartier. The lunch you'll remember.",
+            "London's oldest food market, founded in 1014. Eat standing — Kappacasein's grilled-cheese sandwich (£8) is a must, the moment Swiss raclette melts onto the toast is the market star. Brindisa's paella (£10), made-to-order in 5 minutes. Le Marché du Quartier's duck-confit baguette (£8) — the taste of a small French southern village. The lunch you'll remember. Next door, 'Borough Market Kitchen' has 100+ spices and ingredients to take home — a foodie pilgrimage.",
           estimatedCost: "~£18",
           transitFromPrev: "Jubilee line from Westminster → London Bridge, 15 min",
         },
@@ -93,7 +94,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.0992, 51.5076],
           duration: "2 hours",
           description:
-            "A former power station turned into Europe's most important modern art museum. Free for the permanent collection. Rothko, Picasso, Bacon, Pollock. The 10th-floor viewing terrace is the best free view of St. Paul's Cathedral across the river.",
+            "A former power station turned into Europe's most important modern art museum. Free for the permanent collection. Rothko, Picasso, Bacon, Pollock — every name changed art history. The 10th-floor viewing terrace is the best free view of St. Paul's Cathedral across the river. The 'Turbine Hall' — the central 35-meter-high hall — hosts massive contemporary art installations every year, free; you stand among them, you become part of the work.",
           estimatedCost: "Free (special exhibits extra)",
           transitFromPrev: "10 min walk along the river",
         },
@@ -106,7 +107,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.0984, 51.5101],
           duration: "45 min",
           description:
-            "Walk across the pedestrian Millennium Bridge toward St. Paul's. The exterior of Wren's 1710 masterpiece is still free to admire; skip the paid interior unless you're set on climbing the Whispering Gallery.",
+            "Walk across the pedestrian Millennium Bridge toward St. Paul's. The exterior of Wren's 1710 masterpiece is still free to admire; skip the paid interior unless you're set on climbing the Whispering Gallery. The Millennium Bridge is the 'millennium bridge' — built in 1999, closed 10 days after opening due to severe sway, reinforced for 2 years. Today still one of London's most modern bridges; J.K. Rowling has the Death Eaters destroy it in Harry Potter 7.",
           estimatedCost: "Free",
           transitFromPrev: "5 min walk",
         },
@@ -120,7 +121,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.0887, 51.5033],
           duration: "1.5 hours",
           description:
-            "The only remaining galleried coaching inn in London — 1677, owned by the National Trust. Proper pub dinner: fish & chips with mushy peas and a pint of real ale in a wood-paneled room. Dickens drank here.",
+            "The only remaining galleried coaching inn in London — 1677, owned by the National Trust. Proper pub dinner: fish & chips with mushy peas and a pint of real ale in a wood-paneled room. Dickens drank here — his novel 'Little Dorrit' was written in this pub. 'Sunday Roast' if you're here Sunday is the British national dinner — roast beef/chicken/pork + roast potatoes + Yorkshire pudding + vegetables + gravy, one portion sustains you for the day.",
           estimatedCost: "~£35 for two with drinks",
           bookingTip: "Reserve on OpenTable — the dining room is small; the beer garden's first-come.",
           transitFromPrev: "10 min walk",
@@ -143,7 +144,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1270, 51.5194],
           duration: "3 hours",
           description:
-            "Free. 8 million objects across 94 galleries. Focus: Rosetta Stone (Gallery 4), Parthenon Marbles (Gallery 18), Egyptian mummies (Galleries 62-63), Sutton Hoo treasures (Gallery 41). The Great Court glass ceiling is worth the trip alone.",
+            "Free. 8 million objects across 94 galleries. Focus: Rosetta Stone (Gallery 4), Parthenon Marbles (Gallery 18), Egyptian mummies (Galleries 62-63), Sutton Hoo treasures (Gallery 41). The Great Court glass ceiling is worth the trip alone — Norman Foster's 2000 design, the largest covered square in the world. Audio guide in multiple languages from the lobby (£5), 3 hours covers 50 highlight pieces. The 'Chinese Gallery' (33) is the largest non-British area — Shang and Zhou bronzes, Ming porcelain, Qing lacquer — you may feel a complicated 'these should go home,' but the conservation is excellent.",
           estimatedCost: "Free",
           bookingTip: "Book a free timed-entry ticket online to skip the security queue.",
           transitFromPrev: "Tube Victoria → Tottenham Court Rd, 15 min",
@@ -158,7 +159,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1236, 51.5115],
           duration: "1 hour",
           description:
-            "£14 for a feather-steak with dripping chips, grilled tomato, and popcorn on arrival. A perfect London lunch that doesn't break the bank. No reservations — walk up, put your name down, they text when your table's ready.",
+            "£14 for a feather-steak with dripping chips, grilled tomato, and popcorn on arrival. A perfect London lunch that doesn't break the bank. No reservations — walk up, put your name down, they text when your table's ready. 'Flat Iron' is the cut from inside the cow's shoulder — barely existed in traditional British cuisine, this restaurant imported the concept from the U.S. and it's now Michelin Bib Gourmand. With a local craft beer 'Camden Hells' (£5).",
           estimatedCost: "~£20/person",
           transitFromPrev: "15 min walk",
         },
@@ -171,7 +172,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1243, 51.5122],
           duration: "1.5 hours",
           description:
-            "The 1830 Covent Garden market building has craft stalls, two floors of shops, and free street performers doing actual trained opera. Walk north to Seven Dials for one-of-a-kind boutiques — Neal's Yard Remedies, the kale-coloured alley photo spot.",
+            "The 1830 Covent Garden market building has craft stalls, two floors of shops, and free street performers doing actual trained opera. Walk north to Seven Dials for one-of-a-kind boutiques — Neal's Yard Remedies, the kale-coloured alley photo spot. Seven Dials is '7 streets crossing at 1 point' — 17th-century urban planning heritage. At the center stands a stone column with 7 sundials each pointing to a different street — turn in place to see 7 angles of London.",
           estimatedCost: "Free unless you buy",
           transitFromPrev: "5 min walk",
         },
@@ -184,7 +185,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1288, 51.5089],
           duration: "1.5 hours",
           description:
-            "Free. Skip the decorative wings and go straight to: Van Gogh's Sunflowers (Room 43), Leonardo's Virgin of the Rocks (Room 9), Turner's Fighting Temeraire (Room 34). 90 minutes is enough if you're selective.",
+            "Free. Skip the decorative wings and go straight to: Van Gogh's Sunflowers (Room 43), Leonardo's Virgin of the Rocks (Room 9), Turner's Fighting Temeraire (Room 34). 90 minutes is enough if you're selective. 'Sunflowers' is the London version (Van Gogh painted 5 — 3 in Europe, 1 in Japan, 1 in London) — intense yellow-green contrast, rough brushstrokes, you can sense the artist's tremor in front of the canvas. Download the free 'National Gallery App' — multilingual audio guide for 50 major works.",
           estimatedCost: "Free",
           transitFromPrev: "15 min walk",
         },
@@ -197,7 +198,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1281, 51.5074],
           duration: "45 min",
           description:
-            "Nelson's Column, lion statues, four plinths with rotating contemporary art. Walk the Mall towards Buckingham Palace for a late-light stroll past St. James's Park.",
+            "Nelson's Column, lion statues, four plinths with rotating contemporary art. Walk the Mall towards Buckingham Palace for a late-light stroll past St. James's Park. This route is 'the British royal parade route' — coronations, royal weddings, the Queen's funeral all march down here. Union Jacks line continuously; on important days they're swapped for royal heraldic banners.",
           estimatedCost: "Free",
           transitFromPrev: "Built in",
         },
@@ -211,7 +212,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1334, 51.5103],
           duration: "1.5 hours",
           description:
-            "Regional Italian small plates in a Soho basement where every dish credits a specific Italian village. Order the vitello tonnato, the orecchiette with nduja, and the burrata — plus a glass of barolo. Counter seats at the kitchen are best.",
+            "Regional Italian small plates in a Soho basement where every dish credits a specific Italian village. Order the vitello tonnato, the orecchiette with nduja, and the burrata — plus a glass of barolo. Counter seats at the kitchen are best. Chef Jacob Kenedy is the standard-bearer for Italian cuisine in London; his book 'Bocca' is the UK's best-selling Italian cookbook. At the counter, the chef explains each dish's village origin in approximate Italian.",
           estimatedCost: "~£60/person with wine",
           bookingTip: "Reserve 1 week ahead via their website for 20:00 prime; walk-in counter seats sometimes open.",
           transitFromPrev: "10 min walk",
@@ -233,7 +234,7 @@ const london4dCouple: TripPlan = {
           coords: [-1.2599, 51.7535],
           duration: "1 hour",
           description:
-            "Great Western Railway direct from Paddington to Oxford every 30 min. Book an off-peak return online for ~£30/person. Sit on the right for Windsor Castle views in the distance.",
+            "Great Western Railway direct from Paddington to Oxford every 30 min. Book an off-peak return online for ~£30/person. Sit on the right for Windsor Castle views in the distance. Paddington Station itself is a sight — Brunel's 1854 glass-and-steel roof, a monument to the Industrial Revolution. Free Wi-Fi on the train, 1 hour for a Netflix episode.",
           estimatedCost: "~£30 return",
           transitFromPrev: "Tube to Paddington, 15 min",
         },
@@ -246,7 +247,7 @@ const london4dCouple: TripPlan = {
           coords: [-1.2562, 51.7504],
           duration: "1.5 hours",
           description:
-            "The largest Oxford college, founded 1546 by Henry VIII. The Great Hall is the Harry Potter dining hall's actual inspiration (the film replicated it elsewhere). Tom Tower by Wren. Walk the meadows behind the college afterward.",
+            "The largest Oxford college, founded 1546 by Henry VIII. The Great Hall is the inspiration for Hogwarts' dining hall in Harry Potter (the films replicated it elsewhere). Tom Tower by Wren. Walk the meadows behind the college afterward. 'Tom Quad' is the largest college quadrangle in England — you stand in the middle and feel 500 years of scholarly weight. The college produced 13 British Prime Ministers and Lewis Carroll (author of Alice in Wonderland) — 'Alice' was the daughter of the dean.",
           estimatedCost: "~£17",
           bookingTip: "Opens at 10:00; arrive 09:45 to be first through.",
           transitFromPrev: "10 min walk from train station",
@@ -260,7 +261,7 @@ const london4dCouple: TripPlan = {
           coords: [-1.2540, 51.7536],
           duration: "1.5 hours",
           description:
-            "One of the oldest libraries in Europe (1602) and the circular Radcliffe Camera across from it (1749). The library tour (30 min) shows you the 15th-century Duke Humfrey's reading room. The Camera is just for the photo — it's not open to the public.",
+            "One of the oldest libraries in Europe (1602) and the circular Radcliffe Camera across from it (1749). The library tour (30 min) shows you the 15th-century Duke Humfrey's reading room — the Hogwarts library in the Harry Potter films was actually shot here. The Camera is just for the photo — it's not open to the public. The Bodleian preserves 6 million books — the largest UK library after the British Library, archiving every UK-published book.",
           estimatedCost: "~£9 for Bodleian tour",
           transitFromPrev: "10 min walk",
         },
@@ -274,7 +275,7 @@ const london4dCouple: TripPlan = {
           coords: [-1.2521, 51.7539],
           duration: "1.5 hours",
           description:
-            "A 13th-century pub hidden down a cobbled alley, where Bill Clinton 'didn't inhale', Hawking drank, and Tolkien edited. Real ale, a proper Sunday roast (if Sunday), beams low enough you'll duck. The alley finding game is half the fun.",
+            "A 13th-century pub hidden down a cobbled alley, where Bill Clinton 'didn't inhale,' Hawking drank, and Tolkien edited. Real ale, a proper Sunday roast (if Sunday), beams low enough you'll duck. The alley finding game is half the fun — entry through St. Helen's Passage, only 1 m wide. The sign at the door reads 'An Education in Intoxication' — a 13th-century pub still considered Oxford students' 'second classroom.'",
           estimatedCost: "~£25/person",
           transitFromPrev: "5 min walk through St. Helen's Passage",
         },
@@ -287,7 +288,7 @@ const london4dCouple: TripPlan = {
           coords: [-1.2471, 51.7525],
           duration: "1.5 hours",
           description:
-            "Magdalen (pronounced 'maudlin') has a deer park, a bell tower, and a 2km looped riverside walk that C.S. Lewis used to do with Tolkien. An hour of slow green walking before the return train.",
+            "Magdalen (pronounced 'maudlin') has a deer park, a bell tower, and a 2km looped riverside walk that C.S. Lewis used to do with Tolkien. An hour of slow green walking before the return train. The deer have been kept in the college since the 14th century. On May Day at 6am, the college choir sings the Latin 'Hymnus Eucharisticus' from the top of the tower — a 700-year tradition; check the date in the Oxford Times one week ahead.",
           estimatedCost: "~£8",
           transitFromPrev: "15 min walk",
         },
@@ -314,7 +315,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1267, 51.5359],
           duration: "1.5 hours",
           description:
-            "Irani-café-inspired Indian food in a gorgeous brick warehouse setting. Order the house black daal (simmered 24 hours), lamb biryani, and a chai. Dishoom is a London institution for a reason.",
+            "Irani-café-inspired Indian food in a gorgeous brick warehouse setting. Order the house black daal (simmered 24 hours), lamb biryani, and a chai. Dishoom is a London institution for a reason — Time Out has named it 'one of London's best restaurants' for 5 years running. The 'Bacon Naan Roll' brunch is the weekend formula for Londoners. King's Cross station itself is worth a visit — Harry Potter's Platform 9¾ is here (free trolley photo prop), 30-min queue on weekends.",
           estimatedCost: "~£40/person",
           bookingTip: "Walk-in only for under 6 people — they text-queue you; expect 45-60 min wait at 20:00.",
           transitFromPrev: "Tube from Paddington, 12 min",
@@ -337,7 +338,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1717, 51.4966],
           duration: "2.5 hours",
           description:
-            "Free. The world's largest decorative arts museum. Focus: Fashion Gallery (40), Jewellery Gallery (91), Cast Courts (46), Tipu's Tiger (41). The courtyard café in the John Madejski Garden is the prettiest museum café in London.",
+            "Free. The world's largest decorative arts museum. Focus: Fashion Gallery (40), Jewellery Gallery (91), Cast Courts (46), Tipu's Tiger (41). The courtyard café in the John Madejski Garden is the prettiest museum café in London. The 'Cast Courts' are a 19th-century British curiosity — plaster casts of Italian sculptures (like Michelangelo's David) were brought back to London so the British could see them without going to Italy. This imperial 'bring the world home' eccentricity is the V&A's most magical hall.",
           estimatedCost: "Free",
           transitFromPrev: "Tube District line, 10 min",
         },
@@ -351,7 +352,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1631, 51.4994],
           duration: "1.5 hours",
           description:
-            "7 floors, 330 departments, a 120,000-square-meter cathedral of retail. Even if you're not buying, go for the Food Hall (ground floor rear) and the Egyptian-themed escalator. The toy department on 3rd is a destination in itself.",
+            "7 floors, 330 departments, a 120,000-square-meter cathedral of retail. Even if you're not buying, go for the Food Hall (ground floor rear) and the Egyptian-themed escalator. The toy department on 3rd is a destination in itself — like a Disneyland in miniature. The 'Egyptian Escalator' is one of London's most famous — real Egyptian marble, hieroglyphs, Pharaoh statues, built in 1997 by then-owner Mohamed Al-Fayed in memory of his son Dodi (who died in the same crash as Princess Diana). The Food Hall's Caviar Bar serves caviar + Champagne (£60/person) — London's most expensive brunch.",
           estimatedCost: "Free unless you buy",
           transitFromPrev: "15 min walk",
         },
@@ -365,7 +366,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1379, 51.5089],
           duration: "2 hours",
           description:
-            "The proper London send-off. Fortnum's Diamond Jubilee Tea Salon on the 4th floor — finger sandwiches, scones with Cornish clotted cream, pastries, unlimited tea. A ritual that dates to the 1840s.",
+            "The proper London send-off. Fortnum's Diamond Jubilee Tea Salon on the 4th floor — finger sandwiches, scones with Cornish clotted cream, pastries, unlimited tea. A ritual that dates to the 1840s. 'Royal Blend' is the tea Fortnum's blends for Queen Elizabeth — Assam-Ceylan blend, the British gentleman's morning tea. The tea menu has 20+ varieties; the server brings each one to smell. This is 'condensed British culture' worth an entire afternoon.",
           estimatedCost: "~£80/person",
           bookingTip: "Book 2-3 weeks ahead via their website for prime 14:00-15:30 slots; weekdays easier than weekends.",
           transitFromPrev: "Tube Knightsbridge → Green Park, 10 min",
@@ -379,7 +380,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.1406, 51.5102],
           duration: "1 hour",
           description:
-            "Work off the scones. Walk Piccadilly past the Royal Academy, up to Piccadilly Circus for the Eros statue, then north up Regent Street for its curved Art Deco facade. Hamleys Toy Store at #188-196 is a must even if you're not a kid.",
+            "Work off the scones. Walk Piccadilly past the Royal Academy, up to Piccadilly Circus for the Eros statue, then north up Regent Street for its curved Art Deco facade. Hamleys Toy Store at #188-196 is a must even if you're not a kid — the world's oldest toy store (1881), 7 floors like Disneyland. Regent Street's Christmas illuminations (early Nov to early Jan) are London's most spectacular Christmas decorations — the entire street becomes a golden corridor.",
           estimatedCost: "Free",
           transitFromPrev: "Walk",
         },
@@ -405,7 +406,7 @@ const london4dCouple: TripPlan = {
           coords: [-0.4515, 51.4700],
           duration: "20 min",
           description:
-            "Heathrow Express every 15 min. 15 minutes Paddington to LHR — fastest airport transit in Europe. Book ahead online for ~£18.",
+            "Heathrow Express every 15 min. 15 minutes Paddington to LHR — fastest airport transit in Europe. Book ahead online for ~£18. Heathrow duty free Chanel, Burberry, Mulberry have UK exclusives — cheaper than your home country (UK refunds 14% VAT to non-residents).",
           estimatedCost: "~£18",
           transitFromPrev: "Tube Circle line Victoria → Paddington, 10 min",
         },
@@ -417,6 +418,9 @@ const london4dCouple: TripPlan = {
     "A compact umbrella (black, not bright) — the local style",
     "One formal-ish outfit — afternoon tea, a nicer pub, the Bocca di Lupo dinner reward decent clothing",
     "UK plug adapter (Type G) — completely different from both US and EU",
+    "Light wool scarf — London is windy, interiors run cool",
+    "Visa/Mastercard — UK accepts most cards from your country, but a few small shops and cafés take Visa/MC only",
+    "Portable charger — Google Maps drains battery fast in central London",
   ],
   budgetEstimate: "~£150-250/day for a couple excluding hotel (museum + pub lunch + nice dinner structure)",
   generalTips: [
@@ -424,6 +428,8 @@ const london4dCouple: TripPlan = {
     "Stand right on escalators. Walk left. Londoners will exhale audibly if you block",
     "Tipping: 10-12.5% at sit-down restaurants (often auto-added — check the bill)",
     "Look RIGHT first when crossing — traffic drives on the left",
+    "Download Citymapper — more accurate than Google Maps for London transit",
+    "Apple Pay is accepted basically everywhere — you can live 4 days with just your phone",
   ],
 };
 
