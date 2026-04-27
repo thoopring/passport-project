@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import PlanView from "../../../components/PlanView";
-import { getSample, listSamples } from "../../../lib/samples";
+import { getSample, getSampleLocalized, listSamples } from "../../../lib/samples";
+import type { Locale } from "../../../i18n/locales";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -15,6 +16,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  // Metadata uses the canonical English plan — search engines see one
+  // canonical version regardless of viewer locale.
   const sample = getSample(slug);
   if (!sample) return {};
 
@@ -34,7 +37,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function SamplePlanPage({ params }: PageProps) {
   const { slug } = await params;
-  const sample = getSample(slug);
+  const locale = (await getLocale()) as Locale;
+  // Locale-aware lookup: returns the translated variant when one exists
+  // (lib/samples/i18n/{locale}.ts), otherwise the canonical English plan.
+  const sample = await getSampleLocalized(slug, locale);
   if (!sample) notFound();
   const t = await getTranslations("samples");
 

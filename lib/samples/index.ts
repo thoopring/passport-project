@@ -1,4 +1,5 @@
 import type { TripPlan } from "../../types/trip-plan";
+import type { Locale } from "../../i18n/locales";
 import tokyo4dCouple from "./tokyo-4d-couple";
 import paris3dFamily from "./paris-3d-family";
 import bangkok4dSolo from "./bangkok-4d-solo";
@@ -9,6 +10,7 @@ import bali5dCouple from "./bali-5d-couple";
 import taipei3dSolo from "./taipei-3d-solo";
 import hanoi4dSolo from "./hanoi-4d-solo";
 import london4dCouple from "./london-4d-couple";
+import { applyTranslation, loadLocaleTranslations } from "./i18n";
 
 /**
  * Sample plan registry. Each entry is a hand-curated TripPlan that doubles
@@ -151,4 +153,23 @@ export function getSample(slug: string): SampleMeta | undefined {
 
 export function listSamples(): SampleMeta[] {
   return SAMPLE_PLANS;
+}
+
+/**
+ * Locale-aware sample lookup. Returns the SampleMeta with `plan` swapped
+ * for the locale-translated variant where one exists; falls back to the
+ * canonical English plan otherwise. Use this in pages instead of
+ * getSample() when rendering plan content.
+ */
+export async function getSampleLocalized(
+  slug: string,
+  locale: Locale,
+): Promise<SampleMeta | undefined> {
+  const meta = getSample(slug);
+  if (!meta) return undefined;
+  if (locale === "en") return meta;
+  const translations = await loadLocaleTranslations(locale);
+  const t = translations[slug];
+  if (!t) return meta;
+  return { ...meta, plan: applyTranslation(meta.plan, t) };
 }
