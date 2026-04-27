@@ -93,34 +93,25 @@ body {
 }
 
 /* ========== Hero Cross-fade Carousel ========== */
-/* 4 hero photos rotating with cross-fade. Each photo holds for ~6s then
-   fades out as the next fades in. Combined with subtle scale gives the
-   "look at all the places you could go" travel-excitement feel without
-   needing a video file. */
-@keyframes heroFade1 {
-  0%, 22% { opacity: 1; transform: scale(1.06); }
-  28%, 97% { opacity: 0; transform: scale(1.0); }
-  100% { opacity: 1; transform: scale(1.06); }
-}
-@keyframes heroFade2 {
-  0%, 22% { opacity: 0; transform: scale(1.0); }
-  28%, 47% { opacity: 1; transform: scale(1.06); }
-  53%, 100% { opacity: 0; transform: scale(1.0); }
-}
-@keyframes heroFade3 {
-  0%, 47% { opacity: 0; transform: scale(1.0); }
-  53%, 72% { opacity: 1; transform: scale(1.06); }
-  78%, 100% { opacity: 0; transform: scale(1.0); }
-}
-@keyframes heroFade4 {
-  0%, 72% { opacity: 0; transform: scale(1.0); }
-  78%, 97% { opacity: 1; transform: scale(1.06); }
+/* 6 hero photos rotating with cross-fade. Each photo holds for ~3s then
+   fades out as the next fades in. Combined with a stronger Ken Burns zoom
+   (1.0 → 1.12) gives the photos a sense of movement and urgency — the
+   "your next trip is right now" travel-excitement feel without a video file.
+   Delays are negative so all photos are synchronized into one shared cycle.
+   18s total cycle ÷ 6 photos = 3s per photo. */
+@keyframes heroPan {
+  0%   { opacity: 0; transform: scale(1.0); }
+  4%   { opacity: 1; transform: scale(1.04); }
+  16%  { opacity: 1; transform: scale(1.12); }
+  20%  { opacity: 0; transform: scale(1.12); }
   100% { opacity: 0; transform: scale(1.0); }
 }
-.hero-fade-1 { animation: heroFade1 28s ease-in-out infinite; }
-.hero-fade-2 { animation: heroFade2 28s ease-in-out infinite; }
-.hero-fade-3 { animation: heroFade3 28s ease-in-out infinite; }
-.hero-fade-4 { animation: heroFade4 28s ease-in-out infinite; }
+.hero-fade-1 { animation: heroPan 18s ease-in-out infinite; animation-delay: 0s; }
+.hero-fade-2 { animation: heroPan 18s ease-in-out infinite; animation-delay: -3s; }
+.hero-fade-3 { animation: heroPan 18s ease-in-out infinite; animation-delay: -6s; }
+.hero-fade-4 { animation: heroPan 18s ease-in-out infinite; animation-delay: -9s; }
+.hero-fade-5 { animation: heroPan 18s ease-in-out infinite; animation-delay: -12s; }
+.hero-fade-6 { animation: heroPan 18s ease-in-out infinite; animation-delay: -15s; }
 
 /* ========== Display Font (Fraunces) ========== */
 /* Fraunces is loaded via next/font in layout.tsx. The display class is

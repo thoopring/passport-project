@@ -131,13 +131,19 @@ export const SAMPLE_PLANS: SampleMeta[] = [
   },
 ];
 
-/** Hero photos for the home rotating banner. 4 vibrant travel scenes that
- *  cross-fade every ~6 seconds. Each is universally recognized as "travel". */
+/** Hero photos for the home rotating banner. 6 photos alternating
+ *  peaceful destinations and urban motion to create rhythm. Cross-fade
+ *  every ~3s with a Ken Burns zoom (1.0 → 1.12) for a sense of speed and
+ *  "your next trip is right now" energy. */
 export const HOME_HERO_IMAGES = [
   // Santorini blue domes — the wanderlust postcard
   UNSPLASH("photo-1530841377377-3ff06c0ca713"),
+  // Shibuya scramble at twilight — neon, motion, the iconic Tokyo image
+  UNSPLASH("photo-1542051841857-5f90071e7989"),
   // Tropical beach with palm trees and turquoise water
   UNSPLASH("photo-1507525428034-b723cf961d3e"),
+  // Dotonbori canal lit at night — neon-lined, signature Osaka motion
+  UNSPLASH("photo-1554189097-ffe88e998a2b"),
   // Couple looking at sunset cliff view
   UNSPLASH("photo-1488085061387-422e29b40080"),
   // Hot air balloons at Cappadocia — magic-of-travel feel
