@@ -32,10 +32,25 @@ export default async function Home() {
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <Header showCta={false} />
 
-      {/* ===== Hero — chat input on left, quatrefoil photo on right ===== */}
+      {/* ===== Hero — trust signals + chat input on left, quatrefoil photo on right.
+           Variant E direction (live chip + stat chips + sample links) blended with the
+           current airy travel feel (cross-fade quatrefoil photo + simple HomeWizard
+           input). No $4 in the hero per founder direction. ===== */}
       <section className="px-4 sm:px-6 pt-16 sm:pt-24 pb-24 sm:pb-32">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
+            {/* Live status chip — pulsing dot signals an active product without
+                claiming a fake stat. */}
+            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-[var(--accent-soft)] border border-[var(--accent-primary)]/20">
+              <span className="relative flex w-2 h-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-primary)] opacity-50"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-primary)]"></span>
+              </span>
+              <span className="text-caption font-semibold text-[var(--accent-dark)] tracking-[0.05em]">
+                {t("heroLiveChip")}
+              </span>
+            </div>
+
             <h1 className="font-fraunces font-semibold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.0] tracking-[-0.022em] mb-6">
               {t("heroHeadline1")}
               <br />
@@ -49,8 +64,47 @@ export default async function Home() {
               <HomeWizard />
             </div>
 
-            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mt-8">
-              {t("heroBadge")}
+            {/* Trust-signal chip strip — subtle pills replacing the plain text badge. */}
+            <div className="flex flex-wrap items-center gap-2 mt-6">
+              {[
+                t("heroStatSpeed"),
+                t("heroStatRating"),
+                t("heroStatNoAccount"),
+                t("heroStatOffline"),
+              ].map((label) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center px-2.5 py-1 rounded-full border border-[var(--border-light)] bg-[var(--surface-primary)] text-caption font-medium text-[var(--text-secondary)]"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+
+            {/* Inline sample destinations link — directs the curious to a free preview
+                without forcing them through the wizard first. */}
+            <p className="text-body-sm text-[var(--text-muted)] mt-5">
+              {t("heroTrySample")}{" "}
+              <Link
+                href="/samples/tokyo-4d-couple"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
+              >
+                Tokyo
+              </Link>
+              ·
+              <Link
+                href="/samples/paris-3d-family"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
+              >
+                Paris
+              </Link>
+              ·
+              <Link
+                href="/samples/bali-5d-couple"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
+              >
+                Bali
+              </Link>
             </p>
           </div>
 
