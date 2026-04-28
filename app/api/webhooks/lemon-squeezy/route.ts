@@ -8,8 +8,9 @@ import {
   setPlanFailed,
 } from "../../../../lib/plans";
 import { generateTripPlan } from "../../../../lib/generator/claude";
-import { sendPlanReadyEmail } from "../../../../lib/email";
-import { awardCredit } from "../../../../lib/referrals";
+import { sendPlanReadyEmail, sendReferralCreditEarnedEmail } from "../../../../lib/email";
+import { awardCredit, getRecentPlanLocale } from "../../../../lib/referrals";
+import type { PlanLocale } from "../../../../types/trip-plan";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -103,10 +104,30 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
     });
 
     // Award referral credit if this purchase came from a /r/[code] click (P9)
+    // and notify the inviter via email (N5). Email failures are non-fatal —
+    // the credit is already in the inviter's account, they'll see it next
+    // time they visit /account.
     if (plan.request.referredByCode) {
-      await awardCredit(plan.request.referredByCode, plan.email).catch((err) => {
+      const ownerEmail = await awardCredit(
+        plan.request.referredByCode,
+        plan.email,
+      ).catch((err) => {
         console.error("awardCredit failed (non-fatal)", { planId, err });
+        return null;
       });
+      if (ownerEmail) {
+        const ownerLocale =
+          (await getRecentPlanLocale(ownerEmail).catch(() => null)) ?? "en";
+        await sendReferralCreditEarnedEmail({
+          to: ownerEmail,
+          locale: ownerLocale as PlanLocale,
+        }).catch((err) => {
+          console.error("sendReferralCreditEarnedEmail failed (non-fatal)", {
+            planId,
+            err,
+          });
+        });
+      }
     }
   } catch (err) {
     const reason = err instanceof Error ? err.message : String(err);

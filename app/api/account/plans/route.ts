@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { getSupabaseAdmin, PLANS_TABLE } from "../../../../lib/supabase";
+import { listActiveCredits } from "../../../../lib/referrals";
 
 export const runtime = "nodejs";
 
@@ -60,5 +61,13 @@ export async function GET(req: NextRequest) {
     failureReason: p.failure_reason,
   }));
 
-  return NextResponse.json({ email, plans: trimmed });
+  // Active (unused, non-expired) plan credits for the celebration banner +
+  // balance card on the account page (N5). Failure here is non-fatal — the
+  // page still renders plans without credits.
+  const credits = await listActiveCredits(email).catch((err) => {
+    console.error("listActiveCredits failed (non-fatal)", err);
+    return [];
+  });
+
+  return NextResponse.json({ email, plans: trimmed, credits });
 }

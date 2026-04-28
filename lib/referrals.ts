@@ -83,18 +83,20 @@ export async function getReferralByCode(code: string): Promise<ReferralRow | nul
 
 /**
  * Award a referral credit to the owner of `code` because `buyerEmail` just
- * paid. No-op if buyer is the owner (self-referral) or code is unknown.
+ * paid. Returns the owner's email when a credit was actually awarded so the
+ * caller can fire a notification email; returns null on no-op (unknown
+ * code or self-referral).
  */
 export async function awardCredit(
   code: string,
   buyerEmail: string,
-): Promise<void> {
+): Promise<string | null> {
   const supabase = getSupabaseAdmin();
   const normalizedBuyer = buyerEmail.trim().toLowerCase();
 
   const referral = await getReferralByCode(code);
-  if (!referral) return;
-  if (referral.owner_email === normalizedBuyer) return; // self-referral guard
+  if (!referral) return null;
+  if (referral.owner_email === normalizedBuyer) return null; // self-referral guard
 
   // Insert the credit row
   const { error: creditErr } = await supabase.from(CREDITS_TABLE).insert({
@@ -114,6 +116,59 @@ export async function awardCredit(
     })
     .eq("id", referral.id);
   if (updateErr) throw new Error(`update referral counters failed: ${updateErr.message}`);
+
+  return referral.owner_email;
+}
+
+export interface ActiveCreditRow {
+  id: string;
+  source: "referral" | "promo" | "admin";
+  source_ref: string | null;
+  expires_at: string | null;
+  created_at: string;
+}
+
+/**
+ * List all unused, non-expired plan credits for an email, newest-first.
+ * Powers the credit balance display on /account and the celebration banner.
+ */
+export async function listActiveCredits(email: string): Promise<ActiveCreditRow[]> {
+  const supabase = getSupabaseAdmin();
+  const normalized = email.trim().toLowerCase();
+  const nowIso = new Date().toISOString();
+
+  const { data, error } = await supabase
+    .from(CREDITS_TABLE)
+    .select("id, source, source_ref, expires_at, created_at")
+    .eq("email", normalized)
+    .is("used_at", null)
+    .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
+    .order("created_at", { ascending: false });
+
+  if (error) throw new Error(`listActiveCredits failed: ${error.message}`);
+  return (data ?? []) as ActiveCreditRow[];
+}
+
+/**
+ * Look up the locale of the most recent plan owned by `email`. Used to send
+ * notification emails (referral credit earned) in the user's preferred
+ * language. Returns null if the user has no plans on record.
+ */
+export async function getRecentPlanLocale(email: string): Promise<string | null> {
+  const supabase = getSupabaseAdmin();
+  const normalized = email.trim().toLowerCase();
+
+  const { data, error } = await supabase
+    .from("plans")
+    .select("request")
+    .eq("email", normalized)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) return null;
+  const locale = (data?.request as { locale?: string } | null)?.locale;
+  return locale ?? null;
 }
 
 /**

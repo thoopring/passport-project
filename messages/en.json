@@ -353,6 +353,14 @@
       "statusPaid": "Paid",
       "statusFailed": "Failed",
       "statusDraft": "Unpaid"
+    },
+    "credits": {
+      "badge": "Free plan credit",
+      "titleOne": "You have a free trip plan waiting",
+      "titleMany": "You have {count} free trip plans waiting",
+      "subtitle": "Earned from a friend who used your referral link. We'll skip checkout — just tell us where you're going next.",
+      "expiresHint": "Expires {date}",
+      "useNowCta": "Use my credit →"
     }
   }
 }

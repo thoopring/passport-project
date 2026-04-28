@@ -353,6 +353,14 @@
       "statusPaid": "已付款",
       "statusFailed": "失败",
       "statusDraft": "未付款"
+    },
+    "credits": {
+      "badge": "免费行程额度",
+      "titleOne": "您有 1 份免费行程可用",
+      "titleMany": "您有 {count} 份免费行程可用",
+      "subtitle": "朋友通过您的推荐链接购买后获得的奖励。告诉我们下一个目的地,我们会跳过结账直接生成行程。",
+      "expiresHint": "{date} 到期",
+      "useNowCta": "使用我的额度 →"
     }
   }
 }

@@ -353,6 +353,14 @@
       "statusPaid": "결제 완료",
       "statusFailed": "실패",
       "statusDraft": "미결제"
+    },
+    "credits": {
+      "badge": "무료 플랜 크레딧",
+      "titleOne": "무료 여행 플랜 1건이 기다리고 있어요",
+      "titleMany": "무료 여행 플랜 {count}건이 기다리고 있어요",
+      "subtitle": "친구가 추천 링크로 첫 플랜을 구매해서 적립됐어요. 다음 여행지만 알려주시면 결제 단계 없이 바로 만들어 드릴게요.",
+      "expiresHint": "{date} 만료",
+      "useNowCta": "크레딧 사용하기 →"
     }
   }
 }

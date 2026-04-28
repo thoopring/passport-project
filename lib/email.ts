@@ -131,3 +131,117 @@ function escapeHtml(s: string): string {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
+
+/* ========== Referral credit earned notification (N5) ========== */
+
+interface CreditEarnedCopy {
+  subject: string;
+  heading: string;
+  intro: string;
+  bullet1: string;
+  bullet2: string;
+  cta: string;
+  outro: string;
+  brandLine: string;
+}
+
+const CREDIT_COPY: Record<PlanLocale, CreditEarnedCopy> = {
+  en: {
+    subject: "🎉 You earned a free trip plan",
+    heading: "You earned a free trip plan",
+    intro:
+      "Someone just bought their first plan with your referral link — thank you for sharing gliddy.",
+    bullet1: "1 free plan credit added to your account",
+    bullet2: "Use it on your next trip — no checkout, no card",
+    cta: "Open my account",
+    outro: "Credits expire one year from today.",
+    brandLine: "gliddy · checkvisamap.com",
+  },
+  ko: {
+    subject: "🎉 무료 플랜 1건 적립됐어요",
+    heading: "무료 여행 플랜이 적립됐어요",
+    intro:
+      "추천 링크로 누군가 첫 플랜을 구매했어요 — gliddy를 공유해 주셔서 감사합니다.",
+    bullet1: "무료 플랜 크레딧 1건 적립",
+    bullet2: "다음 여행에 사용하세요 — 결제 단계 없음, 카드 없이",
+    cta: "내 계정 열기",
+    outro: "크레딧은 1년 동안 사용 가능해요.",
+    brandLine: "gliddy · checkvisamap.com",
+  },
+  ja: {
+    subject: "🎉 無料プランが1件付与されました",
+    heading: "無料の旅行プランが付与されました",
+    intro:
+      "あなたの紹介リンクから初めての購入がありました — gliddyをシェアしてくださりありがとうございます。",
+    bullet1: "無料プランクレジットを1件追加",
+    bullet2: "次の旅行で利用できます — 決済不要、カード不要",
+    cta: "マイアカウントを開く",
+    outro: "クレジットの有効期限は1年です。",
+    brandLine: "gliddy · checkvisamap.com",
+  },
+  zh: {
+    subject: "🎉 您获得了一份免费行程",
+    heading: "您获得了一份免费行程",
+    intro:
+      "有人通过您的推荐链接购买了第一份行程 — 感谢您分享 gliddy。",
+    bullet1: "已增加 1 份免费行程额度",
+    bullet2: "下一次旅行直接使用 — 无需结账,无需信用卡",
+    cta: "打开我的账户",
+    outro: "额度有效期为一年。",
+    brandLine: "gliddy · checkvisamap.com",
+  },
+  fr: {
+    subject: "🎉 Vous avez gagné un plan de voyage gratuit",
+    heading: "Vous avez gagné un plan de voyage gratuit",
+    intro:
+      "Quelqu'un vient d'acheter son premier plan via votre lien — merci d'avoir partagé gliddy.",
+    bullet1: "1 crédit de plan gratuit ajouté à votre compte",
+    bullet2: "Utilisez-le pour votre prochain voyage — sans paiement, sans carte",
+    cta: "Ouvrir mon compte",
+    outro: "Les crédits expirent un an après leur attribution.",
+    brandLine: "gliddy · checkvisamap.com",
+  },
+};
+
+interface CreditEarnedArgs {
+  to: string;
+  locale?: PlanLocale;
+}
+
+export async function sendReferralCreditEarnedEmail(
+  args: CreditEarnedArgs,
+): Promise<void> {
+  const client = getClient();
+  const from = process.env.RESEND_FROM_EMAIL || "gliddy <plans@checkvisamap.com>";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
+  const accountUrl = `${baseUrl}/account`;
+  const copy = CREDIT_COPY[args.locale ?? "en"];
+
+  const html = `<!doctype html>
+<html>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; padding: 32px 24px; color: #1a1a1a;">
+  <h1 style="font-size: 26px; margin: 0 0 16px;">${escapeHtml(copy.heading)}</h1>
+  <p style="font-size: 15px; line-height: 1.6; color: #555;">${escapeHtml(copy.intro)}</p>
+  <ul style="font-size: 15px; line-height: 1.7; color: #1a1a1a; padding-left: 18px; margin: 20px 0;">
+    <li>${escapeHtml(copy.bullet1)}</li>
+    <li>${escapeHtml(copy.bullet2)}</li>
+  </ul>
+  <div style="margin: 28px 0;">
+    <a href="${accountUrl}" style="display: inline-block; padding: 12px 22px; background: #FF6B6B; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600;">${escapeHtml(copy.cta)}</a>
+  </div>
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 32px 0;" />
+  <p style="font-size: 13px; color: #999;">${escapeHtml(copy.outro)}</p>
+  <p style="font-size: 13px; color: #999;">${escapeHtml(copy.brandLine)}</p>
+</body>
+</html>`;
+
+  const text = `${copy.heading}\n\n${copy.intro}\n\n• ${copy.bullet1}\n• ${copy.bullet2}\n\n${copy.cta}: ${accountUrl}\n\n${copy.outro}\n${copy.brandLine}`;
+
+  await client.emails.send({
+    from,
+    to: args.to,
+    subject: copy.subject,
+    html,
+    text,
+  });
+}

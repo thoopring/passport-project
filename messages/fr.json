@@ -353,6 +353,14 @@
       "statusPaid": "Payé",
       "statusFailed": "Échec",
       "statusDraft": "Non payé"
+    },
+    "credits": {
+      "badge": "Crédit plan gratuit",
+      "titleOne": "Un plan de voyage gratuit vous attend",
+      "titleMany": "{count} plans de voyage gratuits vous attendent",
+      "subtitle": "Gagné grâce à un ami qui a utilisé votre lien de parrainage. On saute le paiement — dites-nous juste où vous partez.",
+      "expiresHint": "Expire le {date}",
+      "useNowCta": "Utiliser mon crédit →"
     }
   }
 }

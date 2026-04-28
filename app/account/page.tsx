@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import CreditCelebration from "../../components/CreditCelebration";
 import { getSupabaseBrowser } from "../../lib/supabase-browser";
 
 interface PlanRow {
@@ -19,12 +20,21 @@ interface PlanRow {
   failureReason: string | null;
 }
 
+interface ActiveCredit {
+  id: string;
+  source: string;
+  source_ref: string | null;
+  expires_at: string | null;
+  created_at: string;
+}
+
 export default function AccountPage() {
   const router = useRouter();
   const t = useTranslations("account.dashboard");
   const locale = useLocale();
   const [email, setEmail] = useState<string | null>(null);
   const [plans, setPlans] = useState<PlanRow[] | null>(null);
+  const [credits, setCredits] = useState<ActiveCredit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,6 +58,7 @@ export default function AccountPage() {
         }
         const j = await res.json();
         setPlans(j.plans);
+        setCredits(Array.isArray(j.credits) ? j.credits : []);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load");
       } finally {
@@ -98,6 +109,10 @@ export default function AccountPage() {
           <div className="bg-red-50 border border-red-200 rounded-[12px] p-4 text-body-sm text-red-700">
             {error}
           </div>
+        )}
+
+        {!loading && !error && email && (
+          <CreditCelebration credits={credits} email={email} />
         )}
 
         {!loading && !error && plans && plans.length === 0 && (

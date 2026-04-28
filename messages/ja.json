@@ -353,6 +353,14 @@
       "statusPaid": "決済完了",
       "statusFailed": "失敗",
       "statusDraft": "未決済"
+    },
+    "credits": {
+      "badge": "無料プランクレジット",
+      "titleOne": "無料の旅行プランが1件あります",
+      "titleMany": "無料の旅行プランが{count}件あります",
+      "subtitle": "あなたの紹介リンクでお友だちが初めて購入したことで付与されました。次の行き先を教えていただければ、決済なしですぐにお作りします。",
+      "expiresHint": "{date} まで",
+      "useNowCta": "クレジットを使う →"
     }
   }
 }
