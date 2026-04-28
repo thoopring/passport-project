@@ -316,5 +316,43 @@
     "previewSecondaryPrefix": "或者看",
     "previewSecondaryLink": "另外3份样例",
     "previewSecondarySuffix": "。"
+  },
+  "account": {
+    "login": {
+      "eyebrow": "登录 / 注册",
+      "title": "只要邮箱。",
+      "subtitle": "无需密码。我们会发一个魔法链接,点击一次即登录。之前购买过的行程会自动关联到同一邮箱。",
+      "emailPlaceholder": "you@example.com",
+      "sendButton": "获取登录链接",
+      "sendingButton": "发送中…",
+      "sentTitle": "✉️ 邮件已发送",
+      "sentToReturn": "已发送至 {email}。点击链接即可登录,我们会带您回到原来的页面。",
+      "sentToLibrary": "已发送至 {email}。点击链接即可登录,我们会打开您的行程库。",
+      "sentSpamHint": "没看到邮件?请查看垃圾邮件文件夹。",
+      "noLoginPrompt": "不想注册?也可以不登录直接购买行程。",
+      "noLoginCta": "无需注册,直接生成行程 →"
+    },
+    "callback": {
+      "processing": "正在登录…",
+      "errorTitle": "登录失败",
+      "errorRetry": "重试",
+      "sessionMissing": "未能创建登录会话,请重试。"
+    },
+    "dashboard": {
+      "eyebrow": "我的账户",
+      "title": "我的行程",
+      "signOut": "退出登录",
+      "loading": "加载中…",
+      "emptyTitle": "您还没有创建行程",
+      "emptySubtitle": "创建第一份行程后,我们会保存在这里,任何设备都能再次打开。",
+      "emptyCta": "创建第一份行程 — $4",
+      "newPlanCta": "创建新行程 — $4",
+      "daysSuffix": "{count}天",
+      "statusComplete": "已完成",
+      "statusGenerating": "生成中",
+      "statusPaid": "已付款",
+      "statusFailed": "失败",
+      "statusDraft": "未付款"
+    }
   }
 }

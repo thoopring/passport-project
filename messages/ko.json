@@ -316,5 +316,43 @@
     "previewSecondaryPrefix": "또는",
     "previewSecondaryLink": "다른 샘플 3개",
     "previewSecondarySuffix": "도 둘러보세요."
+  },
+  "account": {
+    "login": {
+      "eyebrow": "로그인 / 회원가입",
+      "title": "이메일만 있으면 끝.",
+      "subtitle": "비밀번호 필요 없어요. 이메일로 보내드리는 링크 한 번 클릭하면 로그인됩니다. 이전에 만드신 플랜이 있으면 자동으로 같은 이메일에 연결돼요.",
+      "emailPlaceholder": "you@example.com",
+      "sendButton": "로그인 링크 받기",
+      "sendingButton": "보내는 중…",
+      "sentTitle": "✉️ 메일 보냈어요",
+      "sentToReturn": "{email} 으로 보냈어요. 링크 클릭하시면 로그인되고 원래 페이지로 다시 이동합니다.",
+      "sentToLibrary": "{email} 으로 보냈어요. 링크 클릭하시면 로그인되고 내 플랜 페이지로 이동합니다.",
+      "sentSpamHint": "메일이 안 보이면 스팸함도 확인해 주세요.",
+      "noLoginPrompt": "로그인 안 해도 플랜 구매는 가능해요.",
+      "noLoginCta": "회원가입 없이 바로 플랜 만들기 →"
+    },
+    "callback": {
+      "processing": "로그인 처리 중…",
+      "errorTitle": "로그인에 실패했어요",
+      "errorRetry": "다시 시도",
+      "sessionMissing": "로그인 세션을 만들지 못했어요. 다시 시도해 주세요."
+    },
+    "dashboard": {
+      "eyebrow": "내 계정",
+      "title": "내 플랜",
+      "signOut": "로그아웃",
+      "loading": "불러오는 중…",
+      "emptyTitle": "아직 만든 플랜이 없어요",
+      "emptySubtitle": "첫 여행 플랜을 만들면 여기에 모아 드릴게요. 어떤 기기에서든 다시 열어볼 수 있어요.",
+      "emptyCta": "첫 플랜 만들기 — $4",
+      "newPlanCta": "새 플랜 만들기 — $4",
+      "daysSuffix": "{count}일",
+      "statusComplete": "완성",
+      "statusGenerating": "생성 중",
+      "statusPaid": "결제 완료",
+      "statusFailed": "실패",
+      "statusDraft": "미결제"
+    }
   }
 }

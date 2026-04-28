@@ -316,5 +316,43 @@
     "previewSecondaryPrefix": "または",
     "previewSecondaryLink": "他のサンプル3件",
     "previewSecondarySuffix": "もどうぞ。"
+  },
+  "account": {
+    "login": {
+      "eyebrow": "ログイン / 新規登録",
+      "title": "メールアドレスだけ。",
+      "subtitle": "パスワード不要。メールで送られるリンクを1回クリックするだけでログインできます。以前作ったプランがあれば自動的に同じメールに紐づきます。",
+      "emailPlaceholder": "you@example.com",
+      "sendButton": "ログインリンクを受け取る",
+      "sendingButton": "送信中…",
+      "sentTitle": "✉️ メールを送りました",
+      "sentToReturn": "{email} に送信しました。リンクをクリックするとログインして、元のページに戻ります。",
+      "sentToLibrary": "{email} に送信しました。リンクをクリックするとログインして、マイプランに移動します。",
+      "sentSpamHint": "メールが見当たらない場合は迷惑メールフォルダもご確認ください。",
+      "noLoginPrompt": "ログインしなくてもプランは購入できます。",
+      "noLoginCta": "登録せずにプランを作る →"
+    },
+    "callback": {
+      "processing": "ログイン処理中…",
+      "errorTitle": "ログインに失敗しました",
+      "errorRetry": "再試行",
+      "sessionMissing": "ログインセッションを作成できませんでした。もう一度お試しください。"
+    },
+    "dashboard": {
+      "eyebrow": "マイアカウント",
+      "title": "マイプラン",
+      "signOut": "ログアウト",
+      "loading": "読み込み中…",
+      "emptyTitle": "まだプランを作っていません",
+      "emptySubtitle": "最初の旅行プランを作るとここに保存され、どの端末からでも開けます。",
+      "emptyCta": "最初のプランを作る — $4",
+      "newPlanCta": "新しいプランを作る — $4",
+      "daysSuffix": "{count}日",
+      "statusComplete": "完成",
+      "statusGenerating": "生成中",
+      "statusPaid": "決済完了",
+      "statusFailed": "失敗",
+      "statusDraft": "未決済"
+    }
   }
 }

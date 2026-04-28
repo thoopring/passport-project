@@ -316,5 +316,43 @@
     "previewSecondaryPrefix": "Or see",
     "previewSecondaryLink": "three more samples",
     "previewSecondarySuffix": "."
+  },
+  "account": {
+    "login": {
+      "eyebrow": "Log in / Sign up",
+      "title": "Just your email.",
+      "subtitle": "No password needed. We'll send a magic link — one click and you're in. Any plans you've built before will automatically link to the same email.",
+      "emailPlaceholder": "you@example.com",
+      "sendButton": "Get login link",
+      "sendingButton": "Sending…",
+      "sentTitle": "✉️ Check your inbox",
+      "sentToReturn": "Sent to {email}. Click the link to log in and we'll take you back to where you came from.",
+      "sentToLibrary": "Sent to {email}. Click the link to log in and we'll open your plan library.",
+      "sentSpamHint": "Don't see it? Check your spam folder too.",
+      "noLoginPrompt": "Don't want an account? You can still buy plans without one.",
+      "noLoginCta": "Build a plan without signing up →"
+    },
+    "callback": {
+      "processing": "Logging you in…",
+      "errorTitle": "Login didn't go through",
+      "errorRetry": "Try again",
+      "sessionMissing": "Couldn't create a session. Please try again."
+    },
+    "dashboard": {
+      "eyebrow": "My account",
+      "title": "My plans",
+      "signOut": "Sign out",
+      "loading": "Loading…",
+      "emptyTitle": "You haven't built a plan yet",
+      "emptySubtitle": "When you do, we'll save it here so you can open it from any device.",
+      "emptyCta": "Build my first plan — $4",
+      "newPlanCta": "Build a new plan — $4",
+      "daysSuffix": "{count} days",
+      "statusComplete": "Complete",
+      "statusGenerating": "Generating",
+      "statusPaid": "Paid",
+      "statusFailed": "Failed",
+      "statusDraft": "Unpaid"
+    }
   }
 }

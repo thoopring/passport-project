@@ -316,5 +316,43 @@
     "previewSecondaryPrefix": "Ou voir",
     "previewSecondaryLink": "trois autres exemples",
     "previewSecondarySuffix": "."
+  },
+  "account": {
+    "login": {
+      "eyebrow": "Connexion / Inscription",
+      "title": "Juste votre e-mail.",
+      "subtitle": "Aucun mot de passe. On vous envoie un lien magique — un clic et vous êtes connecté. Les plans déjà créés se lieront automatiquement à la même adresse.",
+      "emailPlaceholder": "vous@exemple.com",
+      "sendButton": "Recevoir le lien",
+      "sendingButton": "Envoi en cours…",
+      "sentTitle": "✉️ E-mail envoyé",
+      "sentToReturn": "Envoyé à {email}. Cliquez sur le lien pour vous connecter, on vous ramène à la page d'origine.",
+      "sentToLibrary": "Envoyé à {email}. Cliquez sur le lien pour vous connecter, on ouvre votre bibliothèque de plans.",
+      "sentSpamHint": "Vous ne le voyez pas ? Vérifiez aussi le dossier spam.",
+      "noLoginPrompt": "Pas envie de créer un compte ? Vous pouvez acheter sans en avoir un.",
+      "noLoginCta": "Créer un plan sans inscription →"
+    },
+    "callback": {
+      "processing": "Connexion en cours…",
+      "errorTitle": "Échec de la connexion",
+      "errorRetry": "Réessayer",
+      "sessionMissing": "Impossible de créer la session. Veuillez réessayer."
+    },
+    "dashboard": {
+      "eyebrow": "Mon compte",
+      "title": "Mes plans",
+      "signOut": "Déconnexion",
+      "loading": "Chargement…",
+      "emptyTitle": "Vous n'avez pas encore de plan",
+      "emptySubtitle": "Dès que vous en créez un, on le garde ici — accessible depuis n'importe quel appareil.",
+      "emptyCta": "Créer mon premier plan — 4 $",
+      "newPlanCta": "Créer un nouveau plan — 4 $",
+      "daysSuffix": "{count} jours",
+      "statusComplete": "Terminé",
+      "statusGenerating": "En cours",
+      "statusPaid": "Payé",
+      "statusFailed": "Échec",
+      "statusDraft": "Non payé"
+    }
   }
 }

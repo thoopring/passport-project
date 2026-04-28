@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getSupabaseBrowser } from "../../lib/supabase-browser";
@@ -16,6 +17,7 @@ export default function LoginPage() {
 }
 
 function LoginInner() {
+  const t = useTranslations("account.login");
   const searchParams = useSearchParams();
   const prefillEmail = searchParams.get("email") ?? "";
   const next = searchParams.get("next") ?? "";
@@ -66,15 +68,13 @@ function LoginInner() {
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-16">
         <div className="w-full max-w-md">
           <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
-            로그인 / 회원가입
+            {t("eyebrow")}
           </p>
           <h1 className="font-fraunces text-[2.25rem] sm:text-[2.75rem] leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] mb-3">
-            이메일만 있으면 끝.
+            {t("title")}
           </h1>
           <p className="text-body-md text-[var(--text-secondary)] mb-8">
-            비밀번호 필요 없어요. 이메일로 보내드리는 링크 한 번 클릭하면
-            로그인됩니다. 이전에 만드신 플랜이 있으면 자동으로 같은 이메일에
-            연결돼요.
+            {t("subtitle")}
           </p>
 
           {status !== "sent" ? (
@@ -82,7 +82,7 @@ function LoginInner() {
               <input
                 type="email"
                 required
-                placeholder="you@example.com"
+                placeholder={t("emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={status === "sending"}
@@ -94,7 +94,7 @@ function LoginInner() {
                 disabled={!email.trim() || status === "sending"}
                 className="w-full px-6 py-3.5 bg-[var(--brand-primary)] hover:bg-[var(--brand-dark)] text-white font-semibold rounded-[10px] transition disabled:opacity-40"
               >
-                {status === "sending" ? "보내는 중…" : "로그인 링크 받기"}
+                {status === "sending" ? t("sendingButton") : t("sendButton")}
               </button>
               {status === "error" && (
                 <p className="text-body-sm text-red-600">{errorMsg}</p>
@@ -103,28 +103,26 @@ function LoginInner() {
           ) : (
             <div className="bg-[var(--accent-soft)] border border-[var(--accent-primary)]/20 rounded-[12px] p-5">
               <p className="font-semibold text-[var(--text-primary)] mb-1">
-                ✉️ 메일 보냈어요
+                {t("sentTitle")}
               </p>
               <p className="text-body-sm text-[var(--text-secondary)]">
-                <span className="font-medium">{email}</span> 으로 보냈어요. 링크
-                클릭하시면 로그인되고{" "}
-                {next ? "원래 페이지로" : "내 플랜 페이지로"} 이동합니다.
+                {next ? t("sentToReturn", { email }) : t("sentToLibrary", { email })}
               </p>
               <p className="text-caption text-[var(--text-muted)] mt-3">
-                메일이 안 보이면 스팸함도 확인해주세요.
+                {t("sentSpamHint")}
               </p>
             </div>
           )}
 
           <div className="mt-10 pt-6 border-t border-[var(--border-subtle)] text-center">
             <p className="text-body-sm text-[var(--text-muted)]">
-              로그인 안 해도 플랜 구매는 가능해요.
+              {t("noLoginPrompt")}
             </p>
             <Link
               href="/plan/new"
               className="inline-block mt-2 text-body-sm text-[var(--brand-primary)] hover:underline underline-offset-4 font-medium"
             >
-              회원가입 없이 바로 플랜 만들기 →
+              {t("noLoginCta")}
             </Link>
           </div>
         </div>
