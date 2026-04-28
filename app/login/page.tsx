@@ -1,13 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getSupabaseBrowser } from "../../lib/supabase-browser";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
+  return (
+    <Suspense fallback={null}>
+      <LoginInner />
+    </Suspense>
+  );
+}
+
+function LoginInner() {
+  const searchParams = useSearchParams();
+  const prefillEmail = searchParams.get("email") ?? "";
+  const next = searchParams.get("next") ?? "";
+
+  const [email, setEmail] = useState(prefillEmail);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -24,9 +37,15 @@ export default function LoginPage() {
         typeof window !== "undefined"
           ? window.location.origin
           : "https://checkvisamap.com";
+      // Forward `next` through the auth callback so the user lands back
+      // on the page they came from (e.g. their just-purchased plan) after
+      // the magic link round-trip, instead of always /account.
+      const callback = next
+        ? `${baseUrl}/auth/callback?next=${encodeURIComponent(next)}`
+        : `${baseUrl}/auth/callback`;
       const { error } = await supabase.auth.signInWithOtp({
         email: email.trim().toLowerCase(),
-        options: { emailRedirectTo: `${baseUrl}/auth/callback` },
+        options: { emailRedirectTo: callback },
       });
       if (error) {
         setErrorMsg(error.message);
@@ -88,7 +107,8 @@ export default function LoginPage() {
               </p>
               <p className="text-body-sm text-[var(--text-secondary)]">
                 <span className="font-medium">{email}</span> 으로 보냈어요. 링크
-                클릭하시면 로그인되고 내 플랜 페이지로 이동합니다.
+                클릭하시면 로그인되고{" "}
+                {next ? "원래 페이지로" : "내 플랜 페이지로"} 이동합니다.
               </p>
               <p className="text-caption text-[var(--text-muted)] mt-3">
                 메일이 안 보이면 스팸함도 확인해주세요.

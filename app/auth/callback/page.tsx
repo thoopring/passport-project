@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { getSupabaseBrowser } from "../../../lib/supabase-browser";
@@ -9,13 +9,23 @@ import { getSupabaseBrowser } from "../../../lib/supabase-browser";
 /**
  * Magic-link callback. Supabase appends `code` (PKCE) or `access_token`
  * (implicit) to the redirect URL. We exchange/parse the session and bounce
- * to /account.
+ * to `?next=` (forwarded by /login when the user clicked Save-this-plan
+ * from a post-payment screen) or fall back to /account.
  *
  * Errors land here too — show them with a "try again" link rather than
  * eat them silently.
  */
 export default function AuthCallback() {
+  return (
+    <Suspense fallback={null}>
+      <CallbackInner />
+    </Suspense>
+  );
+}
+
+function CallbackInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -25,6 +35,12 @@ export default function AuthCallback() {
     // exchangeCodeForSession explicitly; check for ?code= in URL.
     const url = new URL(window.location.href);
     const code = url.searchParams.get("code");
+    // Only allow same-origin relative paths to prevent open-redirect abuse.
+    const rawNext = searchParams.get("next");
+    const safeNext =
+      rawNext && rawNext.startsWith("/") && !rawNext.startsWith("//")
+        ? rawNext
+        : "/account";
 
     const finish = async () => {
       try {
@@ -37,7 +53,7 @@ export default function AuthCallback() {
         }
         const { data } = await supabase.auth.getSession();
         if (data.session) {
-          router.replace("/account");
+          router.replace(safeNext);
         } else {
           setError("로그인 세션을 만들지 못했어요. 다시 시도해 주세요.");
         }
@@ -46,7 +62,7 @@ export default function AuthCallback() {
       }
     };
     finish();
-  }, [router]);
+  }, [router, searchParams]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">

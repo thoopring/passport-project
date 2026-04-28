@@ -282,7 +282,17 @@
     "shareTitle": "Share gliddy, get your next plan free",
     "shareSubtitle": "When a friend buys their first plan with your link, we credit you a free one.",
     "shareCopy": "Copy link",
-    "shareCopied": "Copied!"
+    "shareCopied": "Copied!",
+    "saveBadge": "Save your plan",
+    "saveTitle": "Don't lose this trip",
+    "saveSubtitle": "Create a free account in one tap and access this plan from any device — no password, just a magic link.",
+    "saveButton": "Save with email",
+    "saveNoPassword": "No password needed",
+    "saveSavedTitle": "Saved to your account",
+    "saveSavedSubtitle": "Linked to {email}. Find this plan anytime in your library.",
+    "saveSavedLink": "Open my account",
+    "saveDifferentSubtitle": "You're signed in as {sessionEmail}, but this plan was bought with {planEmail}. Switch accounts to save it to the right inbox.",
+    "saveSwitchButton": "Switch account"
   },
   "home": {
     "metaTitle": "Your next trip, sorted — $4",

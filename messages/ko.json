@@ -282,7 +282,17 @@
     "shareTitle": "공유하시면 다음 플랜이 무료예요",
     "shareSubtitle": "친구가 회원님 링크로 첫 플랜을 구매하면, 무료 플랜 한 건을 적립해 드려요.",
     "shareCopy": "링크 복사",
-    "shareCopied": "복사됨!"
+    "shareCopied": "복사됨!",
+    "saveBadge": "내 플랜 저장",
+    "saveTitle": "이 플랜, 잊어버리지 마세요",
+    "saveSubtitle": "이메일 한 번이면 끝. 무료 계정에 저장하고 어떤 기기에서든 다시 열어볼 수 있어요. 비밀번호도 없고, 마법 링크 한 번만 누르면 돼요.",
+    "saveButton": "이메일로 저장하기",
+    "saveNoPassword": "비밀번호 필요 없음",
+    "saveSavedTitle": "내 계정에 저장됨",
+    "saveSavedSubtitle": "{email} 계정에 연결됐어요. 언제든 라이브러리에서 다시 열 수 있어요.",
+    "saveSavedLink": "내 계정 열기",
+    "saveDifferentSubtitle": "지금 {sessionEmail}로 로그인되어 있는데, 이 플랜은 {planEmail}로 결제됐어요. 계정을 바꿔서 같은 메일에 저장하세요.",
+    "saveSwitchButton": "계정 바꾸기"
   },
   "home": {
     "metaTitle": "다음 여행, 1분이면 끝 — $4",

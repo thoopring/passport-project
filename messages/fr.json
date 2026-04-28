@@ -282,7 +282,17 @@
     "shareTitle": "Partagez gliddy, votre prochain plan est offert",
     "shareSubtitle": "Quand un ami achète son premier plan avec votre lien, on vous offre le suivant.",
     "shareCopy": "Copier le lien",
-    "shareCopied": "Copié !"
+    "shareCopied": "Copié !",
+    "saveBadge": "Sauvegarder mon plan",
+    "saveTitle": "Ne perdez pas ce voyage",
+    "saveSubtitle": "Créez un compte gratuit en un clic et accédez à ce plan depuis n'importe quel appareil — sans mot de passe, juste un lien magique.",
+    "saveButton": "Sauvegarder par e-mail",
+    "saveNoPassword": "Aucun mot de passe",
+    "saveSavedTitle": "Sauvegardé sur votre compte",
+    "saveSavedSubtitle": "Lié à {email}. Retrouvez ce plan à tout moment dans votre bibliothèque.",
+    "saveSavedLink": "Ouvrir mon compte",
+    "saveDifferentSubtitle": "Vous êtes connecté en tant que {sessionEmail}, mais ce plan a été acheté avec {planEmail}. Changez de compte pour le sauvegarder dans la bonne boîte.",
+    "saveSwitchButton": "Changer de compte"
   },
   "home": {
     "metaTitle": "Votre prochain voyage, ficelé — 4 $",

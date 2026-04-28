@@ -282,7 +282,17 @@
     "shareTitle": "シェアして次の旅程を無料に",
     "shareSubtitle": "ご友人があなたのリンク経由で初めて購入されると、無料の旅程を1件プレゼント。",
     "shareCopy": "リンクをコピー",
-    "shareCopied": "コピーしました!"
+    "shareCopied": "コピーしました!",
+    "saveBadge": "プランを保存",
+    "saveTitle": "この旅、なくさないで",
+    "saveSubtitle": "メール一つで無料アカウントを作って、どの端末からでもプランを開けます。パスワード不要、マジックリンクをタップするだけ。",
+    "saveButton": "メールで保存する",
+    "saveNoPassword": "パスワード不要",
+    "saveSavedTitle": "アカウントに保存済み",
+    "saveSavedSubtitle": "{email} に紐づけられました。いつでもライブラリから開けます。",
+    "saveSavedLink": "アカウントを開く",
+    "saveDifferentSubtitle": "現在 {sessionEmail} でログイン中ですが、このプランは {planEmail} で購入されました。アカウントを切り替えて正しい受信箱に保存しましょう。",
+    "saveSwitchButton": "アカウント切替"
   },
   "home": {
     "metaTitle": "次の旅、すぐ整います — $4",

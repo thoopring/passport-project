@@ -5,6 +5,7 @@ import { getPlan } from "../../../lib/plans";
 import PlanView from "../../../components/PlanView";
 import PostPaymentWait from "../../../components/PostPaymentWait";
 import ShareReferralCard from "../../../components/ShareReferralCard";
+import SavePlanCta from "../../../components/SavePlanCta";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { getOrCreateReferralCode } from "../../../lib/referrals";
@@ -89,7 +90,12 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
     <PlanView
       plan={record.plan}
       downloadHref={`/api/plan/${id}/pdf`}
-      bottomCta={shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
+      bottomCta={
+        <div className="space-y-4">
+          <SavePlanCta planEmail={record.email} planId={id} />
+          {shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
+        </div>
+      }
     />
   );
 }
