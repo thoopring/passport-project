@@ -1,8 +1,8 @@
 # Status — gliddy launch prep
 
-> **Last updated:** 2026-04-29 (master-prompt sweep complete)
+> **Last updated:** 2026-04-29 (L2 + referral + home-grid done)
 > **Branch:** main
-> **Latest commit:** `89da363` — sample CTA redesign (Phase 2)
+> **Latest commit:** `a348721` — home grid 3 → 6 cities
 > **Working tree:** clean
 
 Quick-resume document. After /compact or new session, read this first to
@@ -111,7 +111,9 @@ Approval = real money flow unlocked. ETA 3-7 business days.
   - Required env vars listed in `.env.example`. Critical: `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (added 2026-04-28).
 - ~~**D2-i18n**~~ ✅ Done 2026-04-29 — Reykjavik / Cusco / Dubai translated to ko/ja/zh/fr (12 sparse overrides).
 - ~~**Master-prompt sweep**~~ ✅ Done 2026-04-29 — P1 priceTier, P3 $4/time strip, P4 i18n, P5 brand, P2 CTA redesign.
-- **L2** — GA4/PostHog locale-tagged analytics. Needs: `page_view`, `wizard_started`, `checkout_started`, `checkout_completed`, `account_signup`, `account_visit`, `referral_shared`, `credit_used`. ~3-4h.
+- ~~**L2 — Locale-tagged analytics**~~ ✅ Done 2026-04-29 — typed wrapper at `lib/analytics.ts`, GA4 + PostHog, 8 events with locale super-property: page_view, wizard_started, checkout_started, checkout_completed, account_signup, account_visit, referral_shared, credit_used. PostHog gracefully no-ops when `NEXT_PUBLIC_POSTHOG_KEY` is unset.
+- ~~**Referral copy fix**~~ ✅ Done 2026-04-29 — reward switched from "free next plan" to "25% off next plan" across all 5 locales (shareTitle/Subtitle/Badge, account credits dashboard, lib/email.ts CREDIT_COPY). NOTE: copy-only — actual mechanic still gives 100% off via plan_credits bypass; aligning needs a 25% LS discount code + checkout swap (follow-up).
+- ~~**Home grid 3→6**~~ ✅ Done 2026-04-29 — Reykjavik/Cusco/Dubai added to the home "What your plan looks like" section. 2 rows × 3 cards covering 6 continents/regions.
 
 ### 💎 Medium
 - **L1** — Test confirmation email delivery in 5 langs (after L4 deploy). Founder.
