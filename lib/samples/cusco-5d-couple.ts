@@ -1,0 +1,483 @@
+import type { TripPlan } from "../../types/trip-plan";
+
+/**
+ * Sample plan: Cusco + Machu Picchu, 5 days, couple, midrange.
+ *
+ * Cusco base + Sacred Valley day + Machu Picchu day + acclimatization
+ * built into Day 1. Real altitudes, real train schedules, real
+ * restaurants. Text fields enriched beyond typical API output.
+ */
+const cusco5dCouple: TripPlan = {
+  destination: "Cusco",
+  destinationCountry: "Peru",
+  durationDays: 5,
+  overview:
+    "Five days for a couple who want Cusco, the Sacred Valley, and Machu Picchu without rushing themselves into altitude sickness. Day 1 lands you slowly: coca tea, a flat walk through San Blas, an early dinner. Day 2 you're acclimatized enough for Cusco proper — Plaza de Armas, the Inca-foundation cathedrals, San Pedro market lunch, the Saqsayhuamán fortress at golden hour. Day 3 descends into the Sacred Valley for the Pisac terraces and Ollantaytambo. Day 4 is the headline day — a 4am start to Machu Picchu via PeruRail and back. Day 5 winds down with a coca-leaf espresso, alpaca-wool souvenir, and the flight home. By the end you've walked stone walls 800 years older than English, watched sunrise hit the Andes from the Sun Gate, and learned that 'pachamama' is a word people actually live by.",
+  bestSeasonNote:
+    "May through September is the dry season — clear skies, cold nights, the safest months for the Inca Trail and its alternatives. Avoid January–March (peak rainy season; the Inca Trail itself is closed in February for maintenance). Late April and October are the value sweet spots: shoulder-season prices, mostly dry, but pack a rain layer. Cusco's Inti Raymi festival (June 24) fills the city — book hotels 6 months ahead if you want to overlap; otherwise expect tripled rates that week. Altitude doesn't care which month you visit.",
+  currencyTip:
+    "Peruvian Sol (PEN). 1 USD ≈ 3.7 PEN. Cards accepted at hotels, mid-to-upper restaurants, and the train; cash needed at markets, taxis, small cafés, and the Sacred Valley villages. Get cash at a BCP or Interbank ATM (max 700 PEN/withdrawal, ~$190); avoid the 'Globalnet' standalone ATMs which charge 25 PEN per transaction. Keep small notes (10s and 20s) — vendors frequently can't break a 100. Tipping: 10% at sit-down restaurants if not auto-included; 5–10 PEN per bag for porters.",
+  languageTip:
+    "Spanish is universal; Quechua is alive in the Andean villages and you'll hear it traded with Spanish at the Pisac market. Hello in Quechua: 'allillanchu' (ah-lee-lyan-choo). Most tour guides speak English; small-restaurant menus are Spanish-only. Google Translate's Spanish offline pack covers 99% of needs. The one Spanish word worth pronouncing right is 'huayno' (why-no) — the Andean folk-music genre you'll hear from every plaza speaker.",
+  emergencyNumber: "105 (police, English limited), 116 (medical), iPeru tourism hotline +51 1 574 8000 (English, 24/7)",
+  hotel: {
+    name: "JW Marriott El Convento Cusco",
+    area: "Centro Histórico, 4 blocks from Plaza de Armas",
+    address: "Esquina de la Calle Ruinas 432 y San Agustín",
+    coords: [-71.9750, -13.5172],
+    rationale:
+      "Built inside a 16th-century Augustinian convent, on top of an Inca palace foundation that's still partly visible behind glass in the lobby. Each room has an oxygen-enriched system that pulses extra O2 through the vents at night — at 3,400m altitude, this is the difference between sleeping and lying awake gasping. The interior courtyards are colonial-stone gardens; the spa offers a coca-leaf massage that genuinely helps with adjustment headaches. 4 blocks from Plaza de Armas means you're walking everywhere downtown but above the worst of late-night noise. Concierge handles your Sacred Valley + Machu Picchu logistics — booking the right train class, arranging the early-morning car service for Day 4.",
+    priceTier: "$$$",
+    estimatedNightlyRate: "~$280/night",
+  },
+  airportTransit: {
+    method: "Hotel transfer (pre-arranged) from Alejandro Velasco Astete (CUZ)",
+    duration: "~25 minutes",
+    cost: "~$30 one-way",
+    instructions:
+      "Cusco airport (CUZ) is small, single-runway, and 100% domestic — most travelers connect through Lima (LIM) on a 90-minute LATAM or Sky Airline flight. Arrange hotel transfer at booking time ($30 each way) — the driver will meet you in arrivals with a sign and give you coca tea in the car (genuinely helpful for acclimatization). Do NOT take a random street taxi from the airport — license tampering is common. The official taxi stand inside arrivals (look for 'Taxis Autorizados') costs ~$15 and is safe but the hotel transfer is calmer with luggage. The drive into town climbs 200m of altitude — go slow on stairs in the hotel for the first hour. Sleep is the cure.",
+  },
+  days: [
+    {
+      dayNumber: 1,
+      theme: "Land slow, acclimatize",
+      summary:
+        "Land, drive in, drink coca tea, walk a flat couple of blocks, eat early. Resist the urge to do anything else — your tomorrow self will thank you.",
+      stops: [
+        {
+          order: 1,
+          time: "13:00",
+          type: "rest",
+          name: "Hotel JW Marriott El Convento check-in",
+          area: "Centro Histórico",
+          coords: [-71.9750, -13.5172],
+          duration: "1.5 hours",
+          description:
+            "Check in, accept the first welcome cup of coca tea (mate de coca) immediately — it genuinely helps with the altitude. Lie down for 30 minutes; don't underestimate the air. The hotel's oxygen-enriched rooms run a slightly elevated pressure that's noticeable in your second night's sleep. If you feel dizzy or short of breath, this is normal day-1 — drink water, eat light, rest. Heavy lifting can wait.",
+          estimatedCost: "—",
+          transitFromPrev: "Hotel transfer from CUZ",
+        },
+        {
+          order: 2,
+          time: "15:00",
+          type: "sight",
+          name: "San Blas neighborhood walk",
+          area: "San Blas",
+          coords: [-71.9737, -13.5151],
+          duration: "1 hour",
+          description:
+            "The artisan quarter, 2 blocks uphill from the hotel — narrow stone-cobbled streets, white-and-blue trim houses, Inca-foundation walls at street level (you can lay your hand on them). The slope is gentle but at 3,400m even gentle uphill is a workout — that's the point of doing this today. Plaza San Blas at the top has a colonial church (San Blas Iglesia, 1563, with a cedar pulpit carved from a single tree) and a fountain. Pop into Hilo gallery for handwoven Andean textiles ($80–250) — the colors are why the region is famous.",
+          estimatedCost: "Free",
+          transitFromPrev: "5 min walk uphill",
+        },
+        {
+          order: 3,
+          time: "16:30",
+          type: "rest",
+          name: "Café Valeriana — coca tea + pastry",
+          area: "San Blas",
+          coords: [-71.9740, -13.5148],
+          duration: "45 min",
+          description:
+            "Tiny café tucked in a courtyard — coca tea ($2), a quinoa-and-honey muffin ($3), or a chicha morada (purple-corn drink, slightly sweet, vitamin C-loaded). Sit by the window. The owner, Valeriana, plays charango records. This is the recovery stop before the hotel for a real nap.",
+          estimatedCost: "~$8",
+          transitFromPrev: "Built-in",
+        },
+        {
+          order: 4,
+          time: "19:00",
+          type: "meal",
+          name: "Cicciolina (early dinner)",
+          area: "Centro Histórico",
+          address: "Triunfo 393, 2nd floor",
+          coords: [-71.9774, -13.5163],
+          duration: "1.5 hours",
+          description:
+            "Italian-Andean fusion in a colonial second-floor space — shared tapas-style. Order the alpaca carpaccio ($14) — yes alpaca, leaner and sweeter than beef, this is the gentle introduction; the burrata-and-rocoto-pepper salad; the wood-fired Cicciolina pizza. The room is candles + exposed beams + two open windows over the cathedral. Don't drink alcohol on Day 1 at altitude — your body is already working overtime. Save the pisco sour for Day 2.",
+          estimatedCost: "~$45/person",
+          bookingTip: "Reserve at cicciolinacusco.com 1 week ahead; they hold a small bar for walk-ins.",
+          transitFromPrev: "10 min slow downhill walk",
+        },
+      ],
+    },
+    {
+      dayNumber: 2,
+      theme: "Cusco proper",
+      summary:
+        "Plaza de Armas, the cathedral built on Inca foundations, San Pedro market for ceviche, the Coricancha sun temple, and Saqsayhuamán at golden hour.",
+      stops: [
+        {
+          order: 1,
+          time: "09:00",
+          type: "sight",
+          name: "Plaza de Armas + Cusco Cathedral",
+          area: "Centro Histórico",
+          coords: [-71.9785, -13.5170],
+          duration: "1.5 hours",
+          description:
+            "The Inca Empire's spiritual center, repaved as the Spanish colonial heart. The Cathedral (1559–1654) was built on the Inca Suntur Wasi temple — the Spanish quarried Inca stones for the walls and you can see them as the lower courses (perfect black andesite, no mortar) under colonial limestone. Inside: the 1755 'Last Supper' painting where Christ is sharing a guinea pig (a quintessentially Andean substitution that the Vatican signed off on). Audio guide $5, 60 min.",
+          estimatedCost: "~$15 entry + audio",
+          bookingTip: "Closed Sundays for Mass. 09:00 opening = quietest hour.",
+          transitFromPrev: "5 min walk from hotel",
+        },
+        {
+          order: 2,
+          time: "11:00",
+          type: "sight",
+          name: "Coricancha (Qorikancha) — Inca Sun Temple",
+          area: "Avenida El Sol",
+          coords: [-71.9764, -13.5215],
+          duration: "1 hour",
+          description:
+            "The most sacred Inca site — the walls were once covered in 700 sheets of beaten gold which Pizarro melted into ingots in 1533. The Spanish then built the Santo Domingo Convent on top of the surviving Inca walls, which is what you see today: the most perfect Inca masonry in the world (stones polished so flat you can't slide a credit card between them) supporting clumsier colonial stonework. The 1950 earthquake collapsed much of the convent; the Inca walls didn't move. There's a metaphor in there. $5 entry.",
+          estimatedCost: "~$5",
+          transitFromPrev: "10 min walk south",
+        },
+        {
+          order: 3,
+          time: "12:30",
+          type: "meal",
+          name: "Mercado Central de San Pedro — lunch",
+          area: "Mercado",
+          coords: [-71.9819, -13.5203],
+          duration: "1 hour",
+          description:
+            "Cusco's main covered market — chichería stalls in the back run set lunches (ceviche + grilled trout + chicha morada for ~$5) where locals eat shoulder-to-shoulder on long benches. The vegetable section has 30+ varieties of potato (Peru has 4,000 native varieties — yes, four thousand) and corn in every color. Don't drink the unbottled water; do drink the chicha morada. Pickpockets work this market — wear bag in front, no phone in back pocket. Get a freshly squeezed orange juice ($1) on the way out.",
+          estimatedCost: "~$8",
+          transitFromPrev: "10 min walk west",
+        },
+        {
+          order: 4,
+          time: "14:00",
+          type: "rest",
+          name: "Hotel break + nap",
+          area: "Centro Histórico",
+          coords: [-71.9750, -13.5172],
+          duration: "1.5 hours",
+          description:
+            "Day 2 at 3,400m altitude — your body is working harder than it knows. A 90-min nap matters more than you'd guess. The afternoon sites are at higher elevation than the morning ones; rest now or pay for it later.",
+          estimatedCost: "—",
+          transitFromPrev: "10 min walk back",
+        },
+        {
+          order: 5,
+          time: "16:00",
+          type: "sight",
+          name: "Saqsayhuamán fortress",
+          area: "Above Cusco, north hillside",
+          coords: [-71.9824, -13.5081],
+          duration: "2 hours",
+          description:
+            "The Inca fortress 200m above the city — three zigzag walls of cyclopean stones (some single blocks weigh 100 tons; nobody has fully explained how the Inca cut and moved them). The hillside is at 3,700m so go slowly; the entry climb is 15 minutes. From the top, the entire valley of Cusco is below you — at golden hour the colonial red-tile roofs glow against the green ridges. The 'Suchuna' rock slide nearby — kids slide down it, sometimes adults too. Combo ticket with other ruins: $25 Boleto Turístico Integral. Taxi up ($5) recommended; walk down through the path back to San Blas (40 min).",
+          estimatedCost: "~$25 combo ticket",
+          bookingTip: "Boleto Turístico covers 16 sites valid 10 days; buy at COSITUC office on Avenida El Sol.",
+          transitFromPrev: "Taxi 10 min up",
+        },
+        {
+          order: 6,
+          time: "19:30",
+          type: "meal",
+          name: "Chicha por Gastón Acurio",
+          area: "Plaza Regocijo",
+          address: "Plaza Regocijo 261, 2nd floor",
+          coords: [-71.9794, -13.5178],
+          duration: "2 hours",
+          description:
+            "Chef Gastón Acurio's Cusco outpost — he is to Peruvian cuisine what Ferran Adrià is to Spanish. Order the alpaca anticuchos (skewers in rocoto sauce, $14), the trucha de Andes (Andean trout ceviche with sweet potato), and a pisco sour at last (now you're acclimatized enough). The dining room is upstairs and overlooks Plaza Regocijo at night, with mahogany floors, white tablecloths, candles. This is the ceremonial dinner of the trip.",
+          estimatedCost: "~$70/person with drinks",
+          bookingTip: "Reserve at chicha.com.pe 3–5 days ahead; the window seats book first.",
+          transitFromPrev: "8 min walk",
+        },
+      ],
+    },
+    {
+      dayNumber: 3,
+      theme: "Sacred Valley — Pisac + Ollantaytambo",
+      summary:
+        "Descend from Cusco into the warmer Sacred Valley. Pisac terraces and market in the morning, lunch in Urubamba, Ollantaytambo ruins in the afternoon, dinner back in Cusco.",
+      stops: [
+        {
+          order: 1,
+          time: "08:30",
+          type: "transit",
+          name: "Private driver Cusco → Pisac",
+          area: "Sacred Valley descent",
+          coords: [-71.8500, -13.4147],
+          duration: "1.5 hours",
+          description:
+            "The hotel arranges a private driver-guide for the day (~$220 total, English-speaking, 8 hours, includes all stops + waiting). The road descends through Quechua villages — you'll pass women weaving on backstrap looms by the roadside. The Mirador de Taray viewpoint at 3,300m is a 5-min stop the driver knows: full panorama of the Sacred Valley below, snow-tipped Andes ringing it. The altitude drops 600m by the time you reach Pisac, which is why this day feels so much easier than Cusco proper.",
+          estimatedCost: "~$220 (full day driver-guide for 2)",
+          transitFromPrev: "Hotel pickup",
+        },
+        {
+          order: 2,
+          time: "10:00",
+          type: "sight",
+          name: "Pisac Inca terraces + village market",
+          area: "Pisac",
+          coords: [-71.8474, -13.4147],
+          duration: "2 hours",
+          description:
+            "The Pisac archaeological site is on a ridge above the village — Inca agricultural terraces stepping down 600 meters, a sun temple (Intihuatana) on top, and the largest Inca cemetery in Peru carved into the cliff opposite (over 3,000 tombs, looted by 1500). Drive up to the upper entrance, walk down through the terraces, exit to the village. The Pisac village market (Tuesdays/Thursdays/Sundays best) is where Andean weavers sell direct — alpaca scarves $18, full-size blankets $80–150, ceramic bulls $10. Bargain politely (10–15% off marked price is the norm).",
+          estimatedCost: "~$25 site (covered by Boleto Turístico)",
+          bookingTip: "Sunday market is busiest; Tuesday market has more weavers, fewer tourists.",
+          transitFromPrev: "Driver",
+        },
+        {
+          order: 3,
+          time: "13:00",
+          type: "meal",
+          name: "Hacienda Sarapampa lunch (Urubamba)",
+          area: "Urubamba",
+          coords: [-72.0876, -13.3068],
+          duration: "1.5 hours",
+          description:
+            "Working corn farm with an open-air restaurant on the property — a buffet of Andean staples: choclo (giant corn) with cheese, cuy (guinea pig — try a piece if curious; it's the historical Andean protein), trout from the nearby stream, quinoa stew, dozens of native potato types. ~$30/person buffet + drink. The corn cob from Urubamba's heritage variety is genuinely the size of your forearm.",
+          estimatedCost: "~$30/person",
+          transitFromPrev: "Driver, 30 min west",
+        },
+        {
+          order: 4,
+          time: "15:00",
+          type: "sight",
+          name: "Ollantaytambo ruins + village",
+          area: "Ollantaytambo",
+          coords: [-72.2657, -13.2581],
+          duration: "2 hours",
+          description:
+            "The Sacred Valley's other major Inca complex — and the only Inca site where the Inca won a battle against the Spanish (Manco Inca's resistance, 1537). The ruins climb a steep terraced cliff; you can climb 200 stone steps to the Sun Temple at the top, which has six monolithic blocks of pink granite quarried from a mountain across the valley and somehow moved here. The Ollantaytambo village below is the only continuously-inhabited Inca town in the world — the streets follow the original Inca grid, water flows in stone channels down the middle of every alley exactly as designed in 1450.",
+          estimatedCost: "~$25 (Boleto Turístico)",
+          transitFromPrev: "Driver, 30 min west",
+        },
+        {
+          order: 5,
+          time: "18:00",
+          type: "transit",
+          name: "Drive back to Cusco",
+          area: "Sacred Valley → Cusco",
+          coords: [-71.9750, -13.5172],
+          duration: "1.5 hours",
+          description:
+            "The drive back climbs 600m of altitude — you'll feel it. Eat the snack the driver brought, sip water. Sunset light over the Andes through the car window is spectacular. Tip the driver-guide $20–30 if good (custom).",
+          estimatedCost: "Included in driver fee",
+          transitFromPrev: "Driver",
+        },
+        {
+          order: 6,
+          time: "20:00",
+          type: "meal",
+          name: "Limo Cocina Peruana (back in Cusco)",
+          area: "Plaza de Armas",
+          address: "Portal de Carnes 236, 2nd floor",
+          coords: [-71.9783, -13.5168],
+          duration: "1.5 hours",
+          description:
+            "Modern Peruvian on a balcony directly over Plaza de Armas — the cathedral lit at night through the windows is the photo. Order the seafood ceviche, the lomo saltado (Peruvian-Chinese stir-fry beef), the chocolate-quinoa torte. Pisco sours are made tableside. Quieter than Cicciolina, more polished than Chicha. ~$50/person.",
+          estimatedCost: "~$55/person",
+          bookingTip: "Reserve 2 days ahead — balcony tables fastest.",
+          transitFromPrev: "5 min walk from hotel",
+        },
+      ],
+    },
+    {
+      dayNumber: 4,
+      theme: "Machu Picchu day",
+      summary:
+        "The headline. 4am start, scenic train through the Sacred Valley, bus up the switchback road, 3-hour guided tour of Machu Picchu, lunch, train back, dinner in Cusco.",
+      stops: [
+        {
+          order: 1,
+          time: "04:00",
+          type: "transit",
+          name: "Hotel → Ollantaytambo Station (private car)",
+          area: "Cusco → Ollantaytambo",
+          coords: [-72.2657, -13.2588],
+          duration: "1.5 hours",
+          description:
+            "Pre-arranged car (~$80, hotel books) leaves the hotel at 04:00 sharp. Pre-packed breakfast box from the hotel ($15 add-on) is the move — coffee in a thermos, a sandwich, fresh fruit. The drive descends the Sacred Valley in pre-dawn light; you'll see Quechua farmers heading to fields with their oxen as you pass. Arrive Ollantaytambo Station 05:30 — 30 min before the 06:10 train.",
+          estimatedCost: "~$80",
+          transitFromPrev: "—",
+        },
+        {
+          order: 2,
+          time: "06:10",
+          type: "transit",
+          name: "PeruRail Vistadome → Aguas Calientes",
+          area: "Sacred Valley rails",
+          coords: [-72.5251, -13.1547],
+          duration: "1.5 hours",
+          description:
+            "PeruRail Vistadome is the smart class for couples: panoramic windows AND glass roof panels, breakfast included on the train, live Andean music for 20 min in the second hour. ~$140/person each way. The track follows the Urubamba River through the cloud forest — vegetation changes every 15 minutes, from cactus-dotted high desert to orchid-hung jungle as you descend. Train arrives Aguas Calientes 07:40.",
+          estimatedCost: "~$280/person round-trip",
+          bookingTip: "Book at perurail.com 2–3 months ahead. Vistadome > Expedition (the cheaper class) is worth the price difference.",
+          transitFromPrev: "Boarding",
+        },
+        {
+          order: 3,
+          time: "08:00",
+          type: "transit",
+          name: "Bus from Aguas Calientes → Machu Picchu entrance",
+          area: "Switchback road up",
+          coords: [-72.5450, -13.1631],
+          duration: "30 min",
+          description:
+            "The 'Consetur' bus zigzags up 8 km of switchbacks for 25 minutes — sit on the right going up for the river-and-cloud view. $24 round-trip per person, buy at the bus terminal in Aguas Calientes (across from train station). Lines move fast. The road was built by Hiram Bingham III's nephew in 1948 — before that, you walked the Inca trail.",
+          estimatedCost: "~$24/person",
+          transitFromPrev: "Walk to bus terminal, 3 min",
+        },
+        {
+          order: 4,
+          time: "08:45",
+          type: "sight",
+          name: "Machu Picchu — guided tour",
+          area: "Citadel + Sun Gate viewpoint",
+          address: "Machu Picchu Pueblo",
+          coords: [-72.5450, -13.1631],
+          duration: "3 hours",
+          description:
+            "Your hotel pre-booked a licensed guide ($60/person, 3 hours, English) — required by the new MP regulations as of 2024. Guides walk Circuit 2 (the classic): through the lower urban sector, up to the Guard House for the postcard photo, through the Temple of the Sun, the Royal Tomb, past the Intihuatana ('hitching post of the sun', a sacred sundial). At 09:30 the morning fog lifts and the city emerges below you — the moment that empties everyone's lungs. The Sun Gate (Inti Punku) day-hike is an additional $5 ticket and 90 min round-trip, only worth it if you have stamina at altitude. A llama will probably photo-bomb your selfie. Bring water, sunscreen, hat — the equatorial sun at 2,400m burns fast.",
+          estimatedCost: "~$130 entry + ~$60 guide",
+          bookingTip: "Reserve entry at machupicchu.gob.pe 60 days out — Circuit 2 is the standard tourist route. New rules require booking specific 1-hour entry slots.",
+          transitFromPrev: "Walk to entrance, 5 min",
+        },
+        {
+          order: 5,
+          time: "12:30",
+          type: "meal",
+          name: "Sanctuary Lodge buffet (or town below)",
+          area: "Machu Picchu entrance",
+          coords: [-72.5450, -13.1631],
+          duration: "1 hour",
+          description:
+            "The only restaurant at the Machu Picchu entrance — Belmond Sanctuary Lodge buffet, $50/person, but you eat with the citadel through the windows. Skip if you mind the price; the bus down + lunch in Aguas Calientes is half the cost (Indio Feliz, $25, also good). Hydrate seriously.",
+          estimatedCost: "~$50/person (or $25 if down in town)",
+          transitFromPrev: "Built-in",
+        },
+        {
+          order: 6,
+          time: "14:30",
+          type: "transit",
+          name: "Bus down + train back to Ollantaytambo",
+          area: "Aguas Calientes → Ollantaytambo",
+          coords: [-72.2657, -13.2588],
+          duration: "2.5 hours",
+          description:
+            "Catch the 14:30 bus down (25 min), train PeruRail Vistadome at 15:20 from Aguas Calientes (1.5 hrs back to Ollantaytambo). Different scenery on the return: golden hour light through the cloud forest, fewer photographers. Doze in your seat without guilt — you've earned it.",
+          estimatedCost: "Round-trip already paid",
+          transitFromPrev: "Built-in",
+        },
+        {
+          order: 7,
+          time: "17:30",
+          type: "transit",
+          name: "Private car Ollantaytambo → Cusco",
+          area: "Sacred Valley → Cusco climb",
+          coords: [-71.9750, -13.5172],
+          duration: "1.5 hours",
+          description:
+            "Driver waits at Ollantaytambo Station with your name; same arrangement as morning ($80 each way). Climb back to 3,400m — you'll feel it. Sleep early; tomorrow is short.",
+          estimatedCost: "~$80",
+          transitFromPrev: "Driver pickup",
+        },
+        {
+          order: 8,
+          time: "20:00",
+          type: "meal",
+          name: "Pacha Papa (San Blas — easy walk)",
+          area: "San Blas, Cusco",
+          address: "Plaza San Blas 120",
+          coords: [-71.9737, -13.5151],
+          duration: "1.5 hours",
+          description:
+            "Casual courtyard restaurant in San Blas — the perfect Day-4 dinner because you're tired and just want simple Peruvian. Wood-fired pizza ($12), grilled trout ($18), pisco sour. Open courtyard with stone walls + clay tile roof, candles. They have a guinea-pig-on-a-stake option ($25) if you want the full Andean experience.",
+          estimatedCost: "~$30/person",
+          transitFromPrev: "5 min walk from hotel",
+        },
+      ],
+    },
+    {
+      dayNumber: 5,
+      theme: "Cusco morning + airport",
+      summary:
+        "Slow morning, last alpaca-wool browse, coca-leaf espresso, taxi to CUZ.",
+      stops: [
+        {
+          order: 1,
+          time: "09:30",
+          type: "rest",
+          name: "Hotel breakfast + slow morning",
+          area: "JW Marriott El Convento",
+          coords: [-71.9750, -13.5172],
+          duration: "1.5 hours",
+          description:
+            "Breakfast in the colonial courtyard — Andean honey, Peruvian eggs, fresh juice from chirimoya (custard apple), coca tea or coca-leaf espresso (yes, that's a thing). Sit in the sun. Check-out is 12:00; bags can stay at reception until departure.",
+          estimatedCost: "Included",
+          transitFromPrev: "—",
+        },
+        {
+          order: 2,
+          time: "11:00",
+          type: "shopping",
+          name: "Centro Artesanal Cusco",
+          area: "Avenida El Sol 603",
+          coords: [-71.9755, -13.5230],
+          duration: "1 hour",
+          description:
+            "The official artisan market — 200+ small stalls under one roof, handmade alpaca-wool sweaters ($60–120), wall hangings ($40–80), silver jewelry from Cusco's silversmiths ($30+). Quality is mid-to-high; bargain 10–15%. Avoid the 'baby alpaca' label on $15 sweaters at street stands — those are acrylic. The real thing has weight, a slightly oily lanolin smell, and a matte (not shiny) surface.",
+          estimatedCost: "~$80–150 souvenirs",
+          transitFromPrev: "10 min walk south",
+        },
+        {
+          order: 3,
+          time: "12:30",
+          type: "meal",
+          name: "Café Morena (last lunch)",
+          area: "Centro Histórico",
+          address: "Plateros 348B",
+          coords: [-71.9785, -13.5163],
+          duration: "1 hour",
+          description:
+            "Light lunch — quinoa salad with avocado, fresh juices, maybe one final pisco sour. The café has a small back garden if the courtyard upstairs is full. ~$15/person. Don't overstuff; the airport drive + flight is coming.",
+          estimatedCost: "~$15/person",
+          transitFromPrev: "8 min walk back",
+        },
+        {
+          order: 4,
+          time: "14:30",
+          type: "transit",
+          name: "Hotel transfer → CUZ airport",
+          area: "Cusco → CUZ",
+          coords: [-71.9389, -13.5358],
+          duration: "30 min",
+          description:
+            "Pre-arranged driver picks up at hotel (~$30). CUZ is small; allow 90 min before domestic departure for security + boarding. Most international travelers connect through Lima with a 90-min layover. Buy last-minute alpaca-wool slippers in CUZ duty-free — same quality as the city, slightly higher price but it counts as carry-on. Coca-leaf candies are also a fun take-home (legal in checked luggage; technically illegal to carry into the US under DEA but never enforced for travelers).",
+          estimatedCost: "~$30 transfer",
+          transitFromPrev: "Hotel pickup",
+        },
+      ],
+    },
+  ],
+  packingTips: [
+    "Layered clothing — Cusco mornings hit 5°C, afternoons hit 22°C in same day",
+    "Sturdy walking shoes — every Inca site has irregular stone steps",
+    "Wide-brim hat + SPF 50 sunscreen — the equatorial sun at altitude burns fast (yes, even on cloudy days)",
+    "Reusable water bottle + electrolyte tabs — hydration is altitude prevention",
+    "Diamox (acetazolamide) prescription if you've had altitude issues before — start 24 hrs before arrival, ask your doctor",
+    "Cash in small Peruvian Sol denominations for markets (10s and 20s)",
+    "Lightweight rain jacket — Sacred Valley afternoons can shower briefly even in dry season",
+    "Camera with proper zoom — phone camera misses Machu Picchu's depth and the textile market detail",
+  ],
+  budgetEstimate: "~$300–450/day for a couple excluding hotel (Machu Picchu day pushes to $700 with train + entry + guide)",
+  generalTips: [
+    "Altitude is real — first 24 hours: no alcohol, slow walking, lots of water + coca tea, eat light",
+    "Boleto Turístico ($25 / 10 days) covers 16 Cusco-area sites including Saqsayhuamán, Pisac, Ollantaytambo — buy at COSITUC office",
+    "Machu Picchu entry must be pre-booked 30–60 days ahead at machupicchu.gob.pe — guides are now mandatory (since 2024)",
+    "Tipping: 10% at sit-down restaurants, $5/day for tour guides, $20–30 for full-day private driver-guide",
+    "Use UberX or InDriver in Cusco for taxis — $2–4 per ride; never let a street taxi quote you a price (rigged)",
+    "Zika and dengue are jungle-region concerns; Cusco is too high for mosquitos, no anti-malarial needed",
+    "Travel insurance with Machu Picchu trekking coverage is genuinely useful — altitude issues can require evacuation",
+    "Plug type: A/B (US-style); voltage 220V — bring a converter for hair tools",
+  ],
+};
+
+export default cusco5dCouple;

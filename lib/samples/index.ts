@@ -10,6 +10,9 @@ import bali5dCouple from "./bali-5d-couple";
 import taipei3dSolo from "./taipei-3d-solo";
 import hanoi4dSolo from "./hanoi-4d-solo";
 import london4dCouple from "./london-4d-couple";
+import reykjavik4dCouple from "./reykjavik-4d-couple";
+import cusco5dCouple from "./cusco-5d-couple";
+import dubai4dCouple from "./dubai-4d-couple";
 import { applyTranslation, loadLocaleTranslations } from "./i18n";
 
 /**
@@ -131,6 +134,33 @@ export const SAMPLE_PLANS: SampleMeta[] = [
     heroColor: "#FFB627",
     // Brooklyn Bridge with Manhattan skyline at sunset
     heroImage: UNSPLASH("photo-1496442226666-8d4d0e62e6e9"),
+  },
+  {
+    slug: "reykjavik-4d-couple",
+    plan: reykjavik4dCouple,
+    tagline: "Four days for a couple — Golden Circle, South Coast waterfalls, Blue Lagoon.",
+    audience: "Couple · Midrange",
+    heroColor: "#A8DADC",
+    // Fjaðrárgljúfur canyon — mossy basalt walls + glacial river, iconic Iceland
+    heroImage: UNSPLASH("photo-1531168556467-80aace0d0144"),
+  },
+  {
+    slug: "cusco-5d-couple",
+    plan: cusco5dCouple,
+    tagline: "Five days for a couple — acclimatize in Cusco, Sacred Valley, then Machu Picchu.",
+    audience: "Couple · Midrange",
+    heroColor: "#52B788",
+    // Machu Picchu emerging from morning fog over the Andes
+    heroImage: UNSPLASH("photo-1526392060635-9d6019884377"),
+  },
+  {
+    slug: "dubai-4d-couple",
+    plan: dubai4dCouple,
+    tagline: "Four days for a couple — Burj Khalifa, Old Dubai souks, desert safari, the Palm.",
+    audience: "Couple · Luxe-leaning",
+    heroColor: "#F4A261",
+    // Burj Khalifa skyline at sunset, Sheikh Zayed Road interchanges below
+    heroImage: UNSPLASH("photo-1512453979798-5ea266f8880c"),
   },
 ];
 

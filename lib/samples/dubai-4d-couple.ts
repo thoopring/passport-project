@@ -1,0 +1,435 @@
+import type { TripPlan } from "../../types/trip-plan";
+
+/**
+ * Sample plan: Dubai, 4 days, couple, midrange-leaning-luxe.
+ *
+ * Modern Dubai (Burj + Mall + Marina) + Old Dubai (Al Fahidi + souks)
+ * + a desert safari + a Palm Jumeirah send-off. Real coordinates,
+ * real restaurants, real metro stations. Text fields enriched
+ * beyond typical API output.
+ */
+const dubai4dCouple: TripPlan = {
+  destination: "Dubai",
+  destinationCountry: "United Arab Emirates",
+  durationDays: 4,
+  overview:
+    "Four days for a couple who want both Dubais — the gold-glass futurist city of the Burj Khalifa and the wooden-dhow trading port of the spice souk, separated by 200m of creek and 60 years. Day 1 is the modern showstopper: Burj observation deck, the world's largest mall, the choreographed fountain show below. Day 2 crosses to Bur Dubai for the Al Fahidi historic neighborhood, the abra (small wooden ferry) ride, and the gold and spice souks where you'll bargain for saffron worth twice as much in your home country. Day 3 disappears into the desert — dune-bashing 4x4, sunset over the dunes, henna and Arabic coffee under the stars. Day 4 is for the Palm Jumeirah — Atlantis, the View at the Palm, and a Marina sunset before flight. Dubai isn't subtle; that's the appeal.",
+  bestSeasonNote:
+    "November through March is the only sane time — daytime 22–28°C, evenings cool. April starts the heat ramp; May–September is genuinely dangerous (45°C+, locals shift indoors entirely, outdoor activities are early-morning only). Ramadan dates shift each year — a lovely month culturally (iftars in Old Dubai are extraordinary) but daytime restaurants are restricted, alcohol service is reduced, dress codes tighten. Check the year's Ramadan dates before booking. Friday is the holiday in UAE (Saturday is partial); museums and souks shift Friday hours, so plan around it.",
+  currencyTip:
+    "Emirati Dirham (AED). 3.67 AED ≈ 1 USD (pegged). Cards everywhere — Apple Pay, Google Pay, Visa, Amex. Keep ~200 AED cash for taxis (some still cash-only), souk bargaining, and the abra ride (1 AED per crossing — only paper notes accepted at the dock). The Dubai Mall has currency-exchange kiosks with better rates than airport for cash.",
+  languageTip:
+    "Arabic is official; English is universal in tourist areas, hotels, restaurants, taxis. 'Shukran' (shoo-kran) = thank you. 'Sabah al-khayr' = good morning. Menu mostly in English at modern places, English+Arabic at souks. Google Maps in Arabic for street names is useful in old areas. South Asian languages (Hindi, Urdu, Tagalog) are also widely spoken — the workforce is multinational.",
+  emergencyNumber: "999 (police, English fluent), 998 (ambulance), 997 (fire)",
+  hotel: {
+    name: "Address Downtown Dubai",
+    area: "Downtown Dubai, opposite Burj Khalifa",
+    address: "Sheikh Mohammed Bin Rashid Boulevard, Downtown Dubai",
+    coords: [55.2756, 25.1924],
+    rationale:
+      "The Address Downtown is directly on the Burj Lake — your room has a Burj Khalifa view and you watch the Dubai Fountain show 8 times an evening from your balcony. Dubai Mall is connected by a private bridge (5-min covered walk), Burj Khalifa is across the lake, the metro Burj Khalifa/Dubai Mall station is 10 min on foot. Three pools, an excellent breakfast buffet, the rooftop Neos cocktail bar on the 63rd floor. Rooms run $400+/night in peak season but drop to $280 in shoulder months and weekends; book through Marriott Bonvoy if you have status.",
+    priceTier: "$$$$",
+    estimatedNightlyRate: "~$320/night",
+  },
+  airportTransit: {
+    method: "Dubai Metro Red Line (DXB Terminal 1/3 → Burj Khalifa/Dubai Mall) or taxi",
+    duration: "~45 min metro / ~25 min taxi",
+    cost: "~$3 metro / ~$22 taxi",
+    instructions:
+      "From DXB, the Metro Red Line is shockingly easy — Terminal 1 and Terminal 3 each have a station inside the airport. Buy a 'Nol Red Ticket' from the kiosk (10 AED for unlimited day on Red Line). Ride 25 min to Burj Khalifa/Dubai Mall station, then 10 min walk to the hotel through the cooled walkway. With heavy luggage or after midnight, a taxi from the official rank ($22 metered, ~25 min) is friction-free. Avoid 'limo' touts inside the terminal — they charge 3x the metered rate. Uber and Careem also work but with peak-hour surge are similar to taxi cost. Drinking water is free at every metro station.",
+  },
+  days: [
+    {
+      dayNumber: 1,
+      theme: "Modern Dubai showstopper",
+      summary:
+        "Land, settle in, climb the Burj for the highest urban view on earth, browse the world's largest mall, watch the fountain show from the lake — Dubai 101 in one afternoon and evening.",
+      stops: [
+        {
+          order: 1,
+          time: "13:30",
+          type: "rest",
+          name: "Address Downtown check-in",
+          area: "Downtown Dubai",
+          coords: [55.2756, 25.1924],
+          duration: "1 hour",
+          description:
+            "Drop bags, request a Burj Khalifa-view room (request, don't assume — 'fountain view' is the upgrade phrase that often gets you both). Welcome dates and Arabic coffee in the lobby. The pool deck has 270° Burj views if you want a 30-min reset before going out.",
+          estimatedCost: "—",
+          transitFromPrev: "Metro/taxi from DXB",
+        },
+        {
+          order: 2,
+          time: "15:00",
+          type: "sight",
+          name: "Burj Khalifa — At the Top SKY (148th floor)",
+          area: "Burj Khalifa",
+          address: "1 Mohammed Bin Rashid Blvd",
+          coords: [55.2744, 25.1972],
+          duration: "1.5 hours",
+          description:
+            "The 'At the Top SKY' ticket ($150) is the splurge — 148th floor at 555m, an outdoor observation terrace (sky air is breezy at this height, jackets recommended even in summer), private lounge with refreshments, fast-track elevator. The standard 'At the Top' ticket ($55) gets you 124th floor only — the view is 90% the same, but no outdoor terrace. Time it for sunset (book an entry slot 30 min before sunset on your day's date). Photos work better from 124th than 148th oddly — closer to building details below.",
+          estimatedCost: "~$150/person SKY (or $55 standard)",
+          bookingTip: "Book at burjkhalifa.ae 2 weeks ahead — sunset slots sell out fast. Or use the hotel's same-day reservation channel (Address Downtown gets allocated SKY entries).",
+          transitFromPrev: "5 min walk via Dubai Mall connection",
+        },
+        {
+          order: 3,
+          time: "17:00",
+          type: "shopping",
+          name: "Dubai Mall — Aquarium, ice rink, gold souk extension",
+          area: "Inside Dubai Mall",
+          address: "Financial Centre Rd",
+          coords: [55.2796, 25.1972],
+          duration: "1.5 hours",
+          description:
+            "1,200 stores under one roof. The Aquarium (free to view from outside, $40 to walk through) has the world's largest acrylic viewing panel. The Olympic-size ice rink in the middle is surreal in 35°C Dubai. The 'Gold Souk Extension' on level 1 has the modern gold trade. Don't try to shop everything — pick 2-3 stores you care about, then drift through the Dancing Fountains promenade exit toward the lake.",
+          estimatedCost: "Free unless buying",
+          transitFromPrev: "Built-in (mall connects to Burj)",
+        },
+        {
+          order: 4,
+          time: "19:00",
+          type: "meal",
+          name: "Time Out Market Dubai (food hall)",
+          area: "Souk Al Bahar (across the lake)",
+          coords: [55.2783, 25.1959],
+          duration: "1 hour",
+          description:
+            "17 of Dubai's best chefs in one open-plan food hall on the second floor of Souk Al Bahar — directly opposite the Burj Khalifa across the fountain lake. Dishes from $12–25 each, you can order from multiple stalls and share. Try the 'Reif Japanese Kitchen' uni rice bowl, the 'Pickl' burger (Dubai's most-loved smash burger), and the 'Bait Maryam' Lebanese mezze. Outdoor terrace seats face the Burj — you eat with the show.",
+          estimatedCost: "~$50–60 for two",
+          transitFromPrev: "10 min walk through the lake-side promenade",
+        },
+        {
+          order: 5,
+          time: "20:30",
+          type: "activity",
+          name: "Dubai Fountain show",
+          area: "Burj Lake",
+          coords: [55.2776, 25.1953],
+          duration: "30 min",
+          description:
+            "30-acre choreographed fountain in the lake at the base of the Burj — water jets shoot up to 150m, choreographed to Arabic, Bollywood, and pop tracks. Free, runs every 30 min from 18:00 to 23:00. Best viewing spots: the bridge between the mall and Souk Al Bahar (ground level, you feel the spray), or the Address Downtown's lakefront terrace (elevated, you see the Burj behind it). Each show is a different song; stay for two.",
+          estimatedCost: "Free",
+          transitFromPrev: "Walk 5 min to bridge",
+        },
+        {
+          order: 6,
+          time: "21:30",
+          type: "activity",
+          name: "Neos rooftop bar (Address Downtown 63rd floor)",
+          area: "Address Downtown",
+          coords: [55.2756, 25.1924],
+          duration: "1 hour",
+          description:
+            "Cocktail bar on the 63rd floor — Burj Khalifa fills the entire window-wall, lit at night. Cocktails $30 each (Dubai is dry-friendly but alcohol prices are steep — only licensed venues, all hotel-attached). Order the 'Persian Garden' (rosewater + saffron + gin). Smart-casual dress code. The Address staff knows the fountain show schedule — sit in time for the 22:00 finale.",
+          estimatedCost: "~$60 for two cocktails",
+          transitFromPrev: "Built-in (hotel)",
+        },
+      ],
+    },
+    {
+      dayNumber: 2,
+      theme: "Old Dubai — Al Fahidi, abra, souks",
+      summary:
+        "Cross the creek to historic Bur Dubai — the wind-tower neighborhood, the small wooden-boat ferry, the gold souk, the spice souk, lunch on the water.",
+      stops: [
+        {
+          order: 1,
+          time: "10:00",
+          type: "transit",
+          name: "Metro Red Line → Al Fahidi station",
+          area: "Downtown → Bur Dubai",
+          coords: [55.2974, 25.2536],
+          duration: "30 min",
+          description:
+            "From Burj Khalifa/Dubai Mall, Metro Red Line northbound to BurJuman (transfer to Green Line), one stop to Al Fahidi. ~30 min total, ~$2 each. The 'Gold Class' (front car) is empty even at peak hours — worth the 2 AED upgrade. Avoid the 'Women and Children only' first car if you're a couple.",
+          estimatedCost: "~$3/person",
+          transitFromPrev: "Metro from hotel station",
+        },
+        {
+          order: 2,
+          time: "10:45",
+          type: "sight",
+          name: "Al Fahidi Historical Neighborhood",
+          area: "Bur Dubai",
+          coords: [55.2989, 25.2638],
+          duration: "1.5 hours",
+          description:
+            "Dubai's oldest standing district — coral-block houses with wind towers (the original air conditioning, 1850s), narrow sand-floor lanes, traditional bait al-fahidi (Fahidi house) at center. The Sheikh Mohammed Centre for Cultural Understanding does an excellent walking tour ($20, 1.5 hours) with traditional Emirati breakfast included — book 1 day ahead at culturalfoundation.ae. The Coffee Museum and the Coin Museum are small free side-stops. Total contrast to Day 1.",
+          estimatedCost: "~$20 SMCCU tour",
+          transitFromPrev: "10 min walk from station",
+        },
+        {
+          order: 3,
+          time: "12:30",
+          type: "transit",
+          name: "Abra (small wooden ferry) crossing",
+          area: "Dubai Creek",
+          coords: [55.2965, 25.2641],
+          duration: "15 min",
+          description:
+            "The single most charming experience in modern Dubai — a 1-AED ride (yes, 27 cents) on a 1950s-style wooden boat across the creek to the Deira side. Departs the Bur Dubai abra dock continuously, leaves when full (5 min wait). 23 passengers, captain steering with a wooden tiller. Cool breeze across the creek even in summer. Pay cash to the captain after boarding.",
+          estimatedCost: "~$0.27/person each way",
+          transitFromPrev: "5 min walk to Bur Dubai dock",
+        },
+        {
+          order: 4,
+          time: "13:00",
+          type: "shopping",
+          name: "Spice Souk + Gold Souk (Deira)",
+          area: "Deira side of the creek",
+          coords: [55.2986, 25.2691],
+          duration: "1.5 hours",
+          description:
+            "The Spice Souk first (smaller, more pleasant) — saffron at $4/gram (vs $12 at home), zaatar by the kilo, frankincense resin, dried rose petals for tea. The Gold Souk after — 380 retailers selling 18-22-24 karat gold by weight (current spot price + a small craftsmanship fee). Even non-buyers should walk through; it's THE Dubai photo. Don't take photos of female shoppers without permission. Bargain 15-20% off marked prices in spice souk; gold is fixed-price by weight.",
+          estimatedCost: "Variable",
+          bookingTip: "Earlier (10am) is calmer; afternoon brings Indian + Filipino shoppers and energy doubles.",
+          transitFromPrev: "5 min walk from Deira abra dock",
+        },
+        {
+          order: 5,
+          time: "14:30",
+          type: "meal",
+          name: "Bait Al Wakeel — lunch on the creek",
+          area: "Bur Dubai (back across)",
+          address: "Cnr 53A St & 53 St",
+          coords: [55.2983, 25.2629],
+          duration: "1.5 hours",
+          description:
+            "Dubai's first restaurant (1935), built directly over the creek on wooden stilts — you eat with abras passing under you. Emirati-Iranian seafood: grilled hammour ($28), shawarma plate, machboos rice. Lunch with 1930s wood-walled charm and creek breeze. Take another abra back across after eating.",
+          estimatedCost: "~$70 for two",
+          bookingTip: "Reserve at zomato.com 1 day ahead — terrace tables face the creek.",
+          transitFromPrev: "Abra back to Bur Dubai (1 AED)",
+        },
+        {
+          order: 6,
+          time: "16:30",
+          type: "rest",
+          name: "Hotel break + Address pool",
+          area: "Address Downtown",
+          coords: [55.2756, 25.1924],
+          duration: "2 hours",
+          description:
+            "Old Dubai is dusty + warm even in winter; an afternoon at the Address pool (270° Burj view) is the perfect mid-trip reset. Order a rosewater + lemonade; the pool butler exists and brings it. Shower properly before dinner — Dubai sand gets everywhere.",
+          estimatedCost: "Hotel pool",
+          transitFromPrev: "Metro back, 30 min",
+        },
+        {
+          order: 7,
+          time: "20:00",
+          type: "meal",
+          name: "Al Mahara at Burj Al Arab (or Pierchic alternative)",
+          area: "Jumeirah",
+          coords: [55.1858, 25.1413],
+          duration: "2 hours",
+          description:
+            "If you want the once-in-a-trip dinner — Al Mahara inside the sail-shaped Burj Al Arab, around a 3-story floor-to-ceiling aquarium. Tasting menu $250+/person, dress code is full smart (jacket for men). If that's too much, Pierchic is the elegant alternative — modern seafood at the end of a wooden boardwalk over the Arabian Gulf, half the price, same view of Burj Al Arab in the distance. Either is the photo of the trip.",
+          estimatedCost: "~$300/person Al Mahara, ~$120 Pierchic",
+          bookingTip: "Burj Al Arab requires a 2-week booking + dress code adherence; Pierchic accepts 3-day-ahead bookings.",
+          transitFromPrev: "Taxi 25 min, ~$30",
+        },
+      ],
+    },
+    {
+      dayNumber: 3,
+      theme: "Desert safari",
+      summary:
+        "Pickup at 14:30 for an evening desert safari — dune bashing, camel ride, sunset, BBQ dinner under the stars with belly-dancing performance. Dubai's signature out-of-town experience.",
+      stops: [
+        {
+          order: 1,
+          time: "11:00",
+          type: "rest",
+          name: "Slow morning — hotel breakfast + spa",
+          area: "Address Downtown",
+          coords: [55.2756, 25.1924],
+          duration: "3 hours",
+          description:
+            "Sleep in. Address Downtown's breakfast buffet runs until 11:00 — Arabic mezze, fresh juices, made-to-order eggs, a date-and-honey station. Book a couples' spa treatment in the morning ($150–250) — saffron-and-rose-oil massage is the Dubai-themed option, lasts 60 minutes, leaves you boneless before the desert.",
+          estimatedCost: "Spa optional ~$200",
+          transitFromPrev: "—",
+        },
+        {
+          order: 2,
+          time: "14:30",
+          type: "transit",
+          name: "Desert safari pickup (Platinum Heritage or Arabian Adventures)",
+          area: "Hotel → Dubai Desert Conservation Reserve",
+          coords: [55.6839, 24.8311],
+          duration: "1 hour drive",
+          description:
+            "Two reputable operators: Platinum Heritage (most luxe, vintage Land Rovers, conservation-focused, ~$200/person) or Arabian Adventures (mainstream-luxe, modern 4x4, ~$130/person). Both pick up at the hotel lobby. Drive 1 hour east into the Dubai Desert Conservation Reserve — the protected dune landscape (not Bedouin theme park).",
+          estimatedCost: "~$130–200/person",
+          bookingTip: "Book at platinum-heritage.com or arabianadventures.com 5–7 days ahead.",
+          transitFromPrev: "Hotel pickup",
+        },
+        {
+          order: 3,
+          time: "15:30",
+          type: "activity",
+          name: "Dune bashing — 4x4 over red dunes",
+          area: "Dubai Desert Conservation Reserve",
+          coords: [55.6839, 24.8311],
+          duration: "45 min",
+          description:
+            "Driver lowers the tire pressure, then drives the dunes at 60 km/h — sliding sideways, climbing peaks, dropping the front end down a steep face. Slightly nauseating but spectacular; sit in the back row if your stomach is sensitive. Photo break at the high dune at 16:30 — golden light on red sand, the desert stretching out. If you're feeling anxious, Platinum Heritage offers a tamer 'Conservation Drive' alternative with the same scenery and no extreme angles.",
+          estimatedCost: "Included",
+          transitFromPrev: "Built-in",
+        },
+        {
+          order: 4,
+          time: "17:00",
+          type: "activity",
+          name: "Camel ride + sunset",
+          area: "Bedouin camp",
+          coords: [55.6839, 24.8311],
+          duration: "1 hour",
+          description:
+            "Short camel ride (10 min, single-file caravan over a dune crest) — the photo. Then everyone gets off and finds a spot to sit on the sand for sunset. The dune horizon at 17:30 in winter is one of the most beautiful sunsets you'll see — the sand turns from orange to pink to violet in 20 minutes. Henna painting at the camp ($10) and Arabic coffee + dates are free.",
+          estimatedCost: "~$10 henna optional",
+          transitFromPrev: "Built-in",
+        },
+        {
+          order: 5,
+          time: "18:30",
+          type: "meal",
+          name: "Bedouin BBQ dinner under the stars",
+          area: "Desert camp",
+          coords: [55.6839, 24.8311],
+          duration: "2 hours",
+          description:
+            "Open-air buffet at the camp — lamb shawarma, grilled chicken, hummus, fattoush, baklava, fresh dates, mint tea. Eat seated on cushions around low tables. After dinner, Tanoura folkloric dance (whirling dervish-style) and live oud (Arabic lute) music. Look up: the desert is far enough from city lights that the Milky Way is visible on a clear night, dramatic with the dunes in silhouette. Most operators offer a brief astronomy session if there's a clear sky.",
+          estimatedCost: "Included in safari price",
+          transitFromPrev: "Built-in",
+        },
+        {
+          order: 6,
+          time: "21:30",
+          type: "transit",
+          name: "Drive back to hotel",
+          area: "Desert → Downtown",
+          coords: [55.2756, 25.1924],
+          duration: "1 hour",
+          description:
+            "Sleepy ride back. Hotel by 22:30. Quick shower (sand will be everywhere) and bed; Day 4 is full.",
+          estimatedCost: "Included",
+          transitFromPrev: "Camp drop-off",
+        },
+      ],
+    },
+    {
+      dayNumber: 4,
+      theme: "Palm Jumeirah + Marina + send-off",
+      summary:
+        "Atlantis morning, the View at the Palm at midday, lunch on the Marina, last-minute browse, taxi to DXB.",
+      stops: [
+        {
+          order: 1,
+          time: "10:00",
+          type: "sight",
+          name: "Atlantis The Palm — Aquaventure waterpark or Lost Chambers Aquarium",
+          area: "Palm Jumeirah crescent",
+          address: "Crescent Rd, The Palm Jumeirah",
+          coords: [55.1175, 25.1308],
+          duration: "2.5 hours",
+          description:
+            "Atlantis is the iconic pink-coral resort at the tip of the Palm Jumeirah. Two big-ticket attractions: (a) Aquaventure waterpark — slides, lazy river, and the 'Leap of Faith' near-vertical drop slide; full-day pass $90/person, recommended for water lovers. (b) The Lost Chambers Aquarium — walk-through 65,000-fish aquarium, $40/person, cooler if you want a 90-minute experience. Save the waterpark for a longer trip; Lost Chambers is right-sized for a half-day.",
+          estimatedCost: "~$40 (Lost Chambers) or $90 (Aquaventure)",
+          bookingTip: "Buy online for 10% discount; book lunch at Nobu Atlantis if you do the waterpark.",
+          transitFromPrev: "Taxi 25 min, ~$25",
+        },
+        {
+          order: 2,
+          time: "12:30",
+          type: "sight",
+          name: "The View at The Palm (52nd floor)",
+          area: "Palm Tower (trunk of the Palm)",
+          coords: [55.1395, 25.1102],
+          duration: "1 hour",
+          description:
+            "240m observation deck on top of the Palm Tower — gives you the best view of the Palm Jumeirah's signature shape (you only really see the palm-tree layout from up here). Outdoor terrace plus indoor museum-like exhibition about Dubai's land reclamation. $25/person, much cheaper than Burj. Daytime is fine; evening is also dramatic but the Palm doesn't light up the way Downtown does at night.",
+          estimatedCost: "~$25/person",
+          bookingTip: "Book at theviewpalm.ae 1 day ahead; midday slots have the cleanest air.",
+          transitFromPrev: "Taxi 8 min from Atlantis",
+        },
+        {
+          order: 3,
+          time: "14:00",
+          type: "meal",
+          name: "Pier 7 Marina — lunch on the water",
+          area: "Dubai Marina",
+          coords: [55.1396, 25.0805],
+          duration: "1.5 hours",
+          description:
+            "Pier 7 is a 7-story restaurant tower on the marina waterfront — pick any floor by cuisine, all have full Marina views. 'Asia Asia' (level 3) for pan-Asian, 'Atelier M' (level 7) for French-Mediterranean fine dining, 'Cargo' (level 1) for casual gastropub. Lunch on level 3 with marina yachts on three sides. ~$80 for two with one cocktail each. After lunch, walk the Marina Walk (palm-lined promenade, 7 km) for 30 min.",
+          estimatedCost: "~$80 for two",
+          bookingTip: "Walk-in on weekday lunches OK; reserve for Friday/Saturday.",
+          transitFromPrev: "Taxi 12 min from The View",
+        },
+        {
+          order: 4,
+          time: "16:00",
+          type: "shopping",
+          name: "Marina Walk + Last souvenirs",
+          area: "Dubai Marina",
+          coords: [55.1396, 25.0805],
+          duration: "1 hour",
+          description:
+            "Walk the marina, peek into yacht charters, grab a kunafa from Firas Sweets ($8) or saffron coffee from % Arabica. Last souvenirs at the Marina Mall (smaller than Dubai Mall, more focused): Bateel dates ($25/box, the gold-standard Dubai date gift), Patchi chocolates ($30), Bvlgari oud perfume sample ($15) if it suits.",
+          estimatedCost: "~$50 souvenirs",
+          transitFromPrev: "Walk along the marina",
+        },
+        {
+          order: 5,
+          time: "17:30",
+          type: "rest",
+          name: "Hotel collect bags + freshen up",
+          area: "Address Downtown",
+          coords: [55.2756, 25.1924],
+          duration: "1 hour",
+          description:
+            "Taxi back to the Address (~$25, 25 min). Pre-arranged late check-out (request at booking, they usually accommodate till 17:00–18:00). Quick shower, repack. Last fountain show from the lake-facing balcony at 18:00 — proper send-off.",
+          estimatedCost: "~$25 taxi",
+          transitFromPrev: "Taxi from Marina",
+        },
+        {
+          order: 6,
+          time: "19:30",
+          type: "transit",
+          name: "Hotel → DXB airport",
+          area: "Downtown → DXB",
+          coords: [55.3644, 25.2532],
+          duration: "30 min",
+          description:
+            "Taxi from hotel rank (~$22, 25 min). Allow 3 hours for international departure. DXB duty-free is exceptional — last-minute Bateel dates, saffron, Mac cosmetics, oud perfumes. Connect WiFi for free and order online for in-airport delivery if you forgot something. Hub airport — your gate is probably a 15-min walk from security.",
+          estimatedCost: "~$22 taxi",
+          transitFromPrev: "Hotel pickup",
+        },
+      ],
+    },
+  ],
+  packingTips: [
+    "Light layers — daytime 26°C, malls/restaurants AC at 18°C, contrast is sharp",
+    "Modest cover-ups for women in souks and Old Dubai (knees + shoulders covered) — not enforced strictly but more comfortable",
+    "Sunglasses + hat — UV is strong even in winter",
+    "Sandals + closed-toe walking shoes (sand getting into open shoes during desert safari is real)",
+    "Swimwear — pool culture is huge",
+    "Smart-casual outfit — at least one for the Burj Al Arab/Pierchic dinner (jacket for men)",
+    "Reusable water bottle — refill stations at metro and malls",
+    "Power adapter Type G (UK-style 3-pin)",
+  ],
+  budgetEstimate: "~$400–700/day for a couple excluding hotel (Dubai is expensive: $50 mall lunch, $35 cocktails, $200+ tasting menus; the desert safari is the biggest single cost)",
+  generalTips: [
+    "Public displays of affection beyond hand-holding are technically illegal — discreet is the norm",
+    "Alcohol only at hotel-licensed venues; carrying alcohol on the street is illegal — taxi between hotel and dinner",
+    "Friday is the religious day — souks open later (after 16:00), some museums closed",
+    "Tipping: 10–15% at restaurants if not auto-included; 5–10 AED for taxi rounds; $20+ for tour guide",
+    "Metro is excellent and cheap; avoid taxis in peak traffic (16:30–19:00) — Sheikh Zayed Road becomes a parking lot",
+    "Ramadan rules (if applicable to your dates): no public eating/drinking 0530–1830 in non-tourist areas; tourist hotels exempt",
+    "Drone flying is restricted; always ask before photographing women, government buildings, military",
+    "VAT refund: 5% refundable on purchases over 250 AED at participating stores — process at DXB before security",
+  ],
+};
+
+export default dubai4dCouple;
