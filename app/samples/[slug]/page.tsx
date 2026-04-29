@@ -45,19 +45,65 @@ export default async function SamplePlanPage({ params }: PageProps) {
   const t = await getTranslations("samples");
 
   const cta = (
-    <div className="bg-[var(--text-primary)] text-[var(--background)] rounded-2xl p-8 sm:p-10 text-center">
-      <p className="text-caption uppercase tracking-wider opacity-70 font-semibold">
+    <div className="relative overflow-hidden bg-[var(--text-primary)] text-[var(--background)] rounded-3xl p-10 sm:p-14 text-center isolate">
+      {/* Warm radial glow — vermilion at top fading down. Stays inside palette,
+          gives the dark card a sunset feel without leaving the design system. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,68,43,0.28), transparent 65%)",
+        }}
+      />
+
+      {/* Caption flanked by short vermilion rules — editorial flourish */}
+      <p className="text-caption uppercase tracking-[0.22em] opacity-80 font-semibold inline-flex items-center gap-3">
+        <span aria-hidden className="h-px w-8 bg-[var(--brand-primary)]" />
         {t("sampleCtaTitle")}
+        <span aria-hidden className="h-px w-8 bg-[var(--brand-primary)]" />
       </p>
-      <h2 className="font-display text-display-md mt-2">{t("sampleCtaHeadline")}</h2>
-      <p className="text-body-md opacity-80 mt-3 max-w-md mx-auto">{t("sampleCtaSubtitle")}</p>
+
+      {/* Italic Fraunces with stylistic alternates — same flourish as the home hero EM */}
+      <h2 className="font-display text-display-md mt-5 leading-[1.04] tracking-[-0.012em]">
+        <em
+          className="italic"
+          style={{ fontFeatureSettings: '"ss01","ss02","ss03"' }}
+        >
+          {t("sampleCtaHeadline")}
+        </em>
+      </h2>
+
+      <p className="text-body-md opacity-80 mt-4 max-w-md mx-auto leading-relaxed">
+        {t("sampleCtaSubtitle")}
+      </p>
+
+      {/* Vermilion solid pill button with warm glow — replaces the white slab.
+          Tactile lift + glow expansion on hover for a felt sense of motion. */}
       <Link
         href={`/plan/new?dest=${encodeURIComponent(sample.plan.destination)}&country=${encodeURIComponent(sample.plan.destinationCountry)}`}
-        className="inline-block mt-6 px-7 py-3.5 bg-white text-[var(--text-primary)] font-bold rounded-xl hover:opacity-90 transition"
+        className="group relative inline-flex items-center gap-2.5 mt-8 px-9 py-4 bg-[var(--brand-primary)] text-white font-bold text-body-md rounded-full transition-all duration-200 hover:scale-[1.03] hover:-translate-y-0.5 shadow-[0_10px_28px_-8px_rgba(212,68,43,0.55)] hover:shadow-[0_18px_36px_-8px_rgba(212,68,43,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--text-primary)]"
       >
         {t("sampleCtaButton")}
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden
+          className="transition-transform duration-200 group-hover:translate-x-1"
+        >
+          <path
+            d="M6 4l4 4-4 4"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </Link>
-      <p className="text-caption opacity-60 mt-4">{t("sampleCtaCaption")}</p>
+
+      <p className="text-caption opacity-60 mt-5">{t("sampleCtaCaption")}</p>
     </div>
   );
 
