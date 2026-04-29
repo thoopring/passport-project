@@ -342,8 +342,9 @@
       "failedGeneric": "发生了意外错误。",
       "failedRefund": "我们将自动处理退款。如需帮助,请发邮件至 hello@checkvisamap.com。"
     },
-    "shareTitle": "分享本站,免费获取下一份行程",
-    "shareSubtitle": "朋友通过您的链接首次购买,我们将赠送您一份免费行程。",
+    "shareBadge": "下一份 25% 折扣",
+    "shareTitle": "分享 gliddy,下一份行程 25% 折扣",
+    "shareSubtitle": "朋友通过您的链接首次购买,我们会送您下一份行程 25% 折扣。",
     "shareCopy": "复制链接",
     "shareCopied": "已复制!",
     "saveBadge": "保存我的行程",
@@ -423,12 +424,12 @@
       "statusDraft": "未付款"
     },
     "credits": {
-      "badge": "免费行程额度",
-      "titleOne": "您有 1 份免费行程可用",
-      "titleMany": "您有 {count} 份免费行程可用",
-      "subtitle": "朋友通过您的推荐链接购买后获得的奖励。告诉我们下一个目的地,我们会跳过结账直接生成行程。",
+      "badge": "25% 折扣券",
+      "titleOne": "您有 25% 折扣等待使用",
+      "titleMany": "您有 {count} 张折扣券等待使用",
+      "subtitle": "朋友通过您的推荐链接购买后获得的奖励。下一份行程可使用 — 付款时自动应用 25%。",
       "expiresHint": "{date} 到期",
-      "useNowCta": "使用我的额度 →"
+      "useNowCta": "使用折扣 →"
     }
   }
 }

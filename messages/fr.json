@@ -342,8 +342,9 @@
       "failedGeneric": "Une erreur inattendue s'est produite.",
       "failedRefund": "Un remboursement est traité automatiquement. Écrivez à hello@checkvisamap.com si besoin."
     },
-    "shareTitle": "Partagez gliddy, votre prochain plan est offert",
-    "shareSubtitle": "Quand un ami achète son premier plan avec votre lien, on vous offre le suivant.",
+    "shareBadge": "-25 % à l'intérieur",
+    "shareTitle": "Partagez gliddy, 25 % sur votre prochain plan",
+    "shareSubtitle": "Quand un ami achète son premier plan avec votre lien, on vous offre 25 % sur le suivant.",
     "shareCopy": "Copier le lien",
     "shareCopied": "Copié !",
     "saveBadge": "Sauvegarder mon plan",
@@ -423,12 +424,12 @@
       "statusDraft": "Non payé"
     },
     "credits": {
-      "badge": "Crédit plan gratuit",
-      "titleOne": "Un plan de voyage gratuit vous attend",
-      "titleMany": "{count} plans de voyage gratuits vous attendent",
-      "subtitle": "Gagné grâce à un ami qui a utilisé votre lien de parrainage. On saute le paiement — dites-nous juste où vous partez.",
+      "badge": "Crédit -25 %",
+      "titleOne": "25 % de réduction vous attendent",
+      "titleMany": "{count} crédits de réduction vous attendent",
+      "subtitle": "Obtenu grâce à un ami qui a utilisé votre lien de parrainage. Utilisez-le sur votre prochain plan — la réduction de 25 % s'applique automatiquement au paiement.",
       "expiresHint": "Expire le {date}",
-      "useNowCta": "Utiliser mon crédit →"
+      "useNowCta": "Utiliser ma réduction →"
     }
   }
 }

@@ -342,8 +342,9 @@
       "failedGeneric": "An unexpected error occurred.",
       "failedRefund": "A refund is being processed automatically. Email hello@checkvisamap.com if you need help."
     },
-    "shareTitle": "Share gliddy, get your next plan free",
-    "shareSubtitle": "When a friend buys their first plan with your link, we credit you a free one.",
+    "shareBadge": "25% off inside",
+    "shareTitle": "Share gliddy, get 25% off your next plan",
+    "shareSubtitle": "When a friend buys their first plan with your link, we'll send you 25% off your next one.",
     "shareCopy": "Copy link",
     "shareCopied": "Copied!",
     "saveBadge": "Save your plan",
@@ -423,12 +424,12 @@
       "statusDraft": "Unpaid"
     },
     "credits": {
-      "badge": "Free plan credit",
-      "titleOne": "You have a free trip plan waiting",
-      "titleMany": "You have {count} free trip plans waiting",
-      "subtitle": "Earned from a friend who used your referral link. We'll skip checkout — just tell us where you're going next.",
+      "badge": "25% off credit",
+      "titleOne": "You have 25% off waiting",
+      "titleMany": "You have {count} discount credits waiting",
+      "subtitle": "Earned from a friend who used your referral link. Use it on your next plan — we'll apply the 25% at checkout.",
       "expiresHint": "Expires {date}",
-      "useNowCta": "Use my credit →"
+      "useNowCta": "Use my discount →"
     }
   }
 }

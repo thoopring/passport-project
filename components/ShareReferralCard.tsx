@@ -11,8 +11,7 @@ interface ShareReferralCardProps {
 /**
  * Share-your-referral card. Marketing-grade visual: warm gradient with
  * decorative postcard motif (gift icon + dotted path), clear value prop
- * ("you get a free plan"), prominent copy button. Replaces the prior
- * black-on-white box that looked like a server error message.
+ * (25% off your next plan), prominent copy button.
  */
 export default function ShareReferralCard({ shareUrl }: ShareReferralCardProps) {
   const t = useTranslations("plan");
@@ -72,7 +71,7 @@ export default function ShareReferralCard({ shareUrl }: ShareReferralCardProps) 
             <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
             <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
           </svg>
-          Free plan inside
+          {t("shareBadge")}
         </div>
 
         <h3 className="font-fraunces text-[1.5rem] sm:text-[1.75rem] font-semibold text-[var(--text-primary)] leading-tight tracking-[-0.012em]">

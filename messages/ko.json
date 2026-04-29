@@ -342,8 +342,9 @@
       "failedGeneric": "알 수 없는 오류가 났어요.",
       "failedRefund": "자동으로 환불 처리됩니다. 문제 있으시면 hello@checkvisamap.com 으로 연락주세요."
     },
-    "shareTitle": "공유하시면 다음 플랜이 무료예요",
-    "shareSubtitle": "친구가 회원님 링크로 첫 플랜을 구매하면, 무료 플랜 한 건을 적립해 드려요.",
+    "shareBadge": "다음 플랜 25% 할인",
+    "shareTitle": "공유하시면 다음 플랜 25% 할인",
+    "shareSubtitle": "친구가 회원님 링크로 첫 플랜을 구매하면, 다음 플랜에 25% 할인을 보내드려요.",
     "shareCopy": "링크 복사",
     "shareCopied": "복사됨!",
     "saveBadge": "내 플랜 저장",
@@ -423,12 +424,12 @@
       "statusDraft": "미결제"
     },
     "credits": {
-      "badge": "무료 플랜 크레딧",
-      "titleOne": "무료 여행 플랜 1건이 기다리고 있어요",
-      "titleMany": "무료 여행 플랜 {count}건이 기다리고 있어요",
-      "subtitle": "친구가 추천 링크로 첫 플랜을 구매해서 적립됐어요. 다음 여행지만 알려주시면 결제 단계 없이 바로 만들어 드릴게요.",
+      "badge": "25% 할인 크레딧",
+      "titleOne": "다음 플랜 25% 할인이 기다리고 있어요",
+      "titleMany": "{count}개의 25% 할인 크레딧이 기다리고 있어요",
+      "subtitle": "친구가 추천 링크로 첫 플랜을 구매해서 적립됐어요. 다음 플랜에 사용하세요 — 결제 시 25% 할인이 자동 적용돼요.",
       "expiresHint": "{date} 만료",
-      "useNowCta": "크레딧 사용하기 →"
+      "useNowCta": "할인 사용하기 →"
     }
   }
 }
