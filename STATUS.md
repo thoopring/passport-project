@@ -1,9 +1,9 @@
 # Status — gliddy launch prep
 
-> **Last updated:** 2026-04-29
+> **Last updated:** 2026-04-29 (later)
 > **Branch:** main
-> **Latest commit:** `4c8b3f4` (3 new EN samples — Reykjavik / Cusco / Dubai)
-> **Working tree:** clean
+> **Latest commit:** D2-i18n complete — 12 new translations (Reykjavik/Cusco/Dubai × ko/ja/zh/fr)
+> **Working tree:** dirty (translations to commit)
 
 Quick-resume document. After /compact or new session, read this first to
 understand current state, decisions made, and next priority action.
@@ -36,11 +36,11 @@ Approval = real money flow unlocked. ETA 3-7 business days.
 - `/login?email=&next=` prefill + safe-redirect on callback.
 - Referral celebration on /account (CSS confetti + sendReferralCreditEarnedEmail in 5 langs).
 
-### Sample plans (E1 / E2 / E3 / D2)
+### Sample plans (E1 / E2 / E3 / D2 / D2-i18n)
 - 13 hand-curated samples in EN at marketing-grade depth:
   - Tokyo, Osaka, Seoul, Taipei, Bangkok, Hanoi, Bali, Paris, London, NYC
   - **+ Reykjavik (4d couple), Cusco (5d couple), Dubai (4d couple)** — added 2026-04-29
-- ko/ja translations COMPLETE for the original 10 samples (20+30 retrofits).
+- ko/ja/zh/fr translations COMPLETE for ALL 13 samples (D2-i18n done 2026-04-29).
 - Color diversity for new 3: icy Iceland / Andean Cusco / gold Dubai.
 
 ### Design (D1 — multiple iterations)
@@ -86,7 +86,7 @@ Approval = real money flow unlocked. ETA 3-7 business days.
 ### 🚀 Big work after LS approval
 - **L4** — Vercel env + DNS + Resend domain + LS webhook URL update (founder).
   - Required env vars listed in `.env.example`. Critical: `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (added 2026-04-28).
-- **D2-i18n** — Translate Reykjavik / Cusco / Dubai to ko/ja/zh/fr. ~4 turns at E2/E3 retrofit pace.
+- ~~**D2-i18n**~~ ✅ Done 2026-04-29 — Reykjavik / Cusco / Dubai translated to ko/ja/zh/fr (12 sparse overrides).
 - **L2** — GA4/PostHog locale-tagged analytics. Needs: `page_view`, `wizard_started`, `checkout_started`, `checkout_completed`, `account_signup`, `account_visit`, `referral_shared`, `credit_used`. ~3-4h.
 
 ### 💎 Medium

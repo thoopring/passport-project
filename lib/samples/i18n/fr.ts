@@ -2796,6 +2796,1001 @@ const fr: LocaleTranslations = {
       "Apple Pay accepté quasi partout — vous pouvez vivre 4 jours avec juste votre téléphone",
     ],
   },
+  "reykjavik-4d-couple": {
+    tagline: "Quatre jours en couple — Cercle d'Or, cascades de la côte sud, Blue Lagoon.",
+    audience: "Couple · Milieu de gamme",
+    destination: "Reykjavik",
+    destinationCountry: "Islande",
+    overview:
+      "Quatre jours pensés pour un couple qui veut les plus beaux sites d'Islande sans s'engager dans le tour complet de la Route Circulaire. Vous logez à Reykjavik 101 — le centre se parcourt parfaitement à pied — et l'utilisez comme rampe de lancement pour deux grandes excursions : le Cercle d'Or (Þingvellir, Geysir, Gullfoss) et la côte sud (deux cascades et une plage de sable noir inoubliable). Le 4ᵉ jour, matinée tranquille au Blue Lagoon avant le vol. À la fin, le pays vous aura offert de la lave moussue, de la vapeur géothermique, une cathédrale de colonnes basaltiques au bord de la mer, et un ciel qui change trois fois de couleur sur le chemin du retour — et vous aurez goûté le saumon préparé de quatre façons. L'Islande est petite par la distance, immense par la sensation.",
+    bestSeasonNote:
+      "Juin à août, c'est la fenêtre confortable du soleil de minuit — longue lumière, toutes les routes ouvertes, mais c'est le plus cher et il faut un masque pour dormir. Fin septembre à octobre, c'est le rapport qualité-prix optimal : feuillages d'automne, route circulaire encore praticable, saison aurorale qui démarre (probabilité grimpe nettement après le 20 septembre). Novembre à février : 4 heures de jour, mais probabilité aurorale maximale et prix les plus bas — tenue grand froid et crampons indispensables. Évitez mars (boue + neige fondue + routes fermées). Activité volcanique récurrente sur la péninsule de Reykjanes (où se trouvent le Blue Lagoon et l'aéroport KEF) depuis 2023 — vérifiez vedur.is (Met Office islandais) dans les 48 h précédant le départ.",
+    currencyTip:
+      "L'Islande est l'un des pays les plus carte-friendly au monde. Visa, Mastercard, Apple Pay, Google Pay — 99 % des endroits. Les pompes à essence en libre-service exigent une carte à puce avec PIN ; demandez à votre banque un PIN à 4 chiffres avant de partir, sinon vous serez bloqué. La devise est la couronne islandaise (ISK) ; 130 ISK ≈ 1 €. Les distributeurs ne servent qu'à retirer du cash pour les pourboires (et le pourboire n'a pas cours de toute façon) — sautez. L'eau du robinet est gratuite, propre et délicieuse — gourde réutilisable obligatoire, n'achetez jamais d'eau en bouteille (~5 € la petite bouteille).",
+    languageTip:
+      "L'islandais est la langue officielle, mais la maîtrise de l'anglais y est la plus élevée d'Europe après le Royaume-Uni — pas besoin de manuel. Le seul mot islandais à retenir, c'est « takk » (merci). Les noms de lieux sont volontairement imprononçables (« Eyjafjallajökull ») — les locaux trouvent votre tentative charmante, essayez. L'annuaire islandais utilise toujours le système des patronymes — Jón Einarsson, c'est Jón fils d'Einar — d'où les badges qui ne portent que le prénom.",
+    emergencyNumber: "112 (toutes urgences, opérateur anglophone, gratuit depuis tout téléphone)",
+    hotel: {
+      name: "Hotel Borg by Keahotels",
+      area: "Reykjavik 101 (centre-ville) · place Austurvöllur",
+      address: "Pósthússtræti 11, 101 Reykjavík",
+      rationale:
+        "L'Hotel Borg occupe la place Austurvöllur depuis 1930 — premier vrai hôtel d'Islande, construit pour les 1000 ans du parlement. Les chambres Art déco ont vieilli vers une perfection discrète : salles de bains en marbre, ferrures en laiton d'origine, rideaux occultants indispensables (soleil de minuit). 4 min à pied de Hallgrímskirkja, 6 min du Sun Voyager et du port, 12 min du terminal BSÍ où s'arrête la navette aéroport Flybus. Kol et Skál — deux des meilleures tables de Reykjavik — sont à 5 min. La place elle-même est l'endroit où les Islandais se rassemblent pour les manifs, concerts et marché de Noël — y dormir, c'est dormir au cœur du salon de la ville.",
+      estimatedNightlyRate: "~280 €/nuit",
+    },
+    airportTransit: {
+      method: "Navette Flybus (aéroport international de Keflavik → terminal BSÍ) + 5 min à pied",
+      duration: "~50 min",
+      cost: "~30 € aller-retour",
+      instructions:
+        "Réservez Flybus à l'avance sur re.is — embarquez à l'extérieur des arrivées de KEF, panneaux orange Flybus visibles immédiatement après la douane, sans sortir du bâtiment. Bus toutes les 30-40 min, calés sur les arrivées d'avion, fonctionne même à 4 h du matin. Dépose au terminal BSÍ ; Hotel Borg à 12 min à pied à travers le centre — ou 7 € de plus pour « Flybus+ » porte-à-porte jusqu'au lobby (recommandé à l'arrivée avec bagages). Pour le retour, départ BSÍ 2 h 30 avant le vol international. Taxi KEF : ~170 € l'aller — rentable seulement à 4. N'allez pas louer de voiture à KEF si vous ne faites pas la route circulaire — le centre se fait à pied et le stationnement est payant et pénible.",
+    },
+    days: [
+      {
+        theme: "Centre de Reykjavik — premières impressions",
+        summary:
+          "Atterrir, déposer les bagages, marcher dans le 101 coloré — l'église, le bord de mer, le hot-dog le plus célèbre du monde, le port à l'heure dorée, dîner de poisson tout juste pêché.",
+        stops: [
+          {
+            name: "Check-in Hotel Borg",
+            area: "place Austurvöllur",
+            duration: "45 min",
+            description:
+              "Posez les bagages, le lobby Art déco est déjà un petit bonus. Si la chambre n'est pas prête, le Borg Espresso Bar tire un excellent café et le bar propose une station gratuite eau chaude + thé l'après-midi. Demandez à la conciergerie une mise à jour météo + prévision aurorale (vedur.is) — la météo islandaise change toutes les 2 h et le programme de demain en dépendra.",
+            estimatedCost: "—",
+            transitFromPrev: "Dépose Flybus",
+          },
+          {
+            name: "Hallgrímskirkja",
+            area: "Skólavörðuholt",
+            address: "Hallgrímstorg 1, 101 Reykjavík",
+            duration: "1 h",
+            description:
+              "L'église en forme de colonnes basaltiques (architecte Guðjón Samúelsson, terminée en 1986 après 41 ans de construction) — plus haut bâtiment de Reykjavik, visible de tout le centre. Comptez 10 €/personne pour l'ascenseur jusqu'à la tour de 73 m : la péninsule s'ouvre — baie de Faxaflói, maisons aux toits de tôle colorés (Reykjavik les a peintes dans le cadre d'un programme d'emploi sous la Dépression), mont Esja en face. À l'intérieur, le Klais à 5 275 tuyaux propose des concerts gratuits de 30 min en milieu de journée la plupart des lundis à midi — même les athées s'attendrissent quand les basses font trembler le sol.",
+            estimatedCost: "~10 €/personne (tour)",
+            bookingTip: "Pas de réservation ; arrivez avant 16 h 30 (dernier ascenseur).",
+            transitFromPrev: "8 min à pied en montée depuis l'hôtel",
+          },
+          {
+            name: "Bæjarins Beztu Pylsur (le hot-dog)",
+            area: "Vieux port",
+            address: "Tryggvagata 1, 101 Reykjavík",
+            duration: "20 min",
+            description:
+              "Ouvert depuis 1937, le stand de hot-dog le plus célèbre du monde — Bill Clinton y a mangé en 2004, l'événement a fait le tour de la presse internationale. Commandez « eina með öllu » (un avec tout) : saucisse agneau-porc-bœuf, moutarde brune sucrée, rémoulade, oignons frits + crus, ketchup. 6 €, debout au coin de la rue. La file avance vite même quand elle paraît longue. Repas ouvrier classique en Islande — les locaux en mangent encore 4-5 par an en moyenne.",
+            estimatedCost: "~6 €",
+            transitFromPrev: "10 min de marche en descente",
+          },
+          {
+            name: "Sun Voyager (Sólfar) + salle de concert Harpa",
+            area: "front de mer Sæbraut",
+            duration: "1 h",
+            description:
+              "La sculpture squelettique en acier inoxydable d'un drakkar viking (Jón Gunnar Árnason, 1990) trône au bord de l'eau, proue pointée vers la baie — à l'heure dorée, l'acier devient cuivré et le mont Esja derrière vire au rose. Marchez 8 min vers l'est le long du port jusqu'à Harpa, salle de concert aux panneaux de verre cristallin évoquant le basalte (studio Olafur Eliasson + Henning Larsen, 2011). Lobby gratuit ; la géométrie des panneaux qui réfléchissent le port, c'est la photo. S'il y a une répétition gratuite de musique de chambre, on peut parfois s'asseoir.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "7 min à pied le long du port",
+          },
+          {
+            name: "Matur og Drykkur (dîner néo-islandais)",
+            area: "Vieux port (quartier Grandi)",
+            address: "Grandagarður 2, 101 Reykjavík",
+            duration: "2 h",
+            description:
+              "Cuisine islandaise moderne avec un respect profond des méthodes anciennes — la cheffe Hrefna Sætran fait tourner son menu dégustation chaque semaine, mais attendez-vous à de l'omble chevalier saumuré au beurre noisette, de l'épaule d'agneau cuite toute une nuit dans la fumée de bouleau, et un skyr aux myrtilles sauvages en dessert. Le plat « Saltfish 1.0 vs 2.0 » (cabillaud salé traditionnel face à la réinterprétation du chef) est un petit numéro à commander. Allez sur le menu dégustation — ~95 €/personne, 7 plats, conçu pour s'enchaîner. Réservation obligatoire, même un mardi.",
+            estimatedCost: "~110 €/personne avec accord vins",
+            bookingTip: "Réservez 1-2 semaines à l'avance ; demandez la banquette d'angle.",
+            transitFromPrev: "12 min à pied le long du Vieux port",
+          },
+          {
+            name: "Slippbarinn (cocktail nocturne)",
+            area: "Reykjavik Marina Hotel",
+            duration: "1 h",
+            description:
+              "Premier bar à cocktails d'Islande, ouvert en 2012, toujours la référence. Commandez le « Birch & Brimstone » (old fashioned au sirop de bouleau avec eau soufrée pétillante, étonnamment plus agréable que ça en a l'air) ou ce que conseille le barman. En été, le soleil est encore haut à 23 h — boire un dernier verre dans une lumière dorée, expérience étrange. En hiver, c'est un refuge cosy avec couvertures en peau de mouton sur les sièges. Un seul verre puis retour à pied par le port — Reykjavik à minuit fait partie des villes les plus sûres au monde.",
+            estimatedCost: "~22 € le cocktail",
+            transitFromPrev: "Bâtiment voisin (immédiat)",
+          },
+        ],
+      },
+      {
+        theme: "Cercle d'Or classique",
+        summary:
+          "La boucle classique d'une journée complète — faille tectonique, geyser, cascade à deux étages, et un déjeuner sous serre de tomates dont vous parlerez longtemps. En auto l'été, en bus guidé l'hiver.",
+        stops: [
+          {
+            name: "Pickup ou départ en location",
+            area: "Reykjavik 101",
+            duration: "30 min",
+            description:
+              "Deux options : (a) excursion en petit groupe avec Reykjavik Excursions ou Iceland Horizon (~95 €/personne, 9 h, guide anglophone, prise à l'hôtel) — idéal en hiver pour les conducteurs non rompus à la glace ; ou (b) location chez Lotus ou Budget au BSÍ — petit 4×4 ~110 €/jour — idéal en été pour la flexibilité. Le Cercle d'Or, c'est une boucle de 230 km, parfaitement praticable en voiture standard d'avril à octobre.",
+            estimatedCost: "~95-110 €",
+            transitFromPrev: "Pickup hôtel ou 12 min à pied jusqu'au BSÍ",
+          },
+          {
+            name: "Parc national de Þingvellir",
+            area: "Bláskógabyggð",
+            duration: "1 h 30",
+            description:
+              "Site UNESCO avec deux histoires superposées. Géologiquement, c'est la frontière visible entre les plaques nord-américaine et eurasienne — vous marchez littéralement entre les deux dans la faille d'Almannagjá : falaise gauche = Amérique du Nord, falaise droite = Europe, l'écart s'élargit de 2 cm/an. Politiquement, c'est là que l'Alþingi (le plus vieux parlement encore en activité, fondé en 930) s'est réuni en plein air pendant des siècles. Marchez la faille jusqu'au Lögberg (Rocher de la Loi) où se tenaient les orateurs, puis la petite église et la cascade Öxarárfoss derrière. Comptez 90 min ; parking ~10 € (P1 le plus proche).",
+            estimatedCost: "~10 € parking",
+            bookingTip: "Pas d'entrée payante ; arrivez avant 11 h pour devancer les bus.",
+            transitFromPrev: "50 min de route depuis Reykjavik",
+          },
+          {
+            name: "Zone géothermique de Geysir",
+            area: "Haukadalur",
+            duration: "1 h",
+            description:
+              "Le « geyser » originel — le mot vient d'ici. Le grand Geysir est en sommeil, mais son voisin Strokkur entre en éruption toutes les 5-10 min, jet vertical de 20-30 m. Tenez-vous au vent (panneaux indiquant le sens dominant), téléphone en mode rafale ; l'éruption commence par un dôme turquoise qui se retourne en une demi-seconde. La boucle en bois mène à Litli-Geysir (petit bassin bouillonnant) et Blesi (source de silice bleu profond). Gratuit ; le petit centre d'accueil a des toilettes propres et un kiosque café.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "50 min de route vers l'est",
+          },
+          {
+            name: "Déjeuner serre Friðheimar",
+            area: "Reykholt",
+            duration: "1 h 30",
+            description:
+              "Déjeuner dans une serre géothermique de tomates en activité — vous mangez parmi les vignes, bourdons compris (ils pollinisent). Menu fixe : soupe de tomates avec pain frais à volonté + beurre (28 €) — bien meilleur que ça paraît : basilic poussant à 5 m de votre table, levain encore tiède. Ajoutez la « Green Lady » (cocktail tomate + gin islandais) si vous ne conduisez pas. Réservation impérative — créneaux ouverts 14 jours à l'avance, samedis remplis le jour même.",
+            estimatedCost: "~32 €/personne avec boisson",
+            bookingTip: "Réservez sur fridheimar.is exactement 14 jours avant à 9 h heure islandaise.",
+            transitFromPrev: "15 min de route vers le sud",
+          },
+          {
+            name: "Cascade de Gullfoss",
+            area: "rivière Hvítá",
+            duration: "1 h",
+            description:
+              "La « Cascade d'or » — 32 m sur deux étages tombant dans un canyon étroit, projetant des embruns sur cent mètres par temps ensoleillé : c'est l'arc-en-ciel qu'on voit sur toutes les photos d'Islande. Deux points de vue : la plate-forme d'observation supérieure (parking près du centre d'accueil, 5 min à pied) et le sentier inférieur (à 20 m du bord, plus long, glissant, imperméable obligatoire). Les deux gratuits. La soupe d'agneau à 14 € du centre d'accueil a sa réputation auprès des touristes refroidis.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "15 min de route vers le nord",
+          },
+          {
+            name: "Secret Lagoon (Gamla Laugin)",
+            area: "village de Flúðir",
+            duration: "1 h 30",
+            description:
+              "L'alternative maligne au Blue Lagoon si vous voulez chaud tout de suite : bassin naturel à 38-40 °C entouré de gravier noir et de vapeur, petit geyser éruptant toutes les 5 min dans un coin. Construite en 1891, c'est la plus ancienne piscine publique d'Islande. Moins chère (35 € contre 70 € au Blue Lagoon), moins fréquentée, et l'eau a les mêmes propriétés thérapeutiques riches en silice. Serviette + casier inclus ; maillot à apporter. Restez jusqu'à avoir les doigts fripés ; c'est le reset de la journée.",
+            estimatedCost: "~35 €/personne",
+            bookingTip: "Réservez sur secretlagoon.is — créneau 17 h pour la lueur du couchant.",
+            transitFromPrev: "20 min de route vers le sud",
+          },
+          {
+            name: "Fiskmarkaðurinn (retour Reykjavik, dîner)",
+            area: "Aðalstræti, Reykjavik 101",
+            address: "Aðalstræti 12",
+            duration: "1 h 30",
+            description:
+              "Si Matur og Drykkur est moderne-traditionnel, Fiskmarkaðurinn est moderne-asiatique-islandais — langoustine islandaise sashimi, omble chevalier au miso, épaule d'agneau au glaçage coréen. L'autre adresse de la cheffe Hrefna Sætran, un poil plus théâtrale. Le menu dégustation « fiskmarkaður » (~120 €) déroule magnifiquement. Demandez le sous-sol aux bougies basses à la réservation.",
+            estimatedCost: "~110 €/personne",
+            bookingTip: "Réservez 1 semaine à l'avance ; le comptoir du chef (4 places) part en premier.",
+            transitFromPrev: "1 h 30 de route retour Reykjavik",
+          },
+        ],
+      },
+      {
+        theme: "Côte sud — cascades + sable noir",
+        summary:
+          "Le jour spectaculaire. Deux cascades énormes (dont une qu'on contourne par derrière), une plage de sable noir gardée par des piles basaltiques, et un village endormi qui finit par une église à toit rouge sur la colline.",
+        stops: [
+          {
+            name: "Route 1 vers le sud",
+            area: "Reykjavik → Selfoss → Hvolsvöllur",
+            duration: "1 h 30",
+            description:
+              "La route circulaire sud est surtout des prairies et des volcans plats — Eyjafjallajökull (le volcan qui a cloué les vols européens en 2010) est sur votre gauche en route vers l'est. Arrêt à la station N1 de Selfoss pour le hot-dog de station-service islandais (vraiment bon) et les en-cas de dernière minute. Le réseau mobile coupe par endroits après Selfoss ; téléchargez Google Maps hors-ligne avant de partir.",
+            estimatedCost: "~15 € carburant aller",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Cascade de Seljalandsfoss (passage derrière)",
+            area: "sud de l'Islande",
+            duration: "1 h",
+            description:
+              "Cascade-ruban de 60 m alimentée par le glacier Eyjafjallajökull — l'une des rares en Islande où l'on peut passer derrière. Le sentier glisse, portez du vraiment imperméable (pas du déperlant) — vous SEREZ trempé. De derrière le rideau, la lumière passe à travers un mur d'eau qui tombe — la photo de chaque couple ici. Parking 10 € (P1, horodateur). Voisin à 600 m à l'est, Gljúfrabúi se cache dans un canyon-fente — traversez un ruisseau jusqu'aux chevilles, et la cathédrale de brume à l'intérieur est plus spectaculaire que Seljalandsfoss elle-même.",
+            estimatedCost: "~10 € parking",
+            bookingTip: "Pas d'entrée payante. Arrivez à 10 h — les bus déboulent à 11 h.",
+            transitFromPrev: "30 min de route vers l'est",
+          },
+          {
+            name: "Cascade de Skógafoss",
+            area: "Skógar",
+            duration: "1 h",
+            description:
+              "60 m de haut, 25 m de large — parfaitement rectangulaire, parfaitement classique. Un escalier sur la droite (370 marches) grimpe jusqu'à la plate-forme d'observation supérieure ; vue sur la plaine de la côte sud. Au pied, debout dans les embruns, l'arc-en-ciel est presque garanti l'après-midi. Légende locale : un Viking aurait enterré un trésor derrière les chutes, on aperçoit parfois un éclat d'or ; en 2002, des archéologues ont effectivement trouvé une épée viking à proximité. Gratuit.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "30 min de route vers l'est",
+          },
+          {
+            name: "Mia's Country Van (ou Black Beach Restaurant)",
+            area: "Vík",
+            duration: "1 h",
+            description:
+              "Déjeuner à Vík ou autour — Mia's Country Van (food truck, été uniquement) sert un fish and chips remarquable au cabillaud islandais depuis un vieux camion ; ou Black Beach Restaurant (dans le bâtiment d'accueil de Reynisfjara) propose une soupe d'agneau (16 €) avec vue sur les falaises basaltiques. Les deux sont bons. Évitez le Skool Beans coffee bus à côté — mignon mais moyen. Gardez de la place : le dîner à Reykjavik est la récompense du jour.",
+            estimatedCost: "~22 €/personne",
+            transitFromPrev: "25 min de route vers l'est",
+          },
+          {
+            name: "Plage de sable noir Reynisfjara + colonnes basaltiques",
+            area: "Vík í Mýrdal",
+            duration: "1 h 30",
+            description:
+              "Sable noir en verre volcanique, colonnes basaltiques hexagonales escaladant la falaise (côté islandais : grotte Hálsanefshellir ; côté Game of Thrones : Eastwatch by the Sea), et les piles marines Reynisdrangar dressées au large — la légende dit que ce sont des trolls pris au piège du lever du soleil. Important : les « sneaker waves » sont mortellement dangereuses — 5 touristes y sont morts depuis 2007. Restez à 30 m minimum de la limite des vagues, jamais le dos à l'océan. Vérifiez les feux d'avertissement au parking avant de descendre.",
+            estimatedCost: "~10 € parking",
+            bookingTip: "Pas de réservation. Meilleure lumière 14 h-16 h — colonnes en lumière rasante.",
+            transitFromPrev: "5 min de route vers le sud",
+          },
+          {
+            name: "Village de Vík + église rouge Reyniskirkja",
+            area: "Vík í Mýrdal",
+            duration: "45 min",
+            description:
+              "Le village le plus au sud d'Islande (300 habitants) repose sur une colline, l'église à toit rouge Reyniskirkja sur le point le plus haut. L'église est symboliquement chargée : construite en 1929, c'est la seule structure censée survivre à l'éruption attendue du volcan Katla sous le glacier Mýrdalsjökull — les locaux font un exercice d'évacuation deux fois par an, l'église étant le point de rassemblement. Montez pour la photo et le panorama sur Reynisfjara. La fabrique de laine Víkurprjón vend de bons pulls islandais à prix honnêtes (150-250 €), souvenir qui dure une vie.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "5 min de route en remontant",
+          },
+          {
+            name: "Dill — l'étoile Michelin d'Islande",
+            area: "Reykjavik 101",
+            address: "Hverfisgata 12",
+            duration: "2 h 30",
+            description:
+              "Premier restaurant étoilé d'Islande (2017), toujours le seul du pays. Le chef Gunnar Karl Gíslason propose une dégustation 7 services (~230 € avec accord vins) entièrement en produits islandais — beurre d'algues fermentées, omble chevalier saumuré au charbon, sorbet à l'eau de glacier, agneau salé dans une bergerie trois vallées plus loin. La salle compte 22 couverts, réservation 6-8 semaines à l'avance. Si vous ne faites qu'un grand repas en Islande, c'est ici. Sinon, sautez et allez chez Skál au Hlemmur Mathöll pour du néo-islandais décontracté à ~60 €/personne.",
+            estimatedCost: "~230 €/personne avec accord",
+            bookingTip: "Réservez 6-8 semaines à l'avance sur dillrestaurant.is. Les mardis se remplissent en dernier.",
+            transitFromPrev: "2 h 30 de route retour Reykjavik",
+          },
+        ],
+      },
+      {
+        theme: "Blue Lagoon + aéroport",
+        summary:
+          "Matinée tranquille, le célèbre bassin géothermique bleu laiteux, déjeuner avec vue, et un Flybus sans précipitation jusqu'à KEF.",
+        stops: [
+          {
+            name: "Petit-déjeuner hôtel + check-out",
+            area: "Hotel Borg",
+            duration: "1 h",
+            description:
+              "Le petit-déjeuner du Borg est le meilleur de tous les 4 étoiles en ville — saumon mariné maison, skyr aux myrtilles sauvages, levain de la boulangerie d'à côté. Mangez tranquillement ; le Blue Lagoon est conçu pour la détente, mieux vaut y arriver dans cet état. Check-out avant 11 h (bagages stockés gratuitement à l'accueil jusqu'à 13 h).",
+            estimatedCost: "Inclus si petit-déjeuner réservé",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Flybus BSÍ → Blue Lagoon",
+            area: "péninsule de Reykjanes",
+            duration: "45 min",
+            description:
+              "Flybus opère un trajet explicite « Reykjavik → Blue Lagoon → aéroport KEF » qui fait exactement ce qu'il faut — vous emportez tous les bagages, arrêt au Blue Lagoon (consigne surveillée sur place), puis bus suivant pour l'aéroport. Aller-retour BSÍ ~50 €/personne ; réservation re.is. Départs toutes les heures du BSÍ. Asseyez-vous à droite pour les champs de lave de Reykjanes — vous traversez de la lave solidifiée vieille de 5 000 ans recouverte d'une mousse vert vif.",
+            estimatedCost: "~50 €/personne",
+            transitFromPrev: "12 min à pied jusqu'au BSÍ",
+          },
+          {
+            name: "Blue Lagoon (forfait Comfort ou Premium)",
+            area: "Grindavík, Reykjanes",
+            address: "Norðurljósavegur 9, 240 Grindavík",
+            duration: "2 h 30",
+            description:
+              "Le célèbre — turquoise laiteux par suspension de silice, niché dans la lave noire, eau à 38-40 °C toute l'année. Réservation à créneau horaire uniquement ; le forfait Comfort (75 €) suffit largement (entrée, serviette, boisson, masque de boue à la silice). Premium (120 €) ajoute peignoirs, chaussons, deuxième masque, vin pétillant — superflu sauf si vous voulez y rester une après-midi. Conseil clé : appliquez de l'après-shampoing avant d'entrer et nouez les cheveux en chignon — sinon silice + minéraux les transforment en paille pour une semaine. Casiers, paiement bracelet, pas de cash à l'intérieur. Bar dans l'eau avec boissons offertes (le bracelet décompte ; en général 1).",
+            estimatedCost: "~75 €/personne Comfort",
+            bookingTip: "Réservez sur bluelagoon.com 2-3 semaines à l'avance minimum, plus tôt en été/Noël. L'activité volcanique de Reykjanes ferme parfois le site — vérifiez 24 h avant.",
+            transitFromPrev: "Le bus dépose à l'entrée",
+          },
+          {
+            name: "Restaurant Lava (au Blue Lagoon)",
+            area: "Reykjanes",
+            duration: "1 h",
+            description:
+              "Niché dans la falaise de lave qui surplombe le lagon — la salle est encastrée dans la roche, paroi vitrée intégrale sur l'eau laiteuse. Menu déjeuner 3 plats à 90 € — agneau islandais, poisson frais, dessert au skyr — la plus belle vue de déjeuner du pays. Bien moins stressant que la course à la nourriture d'aéroport ; le restaurant appelle votre Flybus quand vous avez fini.",
+            estimatedCost: "~90 €/personne",
+            bookingTip: "Réservez le déjeuner en même temps que le billet Lagon — ils coordonnent l'horaire.",
+            transitFromPrev: "Sur place (vestiaires → restaurant en 5 min)",
+          },
+          {
+            name: "Flybus → aéroport international de Keflavik (KEF)",
+            area: "Reykjanes",
+            duration: "20 min",
+            description:
+              "Pickup Flybus à l'entrée du lagon — même billet que le matin. KEF est petit, contrôles rapides (90 min de marge pour l'international) ; les restaurants de l'aéroport sont moyens — Lava vous a déjà bien nourri. Le duty-free est côté piste — Brennivín (schnaps islandais au carvi), polaire 66°North, thé Lava et chocolat islandais sont les souvenirs incontournables. Total BL → KEF ~25 min navette comprise.",
+            estimatedCost: "Inclus dans le billet du matin",
+            transitFromPrev: "Bus depuis l'entrée Blue Lagoon",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Veste imperméable (pas seulement déperlante) — la météo islandaise tourne 4 fois en un après-midi",
+      "Couche polaire ou laine — les soirs de juillet tombent à 8 °C",
+      "Chaussures de marche à bonne adhérence — chaque belvédère implique de la roche mouillée",
+      "Maillot — les bassins géothermiques sont partout, pas seulement au Blue Lagoon",
+      "Masque de nuit + bouchons — soleil de minuit en été, voisins bruyants toute saison",
+      "Gourde réutilisable — l'eau du robinet islandaise est la meilleure de votre vie, gratuite partout",
+      "Serviette de voyage microfibre — pour les arrêts sources chaudes spontanés hors lagons réservables",
+      "Batterie externe — les téléphones se vident vite par froid ; cartes hors-ligne + app aurore indispensables",
+    ],
+    budgetEstimate: "~320-450 €/jour pour un couple hors hôtel (l'Islande est chère : burger 25 €, bière 14 €, dîner 90 € = normal)",
+    generalTips: [
+      "Téléchargez SafeTravel.is et l'app 112 Iceland — la deuxième envoie votre position aux secours en un bouton",
+      "Le pourboire n'est pas d'usage ; service inclus. Arrondissez si vraiment vous voulez remercier",
+      "Prévision aurorale : vedur.is (Met Office) montre l'intensité (0-9) + couverture nuageuse — 4+ par nuit claire = forte probabilité",
+      "Conduite hivernale : 4×4 obligatoire, sous la limite, jamais dans une tempête de neige — garez-vous et attendez",
+      "Les F-roads (intérieur montagneux) exigent un 4×4 par la loi et sont fermées d'octobre à juin — n'essayez pas en voiture standard",
+      "Les toilettes en zone reculée sont rares et payantes (pièce de 2 €) — utilisez à chaque arrêt-café",
+      "Le dimanche à Reykjavik : beaucoup de petits commerces ferment, mais restaurants et Blue Lagoon restent ouverts",
+      "Ne marchez pas sur la mousse — elle a 200 ans et les empreintes restent des décennies",
+    ],
+  },
+  "cusco-5d-couple": {
+    tagline: "Cinq jours en couple — acclimatation à Cusco, Vallée Sacrée, puis Machu Picchu.",
+    audience: "Couple · Milieu de gamme",
+    destination: "Cusco",
+    destinationCountry: "Pérou",
+    overview:
+      "Cinq jours pour un couple qui veut Cusco, la Vallée Sacrée et le Machu Picchu sans se précipiter dans le mal d'altitude. Jour 1 : atterrissage en douceur — thé de coca, marche à plat dans San Blas, dîner tôt. Jour 2 : assez acclimatés pour Cusco proprement dit — Plaza de Armas, cathédrale sur fondations incas, déjeuner au marché San Pedro, forteresse Saqsayhuamán à l'heure dorée. Jour 3 : descente dans la Vallée Sacrée pour les terrasses de Pisac et Ollantaytambo. Jour 4, le clou : départ à 4 h, PeruRail pour le Machu Picchu, retour. Jour 5 : un espresso aux feuilles de coca, un souvenir en alpaga, vol retour. À la fin, vous aurez foulé des murs de pierre vieux de 800 ans de plus que l'anglais, vu le soleil se lever sur les Andes depuis la Porte du Soleil, et compris que « pachamama » est un mot que les gens vivent vraiment.",
+    bestSeasonNote:
+      "Mai à septembre = saison sèche — ciels dégagés, nuits froides, mois les plus sûrs pour le Chemin de l'Inca et ses alternatives. Évitez janvier-mars (pic de saison des pluies, le Chemin de l'Inca lui-même ferme en février pour entretien). Fin avril et octobre = excellent rapport qualité-prix : tarifs intersaison, surtout sec, mais prévoyez une couche imperméable. La fête d'Inti Raymi (24 juin) remplit la ville — réservez l'hôtel 6 mois à l'avance pour y assister, sinon comptez tarifs triplés cette semaine-là. L'altitude se moque du mois de votre venue.",
+    currencyTip:
+      "Sol péruvien (PEN). 1 USD ≈ 3,7 PEN. Cartes acceptées dans les hôtels, restaurants moyen-haut de gamme et le train ; cash nécessaire pour marchés, taxis, petits cafés et villages de la Vallée Sacrée. Retirez à un DAB BCP ou Interbank (max 700 PEN, ~190 USD) ; évitez les DAB indépendants « Globalnet » qui prélèvent 25 PEN par retrait. Gardez de petites coupures (10 et 20) — les vendeurs ne peuvent souvent pas casser un 100. Pourboire : 10 % au restaurant assis si non inclus ; 5-10 PEN par bagage pour les porteurs.",
+    languageTip:
+      "L'espagnol est universel ; le quechua reste vivant dans les villages andins, et au marché de Pisac on l'entend alterner avec l'espagnol. Bonjour en quechua : « allillanchu » (a-li-lyan-chou). La plupart des guides parlent anglais ; les menus des petits restaurants sont en espagnol uniquement. Le pack hors-ligne espagnol de Google Translate couvre 99 % des besoins. Le mot espagnol qui vaut la peine d'être prononcé correctement, c'est « huayno » (oua-i-no) — la musique folklorique andine qui sort de chaque haut-parleur de place.",
+    emergencyNumber: "105 (police, anglais limité), 116 (médical), hotline tourisme iPeru +51 1 574 8000 (anglais, 24/7)",
+    hotel: {
+      name: "JW Marriott El Convento Cusco",
+      area: "Centro Histórico, à 4 cuadras de la Plaza de Armas",
+      address: "Esquina de la Calle Ruinas 432 y San Agustín",
+      rationale:
+        "Construit dans un couvent augustin du XVIᵉ siècle, sur les fondations d'un palais inca encore visibles derrière une vitre dans le lobby. Chaque chambre a un système d'oxygène enrichi qui pulse de l'O2 supplémentaire la nuit — à 3 400 m, c'est la différence entre dormir et rester éveillé à haleter. Les patios coloniaux sont des jardins en pierre ; le spa propose un massage aux feuilles de coca qui aide vraiment contre les maux de tête d'adaptation. À 4 cuadras de la Plaza de Armas : tout le centre à pied, mais à l'écart du pire bruit nocturne. La conciergerie gère toute la logistique Vallée Sacrée + Machu Picchu — réservation de la bonne classe de train, voiture matinale du 4ᵉ jour.",
+      estimatedNightlyRate: "~280 €/nuit",
+    },
+    airportTransit: {
+      method: "Transfert hôtel (préréservé) depuis Alejandro Velasco Astete (CUZ)",
+      duration: "~25 min",
+      cost: "~30 € l'aller",
+      instructions:
+        "L'aéroport de Cusco (CUZ) est petit, mono-piste, 100 % domestique — la plupart connectent à Lima (LIM) sur un vol LATAM ou Sky Airline de 90 min. Réservez le transfert hôtel à la résa (30 € l'aller) — chauffeur avec pancarte aux arrivées et thé de coca dans la voiture (vraiment utile pour l'acclimatation). Ne prenez PAS un taxi de rue à l'aéroport — fraude au compteur courante. Le stand officiel de taxis (« Taxis Autorizados » dans les arrivées) coûte ~15 € et est sûr, mais le transfert hôtel est plus serein avec les bagages. Le trajet jusqu'au centre fait gagner 200 m d'altitude — montez les escaliers de l'hôtel doucement la première heure. Le sommeil est le remède.",
+    },
+    days: [
+      {
+        theme: "Atterrir doucement, s'acclimater",
+        summary:
+          "Atterrir, rouler en ville, boire un thé de coca, marcher quelques pâtés à plat, manger tôt. Résistez à l'envie d'en faire plus — votre vous de demain vous remerciera.",
+        stops: [
+          {
+            name: "Check-in JW Marriott El Convento",
+            area: "Centro Histórico",
+            duration: "1 h 30",
+            description:
+              "Check-in, acceptez immédiatement la première tasse de thé de coca (mate de coca) — ça aide vraiment pour l'altitude. Allongez-vous 30 min ; ne sous-estimez pas l'air. Les chambres à oxygène enrichi maintiennent une pression légèrement supérieure, vous le sentirez à la 2ᵉ nuit. Vertiges ou essoufflement : normal en jour 1 — eau, repas léger, repos. L'effort attendra.",
+            estimatedCost: "—",
+            transitFromPrev: "Transfert hôtel depuis CUZ",
+          },
+          {
+            name: "Promenade dans le quartier San Blas",
+            area: "San Blas",
+            duration: "1 h",
+            description:
+              "Le quartier des artisans, 2 cuadras au-dessus de l'hôtel — ruelles pavées, maisons à liserés blanc-bleu, murs de fondation incas au niveau de la rue (vous pouvez poser la main dessus). La pente est douce mais à 3 400 m, même une douce montée fait travailler — c'est l'objectif du jour. La Plaza San Blas en haut a une église coloniale (San Blas Iglesia, 1563, chaire en cèdre sculptée d'un seul tronc) et une fontaine. Faites un saut à la galerie Hilo pour les textiles andins tissés main (80-250 €) — les couleurs, c'est ce qui fait la renommée de la région.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "5 min à pied en montée",
+          },
+          {
+            name: "Café Valeriana — thé de coca + pâtisserie",
+            area: "San Blas",
+            duration: "45 min",
+            description:
+              "Petit café niché dans une cour — thé de coca (~2 €), muffin quinoa-miel (~3 €) ou chicha morada (boisson au maïs violet, légèrement sucrée, riche en vitamine C). Asseyez-vous près de la fenêtre. La patronne, Valeriana, met des disques de charango. C'est l'arrêt récupération avant la vraie sieste à l'hôtel.",
+            estimatedCost: "~8 €",
+            transitFromPrev: "Sur place",
+          },
+          {
+            name: "Cicciolina (dîner précoce)",
+            area: "Centro Histórico",
+            address: "Triunfo 393, 2ᵉ étage",
+            duration: "1 h 30",
+            description:
+              "Fusion italo-andine au 1ᵉʳ étage colonial — partage style tapas. Carpaccio d'alpaga (~14 €) — oui, alpaga, plus maigre et plus doux que le bœuf, l'introduction tout en douceur ; salade burrata-rocoto ; pizza Cicciolina au feu de bois. Bougies + poutres apparentes + deux fenêtres ouvertes sur la cathédrale. Pas d'alcool en jour 1 à l'altitude — votre corps fait déjà des heures sup. Le pisco sour, ce sera demain.",
+            estimatedCost: "~45 €/personne",
+            bookingTip: "Réservez sur cicciolinacusco.com 1 semaine à l'avance ; petit bar gardé pour walk-ins.",
+            transitFromPrev: "10 min à pied lentes en descente",
+          },
+        ],
+      },
+      {
+        theme: "Cusco proprement dit",
+        summary:
+          "Plaza de Armas, cathédrale sur fondations incas, marché San Pedro pour le ceviche, temple du Soleil de Coricancha, Saqsayhuamán à l'heure dorée.",
+        stops: [
+          {
+            name: "Plaza de Armas + Cathédrale de Cusco",
+            area: "Centro Histórico",
+            duration: "1 h 30",
+            description:
+              "Le cœur spirituel de l'Empire inca, repavé en cœur colonial espagnol. La Cathédrale (1559-1654) a été construite sur le temple inca Suntur Wasi — les Espagnols ont taillé des pierres incas pour les murs, on les voit en cours inférieur (andésite noire parfaite, sans mortier) sous le calcaire colonial. À l'intérieur : la « Cène » de 1755 où le Christ partage un cochon d'Inde (substitution typiquement andine validée par le Vatican). Audio-guide 5 €, 60 min.",
+            estimatedCost: "~15 € entrée + audio",
+            bookingTip: "Fermé les dimanches pour la messe. Ouverture 9 h = heure la plus calme.",
+            transitFromPrev: "5 min à pied de l'hôtel",
+          },
+          {
+            name: "Coricancha (Qorikancha) — temple du Soleil inca",
+            area: "Avenida El Sol",
+            duration: "1 h",
+            description:
+              "Le site inca le plus sacré — les murs étaient autrefois recouverts de 700 plaques d'or martelé que Pizarro a fait fondre en lingots en 1533. Les Espagnols ont construit le couvent Santo Domingo sur les murs incas survivants, ce qu'on voit aujourd'hui : la maçonnerie inca la plus parfaite au monde (pierres polies à la main, pas de carte de crédit qui passe entre) supportant une maçonnerie coloniale plus grossière. Le séisme de 1950 a effondré une grande partie du couvent ; les murs incas n'ont pas bougé. Il y a une métaphore là-dedans. 5 €.",
+            estimatedCost: "~5 €",
+            transitFromPrev: "10 min à pied vers le sud",
+          },
+          {
+            name: "Mercado Central de San Pedro — déjeuner",
+            area: "Mercado",
+            duration: "1 h",
+            description:
+              "Le grand marché couvert de Cusco — les chicheríoas du fond proposent des menus (ceviche + truite grillée + chicha morada pour ~5 €) où les locaux mangent épaule contre épaule sur de longs bancs. La section légumes a 30+ variétés de pommes de terre (le Pérou en a 4 000 indigènes — oui, quatre mille) et du maïs de toutes les couleurs. Pas d'eau non bouteillée ; mais oui à la chicha morada. Les pickpockets travaillent ce marché — sac devant, pas de téléphone en poche arrière. Un jus d'orange pressé en sortie (~1 €).",
+            estimatedCost: "~8 €",
+            transitFromPrev: "10 min à pied vers l'ouest",
+          },
+          {
+            name: "Pause hôtel + sieste",
+            area: "Centro Histórico",
+            duration: "1 h 30",
+            description:
+              "Jour 2 à 3 400 m — votre corps travaille plus que vous ne le pensez. Une sieste de 90 min compte plus qu'on ne croit. Les sites de l'après-midi sont plus haut que ceux du matin ; reposez-vous maintenant ou payez plus tard.",
+            estimatedCost: "—",
+            transitFromPrev: "10 min à pied retour",
+          },
+          {
+            name: "Forteresse Saqsayhuamán",
+            area: "Au-dessus de Cusco, flanc nord",
+            duration: "2 h",
+            description:
+              "La forteresse inca à 200 m au-dessus de la ville — trois murs en zigzag de pierres cyclopéennes (certains blocs pèsent 100 tonnes ; personne n'a totalement expliqué comment les Incas les ont taillés et déplacés). La colline est à 3 700 m, allez-y doucement ; l'entrée monte 15 min. Du sommet, toute la vallée de Cusco est sous vous — à l'heure dorée, les toits de tuiles coloniaux rougeoient sur fond de crêtes vertes. Le « Suchuna » à côté est un toboggan en pierre — les enfants y glissent, parfois les adultes aussi. Billet combo : 25 € Boleto Turístico Integral. Taxi pour monter (~5 €) recommandé ; redescendez à pied vers San Blas (40 min).",
+            estimatedCost: "~25 € billet combo",
+            bookingTip: "Le Boleto Turístico couvre 16 sites valable 10 jours ; achetez au bureau COSITUC sur Avenida El Sol.",
+            transitFromPrev: "Taxi 10 min en montée",
+          },
+          {
+            name: "Chicha por Gastón Acurio",
+            area: "Plaza Regocijo",
+            address: "Plaza Regocijo 261, 2ᵉ étage",
+            duration: "2 h",
+            description:
+              "L'antenne du chef Gastón Acurio à Cusco — il est à la cuisine péruvienne ce que Ferran Adrià est à l'espagnole. Anticuchos d'alpaga (brochettes en sauce rocoto, 14 €), trucha de Andes (ceviche de truite andine à la patate douce), et enfin un pisco sour (vous êtes acclimatés). La salle est à l'étage et donne sur la Plaza Regocijo de nuit, parquet acajou, nappes blanches, bougies. C'est le dîner cérémonial du voyage.",
+            estimatedCost: "~70 €/personne avec boissons",
+            bookingTip: "Réservez sur chicha.com.pe 3-5 jours à l'avance ; les tables côté fenêtre partent en premier.",
+            transitFromPrev: "8 min à pied",
+          },
+        ],
+      },
+      {
+        theme: "Vallée Sacrée — Pisac + Ollantaytambo",
+        summary:
+          "Descente de Cusco vers la Vallée Sacrée plus chaude. Terrasses et marché de Pisac le matin, déjeuner à Urubamba, ruines d'Ollantaytambo l'après-midi, dîner retour à Cusco.",
+        stops: [
+          {
+            name: "Chauffeur privé Cusco → Pisac",
+            area: "Descente Vallée Sacrée",
+            duration: "1 h 30",
+            description:
+              "L'hôtel arrange un chauffeur-guide privé pour la journée (~220 € total, anglophone, 8 h, tous les arrêts + attente compris). La route descend par des villages quechua — vous croiserez des femmes tissant au métier à dos sur le bord de la route. Le Mirador de Taray à 3 300 m est un arrêt de 5 min que connaît le chauffeur : panorama complet sur la Vallée Sacrée en contrebas, Andes enneigées en cercle. L'altitude perd 600 m d'ici Pisac, c'est pourquoi cette journée est tellement plus facile que Cusco.",
+            estimatedCost: "~220 € (chauffeur-guide journée 2 personnes)",
+            transitFromPrev: "Pickup hôtel",
+          },
+          {
+            name: "Terrasses incas de Pisac + marché du village",
+            area: "Pisac",
+            duration: "2 h",
+            description:
+              "Le site archéologique de Pisac est sur une crête au-dessus du village — terrasses agricoles incas descendant sur 600 m, temple du soleil (Intihuatana) au sommet, et le plus grand cimetière inca du Pérou taillé dans la falaise opposée (plus de 3 000 tombes, pillées en 1500). Roulez jusqu'à l'entrée haute, descendez par les terrasses, sortez au village. Le marché du village (mardi/jeudi/dimanche) c'est la vente directe par les tisserandes andines — écharpes alpaga 18 €, couvertures grand format 80-150 €, taureaux en céramique 10 €. Marchandez poliment (10-15 % de remise sur prix marqué = norme).",
+            estimatedCost: "~25 € site (couvert par Boleto Turístico)",
+            bookingTip: "Marché du dimanche le plus animé ; mardi plus de tisseuses, moins de touristes.",
+            transitFromPrev: "Chauffeur",
+          },
+          {
+            name: "Déjeuner Hacienda Sarapampa (Urubamba)",
+            area: "Urubamba",
+            duration: "1 h 30",
+            description:
+              "Ferme à maïs en activité avec restaurant en plein air — buffet de classiques andins : choclo (maïs géant) au fromage, cuy (cochon d'Inde — goûtez un morceau si curieux ; c'est la protéine andine historique), truite du ruisseau voisin, ragoût de quinoa, des dizaines de variétés de pommes de terre indigènes. ~30 €/personne buffet + boisson. L'épi de maïs de la variété d'Urubamba a vraiment la taille de votre avant-bras.",
+            estimatedCost: "~30 €/personne",
+            transitFromPrev: "Chauffeur, 30 min à l'ouest",
+          },
+          {
+            name: "Ruines + village d'Ollantaytambo",
+            area: "Ollantaytambo",
+            duration: "2 h",
+            description:
+              "L'autre grand complexe inca de la Vallée Sacrée — et le seul site inca où les Incas ont gagné une bataille contre les Espagnols (résistance de Manco Inca, 1537). Les ruines escaladent une falaise en terrasses ; 200 marches en pierre mènent au Temple du Soleil au sommet, avec ses six monolithes de granite rose extraits d'une montagne de l'autre côté de la vallée et déplacés ici on ne sait comment. Le village d'Ollantaytambo en bas est la seule ville inca habitée en continu au monde — les rues suivent la grille inca d'origine, l'eau coule dans des canaux de pierre au milieu de chaque ruelle exactement comme conçu en 1450.",
+            estimatedCost: "~25 € (Boleto Turístico)",
+            transitFromPrev: "Chauffeur, 30 min à l'ouest",
+          },
+          {
+            name: "Retour vers Cusco",
+            area: "Vallée Sacrée → Cusco",
+            duration: "1 h 30",
+            description:
+              "Le retour reprend 600 m d'altitude — vous le sentirez. Mangez la collation que le chauffeur a apportée, sirotez de l'eau. La lumière du soleil couchant sur les Andes vue par la vitre est spectaculaire. Pourboire 20-30 € au chauffeur-guide si bon (coutume).",
+            estimatedCost: "Inclus dans le tarif chauffeur",
+            transitFromPrev: "Chauffeur",
+          },
+          {
+            name: "Limo Cocina Peruana (retour Cusco)",
+            area: "Plaza de Armas",
+            address: "Portal de Carnes 236, 2ᵉ étage",
+            duration: "1 h 30",
+            description:
+              "Cuisine péruvienne moderne sur un balcon directement au-dessus de la Plaza de Armas — la cathédrale illuminée la nuit à travers les fenêtres = la photo. Ceviche de fruits de mer, lomo saltado (sauté de bœuf péruvien-chinois), tarte chocolat-quinoa. Pisco sour préparés à table. Plus calme que Cicciolina, plus poli que Chicha. ~50 €/personne.",
+            estimatedCost: "~55 €/personne",
+            bookingTip: "Réservez 2 jours à l'avance — tables balcon en premier.",
+            transitFromPrev: "5 min à pied de l'hôtel",
+          },
+        ],
+      },
+      {
+        theme: "Journée Machu Picchu",
+        summary:
+          "Le clou. Départ 4 h, train panoramique à travers la Vallée Sacrée, bus en lacets, visite guidée 3 h du Machu Picchu, déjeuner, train retour, dîner à Cusco.",
+        stops: [
+          {
+            name: "Hôtel → gare d'Ollantaytambo (voiture privée)",
+            area: "Cusco → Ollantaytambo",
+            duration: "1 h 30",
+            description:
+              "Voiture préréservée (~80 €, l'hôtel s'en charge) part de l'hôtel pile 4 h. La boîte petit-déjeuner emportée par l'hôtel (15 € en supplément) est la bonne option — café en thermos, sandwich, fruits frais. La descente vers la Vallée Sacrée se fait dans la lumière d'avant l'aube ; vous croiserez des paysans quechua qui partent aux champs avec leurs bœufs. Arrivée gare d'Ollantaytambo 5 h 30 — 30 min avant le train de 6 h 10.",
+            estimatedCost: "~80 €",
+            transitFromPrev: "—",
+          },
+          {
+            name: "PeruRail Vistadome → Aguas Calientes",
+            area: "Rails de la Vallée Sacrée",
+            duration: "1 h 30",
+            description:
+              "Le Vistadome de PeruRail est la classe maline pour un couple : fenêtres panoramiques ET panneaux de toit en verre, petit-déjeuner inclus à bord, musique andine live 20 min en deuxième heure. ~140 €/personne aller. La voie suit le rio Urubamba à travers la forêt nuageuse — la végétation change toutes les 15 minutes, du désert d'altitude à cactus à la jungle aux orchidées qui pendent. Arrivée Aguas Calientes 7 h 40.",
+            estimatedCost: "~280 €/personne aller-retour",
+            bookingTip: "Réservez sur perurail.com 2-3 mois à l'avance. Vistadome > Expedition (la classe moins chère) — ça vaut la différence.",
+            transitFromPrev: "Embarquement",
+          },
+          {
+            name: "Bus Aguas Calientes → entrée Machu Picchu",
+            area: "Route en lacets",
+            duration: "30 min",
+            description:
+              "Le bus « Consetur » zigzague 8 km en lacets pendant 25 min — assis à droite à la montée pour la vue rivière + nuages. 24 € aller-retour/personne, achat à la gare routière d'Aguas Calientes (en face de la gare). Les files avancent vite. La route a été construite par le neveu d'Hiram Bingham III en 1948 — avant ça, on marchait le Chemin de l'Inca.",
+            estimatedCost: "~24 €/personne",
+            transitFromPrev: "3 min à pied jusqu'à la gare routière",
+          },
+          {
+            name: "Machu Picchu — visite guidée",
+            area: "Citadelle + belvédère Porte du Soleil",
+            address: "Machu Picchu Pueblo",
+            duration: "3 h",
+            description:
+              "Votre hôtel a préréservé un guide licencié (60 €/personne, 3 h, anglais) — désormais obligatoire selon la réglementation MP de 2024. Les guides font le Circuit 2 (le classique) : à travers le secteur urbain bas, jusqu'à la Maison du Gardien pour la photo carte postale, par le Temple du Soleil, le Tombeau Royal, devant l'Intihuatana (« poteau d'attache du soleil », cadran solaire sacré). À 9 h 30 la brume du matin se lève et la cité émerge sous vos pieds — le moment qui vide les poumons. Le Sun Gate (Inti Punku) est une rando 5 € de plus + 90 min A/R, à faire seulement si endurance en altitude. Un lama va probablement squatter votre selfie. Eau, crème solaire, chapeau — le soleil équatorial à 2 400 m brûle vite.",
+            estimatedCost: "~130 € entrée + ~60 € guide",
+            bookingTip: "Réservez l'entrée sur machupicchu.gob.pe 60 jours à l'avance — Circuit 2 = parcours touristique standard. Nouvelles règles : créneaux d'entrée d'1 h spécifiques à réserver.",
+            transitFromPrev: "5 min à pied jusqu'à l'entrée",
+          },
+          {
+            name: "Buffet Sanctuary Lodge (ou ville en bas)",
+            area: "Entrée Machu Picchu",
+            duration: "1 h",
+            description:
+              "Le seul restaurant à l'entrée du Machu Picchu — buffet du Belmond Sanctuary Lodge, 50 €/personne, mais vous mangez face à la citadelle par les fenêtres. Sautez si le prix gêne ; bus + déjeuner à Aguas Calientes (Indio Feliz, 25 €, bon aussi) = moitié prix. Hydratez-vous sérieusement.",
+            estimatedCost: "~50 €/personne (ou 25 € en ville)",
+            transitFromPrev: "Sur place",
+          },
+          {
+            name: "Bus descente + train retour Ollantaytambo",
+            area: "Aguas Calientes → Ollantaytambo",
+            duration: "2 h 30",
+            description:
+              "Bus 14 h 30 pour descendre (25 min), train PeruRail Vistadome à 15 h 20 depuis Aguas Calientes (1 h 30 jusqu'à Ollantaytambo). Paysage différent au retour : lumière dorée à travers la forêt nuageuse, moins de photographes. Sommeillez dans le siège sans culpabilité — vous l'avez mérité.",
+            estimatedCost: "Aller-retour déjà réglé",
+            transitFromPrev: "Sur place",
+          },
+          {
+            name: "Voiture privée Ollantaytambo → Cusco",
+            area: "Vallée Sacrée → montée Cusco",
+            duration: "1 h 30",
+            description:
+              "Le chauffeur attend à la gare d'Ollantaytambo avec votre nom ; même arrangement que le matin (80 € l'aller). Remontée à 3 400 m — vous le sentirez. Couchez-vous tôt ; demain est court.",
+            estimatedCost: "~80 €",
+            transitFromPrev: "Pickup chauffeur",
+          },
+          {
+            name: "Pacha Papa (San Blas — distance facile)",
+            area: "San Blas, Cusco",
+            address: "Plaza San Blas 120",
+            duration: "1 h 30",
+            description:
+              "Restaurant patio décontracté à San Blas — dîner parfait pour le 4ᵉ jour, parce que vous êtes fatigués et voulez du péruvien simple. Pizza au four à bois (12 €), truite grillée (18 €), pisco sour. Patio ouvert avec murs en pierre + toit en tuiles d'argile, bougies. Option cochon d'Inde à la broche (25 €) si vous voulez l'expérience andine intégrale.",
+            estimatedCost: "~30 €/personne",
+            transitFromPrev: "5 min à pied de l'hôtel",
+          },
+        ],
+      },
+      {
+        theme: "Matin Cusco + aéroport",
+        summary:
+          "Matinée tranquille, dernière sélection alpaga, espresso aux feuilles de coca, taxi vers CUZ.",
+        stops: [
+          {
+            name: "Petit-déjeuner hôtel + matinée tranquille",
+            area: "JW Marriott El Convento",
+            duration: "1 h 30",
+            description:
+              "Petit-déjeuner dans le patio colonial — miel andin, œufs péruviens, jus frais de chirimoya (chérimole), thé de coca ou espresso aux feuilles de coca (oui, ça existe). Asseyez-vous au soleil. Check-out 12 h ; bagages à la réception jusqu'au départ.",
+            estimatedCost: "Inclus",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Centro Artesanal Cusco",
+            area: "Avenida El Sol 603",
+            duration: "1 h",
+            description:
+              "Le marché officiel des artisans — 200+ stands sous un toit, pulls en alpaga faits main (60-120 €), tentures (40-80 €), bijoux en argent des artisans de Cusco (30 €+). Qualité moyenne à haute ; marchandez 10-15 %. Méfiez-vous du label « baby alpaca » sur des pulls à 15 € en stand de rue — c'est de l'acrylique. Le vrai a du poids, une légère odeur huileuse de lanoline et un fini mat (pas brillant).",
+            estimatedCost: "~80-150 € souvenirs",
+            transitFromPrev: "10 min à pied vers le sud",
+          },
+          {
+            name: "Café Morena (dernier déjeuner)",
+            area: "Centro Histórico",
+            address: "Plateros 348B",
+            duration: "1 h",
+            description:
+              "Déjeuner léger — salade de quinoa à l'avocat, jus frais, peut-être un dernier pisco sour. Petit jardin à l'arrière si le patio à l'étage est plein. ~15 €/personne. Pas trop chargé ; le trajet aéroport + le vol arrivent.",
+            estimatedCost: "~15 €/personne",
+            transitFromPrev: "8 min à pied retour",
+          },
+          {
+            name: "Transfert hôtel → aéroport CUZ",
+            area: "Cusco → CUZ",
+            duration: "30 min",
+            description:
+              "Chauffeur préréservé prend à l'hôtel (~30 €). CUZ est petit ; comptez 90 min avant un vol domestique pour sécurité + embarquement. La plupart des voyageurs internationaux connectent à Lima avec 90 min de transit. Achetez des chaussons en alpaga au duty-free de CUZ — même qualité qu'en ville, prix légèrement plus haut mais ça compte comme bagage cabine. Les bonbons aux feuilles de coca sont aussi un souvenir amusant (légaux en bagage soute ; techniquement illégaux à entrer aux US d'après la DEA, jamais appliqué aux voyageurs).",
+            estimatedCost: "~30 € transfert",
+            transitFromPrev: "Pickup hôtel",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Tenue en couches — Cusco passe de 5 °C le matin à 22 °C l'après-midi le même jour",
+      "Chaussures de marche solides — chaque site inca a des marches en pierre irrégulières",
+      "Chapeau à bord large + crème SPF 50 — le soleil équatorial en altitude brûle vite (oui, même par temps couvert)",
+      "Gourde réutilisable + pastilles d'électrolytes — l'hydratation prévient le mal d'altitude",
+      "Diamox (acétazolamide) sur ordonnance si problèmes d'altitude antérieurs — démarrer 24 h avant l'arrivée, demandez à votre médecin",
+      "Cash en petites coupures de soles péruviennes pour les marchés (10 et 20)",
+      "Veste de pluie légère — l'après-midi en Vallée Sacrée peut donner une averse même en saison sèche",
+      "Appareil photo avec zoom — le téléphone rate la profondeur du Machu Picchu et le détail du marché des textiles",
+    ],
+    budgetEstimate: "~300-450 €/jour pour un couple hors hôtel (la journée Machu Picchu monte à ~700 € avec train + entrée + guide)",
+    generalTips: [
+      "L'altitude est réelle — premières 24 h : pas d'alcool, marche lente, beaucoup d'eau + thé de coca, repas légers",
+      "Le Boleto Turístico (25 € / 10 jours) couvre 16 sites de la région de Cusco dont Saqsayhuamán, Pisac, Ollantaytambo — au bureau COSITUC",
+      "Entrée Machu Picchu à pré-réserver 30-60 jours à l'avance sur machupicchu.gob.pe — guides désormais obligatoires (depuis 2024)",
+      "Pourboire : 10 % au restaurant assis, 5 €/jour pour les guides, 20-30 € pour un chauffeur-guide privé toute la journée",
+      "Utilisez UberX ou InDriver à Cusco pour les taxis — 2-4 € la course ; ne laissez jamais un taxi de rue donner un prix (truqué)",
+      "Zika et dengue concernent la jungle ; Cusco est trop haut pour les moustiques, pas d'antipaludéen nécessaire",
+      "L'assurance voyage avec couverture randonnée Machu Picchu est vraiment utile — un mal d'altitude peut nécessiter une évacuation",
+      "Type de prise : A/B (US) ; tension 220 V — adaptateur nécessaire pour appareils chauffants",
+    ],
+  },
+  "dubai-4d-couple": {
+    tagline: "Quatre jours en couple — Burj Khalifa, souks du vieux Dubaï, safari désert, le Palm.",
+    audience: "Couple · Tendance luxe",
+    destination: "Dubaï",
+    destinationCountry: "Émirats arabes unis",
+    overview:
+      "Quatre jours pour un couple qui veut les deux Dubaïs — la cité de verre futuriste du Burj Khalifa et le port de commerce en boutres bois du souk aux épices, séparés par 200 m de creek et 60 ans. Jour 1 : la grande messe moderne — terrasse d'observation du Burj, le plus grand mall du monde, le ballet de fontaines en bas. Jour 2 : traverser à Bur Dubai pour le quartier historique d'Al Fahidi, l'abra (petite barque-ferry), les souks de l'or et des épices où vous marchanderez du safran qui vaut le double chez vous. Jour 3 : disparition dans le désert — dune-bashing en 4×4, coucher de soleil, henné et café arabe sous les étoiles. Jour 4 : Palm Jumeirah — Atlantis, The View at the Palm, coucher de soleil sur la Marina avant le vol. Dubaï n'est pas subtil ; c'est précisément l'attrait.",
+    bestSeasonNote:
+      "Novembre à mars = la seule période sensée — 22-28 °C en journée, soirées fraîches. Avril : la chaleur monte. Mai-septembre : c'est dangereux pour de vrai (45 °C+, les locaux passent en intérieur intégral, activités extérieures uniquement à l'aube). Les dates du Ramadan changent chaque année — un mois culturellement merveilleux (les iftars du vieux Dubaï sont extraordinaires) mais restaurants restreints en journée, alcool réduit, code vestimentaire serré. Vérifiez les dates avant de réserver. Vendredi est jour férié aux EAU (samedi partiellement) ; les souks et musées ont des horaires modifiés ce jour-là.",
+    currencyTip:
+      "Dirham émirati (AED). 3,67 AED ≈ 1 USD (parité fixe). Cartes partout — Apple Pay, Google Pay, Visa, Amex. Gardez ~200 AED en cash pour les taxis (certains encore cash uniquement), le marchandage des souks et l'abra (1 AED par traversée — billets papier seulement au quai). Les bureaux de change du Dubai Mall ont de meilleurs taux que l'aéroport pour le cash.",
+    languageTip:
+      "L'arabe est officiel ; l'anglais universel dans les zones touristiques, hôtels, restaurants, taxis. « Shukran » (chou-krane) = merci. « Sabah al-khayr » = bonjour. Menus en anglais dans les endroits modernes, anglais+arabe dans les souks. Google Maps en arabe pour les noms de rues utile dans le vieux. Les langues sud-asiatiques (hindi, ourdou, tagalog) sont aussi très parlées — la main-d'œuvre est multinationale.",
+    emergencyNumber: "999 (police, anglais courant), 998 (ambulance), 997 (pompiers)",
+    hotel: {
+      name: "Address Downtown Dubai",
+      area: "Downtown Dubai, en face du Burj Khalifa",
+      address: "Sheikh Mohammed Bin Rashid Boulevard, Downtown Dubai",
+      rationale:
+        "L'Address Downtown est directement sur le lac du Burj — votre chambre a vue sur le Burj Khalifa et vous regardez le ballet de fontaines 8 fois dans la soirée depuis le balcon. Le Dubai Mall est relié par une passerelle privée (5 min couverte), le Burj Khalifa est de l'autre côté du lac, le métro Burj Khalifa/Dubai Mall à 10 min à pied. Trois piscines, un excellent buffet petit-déjeuner, le bar Neos sur le toit au 63ᵉ étage. Chambres à 400 €+/nuit en haute saison, descendent à 280 € en intersaison et week-end ; réservez via Marriott Bonvoy si vous avez un statut.",
+      estimatedNightlyRate: "~320 €/nuit",
+    },
+    airportTransit: {
+      method: "Métro Dubai Red Line (DXB Terminal 1/3 → Burj Khalifa/Dubai Mall) ou taxi",
+      duration: "~45 min métro / ~25 min taxi",
+      cost: "~3 € métro / ~22 € taxi",
+      instructions:
+        "Depuis DXB, le métro Red Line est étonnamment simple — Terminaux 1 et 3 ont chacun une station dans l'aéroport. Achetez un « Nol Red Ticket » (10 AED, illimité une journée sur Red Line). 25 min jusqu'à Burj Khalifa/Dubai Mall, puis 10 min à pied jusqu'à l'hôtel par la galerie climatisée. Avec beaucoup de bagages ou après minuit, taxi officiel (22 € au compteur, ~25 min) sans friction. Évitez les rabatteurs « limo » dans le terminal — ils facturent 3× le tarif du compteur. Uber et Careem fonctionnent aussi mais avec la majoration aux heures de pointe = équivalent au taxi. Eau gratuite à chaque station.",
+    },
+    days: [
+      {
+        theme: "Le grand show du Dubaï moderne",
+        summary:
+          "Atterrir, s'installer, monter au Burj pour la plus haute vue urbaine sur Terre, parcourir le plus grand mall du monde, voir le ballet de fontaines depuis le lac — Dubaï 101 en un après-midi et soirée.",
+        stops: [
+          {
+            name: "Check-in Address Downtown",
+            area: "Downtown Dubai",
+            duration: "1 h",
+            description:
+              "Posez les bagages, demandez une chambre vue Burj Khalifa (demandez, ne supposez pas — « fountain view » est l'expression magique qui souvent vous donne les deux). Dattes de bienvenue et café arabe au lobby. Le pont piscine offre 270° de vue sur le Burj si vous voulez une réinitialisation de 30 min avant de sortir.",
+            estimatedCost: "—",
+            transitFromPrev: "Métro/taxi depuis DXB",
+          },
+          {
+            name: "Burj Khalifa — At the Top SKY (148ᵉ étage)",
+            area: "Burj Khalifa",
+            address: "1 Mohammed Bin Rashid Blvd",
+            duration: "1 h 30",
+            description:
+              "Le billet « At the Top SKY » (~150 €) c'est le luxe — 148ᵉ étage à 555 m, terrasse extérieure (il y a du vent à cette hauteur, vestes recommandées même l'été), salon privé avec rafraîchissements, ascenseur prioritaire. Le standard « At the Top » (55 €) ne donne que le 124ᵉ — la vue est à 90 % la même, mais sans terrasse extérieure. Calez l'horaire 30 min avant le coucher de soleil. Curieusement les photos sortent mieux du 124 que du 148 — plus proche du détail des bâtiments en bas.",
+            estimatedCost: "~150 €/personne SKY (ou 55 € standard)",
+            bookingTip: "Réservez sur burjkhalifa.ae 2 semaines à l'avance — créneaux coucher partent vite. Ou via le canal jour-J de l'hôtel (l'Address Downtown a des entrées SKY allouées).",
+            transitFromPrev: "5 min à pied via la connexion Dubai Mall",
+          },
+          {
+            name: "Dubai Mall — aquarium, patinoire, extension du souk de l'or",
+            area: "Dans le Dubai Mall",
+            address: "Financial Centre Rd",
+            duration: "1 h 30",
+            description:
+              "1 200 boutiques sous un seul toit. L'aquarium (gratuit à voir de l'extérieur, 40 € pour le passage piéton) a le plus grand panneau acrylique au monde. La patinoire taille olympique au milieu est surréelle dans un Dubaï à 35 °C. L'« extension du souk de l'or » niveau 1 est le commerce moderne de l'or. N'essayez pas de tout faire — choisissez 2-3 enseignes qui vous tiennent à cœur, puis dérivez par la sortie promenade des Dancing Fountains vers le lac.",
+            estimatedCost: "Gratuit sauf achats",
+            transitFromPrev: "Sur place (le mall connecte au Burj)",
+          },
+          {
+            name: "Time Out Market Dubai (food hall)",
+            area: "Souk Al Bahar (de l'autre côté du lac)",
+            duration: "1 h",
+            description:
+              "17 des meilleurs chefs de Dubaï dans un food hall ouvert au 2ᵉ étage du Souk Al Bahar — directement face au Burj Khalifa de l'autre côté du lac aux fontaines. Plats de 12 à 25 €, on commande à plusieurs stands et on partage. Bol uni de « Reif Japanese Kitchen », burger « Pickl » (le smash burger préféré de Dubaï), mezze libanais « Bait Maryam ». Terrasse extérieure face au Burj — vous mangez avec le show.",
+            estimatedCost: "~50-60 € pour deux",
+            transitFromPrev: "10 min à pied par la promenade lacustre",
+          },
+          {
+            name: "Ballet de fontaines de Dubaï",
+            area: "Lac du Burj",
+            duration: "30 min",
+            description:
+              "Fontaines chorégraphiées sur 30 acres au pied du Burj — jets jusqu'à 150 m de hauteur, chorégraphiés sur de l'arabe, du Bollywood, de la pop. Gratuit, toutes les 30 min de 18 h à 23 h. Meilleurs points : le pont entre le mall et le Souk Al Bahar (au sol, vous sentez les embruns) ou la terrasse lacustre de l'Address Downtown (en hauteur, le Burj derrière). Chaque show a une musique différente ; restez pour deux.",
+            estimatedCost: "Gratuit",
+            transitFromPrev: "5 min à pied jusqu'au pont",
+          },
+          {
+            name: "Bar Neos sur le toit (63ᵉ étage de l'Address Downtown)",
+            area: "Address Downtown",
+            duration: "1 h",
+            description:
+              "Bar à cocktails au 63ᵉ — le Burj Khalifa remplit toute la baie vitrée, illuminé la nuit. Cocktails à 30 € (Dubaï est friendly avec l'alcool mais les prix sont raides — uniquement dans des établissements licenciés, tous attachés à un hôtel). Commandez le « Persian Garden » (eau de rose + safran + gin). Dress code smart-casual. Le personnel de l'Address connaît l'horaire des fontaines — asseyez-vous pour la finale à 22 h.",
+            estimatedCost: "~60 € pour deux cocktails",
+            transitFromPrev: "Sur place (hôtel)",
+          },
+        ],
+      },
+      {
+        theme: "Vieux Dubaï — Al Fahidi, abra, souks",
+        summary:
+          "Traverser le creek vers le Bur Dubai historique — quartier des tours à vent, petit ferry en bois, souk de l'or, souk des épices, déjeuner sur l'eau.",
+        stops: [
+          {
+            name: "Métro Red Line → station Al Fahidi",
+            area: "Downtown → Bur Dubai",
+            duration: "30 min",
+            description:
+              "Depuis Burj Khalifa/Dubai Mall, Red Line nord jusqu'à BurJuman (correspondance Green Line), un arrêt jusqu'à Al Fahidi. ~30 min total, ~2 €/personne. Le « Gold Class » (voiture de tête) est vide même aux heures de pointe — 2 AED de plus qui valent. Évitez la première voiture « Femmes et enfants uniquement » si vous êtes en couple.",
+            estimatedCost: "~3 €/personne",
+            transitFromPrev: "Métro depuis la station hôtel",
+          },
+          {
+            name: "Quartier historique d'Al Fahidi",
+            area: "Bur Dubai",
+            duration: "1 h 30",
+            description:
+              "Le plus ancien quartier debout de Dubaï — maisons en blocs de corail à tours à vent (la clim originelle, 1850), ruelles à sol de sable, le bait al-fahidi traditionnel au centre. Le Sheikh Mohammed Centre for Cultural Understanding fait une excellente visite guidée à pied (20 €, 1 h 30) avec petit-déjeuner émirati traditionnel inclus — réservez 1 jour à l'avance sur culturalfoundation.ae. Le Coffee Museum et le Coin Museum sont des escales annexes gratuites. Contraste total avec le jour 1.",
+            estimatedCost: "~20 € visite SMCCU",
+            transitFromPrev: "10 min à pied depuis la station",
+          },
+          {
+            name: "Traversée en abra (petit ferry en bois)",
+            area: "Dubai Creek",
+            duration: "15 min",
+            description:
+              "L'expérience la plus charmante du Dubaï moderne — 1 AED (oui, 27 cents) sur un bateau en bois style années 1950 pour traverser le creek vers Deira. Départs en continu du quai abra de Bur Dubai, part quand plein (5 min d'attente). 23 passagers, capitaine à la barre en bois. Brise fraîche sur le creek même en été. Payez cash au capitaine après embarquement.",
+            estimatedCost: "~0,27 €/personne aller",
+            transitFromPrev: "5 min à pied jusqu'au quai Bur Dubai",
+          },
+          {
+            name: "Souk des épices + Souk de l'or (Deira)",
+            area: "Côté Deira du creek",
+            duration: "1 h 30",
+            description:
+              "Le souk des épices d'abord (plus petit, plus agréable) — safran à 4 €/g (vs 12 € chez vous), zaatar au kilo, résine d'encens, pétales de rose séchés pour le thé. Puis le souk de l'or — 380 commerçants vendant de l'or 18-22-24 carats au poids (cours spot + petite façon). Même sans acheter, traversez ; c'est LA photo de Dubaï. Ne photographiez pas les acheteuses sans permission. Marchandez 15-20 % au souk des épices ; l'or est à prix fixe au poids.",
+            estimatedCost: "Variable",
+            bookingTip: "Plus tôt (10 h) plus calme ; l'après-midi amène acheteurs indiens + philippins et l'énergie double.",
+            transitFromPrev: "5 min à pied du quai abra de Deira",
+          },
+          {
+            name: "Bait Al Wakeel — déjeuner sur le creek",
+            area: "Bur Dubai (retour traversée)",
+            address: "Cnr 53A St & 53 St",
+            duration: "1 h 30",
+            description:
+              "Le tout premier restaurant de Dubaï (1935), construit directement sur le creek sur pilotis bois — les abras passent sous vous. Fruits de mer émirati-iraniens : mérou grillé (28 €), assiette shawarma, riz machboos. Déjeuner avec charme bois 1930 et brise du creek. Reprenez un abra pour rentrer après.",
+            estimatedCost: "~70 € pour deux",
+            bookingTip: "Réservez via zomato.com 1 jour à l'avance — tables terrasse face au creek.",
+            transitFromPrev: "Abra retour Bur Dubai (1 AED)",
+          },
+          {
+            name: "Pause hôtel + piscine de l'Address",
+            area: "Address Downtown",
+            duration: "2 h",
+            description:
+              "Le vieux Dubaï est poussiéreux + chaud même en hiver ; un après-midi à la piscine de l'Address (vue 270° sur le Burj) est la réinitialisation parfaite. Commandez un citron-eau de rose ; le pool butler existe et le porte. Douche soignée avant le dîner — le sable de Dubaï se loge partout.",
+            estimatedCost: "Piscine de l'hôtel",
+            transitFromPrev: "Métro retour, 30 min",
+          },
+          {
+            name: "Al Mahara au Burj Al Arab (ou Pierchic en alternative)",
+            area: "Jumeirah",
+            duration: "2 h",
+            description:
+              "Le dîner une-fois-dans-le-voyage — Al Mahara dans le Burj Al Arab en forme de voile, autour d'un aquarium sol-au-plafond sur 3 étages. Menu dégustation 250 €+/personne, dress code intégral (veste pour les hommes). Si c'est trop, Pierchic est l'alternative élégante — fruits de mer modernes au bout d'une promenade en bois sur le golfe Arabique, moitié prix, même vue sur le Burj Al Arab au loin. L'un ou l'autre = la photo du voyage.",
+            estimatedCost: "~300 €/personne Al Mahara, ~120 € Pierchic",
+            bookingTip: "Le Burj Al Arab demande une résa 2 semaines à l'avance + respect strict du dress code ; Pierchic accepte 3 jours à l'avance.",
+            transitFromPrev: "Taxi 25 min, ~30 €",
+          },
+        ],
+      },
+      {
+        theme: "Safari désert",
+        summary:
+          "Pickup à 14 h 30 pour un safari désert en soirée — dune bashing, dromadaire, coucher de soleil, dîner BBQ sous les étoiles avec danse du ventre. L'expérience signature hors-ville de Dubaï.",
+        stops: [
+          {
+            name: "Matinée tranquille — petit-déjeuner hôtel + spa",
+            area: "Address Downtown",
+            duration: "3 h",
+            description:
+              "Faites la grasse mat'. Le buffet petit-déjeuner de l'Address Downtown court jusqu'à 11 h — mezze arabe, jus frais, œufs à la commande, coin dattes-et-miel. Réservez un soin spa en couple le matin (150-250 €) — massage safran-rose c'est l'option thématique Dubaï, 60 min, vous laisse désossés avant le désert.",
+            estimatedCost: "Spa optionnel ~200 €",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Pickup safari (Platinum Heritage ou Arabian Adventures)",
+            area: "Hôtel → Dubai Desert Conservation Reserve",
+            duration: "1 h de route",
+            description:
+              "Deux opérateurs sérieux : Platinum Heritage (le plus luxe, vintage Land Rover, axé conservation, ~200 €/personne) ou Arabian Adventures (luxe mainstream, 4×4 modernes, ~130 €/personne). Les deux pickup au lobby. Une heure à l'est jusqu'à la Dubai Desert Conservation Reserve (paysage de dunes protégé, pas un parc à thème bédouin).",
+            estimatedCost: "~130-200 €/personne",
+            bookingTip: "Réservez sur platinum-heritage.com ou arabianadventures.com 5-7 jours à l'avance.",
+            transitFromPrev: "Pickup hôtel",
+          },
+          {
+            name: "Dune bashing — 4×4 sur les dunes rouges",
+            area: "Dubai Desert Conservation Reserve",
+            duration: "45 min",
+            description:
+              "Le chauffeur dégonfle les pneus, puis trace les dunes à 60 km/h — glissades latérales, sommets, descente en piqué d'une face raide. Légèrement écœurant mais spectaculaire ; placez-vous au fond si l'estomac est sensible. Pause photo sur la haute dune à 16 h 30 — lumière dorée sur sable rouge, désert qui s'étend. Si vous êtes anxieux, Platinum Heritage propose une « Conservation Drive » apaisée avec le même paysage et zéro angle extrême.",
+            estimatedCost: "Inclus",
+            transitFromPrev: "Sur place",
+          },
+          {
+            name: "Balade à dromadaire + coucher de soleil",
+            area: "Camp bédouin",
+            duration: "1 h",
+            description:
+              "Courte balade à dromadaire (10 min, caravane à la file sur la crête d'une dune) — la photo. Puis tout le monde descend et trouve un coin sur le sable pour le coucher. La ligne de dunes à 17 h 30 en hiver est l'un des plus beaux couchers que vous verrez — le sable passe d'orange à rose à violet en 20 minutes. Henné au camp (10 €), café arabe + dattes gratuits.",
+            estimatedCost: "~10 € henné optionnel",
+            transitFromPrev: "Sur place",
+          },
+          {
+            name: "Dîner BBQ bédouin sous les étoiles",
+            area: "Camp désert",
+            duration: "2 h",
+            description:
+              "Buffet plein air au camp — shawarma d'agneau, poulet grillé, houmous, fattoush, baklava, dattes fraîches, thé à la menthe. Mangez assis sur des coussins autour de tables basses. Après le dîner : danse Tanoura folklorique (façon derviche tourneur) et oud (luth arabe) live. Levez les yeux : le désert est assez loin des lumières de la ville pour que la Voie lactée soit visible par nuit claire, dramatique avec la silhouette des dunes. La plupart des opérateurs offrent une session astro brève si le ciel est clair.",
+            estimatedCost: "Inclus dans le tarif safari",
+            transitFromPrev: "Sur place",
+          },
+          {
+            name: "Retour à l'hôtel",
+            area: "Désert → Downtown",
+            duration: "1 h",
+            description:
+              "Trajet somnolent. Hôtel à 22 h 30. Douche rapide (le sable est partout) et au lit ; le 4ᵉ jour est complet.",
+            estimatedCost: "Inclus",
+            transitFromPrev: "Dépose camp",
+          },
+        ],
+      },
+      {
+        theme: "Palm Jumeirah + Marina + envoi",
+        summary:
+          "Atlantis le matin, The View at the Palm à midi, déjeuner à la Marina, dernier shopping, taxi vers DXB.",
+        stops: [
+          {
+            name: "Atlantis The Palm — parc Aquaventure ou Lost Chambers Aquarium",
+            area: "Palm Jumeirah crescent",
+            address: "Crescent Rd, The Palm Jumeirah",
+            duration: "2 h 30",
+            description:
+              "Atlantis est le complexe rose corail iconique au bout de la Palm Jumeirah. Deux blockbusters : (a) Aquaventure parc aquatique — toboggans, rivière paresseuse, le « Leap of Faith » presque vertical ; pass journée 90 €/personne, recommandé aux fans d'eau. (b) Lost Chambers Aquarium — 65 000 poissons en parcours piéton, 40 €/personne, plus cool si vous voulez 90 minutes d'expérience. Gardez le parc aquatique pour un séjour plus long ; Lost Chambers est calibré pour la demi-journée.",
+            estimatedCost: "~40 € (Lost Chambers) ou 90 € (Aquaventure)",
+            bookingTip: "Achetez en ligne pour 10 % de réduction ; réservez le déjeuner Nobu Atlantis si vous faites le parc aquatique.",
+            transitFromPrev: "Taxi 25 min, ~25 €",
+          },
+          {
+            name: "The View at The Palm (52ᵉ étage)",
+            area: "Palm Tower (tronc du Palm)",
+            duration: "1 h",
+            description:
+              "Plate-forme d'observation à 240 m au sommet de Palm Tower — la meilleure vue sur la forme signature de la Palm Jumeirah (on ne voit la disposition en palmier que d'ici). Terrasse extérieure plus expo musée sur la conquête des terres de Dubaï. 25 €/personne, beaucoup moins cher que le Burj. La journée est bien ; le soir aussi est dramatique mais le Palm ne s'éclaire pas comme Downtown la nuit.",
+            estimatedCost: "~25 €/personne",
+            bookingTip: "Réservez sur theviewpalm.ae 1 jour à l'avance ; les créneaux midi ont l'air le plus net.",
+            transitFromPrev: "Taxi 8 min depuis Atlantis",
+          },
+          {
+            name: "Pier 7 Marina — déjeuner sur l'eau",
+            area: "Dubai Marina",
+            duration: "1 h 30",
+            description:
+              "Pier 7 est une tour-restaurant 7 étages au bord de la marina — choisissez l'étage par cuisine, tous ont vue intégrale. « Asia Asia » (niveau 3) pour le pan-asiatique, « Atelier M » (niveau 7) pour la fine cuisine franco-méditerranéenne, « Cargo » (niveau 1) pour le gastropub. Déjeuner niveau 3 avec yachts sur trois côtés. ~80 € pour deux avec un cocktail chacun. Après, marchez la Marina Walk (promenade bordée de palmiers, 7 km) 30 min.",
+            estimatedCost: "~80 € pour deux",
+            bookingTip: "Walk-in OK en semaine au déjeuner ; réservez vendredi/samedi.",
+            transitFromPrev: "Taxi 12 min depuis The View",
+          },
+          {
+            name: "Marina Walk + derniers souvenirs",
+            area: "Dubai Marina",
+            duration: "1 h",
+            description:
+              "Marchez la marina, jetez un œil aux affréteurs de yachts, prenez une kunafa chez Firas Sweets (8 €) ou un café au safran chez % Arabica. Derniers souvenirs au Marina Mall (plus petit que Dubai Mall, plus ciblé) : dattes Bateel (25 €/coffret, le standard du cadeau dubaïote), chocolats Patchi (30 €), si ça vous va, échantillon parfum oud Bvlgari (15 €).",
+            estimatedCost: "~50 € souvenirs",
+            transitFromPrev: "À pied le long de la marina",
+          },
+          {
+            name: "Hôtel récup' bagages + se rafraîchir",
+            area: "Address Downtown",
+            duration: "1 h",
+            description:
+              "Taxi vers l'Address (~25 €, 25 min). Late check-out arrangé à la résa (ils acceptent généralement jusqu'à 17-18 h). Douche rapide, repack. Dernier ballet de fontaines depuis le balcon côté lac à 18 h — au revoir digne.",
+            estimatedCost: "~25 € taxi",
+            transitFromPrev: "Taxi depuis Marina",
+          },
+          {
+            name: "Hôtel → aéroport DXB",
+            area: "Downtown → DXB",
+            duration: "30 min",
+            description:
+              "Taxi depuis le rang hôtel (~22 €, 25 min). Comptez 3 h pour un départ international. Le duty-free de DXB est exceptionnel — dattes Bateel de dernière minute, safran, Mac, parfums oud. Connectez le WiFi gratuit et commandez en ligne pour livraison airport si vous avez oublié quelque chose. Aéroport hub — votre porte est sans doute à 15 min à pied de la sécurité.",
+            estimatedCost: "~22 € taxi",
+            transitFromPrev: "Pickup hôtel",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "Couches légères — 26 °C en journée, 18 °C en clim dans malls/restaurants, contraste fort",
+      "Tenue couvrante pour les femmes dans les souks et le vieux Dubaï (genoux + épaules) — non strict mais plus confortable",
+      "Lunettes de soleil + chapeau — UV fort même en hiver",
+      "Sandales + chaussures fermées (le sable s'infiltre dans les chaussures ouvertes au safari)",
+      "Maillot de bain — la culture piscine est immense",
+      "Tenue smart-casual — au moins une pour Burj Al Arab/Pierchic (veste pour les hommes)",
+      "Gourde réutilisable — points d'eau dans le métro et les malls",
+      "Adaptateur Type G (3 broches UK)",
+    ],
+    budgetEstimate: "~400-700 €/jour pour un couple hors hôtel (Dubaï est cher : 50 € le déj' au mall, 35 € le cocktail, 200 €+ les menus dégustation ; le safari désert est le plus gros poste unique)",
+    generalTips: [
+      "Démonstrations publiques d'affection au-delà de la main = techniquement illégales — la discrétion est la norme",
+      "Alcool uniquement dans des établissements sous licence hôtel ; transporter de l'alcool dans la rue est illégal — taxi entre hôtel et dîner",
+      "Vendredi est le jour religieux — souks ouvrent plus tard (après 16 h), certains musées fermés",
+      "Pourboire : 10-15 % au resto si non inclus ; 5-10 AED pour arrondir le taxi ; 20 €+ pour un guide",
+      "Le métro est excellent et bon marché ; évitez le taxi en heure de pointe (16 h 30-19 h) — Sheikh Zayed Road devient un parking",
+      "Règles Ramadan (si dates concernées) : pas de boire/manger en public 5 h 30-18 h 30 hors zones touristiques ; hôtels touristiques exemptés",
+      "Vol de drone réglementé ; demandez avant de photographier femmes, bâtiments officiels, militaires",
+      "Détaxe TVA : 5 % remboursables sur achats > 250 AED dans les boutiques participantes — à traiter à DXB avant la sécurité",
+    ],
+  },
 };
 
 export default fr;

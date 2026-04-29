@@ -2793,6 +2793,1001 @@ const zh: LocaleTranslations = {
       "微信支付在伦敦较少 — 但Selfridges、Harrods等大型奢侈商场支持",
     ],
   },
+  "reykjavik-4d-couple": {
+    tagline: "情侣四日 — 黄金圈、南海岸瀑布、蓝湖温泉。",
+    audience: "情侣 · 中等预算",
+    destination: "雷克雅未克",
+    destinationCountry: "冰岛",
+    overview:
+      "为情侣设计的四天 — 不需要承诺整条环岛公路,只取冰岛最具代表性的精华。住在步行友好的雷克雅未克101市中心,从这里出发两次大型一日游:黄金圈(辛格维利尔国家公园、间歇泉、古佛斯瀑布)和南海岸(两座瀑布加一片永生难忘的黑沙滩)。第四天慢悠悠泡完蓝湖温泉再上飞机。结束时,这个国家会带给你长满苔藓的熔岩、地热蒸汽、海边玄武岩柱大教堂,以及回酒店路上变三种颜色的天空 — 还会让你尝过四种做法的鲑鱼。冰岛距离上很小,感受上巨大。",
+    bestSeasonNote:
+      "6-8月是舒适的午夜阳光季 — 白昼漫长,所有道路开放,但价格最贵,需要眼罩。9月底-10月是性价比甜蜜点:树叶变色,环岛公路仍可通,极光季开始(9月20日后概率显著上升)。11月-2月日照仅4小时,但极光概率最高、价格最低 — 需重装抗寒衣物和冰爪。3月的泥+雪+道路封闭期请避开。2023年起雷克雅内斯半岛(蓝湖+KEF机场所在地)火山活动反复,出发前48小时务必查看vedur.is(冰岛气象局)。",
+    currencyTip:
+      "冰岛是地球上对刷卡最友好的国家之一。Visa、Mastercard、Apple Pay、Google Pay — 99%地方都接受。但自助加油站需要带PIN码的芯片卡,出国前请向银行申请4位PIN,否则会被卡住。货币是冰岛克朗(ISK),130 ISK ≈ 7元人民币。ATM几乎只用于小费现金,而冰岛没有小费文化,所以基本没用 — 跳过。自来水免费、干净、味道极佳,带个保温杯,绝对不要买瓶装水(小一瓶约35元)。",
+    languageTip:
+      "官方语言是冰岛语,但英语熟练度仅次于英国,排欧洲第二 — 不需要会话本。值得学的冰岛单词只有一个:'takk'(谢谢)。地名故意让人念不出来('Eyjafjallajökull'),当地人觉得外国人尝试本身就很可爱,先开口再说。冰岛电话簿至今仍用父名制 — Jón Einarsson就是'Einar的儿子Jón',所以工作人员的名牌上只写名。",
+    emergencyNumber: "112(所有紧急情况、英语接线、任何电话免费)",
+    hotel: {
+      name: "Hotel Borg by Keahotels",
+      area: "雷克雅未克101(市中心)· Austurvöllur广场",
+      address: "Pósthússtræti 11, 101 Reykjavík",
+      rationale:
+        "Hotel Borg自1930年以来就在Austurvöllur广场上 — 为千年议会庆典所建的冰岛第一家正经酒店。装饰艺术风格的客房经过岁月沉淀显得静谧完美:大理石浴室、原装黄铜配件、对午夜阳光至关重要的遮光窗帘。距离Hallgrímskirkja教堂步行4分钟,距离日航者雕塑和港口6分钟,距离Flybus机场班车停靠的BSÍ总站12分钟。Kol或Skál — 雷克雅未克最好的两家餐厅 — 步行5分钟。广场本身就是冰岛人示威、办音乐会、办圣诞市集的地方 — 睡在它上面就像睡在城市的客厅里。",
+      estimatedNightlyRate: "约2,000元/晚",
+    },
+    airportTransit: {
+      method: "Flybus班车(凯夫拉维克国际机场 → BSÍ总站)+ 步行5分钟",
+      duration: "约50分钟",
+      cost: "往返约215元",
+      instructions:
+        "在re.is提前预订Flybus — 在KEF到达大厅外,过海关后建筑物内立刻能看到橙色Flybus标志。每30-40分钟一班,与航班到达时间对齐,凌晨4点也运行。送到市内BSÍ总站,从那里步行12分钟穿越市中心到Hotel Borg — 或加50元乘坐'Flybus+'直送酒店大堂(初到带行李时值得)。回程国际航班需要BSÍ提前2.5小时取车。从KEF打车单程约1,200元,4人以上才划算。如果不打算环岛自驾,机场不用租车 — 市内可步行,停车付费麻烦。",
+    },
+    days: [
+      {
+        theme: "雷克雅未克市中心 — 第一印象",
+        summary:
+          "落地、放下行李,在彩色的101里走 — 教堂、海滨、世界最有名的热狗摊、黄金时刻的港口、刚捕的鱼晚餐。",
+        stops: [
+          {
+            name: "Hotel Borg入住",
+            area: "Austurvöllur广场",
+            duration: "45分钟",
+            description:
+              "放下行李,装饰艺术大堂本身就让人觉得是小奖励。如果房间还没准备好,Borg Espresso Bar的咖啡很棒,酒吧设有免费茶+热水站。请门房打印明天的天气+极光预报(vedur.is) — 冰岛天气每两小时变一次,明天的计划取决于它。",
+            estimatedCost: "—",
+            transitFromPrev: "Flybus下车点",
+          },
+          {
+            name: "Hallgrímskirkja教堂",
+            area: "Skólavörðuholt",
+            address: "Hallgrímstorg 1, 101 Reykjavík",
+            duration: "1小时",
+            description:
+              "形似玄武岩柱的教堂(建筑师Guðjón Samúelsson,1986年历时41年完工) — 雷克雅未克最高建筑,市中心任何地方都能看到。每人约70元乘电梯到73米塔顶,整个半岛在脚下铺开:法克斯湾、彩色铁皮屋顶的房子(雷克雅未克在大萧条时期把它们漆成五颜六色作为就业政策)、海湾对面的Esja山。内部5,275管的Klais风琴在大多数周一中午12点举办免费30分钟午间音乐会 — 即使无神论者在低音管震动地板时也会软下心来。",
+            estimatedCost: "每人约70元(塔楼)",
+            bookingTip: "无需预约;最后一班电梯前16:30到达。",
+            transitFromPrev: "从酒店步行8分钟(上坡)",
+          },
+          {
+            name: "Bæjarins Beztu Pylsur(热狗摊)",
+            area: "老港口",
+            address: "Tryggvagata 1, 101 Reykjavík",
+            duration: "20分钟",
+            description:
+              "1937年开业,世界最有名的热狗摊 — 2004年克林顿在这里吃过,成为国际新闻。点'eina með öllu'(一份全配料):羊-猪-牛混合香肠+甜棕色芥末+蛋黄酱+炸+生洋葱+番茄酱。约45元,站在街角吃。队伍看起来长但走得快。冰岛劳动阶级的午餐标准 — 当地人平均每年也吃4-5个。",
+            estimatedCost: "约45元",
+            transitFromPrev: "下坡步行10分钟",
+          },
+          {
+            name: "日航者雕塑(Sólfar)+ Harpa音乐厅",
+            area: "Sæbraut海滨",
+            duration: "1小时",
+            description:
+              "不锈钢维京船骨架雕塑(Jón Gunnar Árnason,1990) — 立在海边船头指向海湾,黄金时刻钢变铜色,背后的Esja山变粉。沿着海滨向东步行8分钟到Harpa — 像结晶玄武岩的玻璃面板音乐厅(Olafur Eliasson + Henning Larsen工作室,2011)。大堂免费进入,反射港口的几何面板就是照片。如果有免费室内乐排练,有时可以坐进去听。",
+            estimatedCost: "免费",
+            transitFromPrev: "沿港口步道步行7分钟",
+          },
+          {
+            name: "Matur og Drykkur(现代冰岛晚餐)",
+            area: "老港口(Grandi街区)",
+            address: "Grandagarður 2, 101 Reykjavík",
+            duration: "2小时",
+            description:
+              "对古法深怀敬意的现代冰岛 — 主厨Hrefna Sætran的品鉴菜单每周轮换,但棕油腌北极红点鲑、桦木烟整夜慢炖羊肩、野生蓝莓Skyr甜点是常客。'Saltfish 1.0 vs 2.0'(传统盐鳕鱼 vs 主厨现代再创作并排)是值得点的小型剧场。每人约700元7道品鉴菜单推荐 — 单点也可以但菜单是按流程设计的。即使周二也必须预约。",
+            estimatedCost: "每人约800元(含配酒)",
+            bookingTip: "提前1-2周网站预约;请求拐角卡座。",
+            transitFromPrev: "沿老港口步行12分钟",
+          },
+          {
+            name: "Slippbarinn(睡前鸡尾酒)",
+            area: "Reykjavik Marina Hotel",
+            duration: "1小时",
+            description:
+              "冰岛第一家鸡尾酒吧,2012年开业,至今仍是标准。点'Birch & Brimstone'(桦树糖浆古典+硫磺水气泡,比听起来顺口得多)或调酒师推荐。夏天23点太阳还在 — 在金光中喝睡前酒的奇异体验。冬天椅子上有羊毛毯,是温暖的避难所。喝一杯沿港口走回酒店 — 午夜的雷克雅未克是世界最安全的城市之一。",
+            estimatedCost: "鸡尾酒约160元",
+            transitFromPrev: "隔壁(步行即到)",
+          },
+        ],
+      },
+      {
+        theme: "黄金圈经典",
+        summary:
+          "经典全天循环 — 板块裂谷、间歇泉爆发、双层瀑布,加上让你回家还在聊的番茄温室午餐。夏天自驾,冬天跟团。",
+        stops: [
+          {
+            name: "接送或租车出发",
+            area: "雷克雅未克101",
+            duration: "30分钟",
+            description:
+              "两种方式:(a)预订Reykjavik Excursions或Iceland Horizon小团(每人约680元,9小时,英语向导,酒店接送) — 冬天冰路驾驶不熟练时最好。(b)在BSÍ租Lotus或Budget小型4WD,日租约800元 — 夏天最自由。黄金圈是230公里循环,4-10月普通车也完全可以走。",
+            estimatedCost: "约680-800元",
+            transitFromPrev: "酒店接送或步行12分钟到BSÍ",
+          },
+          {
+            name: "辛格维利尔国家公园",
+            area: "Bláskógabyggð",
+            duration: "1小时30分钟",
+            description:
+              "联合国教科文组织遗产,两个故事叠加。地质上是北美板块和欧亚板块的可见边界 — 你可以在Almannagjá裂缝峡谷里走,左边的悬崖是北美、右边是欧洲,每年扩大2厘米。政治上是世界最古老仍在运转的议会Alþingi(公元930年成立)的露天集会地。沿峡谷走到Lögberg(法律岩),再到小教堂和后面的Öxarárfoss瀑布。预留90分钟。停车约70元(P1最近)。",
+            estimatedCost: "停车约70元",
+            bookingTip: "无门票;11点前到避开旅游大巴。",
+            transitFromPrev: "从雷克雅未克开车50分钟",
+          },
+          {
+            name: "Geysir间歇泉地热区",
+            area: "Haukadalur",
+            duration: "1小时",
+            description:
+              "原版'geyser' — 英文单词就来自这里。本尊已休眠,但邻居Strokkur每5-10分钟可靠喷发,直冲20-30米高。站在上风侧(标识显示风向),手机切到连拍 — 喷发以蓝绿色穹顶在半秒内翻面开始。沿木栈道环线可以看到Litli-Geysir(小冒泡池)和Blesi(深蓝硅泉)。免费;小游客中心有干净厕所+咖啡摊。",
+            estimatedCost: "免费",
+            transitFromPrev: "向东开50分钟",
+          },
+          {
+            name: "Friðheimar番茄温室午餐",
+            area: "Reykholt",
+            duration: "1小时30分钟",
+            description:
+              "在工作中的地热温室里吃午餐 — 你在番茄藤之间用餐,大黄蜂(负责授粉)同桌。固定菜单是无限量供应现烤面包+黄油的番茄汤约200元,比听起来好太多 — 5米外种的罗勒、还温着的酸面包。不开车的话加点'Green Lady'(番茄+冰岛金酒鸡尾酒)。必须预约 — 提前14天冰岛时间9点开放,周六当天就售罄。",
+            estimatedCost: "每人约230元(含饮品)",
+            bookingTip: "在fridheimar.is正好提前14天上午9点预约。",
+            transitFromPrev: "向南开15分钟",
+          },
+          {
+            name: "Gullfoss古佛斯瀑布",
+            area: "Hvítá河",
+            duration: "1小时",
+            description:
+              "'金色瀑布' — 32米双层瀑布,落入狭窄峡谷,晴天会把雾气送上百米 — 那就是每张冰岛照片里的彩虹。两个观景点:上观景台(游客中心旁停车,步行5分钟)和下步道(离瀑布唇20米,更长更滑,需防水)。两个都免费。游客中心约100元的羊肉汤在被冷风吹的游客中口碑极佳。",
+            estimatedCost: "免费",
+            transitFromPrev: "向北开15分钟",
+          },
+          {
+            name: "秘密温泉(Gamla Laugin)",
+            area: "Flúðir村",
+            duration: "1小时30分钟",
+            description:
+              "如果想立刻泡热水,比蓝湖更聪明的选择 — 38-40°C天然温泉池,被黑色砾石和蒸汽环绕,角落里小间歇泉每5分钟喷发一次。1891年建成,是冰岛最古老的公共泳池。蓝湖一半价(约250元 vs 500元)、人少、同样富含硅的疗愈功效。毛巾租赁+储物柜含,泳衣自备。泡到手指起皱再走 — 这是今天的重置。",
+            estimatedCost: "每人约250元",
+            bookingTip: "在secretlagoon.is提前预约 — 17点档是落日金光。",
+            transitFromPrev: "向南开20分钟",
+          },
+          {
+            name: "Fiskmarkaðurinn(回雷克雅未克晚餐)",
+            area: "Aðalstræti, 雷克雅未克101",
+            address: "Aðalstræti 12",
+            duration: "1小时30分钟",
+            description:
+              "如果Matur og Drykkur是现代-传统,Fiskmarkaðurinn就是现代-亚洲-冰岛混血 — 寿司级冰岛挪威龙虾、味噌北极红点鲑、韩式酱羊肩。Hrefna Sætran主厨的另一家店,稍微更戏剧。'fiskmarkaður'品鉴菜单(约850元)流程最完美。预订时请求低烛地下室房间。",
+            estimatedCost: "每人约800元",
+            bookingTip: "提前1周预约;主厨柜台只有4座最快被订光。",
+            transitFromPrev: "开车1小时30分钟回雷克雅未克",
+          },
+        ],
+      },
+      {
+        theme: "南海岸 — 瀑布+黑沙",
+        summary:
+          "戏剧之日。两座巨大瀑布(其中一座可走到背后)、由玄武岩海蚀柱守护的黑沙滩、和一个以山顶红屋顶教堂收尾的渔村。",
+        stops: [
+          {
+            name: "1号公路向南",
+            area: "雷克雅未克 → Selfoss → Hvolsvöllur",
+            duration: "1小时30分钟",
+            description:
+              "南环路大部分是农田+火山平原 — 向东开时左边是Eyjafjallajökull(2010年让欧洲航班停飞的火山)。在Selfoss的N1加油站买招牌冰岛加油站热狗(真好吃)+最后一刻零食。Selfoss之后有些路段没有手机信号,出发前一定要下载Google Maps离线。",
+            estimatedCost: "单程油费约100元",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Seljalandsfoss瀑布(走到瀑布后)",
+            area: "南冰岛",
+            duration: "1小时",
+            description:
+              "Eyjafjallajökull冰川孕育的60米丝带瀑布 — 冰岛少数能走到背后的瀑布之一。路滑,穿真正的防水(不是防泼水)装备,你一定会被喷湿。从瀑布后看出去,落水的水墙后透出阳光 — 每对情侣都会在这里拍的那张照片。停车约70元(P1自动表)。东边600米的邻居Gljúfrabúi藏在缝隙峡谷里 — 涉过没膝的小溪进入,内部的雾之大教堂比Seljalandsfoss本身更戏剧。",
+            estimatedCost: "停车约70元",
+            bookingTip: "无门票;10点前到,11点旅游大巴蜂拥而至。",
+            transitFromPrev: "向东开30分钟",
+          },
+          {
+            name: "Skógafoss瀑布",
+            area: "Skógar",
+            duration: "1小时",
+            description:
+              "高60米、宽25米 — 完美的矩形,完美的经典。右侧有370级阶梯到顶部观景台,从上往下看是南海岸平原全景。从底下站在水雾里,午后阳光下彩虹几乎有保障。当地传说:维京人把宝藏埋在瀑布后,偶尔能看到金光 — 2002年考古学家真的在附近发现过维京剑。免费。",
+            estimatedCost: "免费",
+            transitFromPrev: "向东开30分钟",
+          },
+          {
+            name: "Mia's Country Van(或Black Beach Restaurant)",
+            area: "Vík",
+            duration: "1小时",
+            description:
+              "在Vík内外吃午餐 — Mia's Country Van(夏季限定,小货车)用复古面包车做冰岛鳕鱼炸鱼薯条,出色。或者Black Beach Restaurant(在Reynisfjara游客中心内)能边吃100元的羊肉汤边看玄武岩崖。两个都行。隔壁的Skool Beans咖啡车可爱但味道一般,跳过。留点肚子 — 晚餐是雷克雅未克给今天的奖励。",
+            estimatedCost: "每人约140元",
+            transitFromPrev: "向东开25分钟",
+          },
+          {
+            name: "Reynisfjara黑沙滩+玄武岩柱",
+            area: "Vík í Mýrdal",
+            duration: "1小时30分钟",
+            description:
+              "火山玻璃黑沙、爬上悬崖的六角形玄武岩柱(冰岛叫Hálsanefshellir洞;权游叫Eastwatch by the Sea)、海上耸立的Reynisdrangar海蚀柱 — 冰岛传说说那些玄武岩手指是被日出抓到的巨魔。重要:这里的'潜行波'是真的会要命 — 自2007年以来已经淹死5名游客。离水线至少站30米后,绝不背对海。先看停车场的警告灯再走下去。",
+            estimatedCost: "停车约70元",
+            bookingTip: "无需预约。14-16点是玄武岩柱侧光最佳。",
+            transitFromPrev: "向南开5分钟",
+          },
+          {
+            name: "Vík村+Reyniskirkja红顶教堂",
+            area: "Vík í Mýrdal",
+            duration: "45分钟",
+            description:
+              "冰岛最南端的村(300人)在山上,红屋顶的Reyniskirkja在最高点。这座教堂有象征意义:1929年建成,Mýrdalsjökull冰川下的Katla火山最终喷发时,据预测它是唯一会幸存的建筑 — 当地人每年两次撤离演习,教堂是集结点。为照片和回望Reynisfjara的全景值得上去。村里的Víkurprjón羊毛工厂卖价格诚实(约2,000-3,500元)的冰岛毛衣,是能穿一辈子的纪念品。",
+            estimatedCost: "免费",
+            transitFromPrev: "开车5分钟回山上",
+          },
+          {
+            name: "Dill — 冰岛米其林之星",
+            area: "雷克雅未克101",
+            address: "Hverfisgata 12",
+            duration: "2小时30分钟",
+            description:
+              "冰岛第一家米其林星级餐厅(2017),至今仍是国内唯一。主厨Gunnar Karl Gíslason的7道品鉴(含配酒约1,650元)完全用冰岛食材打造 — 发酵海藻黄油、炭烧腌北极红点鲑、冰川水冰沙、在三个山谷外羊圈盐腌的羊肉。22个座位,提前6-8周预约。如果在冰岛要吃一顿大的,就是这里。或者跳过,去Hlemmur Mathöll的Skál吃每人约400元的休闲新冰岛料理。",
+            estimatedCost: "每人约1,650元(含配酒)",
+            bookingTip: "在dillrestaurant.is提前6-8周预约。周二最后被订满。",
+            transitFromPrev: "开车2小时30分钟回雷克雅未克",
+          },
+        ],
+      },
+      {
+        theme: "蓝湖+机场",
+        summary:
+          "悠闲早晨,著名的乳蓝色地热池,景观午餐,从容的Flybus去KEF。",
+        stops: [
+          {
+            name: "酒店早餐+退房",
+            area: "Hotel Borg",
+            duration: "1小时",
+            description:
+              "Borg的早餐是市内任何4星的最好 — 自家腌鲑鱼、野生蓝莓Skyr、隔壁烘焙坊的酸面包。慢慢吃 — 蓝湖是为放松而设计的,你应该带着放松状态到达。11点前退房(行李免费寄存到13点)。",
+            estimatedCost: "若含早餐则免费",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Flybus从BSÍ → 蓝湖",
+            area: "雷克雅内斯半岛",
+            duration: "45分钟",
+            description:
+              "Flybus有'雷克雅未克 → 蓝湖 → KEF机场'的明确路线,正好让你做你想做的 — 带着所有行李,在蓝湖停一下(他们有看管的行李房),然后下班车继续到机场。从BSÍ往返每人约350元,在re.is预订。BSÍ每小时一班。坐右边看雷克雅内斯熔岩 — 你会经过5,000年前的固化熔岩,上面盖着鲜绿色苔藓。",
+            estimatedCost: "每人约350元",
+            transitFromPrev: "步行12分钟到BSÍ",
+          },
+          {
+            name: "蓝湖(Comfort或Premium套餐)",
+            area: "Grindavík, 雷克雅内斯",
+            address: "Norðurljósavegur 9, 240 Grindavík",
+            duration: "2小时30分钟",
+            description:
+              "那个著名的 — 硅悬浮造成的乳绿色,被黑色熔岩岩石包围,水温全年38-40°C。仅限定时入场;Comfort套餐(约530元)足够(入场+毛巾+饮品+硅泥面膜)。Premium(约850元)加浴袍+拖鞋+第二张面膜+起泡酒 — 除非你想慢悠悠泡半天,否则太多余。关键提示:进入前涂头发护理素并扎成发髻 — 没处理的头发会变干草一个星期。储物柜、手环结账,里面不需要现金。游池吧台提供免费饮品(手环计算免费杯数,通常1杯)。",
+            estimatedCost: "每人约530元 Comfort",
+            bookingTip: "在bluelagoon.com至少提前2-3周预约,夏天/圣诞季更早。雷克雅内斯火山活动偶尔关闭,提前24小时查官网。",
+            transitFromPrev: "巴士在入口前停",
+          },
+          {
+            name: "Lava餐厅(蓝湖园区内)",
+            area: "雷克雅内斯",
+            duration: "1小时",
+            description:
+              "建在俯瞰湖的熔岩崖上 — 餐厅嵌在岩面里,整面落地窗对着乳绿色水。3道套餐午餐约640元 — 冰岛羊肉、新鲜鱼、Skyr甜点 — 全国最美午餐景。比赶机场食物压力小得多;餐厅会在你吃完后帮你叫Flybus接驳。",
+            estimatedCost: "每人约640元",
+            bookingTip: "和蓝湖票同时预订午餐 — 他们会协调时间。",
+            transitFromPrev: "园内(更衣室 → 餐厅5分钟)",
+          },
+          {
+            name: "Flybus → 凯夫拉维克国际机场(KEF)",
+            area: "雷克雅内斯",
+            duration: "20分钟",
+            description:
+              "在蓝湖入口Flybus接驳 — 和早上同一张票。KEF小,安检快(国际航班预留90分钟);机场餐厅一般 — Lava已经喂饱你了。免税在安检后 — Brennivín(冰岛香芹烧酒)、66°North羊毛、熔岩茶、冰岛巧克力是带回家首选。从蓝湖到KEF含巴士换乘共约25分钟。",
+            estimatedCost: "已含早上车票",
+            transitFromPrev: "蓝湖入口巴士",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "防水(不是防泼水)外套 — 冰岛天气一下午能转4次",
+      "抓绒或羊毛中层 — 7月晚上也会跌到8°C",
+      "抓地力好的徒步鞋 — 每个观景点都涉及湿岩石",
+      "泳衣 — 地热池随处都是,不只蓝湖",
+      "眼罩+耳塞 — 夏天午夜阳光,任何季节都可能有吵闹邻居",
+      "水杯 — 冰岛自来水是你这辈子喝过最好的,到处免费",
+      "微纤维旅行毛巾 — 路上即兴温泉用",
+      "充电宝 — 寒冷里手机耗电快,离线地图+极光app必备",
+    ],
+    budgetEstimate: "情侣每天不含酒店约2,200-3,200元(冰岛贵:汉堡180元、啤酒100元、晚餐640元属正常)",
+    generalTips: [
+      "下载SafeTravel.is和112 Iceland app — 后者徒步时按钮一按就把位置发给救援",
+      "不收小费;服务费已含。真要感谢就把零头凑整",
+      "极光预报:vedur.is(气象局)显示极光强度(0-9)+云量叠加 — 4以上+晴夜=高概率",
+      "冬天驾驶:租4WD,低于限速,绝不在暴风雪里开车 — 靠边停下等",
+      "F-roads(山地内陆)法律规定4×4必备,10-6月封闭 — 普通车不要尝试",
+      "偏远厕所稀少且收费(约15元硬币) — 每个咖啡馆停车都用一次",
+      "雷克雅未克的周日:很多小店关门,但餐厅和蓝湖正常营业",
+      "不要踩在苔藓上 — 200年的苔藓,脚印几十年不消失",
+    ],
+  },
+  "cusco-5d-couple": {
+    tagline: "情侣五日 — 库斯科适应、神圣谷、马丘比丘。",
+    audience: "情侣 · 中等预算",
+    destination: "库斯科",
+    destinationCountry: "秘鲁",
+    overview:
+      "为想体验库斯科、神圣谷和马丘比丘但不想被高反折磨的情侣设计的五天。第一天慢慢着陆:古柯茶、平地走过San Blas、提前晚餐。第二天高度已适应,可以走完整库斯科 — 武器广场、建在印加基础上的大教堂、圣佩德罗市场午餐、黄金时刻的萨克塞瓦曼要塞。第三天下到神圣谷看皮萨克梯田和奥扬泰坦博。第四天是高潮 — 凌晨4点出发,坐PeruRail去马丘比丘再返回。第五天慢悠悠喝杯古柯叶浓缩、买羊驼毛纪念品、登机回家。结束时你已经走过了比英语还古老800年的石墙、在太阳门看安第斯山日出、明白了'pachamama'是人们真正活在其中的词。",
+    bestSeasonNote:
+      "5-9月是旱季 — 晴空、夜冷,印加古道及替代路线最安全的月份。避开1-3月(雨季高峰;印加古道2月维护关闭)。4月底和10月是性价比甜蜜点:淡季价格,大致干燥,但带件雨衣。库斯科Inti Raymi节(6月24日)挤满全城 — 想赶上要提前6个月订酒店,否则那周价格三倍。高度不在乎你哪个月来。",
+    currencyTip:
+      "秘鲁索尔(PEN)。1美元 ≈ 3.7 PEN。酒店、中高档餐厅、火车接受信用卡;市场、出租车、小咖啡馆、神圣谷村庄需要现金。在BCP或Interbank ATM取现(单次最多700 PEN,约1,000元);避开'Globalnet'独立ATM,每笔收25 PEN手续费。多准备小额纸币(10、20) — 摊贩经常没法找开100。小费:坐下吃如未自动加,加10%;搬运工每件行李5-10索尔。",
+    languageTip:
+      "西班牙语通行,克丘亚语在安第斯村庄仍然鲜活,在皮萨克市场你会听到两种语言交替。克丘亚语问候:'allillanchu'(阿利利杨初)。多数导游说英语;小餐厅菜单只有西班牙语。Google翻译离线西班牙语包覆盖99%需求。值得发音准确的西班牙语词只有一个'huayno'(why-no) — 每个广场喇叭都在放的安第斯民谣。",
+    emergencyNumber: "105(警察,英语有限)、116(医疗)、iPeru旅游热线 +51 1 574 8000(英语,24小时)",
+    hotel: {
+      name: "库斯科JW万豪El Convento",
+      area: "历史中心(距武器广场4个街区)",
+      address: "Esquina de la Calle Ruinas 432 y San Agustín",
+      rationale:
+        "建在16世纪奥古斯丁修道院里,下面是印加宫殿基础(在大堂玻璃后还能看到部分)。每个房间都有富氧系统,夜里通过通风口持续输送额外氧气 — 在3,400米海拔,这是睡得着和喘着气躺着的差距。殖民石头中庭花园;水疗中心提供古柯叶按摩,真能缓解适应性头痛。距武器广场4街区意味着市中心步行可达,但避开了深夜噪音。礼宾负责神圣谷+马丘比丘的所有物流 — 订正确的火车舱、第四天清晨车辆安排。",
+      estimatedNightlyRate: "约2,000元/晚",
+    },
+    airportTransit: {
+      method: "酒店接送(预约)— 从Alejandro Velasco Astete机场(CUZ)",
+      duration: "约25分钟",
+      cost: "单程约215元",
+      instructions:
+        "库斯科机场(CUZ)很小,单跑道,100%国内 — 大多数旅客经利马(LIM)转LATAM或Sky Airline的90分钟航班。订房时安排酒店接送(单程215元)— 司机会拿名牌在到达大厅等你,车上递古柯茶(对适应高度真有帮助)。绝对不要在机场打路边的车 — 表常被改。到达大厅内的官方出租车站('Taxis Autorizados')约100元安全,但带行李时酒店接送更稳。开进城会爬升200米海拔 — 第一小时酒店楼梯都要慢走。睡觉是良药。",
+    },
+    days: [
+      {
+        theme: "慢慢落地、适应",
+        summary:
+          "落地、坐车进城、喝古柯茶、走两个平街区、提前吃饭。别再做更多 — 明天的你会感激今天的你。",
+        stops: [
+          {
+            name: "JW万豪El Convento入住",
+            area: "历史中心",
+            duration: "1小时30分钟",
+            description:
+              "入住后立刻接受第一杯欢迎古柯茶(mate de coca) — 真的有助于适应高度。躺下30分钟,别小看空气。酒店富氧房间运行略高气压,你第二晚就会注意到差别。头晕或气短是第一天正常 — 喝水、清淡饮食、休息。重活儿能等。",
+            estimatedCost: "—",
+            transitFromPrev: "从CUZ酒店接送",
+          },
+          {
+            name: "San Blas街区漫步",
+            area: "San Blas",
+            duration: "1小时",
+            description:
+              "工匠街区,从酒店上坡两街区 — 狭窄的石板路、白蓝相间的房子、街面层的印加石基(可以伸手摸到)。坡度温和但在3,400米连温和上坡都是运动 — 这就是今天的目的。顶部San Blas广场有殖民教堂(San Blas Iglesia,1563,从单棵雪松雕成的讲坛)和喷泉。逛Hilo画廊看手织安第斯纺织品(550-1,750元) — 颜色就是这里出名的原因。",
+            estimatedCost: "免费",
+            transitFromPrev: "上坡步行5分钟",
+          },
+          {
+            name: "Café Valeriana — 古柯茶+点心",
+            area: "San Blas",
+            duration: "45分钟",
+            description:
+              "藏在中庭的小咖啡馆 — 古柯茶(约15元)、藜麦蜂蜜马芬(约22元)、或chicha morada(紫玉米饮品,微甜,富含维C)。坐窗边。老板Valeriana放查兰戈唱片。是回酒店真正午睡前的恢复站。",
+            estimatedCost: "约55元",
+            transitFromPrev: "原地",
+          },
+          {
+            name: "Cicciolina(提前晚餐)",
+            area: "历史中心",
+            address: "Triunfo 393, 二楼",
+            duration: "1小时30分钟",
+            description:
+              "意-安第斯融合,殖民二楼空间 — Tapas风格分享。点羊驼Carpaccio(约100元)— 是的羊驼,比牛肉清瘦更甜,温柔的入门;布拉塔奶酪+rocoto辣椒沙拉;柴火Cicciolina披萨。蜡烛+裸露横梁+俯瞰大教堂的两扇窗。第一天高海拔不要喝酒 — 身体已经在加班。Pisco sour留到第二天。",
+            estimatedCost: "每人约320元",
+            bookingTip: "在cicciolinacusco.com提前1周预约;留有小吧台座位给临时来的客人。",
+            transitFromPrev: "下坡慢走10分钟",
+          },
+        ],
+      },
+      {
+        theme: "库斯科正餐",
+        summary:
+          "武器广场、建在印加基础上的大教堂、圣佩德罗市场吃ceviche、Coricancha太阳神庙、黄金时刻的萨克塞瓦曼。",
+        stops: [
+          {
+            name: "武器广场+库斯科大教堂",
+            area: "历史中心",
+            duration: "1小时30分钟",
+            description:
+              "印加帝国的精神中心,被重铺成西班牙殖民的心脏。大教堂(1559-1654)建在印加Suntur Wasi神庙之上 — 西班牙人采印加石头砌墙下层,你能看到它们作为下层墙(完美的黑色安山岩,无砂浆)在殖民石灰岩之下。内部:1755年的《最后晚餐》画,基督在分享一只豚鼠(梵蒂冈批准的典型安第斯替换)。语音导览35元,60分钟。",
+            estimatedCost: "约105元(入场+导览)",
+            bookingTip: "周日因弥撒关闭。9点开门=最安静。",
+            transitFromPrev: "酒店步行5分钟",
+          },
+          {
+            name: "Coricancha(Qorikancha)— 印加太阳神庙",
+            area: "Avenida El Sol",
+            duration: "1小时",
+            description:
+              "最神圣的印加遗址 — 墙曾被700片金板覆盖,1533年皮萨罗全部熔成金锭。西班牙人随后在幸存的印加墙上建Santo Domingo修道院,这就是你今天看到的:世界上最完美的印加石工(石头之间连信用卡都插不进)支撑着笨拙的殖民石工。1950年地震中修道院垮了,印加墙没动。这里有个隐喻。约35元。",
+            estimatedCost: "约35元",
+            transitFromPrev: "向南步行10分钟",
+          },
+          {
+            name: "圣佩德罗中央市场 — 午餐",
+            area: "Mercado",
+            duration: "1小时",
+            description:
+              "库斯科主要室内市场 — 后排chichería摊位提供套餐(ceviche+烤鳟鱼+chicha morada约35元),当地人在长凳上肩并肩吃。蔬菜区有30多种土豆(秘鲁有4,000种本土品种 — 是,四千)、各种颜色的玉米。别喝散装水;但要喝chicha morada。这里有扒手 — 包朝前,后兜不放手机。出门时点杯鲜榨橙汁(约8元)。",
+            estimatedCost: "约55元",
+            transitFromPrev: "向西步行10分钟",
+          },
+          {
+            name: "酒店休息+午睡",
+            area: "历史中心",
+            duration: "1小时30分钟",
+            description:
+              "3,400米的第二天 — 你的身体在比你以为的更努力。90分钟午睡比你以为的更重要。下午景点海拔比上午高;现在休息,不然之后付代价。",
+            estimatedCost: "—",
+            transitFromPrev: "走回去10分钟",
+          },
+          {
+            name: "萨克塞瓦曼要塞",
+            area: "库斯科上方北山坡",
+            duration: "2小时",
+            description:
+              "城市上方200米的印加要塞 — 巨石锯齿形三重墙(单块石头有100吨;没人完全解释印加人怎么切割搬运)。山坡海拔3,700米所以慢走;入口爬坡15分钟。从顶上,整个库斯科河谷在脚下 — 黄金时刻殖民红瓦在绿色山脊上发光。附近的'Suchuna'石滑梯 — 孩子们滑下来,有时大人也滑。和其他遗址联票:约250元的Boleto Turístico Integral。打车上去(约35元)推荐;沿小径走回San Blas(40分钟)。",
+            estimatedCost: "约250元联票",
+            bookingTip: "Boleto Turístico涵盖16个景点10天有效;在El Sol大道的COSITUC办公室买。",
+            transitFromPrev: "出租上坡10分钟",
+          },
+          {
+            name: "Chicha por Gastón Acurio",
+            area: "Plaza Regocijo",
+            address: "Plaza Regocijo 261, 二楼",
+            duration: "2小时",
+            description:
+              "主厨Gastón Acurio的库斯科分店 — 他对秘鲁菜的地位相当于Ferran Adrià对西班牙菜。点羊驼anticuchos(rocoto酱串,约100元)、trucha de Andes(配甘薯的安第斯鳟鱼ceviche),终于来一杯pisco sour(现在你已经适应了)。餐厅在楼上,夜晚俯瞰Plaza Regocijo,桃花心木地板+白桌布+蜡烛。这是这趟旅行的仪式晚餐。",
+            estimatedCost: "每人约500元(含饮品)",
+            bookingTip: "在chicha.com.pe提前3-5天预约;靠窗座最先订完。",
+            transitFromPrev: "步行8分钟",
+          },
+        ],
+      },
+      {
+        theme: "神圣谷 — 皮萨克+奥扬泰坦博",
+        summary:
+          "从库斯科下到更暖的神圣谷。早上皮萨克梯田+市场,在Urubamba午餐,下午奥扬泰坦博遗址,晚餐回库斯科。",
+        stops: [
+          {
+            name: "私人司机 库斯科 → 皮萨克",
+            area: "下到神圣谷",
+            duration: "1小时30分钟",
+            description:
+              "酒店全天安排私人司机兼导游(两人共约1,540元,英语,8小时,含所有停靠+等候)。路上经过克丘亚村庄 — 路边能看到妇女用背带织布。3,300米的Mirador de Taray观景台5分钟停 — 神圣谷全景,雪冠安第斯山环绕。到皮萨克时海拔下降600米,所以这天比库斯科正餐天容易得多。",
+            estimatedCost: "约1,540元(两人全天司机兼导游)",
+            transitFromPrev: "酒店接送",
+          },
+          {
+            name: "皮萨克印加梯田+村市场",
+            area: "皮萨克",
+            duration: "2小时",
+            description:
+              "皮萨克考古遗址在村庄上方山脊上 — 印加农业梯田下降600米,顶上有太阳神庙(Intihuatana),对面悬崖刻有秘鲁最大的印加墓地(3,000多座墓,1500年代被盗光)。开车到上入口,沿梯田走下来,从村庄出。皮萨克村集市(周二/四/日最佳)是安第斯织工直销 — 羊驼围巾约130元、全尺寸毛毯550-1,050元、陶瓷公牛约70元。礼貌地砍价(标价的10-15%是常态)。",
+            estimatedCost: "约250元(Boleto Turístico涵盖)",
+            bookingTip: "周日市场最热闹;周二市场织工多游客少。",
+            transitFromPrev: "司机",
+          },
+          {
+            name: "Hacienda Sarapampa午餐(Urubamba)",
+            area: "Urubamba",
+            duration: "1小时30分钟",
+            description:
+              "运营中的玉米农场,场内有露天餐厅 — 安第斯主食自助:choclo(巨型玉米)配奶酪、cuy(豚鼠 — 好奇可以尝一块,安第斯历史性蛋白质)、附近溪流的鳟鱼、藜麦炖菜、几十种本土土豆。每人约210元自助+饮品。Urubamba本地玉米的玉米棒真的有你前臂那么大。",
+            estimatedCost: "每人约210元",
+            transitFromPrev: "司机,向西30分钟",
+          },
+          {
+            name: "奥扬泰坦博遗址+村庄",
+            area: "奥扬泰坦博",
+            duration: "2小时",
+            description:
+              "神圣谷的另一个主要印加复合体 — 也是印加唯一一次对西班牙人取胜的遗址(Manco Inca的反抗,1537)。遗址爬上陡峭梯田悬崖;你可以爬200级石阶到顶上的太阳神庙,那里有六块从谷对面山上采石、不知怎么搬过来的粉色花岗岩巨石。下面的奥扬泰坦博村是世界上唯一持续居住的印加镇 — 街道遵循原始印加网格,水按1450年的设计在每条小巷中央的石渠里流。",
+            estimatedCost: "约250元(Boleto Turístico)",
+            transitFromPrev: "司机,向西30分钟",
+          },
+          {
+            name: "返回库斯科",
+            area: "神圣谷 → 库斯科",
+            duration: "1小时30分钟",
+            description:
+              "回程要爬升600米海拔 — 你会感觉到。吃司机带的零食,小口喝水。从车窗看安第斯日落光壮观。如果司机不错给200-300元小费(惯例)。",
+            estimatedCost: "已含在司机费里",
+            transitFromPrev: "司机",
+          },
+          {
+            name: "Limo Cocina Peruana(回库斯科)",
+            area: "武器广场",
+            address: "Portal de Carnes 236, 二楼",
+            duration: "1小时30分钟",
+            description:
+              "正对武器广场的露台,现代秘鲁菜 — 透过窗子看晚上灯火通明的大教堂就是照片。点海鲜ceviche、lomo saltado(秘鲁中式炒牛肉)、巧克力藜麦塔。Pisco sour桌边制作。比Cicciolina安静、比Chicha更精致。每人约350元。",
+            estimatedCost: "每人约390元",
+            bookingTip: "提前2天预约 — 露台座最快被订完。",
+            transitFromPrev: "酒店步行5分钟",
+          },
+        ],
+      },
+      {
+        theme: "马丘比丘日",
+        summary:
+          "重头戏。凌晨4点出发,神圣谷景观列车,Z字弯山路巴士,3小时导游讲解,午餐,坐车回去,在库斯科晚餐。",
+        stops: [
+          {
+            name: "酒店 → 奥扬泰坦博站(私家车)",
+            area: "库斯科 → 奥扬泰坦博",
+            duration: "1小时30分钟",
+            description:
+              "预约的车(酒店约560元订)4点准时从酒店出发。酒店预先打包早餐盒(加约105元)是正解 — 保温瓶咖啡、三明治、新鲜水果。车在黎明前的光里开下神圣谷;路上你能看到克丘亚农夫赶着牛去田里。5:30到奥扬泰坦博站 — 6:10列车前30分钟。",
+            estimatedCost: "约560元",
+            transitFromPrev: "—",
+          },
+          {
+            name: "PeruRail Vistadome → Aguas Calientes",
+            area: "神圣谷铁轨",
+            duration: "1小时30分钟",
+            description:
+              "PeruRail Vistadome是情侣的明智选择:全景窗户AND玻璃车顶、车上含早餐、第二小时20分钟安第斯现场音乐。每人单程约980元。轨道沿乌鲁班巴河穿过云雾林 — 植被每15分钟变一次,从仙人掌点缀的高地沙漠到挂着兰花的丛林一路下降。7:40到达Aguas Calientes。",
+            estimatedCost: "每人往返约1,960元",
+            bookingTip: "在perurail.com提前2-3个月预约。Vistadome > Expedition(便宜舱),差价值得。",
+            transitFromPrev: "登车",
+          },
+          {
+            name: "Aguas Calientes → 马丘比丘入口巴士",
+            area: "Z字弯路",
+            duration: "30分钟",
+            description:
+              "'Consetur'巴士沿8公里Z字弯爬25分钟 — 上去坐右边看河和云。每人往返约170元,在Aguas Calientes的巴士总站(火车站对面)买票。队伍走得快。这条路1948年由Hiram Bingham III的侄子修建 — 之前你只能走印加古道。",
+            estimatedCost: "每人约170元",
+            transitFromPrev: "走到巴士总站3分钟",
+          },
+          {
+            name: "马丘比丘 — 导游讲解",
+            area: "城堡+太阳门观景点",
+            address: "Machu Picchu Pueblo",
+            duration: "3小时",
+            description:
+              "酒店预订持照导游(每人约420元,3小时,英语) — 2024年起MP新规要求。导游走Circuit 2(经典):穿过下城区、到守卫房拍明信片照、太阳神庙、皇陵、Intihuatana('系日柱',神圣日晷)。9:30晨雾散去,城市从你脚下浮现 — 那一刻每个人都失声。太阳门(Inti Punku)日间徒步是另买约35元票+往返90分钟,只有在高度下还有体力时才值得。一只羊驼可能会闯入你的自拍。带水、防晒霜、帽子 — 2,400米的赤道阳光烧得快。",
+            estimatedCost: "入场约910元+导游约420元",
+            bookingTip: "在machupicchu.gob.pe提前60天预约 — Circuit 2是标准游客路线。新规要求预约具体1小时入场时段。",
+            transitFromPrev: "走到入口5分钟",
+          },
+          {
+            name: "Sanctuary Lodge自助餐(或下面的镇)",
+            area: "马丘比丘入口",
+            duration: "1小时",
+            description:
+              "马丘比丘入口唯一的餐厅 — Belmond Sanctuary Lodge自助餐,每人约350元,但你能透过窗户和城堡一起吃饭。如果在意价格就跳过;下到Aguas Calientes午餐(Indio Feliz,约175元,也不错)是一半价钱。认真补水。",
+            estimatedCost: "每人约350元(或镇上175元)",
+            transitFromPrev: "原地",
+          },
+          {
+            name: "巴士下山+列车回奥扬泰坦博",
+            area: "Aguas Calientes → 奥扬泰坦博",
+            duration: "2小时30分钟",
+            description:
+              "14:30巴士下山(25分钟)、15:20从Aguas Calientes坐PeruRail Vistadome(1.5小时回奥扬泰坦博)。回程不一样的风景:云雾林的黄金时光,摄影师更少。在座位上打盹不必愧疚 — 你赚来的。",
+            estimatedCost: "已付往返",
+            transitFromPrev: "原地",
+          },
+          {
+            name: "私家车 奥扬泰坦博 → 库斯科",
+            area: "神圣谷 → 库斯科爬升",
+            duration: "1小时30分钟",
+            description:
+              "司机在奥扬泰坦博站拿你的名牌等候;和早上一样的安排(单程约560元)。爬回3,400米 — 你会感到。早睡;明天短。",
+            estimatedCost: "约560元",
+            transitFromPrev: "司机接送",
+          },
+          {
+            name: "Pacha Papa(San Blas — 轻松距离)",
+            area: "San Blas, 库斯科",
+            address: "Plaza San Blas 120",
+            duration: "1小时30分钟",
+            description:
+              "San Blas随性的中庭餐厅 — 第四天完美的晚餐,因为你累了只想要简单的秘鲁菜。柴火披萨(约85元)、烤鳟鱼(约125元)、pisco sour。露天中庭有石墙+陶瓦屋顶,蜡烛。如果想要完整安第斯体验有整只豚鼠选项(约175元)。",
+            estimatedCost: "每人约210元",
+            transitFromPrev: "酒店步行5分钟",
+          },
+        ],
+      },
+      {
+        theme: "库斯科上午+机场",
+        summary:
+          "悠闲早晨,最后逛羊驼毛、古柯叶浓缩咖啡、出租车去CUZ。",
+        stops: [
+          {
+            name: "酒店早餐+悠闲早晨",
+            area: "JW万豪El Convento",
+            duration: "1小时30分钟",
+            description:
+              "在殖民中庭吃早餐 — 安第斯蜂蜜、秘鲁鸡蛋、chirimoya(番荔枝)鲜榨汁、古柯茶或古柯叶浓缩咖啡(对,有这种东西)。坐在阳光下。退房12点;行李可以放前台到出发。",
+            estimatedCost: "已含",
+            transitFromPrev: "—",
+          },
+          {
+            name: "Centro Artesanal Cusco",
+            area: "Avenida El Sol 603",
+            duration: "1小时",
+            description:
+              "官方手工艺市场 — 一个屋顶下200多个小摊,手工羊驼毛毛衣(约420-840元)、挂毯(约280-560元)、库斯科银匠的银饰(约210元起)。质量中上;砍价10-15%。避开街头小摊上贴'baby alpaca'标签的100元毛衣 — 那是腈纶。真正的有重量、淡淡羊毛脂气味、哑光(不亮)表面。",
+            estimatedCost: "纪念品约560-1,050元",
+            transitFromPrev: "向南步行10分钟",
+          },
+          {
+            name: "Café Morena(最后一顿午餐)",
+            area: "历史中心",
+            address: "Plateros 348B",
+            duration: "1小时",
+            description:
+              "轻午餐 — 牛油果藜麦沙拉、鲜榨果汁、最后一杯pisco sour。如果楼上中庭满了店里有小后院。每人约105元。别吃太饱;接下来是机场和飞机。",
+            estimatedCost: "每人约105元",
+            transitFromPrev: "走回去8分钟",
+          },
+          {
+            name: "酒店送机 → CUZ机场",
+            area: "库斯科 → CUZ",
+            duration: "30分钟",
+            description:
+              "预约司机酒店接(约215元)。CUZ很小;国内航班起飞前90分钟到位安检+登机。多数国际旅客在利马转机90分钟。最后买羊驼毛拖鞋在CUZ免税店 — 和市里同样质量,价格略高但算手提行李。古柯叶糖也是有趣的伴手礼(托运合法,带进美国按DEA技术上违法但旅客实际上从不被查)。",
+            estimatedCost: "送机约215元",
+            transitFromPrev: "酒店接送",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "分层穿衣 — 库斯科早晨5°C,下午同一天22°C",
+      "结实的步行鞋 — 每个印加遗址都是不规则石阶",
+      "宽边帽+SPF 50防晒 — 高海拔赤道阳光烧得快(阴天也是)",
+      "水杯+电解质片 — 补水是预防高反",
+      "丹木斯(Diamox/乙酰唑胺)处方 — 如有高反史,到达前24小时开始,问医生",
+      "小额秘鲁索尔现金(10、20)用于市场",
+      "轻便雨衣 — 神圣谷下午即使旱季也可能短暂阵雨",
+      "带变焦的相机 — 手机相机捕捉不到马丘比丘的纵深和纺织品市场细节",
+    ],
+    budgetEstimate: "情侣每天不含酒店约2,100-3,200元(马丘比丘日因火车+门票+导游推到约5,000元)",
+    generalTips: [
+      "高反是真的 — 头24小时:不喝酒、慢走、大量水+古柯茶、清淡饮食",
+      "Boleto Turístico(约250元/10天)涵盖萨克塞瓦曼、皮萨克、奥扬泰坦博等16个景点 — 在COSITUC办公室买",
+      "马丘比丘门票必须在machupicchu.gob.pe提前30-60天订 — 2024年起强制要求导游",
+      "小费:坐下吃10%、导游每天约35元、全天私人司机兼导游约140-210元",
+      "在库斯科用UberX或InDriver打车 — 每次14-28元;别让街头出租给你报价(被改装)",
+      "寨卡和登革热是丛林地区问题;库斯科海拔太高没蚊子,无需抗疟药",
+      "马丘比丘徒步保险真的有用 — 高反可能需要医疗后送",
+      "插头类型:A/B(美式);电压220V — 带变压器给电吹风等",
+    ],
+  },
+  "dubai-4d-couple": {
+    tagline: "情侣四日 — 哈利法塔、老迪拜集市、沙漠safari、棕榈岛。",
+    audience: "情侣 · 偏奢华",
+    destination: "迪拜",
+    destinationCountry: "阿联酋",
+    overview:
+      "为想要两个迪拜的情侣设计的四天 — 哈利法塔的玻璃未来城,以及香料集市木质三角帆船的贸易港。两者隔着200米的迪拜湾和60年。第一天是现代大秀:哈利法塔观景台、世界最大商场、下面的编排音乐喷泉。第二天过到Bur Dubai看Al Fahidi历史街区、abra(小木船摆渡)、和黄金香料集市,在那里你能用本国一半的价钱砍下藏红花。第三天消失到沙漠 — 沙丘冲刺4×4、沙丘日落、星空下的指甲花和阿拉伯咖啡。第四天去棕榈岛 — Atlantis、The View at the Palm、飞前的Marina日落。迪拜不细腻;那就是它的吸引力。",
+    bestSeasonNote:
+      "11月到3月是唯一理性的时期 — 白天22-28°C,晚上凉爽。4月开始升温;5-9月真的危险(45°C+,本地人完全转室内,户外活动只能清晨)。斋月日期每年变 — 文化上是迷人的月份(老迪拜的开斋饭非凡)但白天餐厅受限、酒类供应减少、着装要求收紧。订房前查那年的斋月日期。阿联酋周五是休息日(周六半休) — 博物馆和集市周五时间不同,要规划好。",
+    currencyTip:
+      "阿联酋迪拉姆(AED)。3.67 AED ≈ 1美元(挂钩)。卡到处通 — Apple Pay、Google Pay、Visa、Amex。备约200 AED现金(部分出租车只收现金、集市砍价、abra每次1 AED — 码头只收纸币)。迪拜商场内的换汇点比机场汇率好。",
+    languageTip:
+      "阿拉伯语是官方语,旅游区、酒店、餐厅、出租车通行英语。'Shukran'(shoo-kran)= 谢谢。'Sabah al-khayr'= 早安。现代地方菜单是英文,集市英文+阿拉伯文。老城区Google Maps用阿拉伯语显示街名有用。南亚语言(印地、乌尔都、他加禄)也广泛使用 — 劳动力跨国。",
+    emergencyNumber: "999(警察,英语流利)、998(救护)、997(消防)",
+    hotel: {
+      name: "Address Downtown Dubai",
+      area: "Downtown Dubai,哈利法塔正对面",
+      address: "Sheikh Mohammed Bin Rashid Boulevard, Downtown Dubai",
+      rationale:
+        "Address Downtown正建在哈利法塔湖上 — 房间能看哈利法塔,从阳台一晚能看8场迪拜喷泉表演。迪拜商场通过私人天桥连接(室内步行5分钟),哈利法塔在湖对面,地铁哈利法塔/迪拜商场站步行10分钟。三个泳池、出色的早餐自助、63层屋顶Neos鸡尾酒吧。旺季每晚2,800元+,淡季和周末降到2,000元;有万豪Bonvoy会员等级就在那儿订。",
+      estimatedNightlyRate: "约2,250元/晚",
+    },
+    airportTransit: {
+      method: "迪拜地铁红线(DXB一/三号航站楼 → 哈利法塔/迪拜商场)或出租车",
+      duration: "地铁约45分钟 / 出租约25分钟",
+      cost: "地铁约21元 / 出租约155元",
+      instructions:
+        "从DXB,地铁红线惊人地方便 — 一号和三号航站楼各有站。在自助机买'Nol Red Ticket'(红线全天无限10 AED)。坐25分钟到哈利法塔/迪拜商场站,再走10分钟室内空调走道到酒店。带很多行李或半夜可在官方出租站(打表约155元、25分钟)无摩擦。航站楼内的'limo'拉客者收表价3倍 — 避开。Uber和Careem也行,但高峰加价后跟出租差不多。地铁站的饮用水免费。",
+    },
+    days: [
+      {
+        theme: "现代迪拜大秀",
+        summary:
+          "落地、安顿、登哈利法塔看地球最高城市景观、逛世界最大商场、在湖边看喷泉表演 — 一个下午+晚上的迪拜入门。",
+        stops: [
+          {
+            name: "Address Downtown入住",
+            area: "Downtown Dubai",
+            duration: "1小时",
+            description:
+              "放下行李,要哈利法塔景观房('fountain view'升级关键词,经常两个都给)。大堂迎宾椰枣和阿拉伯咖啡。泳池甲板有270°哈利法塔视角 — 出门前30分钟重置。",
+            estimatedCost: "—",
+            transitFromPrev: "DXB地铁/出租",
+          },
+          {
+            name: "哈利法塔 — At the Top SKY(148层)",
+            area: "哈利法塔",
+            address: "1 Mohammed Bin Rashid Blvd",
+            duration: "1小时30分钟",
+            description:
+              "'At the Top SKY'票(约1,050元)是奢华选择 — 555米148层,户外观景平台(这个高度风大,夏天也建议带外套)、私享休息室含茶点、快速通道电梯。标准'At the Top'(约385元)只到124层 — 90%相同景观,但没有户外平台。订日落前30分钟时段。照片其实124层比148层好(更接近下方建筑细节)。",
+            estimatedCost: "每人约1,050元 SKY(或385元标准)",
+            bookingTip: "在burjkhalifa.ae提前2周订 — 日落时段秒抢。或用酒店当天预订渠道(Address Downtown有SKY配额)。",
+            transitFromPrev: "通过迪拜商场连廊步行5分钟",
+          },
+          {
+            name: "迪拜商场 — 水族馆、滑冰场、黄金集市扩展",
+            area: "迪拜商场内",
+            address: "Financial Centre Rd",
+            duration: "1小时30分钟",
+            description:
+              "1,200家店铺一个屋顶下。水族馆(从外面看免费,走进去约280元)有世界最大亚克力观景板。中间的奥运标准滑冰场在35°C的迪拜超现实。一楼的'黄金集市扩展'是现代金器交易。别想全逛完;选你在意的2-3家店,然后从喷泉步道出口走到湖边。",
+            estimatedCost: "不买就免费",
+            transitFromPrev: "原地(商场连哈利法塔)",
+          },
+          {
+            name: "Time Out Market Dubai(美食广场)",
+            area: "Souk Al Bahar(湖对岸)",
+            duration: "1小时",
+            description:
+              "迪拜17家最佳厨师在一个开放美食广场 — Souk Al Bahar二楼,正对哈利法塔的喷泉湖。每盘约80-175元,可在多家点餐分享。点'Reif Japanese Kitchen'的海胆饭、'Pickl'汉堡(迪拜最爱压缩堡)、'Bait Maryam'的黎巴嫩meze。室外露台正对哈利法塔 — 看着秀吃。",
+            estimatedCost: "两人约350-420元",
+            transitFromPrev: "湖边步道步行10分钟",
+          },
+          {
+            name: "迪拜喷泉表演",
+            area: "哈利法塔湖",
+            duration: "30分钟",
+            description:
+              "哈利法塔脚下湖中30英亩编排喷泉 — 水柱可冲150米高,配阿拉伯、宝莱坞、流行音乐。免费,18点到23点每30分钟一场。最佳观赏点:商场和Souk Al Bahar之间的桥(地面,能感觉水雾)、或Address Downtown的湖边露台(高处,能看到哈利法塔背景)。每场曲目不同;看两场。",
+            estimatedCost: "免费",
+            transitFromPrev: "走到桥5分钟",
+          },
+          {
+            name: "Neos屋顶酒吧(Address Downtown 63层)",
+            area: "Address Downtown",
+            duration: "1小时",
+            description:
+              "63层鸡尾酒吧 — 哈利法塔填满整面落地窗,夜晚亮灯。鸡尾酒每杯约210元(迪拜对酒类友好但价格陡 — 仅持牌场所,都附属酒店)。点'Persian Garden'(玫瑰水+藏红花+金酒)。商务休闲着装。Address员工知道喷泉时间表 — 坐到22点压轴。",
+            estimatedCost: "两杯鸡尾酒约420元",
+            transitFromPrev: "原地(酒店)",
+          },
+        ],
+      },
+      {
+        theme: "老迪拜 — Al Fahidi、abra、集市",
+        summary:
+          "过湾去历史Bur Dubai — 风塔街区、小木船摆渡、黄金集市、香料集市、水上午餐。",
+        stops: [
+          {
+            name: "地铁红线 → Al Fahidi站",
+            area: "Downtown → Bur Dubai",
+            duration: "30分钟",
+            description:
+              "从哈利法塔/迪拜商场站坐红线北行到BurJuman(换绿线)、一站到Al Fahidi。共约30分钟、每人约15元。'金舱'(头车)即使高峰也空 — 加2 AED值得。情侣别坐'仅妇女儿童'第一节车厢。",
+            estimatedCost: "每人约21元",
+            transitFromPrev: "酒店站坐地铁",
+          },
+          {
+            name: "Al Fahidi历史街区",
+            area: "Bur Dubai",
+            duration: "1小时30分钟",
+            description:
+              "迪拜现存最老的区 — 珊瑚石屋配风塔(1850年代的原始空调)、窄窄的沙地小巷、中心的传统bait al-fahidi(Fahidi屋)。Sheikh Mohammed文化理解中心做出色的步行讲解(约140元、1.5小时,含传统阿联酋早餐) — culturalfoundation.ae提前1天预约。咖啡博物馆和钱币博物馆是免费小景点。和第一天形成完全对比。",
+            estimatedCost: "SMCCU讲解约140元",
+            transitFromPrev: "从站走10分钟",
+          },
+          {
+            name: "Abra(小木船摆渡)过湾",
+            area: "迪拜湾",
+            duration: "15分钟",
+            description:
+              "现代迪拜最有魅力的体验 — 1 AED(¥2)1950年代风格木船过湾到Deira一侧。从Bur Dubai abra码头持续发船,坐满即开(等5分钟)。23人,船长用木舵掌控。即使夏天湾上也有凉风。上船后给船长付现金。",
+            estimatedCost: "每人单程约2元",
+            transitFromPrev: "走到Bur Dubai码头5分钟",
+          },
+          {
+            name: "香料集市+黄金集市(Deira)",
+            area: "湾的Deira一侧",
+            duration: "1小时30分钟",
+            description:
+              "先去香料集市(更小、更舒适) — 藏红花每克约30元(国内约85元)、按公斤的扎塔尔、乳香树脂、泡茶用的玫瑰干花瓣。然后黄金集市 — 380家店按重量卖18/22/24K金(现货价+少量手工费)。不买也走一圈,这就是THE迪拜照片。未经允许不要拍女性顾客。香料集市标价砍15-20%,黄金按重量固定价。",
+            estimatedCost: "不定",
+            bookingTip: "上午10点更安静,下午印度+菲律宾顾客让能量翻倍。",
+            transitFromPrev: "从Deira abra码头走5分钟",
+          },
+          {
+            name: "Bait Al Wakeel — 湾上午餐",
+            area: "Bur Dubai(再过湾)",
+            address: "Cnr 53A St & 53 St",
+            duration: "1小时30分钟",
+            description:
+              "迪拜第一家餐厅(1935),正建在湾上的木桩上 — 你脚下abra经过。阿联酋-伊朗海鲜:烤石斑(约195元)、沙瓦玛拼盘、machboos饭。1930年代木墙风情和湾风一起午餐。吃完再坐abra回Bur Dubai。",
+            estimatedCost: "两人约490元",
+            bookingTip: "在zomato.com提前1天预约 — 露台桌正对湾。",
+            transitFromPrev: "Abra回Bur Dubai(1 AED)",
+          },
+          {
+            name: "酒店休息+Address泳池",
+            area: "Address Downtown",
+            duration: "2小时",
+            description:
+              "老迪拜冬天也有沙+暖 — 在Address泳池(270°哈利法塔景)度过下午是完美中场重置。点玫瑰水柠檬汁,泳池管家会送来。晚餐前认真冲澡 — 迪拜的沙到处都是。",
+            estimatedCost: "酒店泳池",
+            transitFromPrev: "地铁回30分钟",
+          },
+          {
+            name: "Burj Al Arab的Al Mahara(或Pierchic替代)",
+            area: "Jumeirah",
+            duration: "2小时",
+            description:
+              "想要一生一次的旅行晚餐 — 帆船型Burj Al Arab内的Al Mahara,围着3层落地水族馆。品尝菜每人约1,750元+,着装要求全商务(男士夹克)。如果太多,Pierchic是优雅替代 — 阿拉伯湾上木栈道尽头的现代海鲜,价格一半,远处同样的Burj Al Arab景。两个都是这趟旅行的招牌照片。",
+            estimatedCost: "Al Mahara每人约2,100元、Pierchic约840元",
+            bookingTip: "Burj Al Arab需提前2周预约+严格着装,Pierchic接受3天前预约。",
+            transitFromPrev: "出租25分钟,约210元",
+          },
+        ],
+      },
+      {
+        theme: "沙漠safari",
+        summary:
+          "14:30接你去傍晚沙漠safari — 沙丘冲刺、骑骆驼、日落、星空下BBQ晚餐+肚皮舞表演。迪拜标志性出城体验。",
+        stops: [
+          {
+            name: "悠闲早晨 — 酒店早餐+SPA",
+            area: "Address Downtown",
+            duration: "3小时",
+            description:
+              "睡懒觉。Address Downtown早餐自助开到11点 — 阿拉伯mezze、鲜榨汁、现做鸡蛋、椰枣+蜂蜜区。早上订情侣SPA(约1,050-1,750元) — 藏红花+玫瑰油按摩是迪拜主题、60分钟、沙漠前让你松到没骨头。",
+            estimatedCost: "SPA可选约1,400元",
+            transitFromPrev: "—",
+          },
+          {
+            name: "沙漠safari接你(Platinum Heritage或Arabian Adventures)",
+            area: "酒店 → Dubai Desert Conservation Reserve",
+            duration: "驱车1小时",
+            description:
+              "两家可靠运营商:Platinum Heritage(最奢华、复古路虎、保护导向、每人约1,400元)或Arabian Adventures(主流奢华、现代4×4、每人约910元)。两家都到酒店大堂接。东行驱车1小时进入Dubai Desert Conservation Reserve(受保护沙丘景观、不是贝都因主题公园)。",
+            estimatedCost: "每人约910-1,400元",
+            bookingTip: "在platinum-heritage.com或arabianadventures.com提前5-7天订。",
+            transitFromPrev: "酒店接送",
+          },
+          {
+            name: "沙丘冲刺 — 4×4越红沙丘",
+            area: "Dubai Desert Conservation Reserve",
+            duration: "45分钟",
+            description:
+              "司机降低胎压,然后以60公里/时开过沙丘 — 横滑、爬顶、把车头从陡坡甩下去。略晕但壮观;胃敏感坐后排。16:30在高沙丘停车拍照 — 红沙上金光,沙漠延伸。如果紧张,Platinum Heritage提供同样景观但无极端角度的'保护驾驶'替代。",
+            estimatedCost: "已含",
+            transitFromPrev: "原地",
+          },
+          {
+            name: "骑骆驼+日落",
+            area: "贝都因营地",
+            duration: "1小时",
+            description:
+              "短骑骆驼(10分钟、单列骆驼队过沙丘脊) — 招牌照。然后大家下来在沙上找位坐看日落。冬天17:30的沙丘地平线是你能看到的最美日落之一 — 沙在20分钟里从橙变粉变紫。营地的指甲花画(约70元)、阿拉伯咖啡+椰枣免费。",
+            estimatedCost: "指甲花可选约70元",
+            transitFromPrev: "原地",
+          },
+          {
+            name: "星空下贝都因BBQ晚餐",
+            area: "沙漠营地",
+            duration: "2小时",
+            description:
+              "营地露天自助 — 羊肉沙瓦玛、烤鸡、鹰嘴豆泥、fattoush、巴克拉瓦、新鲜椰枣、薄荷茶。坐在矮桌周围的垫子上吃。饭后是Tanoura民俗舞蹈(旋转苦行僧风格)和现场oud(阿拉伯琉特琴)音乐。抬头看 — 沙漠离市灯够远,晴夜能看见银河,和沙丘剪影一起戏剧十足。多数运营商在晴空时提供短天文环节。",
+            estimatedCost: "已含在safari价格",
+            transitFromPrev: "原地",
+          },
+          {
+            name: "开车回酒店",
+            area: "沙漠 → Downtown",
+            duration: "1小时",
+            description:
+              "困倦的回程。22:30到酒店。快冲澡(沙到处都是)+睡觉,第四天满满。",
+            estimatedCost: "已含",
+            transitFromPrev: "营地接驳",
+          },
+        ],
+      },
+      {
+        theme: "棕榈岛+码头+送别",
+        summary:
+          "Atlantis上午、正午The View at the Palm、码头午餐、最后逛街、出租到DXB。",
+        stops: [
+          {
+            name: "Atlantis The Palm — Aquaventure水上乐园或Lost Chambers水族馆",
+            area: "棕榈岛新月",
+            address: "Crescent Rd, The Palm Jumeirah",
+            duration: "2小时30分钟",
+            description:
+              "Atlantis是棕榈岛尖端标志性的粉珊瑚度假村。两个大热点:(a)Aquaventure水上乐园 — 滑梯、慢河、'Leap of Faith'近垂直滑梯,全天票每人约630元,推荐水控。(b)Lost Chambers水族馆 — 65,000条鱼的步行水族馆,每人约280元,想要90分钟体验更适合。把水上乐园留给更长的旅行;Lost Chambers半天刚好。",
+            estimatedCost: "约280元(Lost Chambers)或630元(Aquaventure)",
+            bookingTip: "网上订享10%折扣;玩水上乐园就在Nobu Atlantis订午餐。",
+            transitFromPrev: "出租25分钟、约175元",
+          },
+          {
+            name: "The View at The Palm(52层)",
+            area: "棕榈塔(棕榈树干)",
+            duration: "1小时",
+            description:
+              "棕榈塔顶240米观景台 — 从上面才真正看到棕榈岛的标志性形状(棕榈树布局)。室外露台+室内博物馆式迪拜填海展。每人约175元,比哈利法塔便宜很多。白天OK、傍晚也戏剧但棕榈岛不像Downtown那样夜间灯光辉煌。",
+            estimatedCost: "每人约175元",
+            bookingTip: "在theviewpalm.ae提前1天订;正午时段空气最透。",
+            transitFromPrev: "从Atlantis出租8分钟",
+          },
+          {
+            name: "Pier 7码头 — 水上午餐",
+            area: "迪拜码头",
+            duration: "1小时30分钟",
+            description:
+              "Pier 7是码头水边的7层餐厅塔 — 按菜系选层、所有楼层都有码头全景。'Asia Asia'(3层)泛亚洲、'Atelier M'(7层)法地中海高级餐厅、'Cargo'(1层)休闲美食酒吧。3层吃午饭,三面被码头游艇环绕。两人各一杯鸡尾酒约560元。饭后沿码头步道(棕榈成行的步道,7公里)走30分钟。",
+            estimatedCost: "两人约560元",
+            bookingTip: "工作日午餐walk-in OK,周五/六要预约。",
+            transitFromPrev: "从The View出租12分钟",
+          },
+          {
+            name: "码头步道+最后纪念品",
+            area: "迪拜码头",
+            duration: "1小时",
+            description:
+              "沿码头走、看看游艇租赁、在Firas Sweets买kunafa(约55元)或% Arabica买藏红花咖啡。在码头商场(比迪拜商场小、更专注)买最后的纪念品:Bateel椰枣(盒约175元、迪拜椰枣礼物的金标准)、Patchi巧克力(约210元)、合适的话Bvlgari乌木香水试用装(约105元)。",
+            estimatedCost: "纪念品约350元",
+            transitFromPrev: "沿码头走",
+          },
+          {
+            name: "酒店取行李+整理",
+            area: "Address Downtown",
+            duration: "1小时",
+            description:
+              "出租回Address(约175元、25分钟)。预约的延迟退房(订房时申请,通常能延到17-18点)。快速冲澡、重新打包。从面湖阳台看18点最后一场喷泉 — 像样的告别。",
+            estimatedCost: "出租约175元",
+            transitFromPrev: "从码头出租",
+          },
+          {
+            name: "酒店 → DXB机场",
+            area: "Downtown → DXB",
+            duration: "30分钟",
+            description:
+              "从酒店出租站(约155元、25分钟)。国际航班留3小时余量。DXB免税异常出色 — 最后一刻Bateel椰枣、藏红花、Mac、乌木香水。连免费WiFi、忘东西的话网上订机场内取。枢纽机场 — 你的登机口可能离安检步行15分钟。",
+            estimatedCost: "出租约155元",
+            transitFromPrev: "酒店接送",
+          },
+        ],
+      },
+    ],
+    packingTips: [
+      "薄外套分层 — 白天26°C,商场/餐厅空调18°C,反差大",
+      "女性集市和老迪拜要保守遮盖(膝盖+肩膀) — 不严格执行但更舒服",
+      "墨镜+帽 — 冬天UV也强",
+      "凉鞋+包脚趾步行鞋(沙漠safari时开口鞋进沙是真的)",
+      "泳衣 — 泳池文化巨大",
+      "商务休闲一套 — 至少为Burj Al Arab/Pierchic晚餐(男士夹克)",
+      "水杯 — 地铁和商场有补水站",
+      "G型(英式三脚)电源转换器",
+    ],
+    budgetEstimate: "情侣每天不含酒店约2,800-5,000元(迪拜贵:商场午餐350元、鸡尾酒250元、品尝菜1,400元+;沙漠safari是最大的单笔)",
+    generalTips: [
+      "牵手以上的公共亲热在技术上违法 — 谨慎为常态",
+      "酒类只在酒店持牌场所、街上携带酒类违法 — 酒店和晚餐之间打车",
+      "周五是宗教日 — 集市晚开(16点后)、部分博物馆休",
+      "小费:餐厅未含自动小费就给10-15%、出租车5-10 AED凑整、导游210元+",
+      "地铁出色又便宜;高峰(16:30-19点)避开出租 — 谢赫扎耶德路变停车场",
+      "斋月规则(如适用):非旅游区5:30-18:30公开吃喝违规;旅游酒店例外",
+      "无人机受限;拍女性、政府建筑、军事前永远先问",
+      "VAT退税:在参与商家消费超过250 AED可退5% — 在DXB安检前办理",
+    ],
+  },
 };
 
 export default zh;
