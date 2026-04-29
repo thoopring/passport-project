@@ -24,6 +24,35 @@
     "suggestSwitch": "切换",
     "suggestDismiss": "不用"
   },
+  "header": {
+    "navSamples": "样本",
+    "navPricing": "定价",
+    "navAbout": "关于",
+    "navAccount": "我的账户",
+    "cta": "规划行程"
+  },
+  "footer": {
+    "tagline": "AI 行程规划",
+    "groupProduct": "产品",
+    "groupAbout": "关于",
+    "groupLegal": "法律",
+    "linkPlanTrip": "规划行程",
+    "linkPricing": "定价",
+    "linkSamplePlans": "样本行程",
+    "linkOurStory": "我们的故事",
+    "linkJournal": "日志",
+    "linkContact": "联系我们",
+    "linkTerms": "服务条款",
+    "linkPrivacy": "隐私政策",
+    "linkRefund": "退款政策",
+    "linkDisclaimer": "免责声明",
+    "copyright": "© 2026 gliddy",
+    "disclaimer": "行程为 AI 生成的起点 — 出发前请核对细节。"
+  },
+  "affiliate": {
+    "toolkitFor": "{destination} 旅行工具",
+    "disclosure": "部分为联盟链接 — 我们可能获得小额佣金,您无额外成本。"
+  },
   "homeWizard": {
     "back": "返回",
     "continue": "下一步",
@@ -138,6 +167,11 @@
       "startOver": "重新开始"
     },
     "popup": {
+      "progressLast": "最后一题",
+      "progressAlmost": "快完成了",
+      "progressStart": "开始",
+      "progressHalfway": "已过半",
+      "progressOf": "{current} / {total}",
       "travelerType": {
         "title": "您和谁一起旅行?",
         "solo": "独自",
@@ -243,6 +277,8 @@
   },
   "plan": {
     "yourTripPlan": "您的行程",
+    "itineraryHeader": "{days} 天行程 · {country}",
+    "tipLabel": "贴士:",
     "downloadPdf": "下载 PDF",
     "hotel": "酒店",
     "airportToHotel": "机场 → 酒店",
@@ -272,6 +308,34 @@
         "sights": "正在挑选精华景点与餐厅",
         "polish": "正在润色每个地点的描述 ✍️",
         "almost": "马上就好,再稍等片刻…"
+      },
+      "aiWorking": "AI 工作中",
+      "log": {
+        "crossRef": "正在交叉参考 {destination} 的 18 本旅行指南…",
+        "indexRest": "正在索引 {destination} 市中心 240 家餐厅…",
+        "loadTransit": "加载 {destination} 公共交通地图…",
+        "weather": "分析季节天气模式…",
+        "filterVenues": "按当前营业状态筛选场所…",
+        "walkMatrix": "计算步行距离矩阵…",
+        "photogenic": "识别上镜地标…",
+        "hotelReview": "交叉核对 1,200 条酒店评价…",
+        "simEsim": "比较本地 SIM 与 eSIM 资费…",
+        "currency": "映射当前汇率…",
+        "etiquette": "扫描当地礼仪指南…",
+        "matchAirport": "匹配 {airport} 附近的酒店…",
+        "matchAirportTerm": "匹配 {airport} {terminal} 航站楼附近的酒店…",
+        "airportTransit": "计算 {airport} → 市区交通方案…",
+        "stroller": "优化婴儿车友好路线…",
+        "kidFriendly": "按儿童友好设施筛选…",
+        "bathrooms": "寻找便于如厕的餐厅…",
+        "sunsets": "标注日落观景点…",
+        "romantic": "精选浪漫晚餐候选…",
+        "soloSafe": "提取适合单人安全的街区…",
+        "soloSocial": "添加适合独行的社交点…",
+        "daySeq": "按步行距离排序第 {day} 天行程…",
+        "backtrack": "优化路线减少绕路…",
+        "packing": "整理行李建议…",
+        "finalize": "为您定稿专属行程…"
       },
       "failedBadge": "生成失败",
       "failedTitle": "抱歉",

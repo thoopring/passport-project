@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import BrandMark from "./BrandMark";
 import BetaBadge from "./BetaBadge";
 
 export default function Footer() {
+  const t = useTranslations("footer");
   return (
     <footer className="border-t border-[var(--border-subtle)] mt-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
@@ -11,63 +13,63 @@ export default function Footer() {
             <BrandMark size={22} />
             <BetaBadge variant="regular" />
             <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
-              AI trip plans
+              {t("tagline")}
             </span>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col sm:flex-row sm:items-baseline gap-x-8 gap-y-4">
             <div className="flex flex-col gap-1.5">
               <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
-                Product
+                {t("groupProduct")}
               </span>
               <Link href="/plan/new" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Plan a trip
+                {t("linkPlanTrip")}
               </Link>
               <Link href="/pricing" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Pricing
+                {t("linkPricing")}
               </Link>
               <Link href="/samples" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Sample plans
+                {t("linkSamplePlans")}
               </Link>
             </div>
             <div className="flex flex-col gap-1.5">
               <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
-                About
+                {t("groupAbout")}
               </span>
               <Link href="/about" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Our story
+                {t("linkOurStory")}
               </Link>
               <Link href="/blog" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Journal
+                {t("linkJournal")}
               </Link>
               <a href="mailto:hello@checkvisamap.com" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Contact
+                {t("linkContact")}
               </a>
             </div>
             <div className="flex flex-col gap-1.5">
               <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
-                Legal
+                {t("groupLegal")}
               </span>
               <Link href="/terms" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Terms of Service
+                {t("linkTerms")}
               </Link>
               <Link href="/privacy" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Privacy Policy
+                {t("linkPrivacy")}
               </Link>
               <Link href="/refund" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Refund Policy
+                {t("linkRefund")}
               </Link>
               <Link href="/disclaimer" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-                Disclaimer
+                {t("linkDisclaimer")}
               </Link>
             </div>
           </nav>
         </div>
 
         <div className="mt-10 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row justify-between gap-3">
-          <p className="text-caption text-[var(--text-muted)]">© 2026 gliddy · hello@checkvisamap.com</p>
+          <p className="text-caption text-[var(--text-muted)]">{t("copyright")} · hello@checkvisamap.com</p>
           <p className="text-caption text-[var(--text-muted)]">
-            Plans are AI-generated starting points. Verify details before travel.
+            {t("disclaimer")}
           </p>
         </div>
       </div>

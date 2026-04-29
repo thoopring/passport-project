@@ -24,6 +24,35 @@
     "suggestSwitch": "바꾸기",
     "suggestDismiss": "괜찮아요"
   },
+  "header": {
+    "navSamples": "샘플",
+    "navPricing": "요금",
+    "navAbout": "소개",
+    "navAccount": "내 계정",
+    "cta": "여행 계획하기"
+  },
+  "footer": {
+    "tagline": "AI 여행 플랜",
+    "groupProduct": "프로덕트",
+    "groupAbout": "소개",
+    "groupLegal": "법적 고지",
+    "linkPlanTrip": "여행 계획",
+    "linkPricing": "요금",
+    "linkSamplePlans": "샘플 플랜",
+    "linkOurStory": "우리 이야기",
+    "linkJournal": "저널",
+    "linkContact": "문의",
+    "linkTerms": "이용약관",
+    "linkPrivacy": "개인정보 처리방침",
+    "linkRefund": "환불 정책",
+    "linkDisclaimer": "면책 조항",
+    "copyright": "© 2026 gliddy",
+    "disclaimer": "AI가 만드는 출발점이에요. 출발 전 세부 사항을 직접 확인해주세요."
+  },
+  "affiliate": {
+    "toolkitFor": "{destination} 여행 도구",
+    "disclosure": "일부는 제휴 링크예요. 추가 비용 없이 저희에게 작은 커미션이 들어와요."
+  },
   "homeWizard": {
     "back": "이전",
     "continue": "다음",
@@ -138,6 +167,11 @@
       }
     },
     "popup": {
+      "progressLast": "마지막 하나",
+      "progressAlmost": "거의 끝났어요",
+      "progressStart": "시작",
+      "progressHalfway": "절반 왔어요",
+      "progressOf": "{current} / {total}",
       "travelerType": {
         "title": "누구와 함께 가세요?",
         "solo": "혼자",
@@ -244,6 +278,8 @@
   "plan": {
     "yourTripPlan": "내 여행 플랜",
     "downloadPdf": "PDF 다운로드",
+    "itineraryHeader": "{days}일 일정 · {country}",
+    "tipLabel": "팁:",
     "hotel": "호텔",
     "airportToHotel": "공항 → 호텔",
     "day": "Day",
@@ -272,6 +308,34 @@
         "sights": "핵심 명소와 맛집을 고르는 중이에요",
         "polish": "각 장소 설명을 다듬고 있어요 ✍️",
         "almost": "거의 다 됐어요! 조금만 더…"
+      },
+      "aiWorking": "AI 작업 중",
+      "log": {
+        "crossRef": "{destination} 여행 가이드 18권을 교차 참조 중…",
+        "indexRest": "{destination} 시내 식당 240곳 인덱싱 중…",
+        "loadTransit": "{destination} 대중교통 노선도 불러오는 중…",
+        "weather": "계절별 날씨 패턴을 분석 중…",
+        "filterVenues": "현재 영업 중인 곳만 필터링하는 중…",
+        "walkMatrix": "도보 거리 매트릭스를 계산 중…",
+        "photogenic": "포토 스폿을 식별하는 중…",
+        "hotelReview": "호텔 리뷰 1,200건을 교차 검토 중…",
+        "simEsim": "현지 SIM·eSIM 가격을 비교 중…",
+        "currency": "환율을 매핑하는 중…",
+        "etiquette": "현지 매너 가이드를 스캔 중…",
+        "matchAirport": "{airport} 근처 호텔을 매칭 중…",
+        "matchAirportTerm": "{airport} {terminal}터미널 근처 호텔을 매칭 중…",
+        "airportTransit": "{airport} → 시내 교통편을 계산 중…",
+        "stroller": "유모차 친화 경로 최적화 중…",
+        "kidFriendly": "어린이 친화 시설 위주로 필터링 중…",
+        "bathrooms": "화장실 접근 식당을 찾는 중…",
+        "sunsets": "일몰 명소를 마킹 중…",
+        "romantic": "로맨틱한 디너 후보를 추리는 중…",
+        "soloSafe": "혼자 다니기 안전한 동네를 찾는 중…",
+        "soloSocial": "혼자도 좋은 사교 스폿을 추가 중…",
+        "daySeq": "{day}일차 동선을 도보 거리로 정렬 중…",
+        "backtrack": "이동 동선의 백트래킹을 최소화 중…",
+        "packing": "준비물 추천을 정리 중…",
+        "finalize": "맞춤 일정을 마무리 중…"
       },
       "failedBadge": "생성 실패",
       "failedTitle": "죄송해요",

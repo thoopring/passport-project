@@ -24,6 +24,35 @@
     "suggestSwitch": "Changer",
     "suggestDismiss": "Non merci"
   },
+  "header": {
+    "navSamples": "Exemples",
+    "navPricing": "Tarifs",
+    "navAbout": "À propos",
+    "navAccount": "Mon compte",
+    "cta": "Planifier mon voyage"
+  },
+  "footer": {
+    "tagline": "Plans de voyage IA",
+    "groupProduct": "Produit",
+    "groupAbout": "À propos",
+    "groupLegal": "Mentions légales",
+    "linkPlanTrip": "Planifier un voyage",
+    "linkPricing": "Tarifs",
+    "linkSamplePlans": "Plans d'exemple",
+    "linkOurStory": "Notre histoire",
+    "linkJournal": "Journal",
+    "linkContact": "Contact",
+    "linkTerms": "Conditions d'utilisation",
+    "linkPrivacy": "Politique de confidentialité",
+    "linkRefund": "Politique de remboursement",
+    "linkDisclaimer": "Avertissement",
+    "copyright": "© 2026 gliddy",
+    "disclaimer": "Les plans sont générés par IA — vérifiez les détails avant de partir."
+  },
+  "affiliate": {
+    "toolkitFor": "Boîte à outils voyage pour {destination}",
+    "disclosure": "Certains liens sont d'affiliation — nous touchons une petite commission sans surcoût pour vous."
+  },
   "homeWizard": {
     "back": "Retour",
     "continue": "Suivant",
@@ -138,6 +167,11 @@
       "startOver": "Recommencer"
     },
     "popup": {
+      "progressLast": "Dernière",
+      "progressAlmost": "Presque fini",
+      "progressStart": "Démarrage",
+      "progressHalfway": "À mi-chemin",
+      "progressOf": "{current} / {total}",
       "travelerType": {
         "title": "Avec qui partez-vous ?",
         "solo": "Seul·e",
@@ -244,6 +278,8 @@
   "plan": {
     "yourTripPlan": "Votre plan de voyage",
     "downloadPdf": "Télécharger le PDF",
+    "itineraryHeader": "Itinéraire de {days} jours · {country}",
+    "tipLabel": "Astuce :",
     "hotel": "Hôtel",
     "airportToHotel": "Aéroport → Hôtel",
     "day": "Jour",
@@ -257,7 +293,7 @@
     "failedTitle": "Désolé, la génération a échoué.",
     "failedRefund": "On vous rembourse. Écrivez à hello@checkvisamap.com si vous avez besoin d'aide.",
     "generatingTitle": "On prépare votre plan",
-    "generatingSubtitle": "Cela prend généralement 30 à 60 secondes. On vous envoie le lien par e-mail dès que c'est prêt.",
+    "generatingSubtitle": "Un instant. On vous envoie le lien par e-mail dès que c'est prêt.",
     "generatingRefresh": "Actualiser",
     "paymentReceived": "Paiement reçu",
     "wait": {
@@ -272,6 +308,34 @@
         "sights": "Sélection des sites incontournables et des restaurants",
         "polish": "On peaufine la description de chaque lieu ✍️",
         "almost": "Presque terminé — encore un instant…"
+      },
+      "aiWorking": "IA au travail",
+      "log": {
+        "crossRef": "Recoupement de 18 guides de voyage pour {destination}…",
+        "indexRest": "Indexation de 240 restaurants au centre de {destination}…",
+        "loadTransit": "Chargement des cartes de transport pour {destination}…",
+        "weather": "Analyse des tendances météo saisonnières…",
+        "filterVenues": "Filtrage des lieux selon le statut d'ouverture…",
+        "walkMatrix": "Calcul de la matrice des distances à pied…",
+        "photogenic": "Identification des points photogéniques…",
+        "hotelReview": "Recoupement de 1 200 avis d'hôtels…",
+        "simEsim": "Comparaison des forfaits SIM et eSIM locaux…",
+        "currency": "Cartographie des taux de change…",
+        "etiquette": "Lecture des guides d'étiquette locale…",
+        "matchAirport": "Mise en correspondance des hôtels avec {airport}…",
+        "matchAirportTerm": "Mise en correspondance des hôtels avec le terminal {terminal} de {airport}…",
+        "airportTransit": "Calcul des options de transport {airport} → centre-ville…",
+        "stroller": "Optimisation des itinéraires accessibles aux poussettes…",
+        "kidFriendly": "Filtrage des lieux adaptés aux enfants…",
+        "bathrooms": "Repérage des arrêts repas avec toilettes accessibles…",
+        "sunsets": "Marquage des points de vue au coucher du soleil…",
+        "romantic": "Sélection des dîners romantiques…",
+        "soloSafe": "Repérage des quartiers sûrs en solo…",
+        "soloSocial": "Ajout de lieux conviviaux en solo…",
+        "daySeq": "Tri des étapes du jour {day} par distance à pied…",
+        "backtrack": "Optimisation pour minimiser les détours…",
+        "packing": "Compilation des recommandations de bagages…",
+        "finalize": "Finalisation de votre itinéraire personnalisé…"
       },
       "failedBadge": "Échec de la génération",
       "failedTitle": "Une erreur est survenue",

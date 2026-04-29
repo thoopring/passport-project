@@ -24,6 +24,35 @@
     "suggestSwitch": "切り替え",
     "suggestDismiss": "結構です"
   },
+  "header": {
+    "navSamples": "サンプル",
+    "navPricing": "料金",
+    "navAbout": "紹介",
+    "navAccount": "マイアカウント",
+    "cta": "旅程を作る"
+  },
+  "footer": {
+    "tagline": "AI 旅程プラン",
+    "groupProduct": "プロダクト",
+    "groupAbout": "紹介",
+    "groupLegal": "法的事項",
+    "linkPlanTrip": "旅程を作る",
+    "linkPricing": "料金",
+    "linkSamplePlans": "サンプルプラン",
+    "linkOurStory": "私たちの物語",
+    "linkJournal": "ジャーナル",
+    "linkContact": "お問い合わせ",
+    "linkTerms": "利用規約",
+    "linkPrivacy": "プライバシーポリシー",
+    "linkRefund": "返金ポリシー",
+    "linkDisclaimer": "免責事項",
+    "copyright": "© 2026 gliddy",
+    "disclaimer": "プランはAIが作る出発点です。出発前に詳細をご確認ください。"
+  },
+  "affiliate": {
+    "toolkitFor": "{destination}の旅行ツールキット",
+    "disclosure": "一部はアフィリエイトリンクで、追加費用なしで小額の手数料をいただきます。"
+  },
   "homeWizard": {
     "back": "戻る",
     "continue": "次へ",
@@ -138,6 +167,11 @@
       "startOver": "最初から"
     },
     "popup": {
+      "progressLast": "最後の質問",
+      "progressAlmost": "あと少し",
+      "progressStart": "スタート",
+      "progressHalfway": "折り返し",
+      "progressOf": "{current} / {total}",
       "travelerType": {
         "title": "誰と一緒に旅しますか?",
         "solo": "一人",
@@ -244,6 +278,8 @@
   "plan": {
     "yourTripPlan": "あなたの旅程",
     "downloadPdf": "PDFをダウンロード",
+    "itineraryHeader": "{days}日間の旅程 · {country}",
+    "tipLabel": "ヒント:",
     "hotel": "ホテル",
     "airportToHotel": "空港 → ホテル",
     "day": "Day",
@@ -272,6 +308,34 @@
         "sights": "見どころと食事処を選んでいます",
         "polish": "各スポットの説明を仕上げ中 ✍️",
         "almost": "もう少しで完成です…"
+      },
+      "aiWorking": "AI 作業中",
+      "log": {
+        "crossRef": "{destination}の旅行ガイド18冊を相互参照中…",
+        "indexRest": "{destination}中心部のレストラン240軒をインデックス中…",
+        "loadTransit": "{destination}の公共交通マップを読み込み中…",
+        "weather": "季節ごとの天候パターンを分析中…",
+        "filterVenues": "現在営業中のスポットだけ絞り込み中…",
+        "walkMatrix": "徒歩距離マトリクスを計算中…",
+        "photogenic": "フォトスポットを特定中…",
+        "hotelReview": "ホテルレビュー1,200件を相互チェック中…",
+        "simEsim": "現地SIM・eSIMの料金を比較中…",
+        "currency": "通貨レートをマッピング中…",
+        "etiquette": "現地マナーガイドをスキャン中…",
+        "matchAirport": "{airport}近くのホテルをマッチング中…",
+        "matchAirportTerm": "{airport}{terminal}ターミナル近くのホテルをマッチング中…",
+        "airportTransit": "{airport}→市内の交通手段を計算中…",
+        "stroller": "ベビーカー対応ルートを最適化中…",
+        "kidFriendly": "子ども向け施設で絞り込み中…",
+        "bathrooms": "トイレに行きやすい食事スポットを探索中…",
+        "sunsets": "夕日スポットをマーキング中…",
+        "romantic": "ロマンティックなディナー候補を厳選中…",
+        "soloSafe": "一人歩きでも安全なエリアを抽出中…",
+        "soloSocial": "一人でも楽しい交流スポットを追加中…",
+        "daySeq": "{day}日目を徒歩距離で整列中…",
+        "backtrack": "移動経路の重複を最小化中…",
+        "packing": "持ち物リストを作成中…",
+        "finalize": "あなた専用の旅程を仕上げ中…"
       },
       "failedBadge": "生成に失敗",
       "failedTitle": "申し訳ありません",

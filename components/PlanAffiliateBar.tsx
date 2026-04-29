@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import AffiliateLink from "./AffiliateLink";
 import { buildTravelToolkit } from "../lib/affiliates";
 
@@ -20,12 +21,13 @@ export default function PlanAffiliateBar({
   destination,
   destinationCountry,
 }: PlanAffiliateBarProps) {
+  const t = useTranslations("affiliate");
   const links = buildTravelToolkit(destination, destinationCountry);
 
   return (
     <div className="bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl p-5 mb-6">
       <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-wider mb-4">
-        Travel toolkit for {destination}
+        {t("toolkitFor", { destination })}
       </p>
       <ul className="space-y-2">
         {links.map((link) => (
@@ -59,7 +61,7 @@ export default function PlanAffiliateBar({
         ))}
       </ul>
       <p className="text-caption text-[var(--text-muted)] mt-3 leading-relaxed">
-        Some links are affiliate links — we may earn a small commission at no extra cost to you.
+        {t("disclosure")}
       </p>
     </div>
   );

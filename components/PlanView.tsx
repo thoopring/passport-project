@@ -65,7 +65,7 @@ export default async function PlanView({
                   {plan.destination}
                 </h1>
                 <p className="text-body-md text-[var(--text-secondary)] mt-3">
-                  {plan.durationDays}-day itinerary · {plan.destinationCountry}
+                  {t("itineraryHeader", { days: plan.durationDays, country: plan.destinationCountry })}
                 </p>
                 {downloadHref && (
                   <a
@@ -185,7 +185,7 @@ export default async function PlanView({
                       </p>
                       {stop.bookingTip && (
                         <p className="text-caption font-semibold text-[var(--accent-primary)] mt-2">
-                          Tip: {stop.bookingTip}
+                          {t("tipLabel")} {stop.bookingTip}
                         </p>
                       )}
                     </div>

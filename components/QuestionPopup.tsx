@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export interface QuestionDef {
   id: string;
@@ -49,17 +50,15 @@ export default function QuestionPopup({
   questionNumber,
   totalQuestions,
 }: QuestionPopupProps) {
-  // Playful progress callout — gives users a sense of "how much more?" and
-  // turns the wizard from "questionnaire" into "we're almost there together".
-  // Stays language-neutral via emoji + numbers; the localized parts come from
-  // the parent's `tp` translator already wrapped into question.title.
+  const tp = useTranslations("wizard.popup");
+  // Progress callout — emoji-free per design system; localized via tp.
   const progressLabel = (() => {
     if (!questionNumber || !totalQuestions) return null;
-    if (questionNumber === totalQuestions) return "🎉  Last one!";
-    if (questionNumber === totalQuestions - 1) return "✨  Almost done";
-    if (questionNumber === 1) return "👋  Quick start";
-    if (questionNumber === Math.ceil(totalQuestions / 2)) return "💪  Halfway there";
-    return `${questionNumber} / ${totalQuestions}`;
+    if (questionNumber === totalQuestions) return tp("progressLast");
+    if (questionNumber === totalQuestions - 1) return tp("progressAlmost");
+    if (questionNumber === 1) return tp("progressStart");
+    if (questionNumber === Math.ceil(totalQuestions / 2)) return tp("progressHalfway");
+    return tp("progressOf", { current: questionNumber, total: totalQuestions });
   })();
   const [singleValue, setSingleValue] = useState<string | null>(null);
   const [multiValue, setMultiValue] = useState<string[]>([]);

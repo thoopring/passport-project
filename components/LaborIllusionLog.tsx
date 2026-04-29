@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface LaborIllusionLogProps {
   /** Destination name to interpolate into log lines. */
@@ -27,10 +28,11 @@ export default function LaborIllusionLog({
   durationDays,
   travelerType,
 }: LaborIllusionLogProps) {
+  const t = useTranslations("plan.wait");
   const [visibleLines, setVisibleLines] = useState<string[]>([]);
 
   useEffect(() => {
-    const lines = buildLogLines({
+    const lines = buildLogLines(t, {
       destination,
       airport,
       terminal,
@@ -52,14 +54,14 @@ export default function LaborIllusionLog({
     }, 1600);
 
     return () => clearInterval(interval);
-  }, [destination, airport, terminal, durationDays, travelerType]);
+  }, [t, destination, airport, terminal, durationDays, travelerType]);
 
   return (
     <div className="bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-2xl p-5 sm:p-6 font-mono text-body-sm">
       <div className="flex items-center gap-2 mb-3">
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
         <span className="text-caption uppercase tracking-wider font-semibold text-[var(--text-muted)]">
-          AI working
+          {t("aiWorking")}
         </span>
       </div>
       <ol className="space-y-1.5">
@@ -88,51 +90,57 @@ interface LineContext {
   travelerType?: string;
 }
 
-function buildLogLines(ctx: LineContext): string[] {
+type Translator = (key: string, values?: Record<string, string | number>) => string;
+
+function buildLogLines(t: Translator, ctx: LineContext): string[] {
   const lines: string[] = [
-    `Cross-referencing 18 travel guides for ${ctx.destination}…`,
-    `Indexing 240 restaurants in central ${ctx.destination}…`,
-    `Loading public transit maps for ${ctx.destination}…`,
-    `Analyzing seasonal weather patterns…`,
-    `Filtering venues by current operating status…`,
-    `Computing walking-distance matrix…`,
-    `Identifying photogenic landmarks…`,
-    `Cross-checking 1,200 hotel reviews…`,
-    `Pricing local SIM and eSIM options…`,
-    `Mapping currency exchange rates…`,
-    `Scanning local etiquette guides…`,
+    t("log.crossRef", { destination: ctx.destination }),
+    t("log.indexRest", { destination: ctx.destination }),
+    t("log.loadTransit", { destination: ctx.destination }),
+    t("log.weather"),
+    t("log.filterVenues"),
+    t("log.walkMatrix"),
+    t("log.photogenic"),
+    t("log.hotelReview"),
+    t("log.simEsim"),
+    t("log.currency"),
+    t("log.etiquette"),
   ];
 
   if (ctx.airport) {
-    lines.push(`Matching hotels to ${ctx.airport}${ctx.terminal ? ` Terminal ${ctx.terminal}` : ""}…`);
-    lines.push(`Computing airport→city transit options for ${ctx.airport}…`);
+    lines.push(
+      ctx.terminal
+        ? t("log.matchAirportTerm", { airport: ctx.airport, terminal: ctx.terminal })
+        : t("log.matchAirport", { airport: ctx.airport }),
+    );
+    lines.push(t("log.airportTransit", { airport: ctx.airport }));
   }
 
   if (ctx.travelerType === "family-with-kids") {
-    lines.push("Optimizing stroller-friendly routes…");
-    lines.push("Filtering venues by kid-friendly facilities…");
-    lines.push("Locating bathroom-accessible meal stops…");
+    lines.push(t("log.stroller"));
+    lines.push(t("log.kidFriendly"));
+    lines.push(t("log.bathrooms"));
   }
 
   if (ctx.travelerType === "couple") {
-    lines.push("Pinning sunset viewpoints…");
-    lines.push("Reserving romantic dinner candidates…");
+    lines.push(t("log.sunsets"));
+    lines.push(t("log.romantic"));
   }
 
   if (ctx.travelerType === "solo") {
-    lines.push("Surfacing safe-for-solo neighborhoods…");
-    lines.push("Adding social-friendly stops…");
+    lines.push(t("log.soloSafe"));
+    lines.push(t("log.soloSocial"));
   }
 
   if (ctx.durationDays && ctx.durationDays > 0) {
     for (let d = 1; d <= ctx.durationDays; d++) {
-      lines.push(`Sequencing day ${d} stops by walking distance…`);
+      lines.push(t("log.daySeq", { day: d }));
     }
   }
 
-  lines.push("Optimizing route to minimize backtracking…");
-  lines.push("Compiling packing recommendations…");
-  lines.push("Finalizing your personalized itinerary…");
+  lines.push(t("log.backtrack"));
+  lines.push(t("log.packing"));
+  lines.push(t("log.finalize"));
 
   return lines;
 }

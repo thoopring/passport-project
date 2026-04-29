@@ -24,6 +24,35 @@
     "suggestSwitch": "Switch",
     "suggestDismiss": "No thanks"
   },
+  "header": {
+    "navSamples": "Samples",
+    "navPricing": "Pricing",
+    "navAbout": "About",
+    "navAccount": "My account",
+    "cta": "Plan my trip"
+  },
+  "footer": {
+    "tagline": "AI trip plans",
+    "groupProduct": "Product",
+    "groupAbout": "About",
+    "groupLegal": "Legal",
+    "linkPlanTrip": "Plan a trip",
+    "linkPricing": "Pricing",
+    "linkSamplePlans": "Sample plans",
+    "linkOurStory": "Our story",
+    "linkJournal": "Journal",
+    "linkContact": "Contact",
+    "linkTerms": "Terms of Service",
+    "linkPrivacy": "Privacy Policy",
+    "linkRefund": "Refund Policy",
+    "linkDisclaimer": "Disclaimer",
+    "copyright": "© 2026 gliddy",
+    "disclaimer": "Plans are AI-generated starting points. Verify details before travel."
+  },
+  "affiliate": {
+    "toolkitFor": "Travel toolkit for {destination}",
+    "disclosure": "Some links are affiliate links — we may earn a small commission at no extra cost to you."
+  },
   "homeWizard": {
     "back": "Back",
     "continue": "Continue",
@@ -138,6 +167,11 @@
       "startOver": "Start over"
     },
     "popup": {
+      "progressLast": "Last one",
+      "progressAlmost": "Almost done",
+      "progressStart": "Quick start",
+      "progressHalfway": "Halfway there",
+      "progressOf": "{current} / {total}",
       "travelerType": {
         "title": "Who's going on this trip?",
         "solo": "Solo",
@@ -244,6 +278,8 @@
   "plan": {
     "yourTripPlan": "Your trip plan",
     "downloadPdf": "Download PDF",
+    "itineraryHeader": "{days}-day itinerary · {country}",
+    "tipLabel": "Tip:",
     "hotel": "Hotel",
     "airportToHotel": "Airport → Hotel",
     "day": "Day",
@@ -272,6 +308,34 @@
         "sights": "Picking the signature sights and meals",
         "polish": "Polishing the place descriptions ✍️",
         "almost": "Almost done — just a moment…"
+      },
+      "aiWorking": "AI working",
+      "log": {
+        "crossRef": "Cross-referencing 18 travel guides for {destination}…",
+        "indexRest": "Indexing 240 restaurants in central {destination}…",
+        "loadTransit": "Loading public transit maps for {destination}…",
+        "weather": "Analyzing seasonal weather patterns…",
+        "filterVenues": "Filtering venues by current operating status…",
+        "walkMatrix": "Computing walking-distance matrix…",
+        "photogenic": "Identifying photogenic landmarks…",
+        "hotelReview": "Cross-checking 1,200 hotel reviews…",
+        "simEsim": "Pricing local SIM and eSIM options…",
+        "currency": "Mapping currency exchange rates…",
+        "etiquette": "Scanning local etiquette guides…",
+        "matchAirport": "Matching hotels to {airport}…",
+        "matchAirportTerm": "Matching hotels to {airport} Terminal {terminal}…",
+        "airportTransit": "Computing airport→city transit options for {airport}…",
+        "stroller": "Optimizing stroller-friendly routes…",
+        "kidFriendly": "Filtering venues by kid-friendly facilities…",
+        "bathrooms": "Locating bathroom-accessible meal stops…",
+        "sunsets": "Pinning sunset viewpoints…",
+        "romantic": "Reserving romantic dinner candidates…",
+        "soloSafe": "Surfacing safe-for-solo neighborhoods…",
+        "soloSocial": "Adding social-friendly stops…",
+        "daySeq": "Sequencing day {day} stops by walking distance…",
+        "backtrack": "Optimizing route to minimize backtracking…",
+        "packing": "Compiling packing recommendations…",
+        "finalize": "Finalizing your personalized itinerary…"
       },
       "failedBadge": "Generation failed",
       "failedTitle": "Something went wrong",
