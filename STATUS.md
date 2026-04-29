@@ -1,9 +1,9 @@
 # Status — gliddy launch prep
 
-> **Last updated:** 2026-04-29 (later)
+> **Last updated:** 2026-04-29 (master-prompt sweep complete)
 > **Branch:** main
-> **Latest commit:** D2-i18n complete — 12 new translations (Reykjavik/Cusco/Dubai × ko/ja/zh/fr)
-> **Working tree:** dirty (translations to commit)
+> **Latest commit:** `89da363` — sample CTA redesign (Phase 2)
+> **Working tree:** clean
 
 Quick-resume document. After /compact or new session, read this first to
 understand current state, decisions made, and next priority action.
@@ -42,6 +42,29 @@ Approval = real money flow unlocked. ETA 3-7 business days.
   - **+ Reykjavik (4d couple), Cusco (5d couple), Dubai (4d couple)** — added 2026-04-29
 - ko/ja/zh/fr translations COMPLETE for ALL 13 samples (D2-i18n done 2026-04-29).
 - Color diversity for new 3: icy Iceland / Andean Cusco / gold Dubai.
+
+### Master-prompt sweep (2026-04-29 evening)
+- **P1**: removed `priceTier: "$$$"` rendering from PlanView, home Tokyo card,
+  PDF — read as raw garbage in non-USD locales. Schema field retained.
+- **P3**: stripped `$4` and quantitative time refs from all marketing
+  surfaces. messages/{en,ko,ja,zh,fr}.json wizard submit/payButton/badge,
+  account CTAs, heroStatSpeed (60s → "Map included" / 지도 포함 /
+  含路线地图 / 地図付き / Carte incluse). brand.ts, layout, manifest,
+  opengraph-image, about/blog, plan/new metadata, plan/loading referral
+  banner, TripPlannerCTA. /pricing and /terms keep $4 (legal/explicit
+  price). Sample data retained (real local item prices like $4 mango).
+- **P4**: localized hardcoded EN in Header (5 nav + aria), Footer (3
+  groups + 11 links + disclaimer + copyright), PlanView (`{n}-day
+  itinerary · {country}` template + `Tip:`), PlanAffiliateBar
+  (toolkit/disclosure), LaborIllusionLog (25-key wait.log namespace
+  with all branches), QuestionPopup (progress labels — emoji-free per
+  memory). All 5 locales translated.
+- **P5**: gliddy identity + USD-only — removed last 'in minutes'
+  claims on /about, USD-only billing already messaged on /pricing.
+- **P2**: redesigned sample-page bottom CTA — vermilion radial glow,
+  italic Fraunces headline with ss01/02/03 swash, vermilion pill
+  button replacing white slab, hover lift+glow. Stays inside the
+  Layla-lean palette (no indigo/purple gradient).
 
 ### Design (D1 — multiple iterations)
 - Variant-E hybrid hero: Live chip (pulsing dot) + italic-Fraunces 'sorted' + HomeWizard input + 4-pill stat strip + sample destination links.
@@ -87,6 +110,7 @@ Approval = real money flow unlocked. ETA 3-7 business days.
 - **L4** — Vercel env + DNS + Resend domain + LS webhook URL update (founder).
   - Required env vars listed in `.env.example`. Critical: `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (added 2026-04-28).
 - ~~**D2-i18n**~~ ✅ Done 2026-04-29 — Reykjavik / Cusco / Dubai translated to ko/ja/zh/fr (12 sparse overrides).
+- ~~**Master-prompt sweep**~~ ✅ Done 2026-04-29 — P1 priceTier, P3 $4/time strip, P4 i18n, P5 brand, P2 CTA redesign.
 - **L2** — GA4/PostHog locale-tagged analytics. Needs: `page_view`, `wizard_started`, `checkout_started`, `checkout_completed`, `account_signup`, `account_visit`, `referral_shared`, `credit_used`. ~3-4h.
 
 ### 💎 Medium
