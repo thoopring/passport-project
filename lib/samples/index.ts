@@ -147,15 +147,13 @@ export const SAMPLE_PLANS: SampleMeta[] = [
  *  Source URLs use w=2400 so retina 520×520 quatrefoils get 2x crisp
  *  detail. Each URL below was visually verified on 2026-04-29.
  *
- *  ⚠ Two photos (slot 1 + slot 5) are Unsplash+ premium content —
- *  embedding works on the free tier but commercial use technically
- *  requires an Unsplash+ subscription. Verify license before launch.
+ *  Slots 1 and 5 are Unsplash+ premium photos — covered by the founder's
+ *  active Unsplash+ subscription (verified 2026-04-29).
  */
 const HERO_W = 2400;
 
 export const HOME_HERO_IMAGES = [
-  // 1) Long-tail boats lined on a Thai beach, aerial view, emerald water
-  //    (Unsplash+ PREMIUM — license caveat above)
+  // 1) Long-tail boats lined on a Thai beach, aerial view, emerald water (Unsplash+)
   `https://plus.unsplash.com/premium_photo-1730035378488-4ce8edd1761b?w=${HERO_W}&q=85&auto=format&fit=crop`,
   // 2) Times Square NYC at night — neon billboards, pure urban motion
   `https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?w=${HERO_W}&q=85&auto=format&fit=crop`,
@@ -163,11 +161,11 @@ export const HOME_HERO_IMAGES = [
   `https://images.unsplash.com/photo-1776345021290-cdf1099204ca?w=${HERO_W}&q=85&auto=format&fit=crop`,
   // 4) Kyoto kimono pair with paper umbrellas in a stone alley — Japan iconic
   `https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?w=${HERO_W}&q=85&auto=format&fit=crop`,
-  // 5) Selfie at Trevi Fountain, Rome — joyful summer traveler
-  //    (Unsplash+ PREMIUM — license caveat above)
+  // 5) Selfie at Trevi Fountain, Rome — joyful summer traveler (Unsplash+)
   `https://plus.unsplash.com/premium_photo-1683141023289-49fdc6fa7506?w=${HERO_W}&q=85&auto=format&fit=crop`,
-  // 6) Travel planning flat-lay — map, glasses, notebook, hands
-  `https://images.unsplash.com/photo-1516546453174-5e1098a4b4af?w=${HERO_W}&q=85&auto=format&fit=crop`,
+  // 6) Family silhouettes against a sunset gradient — emotional travel moment
+  //    (replaces map+glasses flat-lay; founder pick 2026-04-29)
+  `https://images.unsplash.com/photo-1623501387383-1e19e63f17b9?w=${HERO_W}&q=85&auto=format&fit=crop`,
 ];
 
 /** Legacy single-image export retained so existing samples links don't break. */
