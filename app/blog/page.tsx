@@ -46,7 +46,7 @@ export default function BlogHome() {
               href="/plan/new"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--brand-primary)] text-white font-medium rounded-md hover:opacity-90 transition"
             >
-              Plan a trip — $4
+              Plan a trip
               <span aria-hidden="true">→</span>
             </Link>
           </div>

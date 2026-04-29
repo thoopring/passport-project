@@ -102,13 +102,13 @@ export default async function BlogPost({
             Plan a trip next.
           </h3>
           <p className="text-body-sm text-[var(--text-secondary)] mb-6">
-            Personalized itinerary in minutes. Hotel, transit, day-by-day stops, route map.
+            Personalized itinerary, sorted. Hotel, transit, day-by-day stops, route map.
           </p>
           <Link
             href="/plan/new"
             className="inline-flex items-center gap-2 bg-[var(--brand-primary)] text-white font-medium px-6 py-3 rounded-md hover:opacity-90 transition"
           >
-            Plan a trip — $4
+            Plan a trip
             <span aria-hidden="true">→</span>
           </Link>
         </div>

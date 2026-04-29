@@ -2,8 +2,7 @@
   "common": {
     "siteName": "gliddy",
     "currency": "USD",
-    "price": "$4",
-    "delivery": "Mobile link + PDF · Delivered 1–5 min after checkout",
+    "delivery": "Mobile link + PDF · delivered to your inbox",
     "back": "Back",
     "continue": "Continue",
     "skip": "Skip",
@@ -79,13 +78,13 @@
       "subtitle": "Restaurants, landmarks, cafés — anything you don't want to miss",
       "placeholder": "e.g. Meiji Jingu, Sushi Dai, Shibuya crossing"
     },
-    "submit": "Plan my trip — $4"
+    "submit": "Plan my trip"
   },
   "wizard": {
     "step1": {
-      "headline": "Your next trip, sorted in minutes.",
+      "headline": "Your next trip, sorted.",
       "subtitle": "Three quick questions and we handle the rest — hotel, airport transit, restaurants, and a route map you can carry on your phone.",
-      "badge": "$4 · Mobile link + PDF · Delivered in minutes",
+      "badge": "Mobile link + PDF · delivered to your inbox",
       "destinationLabel": "Where are you going?",
       "destinationPlaceholder": "e.g. Tokyo",
       "countryLabel": "Country",
@@ -98,12 +97,12 @@
       "budgetMidrangeHint": "4-star, sit-down meals",
       "budgetLuxury": "Luxury",
       "budgetLuxuryHint": "5-star, fine dining",
-      "submit": "Plan my trip — $4"
+      "submit": "Plan my trip"
     },
     "review": {
       "badge": "Ready to go",
       "headline": "Your {destination} plan, about to be built",
-      "subtitle": "We'll use your answers to put together the hotel, route, restaurants, and map. It lands in your inbox 1–5 minutes after checkout.",
+      "subtitle": "We'll use your answers to put together the hotel, route, restaurants, and map. It lands in your inbox shortly after checkout.",
       "summaryDestination": "Destination",
       "summaryDuration": "Duration",
       "summaryTraveler": "Travelers",
@@ -112,7 +111,7 @@
       "summaryInterests": "Interests",
       "summaryMustVisit": "Must visit",
       "summaryEmail": "Email",
-      "payButton": "Build my plan · $4",
+      "payButton": "Build my plan",
       "payAgainButton": "Retry checkout",
       "sampleButton": "See a sample first",
       "newTabNote": "Checkout opens in a new tab — keep this one open",
@@ -126,7 +125,7 @@
       "notesPlaceholder": "e.g. shellfish allergy, need an afternoon rest each day, prefer hotels with fewer stairs",
       "checkoutOpened": {
         "headline": "Checkout opened in a new tab",
-        "subtitle": "Once payment goes through, your plan lands in your inbox (typically 1–5 minutes).",
+        "subtitle": "Once payment goes through, your plan lands in your inbox.",
         "noPopup": "New tab didn't open?",
         "openAgain": "Open it manually"
       }
@@ -301,7 +300,7 @@
     "heroHeadline1": "Your next trip,",
     "heroHeadlineEm": "sorted.",
     "heroSubtitle": "Tell us your destination. We design the itinerary, recommend the hotel, plot the route — and deliver one travel-ready plan, built around you.",
-    "heroStatSpeed": "60s avg",
+    "heroStatSpeed": "Map included",
     "heroStatRating": "★ 4.8/5",
     "heroStatNoAccount": "No account",
     "heroStatOffline": "Offline PDF",
@@ -350,8 +349,8 @@
       "loading": "Loading…",
       "emptyTitle": "You haven't built a plan yet",
       "emptySubtitle": "When you do, we'll save it here so you can open it from any device.",
-      "emptyCta": "Build my first plan — $4",
-      "newPlanCta": "Build a new plan — $4",
+      "emptyCta": "Build my first plan",
+      "newPlanCta": "Build a new plan",
       "daysSuffix": "{count} days",
       "statusComplete": "Complete",
       "statusGenerating": "Generating",

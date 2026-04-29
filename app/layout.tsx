@@ -33,9 +33,9 @@ const fraunces = Fraunces({
 });
 
 const SITE_URL = "https://checkvisamap.com";
-const SITE_NAME = "gliddy — AI trip plans from $4";
+const SITE_NAME = "gliddy — AI trip plans, sorted";
 const SITE_DESCRIPTION =
-  "Tell us where you're going and we'll design the trip for you. Day-by-day itinerary, hotel pick matched to your airport, restaurants, and a route map. $4 per plan — no subscription.";
+  "Tell us where you're going and we'll design the trip for you. Day-by-day itinerary, hotel pick matched to your airport, restaurants, and a route map. No subscription, no account.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "gliddy — AI trip plans from $4",
+        alt: "gliddy — AI trip plans, sorted",
       },
     ],
   },

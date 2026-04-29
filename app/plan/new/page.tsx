@@ -7,12 +7,12 @@ import PlanWizardStep1 from "./PlanWizardStep1";
 export const metadata: Metadata = {
   title: "Build your trip plan — gliddy",
   description:
-    "Tell us about your trip and get a personalized day-by-day itinerary with hotel pick, airport transit, restaurants, and a route map. Mobile web link + PDF for $4.",
+    "Tell us about your trip and get a personalized day-by-day itinerary with hotel pick, airport transit, restaurants, and a route map. Mobile web link + PDF.",
   alternates: { canonical: "https://checkvisamap.com/plan/new" },
   openGraph: {
     title: "Build your trip plan — gliddy",
     description:
-      "Personalized day-by-day itinerary with map, hotel, restaurants. Mobile web link + PDF for $4.",
+      "Personalized day-by-day itinerary with map, hotel, restaurants. Mobile web link + PDF.",
     url: "https://checkvisamap.com/plan/new",
     type: "website",
   },

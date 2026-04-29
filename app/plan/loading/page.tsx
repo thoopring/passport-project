@@ -540,14 +540,14 @@ function LoadingInner() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-body-sm font-semibold text-[var(--text-primary)]">
-                  추천 쿠폰 -$1 자동 적용
+                  추천 쿠폰 자동 적용
                 </p>
                 <p className="text-caption text-[var(--text-secondary)]">
-                  결제 페이지에서 $4 → $3 으로 차감돼요
+                  결제 시 -$1 할인이 들어가요
                 </p>
               </div>
               <span className="text-body-md font-bold text-[var(--brand-primary)] tabular-nums shrink-0">
-                $3
+                -$1
               </span>
             </div>
           )}

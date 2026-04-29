@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "gliddy — AI trip plans",
     short_name: "gliddy",
     description:
-      "Personalized day-by-day trip itineraries with hotels, routes, and maps. $4 per plan, no subscription.",
+      "Personalized day-by-day trip itineraries with hotels, routes, and maps. No subscription, no account.",
     start_url: "/",
     display: "standalone",
     background_color: "#FAFAFA",

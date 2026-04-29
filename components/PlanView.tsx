@@ -108,8 +108,7 @@ export default async function PlanView({
                 {t("hotel")}
               </p>
               <h3 className="font-display text-[1.375rem] text-[var(--text-primary)] leading-snug">
-                {plan.hotel.name}{" "}
-                <span className="text-[var(--text-muted)] font-normal text-body-md">{plan.hotel.priceTier}</span>
+                {plan.hotel.name}
               </h3>
               <p className="text-body-sm text-[var(--text-secondary)] mt-1">
                 {plan.hotel.area} · {plan.hotel.address}

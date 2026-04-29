@@ -33,7 +33,7 @@ export default function TripPlannerCTA({
       >
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <p className="font-semibold text-body-sm">Plan your {destination} trip — $4</p>
+            <p className="font-semibold text-body-sm">Plan your {destination} trip</p>
             <p className="text-caption opacity-70 mt-0.5">
               Day-by-day itinerary, hotel, route map, PDF
             </p>
@@ -71,7 +71,7 @@ export default function TripPlannerCTA({
           </svg>
         </Link>
       </div>
-      <p className="text-caption opacity-60 mt-4">$4 · Mobile web link + PDF · No signup required</p>
+      <p className="text-caption opacity-60 mt-4">Mobile web link + PDF · No signup required</p>
     </div>
   );
 }

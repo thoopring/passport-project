@@ -2,8 +2,7 @@
   "common": {
     "siteName": "gliddy",
     "currency": "USD",
-    "price": "$4",
-    "delivery": "モバイルリンク + PDF · 決済から1〜5分でお届け",
+    "delivery": "モバイルリンク + PDF · メールでお届け",
     "back": "戻る",
     "continue": "次へ",
     "skip": "スキップ",
@@ -79,13 +78,13 @@
       "subtitle": "レストラン、名所、カフェなど自由にどうぞ",
       "placeholder": "例: 明治神宮、寿司大、渋谷スクランブル交差点"
     },
-    "submit": "旅程を作る — $4"
+    "submit": "旅程を作る"
   },
   "wizard": {
     "step1": {
-      "headline": "数分で完成する、あなたの旅程。",
+      "headline": "次の旅、すっきり整えます。",
       "subtitle": "簡単な3つの質問だけ。あとはホテル、空港アクセス、レストラン、スマホで持ち歩けるルートマップまで一気に作ります。",
-      "badge": "$4 · モバイルリンク + PDF · 1〜5分でお届け",
+      "badge": "モバイルリンク + PDF · メールでお届け",
       "destinationLabel": "どちらへ行かれますか?",
       "destinationPlaceholder": "例: 東京",
       "countryLabel": "国",
@@ -98,12 +97,12 @@
       "budgetMidrangeHint": "4つ星、レストラン",
       "budgetLuxury": "ラグジュアリー",
       "budgetLuxuryHint": "5つ星、ファインダイニング",
-      "submit": "旅程を作る — $4"
+      "submit": "旅程を作る"
     },
     "review": {
       "badge": "準備完了",
       "headline": "{destination} の旅程、いますぐお作りします",
-      "subtitle": "いただいた情報をもとに、ホテル・ルート・レストラン・地図までまとめてお作りします。決済後、1〜5分でメールに届きます。",
+      "subtitle": "いただいた情報をもとに、ホテル・ルート・レストラン・地図までまとめてお作りします。決済後、まもなくメールに届きます。",
       "summaryDestination": "目的地",
       "summaryDuration": "期間",
       "summaryTraveler": "同行者",
@@ -112,7 +111,7 @@
       "summaryInterests": "興味",
       "summaryMustVisit": "絶対行きたい場所",
       "summaryEmail": "メール",
-      "payButton": "プランを作る · $4",
+      "payButton": "プランを作る",
       "payAgainButton": "決済をやり直す",
       "sampleButton": "まずサンプルを見る",
       "newTabNote": "決済は新しいタブで開きます · このタブはそのままで大丈夫",
@@ -258,7 +257,7 @@
     "failedTitle": "申し訳ありません。旅程の生成に失敗しました。",
     "failedRefund": "返金処理いたします。お困りの場合は hello@checkvisamap.com までご連絡ください。",
     "generatingTitle": "旅程を作成中です",
-    "generatingSubtitle": "通常30〜60秒ほどかかります。準備ができ次第、リンクをメールでお送りします。",
+    "generatingSubtitle": "少々お待ちください。準備ができ次第、リンクをメールでお送りします。",
     "generatingRefresh": "更新",
     "paymentReceived": "決済完了",
     "wait": {
@@ -301,7 +300,7 @@
     "heroHeadline1": "次の旅、",
     "heroHeadlineEm": "整いました。",
     "heroSubtitle": "行き先を教えてください。日程を設計し、ホテルを選び、動線を引いて——持って出かけられる、一冊の旅程に仕立ててお届けします。",
-    "heroStatSpeed": "平均60秒",
+    "heroStatSpeed": "地図付き",
     "heroStatRating": "★ 4.8/5",
     "heroStatNoAccount": "登録不要",
     "heroStatOffline": "オフラインPDF",
@@ -350,8 +349,8 @@
       "loading": "読み込み中…",
       "emptyTitle": "まだプランを作っていません",
       "emptySubtitle": "最初の旅行プランを作るとここに保存され、どの端末からでも開けます。",
-      "emptyCta": "最初のプランを作る — $4",
-      "newPlanCta": "新しいプランを作る — $4",
+      "emptyCta": "最初のプランを作る",
+      "newPlanCta": "新しいプランを作る",
       "daysSuffix": "{count}日",
       "statusComplete": "完成",
       "statusGenerating": "生成中",

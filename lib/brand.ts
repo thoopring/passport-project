@@ -13,10 +13,10 @@ export const BRAND = {
   /** One-liner tagline used in metadata, footer chips, etc. */
   tagline: "Your next trip, sorted.",
   /** Product category/positioning used in metadata and about pages. */
-  descriptor: "AI trip plans · $4",
+  descriptor: "AI trip plans, sorted",
   /** Longer description for metadata (OG, Twitter, meta description). */
   longDescription:
-    "Tell us your destination and budget, and we'll design a trip for you. Day-by-day itinerary with hotel, airport transit, restaurants, and a route map. $4 per plan.",
+    "Tell us your destination and budget, and we'll design a trip for you. Day-by-day itinerary with hotel, airport transit, restaurants, and a route map.",
   /** Support email — shown everywhere users might need help. */
   supportEmail: "hello@checkvisamap.com",
   /** The operational domain users visit — unchanged during rebrand. */

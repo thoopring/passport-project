@@ -252,10 +252,7 @@ export default async function Home() {
                   {t("previewHotel")}
                 </p>
                 <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] leading-snug">
-                  {tokyo.plan.hotel.name}{" "}
-                  <span className="text-[var(--text-muted)] font-normal text-body-md">
-                    {tokyo.plan.hotel.priceTier}
-                  </span>
+                  {tokyo.plan.hotel.name}
                 </h3>
                 <p className="text-body-sm text-[var(--text-secondary)] mt-1">
                   {tokyo.plan.hotel.area} · {tokyo.plan.hotel.estimatedNightlyRate}

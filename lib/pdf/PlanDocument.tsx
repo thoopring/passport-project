@@ -202,7 +202,7 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
         <Text style={styles.h2}>Hotel</Text>
         <View style={styles.card}>
           <Text style={{ fontFamily: "Pretendard-Bold", fontSize: 13 }}>
-            {plan.hotel.name} <Text style={styles.muted}>· {plan.hotel.priceTier}</Text>
+            {plan.hotel.name}
           </Text>
           <Text style={styles.muted}>
             {plan.hotel.area} · {plan.hotel.address}

@@ -2,8 +2,7 @@
   "common": {
     "siteName": "gliddy",
     "currency": "USD",
-    "price": "4 $",
-    "delivery": "Lien mobile + PDF · Livré 1 à 5 minutes après paiement",
+    "delivery": "Lien mobile + PDF · livré par e-mail",
     "back": "Retour",
     "continue": "Suivant",
     "skip": "Passer",
@@ -79,13 +78,13 @@
       "subtitle": "Restaurants, lieux, cafés… ce que vous ne voulez pas manquer",
       "placeholder": "ex. Meiji Jingu, Sushi Dai, carrefour de Shibuya"
     },
-    "submit": "Planifier mon voyage — 4 $"
+    "submit": "Planifier mon voyage"
   },
   "wizard": {
     "step1": {
-      "headline": "Votre prochain voyage, prêt en quelques minutes.",
+      "headline": "Votre prochain voyage, fin prêt.",
       "subtitle": "Trois questions rapides et on s'occupe du reste — hôtel, transport depuis l'aéroport, restaurants et carte du parcours à emporter sur le téléphone.",
-      "badge": "4 $ · Lien mobile + PDF · Livré en quelques minutes",
+      "badge": "Lien mobile + PDF · livré par e-mail",
       "destinationLabel": "Où partez-vous ?",
       "destinationPlaceholder": "ex. Tokyo",
       "countryLabel": "Pays",
@@ -98,12 +97,12 @@
       "budgetMidrangeHint": "4 étoiles, restaurants",
       "budgetLuxury": "Luxe",
       "budgetLuxuryHint": "5 étoiles, gastronomie",
-      "submit": "Planifier mon voyage — 4 $"
+      "submit": "Planifier mon voyage"
     },
     "review": {
       "badge": "Tout est prêt",
       "headline": "Votre programme pour {destination}, on s'y met",
-      "subtitle": "On utilise vos réponses pour assembler l'hôtel, le parcours, les restaurants et la carte. Tout arrive dans votre boîte mail 1 à 5 minutes après le paiement.",
+      "subtitle": "On utilise vos réponses pour assembler l'hôtel, le parcours, les restaurants et la carte. Tout arrive dans votre boîte mail peu après le paiement.",
       "summaryDestination": "Destination",
       "summaryDuration": "Durée",
       "summaryTraveler": "Voyageurs",
@@ -112,7 +111,7 @@
       "summaryInterests": "Centres d'intérêt",
       "summaryMustVisit": "Incontournables",
       "summaryEmail": "E-mail",
-      "payButton": "Créer mon plan · 4 $",
+      "payButton": "Créer mon plan",
       "payAgainButton": "Réessayer le paiement",
       "sampleButton": "Voir un exemple",
       "newTabNote": "Le paiement s'ouvre dans un nouvel onglet — gardez celui-ci ouvert",
@@ -126,7 +125,7 @@
       "notesPlaceholder": "ex. allergie aux fruits de mer, sieste l'après-midi, hôtels avec peu d'escaliers",
       "checkoutOpened": {
         "headline": "Paiement ouvert dans un nouvel onglet",
-        "subtitle": "Une fois le paiement validé, votre plan arrive par e-mail (généralement 1 à 5 minutes).",
+        "subtitle": "Une fois le paiement validé, votre plan arrive par e-mail.",
         "noPopup": "Le nouvel onglet ne s'est pas ouvert ?",
         "openAgain": "Ouvrir manuellement"
       }
@@ -301,7 +300,7 @@
     "heroHeadline1": "Votre prochain voyage,",
     "heroHeadlineEm": "ficelé.",
     "heroSubtitle": "Donnez-nous votre destination. Nous composons l'itinéraire, choisissons l'hôtel, traçons la route — et vous remettons un plan complet, prêt à voyager.",
-    "heroStatSpeed": "60 s en moyenne",
+    "heroStatSpeed": "Carte incluse",
     "heroStatRating": "★ 4.8/5",
     "heroStatNoAccount": "Sans compte",
     "heroStatOffline": "PDF hors ligne",
@@ -350,8 +349,8 @@
       "loading": "Chargement…",
       "emptyTitle": "Vous n'avez pas encore de plan",
       "emptySubtitle": "Dès que vous en créez un, on le garde ici — accessible depuis n'importe quel appareil.",
-      "emptyCta": "Créer mon premier plan — 4 $",
-      "newPlanCta": "Créer un nouveau plan — 4 $",
+      "emptyCta": "Créer mon premier plan",
+      "newPlanCta": "Créer un nouveau plan",
       "daysSuffix": "{count} jours",
       "statusComplete": "Terminé",
       "statusGenerating": "En cours",

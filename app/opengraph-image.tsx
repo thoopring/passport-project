@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "gliddy — AI trip plans from $4";
+export const alt = "gliddy — AI trip plans, sorted";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -72,7 +72,7 @@ export default async function Image() {
             fontWeight: 600,
           }}
         >
-          $4 per plan · no subscription
+          One plan, no subscription
         </div>
       </div>
     ),

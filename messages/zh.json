@@ -2,8 +2,7 @@
   "common": {
     "siteName": "gliddy",
     "currency": "USD",
-    "price": "$4",
-    "delivery": "移动链接 + PDF · 付款后 1~5 分钟送达",
+    "delivery": "移动链接 + PDF · 邮件送达",
     "back": "返回",
     "continue": "下一步",
     "skip": "跳过",
@@ -79,13 +78,13 @@
       "subtitle": "餐厅、景点、咖啡馆…… 自由填写",
       "placeholder": "例如:明治神宫、寿司大、涩谷十字路口"
     },
-    "submit": "生成我的行程 — $4"
+    "submit": "生成我的行程"
   },
   "wizard": {
     "step1": {
-      "headline": "几分钟就完成的旅行规划。",
+      "headline": "下一趟旅行,帮您安排妥当。",
       "subtitle": "回答三个简单问题就好。酒店、机场交通、餐厅,以及可装在手机里的路线图,我们一并搞定。",
-      "badge": "$4 · 移动链接 + PDF · 1~5 分钟送达",
+      "badge": "移动链接 + PDF · 邮件送达",
       "destinationLabel": "您要去哪里?",
       "destinationPlaceholder": "例如:东京",
       "countryLabel": "国家",
@@ -98,12 +97,12 @@
       "budgetMidrangeHint": "四星酒店、餐厅",
       "budgetLuxury": "豪华",
       "budgetLuxuryHint": "五星酒店、精致餐饮",
-      "submit": "生成我的行程 — $4"
+      "submit": "生成我的行程"
     },
     "review": {
       "badge": "准备就绪",
       "headline": "{destination} 的行程,马上为您生成",
-      "subtitle": "根据您填写的信息,酒店·路线·餐厅·地图一并搞定。付款后 1~5 分钟通过邮件送达。",
+      "subtitle": "根据您填写的信息,酒店·路线·餐厅·地图一并搞定。付款后行程将很快通过邮件送达。",
       "summaryDestination": "目的地",
       "summaryDuration": "天数",
       "summaryTraveler": "同行",
@@ -112,7 +111,7 @@
       "summaryInterests": "兴趣",
       "summaryMustVisit": "必去地点",
       "summaryEmail": "邮箱",
-      "payButton": "生成行程 · $4",
+      "payButton": "生成行程",
       "payAgainButton": "重新支付",
       "sampleButton": "先看看示例",
       "newTabNote": "支付将在新标签页打开 · 请保留当前标签页",
@@ -126,7 +125,7 @@
       "notesPlaceholder": "例如:海鲜过敏、每天需要午休、希望选楼梯少的酒店",
       "checkoutOpened": {
         "headline": "已打开支付标签页",
-        "subtitle": "付款完成后,行程将通过邮件发送(通常 1~5 分钟)。",
+        "subtitle": "付款完成后,行程将通过邮件发送给您。",
         "noPopup": "新标签页未打开?",
         "openAgain": "手动打开"
       }
@@ -258,7 +257,7 @@
     "failedTitle": "抱歉,行程生成失败。",
     "failedRefund": "我们将处理退款。如需帮助,请发邮件至 hello@checkvisamap.com。",
     "generatingTitle": "正在生成您的行程",
-    "generatingSubtitle": "通常需要 30~60 秒。准备好后我们会立即通过邮件发送链接。",
+    "generatingSubtitle": "请稍候。准备好后我们会立即通过邮件发送链接。",
     "generatingRefresh": "刷新",
     "paymentReceived": "已收到付款",
     "wait": {
@@ -301,7 +300,7 @@
     "heroHeadline1": "下一段旅程,",
     "heroHeadlineEm": "搞定了。",
     "heroSubtitle": "告诉我们目的地。我们设计行程、推荐酒店、规划路线 —— 做成一份能带着上路的完整行程交给您。",
-    "heroStatSpeed": "平均 60 秒",
+    "heroStatSpeed": "含路线地图",
     "heroStatRating": "★ 4.8/5",
     "heroStatNoAccount": "无需账号",
     "heroStatOffline": "离线 PDF",
@@ -350,8 +349,8 @@
       "loading": "加载中…",
       "emptyTitle": "您还没有创建行程",
       "emptySubtitle": "创建第一份行程后,我们会保存在这里,任何设备都能再次打开。",
-      "emptyCta": "创建第一份行程 — $4",
-      "newPlanCta": "创建新行程 — $4",
+      "emptyCta": "创建第一份行程",
+      "newPlanCta": "创建新行程",
       "daysSuffix": "{count}天",
       "statusComplete": "已完成",
       "statusGenerating": "生成中",

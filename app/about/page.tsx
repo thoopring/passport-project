@@ -50,8 +50,8 @@ export default function AboutPage() {
             You get a link you can open on your phone, and a PDF you can keep offline.
           </p>
           <p>
-            <strong>One plan is $4.</strong> No signup, no subscription. If the plan fails or
-            the AI returns something wrong, we refund you.
+            <strong>One plan, one fixed price.</strong> No signup, no subscription. If the plan
+            fails or the AI returns something wrong, we refund you.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function AboutPage() {
             href="/plan/new"
             className="inline-flex items-center gap-2 bg-[var(--brand-primary)] text-white font-medium px-6 py-3 rounded-md hover:opacity-90 transition"
           >
-            Plan a trip — $4
+            Plan a trip
             <span aria-hidden="true">→</span>
           </Link>
           <p className="text-caption text-[var(--text-muted)] mt-6">
