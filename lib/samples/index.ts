@@ -54,8 +54,10 @@ export const SAMPLE_PLANS: SampleMeta[] = [
     tagline: "Three days in Japan's kitchen — takoyaki, okonomiyaki, and one Kyoto day.",
     audience: "Solo · Foodie · Midrange",
     heroColor: "#F4A261",
-    // Dotonbori canal lit at night — neon-lined, signature Osaka
-    heroImage: UNSPLASH("photo-1554189097-ffe88e998a2b"),
+    // Tsutenkaku Tower at twilight, framed by traditional Shinsekai shop signs
+    // (replaces photo-1554189097 which Unsplash silently swapped to a pink
+    // sunset photo unrelated to Osaka — verified visually on 2026-04-29)
+    heroImage: UNSPLASH("photo-1590559899731-a382839e5549"),
   },
   {
     slug: "seoul-3d-foodie",
@@ -153,8 +155,10 @@ export const HOME_HERO_IMAGES = [
   HERO("photo-1542051841857-5f90071e7989"),
   // Bali rice terraces at dawn — lush emerald greens, dynamic peaceful
   HERO("photo-1537996194471-e657df975ab4"),
-  // Dotonbori canal at night — neon-lined urban motion, signature Osaka
-  HERO("photo-1554189097-ffe88e998a2b"),
+  // NYC skyline at golden hour — sharp urban motion, replaces broken
+  // Dotonbori URL (Unsplash silently rotated photo-1554189097 to an
+  // unrelated pink sunset, no longer Osaka)
+  HERO("photo-1480714378408-67cf0d13bc1b"),
   // Patagonia mountains — adventure, wide vista, fresh atmosphere
   HERO("photo-1486870591958-9b9d0d1dda99"),
   // Eiffel Tower at night — iconic urban magic, gold-lit

@@ -60,7 +60,16 @@ export default async function Home() {
             <h1 className="font-fraunces font-semibold text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.0] tracking-[-0.022em] mb-6">
               {t("heroHeadline1")}
               <br />
-              <em className="not-italic text-[var(--brand-primary)]">{t("heroHeadlineEm")}</em>
+              {/* The hero EM is THE flourish moment — italic Fraunces with
+                  swash stylistic alternates (ss03) gives the headline a
+                  hand-set editorial flourish, more anticipation than the
+                  earlier flat colored text. */}
+              <em
+                className="italic font-medium text-[var(--brand-primary)] tracking-[-0.025em]"
+                style={{ fontFeatureSettings: '"ss01", "ss02", "ss03"' }}
+              >
+                {t("heroHeadlineEm")}
+              </em>
             </h1>
             <p className="text-body-lg text-[var(--text-secondary)] max-w-md mb-8">
               {t("heroSubtitle")}
