@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why we built gliddy — an AI trip planner that writes a real itinerary in minutes.",
+    "Why we built gliddy — an AI trip planner that writes a real itinerary, sorted.",
   alternates: { canonical: "https://checkvisamap.com/about" },
 };
 
@@ -15,7 +15,7 @@ const aboutSchema = {
   "@type": "AboutPage",
   name: "About gliddy",
   description:
-    "Why we built gliddy — an AI trip planner that writes a real itinerary in minutes.",
+    "Why we built gliddy — an AI trip planner that writes a real itinerary, sorted.",
   url: "https://checkvisamap.com/about",
   mainEntity: { "@type": "Organization", name: "gliddy", email: "hello@checkvisamap.com" },
 };
@@ -34,7 +34,7 @@ export default function AboutPage() {
           About
         </p>
         <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-10 leading-[1.04]">
-          Trip planning should take minutes, not weekends.
+          Trip planning shouldn&apos;t eat your weekend.
         </h1>
 
         <div className="prose prose-lg max-w-none text-[var(--text-secondary)] prose-p:leading-relaxed prose-strong:text-[var(--text-primary)]">
