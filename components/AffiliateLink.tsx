@@ -1,5 +1,8 @@
 "use client";
 
+import { useLocale } from "next-intl";
+import { trackLegacy } from "../lib/analytics";
+
 interface AffiliateLinkProps {
   href: string;
   children: React.ReactNode;
@@ -8,23 +11,16 @@ interface AffiliateLinkProps {
   label: string;
 }
 
-declare global {
-  interface Window {
-    gtag: (...args: unknown[]) => void;
-  }
-}
-
 export default function AffiliateLink({ href, children, className = "", category, label }: AffiliateLinkProps) {
+  const locale = useLocale();
   const handleClick = () => {
-    // GA4 custom event for affiliate click tracking
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "affiliate_click", {
-        event_category: category,
-        event_label: label,
-        affiliate_url: href,
-        value: 1,
-      });
-    }
+    trackLegacy("affiliate_click", {
+      event_category: category,
+      event_label: label,
+      affiliate_url: href,
+      value: 1,
+      locale,
+    });
   };
 
   return (

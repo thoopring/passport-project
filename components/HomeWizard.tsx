@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { searchCities, getCityDisplayName, getCityDisplayCountry } from "../lib/cities";
+import { analytics } from "../lib/analytics";
 import type { Locale } from "../i18n/locales";
 
 type StepKey =
@@ -56,11 +57,7 @@ function mapTravelerType(u: TravelerUI | null): string | null {
   return null;
 }
 
-declare global {
-  interface Window {
-    gtag: (...args: unknown[]) => void;
-  }
-}
+// gtag/dataLayer types are declared in lib/analytics.ts
 
 export default function HomeWizard() {
   const t = useTranslations("homeWizard");
@@ -134,12 +131,11 @@ export default function HomeWizard() {
     const mv = answers.mustVisit.trim();
     if (mv) params.set("mustVisit", mv);
 
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "plan_wizard_started", {
-        event_category: "trip_planner",
-        event_label: answers.destination,
-      });
-    }
+    analytics.wizardStarted({
+      locale,
+      destination: answers.destination,
+      source: "home",
+    });
 
     router.push(`/plan/loading?${params.toString()}`);
   }

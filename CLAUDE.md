@@ -91,7 +91,32 @@ npm run lint     # ESLint check
 `ANTHROPIC_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
 `LEMON_SQUEEZY_API_KEY`, `LEMON_SQUEEZY_STORE_ID`, `LEMON_SQUEEZY_VARIANT_ID`,
 `LEMON_SQUEEZY_WEBHOOK_SECRET`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`,
-`MAPBOX_TOKEN` (or `NEXT_PUBLIC_MAPBOX_TOKEN`), `NEXT_PUBLIC_SITE_URL`
+`MAPBOX_TOKEN` (or `NEXT_PUBLIC_MAPBOX_TOKEN`), `NEXT_PUBLIC_SITE_URL`,
+`NEXT_PUBLIC_POSTHOG_KEY` (optional — graceful no-op when unset)
+
+## Analytics
+Locale-tagged events fire to **GA4 (`G-3LF8H03QZG`) + PostHog** through a
+single typed wrapper at `lib/analytics.ts`. Every event carries a `locale`
+property (super-property registered on PostHog) so funnels can be sliced
+by language. PostHog is initialized in `components/AnalyticsProvider.tsx`,
+mounted inside `NextIntlClientProvider` in `app/layout.tsx`.
+
+Catalog (typed in `lib/analytics.ts:AnalyticsEvents`):
+- `page_view` — fires on every route change
+- `wizard_started` — Home wizard or `/plan/new` form first interaction
+- `checkout_started` — user clicks "Build my plan" on `/plan/loading`
+- `checkout_completed` — buyer lands on completed `/plan/[id]` (deduped via localStorage)
+- `account_signup` — first-ever magic-link verification on `/auth/callback`
+- `account_visit` — `/account` page load (with `has_plans`, `credits` count)
+- `referral_shared` — copy-link from `<ShareReferralCard>`
+- `credit_used` — promo code or referral credit applied at checkout
+
+Use the typed helpers from `lib/analytics.ts`:
+```ts
+import { analytics } from "@/lib/analytics";
+analytics.wizardStarted({ locale, destination, source: "home" });
+```
+Legacy events (affiliate_click, plan_draft_created) flow through `trackLegacy()`.
 
 ## Content Strategy
 - Sample plans in `lib/samples/*.ts` are the AI quality bar (the generator should

@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import type { BudgetTier } from "../../../types/trip-plan";
+import { analytics } from "../../../lib/analytics";
 
 interface PlanWizardStep1Props {
   defaultDestination: string;
@@ -28,6 +29,7 @@ export default function PlanWizardStep1({
 }: PlanWizardStep1Props) {
   const router = useRouter();
   const t = useTranslations("wizard.step1");
+  const locale = useLocale();
   const [destination, setDestination] = useState(defaultDestination);
   const [destinationCountry, setDestinationCountry] = useState(defaultCountry);
   const [durationDays, setDurationDays] = useState(5);
@@ -52,12 +54,11 @@ export default function PlanWizardStep1({
     if (defaultOrigin) params.set("origin", defaultOrigin);
     if (defaultPromoCode) params.set("promo", defaultPromoCode);
 
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "plan_wizard_started", {
-        event_category: "trip_planner",
-        event_label: destination,
-      });
-    }
+    analytics.wizardStarted({
+      locale,
+      destination,
+      source: "wizard_page",
+    });
 
     router.push(`/plan/loading?${params.toString()}`);
   };

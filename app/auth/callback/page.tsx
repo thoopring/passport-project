@@ -2,10 +2,11 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { getSupabaseBrowser } from "../../../lib/supabase-browser";
+import { analytics, identifyAnalyticsUser } from "../../../lib/analytics";
 
 /**
  * Magic-link callback. Supabase appends `code` (PKCE) or `access_token`
@@ -28,6 +29,7 @@ function CallbackInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("account.callback");
+  const locale = useLocale();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -55,6 +57,17 @@ function CallbackInner() {
         }
         const { data } = await supabase.auth.getSession();
         if (data.session) {
+          // First-time signup detection: created_at within ~30s of last_sign_in_at
+          // means this is a brand-new user account. Tracked once per signup.
+          const user = data.session.user;
+          identifyAnalyticsUser(user.id, { email: user.email });
+          if (user.created_at && user.last_sign_in_at) {
+            const created = new Date(user.created_at).getTime();
+            const lastSignIn = new Date(user.last_sign_in_at).getTime();
+            if (Math.abs(lastSignIn - created) < 30_000) {
+              analytics.accountSignup({ locale });
+            }
+          }
           router.replace(safeNext);
         } else {
           setError(t("sessionMissing"));
@@ -64,7 +77,7 @@ function CallbackInner() {
       }
     };
     finish();
-  }, [router, searchParams, t]);
+  }, [router, searchParams, t, locale]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">

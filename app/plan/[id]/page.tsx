@@ -6,6 +6,7 @@ import PlanView from "../../../components/PlanView";
 import PostPaymentWait from "../../../components/PostPaymentWait";
 import ShareReferralCard from "../../../components/ShareReferralCard";
 import SavePlanCta from "../../../components/SavePlanCta";
+import CheckoutCompletedTracker from "../../../components/CheckoutCompletedTracker";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { getOrCreateReferralCode } from "../../../lib/referrals";
@@ -87,16 +88,23 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
   }
 
   return (
-    <PlanView
-      plan={record.plan}
-      downloadHref={`/api/plan/${id}/pdf`}
-      bottomCta={
-        <div className="space-y-4">
-          <SavePlanCta planEmail={record.email} planId={id} />
-          {shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
-        </div>
-      }
-    />
+    <>
+      <CheckoutCompletedTracker
+        planId={id}
+        destination={record.plan.destination}
+        paymentId={record.payment_id}
+      />
+      <PlanView
+        plan={record.plan}
+        downloadHref={`/api/plan/${id}/pdf`}
+        bottomCta={
+          <div className="space-y-4">
+            <SavePlanCta planEmail={record.email} planId={id} />
+            {shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
+          </div>
+        }
+      />
+    </>
   );
 }
 

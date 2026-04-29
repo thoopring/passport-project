@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CreditCelebration from "../../components/CreditCelebration";
 import { getSupabaseBrowser } from "../../lib/supabase-browser";
+import { analytics } from "../../lib/analytics";
 
 interface PlanRow {
   id: string;
@@ -59,6 +60,11 @@ export default function AccountPage() {
         const j = await res.json();
         setPlans(j.plans);
         setCredits(Array.isArray(j.credits) ? j.credits : []);
+        analytics.accountVisit({
+          locale,
+          has_plans: Array.isArray(j.plans) && j.plans.length > 0,
+          credits: Array.isArray(j.credits) ? j.credits.length : 0,
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load");
       } finally {
@@ -66,7 +72,7 @@ export default function AccountPage() {
       }
     };
     load();
-  }, [router]);
+  }, [router, locale]);
 
   const signOut = async () => {
     await getSupabaseBrowser().auth.signOut();

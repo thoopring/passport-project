@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { analytics } from "../lib/analytics";
 
 interface ShareReferralCardProps {
   shareUrl: string;
@@ -15,12 +16,20 @@ interface ShareReferralCardProps {
  */
 export default function ShareReferralCard({ shareUrl }: ShareReferralCardProps) {
   const t = useTranslations("plan");
+  const locale = useLocale();
   const [copied, setCopied] = useState(false);
+
+  const fireShared = (method: "copy" | "native_share") => {
+    // Pull plan id out of the share URL — last segment of /r/{code} or /plan/{id}.
+    const planId = shareUrl.split("/").filter(Boolean).pop() || "unknown";
+    analytics.referralShared({ locale, plan_id: planId, method });
+  };
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
+      fireShared("copy");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       const textarea = document.createElement("textarea");
@@ -32,6 +41,7 @@ export default function ShareReferralCard({ shareUrl }: ShareReferralCardProps) 
       try {
         document.execCommand("copy");
         setCopied(true);
+        fireShared("copy");
         setTimeout(() => setCopied(false), 2000);
       } catch {
         // Silent fail

@@ -17,6 +17,7 @@
     "nanoid": "^5.1.7",
     "next": "16.1.3",
     "next-intl": "^4.9.1",
+    "posthog-js": "^1.372.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-map-gl": "^8.1.0",

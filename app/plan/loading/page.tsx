@@ -2,7 +2,8 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { analytics, trackLegacy } from "../../../lib/analytics";
 import LaborIllusionLog from "../../../components/LaborIllusionLog";
 import TravelTrivia from "../../../components/TravelTrivia";
 import QuestionPopup, { type QuestionDef } from "../../../components/QuestionPopup";
@@ -50,11 +51,7 @@ type EditableField =
   | "mustVisit"
   | "email";
 
-declare global {
-  interface Window {
-    gtag: (...args: unknown[]) => void;
-  }
-}
+// gtag/dataLayer types are declared in lib/analytics.ts
 
 function LoadingInner() {
   const router = useRouter();
@@ -63,6 +60,7 @@ function LoadingInner() {
   const tp = useTranslations("wizard.popup");
   const tr = useTranslations("wizard.review");
   const th = useTranslations("homeWizard");
+  const locale = useLocale();
 
   const [data, setData] = useState<WizardData>(() => {
     const rawTravelerType = searchParams.get("travelerType");
@@ -230,12 +228,11 @@ function LoadingInner() {
       const { id } = await draftRes.json();
       setDraftPlanId(id);
 
-      if (typeof window !== "undefined" && typeof window.gtag === "function") {
-        window.gtag("event", "plan_draft_created", {
-          event_category: "trip_planner",
-          event_label: data.destination,
-        });
-      }
+      trackLegacy("plan_draft_created", {
+        event_category: "trip_planner",
+        event_label: data.destination,
+        locale,
+      });
 
       const checkoutRes = await fetch("/api/checkout", {
         method: "POST",
@@ -248,11 +245,24 @@ function LoadingInner() {
       }
       const { url } = await checkoutRes.json();
 
-      if (typeof window !== "undefined" && typeof window.gtag === "function") {
-        window.gtag("event", "begin_checkout", {
-          event_category: "trip_planner",
-          value: 4,
-          currency: "USD",
+      analytics.checkoutStarted({
+        locale,
+        destination: data.destination,
+        promo: data.promoCode,
+        value: 4,
+        currency: "USD",
+      });
+      if (data.promoCode) {
+        analytics.creditUsed({
+          locale,
+          plan_id: id,
+          type: "promo",
+        });
+      } else if (hasReferralCoupon) {
+        analytics.creditUsed({
+          locale,
+          plan_id: id,
+          type: "referral_credit",
         });
       }
 
