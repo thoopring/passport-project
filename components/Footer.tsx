@@ -11,7 +11,7 @@ export default function Footer() {
             <BrandMark size={22} />
             <BetaBadge variant="regular" />
             <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
-              AI trip plans · $4
+              AI trip plans
             </span>
           </div>
 

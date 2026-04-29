@@ -132,23 +132,33 @@ export const SAMPLE_PLANS: SampleMeta[] = [
   },
 ];
 
-/** Hero photos for the home rotating banner. 6 photos alternating
+/** Hero photos for the home rotating banner. The cross-fading quatrefoil is
+ *  THE site's signature, so the photos must be sharp, dynamic, and
+ *  exciting — never blurry, gloomy, or static. 6 photos alternating
  *  peaceful destinations and urban motion to create rhythm. Cross-fade
- *  every ~3s with a Ken Burns zoom (1.0 → 1.12) for a sense of speed and
- *  "your next trip is right now" energy. */
+ *  every ~3s with a Ken Burns zoom (1.0 → 1.12).
+ *
+ *  Source URLs use w=2400 (overrides the 1600 default) so retina displays
+ *  on 520×520 quatrefoils get crisp 2x detail. Each ID below was live-
+ *  verified 200 OK on 2026-04-29.
+ */
+const HOME_HERO_W = 2400;
+const HERO = (id: string) =>
+  `https://images.unsplash.com/${id}?w=${HOME_HERO_W}&q=85&auto=format&fit=crop`;
+
 export const HOME_HERO_IMAGES = [
-  // Santorini blue domes — the wanderlust postcard
-  UNSPLASH("photo-1530841377377-3ff06c0ca713"),
+  // Mt Fuji + cherry blossoms — peaceful nature, sharp & iconic Japan
+  HERO("photo-1469854523086-cc02fe5d8800"),
   // Shibuya scramble at twilight — neon, motion, the iconic Tokyo image
-  UNSPLASH("photo-1542051841857-5f90071e7989"),
-  // Tropical beach with palm trees and turquoise water
-  UNSPLASH("photo-1507525428034-b723cf961d3e"),
-  // Dotonbori canal lit at night — neon-lined, signature Osaka motion
-  UNSPLASH("photo-1554189097-ffe88e998a2b"),
-  // Couple looking at sunset cliff view
-  UNSPLASH("photo-1488085061387-422e29b40080"),
-  // Hot air balloons at Cappadocia — magic-of-travel feel
-  UNSPLASH("photo-1641128324972-af3212f0f6bd"),
+  HERO("photo-1542051841857-5f90071e7989"),
+  // Bali rice terraces at dawn — lush emerald greens, dynamic peaceful
+  HERO("photo-1537996194471-e657df975ab4"),
+  // Dotonbori canal at night — neon-lined urban motion, signature Osaka
+  HERO("photo-1554189097-ffe88e998a2b"),
+  // Patagonia mountains — adventure, wide vista, fresh atmosphere
+  HERO("photo-1486870591958-9b9d0d1dda99"),
+  // Eiffel Tower at night — iconic urban magic, gold-lit
+  HERO("photo-1502602898657-3e91760cbb34"),
 ];
 
 /** Legacy single-image export retained so existing samples links don't break. */

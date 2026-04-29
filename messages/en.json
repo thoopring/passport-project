@@ -295,8 +295,8 @@
     "saveSwitchButton": "Switch account"
   },
   "home": {
-    "metaTitle": "Your next trip, sorted — $4",
-    "metaDescription": "Tell us where you're going. We draft the itinerary, pick the hotel, and map the route — delivered as a real plan in about a minute. $4 each, no subscription.",
+    "metaTitle": "Your next trip, sorted",
+    "metaDescription": "Tell us where you're going. We design the itinerary, pick the hotel, and map the route — handed back as a real plan you'll actually travel with. No subscription, no account required.",
     "heroLiveChip": "Live · plans being built right now",
     "heroHeadline1": "Your next trip,",
     "heroHeadlineEm": "sorted.",
