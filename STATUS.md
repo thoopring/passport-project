@@ -1,144 +1,199 @@
-# 피벗 진행 상황 (Pivot Status)
+# Status — gliddy launch prep
 
-> 터미널이 끊기거나 새 세션을 시작할 때 어디까지 했는지 빠르게 파악하는 라이브 스냅샷.
->
-> **마지막 업데이트:** 2026-04-23
-> **워킹 트리:** clean (정리 완료)
+> **Last updated:** 2026-04-29
+> **Branch:** main
+> **Latest commit:** `4c8b3f4` (3 new EN samples — Reykjavik / Cusco / Dubai)
+> **Working tree:** clean
 
----
-
-## ✅ 코드 작업 — P0~P15까지 완료
-
-### 1차 피벗 (P0~P13) — 트립 플래너 런칭
-14개 페이즈 shipped. 세부는 `PIVOT_PLAN.md` + git log 참조.
-
-### 2차 피벗 (P14) — 디자인 리뉴얼 + 비자 완전 삭제 (라운드 1~2)
-
-| 커밋 | 내용 |
-|---|---|
-| `9fda809` P14a | **실패 라운드 1**: 크림 + Fraunces 세리프 에디토리얼 (사진 없이 → 엘레강스만 있고 감성 훅 없음) |
-| `c1ff1ac` P14b | `/visa/*` 1500+ 라우트, visa_data 24K줄, 비자 블로그 전체 **삭제** |
-| `ac59af5` P14c | 상세 페이지 shell polish |
-| `89eb88b` P14d-1 | **실패 라운드 2**: 흰색 + 코발트 + Inter 유틸 미니멀 (너무 일반적, 개성 없음) |
-| `f5e2853` P14d-2 | font-display 클래스 cleanup |
-
-### 3차 피벗 (P15) — **Layla-lean 디자인 시스템 확정** (현재)
-
-사용자가 **Layla.ai + Wanderlog** 레퍼런스 보고 방향 확정. 실패 원인 분석:
-크림 자체가 문제가 아니라 **사진이 없어서** 공허했음. Layla 레시피 =
-크림 배경 + 세리프 디스플레이 + **큰 여행 사진** + 따뜻한 산호 악센트.
-
-| 커밋 | 내용 |
-|---|---|
-| (이번) P15 | **Layla-lean** 디자인 시스템 + 홈 포토 히어로 + 샘플 카드 사진 + PlanView 세리프 + `DESIGN.md` 작성 |
-
-### 디자인 시스템 (현재)
-
-- **배경**: 웜 페이퍼 `#F5EFE4`
-- **텍스트**: 잉크 `#141517`, 뮤트 `#6E6B64`
-- **악센트**: 버밀리언 `#D4442B` (한 화면 1~2회)
-- **디스플레이 폰트**: **Instrument Serif** (Google Fonts, 무료)
-- **본문 폰트**: Inter
-- **사진**: Unsplash, `next/image` 최적화
-- **다크모드 없음**
-- **자세한 건 `DESIGN.md`**
-
-### 구조
-
-- **홈**: 세리프 헤드라인 + 위저드 폼 + **큰 여행 사진 배너** + 3 샘플 카드(사진 포함)
-- **Samples**: 4카드 그리드, 각 카드 목적지 사진
-- **Sample/[slug]**: 목적지 21:9 히어로 사진 + `PlanView`
-- **Plan/[id]**: `PlanView` (사진 없음 — 유료 플랜은 아직 목적지→사진 매핑 없음, v1.1)
-- **About/Privacy/Disclaimer/Blog**: 세리프 헤드라인 + Inter 본문
-
-### 빌드 상태
-
-- 22 라우트, 빌드 클린
-- 린트 클린
+Quick-resume document. After /compact or new session, read this first to
+understand current state, decisions made, and next priority action.
 
 ---
 
-## ⏳ 다음 단계 — 사용자(MinSu) 차례
+## 🎯 Current Phase: Launch Prep (post-design, pre-deploy)
 
-**디자인 시스템 확정 + 결제/생성 아키텍처 확정**. 런치 준비만 남음.
+Design + content are essentially complete. The remaining work is
+operational (deploy, analytics, email validation) plus 5-locale
+translations of the 3 newest samples.
 
-### 비동기 전환 시도 회고 (2026-04-22~23)
-
-Vercel Pro 비용 $20/월 피하려고 **Supabase Edge Function으로 생성 이관** 시도 →
-Free tier 150s wall clock에 막힘 (한국어 3일 플랜 실측 137s + optimize 15~20s = 155s).
-Supabase Pro도 $25/월이라 경제성 없음. **Vercel Pro로 복귀, 결제 완료.**
-자세한 회고는 `docs/MIGRATE_TO_ASYNC.md` 상단 노트. Edge Function 스캐폴딩은
-v1.1 Supabase Pro 업그레이드 시 재활용 가능하도록 코드 보관 (미배포).
-
-### 현재 생성 경로
-`LS webhook → app/api/webhooks/lemon-squeezy (maxDuration=300) → lib/generator/claude.ts`
-— Vercel Pro에서 300초 예산 안에 동기 생성. 코드는 처음부터 있었던 경로.
-
-완료:
-- [x] Anthropic API 키
-- [x] Supabase 프로젝트 + 마이그레이션 (0003 fix `b3decf0`)
-- [x] `.env.local` 부분 생성
-- [x] LemonSqueezy 스토어 + $4 상품 + API key
-- [x] 초기 Vercel 배포 (각 커밋 자동 빌드)
-- [x] **Vercel Pro 업그레이드** ← 2026-04-23 완료
-- [x] **TS 빌드 수정**: `tsconfig.json`에서 `supabase/functions/**` exclude
-      (Deno import가 Next 빌드를 깨뜨리던 것 수정)
-- [x] Edge Function 배포 제거 + 스캐폴딩 코드만 보존
-
-대기:
-- [ ] Mapbox 토큰 + URL 제한 + Vercel env 반영
-- [ ] Resend 도메인 DKIM/SPF DNS + 검증 + Vercel env
-- [ ] LS 웹훅 secret (`LEMON_SQUEEZY_WEBHOOK_SECRET`) → Vercel env → LS 대시보드에서 webhook URL 등록 (`https://checkvisamap.com/api/webhooks/lemon-squeezy`)
-- [ ] Vercel env 전체 확인 (아래 목록)
-- [ ] LAUNCH_CHECKLIST Phase B~F 스모크 테스트
-
-### Vercel 필수 env 체크리스트
 ```
-ANTHROPIC_API_KEY
-SUPABASE_URL
-SUPABASE_SERVICE_ROLE_KEY
-LEMON_SQUEEZY_API_KEY
-LEMON_SQUEEZY_STORE_ID
-LEMON_SQUEEZY_VARIANT_ID
-LEMON_SQUEEZY_WEBHOOK_SECRET        ← 대기
-RESEND_API_KEY                       ← 대기
-RESEND_FROM_EMAIL                    ← 대기
-MAPBOX_TOKEN (또는 NEXT_PUBLIC_MAPBOX_TOKEN) ← 대기
-NEXT_PUBLIC_SITE_URL=https://checkvisamap.com
+████████████████████ 100% (codebase + design + content)
+█████████████████░░░  ~85% (launch readiness)
 ```
 
-### 검토 메모 (v1.1+)
-
-- **로케일 추가**: Hindi, Russian (여행 인구 많음). Arabic도 검토. `messages/*.json` 확장 + `i18n/locales.ts` 업데이트 필요.
-- **유료 플랜 목적지 사진**: 현재 Samples만 사진 있음. Claude가 생성한 유료 플랜도 `destinationCountry` → Unsplash 매핑하면 더 풍부해짐.
-- **PDF 스타일 업그레이드**: 현재는 기본 react-pdf 레이아웃. Layla-lean 방향이면 PDF도 편집디자인 느낌으로 (드롭 캡, 구분선, 페이지 번호).
+**Immediate blocker:** Lemon Squeezy approval — founder is sending response
+email to Ankith TODAY (2026-04-29) with both demo videos attached.
+Approval = real money flow unlocked. ETA 3-7 business days.
 
 ---
 
-## 🔁 터미널 끊겼을 때
+## ✅ What's Done
+
+### Auth + Account (N1 / N2 / N3 / N5)
+- Magic-link only (Supabase OTP). N4 password DEFERRED (data first).
+- `/login`, `/auth/callback`, `/account` all i18n in 5 langs.
+- Post-payment SavePlanCta on `/plan/[id]` funnels to magic-link.
+- `/login?email=&next=` prefill + safe-redirect on callback.
+- Referral celebration on /account (CSS confetti + sendReferralCreditEarnedEmail in 5 langs).
+
+### Sample plans (E1 / E2 / E3 / D2)
+- 13 hand-curated samples in EN at marketing-grade depth:
+  - Tokyo, Osaka, Seoul, Taipei, Bangkok, Hanoi, Bali, Paris, London, NYC
+  - **+ Reykjavik (4d couple), Cusco (5d couple), Dubai (4d couple)** — added 2026-04-29
+- ko/ja translations COMPLETE for the original 10 samples (20+30 retrofits).
+- Color diversity for new 3: icy Iceland / Andean Cusco / gold Dubai.
+
+### Design (D1 — multiple iterations)
+- Variant-E hybrid hero: Live chip (pulsing dot) + italic-Fraunces 'sorted' + HomeWizard input + 4-pill stat strip + sample destination links.
+- 6 lifestyle hero photos (founder hand-picked):
+  Thai boats / Times Square / vintage camera / Kyoto kimono /
+  Trevi selfie / sunset silhouettes. (Slots 1, 5 are Unsplash+ premium; founder has subscription.)
+- Sample card format upgraded to mockup-E style: photo + Day 1 theme + first 4 stops listed.
+- Featured 3 on home: Tokyo + Paris + Bali (global mix, not all Asia).
+- Italic Fraunces with ss01/02/03 swash on hero EM for 설레임.
+
+### Copy
+- All quantitative time refs removed from marketing surfaces ("1분 / minute / 分 / 秒 / minute").
+- $4 stripped from hero, footer, title, samples page, samples CTA buttons. KEPT only on `/pricing`.
+- Samples page subtitle + languageNote rewritten to service-receiving tone (was: defensive "no free trials" + commanding "click and read like yours" + outdated "samples in English only").
+- Hero subtitle 5 langs rewritten in marketing-grade voice.
+- New i18n keys across 5 langs: heroLiveChip, heroStatSpeed/Rating/NoAccount/Offline, heroTrySample.
+
+### Image fixes
+- Seoul sample heroImage replaced (Unsplash silently rotated old URL to broken content).
+- Osaka sample heroImage replaced (same issue — was showing pink sunset; now Tsutenkaku Tower).
+- All 13 sample heroImages verified live 2026-04-29.
+
+### Legal pages (LS readiness)
+- `/terms` (16 sections, governing law: Republic of Korea), `/privacy` (9), `/refund` (6), `/disclaimer`.
+- Footer with all 4 links rendered globally.
+- `/pricing` page with $4 + FAQ + Schema.org Product/Offer markup.
+
+---
+
+## ⏳ What's Pending
+
+### 🔥 Top priority (currently in progress)
+- **LS1** — LemonSqueezy approval response email. Founder sending TODAY with:
+  - Demo video long: https://youtu.be/a_XRvGR9leA
+  - Demo video short: https://youtu.be/b2bQ4fBMmAs
+  - LinkedIn: https://www.linkedin.com/in/민수-김-670a70258/
+  - GitHub: https://github.com/thoopring
+  - Personal email: thoopring@gmail.com
+  - Site email: hello@checkvisamap.com
+  - Final email body drafted in conversation history; founder is sending now.
+
+### 🚀 Big work after LS approval
+- **L4** — Vercel env + DNS + Resend domain + LS webhook URL update (founder).
+  - Required env vars listed in `.env.example`. Critical: `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (added 2026-04-28).
+- **D2-i18n** — Translate Reykjavik / Cusco / Dubai to ko/ja/zh/fr. ~4 turns at E2/E3 retrofit pace.
+- **L2** — GA4/PostHog locale-tagged analytics. Needs: `page_view`, `wizard_started`, `checkout_started`, `checkout_completed`, `account_signup`, `account_visit`, `referral_shared`, `credit_used`. ~3-4h.
+
+### 💎 Medium
+- **L1** — Test confirmation email delivery in 5 langs (after L4 deploy). Founder.
+- **LS2** — Real $4 production purchase test after LS approves. Founder.
+
+### 🧊 Nice-to-have
+- **L3** — "Send to phone" QR code on PC plan page (cross-device convenience).
+- **D3+** — More design-shotgun passes if needed (Wizard, Plan view, Account).
+
+### Launch+ (data-driven)
+- Kakao social login (if Korean traffic is high).
+- Passkey/WebAuthn (if Western tech-forward).
+- N4 password (if account adoption > 30% AND login friction tickets surface).
+- Africa / Oceania samples (Cape Town, Sydney) for continent coverage.
+
+---
+
+## 📋 Key Decisions Log
+
+| Decision | Reason | Status |
+|---|---|---|
+| Magic-link only (no password) | Service positioning + 1-person support burden + 95% buyers don't need account; data will tell | DEFERRED N4 |
+| $4 only on /pricing, not hero/footer/title | Price-feel varies by reader + future-proof if price changes | EXECUTED |
+| No quantitative time in marketing copy | "1분/under a minute" reads as non-marketing | EXECUTED |
+| Lifestyle hero photos > postcard destinations | Stronger marketing hook; people not landmarks | EXECUTED |
+| Featured 3 = Tokyo+Paris+Bali (global mix) | Diversity over Asian-heavy slice(0,3) | EXECUTED |
+| 13 samples (added Reykjavik+Cusco+Dubai) | Color + continent diversity | EXECUTED |
+| Italic Fraunces swash for 'sorted' EM | Editorial flourish, more 설레임 | EXECUTED |
+| Skip Lisbon/Marrakech/Mexico City (warm-tones) | Color similarity rejected by founder | REJECTED |
+
+---
+
+## 🗂️ File Layout (recent additions)
 
 ```
-STATUS.md 읽고 어디까지 했는지 확인해줘.
+lib/samples/
+  index.ts                           ← 13 entries, HERO_W=2400 hero URLs
+  reykjavik-4d-couple.ts             ← NEW 2026-04-29
+  cusco-5d-couple.ts                 ← NEW 2026-04-29
+  dubai-4d-couple.ts                 ← NEW 2026-04-29
+  i18n/
+    ko.ts                            ← 10 sample retrofits done
+    ja.ts                            ← 10 sample retrofits done
+    zh.ts                            ← 10 sample retrofits done (older session)
+    fr.ts                            ← 10 sample retrofits done (older session)
+
+components/
+  CreditCelebration.tsx              ← Referral 셀러브레이션 (N5)
+  SavePlanCta.tsx                    ← Post-payment save (N2)
+
+app/
+  account/page.tsx                   ← i18n done
+  login/page.tsx                     ← i18n done + email/next prefill
+  auth/callback/page.tsx             ← i18n done + safe redirect
+  page.tsx                           ← Home with variant-E hybrid hero
+
+messages/
+  {en,ko,ja,zh,fr}.json              ← All 5 langs synced through 2026-04-29
 ```
 
 ---
 
-## 🛠 빠른 명령어
+## 🛠️ Useful Commands
 
 ```bash
-npm run dev          # http://localhost:3000
-npm run build        # ~8초, 22 라우트
-git log --oneline -24
+npm run build        # ~8s, ~30 routes
+npm run dev          # localhost:3000
+npx tsc --noEmit     # type-check
+git log --oneline -20
 git status --short
 ```
 
+```bash
+# Live photo URL test
+curl -s -o /dev/null -w "%{http_code}" \
+  "https://images.unsplash.com/photo-XXX?w=400&q=80"
+```
+
 ---
 
-## 📊 진행률
+## 🔄 Resume Prompt (for new session after compact)
 
 ```
-████████████████████ 100% (P0~P15 코드)
-████████████░░░░░░░░  ~60% (런치 — Vercel Pro 결제 완료, env/DNS만 남음)
+Continue gliddy launch prep. Read STATUS.md for current state.
+Most recent commit: 4c8b3f4. Just shipped: 3 new EN samples
+(Reykjavik/Cusco/Dubai). LS approval email sent (waiting on Ankith).
+
+Next priorities (pick one, or tell me which):
+A) D2-i18n — start translating Reykjavik to ko (then ja/zh/fr)
+B) L2 — GA4/PostHog locale-tagged analytics setup
+C) L4 — Vercel env + DNS + webhook deploy support
+D) Wait for LS response, then resume.
 ```
 
-**다음 액션:** Mapbox 토큰 발급 → Resend DNS 검증 → LS webhook secret 생성 → Vercel env 등록 → LS 대시보드에서 webhook URL 등록 → 실제 $4 결제로 E2E 스모크.
+---
+
+## 📞 Contacts & URLs
+
+```
+Site:                 https://checkvisamap.com
+Site email:           hello@checkvisamap.com
+Founder email:        thoopring@gmail.com
+LinkedIn:             https://www.linkedin.com/in/민수-김-670a70258/
+GitHub:               https://github.com/thoopring
+GitHub repo:          https://github.com/thoopring/passport-project
+Demo video (long):    https://youtu.be/a_XRvGR9leA
+Demo video (short):   https://youtu.be/b2bQ4fBMmAs
+LS reviewer:          Ankith @ Lemon Squeezy
+```
