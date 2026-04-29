@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
+      // Unsplash+ premium photos are hosted on plus.unsplash.com (different
+      // CDN). Founder selected 2 such photos for the home hero rotation —
+      // verify license terms before launch (paid subscription recommended).
+      { protocol: "https", hostname: "plus.unsplash.com", pathname: "/**" },
     ],
   },
 

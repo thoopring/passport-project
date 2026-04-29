@@ -136,33 +136,38 @@ export const SAMPLE_PLANS: SampleMeta[] = [
 
 /** Hero photos for the home rotating banner. The cross-fading quatrefoil is
  *  THE site's signature, so the photos must be sharp, dynamic, and
- *  exciting — never blurry, gloomy, or static. 6 photos alternating
- *  peaceful destinations and urban motion to create rhythm. Cross-fade
- *  every ~3s with a Ken Burns zoom (1.0 → 1.12).
+ *  exciting — never blurry, gloomy, or static. Cross-fade every ~3s with
+ *  a Ken Burns zoom (1.0 → 1.12).
  *
- *  Source URLs use w=2400 (overrides the 1600 default) so retina displays
- *  on 520×520 quatrefoils get crisp 2x detail. Each ID below was live-
- *  verified 200 OK on 2026-04-29.
+ *  This set was hand-picked by the founder on 2026-04-29 — leaning toward
+ *  TRAVELER LIFESTYLE moments rather than postcard destinations (boats +
+ *  Times Square + Kyoto kimono + Trevi selfie + travel-planning flat-lay).
+ *  Stronger marketing hook for an AI travel-planner than pure landmarks.
+ *
+ *  Source URLs use w=2400 so retina 520×520 quatrefoils get 2x crisp
+ *  detail. Each URL below was visually verified on 2026-04-29.
+ *
+ *  ⚠ Two photos (slot 1 + slot 5) are Unsplash+ premium content —
+ *  embedding works on the free tier but commercial use technically
+ *  requires an Unsplash+ subscription. Verify license before launch.
  */
-const HOME_HERO_W = 2400;
-const HERO = (id: string) =>
-  `https://images.unsplash.com/${id}?w=${HOME_HERO_W}&q=85&auto=format&fit=crop`;
+const HERO_W = 2400;
 
 export const HOME_HERO_IMAGES = [
-  // Mt Fuji + cherry blossoms — peaceful nature, sharp & iconic Japan
-  HERO("photo-1469854523086-cc02fe5d8800"),
-  // Shibuya scramble at twilight — neon, motion, the iconic Tokyo image
-  HERO("photo-1542051841857-5f90071e7989"),
-  // Bali rice terraces at dawn — lush emerald greens, dynamic peaceful
-  HERO("photo-1537996194471-e657df975ab4"),
-  // NYC skyline at golden hour — sharp urban motion, replaces broken
-  // Dotonbori URL (Unsplash silently rotated photo-1554189097 to an
-  // unrelated pink sunset, no longer Osaka)
-  HERO("photo-1480714378408-67cf0d13bc1b"),
-  // Patagonia mountains — adventure, wide vista, fresh atmosphere
-  HERO("photo-1486870591958-9b9d0d1dda99"),
-  // Eiffel Tower at night — iconic urban magic, gold-lit
-  HERO("photo-1502602898657-3e91760cbb34"),
+  // 1) Long-tail boats lined on a Thai beach, aerial view, emerald water
+  //    (Unsplash+ PREMIUM — license caveat above)
+  `https://plus.unsplash.com/premium_photo-1730035378488-4ce8edd1761b?w=${HERO_W}&q=85&auto=format&fit=crop`,
+  // 2) Times Square NYC at night — neon billboards, pure urban motion
+  `https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?w=${HERO_W}&q=85&auto=format&fit=crop`,
+  // 3) Traveler with vintage camera — lifestyle, anticipation
+  `https://images.unsplash.com/photo-1776345021290-cdf1099204ca?w=${HERO_W}&q=85&auto=format&fit=crop`,
+  // 4) Kyoto kimono pair with paper umbrellas in a stone alley — Japan iconic
+  `https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?w=${HERO_W}&q=85&auto=format&fit=crop`,
+  // 5) Selfie at Trevi Fountain, Rome — joyful summer traveler
+  //    (Unsplash+ PREMIUM — license caveat above)
+  `https://plus.unsplash.com/premium_photo-1683141023289-49fdc6fa7506?w=${HERO_W}&q=85&auto=format&fit=crop`,
+  // 6) Travel planning flat-lay — map, glasses, notebook, hands
+  `https://images.unsplash.com/photo-1516546453174-5e1098a4b4af?w=${HERO_W}&q=85&auto=format&fit=crop`,
 ];
 
 /** Legacy single-image export retained so existing samples links don't break. */
