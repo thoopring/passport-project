@@ -63,8 +63,9 @@ export const SAMPLE_PLANS: SampleMeta[] = [
     tagline: "Three days for a foodie — markets, BBQ, dry-aged hanwoo, and Han River chicken.",
     audience: "Solo · Foodie",
     heroColor: "#A8DADC",
-    // Bukchon hanok rooftops with N Seoul Tower in the distance
-    heroImage: UNSPLASH("photo-1538485399081-7c8978d70495"),
+    // Seoul cityscape with N Seoul Tower at twilight (replaces broken
+    // photo-1538485399081 which Unsplash returns 404 on as of 2026-04-29)
+    heroImage: UNSPLASH("photo-1517154421773-0529f29ea451"),
   },
   {
     slug: "taipei-3d-solo",

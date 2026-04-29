@@ -22,7 +22,13 @@ export default async function Home() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
   const allSamples = await listSamplesLocalized(locale);
-  const featured = allSamples.slice(0, 3);
+  // Hand-pick the home featured 3 for global diversity (Asia + Europe + tropical SEA)
+  // instead of slice(0,3) which would be Tokyo+Osaka+Seoul — three Asian cities and
+  // two of them in Japan. Order matters for visual variety in the row.
+  const featuredSlugs = ["tokyo-4d-couple", "paris-3d-family", "bali-5d-couple"];
+  const featured = featuredSlugs
+    .map((slug) => allSamples.find((s) => s.slug === slug))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
   const tokyo = await getSampleLocalized("tokyo-4d-couple", locale);
   const day1 = tokyo?.plan.days[0];
   const previewStops = day1?.stops.slice(0, 3) ?? [];
@@ -138,41 +144,65 @@ export default async function Home() {
             </h2>
           </div>
 
+          {/* Mockup-E inspired card: photo + destination + Day 1 first 4 stops as
+              proof of detail. Replaces the slim tagline-only card. priority loading
+              on all 3 cards because they're above the fold and Next.js dev mode is
+              slow to optimize Unsplash images otherwise. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featured.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/samples/${s.slug}`}
-                className="group block rounded-[14px] overflow-hidden border border-[var(--border-subtle)] bg-white hover-lift"
-              >
-                <div className="relative aspect-[4/3] bg-[var(--surface-secondary)]">
-                  <Image
-                    src={s.heroImage}
-                    alt={s.plan.destination}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-2">
-                    {s.audience}
-                  </p>
-                  <h3 className="font-display font-bold text-[1.375rem] leading-tight text-[var(--text-primary)] mb-1 group-hover:text-[var(--brand-primary)] transition">
-                    {s.plan.destination}
-                  </h3>
-                  <p className="text-body-sm text-[var(--text-muted)] mb-3">
-                    {t("cardDaysCountry", {
-                      count: s.plan.durationDays,
-                      country: s.plan.destinationCountry,
-                    })}
-                  </p>
-                  <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
-                    {s.tagline}
-                  </p>
-                </div>
-              </Link>
-            ))}
+            {featured.map((s) => {
+              const day1 = s.plan.days[0];
+              const day1Stops = day1?.stops?.slice(0, 4) ?? [];
+              return (
+                <Link
+                  key={s.slug}
+                  href={`/samples/${s.slug}`}
+                  className="group flex flex-col rounded-[14px] overflow-hidden border border-[var(--border-subtle)] bg-white hover-lift"
+                >
+                  <div className="relative aspect-[16/10] bg-[var(--surface-secondary)]">
+                    <Image
+                      src={s.heroImage}
+                      alt={s.plan.destination}
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 flex-1 flex flex-col">
+                    <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-2">
+                      {s.audience}
+                    </p>
+                    <h3 className="font-display font-bold text-[1.375rem] leading-tight text-[var(--text-primary)] mb-1 group-hover:text-[var(--brand-primary)] transition">
+                      {s.plan.destination}
+                    </h3>
+                    <p className="text-body-sm text-[var(--text-muted)] mb-4">
+                      {t("cardDaysCountry", {
+                        count: s.plan.durationDays,
+                        country: s.plan.destinationCountry,
+                      })}
+                    </p>
+                    {day1 && (
+                      <div className="border-t border-[var(--border-subtle)] pt-4 mt-auto">
+                        <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-bold mb-2.5">
+                          {t("previewDayLabel")} · {day1.theme}
+                        </p>
+                        <ul className="space-y-1.5">
+                          {day1Stops.map((stop) => (
+                            <li
+                              key={stop.order}
+                              className="flex items-start gap-2 text-body-sm text-[var(--text-secondary)]"
+                            >
+                              <span className="shrink-0 mt-[7px] inline-block w-1 h-1 rounded-full bg-[var(--brand-primary)]" />
+                              <span className="line-clamp-1">{stop.name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
