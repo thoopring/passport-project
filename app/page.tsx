@@ -22,10 +22,18 @@ export default async function Home() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
   const allSamples = await listSamplesLocalized(locale);
-  // Hand-pick the home featured 3 for global diversity (Asia + Europe + tropical SEA)
-  // instead of slice(0,3) which would be Tokyo+Osaka+Seoul — three Asian cities and
-  // two of them in Japan. Order matters for visual variety in the row.
-  const featuredSlugs = ["tokyo-4d-couple", "paris-3d-family", "bali-5d-couple"];
+  // Hand-picked featured 6 — six continents/regions in two rows of three.
+  // Row 1 (anchor trio): Tokyo (East Asia), Paris (Europe), Bali (SE Asia tropical).
+  // Row 2 (color/region diversity): Reykjavik (Nordic ice), Cusco (Andes), Dubai (Gulf gold).
+  // Order matters — rows alternate climate/mood for visual variety.
+  const featuredSlugs = [
+    "tokyo-4d-couple",
+    "paris-3d-family",
+    "bali-5d-couple",
+    "reykjavik-4d-couple",
+    "cusco-5d-couple",
+    "dubai-4d-couple",
+  ];
   const featured = featuredSlugs
     .map((slug) => allSamples.find((s) => s.slug === slug))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
@@ -154,11 +162,11 @@ export default async function Home() {
           </div>
 
           {/* Mockup-E inspired card: photo + destination + Day 1 first 4 stops as
-              proof of detail. Replaces the slim tagline-only card. priority loading
-              on all 3 cards because they're above the fold and Next.js dev mode is
-              slow to optimize Unsplash images otherwise. */}
+              proof of detail. Two rows of three on desktop, 6 cards total.
+              Priority loading on the first 3 (above-the-fold anchor trio); the
+              second row lazy-loads to keep LCP fast. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featured.map((s) => {
+            {featured.map((s, i) => {
               const day1 = s.plan.days[0];
               const day1Stops = day1?.stops?.slice(0, 4) ?? [];
               return (
@@ -172,7 +180,7 @@ export default async function Home() {
                       src={s.heroImage}
                       alt={s.plan.destination}
                       fill
-                      priority
+                      priority={i < 3}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
                       className="object-cover"
                     />
