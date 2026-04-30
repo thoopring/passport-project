@@ -105,8 +105,9 @@ export default async function Home() {
             </div>
 
             {/* Inline sample destinations link — directs the curious to a free preview
-                without forcing them through the wizard first. */}
-            <p className="text-body-sm text-[var(--text-muted)] mt-5">
+                without forcing them through the wizard first. Mirrors the featured 6 cards
+                in the gallery below so the home page feels consistent at every scroll depth. */}
+            <p className="text-body-sm text-[var(--text-muted)] mt-5 leading-relaxed">
               {t("heroTrySample")}{" "}
               <Link
                 href="/samples/tokyo-4d-couple"
@@ -127,6 +128,27 @@ export default async function Home() {
                 className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
               >
                 Bali
+              </Link>
+              ·
+              <Link
+                href="/samples/reykjavik-4d-couple"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
+              >
+                Reykjavik
+              </Link>
+              ·
+              <Link
+                href="/samples/cusco-5d-couple"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
+              >
+                Cusco
+              </Link>
+              ·
+              <Link
+                href="/samples/dubai-4d-couple"
+                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 mx-1"
+              >
+                Dubai
               </Link>
             </p>
           </div>
