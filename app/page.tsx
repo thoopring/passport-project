@@ -261,36 +261,85 @@ export default async function Home() {
               );
             })()}
 
-            {/* Remaining 5 in 2-col compact grid */}
-            <div className="grid grid-cols-2 gap-3">
-              {featured.slice(1).map((s) => (
-                <Link
-                  key={s.slug}
-                  href={`/samples/${s.slug}`}
-                  className="group flex flex-col rounded-[12px] overflow-hidden border border-[var(--border-subtle)] bg-white"
+            {/* Remaining 5 — horizontal snap carousel.
+                The 2-col compact grid that lived here had two readability
+                problems: each card was ~170px wide on a 375px viewport so
+                destination type capped at 17px (cramped + low scan
+                density), and 5 cards in a 2-col grid left the last row
+                with a single orphaned card. The carousel fixes both:
+                cards expand to ~78vw (~290px) so the destination heading
+                lifts to 1.5rem with audience + Day-1 theme alongside,
+                and a horizontal-swipe pattern adds motion variety to the
+                otherwise vertical mobile scroll. The negative -mx-4
+                breaks out of the section padding so cards visually
+                bleed from edge to edge with peek of the next card on
+                the right (a common gallery-discovery pattern). */}
+            <div className="-mx-4 mt-2">
+              <div
+                className="flex gap-3 overflow-x-auto snap-x snap-mandatory pl-4 pr-4 pb-3 [&::-webkit-scrollbar]:hidden"
+                style={{ scrollbarWidth: "none" }}
+              >
+                {featured.slice(1).map((s) => {
+                  const day1 = s.plan.days[0];
+                  return (
+                    <Link
+                      key={s.slug}
+                      href={`/samples/${s.slug}`}
+                      className="group snap-start shrink-0 w-[78%] max-w-[320px] flex flex-col rounded-[14px] overflow-hidden border border-[var(--border-subtle)] bg-white"
+                    >
+                      <div className="relative aspect-[16/11] bg-[var(--surface-secondary)]">
+                        <Image
+                          src={s.heroImage}
+                          alt={s.plan.destination}
+                          fill
+                          sizes="78vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-4 flex-1 flex flex-col">
+                        <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-1.5">
+                          {s.audience}
+                        </p>
+                        <h3 className="font-display font-bold text-[1.5rem] leading-tight text-[var(--text-primary)] mb-1 group-hover:text-[var(--brand-primary)] transition">
+                          {s.plan.destination}
+                        </h3>
+                        <p className="text-body-sm text-[var(--text-muted)] mb-3">
+                          {t("cardDaysCountry", {
+                            count: s.plan.durationDays,
+                            country: s.plan.destinationCountry,
+                          })}
+                        </p>
+                        {day1 && (
+                          <div className="border-t border-[var(--border-subtle)] pt-3 mt-auto">
+                            <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-bold mb-1">
+                              {t("previewDayLabel")}
+                            </p>
+                            <p className="text-body-sm text-[var(--text-secondary)] leading-snug line-clamp-2">
+                              {day1.theme}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+              <div className="px-4 mt-1 inline-flex items-center gap-1.5 text-caption text-[var(--text-muted)]">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
                 >
-                  <div className="relative aspect-[4/5] bg-[var(--surface-secondary)]">
-                    <Image
-                      src={s.heroImage}
-                      alt={s.plan.destination}
-                      fill
-                      sizes="50vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <h3 className="font-display font-bold text-[1.0625rem] leading-tight text-[var(--text-primary)] group-hover:text-[var(--brand-primary)] transition">
-                      {s.plan.destination}
-                    </h3>
-                    <p className="text-caption text-[var(--text-muted)] mt-0.5">
-                      {t("cardDaysCountry", {
-                        count: s.plan.durationDays,
-                        country: s.plan.destinationCountry,
-                      })}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+                <span>{t("samplesSwipeHint")}</span>
+              </div>
             </div>
           </div>
 
