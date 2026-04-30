@@ -206,21 +206,17 @@
         "placeholder": "例如:NRT 或成田"
       },
       "flightArrival": {
-        "title": "到达航班几点?(可选)",
-        "subtitle": "我们会预留入境手续时间,合理安排第一天行程。",
-        "placeholder": "例如:5/1 14:30 NRT"
+        "title": "抵达时段是?(可选)",
+        "subtitle": "我们会按抵达时段安排第一天的行程。",
+        "earlyMorning": "清晨(早上 9 点前)",
+        "morning": "上午(9 点 ~ 12 点)",
+        "afternoon": "下午(12 点 ~ 5 点)",
+        "evening": "傍晚(5 点 ~ 10 点)",
+        "lateNight": "深夜(10 点之后)"
       },
-      "flightDeparture": {
-        "title": "返程航班呢?(可选)",
-        "subtitle": "最后一天会预留 2~3 小时前往机场。",
-        "placeholder": "例如:5/4 09:00 HND"
-      },
-      "hotelBooked": {
-        "title": "酒店是否已预订?"
-      },
-      "hotelName": {
-        "title": "您住在哪里?",
-        "subtitle": "告诉我们名字就好,我们会以此规划路线。",
+      "hotel": {
+        "title": "已经预订酒店了吗?(可选)",
+        "subtitle": "没有就跳过 — 我们会推荐机场附近的酒店。",
         "placeholder": "例如:东京柏悦酒店"
       },
       "interests": {

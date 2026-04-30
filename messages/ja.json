@@ -206,21 +206,17 @@
         "placeholder": "例: NRT または成田"
       },
       "flightArrival": {
-        "title": "到着便の時刻は?(任意)",
-        "subtitle": "入国審査の時間も考慮して1日目の予定を組みます。",
-        "placeholder": "例: 5/1 14:30 NRT"
+        "title": "到着の時間帯は?(任意)",
+        "subtitle": "到着の時間帯に合わせて1日目を組みます。",
+        "earlyMorning": "早朝(9時前)",
+        "morning": "午前(9時〜12時)",
+        "afternoon": "午後(12時〜17時)",
+        "evening": "夕方(17時〜22時)",
+        "lateNight": "深夜(22時以降)"
       },
-      "flightDeparture": {
-        "title": "帰国便は?(任意)",
-        "subtitle": "最終日は出発の2〜3時間前に空港へ向かうよう組みます。",
-        "placeholder": "例: 5/4 09:00 HND"
-      },
-      "hotelBooked": {
-        "title": "ホテルはもう予約済みですか?"
-      },
-      "hotelName": {
-        "title": "どこに泊まりますか?",
-        "subtitle": "名前だけ教えてください。その周辺で旅程を組みます。",
+      "hotel": {
+        "title": "ホテルはご予約済みですか?(任意)",
+        "subtitle": "未予約なら空欄でOK。空港近くでおすすめします。",
         "placeholder": "例: パークハイアット東京"
       },
       "interests": {

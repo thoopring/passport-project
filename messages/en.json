@@ -207,20 +207,16 @@
       },
       "flightArrival": {
         "title": "When does your flight land? (optional)",
-        "subtitle": "We'll plan Day 1 around immigration and the airport transit.",
-        "placeholder": "e.g. May 1, 2:30 PM NRT"
+        "subtitle": "We'll plan Day 1 around your arrival window.",
+        "earlyMorning": "Early morning (before 9 AM)",
+        "morning": "Morning (9 AM – 12 PM)",
+        "afternoon": "Afternoon (12 – 5 PM)",
+        "evening": "Evening (5 – 10 PM)",
+        "lateNight": "Late night (after 10 PM)"
       },
-      "flightDeparture": {
-        "title": "And your return flight? (optional)",
-        "subtitle": "We'll leave a 2–3 hour cushion before departure on the last day.",
-        "placeholder": "e.g. May 4, 9:00 AM HND"
-      },
-      "hotelBooked": {
-        "title": "Have you already booked a hotel?"
-      },
-      "hotelName": {
-        "title": "Where are you staying?",
-        "subtitle": "Just the name — we'll route around it.",
+      "hotel": {
+        "title": "Already booked a hotel? (optional)",
+        "subtitle": "Skip if not — we'll recommend one near your airport.",
         "placeholder": "e.g. Park Hyatt Tokyo"
       },
       "interests": {

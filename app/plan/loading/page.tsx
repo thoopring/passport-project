@@ -1080,6 +1080,8 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
   }
 
   if (data.travelerType === "family-with-kids") {
+    // Stroller need is now derived from child ages (≤4) inside applyAnswer —
+    // no separate yes/no popup. Saves a step for ~every family answer.
     queue.push({
       id: "children",
       title: tp("children.title"),
@@ -1089,15 +1091,6 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
       textLabel: tp("children.textLabel"),
       placeholder: tp("children.placeholder"),
     });
-
-    if ((data.children ?? 0) > 0) {
-      queue.push({
-        id: "stroller",
-        title: tp("stroller.title"),
-        subtitle: tp("stroller.subtitle"),
-        type: "yes-no",
-      });
-    }
   }
 
   queue.push({
@@ -1108,43 +1101,35 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     placeholder: tp("airport.placeholder"),
   });
 
-  // Optional flight info — lets the prompt buffer Day 1 after immigration
-  // and land Day N at the airport with 2-3 hour lead time. Free-text because
-  // the model parses natural-language dates/times well.
+  // Arrival period (chip) — replaces precise time entry. Hotel matching and
+  // first-day pacing only need the arrival window, not the exact minute.
+  // flightDeparture removed entirely — generator assumes a standard mid-day
+  // checkout for the last day's pacing, which has been good enough.
   queue.push({
     id: "flightArrival",
     title: tp("flightArrival.title"),
     subtitle: tp("flightArrival.subtitle"),
+    type: "single-chip",
+    optional: true,
+    options: [
+      { value: "early-morning", label: tp("flightArrival.earlyMorning") },
+      { value: "morning", label: tp("flightArrival.morning") },
+      { value: "afternoon", label: tp("flightArrival.afternoon") },
+      { value: "evening", label: tp("flightArrival.evening") },
+      { value: "late-night", label: tp("flightArrival.lateNight") },
+    ],
+  });
+
+  // Optional hotel — single input replaces the previous yes/no + name pair.
+  // Empty = recommend; non-empty = anchor the plan to this hotel.
+  queue.push({
+    id: "hotel",
+    title: tp("hotel.title"),
+    subtitle: tp("hotel.subtitle"),
     type: "text",
-    placeholder: tp("flightArrival.placeholder"),
+    placeholder: tp("hotel.placeholder"),
     optional: true,
   });
-
-  queue.push({
-    id: "flightDeparture",
-    title: tp("flightDeparture.title"),
-    subtitle: tp("flightDeparture.subtitle"),
-    type: "text",
-    placeholder: tp("flightDeparture.placeholder"),
-    optional: true,
-  });
-
-  queue.push({
-    id: "hotelBooked",
-    title: tp("hotelBooked.title"),
-    type: "yes-no",
-  });
-
-  if (data.hotelBooked === true) {
-    queue.push({
-      id: "hotelName",
-      title: tp("hotelName.title"),
-      subtitle: tp("hotelName.subtitle"),
-      type: "text",
-      placeholder: tp("hotelName.placeholder"),
-      optional: true,
-    });
-  }
 
   queue.push({
     id: "interests",
@@ -1206,25 +1191,31 @@ function applyAnswer(prev: WizardData, q: QuestionDef, value: unknown): WizardDa
         .split(",")
         .map((s) => parseInt(s.trim(), 10))
         .filter((n) => !Number.isNaN(n));
+      // Derived: any child ≤4 means stroller is needed. Replaces the
+      // separate stroller popup that used to ask the same question.
+      const strollerNeeded = ages.some((a) => a <= 4);
       return {
         ...prev,
         children: combo.count,
         childrenAges: ages.length ? ages : undefined,
         hasInfant: ages.some((a) => a <= 2),
+        strollerNeeded,
       };
     }
-    case "stroller":
-      return { ...prev, strollerNeeded: value as boolean };
     case "airport":
       return { ...prev, arrivalAirport: value as string };
     case "flightArrival":
+      // Now stores a period chip value ("morning" / "afternoon" / ...)
+      // instead of a free-form time string. Generator interprets the
+      // period.
       return { ...prev, flightArrival: (value as string) || undefined };
-    case "flightDeparture":
-      return { ...prev, flightDeparture: (value as string) || undefined };
-    case "hotelBooked":
-      return { ...prev, hotelBooked: value as boolean };
-    case "hotelName":
-      return { ...prev, hotelName: (value as string) || undefined };
+    case "hotel": {
+      // Optional input replaces the prior yes/no + name pair. Non-empty
+      // implies booked + anchor to this name; empty implies recommend.
+      const name = (value as string)?.trim();
+      if (!name) return { ...prev, hotelBooked: false, hotelName: undefined };
+      return { ...prev, hotelBooked: true, hotelName: name };
+    }
     case "interests":
       return { ...prev, interests: value as Interest[] };
     case "pace":

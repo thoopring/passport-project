@@ -206,21 +206,17 @@
         "placeholder": "예: ICN 또는 인천"
       },
       "flightArrival": {
-        "title": "도착편 시간이 어떻게 되세요? (선택)",
-        "subtitle": "입국 심사까지 감안해서 첫날 일정을 짜드려요.",
-        "placeholder": "예: 5/1 오후 2시 30분 NRT"
+        "title": "도착 시간대가 언제예요? (선택)",
+        "subtitle": "도착 시간대에 맞춰 첫날 일정을 짜드려요.",
+        "earlyMorning": "이른 아침 (오전 9시 전)",
+        "morning": "오전 (9시 ~ 12시)",
+        "afternoon": "오후 (12시 ~ 5시)",
+        "evening": "저녁 (5시 ~ 10시)",
+        "lateNight": "심야 (10시 이후)"
       },
-      "flightDeparture": {
-        "title": "귀국편은요? (선택)",
-        "subtitle": "마지막 날 공항에 2~3시간 여유 두고 마무리해드려요.",
-        "placeholder": "예: 5/4 오전 9시 HND"
-      },
-      "hotelBooked": {
-        "title": "호텔은 이미 예약하셨어요?"
-      },
-      "hotelName": {
-        "title": "어디서 묵으세요?",
-        "subtitle": "이름만 알려주시면 그 위치 중심으로 일정 짜드려요.",
+      "hotel": {
+        "title": "호텔 예약하셨어요? (선택)",
+        "subtitle": "안 하셨으면 비워두세요. 공항 근처로 추천해드려요.",
         "placeholder": "예: 파크 하얏트 도쿄"
       },
       "interests": {

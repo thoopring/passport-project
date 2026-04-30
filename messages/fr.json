@@ -206,21 +206,17 @@
         "placeholder": "ex. CDG ou Roissy"
       },
       "flightArrival": {
-        "title": "À quelle heure atterrissez-vous ? (facultatif)",
-        "subtitle": "On planifiera le jour 1 en tenant compte de l'immigration et du transit aéroport.",
-        "placeholder": "ex. 1er mai, 14h30 CDG"
+        "title": "Quand arrivez-vous ? (facultatif)",
+        "subtitle": "On adapte le jour 1 à votre créneau d'arrivée.",
+        "earlyMorning": "Tôt le matin (avant 9h)",
+        "morning": "Matin (9h – 12h)",
+        "afternoon": "Après-midi (12h – 17h)",
+        "evening": "Soir (17h – 22h)",
+        "lateNight": "Nuit (après 22h)"
       },
-      "flightDeparture": {
-        "title": "Et le vol retour ? (facultatif)",
-        "subtitle": "On laisse 2 à 3 heures de marge avant le départ le dernier jour.",
-        "placeholder": "ex. 4 mai, 9h00 CDG"
-      },
-      "hotelBooked": {
-        "title": "Avez-vous déjà réservé un hôtel ?"
-      },
-      "hotelName": {
-        "title": "Où logez-vous ?",
-        "subtitle": "Donnez-nous juste le nom — on construira l'itinéraire autour.",
+      "hotel": {
+        "title": "Hôtel déjà réservé ? (facultatif)",
+        "subtitle": "Sinon, laissez vide — on en recommande un près de votre aéroport.",
         "placeholder": "ex. Park Hyatt Paris-Vendôme"
       },
       "interests": {

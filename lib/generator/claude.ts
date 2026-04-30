@@ -68,11 +68,18 @@ CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
 
 11. If hotelBooked is true in the request, you MUST still produce a hotel object — but use the user's hotelName (if provided) and pin it in the area they likely stayed. Set the rationale to a one-sentence note like "Per your booking — itinerary is built around this location." Do NOT recommend an alternative hotel. The airportTransit and daily routing must use this hotel as the anchor.
 
-12. FLIGHT-AWARE SCHEDULING. If the user provided flightArrival or flightDeparture free-text (parse natural language dates/times in any language), you MUST adjust the day-level plan:
-    - flightArrival present → Day 1's FIRST stop must be a type:"transit" block titled something like "Arrival · {airport}" at the stated landing time. Insert a realistic immigration + baggage buffer (60-90 min for international, 30 min for domestic) before the next stop. If arrival is late evening (after 18:00), reduce Day 1 to only airport → hotel → one low-energy stop (nearby dinner or lounge). Do NOT schedule sightseeing before immigration clearance time.
-    - flightDeparture present → Day N's FINAL stops must be a hotel check-out + transit block ending at the airport with a buffer BEFORE the stated departure time (3 hours for international, 1-1.5 hours for domestic). Remove any stops that would not realistically fit. Mark the last stop as type:"transit" titled like "Airport · {airport} for {flightTime} flight".
-    - Both: day count is still durationDays; the arrival and departure blocks COUNT as stops on Days 1 and N.
-    - If the user only provided flightDeparture but no flightArrival, assume a morning arrival on Day 1 and schedule normally from the airport.
+12. FLIGHT-AWARE SCHEDULING. The user no longer provides exact flight times — flightArrival is now an arrival PERIOD ("early-morning" / "morning" / "afternoon" / "evening" / "late-night"). Departure is not collected; assume a standard mid-day check-out for the last day. You MUST adjust accordingly:
+    - flightArrival present → Day 1's FIRST stop must be a type:"transit" block titled "Arrival · {airport}" at a representative time inside the period (early-morning ≈ 7:00, morning ≈ 10:00, afternoon ≈ 14:00, evening ≈ 19:00, late-night ≈ 23:00). Insert a realistic immigration + baggage buffer (60-90 min for international, 30 min for domestic) before the next stop. If arrival is "evening" or "late-night", reduce Day 1 to only airport → hotel → one low-energy stop (nearby dinner or lounge). Do NOT schedule sightseeing before immigration clearance time.
+    - Day N's FINAL stops must be a hotel check-out + transit block ending at the airport with a 2-3 hour pre-flight buffer for international travel. Mark the last stop as type:"transit" titled "Airport · {airport}". Assume an early-afternoon flight unless the destination is local — leave the morning available for one low-effort activity (brunch / souvenir / packing).
+    - If flightArrival is missing entirely, assume morning arrival on Day 1 and schedule normally from the airport.
+
+13. STYLE INFERENCE. travelStyle is no longer collected directly — derive it from interests + pace internally before planning:
+    - High pace + interests in (food, culture, history, shopping, photography) → SIGHTSEEING (dense, landmark-heavy)
+    - Low pace + interests in (relaxation, nature) → RELAXATION (slow mornings, scenic rests, fewer stops/day)
+    - Balanced pace OR mixed interests → MIXED (one heavy + one light stop alternation per day)
+    Do NOT name the inferred style in user-facing copy; it's an internal pacing signal only.
+
+14. STROLLER + MUST-VISIT FALLBACKS. strollerNeeded is now derived from childrenAges (any age ≤ 4 → true) — same routing rule applies. mustVisit is no longer collected on the home wizard but may arrive via the user's notes; if both are absent, rely on interests for venue selection — do NOT prompt the user.
 
 OUTPUT FORMAT — STRICT JSON ONLY:
 
@@ -173,8 +180,7 @@ Budget tier: ${req.budgetTier}
 Pace: ${req.pace}
 ${req.travelStyle ? `Trip style: ${req.travelStyle} — ${styleInstruction(req.travelStyle)}` : ""}
 ${req.mustVisit ? `MUST-VISIT PLACES (integrate into the itinerary, prioritize placement by geography): ${req.mustVisit}` : ""}
-${req.flightArrival ? `ARRIVAL FLIGHT: ${req.flightArrival} — parse the date/time and start Day 1 at the airport with immigration buffer per rule 12.` : ""}
-${req.flightDeparture ? `DEPARTURE FLIGHT: ${req.flightDeparture} — parse and end Day ${req.durationDays} at the airport with pre-flight buffer per rule 12.` : ""}
+${req.flightArrival ? `ARRIVAL PERIOD: ${req.flightArrival} (one of early-morning/morning/afternoon/evening/late-night) — start Day 1 at the airport per rule 12 using the period's representative clock time.` : ""}
 
 ${req.notes ? `Additional notes from the traveler: ${req.notes}` : ""}
 

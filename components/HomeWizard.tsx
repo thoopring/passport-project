@@ -10,32 +10,25 @@ import type { Locale } from "../i18n/locales";
 type StepKey =
   | "destination"
   | "travelerType"
-  | "travelStyle"
   | "days"
-  | "budget"
-  | "mustVisit";
+  | "budget";
 
 const ORDER: StepKey[] = [
   "destination",
   "travelerType",
-  "travelStyle",
   "days",
   "budget",
-  "mustVisit",
 ];
 
 type TravelerUI = "solo" | "couple" | "family" | "friends";
-type StyleUI = "sightseeing" | "relaxation" | "mixed";
 type BudgetUI = "budget" | "midrange" | "luxury";
 
 interface Answers {
   destination: string;
   destinationCountry: string;
   travelerType: TravelerUI | null;
-  travelStyle: StyleUI | null;
   days: number | null;
   budget: BudgetUI | null;
-  mustVisit: string;
 }
 
 const POPULAR: { key: string; dest: string; country: string }[] = [
@@ -68,10 +61,8 @@ export default function HomeWizard() {
     destination: "",
     destinationCountry: "",
     travelerType: null,
-    travelStyle: null,
     days: null,
     budget: null,
-    mustVisit: "",
   });
   const [animating, setAnimating] = useState(false);
   const [customDays, setCustomDays] = useState<string>("");
@@ -91,12 +82,10 @@ export default function HomeWizard() {
   const currentStep = ORDER[stepIdx];
   const destInputRef = useRef<HTMLInputElement>(null);
   const customDaysRef = useRef<HTMLInputElement>(null);
-  const mustVisitRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (animating) return;
     if (currentStep === "destination") destInputRef.current?.focus();
-    if (currentStep === "mustVisit") mustVisitRef.current?.focus();
   }, [currentStep, animating]);
 
   function advance() {
@@ -127,9 +116,6 @@ export default function HomeWizard() {
     if (answers.budget) params.set("budget", answers.budget);
     const mapped = mapTravelerType(answers.travelerType);
     if (mapped) params.set("travelerType", mapped);
-    if (answers.travelStyle) params.set("travelStyle", answers.travelStyle);
-    const mv = answers.mustVisit.trim();
-    if (mv) params.set("mustVisit", mv);
 
     analytics.wizardStarted({
       locale,
@@ -145,11 +131,9 @@ export default function HomeWizard() {
   if (stepIdx > 0 && answers.destination) summaryParts.push(answers.destination);
   if (stepIdx > 1 && answers.travelerType)
     summaryParts.push(t(`travelerType.${answers.travelerType}`));
-  if (stepIdx > 2 && answers.travelStyle)
-    summaryParts.push(t(`travelStyle.${answers.travelStyle}`));
-  if (stepIdx > 3 && answers.days)
+  if (stepIdx > 2 && answers.days)
     summaryParts.push(`${answers.days}${t("days.unit")}`);
-  if (stepIdx > 4 && answers.budget)
+  if (stepIdx > 3 && answers.budget)
     summaryParts.push(t(`budget.${answers.budget}`));
   const summary = summaryParts.join(" · ");
 
@@ -345,31 +329,6 @@ export default function HomeWizard() {
           </StepBlock>
         )}
 
-        {currentStep === "travelStyle" && (
-          <StepBlock question={t("travelStyle.question")}>
-            <div className="space-y-3">
-              {(["sightseeing", "relaxation", "mixed"] as StyleUI[]).map((k) => (
-                <PickButton
-                  key={k}
-                  selected={answers.travelStyle === k}
-                  onClick={() => {
-                    setAnswers((a) => ({ ...a, travelStyle: k }));
-                    setTimeout(advance, 180);
-                  }}
-                  fullWidth
-                >
-                  <div className="text-left">
-                    <div className="font-semibold">{t(`travelStyle.${k}`)}</div>
-                    <div className="text-body-sm text-[var(--text-secondary)] mt-0.5">
-                      {t(`travelStyle.${k}Hint`)}
-                    </div>
-                  </div>
-                </PickButton>
-              ))}
-            </div>
-          </StepBlock>
-        )}
-
         {currentStep === "days" && (
           <StepBlock question={t("days.question")}>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
@@ -446,45 +405,6 @@ export default function HomeWizard() {
           </StepBlock>
         )}
 
-        {currentStep === "mustVisit" && (
-          <StepBlock
-            question={t("mustVisit.question")}
-            subtitle={t("mustVisit.subtitle")}
-          >
-            <textarea
-              ref={mustVisitRef}
-              value={answers.mustVisit}
-              onChange={(e) =>
-                setAnswers((a) => ({ ...a, mustVisit: e.target.value }))
-              }
-              placeholder={t("mustVisit.placeholder")}
-              rows={3}
-              maxLength={500}
-              className="w-full px-5 py-4 bg-white border border-[var(--border-light)] rounded-[12px] text-body-md text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 resize-none transition"
-            />
-            <div className="flex items-center justify-between gap-3 mt-6">
-              <button
-                type="button"
-                onClick={() => {
-                  setAnswers((a) => ({ ...a, mustVisit: "" }));
-                  submit();
-                }}
-                disabled={submitting}
-                className="text-body-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition"
-              >
-                {t("skip")}
-              </button>
-              <button
-                type="button"
-                onClick={submit}
-                disabled={submitting}
-                className="px-7 py-3 bg-[#1A1A1A] text-white font-medium rounded-md hover:bg-black transition disabled:opacity-40"
-              >
-                {submitting ? "…" : t("submit")}
-              </button>
-            </div>
-          </StepBlock>
-        )}
       </div>
     </div>
   );
