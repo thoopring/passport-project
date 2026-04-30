@@ -40,6 +40,9 @@
   },
   "footer": {
     "tagline": "Plans de voyage IA",
+    "pitch": "Un plan vécu, prêt avant que vous fassiez vos valises.",
+    "cta": "Planifier mon voyage",
+    "ctaHint": "$4 · livré par email + PDF",
     "groupProduct": "Produit",
     "groupAbout": "À propos",
     "groupLegal": "Mentions légales",

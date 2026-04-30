@@ -55,7 +55,12 @@ export default async function Home() {
            "정리됐어요." flourish doesn't crowd a 375px viewport, the
            quatrefoil photo caps at 320px so it doesn't dominate, and the
            sample-destination chips wrap as discrete pills instead of a
-           dot-separated run-on line that breaks ugly at narrow widths. ===== */}
+           dot-separated run-on line that breaks ugly at narrow widths.
+
+           3rd-pass mobile: photo bleeds edge-to-edge on mobile (full
+           viewport width via -mx negation) so the brand opens with a
+           strong travel-mood image instead of a constrained card. Desktop
+           keeps the quatrefoil intact in the right column. ===== */}
       <section className="px-4 sm:px-6 pt-12 sm:pt-24 pb-16 sm:pb-32">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-8 sm:gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
@@ -139,28 +144,56 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2">
-            <div className="quatrefoil relative w-full aspect-square max-w-[320px] sm:max-w-[440px] lg:max-w-[520px] mx-auto bg-[var(--surface-secondary)] overflow-hidden">
-              {HOME_HERO_IMAGES.map((src, i) => (
-                <Image
-                  key={src}
-                  src={src}
-                  alt="Travel inspiration"
-                  fill
-                  priority={i === 0}
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 520px"
-                  className={`object-cover absolute inset-0 hero-fade-${i + 1}`}
-                />
-              ))}
+          <div className="order-1 lg:order-2 -mx-4 sm:mx-0">
+            {/* Mobile: full-bleed rectangular photo with vermilion accent
+                rule above (breaks the centered-card monotony). Desktop:
+                preserve the original quatrefoil shape in the right column.
+                Two layers, mobile-vs-desktop swapped via class visibility. */}
+            <div className="block sm:hidden">
+              <div className="relative w-full aspect-[16/11] bg-[var(--surface-secondary)] overflow-hidden">
+                {HOME_HERO_IMAGES.map((src, i) => (
+                  <Image
+                    key={src}
+                    src={src}
+                    alt="Travel inspiration"
+                    fill
+                    priority={i === 0}
+                    sizes="100vw"
+                    className={`object-cover absolute inset-0 hero-fade-${i + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="hidden sm:block">
+              <div className="quatrefoil relative w-full aspect-square max-w-[320px] sm:max-w-[440px] lg:max-w-[520px] mx-auto bg-[var(--surface-secondary)] overflow-hidden">
+                {HOME_HERO_IMAGES.map((src, i) => (
+                  <Image
+                    key={src}
+                    src={src}
+                    alt="Travel inspiration"
+                    fill
+                    priority={i === 0}
+                    sizes="(max-width: 1024px) 440px, 520px"
+                    className={`object-cover absolute inset-0 hero-fade-${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== Sample cards ===== */}
-      <section className="border-t border-[var(--border-subtle)] py-20 px-4 sm:px-6">
+      {/* ===== Sample cards =====
+          Mobile: first card is a hero-sized "featured" card (photo +
+          overlay caption + Day-1 preview block below) and the remaining
+          five cards collapse into a 2-column compact grid (photo +
+          destination only). This kills the 6-identical-cards-stacked
+          pattern that read as monotonous on mobile, and lets the eye land
+          on one striking lead before scanning the rest. Desktop falls
+          back to the previous symmetric 3-column grid for density. */}
+      <section className="border-t border-[var(--border-subtle)] py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
+          <div className="mb-10 sm:mb-12 text-center">
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
               {t("samplesEyebrow")}
             </p>
@@ -169,11 +202,100 @@ export default async function Home() {
             </h2>
           </div>
 
-          {/* Mockup-E inspired card: photo + destination + Day 1 first 4 stops as
-              proof of detail. Two rows of three on desktop, 6 cards total.
-              Priority loading on the first 3 (above-the-fold anchor trio); the
-              second row lazy-loads to keep LCP fast. */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile-only featured + compact grid */}
+          <div className="sm:hidden space-y-4">
+            {featured.length > 0 && (() => {
+              const lead = featured[0];
+              const lDay1 = lead.plan.days[0];
+              const lStops = lDay1?.stops?.slice(0, 3) ?? [];
+              return (
+                <Link
+                  href={`/samples/${lead.slug}`}
+                  className="group block rounded-[14px] overflow-hidden border border-[var(--border-subtle)] bg-white"
+                >
+                  <div className="relative aspect-[5/6] bg-[var(--surface-secondary)]">
+                    <Image
+                      src={lead.heroImage}
+                      alt={lead.plan.destination}
+                      fill
+                      priority
+                      sizes="100vw"
+                      className="object-cover"
+                    />
+                    {/* Bottom-anchored caption gradient — gives the lead
+                        card the editorial-cover feel desktop can't. */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-5 pt-12">
+                      <p className="text-caption uppercase tracking-[0.18em] text-white/80 mb-1.5">
+                        {lead.audience}
+                      </p>
+                      <h3 className="font-display font-bold text-[1.875rem] leading-[1.05] text-white tracking-[-0.02em]">
+                        {lead.plan.destination}
+                      </h3>
+                      <p className="text-body-sm text-white/80 mt-1">
+                        {t("cardDaysCountry", {
+                          count: lead.plan.durationDays,
+                          country: lead.plan.destinationCountry,
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  {lDay1 && (
+                    <div className="p-5">
+                      <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-bold mb-2.5">
+                        {t("previewDayLabel")} · {lDay1.theme}
+                      </p>
+                      <ul className="space-y-1.5">
+                        {lStops.map((stop) => (
+                          <li
+                            key={stop.order}
+                            className="flex items-start gap-2 text-body-sm text-[var(--text-secondary)]"
+                          >
+                            <span className="shrink-0 mt-[7px] inline-block w-1 h-1 rounded-full bg-[var(--brand-primary)]" />
+                            <span className="line-clamp-1">{stop.name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </Link>
+              );
+            })()}
+
+            {/* Remaining 5 in 2-col compact grid */}
+            <div className="grid grid-cols-2 gap-3">
+              {featured.slice(1).map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/samples/${s.slug}`}
+                  className="group flex flex-col rounded-[12px] overflow-hidden border border-[var(--border-subtle)] bg-white"
+                >
+                  <div className="relative aspect-[4/5] bg-[var(--surface-secondary)]">
+                    <Image
+                      src={s.heroImage}
+                      alt={s.plan.destination}
+                      fill
+                      sizes="50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-display font-bold text-[1.0625rem] leading-tight text-[var(--text-primary)] group-hover:text-[var(--brand-primary)] transition">
+                      {s.plan.destination}
+                    </h3>
+                    <p className="text-caption text-[var(--text-muted)] mt-0.5">
+                      {t("cardDaysCountry", {
+                        count: s.plan.durationDays,
+                        country: s.plan.destinationCountry,
+                      })}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop 3-col grid (unchanged) */}
+          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-5">
             {featured.map((s, i) => {
               const day1 = s.plan.days[0];
               const day1Stops = day1?.stops?.slice(0, 4) ?? [];
@@ -189,7 +311,7 @@ export default async function Home() {
                       alt={s.plan.destination}
                       fill
                       priority={i < 3}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
+                      sizes="(max-width: 1024px) 50vw, 340px"
                       className="object-cover"
                     />
                   </div>
@@ -233,13 +355,16 @@ export default async function Home() {
       </section>
 
       {/* ===== Why gliddy — thesis section =====
-          Three claim-first pillars positioned between samples gallery and the
-          Tokyo proof-preview. Implicit answer to "why not ChatGPT / Maps." Layla-lean
-          surface (warm paper bg, vermilion icon accents, ink type), no comparison
-          tables — just confident claims. */}
-      <section className="border-t border-[var(--border-subtle)] py-20 px-4 sm:px-6">
+          Editorial numbered pillars. Killed the 3-icon-in-circle pattern
+          (classic AI-slop SaaS layout) in favor of oversized serif numerals
+          (01/02/03) inline with each claim. The numerals double as a visual
+          rhythm that reads down the page on mobile and across on desktop.
+          Cream surface (--surface-secondary) sets it apart from the white
+          samples gallery above and the cream Tokyo preview below — proper
+          background alternation instead of one long beige scroll. */}
+      <section className="bg-[var(--surface-secondary)] border-t border-[var(--border-subtle)] py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-14 text-center">
+          <div className="mb-10 sm:mb-14 text-center">
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
               {t("thesisEyebrow")}
             </p>
@@ -248,93 +373,45 @@ export default async function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-            {/* Pillar 1 — Verified shield */}
-            <div className="flex flex-col items-center text-center md:items-start md:text-left">
-              <div className="w-12 h-12 rounded-full bg-[var(--brand-soft)] flex items-center justify-center mb-5 text-[var(--brand-primary)]">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M12 2L4 5v6c0 5 4 9 8 11 4-2 8-6 8-11V5l-8-3z" />
-                  <path d="M9 12l2 2 4-4" />
-                </svg>
-              </div>
-              <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] mb-2 leading-tight">
-                {t("thesisPillar1Title")}
-              </h3>
-              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
-                {t("thesisPillar1Body")}
-              </p>
-            </div>
-
-            {/* Pillar 2 — Sequenced dots */}
-            <div className="flex flex-col items-center text-center md:items-start md:text-left">
-              <div className="w-12 h-12 rounded-full bg-[var(--brand-soft)] flex items-center justify-center mb-5 text-[var(--brand-primary)]">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <circle cx="5" cy="12" r="2" />
-                  <circle cx="12" cy="12" r="2" />
-                  <circle cx="19" cy="12" r="2" />
-                  <line x1="7" y1="12" x2="10" y2="12" />
-                  <line x1="14" y1="12" x2="17" y2="12" />
-                </svg>
-              </div>
-              <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] mb-2 leading-tight">
-                {t("thesisPillar2Title")}
-              </h3>
-              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
-                {t("thesisPillar2Body")}
-              </p>
-            </div>
-
-            {/* Pillar 3 — Plane to bed */}
-            <div className="flex flex-col items-center text-center md:items-start md:text-left">
-              <div className="w-12 h-12 rounded-full bg-[var(--brand-soft)] flex items-center justify-center mb-5 text-[var(--brand-primary)]">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M2 11h7l3-7h2l-1 7h6l3-2 1 1-3 4 3 4-1 1-3-2h-6l1 7h-2l-3-7H2z" />
-                </svg>
-              </div>
-              <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] mb-2 leading-tight">
-                {t("thesisPillar3Title")}
-              </h3>
-              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
-                {t("thesisPillar3Body")}
-              </p>
-            </div>
-          </div>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {[
+              { n: "01", titleKey: "thesisPillar1Title", bodyKey: "thesisPillar1Body" },
+              { n: "02", titleKey: "thesisPillar2Title", bodyKey: "thesisPillar2Body" },
+              { n: "03", titleKey: "thesisPillar3Title", bodyKey: "thesisPillar3Body" },
+            ].map((p, i, arr) => (
+              <li
+                key={p.n}
+                className={`relative pt-6 ${
+                  i < arr.length - 1
+                    ? "border-b border-[var(--border-subtle)] pb-8 md:border-b-0 md:pb-0"
+                    : "pb-2"
+                }`}
+              >
+                {/* Top accent rule with the numeral — replaces the
+                    icon-in-circle. The rule sits flush with the top of
+                    each pillar, the numeral hangs over it in vermilion. */}
+                <span className="absolute top-0 left-0 right-0 h-px bg-[var(--brand-primary)]/30" />
+                <div className="font-fraunces italic text-[3rem] sm:text-[3.5rem] leading-none text-[var(--brand-primary)] mb-4 tracking-[-0.02em]">
+                  {p.n}
+                </div>
+                <h3 className="font-display font-bold text-[1.25rem] sm:text-[1.375rem] text-[var(--text-primary)] mb-2 leading-tight">
+                  {t(p.titleKey)}
+                </h3>
+                <p className="text-body-sm sm:text-body-md text-[var(--text-secondary)] leading-relaxed">
+                  {t(p.bodyKey)}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* ===== Inline plan preview — real Tokyo content ===== */}
+      {/* ===== Inline plan preview — real Tokyo content =====
+          Stays on paper bg so it alternates with the cream thesis section
+          above (paper → cream → paper → dark-footer-band) instead of two
+          cream sections in a row that read as one long block. */}
       {tokyo && day1 && (
-        <section className="border-t border-[var(--border-subtle)] bg-[var(--surface-secondary)] py-24 px-4 sm:px-6">
+        <section className="border-t border-[var(--border-subtle)] py-16 sm:py-24 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
             <div className="mb-12 text-center">
               <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">

@@ -40,6 +40,9 @@
   },
   "footer": {
     "tagline": "AI 旅程プラン",
+    "pitch": "旅した人が書いたようなプラン。荷造り前にお手元へ。",
+    "cta": "旅程を作る",
+    "ctaHint": "$4 · メール + PDF でお届け",
     "groupProduct": "プロダクト",
     "groupAbout": "紹介",
     "groupLegal": "法的事項",

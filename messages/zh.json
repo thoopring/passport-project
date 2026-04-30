@@ -40,6 +40,9 @@
   },
   "footer": {
     "tagline": "AI 行程规划",
+    "pitch": "像旅行过的人写的行程,打包前就送到手中。",
+    "cta": "规划我的行程",
+    "ctaHint": "$4 · 邮件 + PDF 送达",
     "groupProduct": "产品",
     "groupAbout": "关于",
     "groupLegal": "法律",

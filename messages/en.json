@@ -40,6 +40,9 @@
   },
   "footer": {
     "tagline": "AI trip plans",
+    "pitch": "A traveled-in plan, ready before you pack.",
+    "cta": "Plan my trip",
+    "ctaHint": "$4 · delivered by email + PDF",
     "groupProduct": "Product",
     "groupAbout": "About",
     "groupLegal": "Legal",
