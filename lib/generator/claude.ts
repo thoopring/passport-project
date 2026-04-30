@@ -411,11 +411,16 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
   // gracefully degrades to Sonnet-alone — quality dips slightly for
   // that one plan, but plans never block on Opus availability.
   //
-  // Toggle: USE_OPUS_PLANNER env var. Default is ON (any value other
-  // than the literal string "false"). Letting ops disable without a
-  // code deploy if Opus has an outage or rate-limit episode.
+  // Toggle: USE_OPUS_PLANNER env var. Default is OFF after observing the
+  // combined Opus + Sonnet pipeline exceed Vercel's 300s maxDuration on
+  // a real generation (Apr 30 launch test, plan d58e905d). The pipeline
+  // works in principle but its p99 sits right at the wall, so for now
+  // we keep it explicit-opt-in until either (a) Vercel gives us 600s+
+  // headroom or (b) the route-opt + Mapbox stages move to background
+  // post-savePlanResult so the user-blocking part fits comfortably.
+  // Set USE_OPUS_PLANNER=true in env to re-enable.
   let scaffold: Scaffold | null = null;
-  const useOpusPlanner = process.env.USE_OPUS_PLANNER !== "false";
+  const useOpusPlanner = process.env.USE_OPUS_PLANNER === "true";
   if (useOpusPlanner) {
     try {
       scaffold = await generateScaffold(req);
