@@ -97,6 +97,7 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
       <PlanView
         plan={record.plan}
         downloadHref={`/api/plan/${id}/pdf`}
+        routePolylines={record.route_polylines ?? undefined}
         bottomCta={
           <div className="space-y-4">
             <SavePlanCta planEmail={record.email} planId={id} />

@@ -3,18 +3,22 @@
 import { useMemo, useState } from "react";
 import Map, { Marker, Popup, Source, Layer } from "react-map-gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
-import type { TripPlan } from "../types/trip-plan";
+import type { TripPlan, RoutePolylineSegment } from "../types/trip-plan";
 import { flattenStops, computeBounds } from "../lib/map";
 
 interface PlanMapProps {
   plan: TripPlan;
   /** Optional fixed height in px. Defaults to 500. */
   height?: number;
+  /** Cached Mapbox Directions polylines, one entry per consecutive stop-pair.
+   *  When present, the route is rendered as walking-aware segments. When
+   *  absent (or per-segment null), the segment falls back to a straight line. */
+  routePolylines?: (RoutePolylineSegment | null)[] | null;
 }
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || "";
 
-export default function PlanMap({ plan, height = 500 }: PlanMapProps) {
+export default function PlanMap({ plan, height = 500, routePolylines }: PlanMapProps) {
   const flat = useMemo(() => flattenStops(plan), [plan]);
   const bounds = useMemo(() => computeBounds(plan), [plan]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -29,22 +33,34 @@ export default function PlanMap({ plan, height = 500 }: PlanMapProps) {
     };
   }, [bounds]);
 
-  const lineGeoJson = useMemo(
-    () => ({
-      type: "FeatureCollection" as const,
-      features: [
-        {
-          type: "Feature" as const,
-          properties: {},
-          geometry: {
-            type: "LineString" as const,
-            coordinates: flat.map((f) => f.stop.coords),
-          },
+  /**
+   * Build a multi-segment LineString FeatureCollection. For each consecutive
+   * pair of stops, prefer the cached Directions polyline; if absent or null
+   * (failed segment), fall back to a straight line between the two stops.
+   * Result: pedestrian-aware paths where we have them, straight-line elsewhere.
+   */
+  const lineGeoJson = useMemo(() => {
+    const features = [];
+    for (let i = 0; i < flat.length - 1; i++) {
+      const segment = routePolylines?.[i];
+      const coordinates =
+        segment && segment.coords.length >= 2
+          ? segment.coords
+          : [flat[i].stop.coords, flat[i + 1].stop.coords];
+      features.push({
+        type: "Feature" as const,
+        properties: {},
+        geometry: {
+          type: "LineString" as const,
+          coordinates,
         },
-      ],
-    }),
-    [flat]
-  );
+      });
+    }
+    return {
+      type: "FeatureCollection" as const,
+      features,
+    };
+  }, [flat, routePolylines]);
 
   if (!TOKEN) {
     return (

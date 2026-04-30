@@ -94,6 +94,31 @@ export async function savePlanResult(id: string, plan: TripPlan): Promise<void> 
   if (error) throw new Error(`savePlanResult failed: ${error.message}`);
 }
 
+/**
+ * Persists Mapbox Directions polylines for the plan. Best-effort — if the
+ * column doesn't exist yet (migration 0004 not applied), or the write
+ * fails for any other reason, we log and continue. Plan still works
+ * with the existing straight-line fallback in PlanMap.
+ */
+export async function savePlanRoutePolylines(
+  id: string,
+  polylines: unknown,
+): Promise<void> {
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase
+    .from(PLANS_TABLE)
+    .update({ route_polylines: polylines, updated_at: new Date().toISOString() })
+    .eq("id", id);
+
+  if (error) {
+    // Most common cause: migration 0004 not yet applied. Don't throw —
+    // the plan itself is fine; only the visual upgrade is missing.
+    console.warn(
+      `[plans] savePlanRoutePolylines best-effort failed (${error.message}); plan still valid without polylines`,
+    );
+  }
+}
+
 export async function setPlanFailed(id: string, reason: string): Promise<void> {
   const supabase = getSupabaseAdmin();
   const { error } = await supabase

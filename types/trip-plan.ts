@@ -225,6 +225,16 @@ export const PlanStatusSchema = z.enum([
 ]);
 export type PlanStatus = z.infer<typeof PlanStatusSchema>;
 
+/**
+ * One Directions API polyline segment (between two consecutive stops).
+ * Computed once at plan-generation time, persisted in plans.route_polylines,
+ * read by PlanMap on render. Null indicates a segment that failed to compute
+ * (rate-limit, bad coords) — caller falls back to a straight line.
+ */
+export interface RoutePolylineSegment {
+  coords: [number, number][];
+}
+
 export interface PlanRecord {
   id: string;             // uuid, also URL slug
   email: string;
@@ -235,6 +245,9 @@ export interface PlanRecord {
   paid_at: string | null;
   generated_at: string | null;
   failure_reason: string | null;
+  /** Cached Mapbox Directions polylines, one per consecutive stop-pair.
+   *  Migration 0004 introduces this column; pre-migration plans return null. */
+  route_polylines: (RoutePolylineSegment | null)[] | null;
   created_at: string;
   updated_at: string;
 }

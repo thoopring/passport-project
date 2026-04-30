@@ -82,6 +82,9 @@ interface PlanViewProps {
   backLink?: { href: string; label: string };
   /** Optional Unsplash hero photo rendered at top of detail (sample pages). */
   heroImage?: string;
+  /** Cached Mapbox Directions polylines from the plan record. When provided,
+   *  PlanMap renders walking-aware route segments instead of straight lines. */
+  routePolylines?: import("../types/trip-plan").RoutePolylineSegment[] | (import("../types/trip-plan").RoutePolylineSegment | null)[] | null;
 }
 
 export default async function PlanView({
@@ -91,6 +94,7 @@ export default async function PlanView({
   bottomCta,
   backLink,
   heroImage,
+  routePolylines,
 }: PlanViewProps) {
   const t = await getTranslations("plan");
   const resolvedHeaderLabel = headerLabel ?? t("yourTripPlan");
@@ -156,7 +160,7 @@ export default async function PlanView({
 
               {/* Map */}
               <div className="mb-6">
-                <PlanMap plan={plan} />
+                <PlanMap plan={plan} routePolylines={routePolylines ?? undefined} />
               </div>
 
               {/* Mobile-only: affiliate bar inline after map. Hidden on lg+

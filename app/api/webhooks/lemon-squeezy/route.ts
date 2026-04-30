@@ -5,9 +5,11 @@ import {
   markPlanPaid,
   setPlanGenerating,
   savePlanResult,
+  savePlanRoutePolylines,
   setPlanFailed,
 } from "../../../../lib/plans";
 import { generateTripPlan } from "../../../../lib/generator/claude";
+import { computeRoutePolylines } from "../../../../lib/mapbox-directions";
 import { sendPlanReadyEmail, sendReferralCreditEarnedEmail } from "../../../../lib/email";
 import { awardCredit, getRecentPlanLocale } from "../../../../lib/referrals";
 import type { PlanLocale } from "../../../../types/trip-plan";
@@ -95,6 +97,20 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
     await setPlanGenerating(planId);
     const generated = await generateTripPlan(plan.request);
     await savePlanResult(planId, generated);
+
+    // Best-effort: compute Mapbox Directions polylines for the plan. Free
+    // tier (100k req/month) covers ~3,300 plans/month at ~30 calls each.
+    // Failure (rate-limit, bad coords, missing migration column) is logged
+    // and the plan still ships — PlanMap falls back to straight lines.
+    try {
+      const allCoords = generated.days
+        .flatMap((d) => d.stops)
+        .map((s) => s.coords);
+      const polylines = await computeRoutePolylines(allCoords);
+      await savePlanRoutePolylines(planId, polylines);
+    } catch (err) {
+      console.warn("[webhook] polyline computation failed (non-fatal)", { planId, err });
+    }
 
     await sendPlanReadyEmail({
       to: plan.email,
