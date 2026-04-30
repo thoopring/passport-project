@@ -1,10 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { getPlan, markPlanPaid, setPlanGenerating, savePlanResult, setPlanFailed } from "../../../lib/plans";
 import { createCheckoutUrl } from "../../../lib/lemonsqueezy";
 import { consumePlanCredit, REFERRAL_COOKIE } from "../../../lib/referrals";
 import { validatePromoCode, redeemPromoCode } from "../../../lib/promo";
 import { generateTripPlan } from "../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../lib/email";
+
+// Promo path runs the full generator pipeline (60-120s) inside this
+// route via after(). Needs the long ceiling to match the webhook route.
+export const runtime = "nodejs";
+export const maxDuration = 300;
 
 /**
  * LS discount code (pre-configured in the LS dashboard) that gives 25% off
@@ -60,11 +65,27 @@ export async function POST(req: NextRequest) {
         const redeemed = await redeemPromoCode(plan.request.promoCode);
         if (redeemed) {
           await markPlanPaid(planId, `promo:${plan.request.promoCode}`);
-          generateAndDeliver(planId).catch((err) => {
-            console.error("Promo generation pipeline failed", { planId, err });
+          // Run generation after the response is sent. A bare
+          // fire-and-forget Promise gets killed by Vercel as soon as the
+          // serverless isolate returns — same trap the webhook route
+          // hit on 2026-04-23. after() uses waitUntil under the hood
+          // and keeps the function alive up to maxDuration (300s).
+          after(async () => {
+            try {
+              await generateAndDeliver(planId);
+            } catch (err) {
+              console.error("Promo generation pipeline failed", { planId, err });
+            }
           });
           const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
-          return NextResponse.json({ url: `${baseUrl}/plan/${planId}?paid=1` });
+          return NextResponse.json({
+            url: `${baseUrl}/plan/${planId}?paid=1`,
+            // Signal to the client that LS was bypassed — caller should
+            // redirect the current tab rather than opening a new one
+            // (the new-tab pattern only makes sense for the external
+            // LS hosted checkout).
+            bypassedLS: true,
+          });
         }
       }
     }

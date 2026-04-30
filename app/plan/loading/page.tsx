@@ -266,7 +266,7 @@ function LoadingInner() {
         const body = await checkoutRes.json().catch(() => ({}));
         throw new Error(body.error || "Failed to start checkout");
       }
-      const { url } = await checkoutRes.json();
+      const { url, bypassedLS } = await checkoutRes.json();
 
       analytics.checkoutStarted({
         locale,
@@ -289,8 +289,19 @@ function LoadingInner() {
         });
       }
 
-      // Open checkout in a new tab. Keep the current page so the user has
-      // context (review summary + fallback link if the popup is blocked).
+      if (bypassedLS) {
+        // 100%-off promo or full-credit path — server already marked
+        // the plan paid and queued generation. There's no external
+        // checkout to visit, so redirect THIS tab to the wait page
+        // instead of opening a new one (which would otherwise show
+        // two identical tabs and confuse the buyer).
+        router.replace(url);
+        return;
+      }
+
+      // Standard LS flow — open checkout in a new tab. Keep the current
+      // page so the user has context (review summary + fallback link
+      // if the popup is blocked).
       setCheckoutUrl(url);
       const win = window.open(url, "_blank", "noopener,noreferrer");
       if (!win) {
