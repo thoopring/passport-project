@@ -58,17 +58,34 @@ async function fetchSegment(
  * segment between every consecutive pair. Returned array has length
  * coords.length - 1; each entry is either a RouteSegment or null.
  *
- * Sequential (not parallel) on purpose — the Directions API rate-limit is
- * 300 req/min per token; serializing keeps us well under the limit and is
- * fast enough for a one-time per-plan computation.
+ * Concurrency: batches of CONCURRENCY parallel fetches. The Directions
+ * API allows 300 req/min per token; one plan does ~30 calls so a 5-wide
+ * burst is well under the per-token rate limit even with several plans
+ * generating simultaneously. Going fully parallel would risk 429s when
+ * launch traffic spikes.
+ *
+ * Originally sequential — that put 30-60s on the user-visible wait,
+ * dominating the post-Claude pipeline. Batched parallel cuts that to
+ * 6-12s while staying inside Mapbox's free-tier limits.
  */
 export async function computeRoutePolylines(
   coords: [number, number][],
 ): Promise<(RouteSegment | null)[]> {
   if (coords.length < 2) return [];
-  const segments: (RouteSegment | null)[] = [];
+  const CONCURRENCY = 5;
+  const pairs: [number, [number, number], [number, number]][] = [];
   for (let i = 0; i < coords.length - 1; i++) {
-    segments.push(await fetchSegment(coords[i], coords[i + 1]));
+    pairs.push([i, coords[i], coords[i + 1]]);
+  }
+  const segments: (RouteSegment | null)[] = new Array(pairs.length).fill(null);
+  for (let start = 0; start < pairs.length; start += CONCURRENCY) {
+    const batch = pairs.slice(start, start + CONCURRENCY);
+    const results = await Promise.all(
+      batch.map(([, from, to]) => fetchSegment(from, to)),
+    );
+    batch.forEach(([idx], j) => {
+      segments[idx] = results[j];
+    });
   }
   return segments;
 }

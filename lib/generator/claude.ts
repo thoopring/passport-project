@@ -362,12 +362,37 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
     parsed = TripPlanSchema.parse(extractJson(raw));
   }
 
-  // Route optimization (second-pass clustering) intentionally disabled at
-  // launch. System prompt rule 9 (geographic clustering, no zigzag) already
-  // produces well-routed days from the first call. The second pass added
-  // 20-60s to the wait — observed total p99 reached the Vercel maxDuration
-  // ceiling, killing real generations on busy days. Re-enable post-launch
-  // as a background pass after savePlanResult if plan quality regresses.
+  // Route optimization second-pass — best-effort, time-bounded. Each day
+  // gets ROUTE_OPT_TIMEOUT_MS to come back; on timeout the original order
+  // is kept. Days run in parallel so the worst-case wait is bounded by
+  // the slowest day, not the sum. Quality > speed: when the API has
+  // capacity, we get clustered routes; when it doesn't, the first pass
+  // already obeys system-prompt rule 9 (no-zigzag clustering) so the
+  // fallback is acceptable.
+  const ROUTE_OPT_TIMEOUT_MS = 25_000;
+  try {
+    const optimizedDays = await Promise.all(
+      parsed.days.map(async (day) => {
+        try {
+          return await Promise.race<Day>([
+            optimizeDayRoute(day, anthropic),
+            new Promise<Day>((_, reject) =>
+              setTimeout(
+                () => reject(new Error("route opt timeout")),
+                ROUTE_OPT_TIMEOUT_MS,
+              ),
+            ),
+          ]);
+        } catch (err) {
+          console.warn("[generator] route opt skipped for day", day.dayNumber, err);
+          return day;
+        }
+      }),
+    );
+    parsed = { ...parsed, days: optimizedDays };
+  } catch (err) {
+    console.error("Route optimization batch failed (non-fatal)", err);
+  }
 
   return parsed;
 }

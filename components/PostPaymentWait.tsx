@@ -23,15 +23,26 @@ import TravelTrivia from "./TravelTrivia";
  * only on the real status transition to 'complete'.
  */
 
-const STAGE_KEYS = ["checking", "routing", "sights", "polish", "almost"] as const;
-// Stage timings calibrated for a typical 80-130s generation (Claude main
-// + occasional retry + Mapbox polylines). Each threshold is the elapsed
-// seconds at which we promote to the next stage label.
-const STAGE_TIMINGS = [0, 15, 40, 75, 110];
-// Asymptotic ceiling for the fake progress bar. We tick toward 95% over
-// PROGRESS_DURATION_S seconds, then plateau there until status flips to
-// 'complete'. Picked a hair longer than typical so the bar never looks
-// stalled mid-generation.
+const STAGE_KEYS = [
+  "checking",
+  "routing",
+  "sights",
+  "polish",
+  "almost",
+  // Premium-tone messaging for users who stick around past 3 minutes.
+  // The framing flips from "we're working" to "we're investing extra
+  // care for YOU" — turns a long wait into anticipation.
+  "premiumCare",   // 180s+: extra-attention message
+  "premiumGem",    // 240s+: "found a hidden gem, slotting it in"
+  "premiumFinal",  // 300s+: "final touches"
+] as const;
+// Stage timings calibrated for a typical 80-130s generation, with
+// premium tier kicking in after 180s for the unlucky tail.
+const STAGE_TIMINGS = [0, 15, 40, 75, 110, 180, 240, 300];
+// Asymptotic ceiling for the fake progress bar. Ticks toward 95% over
+// PROGRESS_DURATION_S seconds. Past 130s the bar plateaus near 95%; the
+// premium stage messages take over the engagement load instead of the
+// progress indicator.
 const PROGRESS_DURATION_S = 130;
 
 interface Props {
