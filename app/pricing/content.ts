@@ -194,7 +194,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
       "可下载的 PDF,旅途中可离线使用",
       "付款后 5-10 分钟送达邮箱",
     ],
-    ctaButton: "规划我的旅行 — $4",
+    ctaButton: "规划我的行程 — $4",
     faqHeading: "常见问题",
     faqs: [
       {

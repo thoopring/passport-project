@@ -68,7 +68,7 @@ export const ABOUT_CONTENT: Record<Locale, AboutContent> = {
         desc: "정가 한 가지, 추가 결제 없음. 플랜이 망가지면 환불해 드려요.",
       },
     ],
-    ctaButton: "여행 계획하기",
+    ctaButton: "내 여행 계획하기",
     contactLine: "문의: gliddy@checkvisamap.com",
   },
   ja: {
@@ -126,7 +126,7 @@ export const ABOUT_CONTENT: Record<Locale, AboutContent> = {
         desc: "固定一价,无追加销售。计划有问题就退款。",
       },
     ],
-    ctaButton: "规划行程",
+    ctaButton: "规划我的行程",
     contactLine: "联系我们: gliddy@checkvisamap.com",
   },
   fr: {

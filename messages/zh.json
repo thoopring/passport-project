@@ -117,7 +117,7 @@
       "subtitle": "餐厅、景点、咖啡馆…… 自由填写",
       "placeholder": "例如:明治神宫、寿司大、涩谷十字路口"
     },
-    "submit": "生成我的行程"
+    "submit": "规划我的行程"
   },
   "wizard": {
     "step1": {
@@ -136,7 +136,7 @@
       "budgetMidrangeHint": "四星酒店、餐厅",
       "budgetLuxury": "豪华",
       "budgetLuxuryHint": "五星酒店、精致餐饮",
-      "submit": "生成我的行程"
+      "submit": "规划我的行程"
     },
     "review": {
       "badge": "准备就绪",
@@ -278,12 +278,12 @@
     "readSample": "查看完整示例 →",
     "ctaHeadline": "喜欢吗?",
     "ctaSubtitle": "任何城市都行 — 我们用同样的深度,围绕您的日期、人数、预算量身打磨。",
-    "ctaButton": "生成我的行程",
+    "ctaButton": "规划我的行程",
     "sampleHeader": "示例行程",
     "sampleCtaTitle": "喜欢这份示例?",
     "sampleCtaHeadline": "用同样的方式,为您而做",
     "sampleCtaSubtitle": "同样的深度,围绕您的日期、人数、预算撰写。以移动链接 + 可下载 PDF 的形式送达。",
-    "sampleCtaButton": "生成我的行程",
+    "sampleCtaButton": "规划我的行程",
     "sampleCtaCaption": "无需注册 · 无订阅",
     "backToGallery": "← 所有示例行程"
   },

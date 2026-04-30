@@ -29,7 +29,7 @@
     "navPricing": "料金",
     "navAbout": "紹介",
     "navAccount": "マイアカウント",
-    "cta": "旅程を作る"
+    "cta": "旅行を計画する"
   },
   "blog": {
     "eyebrow": "ジャーナル",
@@ -41,12 +41,12 @@
   "footer": {
     "tagline": "AI 旅程プラン",
     "pitch": "旅した人が書いたようなプラン。荷造り前にお手元へ。",
-    "cta": "旅程を作る",
+    "cta": "旅行を計画する",
     "ctaHint": "$4 · メール + PDF でお届け",
     "groupProduct": "プロダクト",
     "groupAbout": "紹介",
     "groupLegal": "法的事項",
-    "linkPlanTrip": "旅程を作る",
+    "linkPlanTrip": "旅行を計画する",
     "linkPricing": "料金",
     "linkSamplePlans": "サンプルプラン",
     "linkOurStory": "私たちの物語",
@@ -278,12 +278,12 @@
     "readSample": "サンプル全文を読む →",
     "ctaHeadline": "気に入りましたか?",
     "ctaSubtitle": "どの都市でも、日程・人数・予算に合わせて同じ深さの旅程に仕立ててお届けします。",
-    "ctaButton": "私の旅程を作る",
+    "ctaButton": "旅行を計画する",
     "sampleHeader": "サンプル旅程",
     "sampleCtaTitle": "このサンプルが気に入ったら",
     "sampleCtaHeadline": "同じ仕立てで、あなたのために",
     "sampleCtaSubtitle": "同じ深さで、あなたの日程・人数・予算を反映して仕立てます。モバイルリンクとダウンロードPDFでお届けします。",
-    "sampleCtaButton": "私の旅程を作る",
+    "sampleCtaButton": "旅行を計画する",
     "sampleCtaCaption": "アカウント登録不要 · サブスクなし",
     "backToGallery": "← すべてのサンプル旅程"
   },
