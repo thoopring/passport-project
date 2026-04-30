@@ -43,9 +43,13 @@ export async function GET(
     const ageMs = Date.now() - new Date(reference).getTime();
     if (ageMs > STALE_PLAN_MS) {
       console.warn("[status] auto-failing stale plan", { planId: id, ageMs });
-      await setPlanFailed(id, "Generation exceeded the time limit").catch(
-        (err) => console.error("[status] auto-fail write failed", err),
-      );
+      // Prefix tags the source so debug mode can distinguish stale-rescue
+      // from in-pipeline failures. Sanitizer's "timeout" branch matches
+      // "timed out" so the customer-facing copy is the timeout message.
+      await setPlanFailed(
+        id,
+        `[stale-rescue] generation timed out after ${Math.round(ageMs / 1000)}s with no completion`,
+      ).catch((err) => console.error("[status] auto-fail write failed", err));
       return NextResponse.json(
         {
           status: "failed",

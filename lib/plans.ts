@@ -122,13 +122,19 @@ export async function savePlanRoutePolylines(
 /**
  * Maps a raw error message to a sanitized, customer-safe category.
  *
+ * Pre-launch debug mode: when DEBUG_RAW_FAILURES=true, the raw error
+ * message is preserved (truncated) so the founder can diagnose without
+ * needing Vercel function logs. Default falls back to the curated
+ * categories below for production.
+ *
  * The raw message can contain stack-trace fragments, Supabase column
- * names, internal IDs, or third-party API details that we don't want
- * surfaced to anyone holding a plan UUID (which is the only gate on
- * /api/plan/[id]/status and /plan/[id]). Internal observability is
- * preserved via console.error in the webhook/checkout catch blocks.
+ * names, internal IDs, or third-party API details — that's the point
+ * during debug, exactly what we don't want in production.
  */
 function sanitizeFailureReason(reason: string): string {
+  if (process.env.DEBUG_RAW_FAILURES === "true") {
+    return reason.slice(0, 500); // truncate just in case
+  }
   const m = reason.toLowerCase();
   if (m.includes("timeout") || m.includes("timed out")) {
     return "Generation timed out. A refund will be issued automatically.";
