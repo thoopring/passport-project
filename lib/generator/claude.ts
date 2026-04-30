@@ -29,7 +29,13 @@ import { generateScaffold } from "./scaffold";
  */
 
 const MODEL = "claude-sonnet-4-5";
-const MAX_OUTPUT_TOKENS = 8000;
+// Bumped from 8000 → 16000 after a launch-test failure surfaced
+// "Unterminated string in JSON at position 13400" — output truncated
+// mid-token. Korean prose is roughly 1.5-2 chars/token vs English's 4,
+// so a 4-5 day Korean plan with editorial-depth descriptions overflows
+// 8k tokens. 16k gives ~25-30k chars headroom — comfortable for a
+// 7-day packed-pace plan in any locale.
+const MAX_OUTPUT_TOKENS = 16000;
 
 let client: Anthropic | null = null;
 function getClient(): Anthropic {
