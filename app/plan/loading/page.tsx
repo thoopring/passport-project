@@ -96,7 +96,12 @@ function LoadingInner() {
     };
   });
 
-  const [questionIndex, setQuestionIndex] = useState(0);
+  // Track which question IDs have been answered (or skipped). The popup
+  // queue is rebuilt on every data change — using a numeric index would
+  // drift when the queue inserts/removes items (e.g., picking
+  // "family-with-kids" inserts adults+children popups, which would
+  // otherwise be skipped past). IDs survive queue restructuring.
+  const [answeredIds, setAnsweredIds] = useState<Set<string>>(new Set());
   const [activeQuestion, setActiveQuestion] = useState<QuestionDef | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -143,30 +148,48 @@ function LoadingInner() {
   // Build queue dynamically — depends on current data so adapts as user answers
   const questions = buildQuestionQueue(data, tp);
 
+  // The next question is the first item in the (recomputed) queue whose id
+  // hasn't been answered yet. The progress chip shows position relative to
+  // the CURRENT queue length, which can grow if traveler-type-dependent
+  // popups (adults, children) get inserted mid-flow.
+  const nextQuestion = questions.find((q) => !answeredIds.has(q.id)) ?? null;
+  const remainingCount = questions.filter((q) => !answeredIds.has(q.id)).length;
+  const answeredInQueue = questions.length - remainingCount;
+
   // Schedule next popup
   useEffect(() => {
     if (submitting) return;
-    if (questionIndex >= questions.length) return; // submission handled separately
-    const delay = questionIndex === 0 ? 2500 : 3500;
+    if (reviewReady) return;
+    if (!nextQuestion) return;
+    // Already showing this exact question? Don't reschedule.
+    if (activeQuestion?.id === nextQuestion.id) return;
+    const delay = answeredIds.size === 0 ? 2500 : 3500;
     const timer = setTimeout(() => {
-      setActiveQuestion(questions[questionIndex]);
+      setActiveQuestion(nextQuestion);
     }, delay);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questionIndex, questions.length, submitting]);
+  }, [nextQuestion?.id, submitting, reviewReady]);
 
   const handleAnswer = (value: unknown) => {
-    const currentQ = questions[questionIndex];
+    const currentQ = activeQuestion;
+    if (!currentQ) return;
     setActiveQuestion(null);
     const newData = applyAnswer(data, currentQ, value);
     setData(newData);
 
-    // Recompute queue with new data and decide if we're done
-    const newQueue = buildQuestionQueue(newData, tp);
-    const newIndex = questionIndex + 1;
-    setQuestionIndex(newIndex);
+    const newAnswered = new Set(answeredIds);
+    newAnswered.add(currentQ.id);
+    setAnsweredIds(newAnswered);
 
-    if (newIndex >= newQueue.length) {
+    // Recompute queue with new data and decide if we're done. We use ids
+    // (not indices) so a queue that grew due to the answer (e.g. picking
+    // family-with-kids inserted adults+children) still asks the inserted
+    // popups instead of skipping them.
+    const newQueue = buildQuestionQueue(newData, tp);
+    const stillPending = newQueue.some((q) => !newAnswered.has(q.id));
+
+    if (!stillPending) {
       // All popups answered — show review screen (no longer auto-submits).
       setTimeout(() => setReviewReady(true), 1500);
     }
@@ -646,7 +669,7 @@ function LoadingInner() {
           question={activeQuestion}
           onAnswer={handleAnswer}
           onSkip={activeQuestion.optional ? handleSkip : undefined}
-          questionNumber={questionIndex + 1}
+          questionNumber={answeredInQueue + 1}
           totalQuestions={questions.length}
         />
       )}
