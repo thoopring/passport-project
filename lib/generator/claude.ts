@@ -362,17 +362,12 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
     parsed = TripPlanSchema.parse(extractJson(raw));
   }
 
-  // Second pass: route optimization. Reorder stops within each day to
-  // minimize zigzagging. Best-effort — failures fall back to the original
-  // order rather than failing the whole plan.
-  try {
-    const optimizedDays = await Promise.all(
-      parsed.days.map((day) => optimizeDayRoute(day, anthropic).catch(() => day)),
-    );
-    parsed = { ...parsed, days: optimizedDays };
-  } catch (err) {
-    console.error("Route optimization pass failed (non-fatal)", err);
-  }
+  // Route optimization (second-pass clustering) intentionally disabled at
+  // launch. System prompt rule 9 (geographic clustering, no zigzag) already
+  // produces well-routed days from the first call. The second pass added
+  // 20-60s to the wait — observed total p99 reached the Vercel maxDuration
+  // ceiling, killing real generations on busy days. Re-enable post-launch
+  // as a background pass after savePlanResult if plan quality regresses.
 
   return parsed;
 }

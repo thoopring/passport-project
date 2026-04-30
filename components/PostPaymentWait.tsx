@@ -24,7 +24,15 @@ import TravelTrivia from "./TravelTrivia";
  */
 
 const STAGE_KEYS = ["checking", "routing", "sights", "polish", "almost"] as const;
-const STAGE_TIMINGS = [0, 8, 22, 42, 58];
+// Stage timings calibrated for a typical 80-130s generation (Claude main
+// + occasional retry + Mapbox polylines). Each threshold is the elapsed
+// seconds at which we promote to the next stage label.
+const STAGE_TIMINGS = [0, 15, 40, 75, 110];
+// Asymptotic ceiling for the fake progress bar. We tick toward 95% over
+// PROGRESS_DURATION_S seconds, then plateau there until status flips to
+// 'complete'. Picked a hair longer than typical so the bar never looks
+// stalled mid-generation.
+const PROGRESS_DURATION_S = 130;
 
 interface Props {
   planId: string;
@@ -101,8 +109,8 @@ export default function PostPaymentWait({ planId, destinationCountry }: Props) {
   );
   const stageKey = STAGE_KEYS[stageIndex];
 
-  // Fake progress that approaches 95% asymptotically over ~70s.
-  const progressPct = Math.min(95, Math.round((elapsed / 70) * 95));
+  // Fake progress that approaches 95% asymptotically over ~130s.
+  const progressPct = Math.min(95, Math.round((elapsed / PROGRESS_DURATION_S) * 95));
 
   if (status === "failed") {
     return (
@@ -154,15 +162,33 @@ export default function PostPaymentWait({ planId, destinationCountry }: Props) {
           </p>
         </div>
 
+        {/* Reassurance card — promoted from a tiny bottom caption. The
+            wait is 60-180s and many users will want to do something
+            else; tell them in a card-sized callout (not a footnote)
+            that closing the tab is fine. */}
+        <div className="mt-8 max-w-md mx-auto bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-[14px] px-5 py-4 text-left flex items-start gap-3">
+          <div className="shrink-0 w-9 h-9 rounded-full bg-[var(--accent-soft)] flex items-center justify-center mt-0.5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--accent-primary)]" aria-hidden>
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <div className="flex-1">
+            <p className="text-body-sm font-semibold text-[var(--text-primary)]">
+              {t("leaveTitle")}
+            </p>
+            <p className="text-caption text-[var(--text-secondary)] mt-0.5 leading-relaxed">
+              {t("leaveSubtitle")}
+            </p>
+          </div>
+        </div>
+
         {/* Trivia for engagement */}
-        <div className="mt-10 max-w-md mx-auto">
+        <div className="mt-8 max-w-md mx-auto">
           <TravelTrivia destinationCountry={destinationCountry ?? "default"} />
         </div>
 
-        <p className="text-caption text-[var(--text-muted)] mt-10">
-          {t("emailHint")}
-        </p>
-        <p className="text-caption text-[var(--text-muted)] mt-1 font-mono">
+        <p className="text-caption text-[var(--text-muted)] mt-10 font-mono">
           {t("planIdLabel")}: {planId.slice(0, 8)}
         </p>
       </div>

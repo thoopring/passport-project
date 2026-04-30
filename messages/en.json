@@ -314,6 +314,8 @@
       "elapsed": "{seconds}s elapsed",
       "planIdLabel": "Plan",
       "emailHint": "We'll also email you the link when it's ready — feel free to close this tab.",
+      "leaveTitle": "Want to come back later?",
+      "leaveSubtitle": "Plans take 1-3 minutes. We'll email the link to you when it's ready — close this tab and check your inbox in 5 minutes.",
       "stage": {
         "checking": "Payment confirmed. Pulling destination context…",
         "routing": "Optimizing your day routes — this is the slowest step 🚶",

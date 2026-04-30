@@ -314,6 +314,8 @@
       "elapsed": "{seconds} s écoulées",
       "planIdLabel": "Plan",
       "emailHint": "On vous enverra aussi le lien par e-mail quand ce sera prêt — vous pouvez fermer cet onglet.",
+      "leaveTitle": "Vous pouvez fermer cet onglet",
+      "leaveSubtitle": "La génération prend 1 à 3 minutes. On vous enverra le lien par e-mail dès que c'est prêt — faites autre chose et vérifiez votre boîte mail dans 5 minutes.",
       "stage": {
         "checking": "Paiement confirmé. Récupération des données de la destination…",
         "routing": "Optimisation des trajets quotidiens — c'est l'étape la plus longue 🚶",
