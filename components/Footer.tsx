@@ -38,13 +38,16 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Link grid — restyled for mobile with larger touch targets, single
-          column stack at base, 3-column on sm+. Each link min-h 44px so
-          fingers don't miss. */}
+      {/* Link grid — single-column vertical stack on mobile (each section
+          at full width with a thin divider between groups), 3-column
+          horizontal layout on sm+. The previous 2-col mobile layout
+          with Product spanning 2 cols and About/Legal sharing the row
+          below produced uneven column widths that read as misaligned;
+          stacking them all gives identical width and a clean rhythm. */}
       <div className="bg-[var(--background)] border-t border-[var(--border-subtle)]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
-          <nav aria-label="Footer" className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
-            <div className="col-span-2 sm:col-span-1">
+          <nav aria-label="Footer" className="grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-6">
+            <div>
               <p className="text-caption uppercase tracking-[0.16em] text-[var(--text-muted)] font-semibold mb-3">
                 {t("groupProduct")}
               </p>

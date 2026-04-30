@@ -530,10 +530,15 @@ export default async function Home() {
                 </p>
               </div>
 
-              <ol className="space-y-5">
+              {/* Mobile gets the same compact treatment as PlanView:
+                  time/type as an inline pill row above the content
+                  block, no fixed 64px right-aligned column, no left
+                  border rail. Desktop keeps the original two-column
+                  rail layout for density. */}
+              <ol className="space-y-4 sm:space-y-5">
                 {previewStops.map((stop) => (
-                  <li key={stop.order} className="flex gap-4">
-                    <div className="shrink-0 w-16 text-right">
+                  <li key={stop.order} className="flex flex-col sm:flex-row sm:gap-4">
+                    <div className="shrink-0 sm:w-16 sm:text-right mb-1.5 sm:mb-0 flex items-baseline gap-2 sm:block">
                       <p className="font-semibold text-[var(--brand-primary)] text-body-sm">
                         {stop.time}
                       </p>
@@ -541,8 +546,8 @@ export default async function Home() {
                         {stop.type}
                       </p>
                     </div>
-                    <div className="flex-1 border-l border-[var(--border-light)] pl-4">
-                      <p className="font-semibold text-body-sm text-[var(--text-primary)]">
+                    <div className="flex-1 min-w-0 sm:border-l sm:border-[var(--border-light)] sm:pl-4">
+                      <p className="font-semibold text-body-md sm:text-body-sm text-[var(--text-primary)]">
                         {stop.name}
                       </p>
                       {stop.area && (
