@@ -121,8 +121,8 @@
       "headline": "다음 여행, 깔끔하게 정리해드릴게요.",
       "subtitle": "질문 세 개만 답해주세요. 호텔, 공항 이동, 식당, 휴대폰에 담아 다닐 경로 지도까지 한 번에 만들어드려요.",
       "badge": "모바일 링크 + PDF · 메일로 도착",
-      "destinationLabel": "어디로 가세요?",
-      "destinationPlaceholder": "예: 도쿄",
+      "destinationLabel": "어느 도시로 가세요?",
+      "destinationPlaceholder": "이름 입력하시면 자동완성됩니다 — 예: 도쿄, 파리…",
       "countryLabel": "국가",
       "countryPlaceholder": "예: 일본",
       "daysLabel": "며칠 일정이에요?",
@@ -213,8 +213,8 @@
       },
       "airport": {
         "title": "어느 공항으로 도착하세요?",
-        "subtitle": "터미널과 가까운 호텔로 골라드려요.",
-        "placeholder": "예: ICN 또는 인천"
+        "subtitle": "공항 코드(ICN)·도시명·한글 어떤 걸로 입력해도 자동완성돼요.",
+        "placeholder": "예: 나리타, NRT, 도쿄…"
       },
       "flightArrival": {
         "title": "도착 시간대가 언제예요? (선택)",
@@ -226,21 +226,22 @@
         "lateNight": "심야 (10시 이후)"
       },
       "hotel": {
-        "title": "호텔 예약하셨어요? (선택)",
-        "subtitle": "안 하셨으면 비워두세요. 공항 근처로 추천해드려요.",
+        "title": "숙소 예약하셨어요? (선택)",
+        "subtitle": "호텔·게스트하우스·에어비앤비 다 좋아요. 안 하셨으면 비워두세요 — 공항 근처로 추천해드려요.",
         "placeholder": "예: 파크 하얏트 도쿄"
       },
       "interests": {
-        "title": "어떤 걸 좋아하세요?",
-        "subtitle": "최대 6개까지 골라보세요.",
-        "food": "음식",
+        "title": "어떤 여행을 원하세요?",
+        "subtitle": "관심 가는 거 다 골라도 돼요 (최대 6개).",
+        "food": "음식·맛집",
+        "sightseeing": "관광·명소",
         "culture": "문화",
         "history": "역사",
         "nature": "자연",
         "shopping": "쇼핑",
         "nightlife": "나이트라이프",
-        "adventure": "모험",
-        "relaxation": "휴식",
+        "adventure": "모험·트레킹",
+        "relaxation": "휴양·웰니스",
         "photography": "사진"
       },
       "pace": {
@@ -260,7 +261,8 @@
       "yes": "네",
       "no": "아니요",
       "continue": "다음 →",
-      "skip": "건너뛰기"
+      "skip": "건너뛰기",
+      "back": "이전"
     }
   },
   "samples": {
@@ -292,9 +294,9 @@
     "dayTotalTransit": "{duration} 이동",
     "dayTotalMeals": "식사 {count}회",
     "dayTotalBudget": "약 ${amount}",
-    "hotelStart": "호텔 {time} 출발",
-    "hotel": "호텔",
-    "airportToHotel": "공항 → 호텔",
+    "hotelStart": "숙소 {time} 출발",
+    "hotel": "숙소",
+    "airportToHotel": "공항 → 숙소",
     "day": "Day",
     "practicalInfo": "실용 정보",
     "budget": "예산",

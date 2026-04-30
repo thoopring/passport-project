@@ -121,8 +121,8 @@
       "headline": "Votre prochain voyage, fin prêt.",
       "subtitle": "Trois questions rapides et on s'occupe du reste — hôtel, transport depuis l'aéroport, restaurants et carte du parcours à emporter sur le téléphone.",
       "badge": "Lien mobile + PDF · livré par e-mail",
-      "destinationLabel": "Où partez-vous ?",
-      "destinationPlaceholder": "ex. Tokyo",
+      "destinationLabel": "Quelle ville ?",
+      "destinationPlaceholder": "Tapez le nom — ex. Tokyo, Paris…",
       "countryLabel": "Pays",
       "countryPlaceholder": "ex. Japon",
       "daysLabel": "Combien de jours ?",
@@ -213,8 +213,8 @@
       },
       "airport": {
         "title": "À quel aéroport arrivez-vous ?",
-        "subtitle": "On choisira un hôtel proche de votre terminal.",
-        "placeholder": "ex. CDG ou Roissy"
+        "subtitle": "Tapez le code IATA (CDG) ou la ville — l'autocomplétion fait le reste.",
+        "placeholder": "ex. CDG, Charles de Gaulle, Paris…"
       },
       "flightArrival": {
         "title": "Quand arrivez-vous ? (facultatif)",
@@ -226,21 +226,22 @@
         "lateNight": "Nuit (après 22h)"
       },
       "hotel": {
-        "title": "Hôtel déjà réservé ? (facultatif)",
-        "subtitle": "Sinon, laissez vide — on en recommande un près de votre aéroport.",
+        "title": "Hébergement déjà réservé ? (facultatif)",
+        "subtitle": "Hôtel, auberge, Airbnb — tout convient. Sinon, laissez vide et on en recommande un près de votre aéroport.",
         "placeholder": "ex. Park Hyatt Paris-Vendôme"
       },
       "interests": {
-        "title": "Qu'est-ce qui vous intéresse le plus ?",
-        "subtitle": "Choisissez jusqu'à 6.",
+        "title": "Quel genre de voyage cherchez-vous ?",
+        "subtitle": "Cochez tout ce qui vous parle, jusqu'à 6.",
         "food": "Gastronomie",
+        "sightseeing": "Tourisme",
         "culture": "Culture",
         "history": "Histoire",
         "nature": "Nature",
         "shopping": "Shopping",
         "nightlife": "Vie nocturne",
-        "adventure": "Aventure",
-        "relaxation": "Détente",
+        "adventure": "Aventure & trekking",
+        "relaxation": "Bien-être & détente",
         "photography": "Photographie"
       },
       "pace": {
@@ -260,7 +261,8 @@
       "yes": "Oui",
       "no": "Non",
       "continue": "Continuer →",
-      "skip": "Passer"
+      "skip": "Passer",
+      "back": "Retour"
     }
   },
   "samples": {
@@ -292,9 +294,9 @@
     "dayTotalTransit": "{duration} de transit",
     "dayTotalMeals": "{count} repas",
     "dayTotalBudget": "~{amount} $",
-    "hotelStart": "Hôtel : départ {time}",
-    "hotel": "Hôtel",
-    "airportToHotel": "Aéroport → Hôtel",
+    "hotelStart": "Hébergement : départ {time}",
+    "hotel": "Hébergement",
+    "airportToHotel": "Aéroport → Hébergement",
     "day": "Jour",
     "practicalInfo": "Infos pratiques",
     "budget": "Budget",

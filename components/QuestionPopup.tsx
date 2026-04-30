@@ -1,14 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import { searchAirports, type AirportOption } from "../lib/airports";
 
 export interface QuestionDef {
   id: string;
   title: string;
   subtitle?: string;
   /** Type drives the input UI. */
-  type: "single-chip" | "multi-chip" | "number" | "text" | "yes-no" | "date" | "email" | "number+text";
+  type:
+    | "single-chip"
+    | "multi-chip"
+    | "number"
+    | "text"
+    | "yes-no"
+    | "date"
+    | "email"
+    | "number+text"
+    | "airport";
   /** For chip types. */
   options?: { value: string; label: string; hint?: string }[];
   /** For multi-chip — max selections allowed. */
@@ -28,6 +38,10 @@ interface QuestionPopupProps {
   question: QuestionDef;
   onAnswer: (value: unknown) => void;
   onSkip?: () => void;
+  /** Walk the user back to the previous question and restore the pre-
+   *  answer data snapshot. Omitted on the very first question (no prior
+   *  state to return to). */
+  onBack?: () => void;
   /** 1-based current question number; used for the playful progress callout. */
   questionNumber?: number;
   /** Total questions in the queue; together with questionNumber drives the "last question" tease. */
@@ -47,6 +61,7 @@ export default function QuestionPopup({
   question,
   onAnswer,
   onSkip,
+  onBack,
   questionNumber,
   totalQuestions,
 }: QuestionPopupProps) {
@@ -65,6 +80,15 @@ export default function QuestionPopup({
   const [numberValue, setNumberValue] = useState<number | "">("");
   const [textValue, setTextValue] = useState("");
   const [yesNoValue, setYesNoValue] = useState<boolean | null>(null);
+  // Airport autocomplete state — separate from textValue so the dropdown
+  // can show even when the input is "ICN" (a valid pick) and not just
+  // when the user types a fragment.
+  const [airportFocused, setAirportFocused] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
+  const airportSuggestions = useMemo(
+    () => (question.type === "airport" ? searchAirports(textValue, 6) : []),
+    [question.type, textValue],
+  );
 
   const canSubmit = (() => {
     if (question.optional) return true;
@@ -76,6 +100,7 @@ export default function QuestionPopup({
       case "number":
         return typeof numberValue === "number" && numberValue > 0;
       case "text":
+      case "airport":
         return textValue.trim().length > 0;
       case "yes-no":
         return yesNoValue !== null;
@@ -100,6 +125,7 @@ export default function QuestionPopup({
         onAnswer(numberValue);
         break;
       case "text":
+      case "airport":
       case "date":
       case "email":
         onAnswer(textValue.trim());
@@ -112,6 +138,16 @@ export default function QuestionPopup({
         break;
     }
   };
+
+  function pickAirport(idx: number) {
+    const a = airportSuggestions[idx];
+    if (!a) return;
+    // Submit the IATA code — that's what the generator's prompt expects
+    // (rule 12 references "{airport}" as the code, e.g. "Arrival · NRT").
+    setTextValue(a.code);
+    setAirportFocused(false);
+    setActiveSuggestion(0);
+  }
 
   return (
     <div
@@ -207,6 +243,78 @@ export default function QuestionPopup({
             />
           )}
 
+          {question.type === "airport" && (
+            <div className="relative">
+              <input
+                type="text"
+                value={textValue}
+                onChange={(e) => {
+                  setTextValue(e.target.value);
+                  setActiveSuggestion(0);
+                }}
+                onFocus={() => setAirportFocused(true)}
+                onBlur={() => setTimeout(() => setAirportFocused(false), 120)}
+                onKeyDown={(e) => {
+                  if (!airportFocused || airportSuggestions.length === 0) return;
+                  if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    setActiveSuggestion((i) =>
+                      Math.min(i + 1, airportSuggestions.length - 1),
+                    );
+                  } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    setActiveSuggestion((i) => Math.max(i - 1, 0));
+                  } else if (e.key === "Enter") {
+                    e.preventDefault();
+                    pickAirport(activeSuggestion);
+                  } else if (e.key === "Escape") {
+                    setAirportFocused(false);
+                  }
+                }}
+                placeholder={question.placeholder}
+                className={inputClass}
+                autoFocus
+                autoComplete="off"
+              />
+              {airportFocused && airportSuggestions.length > 0 && (
+                <ul
+                  role="listbox"
+                  className="absolute left-0 right-0 top-full mt-1 z-10 bg-white border border-[var(--border-light)] rounded-md shadow-lg overflow-hidden max-h-72 overflow-y-auto"
+                >
+                  {airportSuggestions.map((a: AirportOption, i) => (
+                    <li
+                      key={a.code}
+                      role="option"
+                      aria-selected={i === activeSuggestion}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        pickAirport(i);
+                      }}
+                      onMouseEnter={() => setActiveSuggestion(i)}
+                      className={`px-3 py-2.5 cursor-pointer flex items-baseline justify-between gap-3 ${
+                        i === activeSuggestion
+                          ? "bg-[var(--surface-secondary)]"
+                          : "bg-white"
+                      }`}
+                    >
+                      <div className="flex items-baseline gap-2 min-w-0">
+                        <span className="text-caption font-bold text-[var(--brand-primary)] tabular-nums shrink-0">
+                          {a.code}
+                        </span>
+                        <span className="text-body-sm text-[var(--text-primary)] truncate">
+                          {a.name}
+                        </span>
+                      </div>
+                      <span className="text-caption text-[var(--text-muted)] shrink-0">
+                        {a.city}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
           {question.type === "date" && (
             <input
               type="date"
@@ -277,14 +385,29 @@ export default function QuestionPopup({
           )}
         </div>
 
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex items-center gap-3">
+          {/* Back button — only visible past the first question. The arrow
+              points at where we're going (the previous question), the
+              text stays neutral. Subdued styling so it doesn't compete
+              with the primary Continue CTA. */}
+          {onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              className="px-3 py-3 text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition flex items-center gap-1"
+              aria-label={tp("back")}
+            >
+              <span aria-hidden>←</span>
+              <span className="text-body-sm font-medium">{tp("back")}</span>
+            </button>
+          )}
           <button
             type="button"
             disabled={!canSubmit}
             onClick={submit}
             className="flex-1 px-5 py-3 bg-[var(--text-primary)] text-[var(--background)] font-semibold rounded-xl hover:opacity-90 disabled:opacity-40 transition"
           >
-            Continue →
+            {tp("continue")}
           </button>
           {question.optional && onSkip && (
             <button
@@ -292,7 +415,7 @@ export default function QuestionPopup({
               onClick={onSkip}
               className="px-5 py-3 text-[var(--text-muted)] font-medium hover:text-[var(--text-secondary)] transition"
             >
-              Skip
+              {tp("skip")}
             </button>
           )}
         </div>

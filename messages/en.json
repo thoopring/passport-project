@@ -121,8 +121,8 @@
       "headline": "Your next trip, sorted.",
       "subtitle": "Three quick questions and we handle the rest — hotel, airport transit, restaurants, and a route map you can carry on your phone.",
       "badge": "Mobile link + PDF · delivered to your inbox",
-      "destinationLabel": "Where are you going?",
-      "destinationPlaceholder": "e.g. Tokyo",
+      "destinationLabel": "Which city?",
+      "destinationPlaceholder": "Start typing — e.g. Tokyo, Paris…",
       "countryLabel": "Country",
       "countryPlaceholder": "e.g. Japan",
       "daysLabel": "How many days?",
@@ -213,8 +213,8 @@
       },
       "airport": {
         "title": "Which airport are you flying into?",
-        "subtitle": "We'll pick a hotel close to your terminal.",
-        "placeholder": "e.g. NRT or Narita"
+        "subtitle": "Type the IATA code (NRT) or city — autocomplete handles the rest.",
+        "placeholder": "e.g. Narita, NRT, Tokyo…"
       },
       "flightArrival": {
         "title": "When does your flight land? (optional)",
@@ -226,21 +226,22 @@
         "lateNight": "Late night (after 10 PM)"
       },
       "hotel": {
-        "title": "Already booked a hotel? (optional)",
-        "subtitle": "Skip if not — we'll recommend one near your airport.",
+        "title": "Already booked a place to stay? (optional)",
+        "subtitle": "Hotel, hostel, Airbnb, ryokan — anything works. Skip if not booked yet and we'll recommend one near your airport.",
         "placeholder": "e.g. Park Hyatt Tokyo"
       },
       "interests": {
-        "title": "What are you most into?",
-        "subtitle": "Pick up to 6.",
+        "title": "What kind of trip do you want?",
+        "subtitle": "Pick anything that fits — up to 6.",
         "food": "Food",
+        "sightseeing": "Sightseeing",
         "culture": "Culture",
         "history": "History",
         "nature": "Nature",
         "shopping": "Shopping",
         "nightlife": "Nightlife",
-        "adventure": "Adventure",
-        "relaxation": "Relaxation",
+        "adventure": "Adventure & Trekking",
+        "relaxation": "Wellness & Relaxation",
         "photography": "Photography"
       },
       "pace": {
@@ -260,7 +261,8 @@
       "yes": "Yes",
       "no": "No",
       "continue": "Continue →",
-      "skip": "Skip"
+      "skip": "Skip",
+      "back": "Back"
     }
   },
   "samples": {
@@ -292,9 +294,9 @@
     "dayTotalTransit": "{duration} transit",
     "dayTotalMeals": "{count} meals",
     "dayTotalBudget": "~${amount}",
-    "hotelStart": "Hotel: {time} departure",
-    "hotel": "Hotel",
-    "airportToHotel": "Airport → Hotel",
+    "hotelStart": "Stay: {time} departure",
+    "hotel": "Stay",
+    "airportToHotel": "Airport → Stay",
     "day": "Day",
     "practicalInfo": "Practical info",
     "budget": "Budget",

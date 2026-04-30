@@ -42,6 +42,7 @@ export type TravelerType = z.infer<typeof TravelerTypeSchema>;
 
 export const InterestSchema = z.enum([
   "food",
+  "sightseeing",
   "culture",
   "history",
   "nature",

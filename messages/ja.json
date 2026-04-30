@@ -121,8 +121,8 @@
       "headline": "次の旅、すっきり整えます。",
       "subtitle": "簡単な3つの質問だけ。あとはホテル、空港アクセス、レストラン、スマホで持ち歩けるルートマップまで一気に作ります。",
       "badge": "モバイルリンク + PDF · メールでお届け",
-      "destinationLabel": "どちらへ行かれますか?",
-      "destinationPlaceholder": "例: 東京",
+      "destinationLabel": "どの都市へ?",
+      "destinationPlaceholder": "入力すると候補が出ます — 例: 東京、パリ…",
       "countryLabel": "国",
       "countryPlaceholder": "例: 日本",
       "daysLabel": "何日間ですか?",
@@ -213,8 +213,8 @@
       },
       "airport": {
         "title": "どの空港に到着しますか?",
-        "subtitle": "ターミナルに近いホテルを選びます。",
-        "placeholder": "例: NRT または成田"
+        "subtitle": "IATAコード(NRT)・都市名どちらでも自動補完します。",
+        "placeholder": "例: 成田、NRT、東京…"
       },
       "flightArrival": {
         "title": "到着の時間帯は?(任意)",
@@ -226,21 +226,22 @@
         "lateNight": "深夜(22時以降)"
       },
       "hotel": {
-        "title": "ホテルはご予約済みですか?(任意)",
-        "subtitle": "未予約なら空欄でOK。空港近くでおすすめします。",
+        "title": "宿泊先はご予約済みですか?(任意)",
+        "subtitle": "ホテル・ゲストハウス・Airbnb・旅館、何でもOK。未予約なら空欄でOK — 空港近くでおすすめします。",
         "placeholder": "例: パークハイアット東京"
       },
       "interests": {
-        "title": "何に興味がありますか?",
-        "subtitle": "最大6つまで選べます。",
+        "title": "どんな旅にしたいですか?",
+        "subtitle": "気になるものを最大6つまで選べます。",
         "food": "グルメ",
+        "sightseeing": "観光・名所",
         "culture": "文化",
         "history": "歴史",
         "nature": "自然",
         "shopping": "ショッピング",
         "nightlife": "ナイトライフ",
-        "adventure": "アドベンチャー",
-        "relaxation": "リラックス",
+        "adventure": "アドベンチャー・トレッキング",
+        "relaxation": "ウェルネス・リラックス",
         "photography": "写真"
       },
       "pace": {
@@ -260,7 +261,8 @@
       "yes": "はい",
       "no": "いいえ",
       "continue": "続ける →",
-      "skip": "スキップ"
+      "skip": "スキップ",
+      "back": "戻る"
     }
   },
   "samples": {
@@ -292,9 +294,9 @@
     "dayTotalTransit": "{duration} 移動",
     "dayTotalMeals": "食事 {count}回",
     "dayTotalBudget": "約 ${amount}",
-    "hotelStart": "ホテル {time} 出発",
-    "hotel": "ホテル",
-    "airportToHotel": "空港 → ホテル",
+    "hotelStart": "宿泊先 {time} 出発",
+    "hotel": "宿泊先",
+    "airportToHotel": "空港 → 宿泊先",
     "day": "Day",
     "practicalInfo": "実用情報",
     "budget": "予算",

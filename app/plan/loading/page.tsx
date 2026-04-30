@@ -96,12 +96,19 @@ function LoadingInner() {
     };
   });
 
-  // Track which question IDs have been answered (or skipped). The popup
-  // queue is rebuilt on every data change — using a numeric index would
-  // drift when the queue inserts/removes items (e.g., picking
-  // "family-with-kids" inserts adults+children popups, which would
-  // otherwise be skipped past). IDs survive queue restructuring.
-  const [answeredIds, setAnsweredIds] = useState<Set<string>>(new Set());
+  // Answer history — ordered list of (question id, post-answer data
+  // snapshot) pairs. We use this instead of a Set because we need to
+  // (a) survive queue restructuring (id-based, not index-based — see
+  // git history for the family-with-kids skipped-popup bug) AND
+  // (b) support a "back" button that walks the user to the previous
+  // question, restoring the data snapshot from before that answer.
+  // Initial data snapshot is captured once via the lazy useState
+  // initializer above and reused as the back-target for the very
+  // first question.
+  const [answerStack, setAnswerStack] = useState<
+    { id: string; dataBefore: WizardData }[]
+  >([]);
+  const answeredIds = new Set(answerStack.map((s) => s.id));
   const [activeQuestion, setActiveQuestion] = useState<QuestionDef | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -163,7 +170,7 @@ function LoadingInner() {
     if (!nextQuestion) return;
     // Already showing this exact question? Don't reschedule.
     if (activeQuestion?.id === nextQuestion.id) return;
-    const delay = answeredIds.size === 0 ? 2500 : 3500;
+    const delay = answerStack.length === 0 ? 2500 : 3500;
     const timer = setTimeout(() => {
       setActiveQuestion(nextQuestion);
     }, delay);
@@ -175,19 +182,21 @@ function LoadingInner() {
     const currentQ = activeQuestion;
     if (!currentQ) return;
     setActiveQuestion(null);
+    // Snapshot data BEFORE applying the answer so back can restore it.
+    const dataBefore = data;
     const newData = applyAnswer(data, currentQ, value);
     setData(newData);
 
-    const newAnswered = new Set(answeredIds);
-    newAnswered.add(currentQ.id);
-    setAnsweredIds(newAnswered);
+    const newStack = [...answerStack, { id: currentQ.id, dataBefore }];
+    setAnswerStack(newStack);
 
     // Recompute queue with new data and decide if we're done. We use ids
     // (not indices) so a queue that grew due to the answer (e.g. picking
     // family-with-kids inserted adults+children) still asks the inserted
     // popups instead of skipping them.
+    const newAnsweredIds = new Set(newStack.map((s) => s.id));
     const newQueue = buildQuestionQueue(newData, tp);
-    const stillPending = newQueue.some((q) => !newAnswered.has(q.id));
+    const stillPending = newQueue.some((q) => !newAnsweredIds.has(q.id));
 
     if (!stillPending) {
       // All popups answered — show review screen (no longer auto-submits).
@@ -196,6 +205,28 @@ function LoadingInner() {
   };
 
   const handleSkip = () => handleAnswer(null);
+
+  /**
+   * Back button on the wizard popup. Pops the most recent answer off the
+   * stack, restores the pre-answer data snapshot, and resurfaces the
+   * previous question. No-op if there's nothing to go back to.
+   *
+   * The data snapshot includes ALL fields (children, hasInfant, stroller
+   * derivations, etc.) so backing out of a "children" skip cleanly undoes
+   * the children=0 derivation set in applyAnswer.
+   */
+  const handleBack = () => {
+    if (answerStack.length === 0) return;
+    const last = answerStack[answerStack.length - 1];
+    setData(last.dataBefore);
+    setAnswerStack((s) => s.slice(0, -1));
+    setActiveQuestion(null);
+    // Cancel any review-ready timer that might have been queued by the
+    // last answer (if it was the final question). reviewReady itself is
+    // gated on this flag, and the next-question useEffect will pick the
+    // popped-back question naturally on the next tick.
+    setReviewReady(false);
+  };
 
   const handlePay = async () => {
     if (submitting) return;
@@ -680,6 +711,7 @@ function LoadingInner() {
           question={activeQuestion}
           onAnswer={handleAnswer}
           onSkip={activeQuestion.optional ? handleSkip : undefined}
+          onBack={answerStack.length > 0 ? handleBack : undefined}
           questionNumber={answeredInQueue + 1}
           totalQuestions={questions.length}
         />
@@ -951,6 +983,7 @@ function BudgetEditor({
 
 const INTEREST_OPTIONS: Interest[] = [
   "food",
+  "sightseeing",
   "culture",
   "history",
   "nature",
@@ -1134,7 +1167,7 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     id: "airport",
     title: tp("airport.title"),
     subtitle: tp("airport.subtitle"),
-    type: "text",
+    type: "airport",
     placeholder: tp("airport.placeholder"),
   });
 
@@ -1177,6 +1210,7 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     maxSelections: 6,
     options: [
       { value: "food", label: tp("interests.food") },
+      { value: "sightseeing", label: tp("interests.sightseeing") },
       { value: "culture", label: tp("interests.culture") },
       { value: "history", label: tp("interests.history") },
       { value: "nature", label: tp("interests.nature") },

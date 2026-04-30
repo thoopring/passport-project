@@ -121,8 +121,8 @@
       "headline": "下一趟旅行,帮您安排妥当。",
       "subtitle": "回答三个简单问题就好。酒店、机场交通、餐厅,以及可装在手机里的路线图,我们一并搞定。",
       "badge": "移动链接 + PDF · 邮件送达",
-      "destinationLabel": "您要去哪里?",
-      "destinationPlaceholder": "例如:东京",
+      "destinationLabel": "去哪个城市?",
+      "destinationPlaceholder": "开始输入,自动补全 — 例如:东京、巴黎…",
       "countryLabel": "国家",
       "countryPlaceholder": "例如:日本",
       "daysLabel": "几天行程?",
@@ -213,8 +213,8 @@
       },
       "airport": {
         "title": "您将抵达哪个机场?",
-        "subtitle": "我们会选靠近航站楼的酒店。",
-        "placeholder": "例如:NRT 或成田"
+        "subtitle": "输入 IATA 代码 (NRT) 或城市名,自动补全。",
+        "placeholder": "例如:成田、NRT、东京…"
       },
       "flightArrival": {
         "title": "抵达时段是?(可选)",
@@ -226,21 +226,22 @@
         "lateNight": "深夜(10 点之后)"
       },
       "hotel": {
-        "title": "已经预订酒店了吗?(可选)",
-        "subtitle": "没有就跳过 — 我们会推荐机场附近的酒店。",
+        "title": "已经订好住宿了吗?(可选)",
+        "subtitle": "酒店、青旅、民宿、Airbnb 都可以。没有就跳过 — 我们会推荐机场附近的住宿。",
         "placeholder": "例如:东京柏悦酒店"
       },
       "interests": {
-        "title": "您最感兴趣的是什么?",
-        "subtitle": "最多选 6 项。",
+        "title": "想要怎样的旅行?",
+        "subtitle": "感兴趣的都可以选,最多 6 项。",
         "food": "美食",
+        "sightseeing": "观光·名胜",
         "culture": "文化",
         "history": "历史",
         "nature": "自然",
         "shopping": "购物",
         "nightlife": "夜生活",
-        "adventure": "冒险",
-        "relaxation": "放松",
+        "adventure": "冒险·徒步",
+        "relaxation": "休养·健康",
         "photography": "摄影"
       },
       "pace": {
@@ -260,7 +261,8 @@
       "yes": "是",
       "no": "否",
       "continue": "继续 →",
-      "skip": "跳过"
+      "skip": "跳过",
+      "back": "返回"
     }
   },
   "samples": {
@@ -291,10 +293,10 @@
     "dayTotalTransit": "移动 {duration}",
     "dayTotalMeals": "餐食 {count} 次",
     "dayTotalBudget": "约 ${amount}",
-    "hotelStart": "酒店 {time} 出发",
+    "hotelStart": "住宿 {time} 出发",
     "downloadPdf": "下载 PDF",
-    "hotel": "酒店",
-    "airportToHotel": "机场 → 酒店",
+    "hotel": "住宿",
+    "airportToHotel": "机场 → 住宿",
     "day": "Day",
     "practicalInfo": "实用信息",
     "budget": "预算",
