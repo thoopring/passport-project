@@ -256,153 +256,189 @@ export default async function PlanView({
               Anchors map to id={`day-${dayNumber}`} on each day card below. */}
           <PlanTimeline days={plan.days} />
 
-          {/* Days */}
+          {/* Days — collapsible on mobile, fully expanded on desktop.
+              Each day is a <details> element so mobile readers see Day 1
+              expanded as a rich first impression, then Days 2+ collapsed
+              as scannable theme summaries until tapped. Desktop forces
+              all bodies open via CSS in globals.css (.day-card rules) so
+              data-density still wins on wider screens. The summary
+              element renders the day header (theme + summary line +
+              compact stat ribbon) so the user can decide whether to
+              expand without opening the day. */}
           {plan.days.map((day) => {
             const stats = computeDayStats(day);
             const buffers = computeStopBuffers(day);
+            const hasStats =
+              stats.activeMinutes > 0 ||
+              stats.transitMinutes > 0 ||
+              stats.mealCount > 0 ||
+              stats.budgetUSD > 0;
             return (
-              <div
+              <details
                 key={day.dayNumber}
                 id={`day-${day.dayNumber}`}
-                className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-4 scroll-mt-24"
+                open={day.dayNumber === 1}
+                className="day-card bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] mb-4 scroll-mt-24 overflow-hidden"
               >
-                <div className="flex items-baseline justify-between mb-3">
-                  <div>
-                    <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
-                      {t("day")} {day.dayNumber}
-                    </p>
-                    <h2 className="font-display text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
-                      {day.theme}
-                    </h2>
+                <summary className="block p-6 sm:pb-4 select-none">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
+                        {t("day")} {day.dayNumber}
+                      </p>
+                      <h2 className="font-display text-[1.5rem] sm:text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
+                        {day.theme}
+                      </h2>
+                    </div>
+                    <span
+                      className="day-chevron shrink-0 mt-1 inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]"
+                      aria-hidden
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p className="text-body-sm text-[var(--text-secondary)] mt-3 leading-relaxed">
+                    {day.summary}
+                  </p>
+                  {/* Compact stat ribbon — visible inside the summary so
+                      collapsed days still communicate scope at a glance. */}
+                  {hasStats && (
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-[var(--text-muted)] mt-3">
+                      {stats.activeMinutes > 0 && (
+                        <span className="font-semibold text-[var(--text-primary)]">
+                          {t("dayTotalActivity", {
+                            duration: formatDuration(stats.activeMinutes),
+                          })}
+                        </span>
+                      )}
+                      {stats.transitMinutes > 0 && (
+                        <>
+                          <span aria-hidden>·</span>
+                          <span>
+                            {t("dayTotalTransit", {
+                              duration: formatDuration(stats.transitMinutes),
+                            })}
+                          </span>
+                        </>
+                      )}
+                      {stats.mealCount > 0 && (
+                        <>
+                          <span aria-hidden>·</span>
+                          <span>{t("dayTotalMeals", { count: stats.mealCount })}</span>
+                        </>
+                      )}
+                      {stats.budgetUSD > 0 && (
+                        <>
+                          <span aria-hidden>·</span>
+                          <span>
+                            {t("dayTotalBudget", {
+                              amount: Math.round(stats.budgetUSD),
+                            })}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </summary>
+
+                <div className="day-card-body px-6 pb-6">
+                  <div className="pt-4 border-t border-[var(--border-subtle)]">
+                    {/* Hotel-departure anchor — derived from first stop time
+                        minus implied walk-from-hotel. Skipped if unparseable. */}
+                    {stats.hotelStartTime && (
+                      <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-semibold mb-4">
+                        {t("hotelStart", { time: stats.hotelStartTime })}
+                      </p>
+                    )}
+
+                    {/* Stops — mobile gets a compact card stack (time +
+                        type as a header pill, name, description, single
+                        meta line) so each stop occupies less vertical
+                        space. Desktop keeps the time-column + bordered
+                        rail layout for density. */}
+                    <ol className="space-y-4 sm:space-y-5">
+                      {day.stops.map((stop, idx) => {
+                        const buffer = buffers[idx];
+                        const tightBorder =
+                          buffer?.tightness === "tight"
+                            ? "sm:border-l-2 sm:border-l-[var(--brand-primary)]"
+                            : "sm:border-l sm:border-[var(--border-light)]";
+                        const transitMode = inferTransitMode(stop.transitFromPrev);
+                        return (
+                          <li key={stop.order} className="flex flex-col sm:flex-row sm:gap-4">
+                            {/* Mobile: inline pill row (time + type) above content.
+                                Desktop: fixed 64px right-aligned column. */}
+                            <div className="shrink-0 sm:w-16 sm:text-right mb-1.5 sm:mb-0 flex items-baseline gap-2 sm:block">
+                              <p className="font-semibold text-[var(--brand-primary)] text-body-sm">
+                                {stop.time}
+                              </p>
+                              <p className="text-caption text-[var(--text-muted)] uppercase tracking-[0.1em]">
+                                {stop.type}
+                              </p>
+                            </div>
+                            <div className={`flex-1 min-w-0 ${tightBorder} sm:pl-4 sm:pb-1`}>
+                              {/* Transit hint as the bridge from the previous stop —
+                                  skipped on the first stop of the day (no "previous"). */}
+                              {idx > 0 && stop.transitFromPrev && (
+                                <p className="text-caption text-[var(--text-muted)] mb-1.5 inline-flex items-center gap-1.5">
+                                  <TransitIcon mode={transitMode} />
+                                  <span>{stop.transitFromPrev}</span>
+                                </p>
+                              )}
+                              <p className="font-semibold text-body-md sm:text-body-sm text-[var(--text-primary)]">
+                                {stop.name}
+                              </p>
+                              {stop.area && (
+                                <p className="text-caption text-[var(--text-muted)]">{stop.area}</p>
+                              )}
+                              <p className="text-body-sm text-[var(--text-secondary)] mt-1.5 leading-relaxed">
+                                {stop.description}
+                              </p>
+                              <p className="text-caption text-[var(--text-muted)] mt-1.5">
+                                {stop.duration}
+                                {stop.estimatedCost ? ` · ${stop.estimatedCost}` : ""}
+                              </p>
+                              {stop.bookingTip && (
+                                <p className="text-caption font-semibold text-[var(--accent-primary)] mt-2">
+                                  {t("tipLabel")} {stop.bookingTip}
+                                </p>
+                              )}
+                              {/* Tickets/tour affiliate — only on activity-type
+                                  stops where a booking-aheadable ticket
+                                  actually applies. */}
+                              {stop.type === "activity" &&
+                                (() => {
+                                  const link = buildKlookUrl();
+                                  return (
+                                    <AffiliateLink
+                                      href={link.url}
+                                      category="plan_stop_activity"
+                                      label="klook"
+                                      className="inline-flex items-center gap-1 mt-2 text-caption text-[var(--brand-primary)]/70 hover:text-[var(--brand-primary)] underline underline-offset-4 decoration-[var(--brand-primary)]/20 hover:decoration-[var(--brand-primary)]/60 transition"
+                                    >
+                                      Find tickets on Klook ↗
+                                    </AffiliateLink>
+                                  );
+                                })()}
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ol>
                   </div>
                 </div>
-                <p className="text-body-sm text-[var(--text-secondary)] mb-4 leading-relaxed">
-                  {day.summary}
-                </p>
-
-                {/* Day totals strip — derived from stops. Skip any zero values
-                    so the strip stays readable on light days. */}
-                {(stats.activeMinutes > 0 ||
-                  stats.transitMinutes > 0 ||
-                  stats.mealCount > 0 ||
-                  stats.budgetUSD > 0) && (
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-[var(--text-muted)] mb-4 pb-4 border-b border-[var(--border-subtle)]">
-                    {stats.activeMinutes > 0 && (
-                      <span className="font-semibold text-[var(--text-primary)]">
-                        {t("dayTotalActivity", {
-                          duration: formatDuration(stats.activeMinutes),
-                        })}
-                      </span>
-                    )}
-                    {stats.transitMinutes > 0 && (
-                      <>
-                        <span aria-hidden>·</span>
-                        <span>
-                          {t("dayTotalTransit", {
-                            duration: formatDuration(stats.transitMinutes),
-                          })}
-                        </span>
-                      </>
-                    )}
-                    {stats.mealCount > 0 && (
-                      <>
-                        <span aria-hidden>·</span>
-                        <span>{t("dayTotalMeals", { count: stats.mealCount })}</span>
-                      </>
-                    )}
-                    {stats.budgetUSD > 0 && (
-                      <>
-                        <span aria-hidden>·</span>
-                        <span>
-                          {t("dayTotalBudget", {
-                            amount: Math.round(stats.budgetUSD),
-                          })}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                )}
-
-                {/* Hotel-departure anchor — derived from first stop time
-                    minus implied walk-from-hotel. Skipped if unparseable. */}
-                {stats.hotelStartTime && (
-                  <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-semibold mb-4">
-                    {t("hotelStart", { time: stats.hotelStartTime })}
-                  </p>
-                )}
-
-                <ol className="space-y-5">
-                  {day.stops.map((stop, idx) => {
-                    const buffer = buffers[idx];
-                    const tightBorder =
-                      buffer?.tightness === "tight"
-                        ? "border-l-2 border-l-[var(--brand-primary)]"
-                        : "border-l border-[var(--border-light)]";
-                    const transitMode = inferTransitMode(stop.transitFromPrev);
-                    return (
-                      <li key={stop.order} className="flex gap-4">
-                        <div className="shrink-0 w-16 text-right">
-                          <p className="font-semibold text-[var(--brand-primary)] text-body-sm">
-                            {stop.time}
-                          </p>
-                          <p className="text-caption text-[var(--text-muted)] uppercase tracking-[0.1em]">
-                            {stop.type}
-                          </p>
-                        </div>
-                        <div className={`flex-1 ${tightBorder} pl-4 pb-1`}>
-                          {/* Transit hint as the bridge from the previous stop —
-                              skipped on the first stop of the day (no "previous"). */}
-                          {idx > 0 && stop.transitFromPrev && (
-                            <p className="text-caption text-[var(--text-muted)] mb-1.5 inline-flex items-center gap-1.5">
-                              <TransitIcon mode={transitMode} />
-                              <span>{stop.transitFromPrev}</span>
-                            </p>
-                          )}
-                          <p className="font-semibold text-body-sm text-[var(--text-primary)]">
-                            {stop.name}
-                          </p>
-                          {stop.area && (
-                            <p className="text-caption text-[var(--text-muted)]">{stop.area}</p>
-                          )}
-                          <p className="text-body-sm text-[var(--text-secondary)] mt-1.5 leading-relaxed">
-                            {stop.description}
-                          </p>
-                          <p className="text-caption text-[var(--text-muted)] mt-1.5">
-                            {stop.duration}
-                            {stop.estimatedCost ? ` · ${stop.estimatedCost}` : ""}
-                          </p>
-                          {stop.bookingTip && (
-                            <p className="text-caption font-semibold text-[var(--accent-primary)] mt-2">
-                              {t("tipLabel")} {stop.bookingTip}
-                            </p>
-                          )}
-                          {/* Tickets/tour affiliate — only on activity-type
-                              stops where a booking-aheadable ticket
-                              actually applies. Skipped for sights, meals,
-                              transit, rest, shopping. Klook deep-link is
-                              generic (their tpx.lu doesn't accept query
-                              params) but lands the user on the catalog so
-                              they can search the stop name themselves. */}
-                          {stop.type === "activity" &&
-                            (() => {
-                              const link = buildKlookUrl();
-                              return (
-                                <AffiliateLink
-                                  href={link.url}
-                                  category="plan_stop_activity"
-                                  label="klook"
-                                  className="inline-flex items-center gap-1 mt-2 text-caption text-[var(--brand-primary)]/70 hover:text-[var(--brand-primary)] underline underline-offset-4 decoration-[var(--brand-primary)]/20 hover:decoration-[var(--brand-primary)]/60 transition"
-                                >
-                                  Find tickets on Klook ↗
-                                </AffiliateLink>
-                              );
-                            })()}
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </div>
+              </details>
             );
           })}
 
