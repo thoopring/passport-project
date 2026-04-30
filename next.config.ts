@@ -27,6 +27,19 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-XSS-Protection", value: "1; mode=block" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // 2 years HSTS + subdomains + preload-eligible. Vercel sets a
+          // basic HSTS automatically; this overrides with stricter policy
+          // appropriate for a paid product.
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          // Disable browser features we don't use. Reduces attack surface
+          // if a third-party script ever tries to access them.
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+          },
         ],
       },
       {

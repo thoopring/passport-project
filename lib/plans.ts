@@ -119,13 +119,40 @@ export async function savePlanRoutePolylines(
   }
 }
 
+/**
+ * Maps a raw error message to a sanitized, customer-safe category.
+ *
+ * The raw message can contain stack-trace fragments, Supabase column
+ * names, internal IDs, or third-party API details that we don't want
+ * surfaced to anyone holding a plan UUID (which is the only gate on
+ * /api/plan/[id]/status and /plan/[id]). Internal observability is
+ * preserved via console.error in the webhook/checkout catch blocks.
+ */
+function sanitizeFailureReason(reason: string): string {
+  const m = reason.toLowerCase();
+  if (m.includes("timeout") || m.includes("timed out")) {
+    return "Generation timed out. A refund will be issued automatically.";
+  }
+  if (m.includes("rate") && (m.includes("limit") || m.includes("exceeded"))) {
+    return "Service was temporarily busy. A refund will be issued automatically.";
+  }
+  if (m.includes("invalid") || m.includes("schema") || m.includes("parse")) {
+    return "Plan generation returned an unexpected format. A refund will be issued automatically.";
+  }
+  if (m.includes("not found")) {
+    return "Plan record could not be located. Please contact support.";
+  }
+  return "Plan generation failed. A refund will be issued automatically.";
+}
+
 export async function setPlanFailed(id: string, reason: string): Promise<void> {
   const supabase = getSupabaseAdmin();
+  const safeReason = sanitizeFailureReason(reason);
   const { error } = await supabase
     .from(PLANS_TABLE)
     .update({
       status: "failed" as PlanStatus,
-      failure_reason: reason,
+      failure_reason: safeReason,
       updated_at: new Date().toISOString(),
     })
     .eq("id", id);

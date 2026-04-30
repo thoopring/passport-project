@@ -89,6 +89,21 @@ export async function POST(req: NextRequest) {
 
 async function generateAndDeliver(planId: string, paymentId: string): Promise<void> {
   try {
+    // Idempotency guard: LS retries webhooks on timeout/non-2xx responses,
+    // and any duplicate delivery would otherwise fire a second Claude call
+    // and overwrite the plan. Skip if the plan already passed the draft
+    // gate (paid/generating/complete/failed/refunded). Only 'draft' should
+    // be promoted to 'paid' here.
+    const existing = await getPlan(planId);
+    if (!existing) throw new Error(`Plan ${planId} not found`);
+    if (existing.status !== "draft") {
+      console.warn("[webhook] duplicate delivery — skipping", {
+        planId,
+        currentStatus: existing.status,
+      });
+      return;
+    }
+
     await markPlanPaid(planId, paymentId);
 
     const plan = await getPlan(planId);
