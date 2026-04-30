@@ -5,6 +5,8 @@ import {
   TripPlanSchema,
   type Day,
 } from "../../types/trip-plan";
+import { getSampleLocalized } from "../samples";
+import type { Locale } from "../../i18n/locales";
 
 /**
  * Claude trip plan generator.
@@ -36,7 +38,23 @@ function getClient(): Anthropic {
   return client;
 }
 
-const SYSTEM_PROMPT = `You are an elite travel concierge writing a detailed, personalized trip itinerary that the traveler will pay $4 to receive as a mobile-responsive secret web link plus a downloadable PDF for offline use.
+const LOCALE_NAMES: Record<string, string> = {
+  en: "English",
+  ko: "Korean (한국어)",
+  ja: "Japanese (日本語)",
+  zh: "Simplified Chinese (简体中文)",
+  fr: "French (français)",
+};
+
+const LOCALE_CURRENCY: Record<string, { code: string; symbol: string; example: string }> = {
+  en: { code: "USD", symbol: "$", example: "~$140/night" },
+  ko: { code: "KRW", symbol: "원", example: "약 19만원/박" },
+  ja: { code: "JPY", symbol: "円", example: "1泊 約20,000円" },
+  zh: { code: "CNY", symbol: "元", example: "约 1,000 元/晚" },
+  fr: { code: "EUR", symbol: "€", example: "~135 €/nuit" },
+};
+
+const SYSTEM_PROMPT_BODY = `You are an elite travel concierge writing a detailed, personalized trip itinerary that the traveler will pay $4 to receive as a mobile-responsive secret web link plus a downloadable PDF for offline use.
 
 CRITICAL RULES — VIOLATING THESE RUINS THE PRODUCT:
 
@@ -138,13 +156,102 @@ You must return a single JSON object matching this exact schema. No prose before
   "generalTips": ["optional array", "of general tips for this destination"]
 }`;
 
-const LOCALE_INSTRUCTIONS: Record<string, string> = {
-  en: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in English.",
-  ko: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Korean (한국어). Place names, hotel names, and street addresses stay in their original native script with optional Romanization in parentheses on first mention. Numbers and prices stay in their original format. Use polite -해요 / -합니다 endings consistently — friendly but respectful, like a knowledgeable friend giving recommendations. Avoid stiff -습니다 endings only.",
-  ja: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Japanese (日本語). Place names stay in Japanese script with English in parentheses on first mention if it's a foreign destination. Use です/ます polite forms consistently — friendly and helpful, not overly formal. Avoid stiff business-Japanese constructions.",
-  fr: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL French (français). Use formal vous form throughout. Tone is friendly but respectful — like a knowledgeable concierge giving warm recommendations, not a stiff travel agency. Place names stay in their original local script with French equivalent in parentheses on first mention if commonly known (e.g. 'Tokyo Tower (Tour de Tokyo)'). Numbers and prices stay in their original format with currency symbol.",
-  zh: "Write all user-facing strings (overview, day theme, day summary, stop description, hotel rationale, transit instructions, packingTips, generalTips) in NATURAL Simplified Chinese (简体中文). Place names stay in their native script with Pinyin in parentheses on first mention. Use formal but warm tone.",
-};
+/**
+ * Build a locale-aware system prompt for the trip-plan generator.
+ *
+ * The locale block is intentionally PLACED FIRST, ahead of the rules-in-English
+ * body, because models default to the language they see most of in context.
+ * If we bury the locale instruction at the end (as the previous version did),
+ * Claude saw 2,000 tokens of English rules and produced English output even
+ * for ko/ja/zh/fr users — the bug the founder flagged.
+ *
+ * We also EMBED a curated Day 1 from the localized Tokyo sample as a
+ * few-shot reference. This anchors voice + depth + currency formatting
+ * to the same bar the hand-written samples set, so AI output reads as
+ * a sibling of the samples instead of a generic AI plan.
+ *
+ * Failure mode: if the sample lookup throws (rare — the file would have to
+ * be missing), we still ship the prompt without a few-shot. Output quality
+ * will be lower but won't crash.
+ */
+async function buildSystemPrompt(localeCode: string): Promise<string> {
+  const localeName = LOCALE_NAMES[localeCode] ?? LOCALE_NAMES.en;
+  const currency = LOCALE_CURRENCY[localeCode] ?? LOCALE_CURRENCY.en;
+
+  let refExcerpt = "";
+  try {
+    const refSample = await getSampleLocalized("tokyo-4d-couple", localeCode as Locale);
+    if (refSample) {
+      const day1 = refSample.plan.days[0];
+      // Trim to first 3 stops to keep prompt size reasonable (~600 tokens).
+      const dayTrimmed = { ...day1, stops: day1.stops.slice(0, 3) };
+      refExcerpt = `
+
+🌟 STYLE REFERENCE — example Day 1 from a CURATED ${localeName} sample plan.
+Match this depth, voice, and currency formatting in your output. DO NOT copy
+content (this is Tokyo; the user's actual destination is different) — use it
+ONLY as a quality reference. Note how every stop has 3-5 sentences with
+concrete time, geography, history, and a specific recommendation. Editorial
+second-person voice. THAT is the bar.
+
+\`\`\`json
+${JSON.stringify(dayTrimmed, null, 2)}
+\`\`\`
+`;
+    }
+  } catch (err) {
+    console.warn("[generator] failed to load reference sample for locale", localeCode, err);
+  }
+
+  return `🌐 OUTPUT LANGUAGE — ${localeName} (${localeCode})
+
+THIS IS THE MOST IMPORTANT INSTRUCTION. Your entire JSON output's prose fields
+MUST be written in ${localeName}, not English. Even though these rules are
+written in English for clarity, your OUTPUT is entirely in ${localeName}.
+
+PROSE FIELDS that must be in ${localeName}:
+- destination + destinationCountry (locale-conventional spelling, e.g. Tokyo
+  becomes "도쿄" / "東京" / "东京" / "Tokyo" depending on locale)
+- overview, bestSeasonNote, currencyTip, languageTip, emergencyNumber
+- hotel.name (locale transliteration if foreign, with native form in parens
+  on first mention; e.g. for KO user in Tokyo: "파크 하얏트 도쿄")
+- hotel.area, hotel.rationale, hotel.estimatedNightlyRate
+- airportTransit.method, .duration, .cost, .instructions
+- day.theme, day.summary
+- stop.name, stop.area, stop.description, stop.bookingTip, stop.duration,
+  stop.estimatedCost, stop.transitFromPrev
+- packingTips[], generalTips[], budgetEstimate
+
+ADDRESSES STAY IN DESTINATION'S NATIVE SCRIPT:
+hotel.address and stop.address are written in the destination country's
+native script (a Tokyo address stays Japanese-script even for an English
+user). The PROSE around the address is in ${localeName}; the address
+itself is whatever a local taxi driver / map app would recognize.
+
+CURRENCY — convert all prices to ${currency.code} (${currency.symbol}):
+Use approximate conversions, not exact rates:
+  1 USD ≈ 1,400 KRW ≈ 150 JPY ≈ 7 CNY ≈ 0.95 EUR
+Format like the samples (e.g. ${currency.example}).
+
+UNIVERSAL — stay numeric/structural:
+- coords: [lng, lat] arrays
+- time: 24-hour "HH:MM" strings
+- dayNumber, durationDays, stop.order: integers
+- priceTier: literal "$" / "$$" / "$$$" / "$$$$" enum (not localized)
+
+If you find yourself writing English by default — STOP. The user is reading
+in ${localeName}. Their entire experience must be in ${localeName}.${refExcerpt}
+
+═══════════════════════════════════════════════════════════════════════════
+
+${SYSTEM_PROMPT_BODY}
+
+═══════════════════════════════════════════════════════════════════════════
+
+🌐 FINAL REMINDER: Your output JSON's prose is in ${localeName}.
+Currency in ${currency.code}. Addresses in destination's native script.
+The instructions above are written in English for clarity — your output is NOT.`;
+}
 
 function buildUserPrompt(req: PlanRequest): string {
   const childInfo =
@@ -159,9 +266,6 @@ function buildUserPrompt(req: PlanRequest): string {
   const hotelInfo = req.hotelBooked
     ? `Hotel: ALREADY BOOKED${req.hotelName ? ` (${req.hotelName})` : ""}. Do NOT recommend a different hotel — anchor the itinerary around this location.`
     : "Hotel: Recommend one matched to the arrival airport and traveler profile.";
-
-  const locale = req.locale ?? "en";
-  const localeInstruction = LOCALE_INSTRUCTIONS[locale] ?? LOCALE_INSTRUCTIONS.en;
 
   return `Generate a detailed ${req.durationDays}-day trip plan for the following traveler.
 
@@ -184,9 +288,9 @@ ${req.flightArrival ? `ARRIVAL PERIOD: ${req.flightArrival} (one of early-mornin
 
 ${req.notes ? `Additional notes from the traveler: ${req.notes}` : ""}
 
-OUTPUT LANGUAGE: ${localeInstruction}
+Return the complete trip plan as a single JSON object matching the schema in the system prompt. No prose, no markdown — pure JSON only.
 
-Return the complete trip plan as a single JSON object matching the schema in the system prompt. No prose, no markdown — pure JSON only.`;
+REMEMBER: output language and currency follow the OUTPUT LANGUAGE block at the top of the system prompt. Do not write English by default.`;
 }
 
 function styleInstruction(style: "sightseeing" | "relaxation" | "mixed"): string {
@@ -213,6 +317,11 @@ function extractJson(text: string): unknown {
 export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
   const anthropic = getClient();
 
+  // Build the system prompt ONCE per generation — locale-specific block
+  // (incl. few-shot reference Day 1 from the localized Tokyo sample) is
+  // prepended ahead of the rules body. See buildSystemPrompt() for why.
+  const systemPrompt = await buildSystemPrompt(req.locale ?? "en");
+
   const callClaude = async (correction?: string): Promise<string> => {
     const messages: Anthropic.MessageParam[] = [
       { role: "user", content: buildUserPrompt(req) },
@@ -231,7 +340,7 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
     const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: MAX_OUTPUT_TOKENS,
-      system: SYSTEM_PROMPT,
+      system: systemPrompt,
       messages,
     });
 
