@@ -3,9 +3,76 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
+import PlanTimeline from "./PlanTimeline";
 import Header from "./Header";
 import Footer from "./Footer";
 import type { TripPlan } from "../types/trip-plan";
+import { computeDayStats, computeStopBuffers, formatDuration } from "../lib/plan-stats";
+import { inferTransitMode, type TransitMode } from "../lib/transit-icons";
+
+/**
+ * Tiny inline icon for the transit hint above each stop. Five concrete
+ * modes plus a neutral arrow fallback. Kept inline because the icons
+ * are tiny enough that an icon library would be overkill.
+ */
+function TransitIcon({ mode }: { mode: TransitMode }) {
+  const stroke = "currentColor";
+  const props = {
+    width: 13,
+    height: 13,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke,
+    strokeWidth: 2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  switch (mode) {
+    case "walk":
+      return (
+        <svg {...props}>
+          <circle cx="13" cy="4" r="2" />
+          <path d="M13 6v5l-3 4 2 5M13 11l4 3-1 5M9 14l-3 4" />
+        </svg>
+      );
+    case "transit":
+      return (
+        <svg {...props}>
+          <rect x="5" y="3" width="14" height="14" rx="3" />
+          <path d="M8 17l-2 4M16 17l2 4M5 11h14" />
+        </svg>
+      );
+    case "taxi":
+      return (
+        <svg {...props}>
+          <path d="M3 13l2-6h14l2 6v5h-2v2h-2v-2H7v2H5v-2H3z" />
+          <circle cx="7.5" cy="15" r="1" />
+          <circle cx="16.5" cy="15" r="1" />
+        </svg>
+      );
+    case "drive":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="1.5" />
+          <path d="M12 4v6M4 14h6M14 14h6" />
+        </svg>
+      );
+    case "flight":
+      return (
+        <svg {...props}>
+          <path d="M21 15l-7-2-2-8h-2v8l-7 2v2l7-1 2 5h2l1-5 6-1z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg {...props}>
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      );
+  }
+}
 
 interface PlanViewProps {
   plan: TripPlan;
@@ -139,61 +206,138 @@ export default async function PlanView({
             </div>
           </div>
 
-          {/* Days */}
-          {plan.days.map((day) => (
-            <div
-              key={day.dayNumber}
-              className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-4"
-            >
-              <div className="flex items-baseline justify-between mb-4">
-                <div>
-                  <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
-                    {t("day")} {day.dayNumber}
-                  </p>
-                  <h2 className="font-display text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
-                    {day.theme}
-                  </h2>
-                </div>
-              </div>
-              <p className="text-body-sm text-[var(--text-secondary)] mb-6 leading-relaxed">{day.summary}</p>
+          {/* Day-jump strip — sticky on desktop, hidden on mobile.
+              Anchors map to id={`day-${dayNumber}`} on each day card below. */}
+          <PlanTimeline days={plan.days} />
 
-              <ol className="space-y-5">
-                {day.stops.map((stop) => (
-                  <li key={stop.order} className="flex gap-4">
-                    <div className="shrink-0 w-16 text-right">
-                      <p className="font-semibold text-[var(--brand-primary)] text-body-sm">
-                        {stop.time}
-                      </p>
-                      <p className="text-caption text-[var(--text-muted)] uppercase tracking-[0.1em]">
-                        {stop.type}
-                      </p>
-                    </div>
-                    <div className="flex-1 border-l border-[var(--border-light)] pl-4 pb-1">
-                      <p className="font-semibold text-body-sm text-[var(--text-primary)]">
-                        {stop.name}
-                      </p>
-                      {stop.area && (
-                        <p className="text-caption text-[var(--text-muted)]">{stop.area}</p>
-                      )}
-                      <p className="text-body-sm text-[var(--text-secondary)] mt-1.5 leading-relaxed">
-                        {stop.description}
-                      </p>
-                      <p className="text-caption text-[var(--text-muted)] mt-1.5">
-                        {stop.duration}
-                        {stop.estimatedCost ? ` · ${stop.estimatedCost}` : ""}
-                        {stop.transitFromPrev ? ` · ${stop.transitFromPrev}` : ""}
-                      </p>
-                      {stop.bookingTip && (
-                        <p className="text-caption font-semibold text-[var(--accent-primary)] mt-2">
-                          {t("tipLabel")} {stop.bookingTip}
-                        </p>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          ))}
+          {/* Days */}
+          {plan.days.map((day) => {
+            const stats = computeDayStats(day);
+            const buffers = computeStopBuffers(day);
+            return (
+              <div
+                key={day.dayNumber}
+                id={`day-${day.dayNumber}`}
+                className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-4 scroll-mt-24"
+              >
+                <div className="flex items-baseline justify-between mb-3">
+                  <div>
+                    <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
+                      {t("day")} {day.dayNumber}
+                    </p>
+                    <h2 className="font-display text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
+                      {day.theme}
+                    </h2>
+                  </div>
+                </div>
+                <p className="text-body-sm text-[var(--text-secondary)] mb-4 leading-relaxed">
+                  {day.summary}
+                </p>
+
+                {/* Day totals strip — derived from stops. Skip any zero values
+                    so the strip stays readable on light days. */}
+                {(stats.activeMinutes > 0 ||
+                  stats.transitMinutes > 0 ||
+                  stats.mealCount > 0 ||
+                  stats.budgetUSD > 0) && (
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-[var(--text-muted)] mb-4 pb-4 border-b border-[var(--border-subtle)]">
+                    {stats.activeMinutes > 0 && (
+                      <span className="font-semibold text-[var(--text-primary)]">
+                        {t("dayTotalActivity", {
+                          duration: formatDuration(stats.activeMinutes),
+                        })}
+                      </span>
+                    )}
+                    {stats.transitMinutes > 0 && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>
+                          {t("dayTotalTransit", {
+                            duration: formatDuration(stats.transitMinutes),
+                          })}
+                        </span>
+                      </>
+                    )}
+                    {stats.mealCount > 0 && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>{t("dayTotalMeals", { count: stats.mealCount })}</span>
+                      </>
+                    )}
+                    {stats.budgetUSD > 0 && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>
+                          {t("dayTotalBudget", {
+                            amount: Math.round(stats.budgetUSD),
+                          })}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {/* Hotel-departure anchor — derived from first stop time
+                    minus implied walk-from-hotel. Skipped if unparseable. */}
+                {stats.hotelStartTime && (
+                  <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-semibold mb-4">
+                    {t("hotelStart", { time: stats.hotelStartTime })}
+                  </p>
+                )}
+
+                <ol className="space-y-5">
+                  {day.stops.map((stop, idx) => {
+                    const buffer = buffers[idx];
+                    const tightBorder =
+                      buffer?.tightness === "tight"
+                        ? "border-l-2 border-l-[var(--brand-primary)]"
+                        : "border-l border-[var(--border-light)]";
+                    const transitMode = inferTransitMode(stop.transitFromPrev);
+                    return (
+                      <li key={stop.order} className="flex gap-4">
+                        <div className="shrink-0 w-16 text-right">
+                          <p className="font-semibold text-[var(--brand-primary)] text-body-sm">
+                            {stop.time}
+                          </p>
+                          <p className="text-caption text-[var(--text-muted)] uppercase tracking-[0.1em]">
+                            {stop.type}
+                          </p>
+                        </div>
+                        <div className={`flex-1 ${tightBorder} pl-4 pb-1`}>
+                          {/* Transit hint as the bridge from the previous stop —
+                              skipped on the first stop of the day (no "previous"). */}
+                          {idx > 0 && stop.transitFromPrev && (
+                            <p className="text-caption text-[var(--text-muted)] mb-1.5 inline-flex items-center gap-1.5">
+                              <TransitIcon mode={transitMode} />
+                              <span>{stop.transitFromPrev}</span>
+                            </p>
+                          )}
+                          <p className="font-semibold text-body-sm text-[var(--text-primary)]">
+                            {stop.name}
+                          </p>
+                          {stop.area && (
+                            <p className="text-caption text-[var(--text-muted)]">{stop.area}</p>
+                          )}
+                          <p className="text-body-sm text-[var(--text-secondary)] mt-1.5 leading-relaxed">
+                            {stop.description}
+                          </p>
+                          <p className="text-caption text-[var(--text-muted)] mt-1.5">
+                            {stop.duration}
+                            {stop.estimatedCost ? ` · ${stop.estimatedCost}` : ""}
+                          </p>
+                          {stop.bookingTip && (
+                            <p className="text-caption font-semibold text-[var(--accent-primary)] mt-2">
+                              {t("tipLabel")} {stop.bookingTip}
+                            </p>
+                          )}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+            );
+          })}
 
           {/* Tips */}
           {(plan.generalTips?.length || plan.packingTips?.length || plan.budgetEstimate) && (
