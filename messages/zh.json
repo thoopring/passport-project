@@ -31,6 +31,13 @@
     "navAccount": "我的账户",
     "cta": "规划行程"
   },
+  "blog": {
+    "eyebrow": "日志",
+    "headline": "来自路上的笔记。",
+    "subtitle": "现场报告、规划技巧,以及关于我们计划目的地的简短文字。",
+    "emptyMessage": "日志正在重建中。稍后再来 — 或者去做一份计划。",
+    "emptyCta": "规划行程"
+  },
   "footer": {
     "tagline": "AI 行程规划",
     "groupProduct": "产品",
@@ -296,7 +303,7 @@
     "draftMessage": "此行程已开始但尚未付款。",
     "draftStartOver": "开始新行程",
     "failedTitle": "抱歉,行程生成失败。",
-    "failedRefund": "我们将处理退款。如需帮助,请发邮件至 hello@checkvisamap.com。",
+    "failedRefund": "我们将处理退款。如需帮助,请发邮件至 gliddy@checkvisamap.com。",
     "generatingTitle": "正在生成您的行程",
     "generatingSubtitle": "请稍候。准备好后我们会立即通过邮件发送链接。",
     "generatingRefresh": "刷新",
@@ -345,7 +352,7 @@
       "failedBadge": "生成失败",
       "failedTitle": "抱歉",
       "failedGeneric": "发生了意外错误。",
-      "failedRefund": "我们将自动处理退款。如需帮助,请发邮件至 hello@checkvisamap.com。"
+      "failedRefund": "我们将自动处理退款。如需帮助,请发邮件至 gliddy@checkvisamap.com。"
     },
     "shareBadge": "下一份 25% 折扣",
     "shareTitle": "分享 gliddy,下一份行程 25% 折扣",

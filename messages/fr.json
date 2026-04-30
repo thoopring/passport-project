@@ -31,6 +31,13 @@
     "navAccount": "Mon compte",
     "cta": "Planifier mon voyage"
   },
+  "blog": {
+    "eyebrow": "Journal",
+    "headline": "Notes de voyage.",
+    "subtitle": "Rapports de terrain, conseils de planification et brefs écrits sur les lieux pour lesquels nos plans sont conçus.",
+    "emptyMessage": "Le journal est en cours de reconstruction. Revenez bientôt — ou allez faire un plan.",
+    "emptyCta": "Planifier un voyage"
+  },
   "footer": {
     "tagline": "Plans de voyage IA",
     "groupProduct": "Produit",
@@ -296,7 +303,7 @@
     "draftMessage": "Ce plan a été commencé mais n'a pas été payé.",
     "draftStartOver": "Créer un nouveau plan",
     "failedTitle": "Désolé, la génération a échoué.",
-    "failedRefund": "On vous rembourse. Écrivez à hello@checkvisamap.com si vous avez besoin d'aide.",
+    "failedRefund": "On vous rembourse. Écrivez à gliddy@checkvisamap.com si vous avez besoin d'aide.",
     "generatingTitle": "On prépare votre plan",
     "generatingSubtitle": "Un instant. On vous envoie le lien par e-mail dès que c'est prêt.",
     "generatingRefresh": "Actualiser",
@@ -345,7 +352,7 @@
       "failedBadge": "Échec de la génération",
       "failedTitle": "Une erreur est survenue",
       "failedGeneric": "Une erreur inattendue s'est produite.",
-      "failedRefund": "Un remboursement est traité automatiquement. Écrivez à hello@checkvisamap.com si besoin."
+      "failedRefund": "Un remboursement est traité automatiquement. Écrivez à gliddy@checkvisamap.com si besoin."
     },
     "shareBadge": "-25 % à l'intérieur",
     "shareTitle": "Partagez gliddy, 25 % sur votre prochain plan",

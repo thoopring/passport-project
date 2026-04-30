@@ -31,6 +31,13 @@
     "navAccount": "マイアカウント",
     "cta": "旅程を作る"
   },
+  "blog": {
+    "eyebrow": "ジャーナル",
+    "headline": "旅先からのメモ。",
+    "subtitle": "フィールドレポート、計画のヒント、そして私たちのプランが作られる場所についての短い文章。",
+    "emptyMessage": "ジャーナルは整備中です。またお越しください — それとも、プランを作りましょう。",
+    "emptyCta": "旅行を計画する"
+  },
   "footer": {
     "tagline": "AI 旅程プラン",
     "groupProduct": "プロダクト",
@@ -296,7 +303,7 @@
     "draftMessage": "この旅程は作成中ですが、まだ未払いです。",
     "draftStartOver": "新しい旅程を作る",
     "failedTitle": "申し訳ありません。旅程の生成に失敗しました。",
-    "failedRefund": "返金処理いたします。お困りの場合は hello@checkvisamap.com までご連絡ください。",
+    "failedRefund": "返金処理いたします。お困りの場合は gliddy@checkvisamap.com までご連絡ください。",
     "generatingTitle": "旅程を作成中です",
     "generatingSubtitle": "少々お待ちください。準備ができ次第、リンクをメールでお送りします。",
     "generatingRefresh": "更新",
@@ -345,7 +352,7 @@
       "failedBadge": "生成に失敗",
       "failedTitle": "申し訳ありません",
       "failedGeneric": "予期しないエラーが発生しました。",
-      "failedRefund": "自動的に返金処理いたします。お困りの場合は hello@checkvisamap.com までご連絡ください。"
+      "failedRefund": "自動的に返金処理いたします。お困りの場合は gliddy@checkvisamap.com までご連絡ください。"
     },
     "shareBadge": "次のプラン25%オフ",
     "shareTitle": "シェアして次のプラン25%オフ",

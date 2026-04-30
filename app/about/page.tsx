@@ -1,14 +1,20 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { ABOUT_CONTENT } from "./content";
+import type { Locale } from "../../i18n/locales";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Why we built gliddy — an AI trip planner that writes a real itinerary, sorted.",
-  alternates: { canonical: "https://checkvisamap.com/about" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = (await getLocale()) as Locale;
+  const c = ABOUT_CONTENT[locale] ?? ABOUT_CONTENT.en;
+  return {
+    title: c.metaTitle,
+    description: c.metaDescription,
+    alternates: { canonical: "https://checkvisamap.com/about" },
+  };
+}
 
 const aboutSchema = {
   "@context": "https://schema.org",
@@ -17,10 +23,12 @@ const aboutSchema = {
   description:
     "Why we built gliddy — an AI trip planner that writes a real itinerary, sorted.",
   url: "https://checkvisamap.com/about",
-  mainEntity: { "@type": "Organization", name: "gliddy", email: "hello@checkvisamap.com" },
+  mainEntity: { "@type": "Organization", name: "gliddy", email: "gliddy@checkvisamap.com" },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const locale = (await getLocale()) as Locale;
+  const c = ABOUT_CONTENT[locale] ?? ABOUT_CONTENT.en;
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <script
@@ -31,43 +39,25 @@ export default function AboutPage() {
 
       <main className="max-w-3xl mx-auto w-full px-4 sm:px-6 py-16">
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-6">
-          About
+          {c.eyebrow}
         </p>
         <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-10 leading-[1.04]">
-          Trip planning shouldn&apos;t eat your weekend.
+          {c.headline}
         </h1>
 
         <div className="prose prose-lg max-w-none text-[var(--text-secondary)] prose-p:leading-relaxed prose-strong:text-[var(--text-primary)]">
+          {c.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
           <p>
-            We built gliddy because a short trip still eats a whole weekend to plan.
-            You open thirty tabs, save twenty restaurants, cross-check them against a hotel
-            that has not been booked yet, then get to the destination and walk backwards twice.
-          </p>
-          <p>
-            We made one small tool that fixes one part of that. Answer a few questions,
-            and our AI returns a day-by-day plan with a real route map — hotels near transit,
-            restaurants near each stop, opening hours and kid-friendliness accounted for.
-            You get a link you can open on your phone, and a PDF you can keep offline.
-          </p>
-          <p>
-            <strong>One plan, one fixed price.</strong> No signup, no subscription. If the plan
-            fails or the AI returns something wrong, we refund you.
+            <strong>{c.bodyClosing}</strong>
           </p>
         </div>
 
         <div className="mt-14 grid sm:grid-cols-3 gap-4">
-          <Value
-            title="Clear over clever"
-            desc="We don't generate poetry. We give you opening hours, addresses, and short walks."
-          />
-          <Value
-            title="Real places"
-            desc="The AI is grounded in a curated place library. No hallucinated restaurants."
-          />
-          <Value
-            title="Honest pricing"
-            desc="One fixed price, no upsells. Refund if the plan is broken."
-          />
+          {c.values.map((v) => (
+            <Value key={v.title} title={v.title} desc={v.desc} />
+          ))}
         </div>
 
         <div className="mt-16 pt-10 border-t border-[var(--border-subtle)] text-center">
@@ -75,11 +65,11 @@ export default function AboutPage() {
             href="/plan/new"
             className="inline-flex items-center gap-2 bg-[var(--brand-primary)] text-white font-medium px-6 py-3 rounded-md hover:opacity-90 transition"
           >
-            Plan a trip
+            {c.ctaButton}
             <span aria-hidden="true">→</span>
           </Link>
           <p className="text-caption text-[var(--text-muted)] mt-6">
-            Contact: hello@checkvisamap.com
+            {c.contactLine}
           </p>
         </div>
       </main>

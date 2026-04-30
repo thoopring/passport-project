@@ -31,6 +31,13 @@
     "navAccount": "My account",
     "cta": "Plan my trip"
   },
+  "blog": {
+    "eyebrow": "Journal",
+    "headline": "Notes from the road.",
+    "subtitle": "Field reports, planning tips, and short writing about the places our plans are built for.",
+    "emptyMessage": "The journal is being rebuilt. Check back soon — or go make a plan.",
+    "emptyCta": "Plan a trip"
+  },
   "footer": {
     "tagline": "AI trip plans",
     "groupProduct": "Product",
@@ -296,7 +303,7 @@
     "draftMessage": "This plan was started but never paid for.",
     "draftStartOver": "Start a new plan",
     "failedTitle": "Sorry, plan generation failed.",
-    "failedRefund": "We'll process a refund. Email hello@checkvisamap.com if you need help.",
+    "failedRefund": "We'll process a refund. Email gliddy@checkvisamap.com if you need help.",
     "generatingTitle": "We're building your plan",
     "generatingSubtitle": "This usually takes 30–60 seconds. We'll email the link as soon as it's ready.",
     "generatingRefresh": "Refresh",
@@ -345,7 +352,7 @@
       "failedBadge": "Generation failed",
       "failedTitle": "Something went wrong",
       "failedGeneric": "An unexpected error occurred.",
-      "failedRefund": "A refund is being processed automatically. Email hello@checkvisamap.com if you need help."
+      "failedRefund": "A refund is being processed automatically. Email gliddy@checkvisamap.com if you need help."
     },
     "shareBadge": "25% off inside",
     "shareTitle": "Share gliddy, get 25% off your next plan",

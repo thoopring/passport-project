@@ -1,23 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { BLOG_POSTS } from "./data";
 
-export const metadata: Metadata = {
-  title: "Journal",
-  description: "Notes, field reports, and writing from gliddy.",
-  alternates: { canonical: "https://checkvisamap.com/blog" },
-  openGraph: {
-    title: "Journal | gliddy",
-    description: "Notes, field reports, and writing from gliddy.",
-    url: "https://checkvisamap.com/blog",
-    type: "website",
-    siteName: "gliddy",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("blog");
+  return {
+    title: t("eyebrow"),
+    description: t("subtitle"),
+    alternates: { canonical: "https://checkvisamap.com/blog" },
+    openGraph: {
+      title: `${t("eyebrow")} | gliddy`,
+      description: t("subtitle"),
+      url: "https://checkvisamap.com/blog",
+      type: "website",
+      siteName: "gliddy",
+    },
+  };
+}
 
-export default function BlogHome() {
+export default async function BlogHome() {
+  const t = await getTranslations("blog");
   const posts = Object.entries(BLOG_POSTS)
     .map(([slug, post]) => ({ slug, ...post }))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -28,25 +33,25 @@ export default function BlogHome() {
 
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-16">
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
-          Journal
+          {t("eyebrow")}
         </p>
         <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-4 leading-[1.04]">
-          Notes from the road.
+          {t("headline")}
         </h1>
         <p className="text-body-lg text-[var(--text-secondary)] mb-14">
-          Field reports, planning tips, and short writing about the places our plans are built for.
+          {t("subtitle")}
         </p>
 
         {posts.length === 0 ? (
           <div className="border-t border-[var(--border-subtle)] pt-14 text-center">
             <p className="text-body-md text-[var(--text-muted)] mb-6">
-              The journal is being rebuilt. Check back soon — or go make a plan.
+              {t("emptyMessage")}
             </p>
             <Link
               href="/plan/new"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--brand-primary)] text-white font-medium rounded-md hover:opacity-90 transition"
             >
-              Plan a trip
+              {t("emptyCta")}
               <span aria-hidden="true">→</span>
             </Link>
           </div>
