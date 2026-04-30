@@ -212,6 +212,53 @@ export const TripPlanSchema = z.object({
 export type TripPlan = z.infer<typeof TripPlanSchema>;
 
 // ─────────────────────────────────────────
+// 2b. Strategic scaffold — Opus output
+// ─────────────────────────────────────────
+//
+// The scaffold is the high-leverage strategic skeleton produced by Opus
+// (the planner) and consumed by Sonnet (the executor). It carries the
+// decisions whose quality determines the trip's success — hotel choice,
+// day themes, anchor neighborhoods — and leaves stop-by-stop scheduling
+// + prose to Sonnet, which is faster and cheaper for the bulky work.
+//
+// Architecture rationale: a single end-to-end Sonnet pass treats every
+// decision with equal reasoning depth. Splitting strategy from execution
+// gives the strategic layer Opus's stronger multi-constraint reasoning
+// (airport-aware hotel choice, story-arc day themes, edge cases like
+// family-with-infant + elderly), while Sonnet handles the volume work
+// where the marginal Opus quality bump isn't worth 5x the price.
+
+export const ScaffoldDaySchema = z.object({
+  dayNumber: z.number().int().min(1),
+  theme: z.string().min(2),
+  summary: z.string().min(10),
+  /** Primary district where this day's stops should cluster geographically. */
+  anchorNeighborhood: z.string().min(2),
+  /** Pacing flavor for the executor — e.g., "morning slow, afternoon active". */
+  pacingHint: z.string(),
+  /** 2-3 strategic landmarks that MUST appear in the day. Executor adds the rest. */
+  mustIncludePlaces: z.array(z.string()).max(5).optional(),
+  /** Target stop count — calibrated to user's pace setting. */
+  estimatedStopCount: z.number().int().min(2).max(10),
+});
+export type ScaffoldDay = z.infer<typeof ScaffoldDaySchema>;
+
+export const ScaffoldSchema = z.object({
+  destinationOverview: z.string().min(20),
+  bestSeasonNote: z.string().optional(),
+  currencyTip: z.string().optional(),
+  languageTip: z.string().optional(),
+  emergencyNumber: z.string().optional(),
+  hotel: HotelSchema,
+  airportTransit: AirportTransitSchema,
+  days: z.array(ScaffoldDaySchema).min(1).max(30),
+  packingTips: z.array(z.string()).max(10).optional(),
+  generalTips: z.array(z.string()).max(10).optional(),
+  budgetEstimate: z.string().optional(),
+});
+export type Scaffold = z.infer<typeof ScaffoldSchema>;
+
+// ─────────────────────────────────────────
 // 3. Database row — Supabase plans table
 // ─────────────────────────────────────────
 

@@ -4,9 +4,11 @@ import {
   TripPlan,
   TripPlanSchema,
   type Day,
+  type Scaffold,
 } from "../../types/trip-plan";
 import { getSampleLocalized } from "../samples";
 import type { Locale } from "../../i18n/locales";
+import { generateScaffold } from "./scaffold";
 
 /**
  * Claude trip plan generator.
@@ -293,6 +295,83 @@ Return the complete trip plan as a single JSON object matching the schema in the
 REMEMBER: output language and currency follow the OUTPUT LANGUAGE block at the top of the system prompt. Do not write English by default.`;
 }
 
+/**
+ * Variant of buildUserPrompt used when a Scaffold is available. The scaffold
+ * is appended as load-bearing context: the executor (Sonnet) is told to
+ * USE the strategic decisions made by Opus (hotel, day themes, anchor
+ * neighborhoods, must-include places) and NOT to drift from them. Sonnet's
+ * job becomes pure expansion — fill in stops around the anchors, write
+ * prose, schedule times — instead of strategy + execution at once.
+ */
+function buildUserPromptWithScaffold(req: PlanRequest, scaffold: Scaffold): string {
+  const childInfo =
+    req.children > 0
+      ? ` Travelling with ${req.children} child(ren)${
+          req.childrenAges?.length ? ` (ages: ${req.childrenAges.join(", ")})` : ""
+        }${req.strollerNeeded ? ", stroller required" : ""}${
+          req.hasInfant ? ", has infant aged 2 or under" : ""
+        }.`
+      : "";
+
+  return `Expand the strategic scaffold below into a full ${req.durationDays}-day trip plan.
+
+═══════════════════════════════════════════════════════════════════════════
+TRAVELER PROFILE (for stop-level decisions Sonnet still makes)
+═══════════════════════════════════════════════════════════════════════════
+
+Destination: ${req.destination}, ${req.destinationCountry}
+Arrival airport: ${req.arrivalAirport}${
+    req.arrivalTerminal ? ` (Terminal ${req.arrivalTerminal})` : ""
+  }
+Travelers: ${req.travelerType}, ${req.adults} adult(s)${childInfo}
+Interests: ${req.interests.join(", ")}
+Budget tier: ${req.budgetTier}
+Pace: ${req.pace}
+${req.flightArrival ? `Arrival period: ${req.flightArrival}` : ""}
+${req.mustVisit ? `User-requested places: ${req.mustVisit}` : ""}
+${req.notes ? `Notes: ${req.notes}` : ""}
+
+═══════════════════════════════════════════════════════════════════════════
+STRATEGIC SCAFFOLD (already decided by lead strategist — DO NOT change)
+═══════════════════════════════════════════════════════════════════════════
+
+\`\`\`json
+${JSON.stringify(scaffold, null, 2)}
+\`\`\`
+
+═══════════════════════════════════════════════════════════════════════════
+YOUR JOB — EXPAND THE SCAFFOLD
+═══════════════════════════════════════════════════════════════════════════
+
+EXACTLY AS-IS (copy these fields verbatim from scaffold to your output):
+- hotel: name, area, address, coords, rationale, priceTier, estimatedNightlyRate
+- airportTransit: method, duration, cost, instructions
+- destinationOverview → output as "overview" field
+- bestSeasonNote, currencyTip, languageTip, emergencyNumber (if present)
+- packingTips, generalTips, budgetEstimate (if present)
+- For each day: dayNumber, theme, summary
+
+EXPAND (you fill these in):
+- For each day, produce stops[] (array of Stop objects per the system prompt schema):
+  • Cluster all stops in/near scaffold.days[i].anchorNeighborhood
+  • Include scaffold.days[i].mustIncludePlaces — work them in naturally, don't shoehorn
+  • Reach scaffold.days[i].estimatedStopCount (±1 OK)
+  • Honor scaffold.days[i].pacingHint
+  • Each stop: order, time (HH:MM), type, name, area, address, coords, duration, description (2-3 sentences, editorial voice), estimatedCost, bookingTip (where relevant), kidFriendly, transitFromPrev
+
+DO NOT:
+- Change the hotel choice
+- Change day themes or anchor neighborhoods
+- Skip mustIncludePlaces
+- Add or remove days
+
+Return the complete TripPlan JSON matching the system prompt's schema. Pure
+JSON, no markdown, no prose around it.
+
+REMEMBER: prose in the user's locale per the system prompt OUTPUT LANGUAGE
+block. Currency in destination locale conventions.`;
+}
+
 function styleInstruction(style: "sightseeing" | "relaxation" | "mixed"): string {
   switch (style) {
     case "sightseeing":
@@ -317,14 +396,48 @@ function extractJson(text: string): unknown {
 export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
   const anthropic = getClient();
 
+  // Hybrid two-stage pipeline (planner + executor).
+  //
+  // Stage 1 (Opus, this block): produce a strategic Scaffold — hotel,
+  // airport transit, day themes + anchor neighborhoods + must-include
+  // places. The high-leverage decisions get the strongest model.
+  //
+  // Stage 2 (Sonnet, below): expand the scaffold into a full plan with
+  // stop-level scheduling and prose. Volume work that doesn't need
+  // Opus reasoning depth.
+  //
+  // Failure handling: scaffold has its own 90s timeout and parse-retry
+  // internally. Anything that escapes is caught here and the pipeline
+  // gracefully degrades to Sonnet-alone — quality dips slightly for
+  // that one plan, but plans never block on Opus availability.
+  //
+  // Toggle: USE_OPUS_PLANNER env var. Default is ON (any value other
+  // than the literal string "false"). Letting ops disable without a
+  // code deploy if Opus has an outage or rate-limit episode.
+  let scaffold: Scaffold | null = null;
+  const useOpusPlanner = process.env.USE_OPUS_PLANNER !== "false";
+  if (useOpusPlanner) {
+    try {
+      scaffold = await generateScaffold(req);
+    } catch (err) {
+      console.warn(
+        "[generator] Opus scaffold failed — falling back to Sonnet-alone for this plan",
+        err,
+      );
+    }
+  }
+
   // Build the system prompt ONCE per generation — locale-specific block
   // (incl. few-shot reference Day 1 from the localized Tokyo sample) is
   // prepended ahead of the rules body. See buildSystemPrompt() for why.
   const systemPrompt = await buildSystemPrompt(req.locale ?? "en");
 
   const callClaude = async (correction?: string): Promise<string> => {
+    const userContent = scaffold
+      ? buildUserPromptWithScaffold(req, scaffold)
+      : buildUserPrompt(req);
     const messages: Anthropic.MessageParam[] = [
-      { role: "user", content: buildUserPrompt(req) },
+      { role: "user", content: userContent },
     ];
     if (correction) {
       messages.push({
