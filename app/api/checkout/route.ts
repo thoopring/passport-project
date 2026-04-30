@@ -7,23 +7,31 @@ import { generateTripPlan } from "../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../lib/email";
 
 /**
- * LS discount code that's pre-configured (in the LS dashboard) to give $1
- * off any plan. Applied automatically when the buyer arrived via /r/CODE.
+ * LS discount code (pre-configured in the LS dashboard) that gives 25% off
+ * the plan. Auto-applied at LS checkout when:
+ *   - The buyer arrived via /r/CODE (referral cookie set), OR
+ *   - The buyer has an unused 25%-off coupon on file (earned via someone
+ *     else using their /r/CODE link).
  * Override per-environment via env so test stores can use a separate code.
  */
 const REFERRAL_DISCOUNT_CODE =
-  process.env.LEMON_SQUEEZY_REFERRAL_DISCOUNT_CODE || "REFERRAL1";
+  process.env.LEMON_SQUEEZY_REFERRAL_DISCOUNT_CODE || "REFERRAL25";
 
 /**
  * POST /api/checkout
  * body: { planId: string }
  *
- * Two paths:
- *   1. NORMAL — create a Lemon Squeezy checkout session and return its URL.
- *   2. CREDIT — if the buyer's email already has an unused plan credit
- *      (referral or promo), skip Lemon Squeezy entirely, mark the plan paid,
- *      kick off generation in the background, and return a redirect URL
- *      pointing at /plan/[id]?paid=1.
+ * Discount paths:
+ *   1. PROMO (100% off) — admin-issued promo with discount_type=free skips
+ *      LS entirely. Used for marketing campaigns and comp plans.
+ *   2. REFERRAL CREDIT (25% off) — buyer has earned a coupon from someone
+ *      using their /r/CODE link. Routes through LS with REFERRAL25 applied.
+ *   3. REFERRAL COOKIE (25% off) — first-time visitor arrived via /r/CODE.
+ *      Routes through LS with REFERRAL25 applied.
+ *   4. NORMAL — full price ($4) through LS.
+ *
+ * Paths 2 and 3 don't stack: one REFERRAL25 per checkout. If both apply,
+ * the credit is consumed (precedence) and the cookie is unused.
  */
 export async function POST(req: NextRequest) {
   try {
@@ -43,8 +51,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Promo code path — if a free promo is attached to the plan, redeem
-    //    it atomically and skip LS entirely.
+    // 1. Promo code path — admin-issued 100% off codes (marketing/comp).
+    //    Bypasses LS entirely. Non-free promos fall through to LS where
+    //    they would need an LS-side discount code mirror (not used today).
     if (plan.request.promoCode) {
       const promo = await validatePromoCode(plan.request.promoCode);
       if (promo && promo.discount_type === "free") {
@@ -60,30 +69,30 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 2. Referral credit path — if buyer has an unused plan credit, consume
-    //    it and skip LS.
-    const consumed = await consumePlanCredit(plan.email, planId);
-    if (consumed) {
-      await markPlanPaid(planId, "credit:" + planId);
-      generateAndDeliver(planId).catch((err) => {
-        console.error("Free credit generation pipeline failed", { planId, err });
-      });
-      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
-      return NextResponse.json({ url: `${baseUrl}/plan/${planId}?paid=1` });
-    }
+    // 2. Referral credit (25% off) — earned from a referee's purchase.
+    //    Consume the credit and apply REFERRAL25 to LS.
+    const consumedCredit = await consumePlanCredit(plan.email, planId);
 
-    // Normal Lemon Squeezy flow. If the buyer arrived via /r/CODE the
-    // referral cookie is set — pass the LS discount code so $1 comes off
-    // automatically at LS checkout (visible to buyer before payment).
-    const referralCode = req.cookies.get(REFERRAL_COOKIE)?.value;
+    // 3. Referral cookie (25% off) — first-time visitor via /r/CODE.
+    //    Only honored if no credit was consumed (credits take precedence,
+    //    one discount per checkout — LS doesn't stack codes).
+    const referralCookie = req.cookies.get(REFERRAL_COOKIE)?.value;
+
+    const discountCode =
+      consumedCredit || referralCookie ? REFERRAL_DISCOUNT_CODE : undefined;
+
     const url = await createCheckoutUrl({
       planId: plan.id,
       email: plan.email,
       destination: plan.request.destination,
-      discountCode: referralCode ? REFERRAL_DISCOUNT_CODE : undefined,
+      discountCode,
     });
 
-    return NextResponse.json({ url, referralApplied: Boolean(referralCode) });
+    return NextResponse.json({
+      url,
+      referralApplied: Boolean(discountCode),
+      creditApplied: consumedCredit,
+    });
   } catch (err) {
     console.error("checkout failed", err);
     const message = err instanceof Error ? err.message : "Unknown error";

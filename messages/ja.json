@@ -157,6 +157,10 @@
         "subtitle": "決済が完了したら、ご登録のメールに旅程が届きます(通常1〜5分)。",
         "noPopup": "新しいタブが開きませんでしたか?",
         "openAgain": "手動で開く"
+      },
+      "referralBanner": {
+        "title": "紹介クーポン自動適用",
+        "subtitle": "決済時に25%オフが入ります"
       }
     },
     "loading": {
@@ -179,7 +183,7 @@
         "couple": "カップル",
         "coupleHint": "大人2人",
         "family": "家族",
-        "familyHint": "大人 + 子供",
+        "familyHint": "多世代",
         "friends": "友人",
         "friendsHint": "大人3人以上",
         "senior": "シニア",
@@ -190,8 +194,8 @@
         "placeholder": "例: 4"
       },
       "children": {
-        "title": "お子様は何人で、何歳ですか?",
-        "subtitle": "年齢がわかると、ペースや行き先を調整できます。",
+        "title": "お子様も一緒ですか?",
+        "subtitle": "ご一緒なら年齢に合わせてペースを調整します。お子様なしの家族旅行ならスキップ。",
         "numberLabel": "子供の人数",
         "textLabel": "年齢",
         "placeholder": "例: 4, 7"
@@ -392,7 +396,7 @@
     "previewMoreStops": "Day 1にあと{count}スポット、Day 2〜4にはレストラン・持ち物リスト・ルート地図と続きます。",
     "previewCtaButton": "東京プランを最後まで読む",
     "previewSecondaryPrefix": "または",
-    "previewSecondaryLink": "他のサンプル3件",
+    "previewSecondaryLink": "他のサンプル",
     "previewSecondarySuffix": "もどうぞ。"
   },
   "account": {

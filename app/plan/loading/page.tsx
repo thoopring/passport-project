@@ -550,14 +550,14 @@ function LoadingInner() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-body-sm font-semibold text-[var(--text-primary)]">
-                  추천 쿠폰 자동 적용
+                  {tr("referralBanner.title")}
                 </p>
                 <p className="text-caption text-[var(--text-secondary)]">
-                  결제 시 -$1 할인이 들어가요
+                  {tr("referralBanner.subtitle")}
                 </p>
               </div>
               <span className="text-body-md font-bold text-[var(--brand-primary)] tabular-nums shrink-0">
-                -$1
+                -25%
               </span>
             </div>
           )}
@@ -1080,8 +1080,10 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
   }
 
   if (data.travelerType === "family-with-kids") {
-    // Stroller need is now derived from child ages (≤4) inside applyAnswer —
-    // no separate yes/no popup. Saves a step for ~every family answer.
+    // Optional — "family" can mean adult-only family (parents + adult kids,
+    // siblings, multi-gen without young kids). Skip = no children on the
+    // trip; generator skips kid-friendly constraints. Stroller need is
+    // derived from child ages (≤4) inside applyAnswer.
     queue.push({
       id: "children",
       title: tp("children.title"),
@@ -1090,6 +1092,7 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
       numberLabel: tp("children.numberLabel"),
       textLabel: tp("children.textLabel"),
       placeholder: tp("children.placeholder"),
+      optional: true,
     });
   }
 
@@ -1186,13 +1189,20 @@ function applyAnswer(prev: WizardData, q: QuestionDef, value: unknown): WizardDa
     case "adults":
       return { ...prev, adults: value as number };
     case "children": {
+      // Skip = no kids on this trip — family travel without children is a
+      // common case (adult kids, sibling trips, multi-gen). Leave fields
+      // unset so generator treats it as a no-kid plan.
+      if (value === null || value === undefined) {
+        return { ...prev, children: 0, childrenAges: undefined, hasInfant: false, strollerNeeded: false };
+      }
       const combo = value as { count: number; detail: string };
+      if (!combo.count || combo.count === 0) {
+        return { ...prev, children: 0, childrenAges: undefined, hasInfant: false, strollerNeeded: false };
+      }
       const ages = combo.detail
         .split(",")
         .map((s) => parseInt(s.trim(), 10))
         .filter((n) => !Number.isNaN(n));
-      // Derived: any child ≤4 means stroller is needed. Replaces the
-      // separate stroller popup that used to ask the same question.
       const strollerNeeded = ages.some((a) => a <= 4);
       return {
         ...prev,

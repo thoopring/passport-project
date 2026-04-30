@@ -164,6 +164,10 @@
         "subtitle": "결제가 끝나면 입력하신 이메일로 플랜을 보내드려요.",
         "noPopup": "새 창이 안 열렸나요?",
         "openAgain": "직접 열기"
+      },
+      "referralBanner": {
+        "title": "추천 쿠폰 자동 적용",
+        "subtitle": "결제 시 25% 할인이 들어가요"
       }
     },
     "popup": {
@@ -179,7 +183,7 @@
         "couple": "커플",
         "coupleHint": "성인 2명",
         "family": "가족",
-        "familyHint": "성인 + 아이",
+        "familyHint": "여러 세대",
         "friends": "친구들",
         "friendsHint": "성인 3명 이상",
         "senior": "시니어",
@@ -190,8 +194,8 @@
         "placeholder": "예: 4"
       },
       "children": {
-        "title": "아이는 몇 명이고, 몇 살인가요?",
-        "subtitle": "나이에 따라 일정 속도와 장소가 달라져요.",
+        "title": "아이도 함께 가나요?",
+        "subtitle": "함께 가면 나이에 맞춰 동선을 조절해드려요. 아이 없이 가족여행이면 건너뛰세요.",
         "numberLabel": "아이 수",
         "textLabel": "나이",
         "placeholder": "예: 4, 7"
@@ -392,7 +396,7 @@
     "previewMoreStops": "Day 1에 {count}개 장소가 더 있고, Day 2~4에 식당·준비물·동선 지도까지 이어져요.",
     "previewCtaButton": "도쿄 플랜 전체 보기",
     "previewSecondaryPrefix": "또는",
-    "previewSecondaryLink": "다른 샘플 3개",
+    "previewSecondaryLink": "다른 샘플",
     "previewSecondarySuffix": "도 둘러보세요."
   },
   "account": {

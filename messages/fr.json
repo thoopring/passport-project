@@ -157,6 +157,10 @@
         "subtitle": "Une fois le paiement validé, votre plan arrive par e-mail.",
         "noPopup": "Le nouvel onglet ne s'est pas ouvert ?",
         "openAgain": "Ouvrir manuellement"
+      },
+      "referralBanner": {
+        "title": "Réduction parrainage appliquée",
+        "subtitle": "-25 % automatique au paiement"
       }
     },
     "loading": {
@@ -179,7 +183,7 @@
         "couple": "En couple",
         "coupleHint": "Deux adultes",
         "family": "En famille",
-        "familyHint": "Adultes + enfants",
+        "familyHint": "Plusieurs générations",
         "friends": "Entre amis",
         "friendsHint": "3 adultes ou plus",
         "senior": "Senior",
@@ -190,8 +194,8 @@
         "placeholder": "ex. 4"
       },
       "children": {
-        "title": "Combien d'enfants, et quel âge ?",
-        "subtitle": "L'âge nous aide à choisir le rythme et les étapes.",
+        "title": "Des enfants pour ce voyage ?",
+        "subtitle": "Si oui, l'âge nous aide à ajuster le rythme. Passer si pas d'enfants.",
         "numberLabel": "Nombre d'enfants",
         "textLabel": "Âges",
         "placeholder": "ex. 4, 7"
@@ -392,7 +396,7 @@
     "previewMoreStops": "…et {count} étapes de plus le Jour 1, plus les Jours 2–4 avec restaurants, liste à emporter et carte de l'itinéraire.",
     "previewCtaButton": "Lire le plan Tokyo en entier",
     "previewSecondaryPrefix": "Ou voir",
-    "previewSecondaryLink": "trois autres exemples",
+    "previewSecondaryLink": "tous les exemples",
     "previewSecondarySuffix": "."
   },
   "account": {

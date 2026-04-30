@@ -157,6 +157,10 @@
         "subtitle": "Once payment goes through, your plan lands in your inbox.",
         "noPopup": "New tab didn't open?",
         "openAgain": "Open it manually"
+      },
+      "referralBanner": {
+        "title": "Referral discount applied",
+        "subtitle": "25% off auto-applies at checkout"
       }
     },
     "loading": {
@@ -179,7 +183,7 @@
         "couple": "Couple",
         "coupleHint": "Two adults",
         "family": "Family",
-        "familyHint": "Adults + kids",
+        "familyHint": "Multi-generation",
         "friends": "Friends",
         "friendsHint": "3+ adults",
         "senior": "Senior",
@@ -190,8 +194,8 @@
         "placeholder": "e.g. 4"
       },
       "children": {
-        "title": "How many kids, and how old?",
-        "subtitle": "Ages help us pick the right pace and stops.",
+        "title": "Any kids on the trip?",
+        "subtitle": "If yes, ages help us tune pace and stops. Skip if no kids.",
         "numberLabel": "Number of kids",
         "textLabel": "Ages",
         "placeholder": "e.g. 4, 7"
@@ -392,7 +396,7 @@
     "previewMoreStops": "…and {count} more stops on Day 1, plus Days 2–4 with restaurants, a packing list, and a route map.",
     "previewCtaButton": "Read the full Tokyo plan",
     "previewSecondaryPrefix": "Or see",
-    "previewSecondaryLink": "three more samples",
+    "previewSecondaryLink": "all sample plans",
     "previewSecondarySuffix": "."
   },
   "account": {

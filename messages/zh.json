@@ -157,6 +157,10 @@
         "subtitle": "付款完成后,行程将通过邮件发送给您。",
         "noPopup": "新标签页未打开?",
         "openAgain": "手动打开"
+      },
+      "referralBanner": {
+        "title": "推荐折扣已自动应用",
+        "subtitle": "结账时自动减 25%"
       }
     },
     "loading": {
@@ -179,7 +183,7 @@
         "couple": "情侣",
         "coupleHint": "两位成人",
         "family": "家庭",
-        "familyHint": "成人 + 儿童",
+        "familyHint": "多代同行",
         "friends": "朋友",
         "friendsHint": "3 位以上成人",
         "senior": "长辈出游",
@@ -190,8 +194,8 @@
         "placeholder": "例如:4"
       },
       "children": {
-        "title": "几位儿童?各多大?",
-        "subtitle": "年龄帮助我们调整节奏和景点选择。",
+        "title": "有儿童同行吗?",
+        "subtitle": "若有,我们会按年龄调整节奏和景点。无儿童同行可跳过。",
         "numberLabel": "儿童数量",
         "textLabel": "年龄",
         "placeholder": "例如:4, 7"
@@ -392,7 +396,7 @@
     "previewMoreStops": "Day 1还有{count}个地点,Day 2~4 包含餐厅、行李清单和路线地图。",
     "previewCtaButton": "阅读完整东京计划",
     "previewSecondaryPrefix": "或者看",
-    "previewSecondaryLink": "另外3份样例",
+    "previewSecondaryLink": "更多样例",
     "previewSecondarySuffix": "。"
   },
   "account": {

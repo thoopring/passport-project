@@ -69,8 +69,8 @@ making visual or UI decisions. Summary:
 ## Revenue Streams
 1. **Trip plans**: $4 per plan via LemonSqueezy (primary)
 2. **Affiliate Programs**: Agoda, Aviasales, Airalo embedded in plan output (`PlanAffiliateBar`)
-3. **Referrals**: Buyer shares `/r/{code}` → new purchase awards a free-plan credit
-4. **Promos**: `/plan/new?promo=CODE` → skip checkout entirely
+3. **Referrals**: Buyer shares `/r/{code}` → referee gets 25% off immediately at LS (REFERRAL25 code auto-applied). After referee pays, referrer earns a 25% off coupon for their next plan (consumed by routing through LS with REFERRAL25, not bypass)
+4. **Promos**: `/plan/new?promo=CODE` → 100% off promos (admin-issued, e.g. `LAUNCH100`) bypass LS entirely. Used for marketing/comp.
 
 ## SEO Setup
 - OpenGraph + Twitter cards on all pages
