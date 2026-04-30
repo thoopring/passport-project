@@ -26,7 +26,7 @@ import type { Locale } from "../../i18n/locales";
  * Required env: ANTHROPIC_API_KEY
  */
 
-const MODEL = "claude-sonnet-4-5";
+const MODEL = "claude-sonnet-4-6";
 const MAX_OUTPUT_TOKENS = 8000;
 
 let client: Anthropic | null = null;
