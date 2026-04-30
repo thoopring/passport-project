@@ -10,7 +10,7 @@ import {
   TripPlanSchema,
 } from "./types.ts";
 
-const MODEL = "claude-sonnet-4-6";
+const MODEL = "claude-sonnet-4-5";
 const OPTIMIZE_MODEL = "claude-haiku-4-5-20251001";
 const MAX_OUTPUT_TOKENS = 8000;
 const MAIN_TIMEOUT_MS = 180_000; // 180s — Sonnet 4.5 + 8k tokens + non-EN locale can take 60-120s
