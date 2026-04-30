@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
+import { getTranslations } from "next-intl/server";
 import { getPlan } from "../../../../../lib/plans";
 import { PlanDocument } from "../../../../../lib/pdf/PlanDocument";
 import { buildOverviewMapUrl, buildDayMapUrl } from "../../../../../lib/map";
+import type { Locale } from "../../../../../i18n/locales";
 
 export const runtime = "nodejs";
 
@@ -31,11 +33,21 @@ export async function GET(
   const dayMapUrls = record.plan.days.map((day) =>
     buildDayMapUrl(day, record.plan!.hotel),
   );
+
+  // Trivia is locale-aware — the PDF caller picks facts for the user's
+  // chosen language so the "Did you know?" cards don't break the
+  // immersion of an otherwise locale-consistent document. Falls back to
+  // English when a locale-specific pool is missing for a country.
+  const planLocale = (record.request.locale ?? "en") as Locale;
+  const labelT = await getTranslations({ locale: planLocale, namespace: "plan" });
+
   const buffer = await renderToBuffer(
     <PlanDocument
       plan={record.plan}
       mapImageUrl={mapImageUrl}
       dayMapUrls={dayMapUrls}
+      locale={planLocale}
+      triviaLabel={labelT("triviaLabel")}
     />
   );
 

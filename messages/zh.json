@@ -285,6 +285,7 @@
   "plan": {
     "yourTripPlan": "您的行程",
     "itineraryHeader": "{days} 天行程 · {country}",
+    "triviaLabel": "您知道吗?",
     "tipLabel": "贴士:",
     "dayTotalActivity": "活动 {duration}",
     "dayTotalTransit": "移动 {duration}",
@@ -326,6 +327,7 @@
         "receiptSent": "收据已发送至您的邮箱,请妥善保管。",
         "emailWhenReady": "计划完成后,我们会立即通过邮件发送链接。"
       },
+      "triviaHeader": "等待时分 · {country}",
       "planIdLabel": "Plan",
       "emailHint": "准备好后我们也会通过邮件发送链接,您可以关闭此标签页。",
       "leaveTitle": "可以随时关闭此标签页",

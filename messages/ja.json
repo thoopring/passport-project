@@ -286,6 +286,7 @@
     "yourTripPlan": "あなたの旅程",
     "downloadPdf": "PDFをダウンロード",
     "itineraryHeader": "{days}日間の旅程 · {country}",
+    "triviaLabel": "ご存じでしたか?",
     "tipLabel": "ヒント:",
     "dayTotalActivity": "{duration} 活動",
     "dayTotalTransit": "{duration} 移動",
@@ -326,6 +327,7 @@
         "receiptSent": "領収書をメールでお送りしました。保管をお願いします。",
         "emailWhenReady": "プランが完成し次第、リンクをメールでお送りします。"
       },
+      "triviaHeader": "お待ちの間に · {country}",
       "planIdLabel": "Plan",
       "emailHint": "完成したらメールでもリンクをお送りします。このタブは閉じても大丈夫です。",
       "leaveTitle": "このタブ、いつでも閉じてOKです",

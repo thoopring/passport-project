@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { pickTrivia } from "../lib/trivia";
+import type { Locale } from "../i18n/locales";
 
 interface TravelTriviaProps {
   destinationCountry: string;
@@ -10,19 +12,22 @@ interface TravelTriviaProps {
 }
 
 /**
- * Side card that rotates through travel trivia for the destination country.
- * Used as content during the labor-illusion loading screen — gives users
- * something interesting to read while the wizard popups appear.
+ * Side card that rotates through travel trivia for the destination country
+ * in the user's selected locale. Used during the labor-illusion loading
+ * screen and on the post-payment wait page — both are long-wait surfaces
+ * where boredom is the enemy.
  */
 export default function TravelTrivia({
   destinationCountry,
   rotateMs = 7000,
 }: TravelTriviaProps) {
-  // Derived state — picked once per destinationCountry change. The shuffled
-  // order is stable for the lifetime of the country prop.
+  const locale = useLocale() as Locale;
+  const t = useTranslations("plan.wait");
+  // Derived state — picked once per (destinationCountry, locale) change.
+  // The shuffled order is stable for the lifetime of those props.
   const facts = useMemo(
-    () => pickTrivia(destinationCountry, 8),
-    [destinationCountry],
+    () => pickTrivia(destinationCountry, locale, 8),
+    [destinationCountry, locale],
   );
   const [index, setIndex] = useState(0);
 
@@ -42,7 +47,7 @@ export default function TravelTrivia({
   return (
     <div className="bg-gradient-to-br from-brand-600 to-brand-800 dark:from-brand-700 dark:to-brand-950 text-white rounded-2xl p-5 sm:p-6">
       <p className="text-caption uppercase tracking-wider font-semibold opacity-70 mb-3">
-        While you wait · {destinationCountry}
+        {t("triviaHeader", { country: destinationCountry })}
       </p>
       <p className="text-body-md leading-relaxed font-medium min-h-[4.5rem]">{facts[index]}</p>
       <div className="flex gap-1.5 mt-4">

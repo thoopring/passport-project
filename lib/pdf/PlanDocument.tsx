@@ -11,6 +11,7 @@ import {
 import fsSync from "node:fs";
 import pathLib from "node:path";
 import type { TripPlan } from "../../types/trip-plan";
+import type { Locale } from "../../i18n/locales";
 import { pickTrivia } from "../trivia";
 
 // Noto Sans CJK KR — full CJK coverage (Korean + Japanese + Chinese
@@ -191,9 +192,23 @@ interface Props {
    *  must equal plan.days.length when supplied; missing entries skip the
    *  map for that day instead of misaligning. */
   dayMapUrls?: string[];
+  /** Locale for trivia content selection. Defaults to "en" — the PDF
+   *  was previously English-only because pickTrivia didn't take a locale,
+   *  which broke the language consistency of every non-English plan. */
+  locale?: Locale;
+  /** Localized "Did you know?" header text for the trivia card. Passed
+   *  in from the route handler since react-pdf can't access the i18n
+   *  client hooks. */
+  triviaLabel?: string;
 }
 
-export function PlanDocument({ plan, mapImageUrl, dayMapUrls }: Props) {
+export function PlanDocument({
+  plan,
+  mapImageUrl,
+  dayMapUrls,
+  locale = "en",
+  triviaLabel = "Did you know?",
+}: Props) {
   return (
     <Document
       title={`${plan.destination} trip plan`}
@@ -281,7 +296,7 @@ export function PlanDocument({ plan, mapImageUrl, dayMapUrls }: Props) {
         // renders the same facts on every download. We use day index modulo
         // the available pool, after picking a shuffled set of facts for the
         // country.
-        const triviaPool = pickTrivia(plan.destinationCountry, plan.days.length + 2);
+        const triviaPool = pickTrivia(plan.destinationCountry, locale, plan.days.length + 2);
         const triviaForDay = triviaPool[dayIdx % triviaPool.length];
         const dayMapUrl = dayMapUrls?.[dayIdx];
 
@@ -330,7 +345,7 @@ export function PlanDocument({ plan, mapImageUrl, dayMapUrls }: Props) {
 
             {triviaForDay && (
               <View style={styles.triviaCard} wrap={false}>
-                <Text style={styles.triviaLabel}>Did you know?</Text>
+                <Text style={styles.triviaLabel}>{triviaLabel}</Text>
                 <Text style={styles.triviaText}>{triviaForDay}</Text>
               </View>
             )}

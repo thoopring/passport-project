@@ -1,13 +1,20 @@
 /**
- * Travel trivia — used by the labor-illusion loading screen (P3) and the PDF
- * "Did you know?" callouts (P8). Hand-curated facts keyed by destination
- * country slug. Add more as the destinations expand.
+ * Travel trivia — used by the labor-illusion loading screen (P3) and the
+ * PDF "Did you know?" callouts (P8).
  *
- * Slug format: lowercase country name, hyphenated. Match against
- * destinationCountry from the user input via `getTriviaForCountry()`.
+ * Locale-keyed: each entry is translated for en/ko/ja/zh/fr so the
+ * trivia matches the user's selected language. Falls back to the
+ * locale's GENERIC pool when no country-specific data exists, then to
+ * English-generic if the locale itself isn't supported.
+ *
+ * Slug format: lowercase, hyphenated, matched via COUNTRY_ALIASES.
  */
 
-export const TRIVIA: Record<string, string[]> = {
+import type { Locale } from "../../i18n/locales";
+
+type Pool = Record<string, string[]>;
+
+const TRIVIA_EN: Pool = {
   japan: [
     "Japan has more vending machines per capita than any country on Earth — about one for every 23 people.",
     "Tokyo's Shinjuku Station handles 3.6 million passengers per day, more than any station in the world.",
@@ -119,6 +126,515 @@ export const TRIVIA: Record<string, string[]> = {
   ],
 };
 
+const TRIVIA_KO: Pool = {
+  japan: [
+    "일본은 1인당 자판기 수가 세계 1위 — 약 23명당 1대꼴이에요.",
+    "도쿄 신주쿠역은 하루 360만 명이 이용하는, 세계에서 가장 붐비는 역이에요.",
+    "일본에는 200가지 넘는 공식 라멘 스타일이 있고, 각각 도시·지역에 묶여 있어요.",
+    "일본 택시 문은 자동으로 열리고 닫혀요 — 절대 손잡이를 직접 잡지 마세요.",
+    "일본은 6,852개 섬이 있지만 사람이 사는 곳은 430곳뿐이에요.",
+    "일본어 '신린요쿠(森林浴, 숲 목욕)'는 이제 정식 예방 의료법으로 인정받고 있어요.",
+    "일본 아오시마에는 사람보다 고양이가 100배 많은 섬이 있어요.",
+    "나라의 사슴은 인사하면 같이 인사해요 — 관광객들에게서 학습한 거예요.",
+    "후지산은 1년에 단 두 달(7월~8월)만 등반 가능해요.",
+    "일본의 알루미늄 캔 재활용률은 약 84% — 세계 최고 수준이에요.",
+  ],
+  france: [
+    "프랑스는 세계에서 가장 많은 관광객이 찾는 나라 — 연 약 9,000만 명이에요.",
+    "프랑스에서 만들어지는 치즈는 1,200종이 넘어요.",
+    "루브르는 세계 최대 미술관 — 모든 작품을 30초씩 보려면 100일이 걸려요.",
+    "파리 전체에 정지 표지판은 단 1개뿐. 원칙: 오른쪽 우선.",
+    "프랑스 TGV는 일반 운행 시속 320km 이상이에요.",
+    "에펠탑은 여름엔 열팽창으로 약 15cm 더 커져요.",
+    "프랑스는 1,500종 이상의 와인을 만들어 — 세계 1위.",
+    "프랑스인은 매년 약 3만 톤의 달팽이를 먹어요.",
+    "남프랑스 카르카손은 디즈니 잠자는 숲속의 공주성의 모티브가 됐어요.",
+    "프랑스는 유럽에서 철도 밀도가 가장 높아 — 거의 모든 마을에 역이 있어요.",
+  ],
+  thailand: [
+    "태국은 동남아에서 유럽 식민지가 된 적 없는 유일한 나라예요.",
+    "방콕의 정식 의례 명칭은 169글자 — 세계에서 가장 긴 도시 이름이에요.",
+    "태국에는 35,000곳 넘는 불교 사원(왓)이 있어요.",
+    "태국식 인사 '와이'(합장)는 상대 연장자 정도에 따라 손 높이가 달라요.",
+    "방콕 차이나타운은 중국 외 가장 오래되고 큰 차이나타운 중 하나예요.",
+    "태국 음식은 2019년 CNN 조사에서 세계 1위 요리로 뽑혔어요.",
+    "태국은 세계 최대 쌀 수출국 — 세계 무역량의 약 25%.",
+    "피피 섬은 2018년 산호 회복을 위해 폐쇄됐어요.",
+    "태국에는 1,430개의 섬이 있고, 대부분 무인도예요.",
+    "태국어로 코끼리는 '창' — 태국 최고 인기 맥주 이름이기도 해요.",
+  ],
+  "south-korea": [
+    "한국은 세계 평균 인터넷 속도 1위예요.",
+    "서울은 광역 인구 2,500만 명, 세계 최대 대도시권 중 하나예요.",
+    "한글은 1443년에 만들어졌고 가장 논리적인 문자 중 하나로 평가받아요.",
+    "한국 고깃집은 테이블마다 환기 후드가 기본이에요.",
+    "한국에는 22개 국립공원이 있고, 국토의 6.7%를 차지해요.",
+    "남북 DMZ는 세계에서 가장 삼엄한 경계지만, 우연한 야생동물 보호구역이 됐어요.",
+    "한국인의 1인당 라면 소비량은 세계 1위(연 약 75봉지).",
+    "KTX는 서울-부산을 2시간 15분에 잇고 있어요.",
+    "김치는 187가지 공식 종류가 있고, 유네스코 문화유산이에요.",
+    "서울의 1인당 카페 수는 뉴욕·도쿄보다 많아요.",
+  ],
+  "united-states": [
+    "미국은 세계에서 국립공원이 가장 많아 — 총 63곳.",
+    "알래스카는 텍사스·캘리포니아·몬태나를 합친 것보다 커요.",
+    "미국의 공공도서관 수는 맥도날드 매장 수보다 많아요.",
+    "뉴욕 타임스스퀘어는 연 5,000만 명 이상 방문 — 에펠탑보다 많아요.",
+    "미국 의회도서관은 1억 7천만 점 이상을 소장한 세계 최대 도서관이에요.",
+    "캘리포니아 한 주만으로 세계 5위 경제 규모예요.",
+    "미국 주간고속도로는 총연장 77,000km가 넘어요.",
+    "옐로스톤은 1872년 지정된 세계 최초 국립공원이에요.",
+    "워싱턴 DC 스미스소니언 19개 박물관은 전부 무료예요.",
+  ],
+  italy: [
+    "이탈리아는 유네스코 세계유산이 가장 많은 나라예요.",
+    "로마 트레비 분수는 매일 약 €3,000의 동전이 모여 자선단체에 기부돼요.",
+    "이탈리아의 파스타 종류는 세계 1위 — 350가지 넘게 기록돼 있어요.",
+    "베네치아는 118개 작은 섬이 400개 다리로 연결돼 있어요.",
+    "바티칸은 면적 0.49km² — 세계에서 가장 작은 나라예요.",
+    "이탈리아는 연간 약 6억 리터의 올리브유를 생산 — 세계 2위.",
+    "피렌체 두오모를 짓는 데 142년이 걸렸어요.",
+    "이탈리아인이 13세기에 안경을 발명했어요.",
+    "마르게리타 피자는 1889년 마르게리타 여왕을 기리려 만들었고, 색깔은 이탈리아 국기와 같아요.",
+  ],
+  spain: [
+    "스페인은 유네스코 세계유산이 두 번째로 많아요(이탈리아 다음).",
+    "스페인 사람들은 보통 저녁 9-10시에 식사 — 유럽에서 가장 늦은 편이에요.",
+    "스페인은 해안선이 8,000km나 돼요.",
+    "바르셀로나 사그라다 파밀리아는 1882년 착공, 아직도 공사 중이에요.",
+    "플라멩코는 2010년 유네스코 무형문화유산으로 등재됐어요.",
+    "스페인은 세계 올리브유의 약 50%를 생산해요.",
+    "스페인어는 세계에서 두 번째로 많이 쓰이는 모국어예요.",
+    "토마토·감자·초콜릿이 스페인을 통해 유럽에 들어왔어요.",
+  ],
+  "united-kingdom": [
+    "영국은 면적당 성 개수가 세계에서 가장 많아요.",
+    "런던 지하철(튜브)은 1863년 개통 — 세계 최초의 지하철이에요.",
+    "빅벤은 사실 종 이름 — 탑 자체는 엘리자베스 타워예요.",
+    "영국에는 30,000곳이 넘는 펍이 있어요.",
+    "체더 치즈는 12세기 영국 체더 마을에서 시작됐어요.",
+    "영국 도서관은 1억 7천만 점 소장, 매년 300만 점이 추가돼요.",
+    "스톤헨지는 이집트 피라미드보다 약 500년 더 오래됐어요.",
+    "근대 우편 시스템·우표·우체통은 영국이 처음 만들었어요(1840년대).",
+  ],
+  germany: [
+    "독일에는 1,500개 이상의 맥주 브랜드가 있어요.",
+    "독일에는 25,000개의 성이 있어요.",
+    "독일어는 유럽에서 가장 많이 쓰이는 모국어예요.",
+    "베를린에는 다리가 1,700개 이상 — 베네치아보다 많아요.",
+    "독일은 인쇄기·자동차·MP3·아스피린을 발명했어요.",
+    "옥토버페스트는 사실 9월 중순에 시작해요.",
+    "독일에는 유럽에서 가장 많은 동물원이 있어요(400곳 넘음).",
+    "뮌헨 호프브로이하우스는 1589년 개업, 지금도 영업 중이에요.",
+  ],
+  vietnam: [
+    "베트남은 세계 2위 커피 수출국이에요.",
+    "하노이 구시가지는 1,000년이 넘었어요.",
+    "할롱베이에는 약 2,000개의 석회암 섬이 있어요.",
+    "베트남에는 세계에서 가장 긴 동굴 손둥(Son Doong) — 40층 빌딩이 들어갈 만큼 커요.",
+    "쌀국수 '퍼'는 원래 베트남 북부의 아침 식사였어요.",
+    "베트남은 세계 캐슈넛의 약 90%를 생산해요.",
+    "베트남에는 5,000만 대 이상의 오토바이 — 인구 두 명당 한 대꼴이에요.",
+  ],
+};
+
+const TRIVIA_JA: Pool = {
+  japan: [
+    "日本の自動販売機は人口比で世界一 — 約23人に1台あります。",
+    "東京の新宿駅は1日360万人が利用 — 世界一の利用客数です。",
+    "日本には200種類以上の公式ラーメンスタイルがあり、それぞれ都市・地域と結びついています。",
+    "日本のタクシードアは自動で開閉 — 自分でハンドルを掴まないでください。",
+    "日本には6,852の島があるが、人が住んでいるのは430のみです。",
+    "「森林浴」は今や予防医学として正式に認められています。",
+    "青島(あおしま)では猫が人間より100倍多く暮らしています。",
+    "奈良の鹿は人間がお辞儀するとお辞儀を返します — 観光客から学んだものです。",
+    "富士山は7・8月のたった2か月だけ登山できます。",
+    "日本のアルミ缶リサイクル率は約84% — 世界最高水準です。",
+  ],
+  france: [
+    "フランスは世界で最も観光客が訪れる国 — 年間約9,000万人。",
+    "フランスのチーズは1,200種類以上あります。",
+    "ルーブル美術館は世界最大 — 全作品を30秒ずつ見ても100日かかります。",
+    "パリ市内全体に止まれの標識はたった1つ。原則は「右側優先」。",
+    "TGVは通常運行で時速320km以上で走ります。",
+    "エッフェル塔は夏に熱膨張で約15cm高くなります。",
+    "フランスは1,500種以上のワインを生産 — 世界一です。",
+    "フランス人は年間約3万トンのカタツムリを食べます。",
+    "南仏カルカッソンヌはディズニー眠れる森の美女のお城のモデルです。",
+    "フランスは欧州で最も鉄道網が密集 — ほぼ全ての村に駅があります。",
+  ],
+  thailand: [
+    "タイは東南アジアで唯一、欧州列強に植民地化されなかった国です。",
+    "バンコクの正式儀礼名は169文字 — 世界一長い都市名です。",
+    "タイには35,000以上の仏教寺院(ワット)があります。",
+    "タイの挨拶「ワイ」は相手の目上度合いで手の高さが変わります。",
+    "バンコクのチャイナタウンは中国国外で最古・最大級の一つです。",
+    "タイ料理は2019年CNN調査で世界一の料理に選ばれました。",
+    "タイは世界最大の米輸出国 — 世界貿易の約25%を占めます。",
+    "ピピ島は2018年、サンゴ回復のため閉鎖されました。",
+    "タイには1,430の島があり、ほとんどが無人島です。",
+    "タイ語で象は「チャーン」 — タイで一番人気のビールの名前でもあります。",
+  ],
+  "south-korea": [
+    "韓国は平均インターネット速度が世界一です。",
+    "ソウル都市圏の人口は2,500万人 — 世界最大級の都市圏です。",
+    "ハングルは1443年に作られ、最も論理的な文字体系の一つとされています。",
+    "韓国の焼肉店は各テーブルに換気フードが備わっています。",
+    "韓国には22の国立公園があり、国土の6.7%を占めます。",
+    "南北DMZは世界で最も警備が厳重な境界 — でも野生動物の楽園にもなっています。",
+    "韓国人の1人当たりインスタントラーメン消費量は世界一(年間約75袋)。",
+    "KTXはソウル~釜山を2時間15分で結びます。",
+    "キムチには公式187種類があり、ユネスコ無形文化遺産です。",
+    "ソウルの人口当たりカフェ数はニューヨークや東京より多いです。",
+  ],
+  "united-states": [
+    "アメリカは国立公園数が世界一 — 計63か所。",
+    "アラスカはテキサス・カリフォルニア・モンタナを合わせたより広いです。",
+    "アメリカの公共図書館の数はマクドナルドの店舗数より多いです。",
+    "ニューヨークのタイムズスクエアは年間5,000万人以上が訪問 — エッフェル塔より多いです。",
+    "米国議会図書館は1億7,000万点以上を所蔵する世界最大の図書館です。",
+    "カリフォルニア州だけで世界5位の経済規模です。",
+    "アメリカの州間高速道路の総延長は77,000kmを超えます。",
+    "イエローストーンは1872年指定の世界初の国立公園です。",
+    "ワシントンDCのスミソニアン19博物館はすべて無料で入れます。",
+  ],
+  italy: [
+    "イタリアはユネスコ世界遺産が世界一多い国です。",
+    "ローマのトレビの泉には毎日約€3,000のコインが集まり、慈善団体に寄付されます。",
+    "イタリアのパスタの種類は世界一 — 350種類以上が記録されています。",
+    "ヴェネツィアは118の小島が400の橋で結ばれています。",
+    "バチカンは0.49km² — 世界で最も小さな国です。",
+    "イタリアは年間約6億リットルのオリーブオイルを生産 — 世界2位。",
+    "フィレンツェのドゥオーモは142年かけて建てられました。",
+    "13世紀にイタリア人がメガネを発明しました。",
+    "マルゲリータピザは1889年マルゲリータ女王のために作られ、色はイタリア国旗と同じです。",
+  ],
+  spain: [
+    "スペインはユネスコ世界遺産が世界2位(イタリアに次ぐ)。",
+    "スペインの夕食は通常21~22時 — ヨーロッパで最も遅い部類です。",
+    "スペインの海岸線は8,000kmあります。",
+    "バルセロナのサグラダ・ファミリアは1882年着工、いまだ未完成です。",
+    "フラメンコは2010年にユネスコ無形文化遺産に登録されました。",
+    "スペインは世界のオリーブオイルの約50%を生産しています。",
+    "スペイン語は世界で2番目に母語話者が多い言語です。",
+    "トマト・ジャガイモ・チョコレートはスペイン経由でヨーロッパに伝わりました。",
+  ],
+  "united-kingdom": [
+    "イギリスは面積あたりの城の数が世界一です。",
+    "ロンドン地下鉄(チューブ)は1863年開業 — 世界最古の地下鉄です。",
+    "ビッグベンは実は鐘の名前 — 塔自体はエリザベス・タワーです。",
+    "イギリスには30,000以上のパブがあります。",
+    "チェダーチーズは12世紀にイギリスのチェダー村で生まれました。",
+    "大英図書館は1億7,000万点以上を所蔵し、年間300万点ずつ増えています。",
+    "ストーンヘンジはエジプトのピラミッドより約500年古いです。",
+    "近代郵便制度・切手・郵便ポストはイギリスが発明しました(1840年代)。",
+  ],
+  germany: [
+    "ドイツには1,500以上のビール銘柄があります。",
+    "ドイツには25,000の城があります。",
+    "ドイツ語はヨーロッパで最も母語話者が多い言語です。",
+    "ベルリンの橋はヴェネツィアより多い1,700以上あります。",
+    "ドイツは活版印刷・自動車・MP3・アスピリンを発明しました。",
+    "オクトーバーフェストは実は9月中旬に始まります。",
+    "ドイツには欧州一の動物園数(400以上)があります。",
+    "ミュンヘンのホフブロイハウスは1589年開業、今もビールを提供しています。",
+  ],
+  vietnam: [
+    "ベトナムは世界第2位のコーヒー輸出国です。",
+    "ハノイの旧市街は1,000年以上の歴史があります。",
+    "ハロン湾には約2,000の石灰岩の島があります。",
+    "ベトナムには世界一長い洞窟ソンドンがあり、40階建てビルが入る大きさです。",
+    "フォーは元々ベトナム北部の朝食でした。",
+    "ベトナムは世界のカシューナッツの約90%を生産しています。",
+    "ベトナムにはオートバイが5,000万台以上 — 2人に1台の割合です。",
+  ],
+};
+
+const TRIVIA_ZH: Pool = {
+  japan: [
+    "日本人均自动售货机数量世界第一 — 约每23人就有一台。",
+    "东京新宿站日均客流量360万人次,是世界上最繁忙的车站。",
+    "日本有200多种官方拉面流派,各与特定城市或地区相关联。",
+    "日本出租车的车门会自动开关 — 千万别自己拉门把手。",
+    "日本有6,852个岛屿,但只有430个有人居住。",
+    "日语「森林浴」(shinrin-yoku)如今被正式认定为预防医学方式。",
+    "日本青岛(Aoshima)上猫的数量是人的100倍。",
+    "奈良的鹿会向人鞠躬还礼 — 它们从一代代游客身上学会的。",
+    "富士山每年仅7、8两个月可登山。",
+    "日本铝罐回收率约84% — 世界最高。",
+  ],
+  france: [
+    "法国是世界上游客最多的国家 — 每年约9,000万人。",
+    "法国出产1,200种不同的奶酪。",
+    "卢浮宫是世界最大的艺术博物馆 — 每件作品看30秒,需要100天才能看完。",
+    "巴黎全市只有一个停车标志。规则是:右侧优先。",
+    "法国TGV高速列车日常运营时速超过320公里。",
+    "埃菲尔铁塔夏天因热膨胀会高出约15厘米。",
+    "法国出产1,500多种葡萄酒,世界第一。",
+    "法国人每年吃掉约3万吨蜗牛。",
+    "法国南部卡尔卡松城是迪士尼睡美人城堡的灵感来源。",
+    "法国是欧洲铁路网密度最高的国家 — 几乎每个村庄都有车站。",
+  ],
+  thailand: [
+    "泰国是东南亚唯一从未被欧洲列强殖民的国家。",
+    "曼谷的完整礼仪名长达169字母 — 世界最长的城市名。",
+    "泰国有35,000多座佛教寺院(瓦特)。",
+    "泰式问候「合十礼」(wai)的高度根据对方资历不同而不同。",
+    "曼谷唐人街是中国境外最古老、最大的唐人街之一。",
+    "泰国菜在2019年CNN评选中被誉为世界最受欢迎的菜系。",
+    "泰国是全球最大稻米出口国 — 占全球贸易约25%。",
+    "皮皮岛于2018年关闭,以让珊瑚从过度旅游中恢复。",
+    "泰国有1,430个岛屿,大多数无人居住。",
+    "泰语「象」叫「Chang」 — 也是泰国最受欢迎啤酒的名字。",
+  ],
+  "south-korea": [
+    "韩国平均互联网速度全球第一。",
+    "首尔是世界最大都会区之一,大都会人口约2,500万。",
+    "韩文(Hangul)创制于1443年,被誉为世界上最具逻辑性的文字之一。",
+    "韩式烤肉店每张桌子都内置抽风机。",
+    "韩国有22个国家公园,占国土面积的6.7%。",
+    "南北韩DMZ是世界上戒备最森严的边界 — 但意外地成了野生动物保护区。",
+    "韩国人均方便面消费量世界第一(每年约75袋)。",
+    "韩国KTX高速列车连接首尔到釜山仅需2小时15分钟。",
+    "泡菜有187种官方品种,被联合国教科文组织列为文化遗产。",
+    "首尔人均咖啡店数量超过纽约和东京。",
+  ],
+  "united-states": [
+    "美国是世界上国家公园数量最多的国家 — 共63个。",
+    "阿拉斯加比德州、加州和蒙大拿州加起来还大。",
+    "美国公共图书馆数量比麦当劳门店还多。",
+    "纽约时代广场每年游客超过5,000万 — 比埃菲尔铁塔还多。",
+    "美国国会图书馆藏书超过1.7亿件,是世界最大图书馆。",
+    "光加州一个州就是世界第5大经济体。",
+    "美国州际公路系统总长超过77,000公里。",
+    "黄石是世界上第一个国家公园,1872年设立。",
+    "华盛顿特区的史密森尼学会有19个博物馆,全部免费入场。",
+  ],
+  italy: [
+    "意大利是世界联合国教科文组织遗产最多的国家。",
+    "罗马特雷维喷泉每天约收到€3,000的硬币,捐给慈善机构。",
+    "意大利的意面种类世界第一 — 已记录的就超过350种。",
+    "威尼斯由118个小岛组成,通过400座桥连接。",
+    "梵蒂冈是世界最小的国家,面积仅0.49平方公里。",
+    "意大利每年生产约6亿升橄榄油 — 世界第二大生产国。",
+    "佛罗伦萨大教堂(Duomo)耗时142年才建成。",
+    "意大利人在13世纪发明了眼镜。",
+    "玛格丽特披萨创于1889年,为致敬玛格丽特女王 — 颜色对应意大利国旗。",
+  ],
+  spain: [
+    "西班牙的联合国教科文组织世界遗产数量世界第二(仅次于意大利)。",
+    "西班牙人通常晚上9-10点才吃晚饭 — 欧洲最晚的之一。",
+    "西班牙的海岸线长达8,000公里。",
+    "巴塞罗那的圣家堂自1882年开建,至今未完工。",
+    "弗拉门戈舞2010年被列入联合国非物质文化遗产名录。",
+    "西班牙生产全球约50%的橄榄油。",
+    "西班牙语是世界上第二大母语使用者最多的语言。",
+    "番茄、土豆、巧克力都是经由西班牙传入欧洲的。",
+  ],
+  "united-kingdom": [
+    "英国每平方英里的城堡数量世界第一。",
+    "伦敦地铁(Tube)1863年通车 — 世界上最古老的地铁。",
+    "「大本钟」其实是钟的名字 — 钟楼现称伊丽莎白塔。",
+    "英国有超过30,000家酒吧。",
+    "切达奶酪起源于英国切达村,约12世纪。",
+    "大英图书馆藏书1.7亿件,每年新增约300万件。",
+    "巨石阵比埃及金字塔还早约500年。",
+    "现代邮政、邮票、邮筒都是英国发明的(1840年代)。",
+  ],
+  germany: [
+    "德国有超过1,500种啤酒品牌。",
+    "德国有25,000座城堡。",
+    "德语是欧洲母语使用者最多的语言。",
+    "柏林的桥比威尼斯还多(超过1,700座)。",
+    "德国发明了印刷机、汽车、MP3和阿司匹林。",
+    "啤酒节其实是9月中旬开始的。",
+    "德国是欧洲动物园数量最多的国家(超过400个)。",
+    "慕尼黑皇家啤酒屋(Hofbräuhaus)1589年开业,至今仍在营业。",
+  ],
+  vietnam: [
+    "越南是世界第二大咖啡出口国。",
+    "河内老城区已有1,000多年历史。",
+    "下龙湾有近2,000座石灰岩岛屿。",
+    "越南有世界最长的洞穴山东(Son Doong) — 大到能容下40层楼的摩天大楼。",
+    "越南河粉(Pho)最初是越南北部的早餐食物。",
+    "越南生产全球约90%的腰果。",
+    "越南有超过5,000万辆摩托车 — 几乎每两人就有一辆。",
+  ],
+};
+
+const TRIVIA_FR: Pool = {
+  japan: [
+    "Le Japon a le plus grand nombre de distributeurs automatiques par habitant — environ un pour 23 personnes.",
+    "La gare de Shinjuku à Tokyo accueille 3,6 millions de passagers par jour, plus que toute autre gare au monde.",
+    "Il existe plus de 200 styles officiels de ramen au Japon, chacun lié à une ville ou région spécifique.",
+    "Les portes de taxi japonaises s'ouvrent et se ferment automatiquement — n'attrapez jamais la poignée.",
+    "Le Japon compte 6 852 îles, mais seulement 430 sont habitées.",
+    "Le terme japonais shinrin-yoku (« bain de forêt ») est désormais reconnu comme une forme de médecine préventive.",
+    "Sur l'île japonaise d'Aoshima, les chats sont 100 fois plus nombreux que les humains.",
+    "Les cerfs de Nara s'inclinent en retour quand vous les saluez — ils l'ont appris des touristes au fil des générations.",
+    "Le mont Fuji n'est ouvert à l'ascension que deux mois par an (juillet et août).",
+    "Le Japon recycle environ 84 % de ses canettes en aluminium — le taux le plus élevé au monde.",
+  ],
+  france: [
+    "La France est le pays le plus visité au monde, avec environ 90 millions de touristes par an.",
+    "On fabrique 1 200 types différents de fromage en France.",
+    "Le Louvre est le plus grand musée d'art au monde — il faudrait 100 jours pour voir chaque œuvre 30 secondes.",
+    "Paris ne compte qu'un seul stop dans toute la ville. La règle: priorité à droite.",
+    "Les TGV roulent à plus de 320 km/h en service régulier.",
+    "La tour Eiffel grandit d'environ 15 cm en été à cause de la dilatation thermique.",
+    "La France produit plus de 1 500 vins différents — plus que n'importe quel autre pays.",
+    "Les Français mangent environ 30 000 tonnes d'escargots par an.",
+    "Carcassonne, dans le sud, a inspiré le château de la Belle au bois dormant de Disney.",
+    "La France a la densité ferroviaire la plus élevée d'Europe — presque chaque village a une gare.",
+  ],
+  thailand: [
+    "La Thaïlande est le seul pays d'Asie du Sud-Est jamais colonisé par une puissance européenne.",
+    "Le nom cérémoniel complet de Bangkok fait 169 lettres — le plus long nom de ville au monde.",
+    "La Thaïlande compte plus de 35 000 temples bouddhistes (wats).",
+    "Le salut thaï « wai » (mains jointes) varie en hauteur selon l'ancienneté du destinataire.",
+    "Le Chinatown de Bangkok est l'un des plus anciens et des plus grands hors de Chine.",
+    "La cuisine thaïe a été élue cuisine préférée au monde par un sondage CNN en 2019.",
+    "La Thaïlande exporte plus de riz que tout autre pays — environ 25 % du commerce mondial.",
+    "Les îles Phi Phi ont été fermées en 2018 pour permettre aux coraux de se régénérer.",
+    "La Thaïlande a 1 430 îles, dont la plupart sont inhabitées.",
+    "Le mot thaï pour éléphant, « chang », est aussi le nom de la bière la plus populaire du pays.",
+  ],
+  "south-korea": [
+    "La Corée du Sud a la connexion internet moyenne la plus rapide au monde.",
+    "Séoul est l'une des plus grandes métropoles du monde, avec 25 millions d'habitants en agglomération.",
+    "L'alphabet coréen, le hangul, a été inventé en 1443 et est considéré comme l'un des plus logiques jamais créés.",
+    "Les restaurants de barbecue coréen ont traditionnellement des hottes intégrées à chaque table.",
+    "La Corée du Sud compte 22 parcs nationaux qui couvrent 6,7 % du pays.",
+    "La DMZ entre les deux Corées est la frontière la plus militarisée au monde — mais aussi un sanctuaire accidentel pour la faune.",
+    "Les Coréens consomment plus de ramen instantanés par habitant que n'importe qui d'autre (~75 paquets par an).",
+    "Le KTX relie Séoul à Busan en 2 h 15.",
+    "Le kimchi compte 187 variétés officielles, reconnues par l'UNESCO comme patrimoine culturel.",
+    "Séoul a plus de cafés par habitant que New York ou Tokyo.",
+  ],
+  "united-states": [
+    "Les États-Unis ont le plus grand nombre de parcs nationaux au monde — 63 au total.",
+    "L'Alaska est plus grand que le Texas, la Californie et le Montana réunis.",
+    "Il y a plus de bibliothèques publiques aux États-Unis que de McDonald's.",
+    "Times Square à New York reçoit plus de 50 millions de visiteurs par an — plus que la tour Eiffel.",
+    "La Bibliothèque du Congrès détient plus de 170 millions d'objets — la plus grande bibliothèque au monde.",
+    "À elle seule, la Californie est la 5e économie mondiale.",
+    "Le réseau d'autoroutes inter-États fait plus de 77 000 km.",
+    "Yellowstone fut le premier parc national au monde, créé en 1872.",
+    "La Smithsonian compte 19 musées à Washington DC — tous gratuits.",
+  ],
+  italy: [
+    "L'Italie a plus de sites du patrimoine mondial de l'UNESCO que n'importe quel autre pays.",
+    "La fontaine de Trevi à Rome récolte environ 3 000 € de pièces par jour, reversés à des œuvres caritatives.",
+    "L'Italie a plus de formes de pâtes que tout autre pays — plus de 350 documentées.",
+    "Venise est bâtie sur 118 petites îles reliées par 400 ponts.",
+    "Le Vatican est le plus petit pays du monde, avec 0,49 km².",
+    "L'Italie produit environ 600 millions de litres d'huile d'olive par an — 2e producteur mondial.",
+    "Le Duomo de Florence a pris 142 ans à construire.",
+    "Les Italiens ont inventé les lunettes au 13e siècle.",
+    "La pizza Margherita a été créée en 1889 pour honorer la reine Marguerite — ses couleurs reprennent le drapeau italien.",
+  ],
+  spain: [
+    "L'Espagne a le 2e plus grand nombre de sites UNESCO au monde (après l'Italie).",
+    "Les Espagnols dînent vers 21-22 h — parmi les plus tardifs d'Europe.",
+    "L'Espagne a 8 000 km de côtes.",
+    "La Sagrada Familia à Barcelone est en construction depuis 1882 et n'est toujours pas terminée.",
+    "Le flamenco a été ajouté au patrimoine immatériel de l'UNESCO en 2010.",
+    "L'Espagne produit environ 50 % de l'huile d'olive mondiale.",
+    "L'espagnol est la 2e langue maternelle la plus parlée au monde.",
+    "Les tomates, pommes de terre et chocolat ont été introduits en Europe via l'Espagne.",
+  ],
+  "united-kingdom": [
+    "Le Royaume-Uni a la plus forte densité de châteaux au monde.",
+    "Le métro de Londres (le Tube) est le plus ancien du monde, ouvert en 1863.",
+    "Big Ben désigne en réalité la cloche, pas la tour (qu'on appelle désormais Elizabeth Tower).",
+    "Le Royaume-Uni compte plus de 30 000 pubs.",
+    "Le cheddar est né dans le village de Cheddar, en Angleterre, vers le 12e siècle.",
+    "La British Library détient plus de 170 millions d'objets et en ajoute 3 millions par an.",
+    "Stonehenge précède les pyramides d'Égypte d'environ 500 ans.",
+    "La Grande-Bretagne a inventé la poste moderne, le timbre-poste et la boîte aux lettres (années 1840).",
+  ],
+  germany: [
+    "L'Allemagne compte plus de 1 500 marques de bière différentes.",
+    "Il y a 25 000 châteaux en Allemagne.",
+    "L'allemand est la langue maternelle la plus parlée d'Europe.",
+    "Berlin a plus de ponts que Venise (plus de 1 700).",
+    "L'Allemagne a inventé l'imprimerie, l'automobile, le format MP3 et l'aspirine.",
+    "L'Oktoberfest commence en réalité à la mi-septembre.",
+    "L'Allemagne a le plus grand nombre de zoos d'Europe (plus de 400).",
+    "La Hofbräuhaus de Munich a ouvert en 1589 et sert toujours de la bière aujourd'hui.",
+  ],
+  vietnam: [
+    "Le Vietnam est le 2e exportateur mondial de café.",
+    "Le vieux quartier de Hanoï a plus de 1 000 ans.",
+    "La baie d'Halong compte près de 2 000 îles et îlots calcaires.",
+    "Le Vietnam abrite la plus longue grotte du monde (Son Doong) — assez grande pour un gratte-ciel de 40 étages.",
+    "Le pho était à l'origine un plat du petit-déjeuner du nord du Vietnam.",
+    "Le Vietnam produit environ 90 % des noix de cajou mondiales.",
+    "Il y a plus de 50 millions de motos au Vietnam — presque une pour deux personnes.",
+  ],
+};
+
+const ALL_TRIVIA: Record<Locale, Pool> = {
+  en: TRIVIA_EN,
+  ko: TRIVIA_KO,
+  ja: TRIVIA_JA,
+  zh: TRIVIA_ZH,
+  fr: TRIVIA_FR,
+};
+
+const GENERIC_BY_LOCALE: Record<Locale, string[]> = {
+  en: [
+    "There are around 195 countries in the world, depending on how you count them.",
+    "About 1.4 billion international tourist trips happen every year.",
+    "The most-visited city in the world is Bangkok, with over 22 million arrivals annually.",
+    "The longest non-stop commercial flight is Singapore to New York — over 18 hours.",
+    "About 100,000 commercial flights take off every day worldwide.",
+    "The world's largest airport by area is King Fahd International in Saudi Arabia — bigger than Manhattan.",
+    "Antarctica is the only continent without a permanent population.",
+    "The world's smallest hotel (Eh'häusl in Germany) sleeps two people.",
+  ],
+  ko: [
+    "세계에는 약 195개 나라가 있어요(셈법에 따라 다름).",
+    "매년 약 14억 회의 국제 관광 이동이 일어나요.",
+    "세계에서 가장 많이 방문되는 도시는 방콕 — 연 2,200만 명 이상이에요.",
+    "세계 최장 직항 노선은 싱가포르-뉴욕 — 18시간이 넘어요.",
+    "전 세계에서 매일 약 10만 편의 상업 항공편이 이륙해요.",
+    "면적 기준 세계 최대 공항은 사우디 킹 파드 국제공항 — 맨해튼보다 커요.",
+    "남극은 영구 거주민이 없는 유일한 대륙이에요.",
+    "세계에서 가장 작은 호텔(독일 에호이슬)은 단 2명만 머물 수 있어요.",
+  ],
+  ja: [
+    "世界には約195の国があります(数え方による)。",
+    "毎年約14億件の国際観光旅行が行われています。",
+    "世界で最も訪問される都市はバンコクで、年間2,200万人以上が訪れます。",
+    "世界最長の直行便はシンガポール~ニューヨーク — 18時間以上。",
+    "世界では毎日約10万便の商用フライトが出発しています。",
+    "面積で世界最大の空港はサウジのキング・ファハド国際空港 — マンハッタンより広いです。",
+    "南極は定住人口がいない唯一の大陸です。",
+    "世界最小のホテル(ドイツのEh'häusl)は2名で泊まれます。",
+  ],
+  zh: [
+    "世界上约有195个国家(取决于如何计算)。",
+    "每年约有14亿次国际旅游出行。",
+    "世界上访问量最大的城市是曼谷,每年游客超过2,200万。",
+    "世界上最长的直达商业航班是新加坡飞纽约 — 超过18小时。",
+    "全世界每天约有10万架次商业航班起飞。",
+    "按面积计算,世界最大的机场是沙特阿拉伯的法赫德国王国际机场 — 比曼哈顿还大。",
+    "南极是唯一没有常住人口的大陆。",
+    "世界上最小的酒店(德国Eh'häusl)只能住两个人。",
+  ],
+  fr: [
+    "Il y a environ 195 pays dans le monde, selon la méthode de comptage.",
+    "Environ 1,4 milliard de voyages touristiques internationaux ont lieu chaque année.",
+    "La ville la plus visitée au monde est Bangkok, avec plus de 22 millions d'arrivées par an.",
+    "Le plus long vol commercial sans escale relie Singapour à New York — plus de 18 heures.",
+    "Environ 100 000 vols commerciaux décollent chaque jour dans le monde.",
+    "Le plus grand aéroport au monde par superficie est King Fahd International en Arabie saoudite — plus grand que Manhattan.",
+    "L'Antarctique est le seul continent sans population permanente.",
+    "Le plus petit hôtel du monde (Eh'häusl en Allemagne) accueille deux personnes.",
+  ],
+};
+
 /** Country aliases — map common destination country names to trivia keys. */
 const COUNTRY_ALIASES: Record<string, string> = {
   japan: "japan",
@@ -140,30 +656,71 @@ const COUNTRY_ALIASES: Record<string, string> = {
   germany: "germany",
   deutschland: "germany",
   vietnam: "vietnam",
+  // Locale-spelled aliases — Korean / Japanese / Chinese / French names
+  // routed back to the canonical English slug so the localized pools
+  // still resolve correctly when Claude returns destinationCountry in
+  // the user's language.
+  일본: "japan",
+  日本: "japan",
+  日本国: "japan",
+  japon: "japan",
+  프랑스: "france",
+  フランス: "france",
+  法国: "france",
+  태국: "thailand",
+  タイ: "thailand",
+  泰国: "thailand",
+  thaïlande: "thailand",
+  한국: "south-korea",
+  대한민국: "south-korea",
+  韓国: "south-korea",
+  韩国: "south-korea",
+  corée: "south-korea",
+  미국: "united-states",
+  アメリカ: "united-states",
+  美国: "united-states",
+  "états-unis": "united-states",
+  이탈리아: "italy",
+  イタリア: "italy",
+  意大利: "italy",
+  italie: "italy",
+  스페인: "spain",
+  スペイン: "spain",
+  西班牙: "spain",
+  espagne: "spain",
+  영국: "united-kingdom",
+  イギリス: "united-kingdom",
+  英国: "united-kingdom",
+  "royaume-uni": "united-kingdom",
+  독일: "germany",
+  ドイツ: "germany",
+  德国: "germany",
+  allemagne: "germany",
+  베트남: "vietnam",
+  ベトナム: "vietnam",
+  越南: "vietnam",
 };
 
-/** Generic facts used when no country-specific trivia exists. */
-const GENERIC_TRIVIA: string[] = [
-  "There are around 195 countries in the world, depending on how you count them.",
-  "About 1.4 billion international tourist trips happen every year.",
-  "The most-visited city in the world is Bangkok, with over 22 million arrivals annually.",
-  "The longest non-stop commercial flight is Singapore to New York — over 18 hours.",
-  "About 100,000 commercial flights take off every day worldwide.",
-  "The world's largest airport by area is King Fahd International in Saudi Arabia — bigger than Manhattan.",
-  "Antarctica is the only continent without a permanent population.",
-  "The world's smallest hotel (Eh'häusl in Germany) sleeps two people.",
-];
-
-/** Look up trivia for a destination country. Falls back to generic. */
-export function getTriviaForCountry(country: string): string[] {
+/** Look up trivia for a destination country in a given locale. Falls back
+ *  through: locale-country → locale-generic → en-generic. */
+export function getTriviaForCountry(country: string, locale: Locale = "en"): string[] {
   const key = country.toLowerCase().trim();
   const slug = COUNTRY_ALIASES[key] ?? key;
-  return TRIVIA[slug] ?? GENERIC_TRIVIA;
+  const localePool = ALL_TRIVIA[locale] ?? ALL_TRIVIA.en;
+  return (
+    localePool[slug] ??
+    GENERIC_BY_LOCALE[locale] ??
+    GENERIC_BY_LOCALE.en
+  );
 }
 
-/** Pick N random distinct trivia entries for a country. */
-export function pickTrivia(country: string, count: number): string[] {
-  const pool = getTriviaForCountry(country);
+/** Pick N random distinct trivia entries for a country in a locale. */
+export function pickTrivia(
+  country: string,
+  locale: Locale,
+  count: number,
+): string[] {
+  const pool = getTriviaForCountry(country, locale);
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, Math.min(count, pool.length));
 }

@@ -286,6 +286,7 @@
     "yourTripPlan": "Votre plan de voyage",
     "downloadPdf": "Télécharger le PDF",
     "itineraryHeader": "Itinéraire de {days} jours · {country}",
+    "triviaLabel": "Le saviez-vous ?",
     "tipLabel": "Astuce :",
     "dayTotalActivity": "{duration} d'activité",
     "dayTotalTransit": "{duration} de transit",
@@ -326,6 +327,7 @@
         "receiptSent": "Reçu envoyé sur votre e-mail — gardez-le pour vos archives.",
         "emailWhenReady": "On vous enverra le lien du plan dès qu'il est prêt."
       },
+      "triviaHeader": "Pendant que vous patientez · {country}",
       "planIdLabel": "Plan",
       "emailHint": "On vous enverra aussi le lien par e-mail quand ce sera prêt — vous pouvez fermer cet onglet.",
       "leaveTitle": "Vous pouvez fermer cet onglet à tout moment",

@@ -286,6 +286,7 @@
     "yourTripPlan": "내 여행 플랜",
     "downloadPdf": "PDF 다운로드",
     "itineraryHeader": "{days}일 일정 · {country}",
+    "triviaLabel": "알고 계셨나요?",
     "tipLabel": "팁:",
     "dayTotalActivity": "{duration} 활동",
     "dayTotalTransit": "{duration} 이동",
@@ -326,6 +327,7 @@
         "receiptSent": "영수증을 이메일로 보내드렸어요. 보관해 두세요.",
         "emailWhenReady": "플랜 완성되면 이메일로 링크 보내드려요."
       },
+      "triviaHeader": "기다리는 동안 · {country}",
       "planIdLabel": "Plan",
       "emailHint": "완성되면 이메일로도 링크를 보내드려요. 탭은 닫으셔도 괜찮아요.",
       "leaveTitle": "이 탭, 언제든 닫으셔도 돼요",
