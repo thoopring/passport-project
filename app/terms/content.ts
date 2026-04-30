@@ -57,7 +57,7 @@ export const TERMS_CONTENT: Record<Locale, TermsContent> = {
       },
       {
         heading: "5. Delivery",
-        body: "Plans are delivered to the email address you provide at checkout, typically within 60–120 seconds of successful payment. Check your spam folder if you do not see it within 5 minutes. The web link in the email is the canonical delivery — you can return to it any time. The PDF is a convenience copy for offline use.",
+        body: "Plans are delivered to the email address you provide at checkout, typically within 5-10 minutes of successful payment. Check your spam folder if you do not see it within 15 minutes. The web link in the email is the canonical delivery — you can return to it any time. The PDF is a convenience copy for offline use.",
       },
       {
         heading: "6. What a plan is and isn't",
@@ -141,7 +141,7 @@ export const TERMS_CONTENT: Record<Locale, TermsContent> = {
       },
       {
         heading: "5. 전달",
-        body: "결제 시 입력하신 이메일로 보통 결제 성공 후 60~120초 안에 플랜이 도착합니다. 5분 안에 보이지 않으시면 스팸함을 확인해 주세요. 메일의 웹 링크가 정식 전달본이며 언제든 다시 열람하실 수 있습니다. PDF는 오프라인 사용을 위한 사본입니다.",
+        body: "결제 시 입력하신 이메일로 보통 결제 성공 후 5-10분 안에 플랜이 도착합니다. 15분 안에 보이지 않으시면 스팸함을 확인해 주세요. 메일의 웹 링크가 정식 전달본이며 언제든 다시 열람하실 수 있습니다. PDF는 오프라인 사용을 위한 사본입니다.",
       },
       {
         heading: "6. 플랜이 무엇이고 무엇이 아닌지",
@@ -225,7 +225,7 @@ export const TERMS_CONTENT: Record<Locale, TermsContent> = {
       },
       {
         heading: "5. 配信",
-        body: "プランは決済時にご提供いただいたメールアドレスに、決済成功から通常60〜120秒以内にお届けします。5分以内に届かない場合は迷惑メールフォルダをご確認ください。メール内のウェブリンクが正式な配信物で、いつでもアクセスできます。PDFはオフライン使用のための便利なコピーです。",
+        body: "プランは決済時にご提供いただいたメールアドレスに、決済成功から通常5〜10分以内にお届けします。15分以内に届かない場合は迷惑メールフォルダをご確認ください。メール内のウェブリンクが正式な配信物で、いつでもアクセスできます。PDFはオフライン使用のための便利なコピーです。",
       },
       {
         heading: "6. プランとは何か、何でないか",
@@ -308,7 +308,7 @@ export const TERMS_CONTENT: Record<Locale, TermsContent> = {
       },
       {
         heading: "5. 交付",
-        body: "计划将发送至您在结账时提供的邮箱,通常在成功付款后 60–120 秒内到达。如果 5 分钟内未看到,请检查垃圾邮件文件夹。邮件中的网页链接是正式交付 — 您可以随时访问。PDF 是为离线使用提供的便利副本。",
+        body: "计划将发送至您在结账时提供的邮箱,通常在成功付款后 5-10 分钟内到达。如果 15 分钟内未看到,请检查垃圾邮件文件夹。邮件中的网页链接是正式交付 — 您可以随时访问。PDF 是为离线使用提供的便利副本。",
       },
       {
         heading: "6. 计划是什么,不是什么",
@@ -392,7 +392,7 @@ export const TERMS_CONTENT: Record<Locale, TermsContent> = {
       },
       {
         heading: "5. Livraison",
-        body: "Les plans sont livrés à l'adresse e-mail que vous fournissez au paiement, généralement dans les 60 à 120 secondes suivant le paiement réussi. Vérifiez votre dossier spam si vous ne le voyez pas dans les 5 minutes. Le lien web dans l'e-mail est la livraison canonique — vous pouvez y revenir à tout moment. Le PDF est une copie pratique pour utilisation hors ligne.",
+        body: "Les plans sont livrés à l'adresse e-mail que vous fournissez au paiement, généralement dans les 5 à 10 minutes suivant le paiement réussi. Vérifiez votre dossier spam si vous ne le voyez pas dans les 15 minutes. Le lien web dans l'e-mail est la livraison canonique — vous pouvez y revenir à tout moment. Le PDF est une copie pratique pour utilisation hors ligne.",
       },
       {
         heading: "6. Ce qu'est un plan et ce qu'il n'est pas",

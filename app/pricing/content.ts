@@ -26,7 +26,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
     eyebrow: "Pricing",
     headline: "One plan. $4. That's it.",
     intro:
-      "No subscription. No hidden fees. No account required. Pay once, receive one complete trip plan by email within a few minutes.",
+      "No subscription. No hidden fees. No account required. Pay once, receive one carefully crafted trip plan by email — typically within 5-10 minutes.",
     priceUnit: "USD · per plan · one-time",
     priceFootnote: "Local currency equivalent shown at checkout.",
     features: [
@@ -36,7 +36,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
       "Route map with numbered stops you can open on your phone",
       "Restaurant picks with why-here notes, not just names",
       "Downloadable PDF for offline use while you travel",
-      "Delivered to your email in ~60 seconds after payment",
+      "Delivered to your email in 5-10 minutes after payment",
     ],
     ctaButton: "Plan my trip — $4",
     faqHeading: "Frequently asked",
@@ -78,7 +78,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
     eyebrow: "요금",
     headline: "플랜 한 권, $4. 끝.",
     intro:
-      "구독 없음. 숨은 비용 없음. 가입도 필요 없어요. 한 번 결제하시면 몇 분 안에 완성된 여행 플랜이 메일로 도착합니다.",
+      "구독 없음. 숨은 비용 없음. 가입도 필요 없어요. 한 번 결제하시면 정성껏 다듬은 여행 플랜이 보통 5-10분 안에 메일로 도착합니다.",
     priceUnit: "USD · 플랜 1건 · 1회 결제",
     priceFootnote: "결제 시 현지 통화로 환산된 금액이 표시돼요.",
     features: [
@@ -88,7 +88,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
       "번호 매긴 코스를 휴대폰에서 바로 보는 동선 지도",
       "왜 이 식당인지 이유까지 적힌 식당 추천",
       "여행 중 오프라인 사용을 위한 PDF 다운로드",
-      "결제 후 약 60초 안에 메일 도착",
+      "결제 후 5-10분 안에 메일 도착",
     ],
     ctaButton: "내 여행 계획하기 — $4",
     faqHeading: "자주 묻는 질문",
@@ -130,7 +130,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
     eyebrow: "料金",
     headline: "プラン1つ、$4。それだけ。",
     intro:
-      "サブスクなし。隠れた費用なし。登録不要。一度のお支払いで、完成した旅行プランが数分以内にメールで届きます。",
+      "サブスクなし。隠れた費用なし。登録不要。一度のお支払いで、丁寧に作り上げた旅行プランが通常5〜10分でメールに届きます。",
     priceUnit: "USD · プラン1つ · 1回払い",
     priceFootnote: "決済時に現地通貨での金額が表示されます。",
     features: [
@@ -140,7 +140,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
       "番号付きスポットをスマホで開ける動線マップ",
       "なぜここ?の理由まで書いたレストラン推薦",
       "旅行中のオフライン用PDFダウンロード",
-      "決済後、約60秒でメールに到着",
+      "決済後5〜10分でメールに到着",
     ],
     ctaButton: "旅行を計画する — $4",
     faqHeading: "よくあるご質問",
@@ -182,7 +182,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
     eyebrow: "定价",
     headline: "一份计划。$4。仅此而已。",
     intro:
-      "无订阅。无隐藏费用。无需注册。一次付款,完整的旅行计划在几分钟内通过邮件送达。",
+      "无订阅。无隐藏费用。无需注册。一次付款,精心打磨的旅行计划通常在 5-10 分钟内通过邮件送达。",
     priceUnit: "USD · 每份计划 · 一次性",
     priceFootnote: "结账时显示当地货币等值金额。",
     features: [
@@ -192,7 +192,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
       "可在手机打开的编号景点路线地图",
       "带推荐理由的餐厅推荐,不只是名字",
       "可下载的 PDF,旅途中可离线使用",
-      "付款后约 60 秒送达邮箱",
+      "付款后 5-10 分钟送达邮箱",
     ],
     ctaButton: "规划我的旅行 — $4",
     faqHeading: "常见问题",
@@ -244,7 +244,7 @@ export const PRICING_CONTENT: Record<Locale, PricingContent> = {
       "Carte d'itinéraire avec étapes numérotées, à ouvrir sur votre téléphone",
       "Sélection de restaurants avec explications, pas juste des noms",
       "PDF téléchargeable pour utilisation hors ligne pendant le voyage",
-      "Livré dans votre boîte mail en ~60 secondes après le paiement",
+      "Livré dans votre boîte mail en 5 à 10 minutes après le paiement",
     ],
     ctaButton: "Planifier mon voyage — 4 $",
     faqHeading: "Questions fréquentes",

@@ -11,12 +11,12 @@ export const runtime = "nodejs";
  * proactively flip the plan to 'failed' on the next status check so the
  * client sees a real terminal state and can show the refund message.
  *
- * Threshold = maxDuration (300s) + a generous buffer for any background
- * post-processing. Set to 10 minutes — long enough that we never kill a
- * still-running pipeline, short enough that an abandoned plan doesn't
- * keep a buyer staring for 30+ minutes.
+ * Threshold sized to outlast the legitimate worst case. Vercel
+ * maxDuration is 800s = 13.3 min, plus a small overhead buffer.
+ * 15 minutes matches the refund-policy SLA published on /refund —
+ * if a plan hasn't completed in 15 minutes, refund is owed regardless.
  */
-const STALE_PLAN_MS = 10 * 60 * 1000;
+const STALE_PLAN_MS = 15 * 60 * 1000;
 
 /**
  * GET /api/plan/[id]/status

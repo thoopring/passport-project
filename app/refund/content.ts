@@ -31,7 +31,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
     lastUpdated: "Last updated: April 23, 2026",
     summaryHeading: "Summary",
     summaryList: [
-      "Automatic refund if we fail to generate your plan within 10 minutes of payment for any technical reason.",
+      "Automatic refund if we fail to generate your plan within 15 minutes of payment for any technical reason.",
       "Refund on request within 14 days if your plan includes a clearly hallucinated place (a restaurant, hotel, or attraction that does not actually exist at the stated location).",
       "No refund for taste preferences (liking or disliking a recommendation), for changes to your travel dates after purchase, or after the plan has been downloaded as a PDF and 14 days have passed.",
     ],
@@ -39,7 +39,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
       {
         heading: "1. Technical failure refund",
         bodies: [
-          "If our system fails to deliver a plan within 10 minutes of a successful charge — for example, Claude times out, our email delivery fails, or the plan is marked failed in our system — we initiate an automatic refund through LemonSqueezy to your original payment method. You do not need to contact us; we see the failure in logs and process it.",
+          "If our system fails to deliver a plan within 15 minutes of a successful charge — for example, Claude times out, our email delivery fails, or the plan is marked failed in our system — we initiate an automatic refund through LemonSqueezy to your original payment method. You do not need to contact us; we see the failure in logs and process it.",
           "Refunds typically appear on your statement within 5–10 business days depending on your card issuer. If you have not received the refund after 10 business days, email gliddy@checkvisamap.com with your LemonSqueezy order number.",
         ],
       },
@@ -84,7 +84,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
     lastUpdated: "최종 수정: 2026년 4월 23일",
     summaryHeading: "요약",
     summaryList: [
-      "결제 후 10분 이내 기술적 사유로 플랜 생성에 실패한 경우 자동 환불해 드려요.",
+      "결제 후 15분 이내 기술적 사유로 플랜 생성에 실패한 경우 자동 환불해 드려요.",
       "플랜에 실제로 존재하지 않는 장소(해당 위치에 없는 식당·호텔·관광지)가 포함된 경우, 14일 이내 신청 시 환불해 드려요.",
       "취향 차이(추천이 마음에 들지 않는 경우), 결제 후 여행 일정 변경, PDF 다운로드 후 14일 경과 시에는 환불해 드리지 않습니다.",
     ],
@@ -92,7 +92,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
       {
         heading: "1. 기술적 실패로 인한 환불",
         bodies: [
-          "결제 성공 후 10분 이내에 시스템이 플랜을 전달하지 못한 경우 — 예를 들어 Claude 타임아웃, 이메일 발송 실패, 시스템에서 플랜이 failed로 표시되는 경우 — LemonSqueezy를 통해 원래 결제 수단으로 자동 환불을 진행합니다. 따로 연락하지 않으셔도 됩니다. 저희가 로그에서 실패를 확인하고 처리해 드려요.",
+          "결제 성공 후 15분 이내에 시스템이 플랜을 전달하지 못한 경우 — 예를 들어 Claude 타임아웃, 이메일 발송 실패, 시스템에서 플랜이 failed로 표시되는 경우 — LemonSqueezy를 통해 원래 결제 수단으로 자동 환불을 진행합니다. 따로 연락하지 않으셔도 됩니다. 저희가 로그에서 실패를 확인하고 처리해 드려요.",
           "환불은 보통 카드사에 따라 5~10영업일 안에 명세서에 반영됩니다. 10영업일이 지나도 환불이 도착하지 않으면 LemonSqueezy 주문 번호와 함께 gliddy@checkvisamap.com 으로 메일 주세요.",
         ],
       },
@@ -137,7 +137,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
     lastUpdated: "最終更新: 2026年4月23日",
     summaryHeading: "要約",
     summaryList: [
-      "決済後10分以内に技術的な理由でプラン生成に失敗した場合、自動返金。",
+      "決済後15分以内に技術的な理由でプラン生成に失敗した場合、自動返金。",
       "プランに明らかに架空の場所(指定された場所に実際には存在しないレストラン・ホテル・観光地)が含まれていた場合、14日以内のリクエストで返金。",
       "好みの問題(推薦を好むか否か)、購入後の旅行日程変更、PDFダウンロード後14日経過の場合は返金不可。",
     ],
@@ -145,7 +145,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
       {
         heading: "1. 技術的失敗返金",
         bodies: [
-          "決済成功から10分以内にシステムがプランを配信できなかった場合 — 例: Claudeのタイムアウト、メール配信失敗、システムでプランが失敗と表示 — LemonSqueezy経由で元の支払い方法へ自動返金を開始します。当方からのご連絡は不要です。ログで失敗を確認し処理します。",
+          "決済成功から15分以内にシステムがプランを配信できなかった場合 — 例: Claudeのタイムアウト、メール配信失敗、システムでプランが失敗と表示 — LemonSqueezy経由で元の支払い方法へ自動返金を開始します。当方からのご連絡は不要です。ログで失敗を確認し処理します。",
           "返金は通常、カード発行会社により5〜10営業日以内に明細書に反映されます。10営業日経っても返金が届かない場合は、LemonSqueezy注文番号を添えて gliddy@checkvisamap.com までメールをお送りください。",
         ],
       },
@@ -190,7 +190,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
     lastUpdated: "最后更新: 2026年4月23日",
     summaryHeading: "概要",
     summaryList: [
-      "如果付款后 10 分钟内因任何技术原因未能生成您的计划,自动退款。",
+      "如果付款后 15 分钟内因任何技术原因未能生成您的计划,自动退款。",
       "如果您的计划包含明显虚构的地点(实际不存在于指定位置的餐厅、酒店或景点),14 天内可申请退款。",
       "因口味偏好(喜欢或不喜欢推荐)、购买后变更旅行日期,或计划已下载为 PDF 且超过 14 天的不退款。",
     ],
@@ -198,7 +198,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
       {
         heading: "1. 技术故障退款",
         bodies: [
-          "如果系统在成功扣款后 10 分钟内未能交付计划 — 例如 Claude 超时、邮件发送失败,或系统中计划被标记为失败 — 我们通过 LemonSqueezy 将自动退款至原付款方式。无需联系我们;我们会在日志中看到故障并处理。",
+          "如果系统在成功扣款后 15 分钟内未能交付计划 — 例如 Claude 超时、邮件发送失败,或系统中计划被标记为失败 — 我们通过 LemonSqueezy 将自动退款至原付款方式。无需联系我们;我们会在日志中看到故障并处理。",
           "退款通常根据您的发卡机构,在 5–10 个工作日内显示在您的账单上。如果 10 个工作日后仍未收到退款,请将 LemonSqueezy 订单号发送至 gliddy@checkvisamap.com。",
         ],
       },
@@ -243,7 +243,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
     lastUpdated: "Dernière mise à jour : 23 avril 2026",
     summaryHeading: "Résumé",
     summaryList: [
-      "Remboursement automatique si nous échouons à générer votre plan dans les 10 minutes suivant le paiement pour toute raison technique.",
+      "Remboursement automatique si nous échouons à générer votre plan dans les 15 minutes suivant le paiement pour toute raison technique.",
       "Remboursement sur demande dans les 14 jours si votre plan inclut un lieu manifestement halluciné (un restaurant, hôtel ou attraction qui n'existe pas réellement à l'emplacement indiqué).",
       "Pas de remboursement pour les préférences de goût (aimer ou non une recommandation), pour les changements de dates de voyage après l'achat, ou après le téléchargement du plan en PDF et 14 jours écoulés.",
     ],
@@ -251,7 +251,7 @@ export const REFUND_CONTENT: Record<Locale, RefundContent> = {
       {
         heading: "1. Remboursement pour échec technique",
         bodies: [
-          "Si notre système ne parvient pas à livrer un plan dans les 10 minutes suivant un débit réussi — par exemple, Claude expire, notre livraison d'e-mail échoue, ou le plan est marqué comme échoué dans notre système — nous initions un remboursement automatique via LemonSqueezy vers votre mode de paiement d'origine. Vous n'avez pas besoin de nous contacter ; nous voyons l'échec dans les journaux et le traitons.",
+          "Si notre système ne parvient pas à livrer un plan dans les 15 minutes suivant un débit réussi — par exemple, Claude expire, notre livraison d'e-mail échoue, ou le plan est marqué comme échoué dans notre système — nous initions un remboursement automatique via LemonSqueezy vers votre mode de paiement d'origine. Vous n'avez pas besoin de nous contacter ; nous voyons l'échec dans les journaux et le traitons.",
           "Les remboursements apparaissent généralement sur votre relevé sous 5 à 10 jours ouvrables selon votre émetteur de carte. Si vous n'avez pas reçu le remboursement après 10 jours ouvrables, envoyez un e-mail à gliddy@checkvisamap.com avec votre numéro de commande LemonSqueezy.",
         ],
       },

@@ -15,7 +15,11 @@ import { awardCredit, getRecentPlanLocale } from "../../../../lib/referrals";
 import type { PlanLocale } from "../../../../types/trip-plan";
 
 export const runtime = "nodejs";
-export const maxDuration = 300;
+// Bumped to 800 alongside /api/checkout — quality-first path uses
+// max_tokens=64k for Korean/Japanese, optional Opus planner, etc.
+// 8-10 min worst-case generation needs the Vercel Pro Fluid Compute
+// ceiling.
+export const maxDuration = 800;
 
 /**
  * POST /api/webhooks/lemon-squeezy

@@ -51,7 +51,7 @@ export async function createCheckoutUrl(opts: CreateCheckoutOptions): Promise<st
         checkout_data: checkoutData,
         product_options: {
           redirect_url: `${baseUrl}/plan/${opts.planId}?paid=1`,
-          receipt_thank_you_note: `Your detailed ${opts.destination} trip plan is being generated. You'll receive an email within a few minutes with the PDF.`,
+          receipt_thank_you_note: `Your detailed ${opts.destination} trip plan is being generated. We're putting real care into each one — you'll receive an email with the PDF within 5-10 minutes.`,
         },
         checkout_options: { embed: false, dark: false },
       },

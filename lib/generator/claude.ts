@@ -29,13 +29,19 @@ import { generateScaffold } from "./scaffold";
  */
 
 const MODEL = "claude-sonnet-4-5";
-// Bumped from 8000 → 16000 after a launch-test failure surfaced
-// "Unterminated string in JSON at position 13400" — output truncated
-// mid-token. Korean prose is roughly 1.5-2 chars/token vs English's 4,
-// so a 4-5 day Korean plan with editorial-depth descriptions overflows
-// 8k tokens. 16k gives ~25-30k chars headroom — comfortable for a
-// 7-day packed-pace plan in any locale.
-const MAX_OUTPUT_TOKENS = 16000;
+// Sonnet 4.5 ceiling. Founder direction (2026-04-30 launch testing):
+// quality over speed. Korean and Japanese prose burn tokens fast (~2
+// chars/token vs English's 4), and a packed-pace 7-day plan with rich
+// editorial descriptions can pass 30k tokens easily. 64k is the
+// extended-output ceiling for Sonnet 4.5; we never pay for tokens we
+// don't generate, so a high ceiling only changes the worst-case
+// truncation risk, not the typical cost or latency.
+//
+// Cost note: most plans don't actually USE 64k. Typical 4-day plan is
+// ~6-12k output tokens. The ceiling exists so the rare dense plan
+// (Tokyo packed-pace + Korean + must-visit list) doesn't get sliced
+// mid-string.
+const MAX_OUTPUT_TOKENS = 64000;
 
 let client: Anthropic | null = null;
 function getClient(): Anthropic {
@@ -417,16 +423,19 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
   // gracefully degrades to Sonnet-alone — quality dips slightly for
   // that one plan, but plans never block on Opus availability.
   //
-  // Toggle: USE_OPUS_PLANNER env var. Default is OFF after observing the
-  // combined Opus + Sonnet pipeline exceed Vercel's 300s maxDuration on
-  // a real generation (Apr 30 launch test, plan d58e905d). The pipeline
-  // works in principle but its p99 sits right at the wall, so for now
-  // we keep it explicit-opt-in until either (a) Vercel gives us 600s+
-  // headroom or (b) the route-opt + Mapbox stages move to background
-  // post-savePlanResult so the user-blocking part fits comfortably.
-  // Set USE_OPUS_PLANNER=true in env to re-enable.
+  // Toggle: USE_OPUS_PLANNER env var. Default is ON now that the
+  // pipeline has the headroom it needs:
+  //   - max_tokens raised to 64k (no more truncation retries that
+  //     doubled wall-clock time)
+  //   - Vercel maxDuration raised to 800s (Pro Fluid Compute) — the
+  //     prior 300s ceiling was the actual cap, not the pipeline cost
+  //   - 5-10 min wait is now the expected user-facing time and the UI
+  //     is built around it (premium-care messages 180s+, hero photo
+  //     carousel, sample showcase grid)
+  // Set USE_OPUS_PLANNER=false in env to disable without a redeploy
+  // if Opus has an outage or cost spike.
   let scaffold: Scaffold | null = null;
-  const useOpusPlanner = process.env.USE_OPUS_PLANNER === "true";
+  const useOpusPlanner = process.env.USE_OPUS_PLANNER !== "false";
   if (useOpusPlanner) {
     try {
       scaffold = await generateScaffold(req);

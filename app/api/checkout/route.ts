@@ -6,10 +6,16 @@ import { validatePromoCode, redeemPromoCode } from "../../../lib/promo";
 import { generateTripPlan } from "../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../lib/email";
 
-// Promo path runs the full generator pipeline (60-120s) inside this
-// route via after(). Needs the long ceiling to match the webhook route.
+// Promo path runs the full generator pipeline inside this route via
+// after(). Founder direction (2026-04-30): quality > speed. With
+// max_tokens bumped to 64k for Korean/Japanese plans and the optional
+// Opus planner, the worst-case wall-clock can comfortably exceed 5
+// minutes. Vercel Pro supports up to 800s on Fluid Compute, which
+// gives room for 8-10 minute generations on the rare dense plan.
+// If Vercel rejects 800 (plan tier), the deploy will surface the
+// error and we cap at the actual ceiling.
 export const runtime = "nodejs";
-export const maxDuration = 300;
+export const maxDuration = 800;
 
 /**
  * LS discount code (pre-configured in the LS dashboard) that gives 25% off
