@@ -61,9 +61,58 @@ interface Props {
   planId: string;
   /** For the rotating trivia cards. Falls back to a generic set if absent. */
   destinationCountry?: string;
+  /** TripPlan request.travelerType — used to swap the headline to a copy
+   *  that names the user's actual traveler context (couple / family /
+   *  solo / etc.) instead of a generic "we're building your trip plan".
+   *  The wait runs 5-10 min; "we're preparing YOUR specific kind of
+   *  trip" reads as anticipation, not boilerplate. */
+  travelerType?: string;
   /** Curated sample plans shown in the bottom showcase grid. Server-fetched
    *  in /plan/[id]/page.tsx so we get the user's locale applied. */
   showcaseSamples?: ShowcaseSample[];
+}
+
+/** Tiny inline check icon for the safety bullets. */
+function CheckMark() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="shrink-0 text-[var(--accent-primary)] mt-1"
+      aria-hidden
+    >
+      <path d="M5 12l5 5L20 7" />
+    </svg>
+  );
+}
+
+/**
+ * Map TripPlan.travelerType to the i18n key suffix for the traveler-
+ * specific wait headline. Falls back to "default" when missing or for an
+ * unmapped value (forward-compat — adding a new traveler type to the
+ * schema won't crash the wait page, just shows the generic copy).
+ */
+function travelerHeadlineKey(travelerType?: string): string {
+  switch (travelerType) {
+    case "solo":
+      return "solo";
+    case "couple":
+      return "couple";
+    case "family-with-kids":
+      return "family";
+    case "group-of-friends":
+      return "friends";
+    case "senior":
+      return "senior";
+    default:
+      return "default";
+  }
 }
 
 type Status = "paid" | "generating" | "complete" | "failed";
@@ -71,6 +120,7 @@ type Status = "paid" | "generating" | "complete" | "failed";
 export default function PostPaymentWait({
   planId,
   destinationCountry,
+  travelerType,
   showcaseSamples = [],
 }: Props) {
   const t = useTranslations("plan.wait");
@@ -193,7 +243,7 @@ export default function PostPaymentWait({
         </div>
 
         <h1 className="font-display text-display-md sm:text-display-lg text-[var(--text-primary)] tracking-[-0.02em] leading-[1.05]">
-          {t("headline")}
+          {t(`headlineFor.${travelerHeadlineKey(travelerType)}`)}
         </h1>
 
         {/* Stage text — rotates as the user crosses thresholds. */}
@@ -213,7 +263,10 @@ export default function PostPaymentWait({
 
         {/* Reassurance card — honest 5-10 min framing, prominent placement
             (not a tiny footer caption). Many users will close this tab
-            and check email; we want them to feel safe doing so. */}
+            and check email; we want them to feel safe doing so. The
+            payment-safety bullets up top exist because anyone who just
+            paid $4 for an unknown service wants their first reaction
+            to be "OK, my money is fine" before they read the timing. */}
         <div className="mt-8 bg-[var(--surface-primary)] border border-[var(--border-light)] rounded-[14px] px-5 py-4 flex items-start gap-3">
           <div className="shrink-0 w-9 h-9 rounded-full bg-[var(--accent-soft)] flex items-center justify-center mt-0.5">
             <svg
@@ -236,7 +289,23 @@ export default function PostPaymentWait({
             <p className="text-body-sm font-semibold text-[var(--text-primary)]">
               {t("leaveTitle")}
             </p>
-            <p className="text-caption text-[var(--text-secondary)] mt-0.5 leading-relaxed">
+            {/* Two-bullet safety/timing summary. Each bullet ~one line so
+                the buyer can scan it in 2 seconds and walk away. */}
+            <ul className="mt-2 space-y-1">
+              <li className="flex items-start gap-2 text-caption text-[var(--text-secondary)] leading-relaxed">
+                <CheckMark />
+                <span>{t("safety.paymentSecure")}</span>
+              </li>
+              <li className="flex items-start gap-2 text-caption text-[var(--text-secondary)] leading-relaxed">
+                <CheckMark />
+                <span>{t("safety.receiptSent")}</span>
+              </li>
+              <li className="flex items-start gap-2 text-caption text-[var(--text-secondary)] leading-relaxed">
+                <CheckMark />
+                <span>{t("safety.emailWhenReady")}</span>
+              </li>
+            </ul>
+            <p className="text-caption text-[var(--text-secondary)] mt-3 leading-relaxed">
               {t("leaveSubtitle")}
             </p>
           </div>

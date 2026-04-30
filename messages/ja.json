@@ -311,8 +311,21 @@
     "wait": {
       "paidBadge": "決済完了",
       "headline": "旅程を作成中です",
+      "headlineFor": {
+        "default": "旅程を作成中です",
+        "solo": "おひとり旅のためのルートを丁寧に組んでいます",
+        "couple": "お二人で過ごす特別な瞬間を紡いでいます",
+        "family": "ご家族みんなが楽しめる一日に仕上げています",
+        "friends": "ご友人との時間を最大限楽しめるよう動線を整えています",
+        "senior": "ゆったりとしたペースで無理なく回れる動線を組んでいます"
+      },
       "elapsed": "{seconds}秒経過",
       "elapsedPill": "{time}経過 · 通常5〜10分",
+      "safety": {
+        "paymentSecure": "決済はLemonSqueezyが安全に処理しました。",
+        "receiptSent": "領収書をメールでお送りしました。保管をお願いします。",
+        "emailWhenReady": "プランが完成し次第、リンクをメールでお送りします。"
+      },
       "planIdLabel": "Plan",
       "emailHint": "完成したらメールでもリンクをお送りします。このタブは閉じても大丈夫です。",
       "leaveTitle": "このタブ、いつでも閉じてOKです",

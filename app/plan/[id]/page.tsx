@@ -54,6 +54,8 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
     // so this is an active engagement surface, not a placeholder.
     const destCountry = (record.request as { destinationCountry?: string })
       ?.destinationCountry;
+    const travelerType = (record.request as { travelerType?: string })
+      ?.travelerType;
 
     // Pick three featured samples to surface. Same trio as the home
     // page hero anchor row (Tokyo / Paris / Bali) so we ship a known-
@@ -86,6 +88,7 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
           <PostPaymentWait
             planId={id}
             destinationCountry={destCountry}
+            travelerType={travelerType}
             showcaseSamples={showcaseSamples}
           />
         </main>

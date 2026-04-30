@@ -311,8 +311,21 @@
     "wait": {
       "paidBadge": "Paiement reçu",
       "headline": "On prépare votre plan de voyage",
+      "headlineFor": {
+        "default": "On prépare votre plan de voyage",
+        "solo": "On compose un itinéraire pensé pour le voyage en solo",
+        "couple": "On tisse les moments spéciaux que vous partagerez à deux",
+        "family": "On accorde chaque journée à toute la famille — petits et grands",
+        "friends": "On trace la ville pour profiter à fond du temps avec vos amis",
+        "senior": "On rythme vos journées tranquillement, sans rien de fatigant"
+      },
       "elapsed": "{seconds} s écoulées",
       "elapsedPill": "{time} écoulées · 5-10 min en général",
+      "safety": {
+        "paymentSecure": "Paiement reçu et traité en toute sécurité par Lemon Squeezy.",
+        "receiptSent": "Reçu envoyé sur votre e-mail — gardez-le pour vos archives.",
+        "emailWhenReady": "On vous enverra le lien du plan dès qu'il est prêt."
+      },
       "planIdLabel": "Plan",
       "emailHint": "On vous enverra aussi le lien par e-mail quand ce sera prêt — vous pouvez fermer cet onglet.",
       "leaveTitle": "Vous pouvez fermer cet onglet à tout moment",

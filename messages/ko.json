@@ -311,8 +311,21 @@
     "wait": {
       "paidBadge": "결제 완료",
       "headline": "여행 플랜을 만들고 있어요",
+      "headlineFor": {
+        "default": "여행 플랜을 만들고 있어요",
+        "solo": "혼자만의 시간을 위한 동선을 짜고 있어요",
+        "couple": "두 분이 함께할 특별한 순간들을 엮고 있어요",
+        "family": "온 가족이 즐거운 일정으로 다듬는 중이에요",
+        "friends": "친구들과의 시간을 알차게 보낼 수 있도록 동선을 정리하고 있어요",
+        "senior": "여유로운 페이스로 무리 없이 다닐 수 있는 동선을 짜고 있어요"
+      },
       "elapsed": "{seconds}초 경과",
       "elapsedPill": "{time} 경과 · 보통 5-10분",
+      "safety": {
+        "paymentSecure": "결제는 LemonSqueezy 가 안전하게 처리했어요.",
+        "receiptSent": "영수증을 이메일로 보내드렸어요. 보관해 두세요.",
+        "emailWhenReady": "플랜 완성되면 이메일로 링크 보내드려요."
+      },
       "planIdLabel": "Plan",
       "emailHint": "완성되면 이메일로도 링크를 보내드려요. 탭은 닫으셔도 괜찮아요.",
       "leaveTitle": "이 탭, 언제든 닫으셔도 돼요",

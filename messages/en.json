@@ -311,8 +311,21 @@
     "wait": {
       "paidBadge": "Payment received",
       "headline": "We're building your trip plan",
+      "headlineFor": {
+        "default": "We're building your trip plan",
+        "solo": "We're shaping a trip just for you, made for solo travel",
+        "couple": "We're crafting the special moments you'll share — together",
+        "family": "We're tuning every day for the whole family — kids and grown-ups both",
+        "friends": "We're routing the city to make the most of your time with friends",
+        "senior": "We're pacing your days gently, so every step feels easy"
+      },
       "elapsed": "{seconds}s elapsed",
       "elapsedPill": "{time} elapsed · 5-10 min typical",
+      "safety": {
+        "paymentSecure": "Payment received and securely processed by Lemon Squeezy.",
+        "receiptSent": "Receipt sent to your email — keep it for your records.",
+        "emailWhenReady": "We'll email the plan link the moment it's ready."
+      },
       "planIdLabel": "Plan",
       "emailHint": "We'll also email you the link when it's ready — feel free to close this tab.",
       "leaveTitle": "Close this tab anytime",

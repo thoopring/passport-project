@@ -311,8 +311,21 @@
     "wait": {
       "paidBadge": "已收到付款",
       "headline": "正在为您生成行程",
+      "headlineFor": {
+        "default": "正在为您生成行程",
+        "solo": "正在为独自旅行的您精心规划路线",
+        "couple": "正在为两位编织特别的共度时光",
+        "family": "正在打磨大人小孩都尽兴的每一天",
+        "friends": "正在整理动线,让您与朋友共度最充实的时光",
+        "senior": "正在以从容的节奏安排无压力的行程"
+      },
       "elapsed": "已用 {seconds} 秒",
       "elapsedPill": "已用 {time} · 通常 5-10 分钟",
+      "safety": {
+        "paymentSecure": "付款已由 LemonSqueezy 安全处理。",
+        "receiptSent": "收据已发送至您的邮箱,请妥善保管。",
+        "emailWhenReady": "计划完成后,我们会立即通过邮件发送链接。"
+      },
       "planIdLabel": "Plan",
       "emailHint": "准备好后我们也会通过邮件发送链接,您可以关闭此标签页。",
       "leaveTitle": "可以随时关闭此标签页",

@@ -10,7 +10,12 @@ import Footer from "./Footer";
 import type { TripPlan } from "../types/trip-plan";
 import { computeDayStats, computeStopBuffers, formatDuration } from "../lib/plan-stats";
 import { inferTransitMode, type TransitMode } from "../lib/transit-icons";
-import { buildAgodaUrl, buildKiwiTaxiUrl } from "../lib/affiliates";
+import {
+  buildAgodaUrl,
+  buildAmazonSearchUrl,
+  buildKiwiTaxiUrl,
+  buildKlookUrl,
+} from "../lib/affiliates";
 
 /**
  * Tiny inline icon for the transit hint above each stop. Five concrete
@@ -371,6 +376,27 @@ export default async function PlanView({
                               {t("tipLabel")} {stop.bookingTip}
                             </p>
                           )}
+                          {/* Tickets/tour affiliate — only on activity-type
+                              stops where a booking-aheadable ticket
+                              actually applies. Skipped for sights, meals,
+                              transit, rest, shopping. Klook deep-link is
+                              generic (their tpx.lu doesn't accept query
+                              params) but lands the user on the catalog so
+                              they can search the stop name themselves. */}
+                          {stop.type === "activity" &&
+                            (() => {
+                              const link = buildKlookUrl();
+                              return (
+                                <AffiliateLink
+                                  href={link.url}
+                                  category="plan_stop_activity"
+                                  label="klook"
+                                  className="inline-flex items-center gap-1 mt-2 text-caption text-[var(--brand-primary)]/70 hover:text-[var(--brand-primary)] underline underline-offset-4 decoration-[var(--brand-primary)]/20 hover:decoration-[var(--brand-primary)]/60 transition"
+                                >
+                                  Find tickets on Klook ↗
+                                </AffiliateLink>
+                              );
+                            })()}
                         </div>
                       </li>
                     );
@@ -402,6 +428,27 @@ export default async function PlanView({
                       <li key={i}>· {tip}</li>
                     ))}
                   </ul>
+                  {/* Single low-pressure affiliate at the end of the
+                      packing list. Amazon US Associates store — useful
+                      for travel adapters, packing cubes, etc. Search
+                      query is destination-aware so a Tokyo plan
+                      surfaces "Japan travel essentials" rather than a
+                      generic catch-all. */}
+                  {(() => {
+                    const link = buildAmazonSearchUrl(
+                      `${plan.destinationCountry} travel essentials`,
+                    );
+                    return (
+                      <AffiliateLink
+                        href={link.url}
+                        category="plan_packing_amazon"
+                        label="amazon"
+                        className="inline-flex items-center gap-1.5 mt-2 text-caption text-[var(--brand-primary)] hover:text-[var(--brand-dark)] underline underline-offset-4 decoration-[var(--brand-primary)]/30 hover:decoration-[var(--brand-primary)] transition"
+                      >
+                        {link.label} →
+                      </AffiliateLink>
+                    );
+                  })()}
                 </div>
               ) : null}
               {plan.generalTips?.length ? (
