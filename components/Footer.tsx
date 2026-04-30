@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import BrandMark from "./BrandMark";
-import BetaBadge from "./BetaBadge";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -11,7 +10,6 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-6">
           <div className="flex items-baseline gap-3 flex-wrap">
             <BrandMark size={22} />
-            <BetaBadge variant="regular" />
             <span className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
               {t("tagline")}
             </span>
@@ -42,7 +40,7 @@ export default function Footer() {
               <Link href="/blog" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
                 {t("linkJournal")}
               </Link>
-              <a href="mailto:hello@checkvisamap.com" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+              <a href="mailto:gliddy@checkvisamap.com" className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
                 {t("linkContact")}
               </a>
             </div>
@@ -67,7 +65,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row justify-between gap-3">
-          <p className="text-caption text-[var(--text-muted)]">{t("copyright")} · hello@checkvisamap.com</p>
+          <p className="text-caption text-[var(--text-muted)]">{t("copyright")} · gliddy@checkvisamap.com</p>
           <p className="text-caption text-[var(--text-muted)]">
             {t("disclaimer")}
           </p>

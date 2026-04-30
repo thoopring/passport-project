@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "./LocaleSwitcher";
 import BrandMark from "./BrandMark";
-import BetaBadge from "./BetaBadge";
 
 interface HeaderProps {
   showCta?: boolean;
@@ -19,7 +18,6 @@ export default function Header({ showCta = true }: HeaderProps) {
           aria-label="gliddy — home"
         >
           <BrandMark size={26} />
-          <BetaBadge variant="compact" />
         </Link>
 
         <nav className="flex items-center gap-1">
