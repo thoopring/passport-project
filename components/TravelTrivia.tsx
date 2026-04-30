@@ -7,7 +7,7 @@ import type { Locale } from "../i18n/locales";
 
 interface TravelTriviaProps {
   destinationCountry: string;
-  /** ms between each trivia rotation (default 7000). */
+  /** ms between each trivia rotation (default 30000 = 30s). */
   rotateMs?: number;
 }
 
@@ -16,17 +16,24 @@ interface TravelTriviaProps {
  * in the user's selected locale. Used during the labor-illusion loading
  * screen and on the post-payment wait page — both are long-wait surfaces
  * where boredom is the enemy.
+ *
+ * Pacing: 30s rotation × 12 facts = 360s of unique content per cycle.
+ * For a 5-10 min wait, most users see each fact at most twice. Earlier
+ * 7s × 8 pacing = 56s cycle, which looped ~10× during a 10-min wait and
+ * destroyed trust ("I've seen this fact before…"). Slowing the cadence
+ * also lets the reader actually finish each line — at 7s, longer
+ * Korean / Japanese strings flashed by half-read.
  */
 export default function TravelTrivia({
   destinationCountry,
-  rotateMs = 7000,
+  rotateMs = 30000,
 }: TravelTriviaProps) {
   const locale = useLocale() as Locale;
   const t = useTranslations("plan.wait");
   // Derived state — picked once per (destinationCountry, locale) change.
   // The shuffled order is stable for the lifetime of those props.
   const facts = useMemo(
-    () => pickTrivia(destinationCountry, locale, 8),
+    () => pickTrivia(destinationCountry, locale, 12),
     [destinationCountry, locale],
   );
   const [index, setIndex] = useState(0);
