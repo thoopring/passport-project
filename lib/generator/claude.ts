@@ -470,12 +470,20 @@ export async function generateTripPlan(req: PlanRequest): Promise<TripPlan> {
       });
     }
 
-    const response = await anthropic.messages.create({
-      model: MODEL,
-      max_tokens: MAX_OUTPUT_TOKENS,
-      system: systemPrompt,
-      messages,
-    });
+    // Streaming is REQUIRED at this max_tokens budget. The Anthropic SDK
+    // rejects non-streaming requests where the model may take >10 min to
+    // produce a full response (max_tokens=64k qualifies). The
+    // .finalMessage() helper accumulates the stream and returns the same
+    // Message shape we'd get from .create() — drop-in for the consumer
+    // below. Vercel maxDuration (800s) still gates the wall-clock.
+    const response = await anthropic.messages
+      .stream({
+        model: MODEL,
+        max_tokens: MAX_OUTPUT_TOKENS,
+        system: systemPrompt,
+        messages,
+      })
+      .finalMessage();
 
     const textBlock = response.content.find((b) => b.type === "text");
     if (!textBlock || textBlock.type !== "text") {
@@ -576,11 +584,18 @@ stops while respecting these constraints:
 Output: ONLY a JSON array of integers, e.g. [0, 2, 1, 3, 4]. No prose, no
 markdown, no explanation. Length must equal the number of input stops.`;
 
-  const response = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 200,
-    messages: [{ role: "user", content: prompt }],
-  });
+  // Streaming for consistency with the main generator path. At
+  // max_tokens=200 this is well under the 10-min threshold so non-
+  // streaming would also work, but unifying keeps a single API surface
+  // and avoids the SDK's "may take longer than 10 min" guard ever
+  // mis-firing on this small call.
+  const response = await anthropic.messages
+    .stream({
+      model: MODEL,
+      max_tokens: 200,
+      messages: [{ role: "user", content: prompt }],
+    })
+    .finalMessage();
 
   const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock || textBlock.type !== "text") return day;

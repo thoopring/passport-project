@@ -231,12 +231,17 @@ export async function generateScaffold(req: PlanRequest): Promise<Scaffold> {
       });
     }
 
-    const response = await anthropic.messages.create({
-      model: SCAFFOLD_MODEL,
-      max_tokens: SCAFFOLD_MAX_TOKENS,
-      system: systemPrompt,
-      messages,
-    });
+    // Streaming for parity with the main Sonnet path. SCAFFOLD_MAX_TOKENS
+    // (3000) is well under the 10-min threshold but the unified surface
+    // means we never have to think about which calls need the guard.
+    const response = await anthropic.messages
+      .stream({
+        model: SCAFFOLD_MODEL,
+        max_tokens: SCAFFOLD_MAX_TOKENS,
+        system: systemPrompt,
+        messages,
+      })
+      .finalMessage();
 
     const textBlock = response.content.find((b) => b.type === "text");
     if (!textBlock || textBlock.type !== "text") {
