@@ -6,19 +6,22 @@ interface PlanTimelineProps {
 }
 
 /**
- * Sticky day-jump strip for the plan view. Shows N day chips with theme,
- * each linking to #day-N anchor. Sticks to the top of the viewport on
- * desktop while the user scrolls through day cards. Hidden on mobile —
- * the screen is too narrow for a meaningful strip and day cards are close
- * enough together to navigate by scroll.
+ * Sticky day-jump strip for the plan view. Day chips rotate through three
+ * soft warm tones — soft peach / sand / clean white — all close enough in
+ * lightness to feel harmonious with the warm-paper page bg, but far enough
+ * apart to keep each day visually distinct. Vermilion eyebrow + ink theme
+ * match the day-card pattern used elsewhere on the plan view. Hidden on
+ * mobile because the chip row is too cramped for a useful click target on
+ * narrow screens.
  *
- * Color rotation: vermilion / ink / muted-gray, repeating every 3 days.
- * Stays in the Layla-lean palette; no rainbow, no per-day hue assignment.
+ * Earlier iteration used solid vermilion / solid ink / solid gray blocks,
+ * which read as banner ads against the editorial Layla-lean surface.
+ * The current soft-tone rotation matches sample-card and day-card aesthetics.
  */
-const DAY_COLOR_CLASS = [
-  "bg-[var(--brand-primary)] text-white",
-  "bg-[var(--text-primary)] text-white",
-  "bg-[var(--text-muted)] text-white",
+const DAY_TONE_CLASS = [
+  "bg-[var(--brand-soft)]", // soft peach (#FFE4E0) — warm, brand-tinted
+  "bg-[var(--surface-secondary)]", // sand (#FBF7EE) — neutral warm
+  "bg-[var(--surface-primary)]", // clean white (#FFFFFF) — slight lift from paper bg
 ];
 
 export default async function PlanTimeline({ days }: PlanTimelineProps) {
@@ -35,13 +38,13 @@ export default async function PlanTimeline({ days }: PlanTimelineProps) {
           <a
             key={day.dayNumber}
             href={`#day-${day.dayNumber}`}
-            className={`${DAY_COLOR_CLASS[i % DAY_COLOR_CLASS.length]} rounded-md px-3 py-2 hover:opacity-90 transition-opacity`}
+            className={`${DAY_TONE_CLASS[i % DAY_TONE_CLASS.length]} rounded-md px-3 py-2.5 border border-[var(--border-light)] hover:border-[var(--brand-primary)] transition-colors`}
             aria-label={`${t("day")} ${day.dayNumber}: ${day.theme}`}
           >
-            <p className="text-caption uppercase tracking-wider opacity-80 font-semibold leading-tight">
+            <p className="text-caption uppercase tracking-wider font-semibold text-[var(--brand-primary)] leading-tight">
               {t("day")} {day.dayNumber}
             </p>
-            <p className="text-body-sm font-semibold truncate leading-tight mt-0.5">
+            <p className="text-body-sm font-semibold truncate leading-tight mt-0.5 text-[var(--text-primary)]">
               {day.theme}
             </p>
           </a>
