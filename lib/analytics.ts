@@ -29,8 +29,15 @@ export function initPosthog(opts: { key?: string; host?: string }) {
   posthog.init(opts.key, {
     api_host: opts.host || "https://us.i.posthog.com",
     person_profiles: "identified_only",
+    // Pageview is captured manually on Next.js App Router pathname changes
+    // (see AnalyticsProvider). PostHog's history-change auto-detector misses
+    // some Next.js client-side navigations, so we fire '$pageview' explicitly.
     capture_pageview: false,
     capture_pageleave: true,
+    // Heatmap capture (mouse movement, scroll depth). Mirrors the project
+    // dashboard setting; declaring it here keeps client behavior aligned even
+    // if dashboard config drifts.
+    enable_heatmaps: true,
   });
   posthogReady = true;
 }
@@ -98,7 +105,19 @@ function emit<K extends keyof AnalyticsEvents>(name: K, props: AnalyticsEvents[K
 }
 
 export const analytics = {
-  pageView: (props: AnalyticsEvents["page_view"]) => emit("page_view", props),
+  pageView: (props: AnalyticsEvents["page_view"]) => {
+    // Same call site, different event names per provider:
+    // - PostHog uses '$pageview' (special — drives Web Analytics dashboards,
+    //   scroll-depth heatmaps, bounce-rate calculation)
+    // - GA4 uses 'page_view' (its standard event name)
+    if (typeof window === "undefined") return;
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", props as Record<string, unknown>);
+    }
+    if (posthogReady) {
+      posthog.capture("$pageview", props as Record<string, unknown>);
+    }
+  },
   wizardStarted: (props: AnalyticsEvents["wizard_started"]) => emit("wizard_started", props),
   checkoutStarted: (props: AnalyticsEvents["checkout_started"]) => emit("checkout_started", props),
   checkoutCompleted: (props: AnalyticsEvents["checkout_completed"]) => emit("checkout_completed", props),
