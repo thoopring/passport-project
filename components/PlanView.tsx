@@ -139,7 +139,7 @@ export default async function PlanView({
                 <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
                   {resolvedHeaderLabel}
                 </p>
-                <h1 className="font-display text-[2.75rem] sm:text-[3.5rem] text-[var(--text-primary)] leading-[1.04] tracking-[-0.018em]">
+                <h1 className="font-display text-[2.25rem] sm:text-[3.5rem] text-[var(--text-primary)] leading-[1.05] sm:leading-[1.04] tracking-[-0.018em]">
                   {plan.destination}
                 </h1>
                 <p className="text-body-md text-[var(--text-secondary)] mt-3">
