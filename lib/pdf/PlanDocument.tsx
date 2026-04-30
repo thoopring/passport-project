@@ -141,6 +141,14 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginVertical: 10,
   },
+  dayMapImg: {
+    width: "100%",
+    height: 200,
+    objectFit: "cover",
+    borderRadius: 6,
+    marginTop: 4,
+    marginBottom: 14,
+  },
   pill: {
     backgroundColor: colors.brand,
     color: "#fff",
@@ -175,10 +183,17 @@ const styles = StyleSheet.create({
 
 interface Props {
   plan: TripPlan;
+  /** Overview map for the cover page. City-zoomed, transit (airport) stops
+   *  excluded so the bounds don't blow out to a 70-km square. */
   mapImageUrl?: string;
+  /** Per-day mini-maps (one entry per `plan.days`, in order). Each is a
+   *  tight zoom on that day's stops + the hotel as an anchor pin. Length
+   *  must equal plan.days.length when supplied; missing entries skip the
+   *  map for that day instead of misaligning. */
+  dayMapUrls?: string[];
 }
 
-export function PlanDocument({ plan, mapImageUrl }: Props) {
+export function PlanDocument({ plan, mapImageUrl, dayMapUrls }: Props) {
   return (
     <Document
       title={`${plan.destination} trip plan`}
@@ -268,6 +283,7 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
         // country.
         const triviaPool = pickTrivia(plan.destinationCountry, plan.days.length + 2);
         const triviaForDay = triviaPool[dayIdx % triviaPool.length];
+        const dayMapUrl = dayMapUrls?.[dayIdx];
 
         return (
           <Page key={day.dayNumber} size="A4" style={styles.page}>
@@ -278,6 +294,12 @@ export function PlanDocument({ plan, mapImageUrl }: Props) {
               <Text style={styles.h1}>{day.theme}</Text>
               <Text style={styles.muted}>{day.summary}</Text>
             </View>
+
+            {/* Day mini-map — tight zoom on this day's stops + hotel anchor.
+                Solves the airport-far-from-city problem the overview map
+                hits: each day's stops cluster in one neighborhood, so the
+                auto-fit zoom stays at street-readable scale. */}
+            {dayMapUrl && <Image src={dayMapUrl} style={styles.dayMapImg} />}
 
             {day.stops.map((stop) => (
               <View key={stop.order} style={styles.stop} wrap={false}>

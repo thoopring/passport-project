@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import { getPlan } from "../../../../../lib/plans";
 import { PlanDocument } from "../../../../../lib/pdf/PlanDocument";
-import { buildStaticMapUrl } from "../../../../../lib/map";
+import { buildOverviewMapUrl, buildDayMapUrl } from "../../../../../lib/map";
 
 export const runtime = "nodejs";
 
@@ -24,9 +24,19 @@ export async function GET(
     return new NextResponse(`Plan not ready (status: ${record.status})`, { status: 409 });
   }
 
-  const mapImageUrl = buildStaticMapUrl(record.plan);
+  // Cover page gets the overview map (transit/airport stops excluded so the
+  // bounds don't blow out to a 70-km square). Each day page gets its own
+  // tight-zoom mini-map. See lib/map.ts for the rationale.
+  const mapImageUrl = buildOverviewMapUrl(record.plan);
+  const dayMapUrls = record.plan.days.map((day) =>
+    buildDayMapUrl(day, record.plan!.hotel),
+  );
   const buffer = await renderToBuffer(
-    <PlanDocument plan={record.plan} mapImageUrl={mapImageUrl} />
+    <PlanDocument
+      plan={record.plan}
+      mapImageUrl={mapImageUrl}
+      dayMapUrls={dayMapUrls}
+    />
   );
 
   // Convert Node Buffer to Uint8Array for NextResponse body compatibility
