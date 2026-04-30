@@ -291,13 +291,13 @@ export default function QuestionPopup({
                         pickAirport(i);
                       }}
                       onMouseEnter={() => setActiveSuggestion(i)}
-                      className={`px-3 py-2.5 cursor-pointer flex items-baseline justify-between gap-3 ${
+                      className={`px-3 py-3 min-h-[44px] cursor-pointer flex items-center justify-between gap-3 ${
                         i === activeSuggestion
                           ? "bg-[var(--surface-secondary)]"
                           : "bg-white"
                       }`}
                     >
-                      <div className="flex items-baseline gap-2 min-w-0">
+                      <div className="flex items-center gap-2 min-w-0">
                         <span className="text-caption font-bold text-[var(--brand-primary)] tabular-nums shrink-0">
                           {a.code}
                         </span>
@@ -394,11 +394,13 @@ export default function QuestionPopup({
             <button
               type="button"
               onClick={onBack}
-              className="px-3 py-3 text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition flex items-center gap-1"
+              className="shrink-0 min-h-[44px] min-w-[44px] px-2 sm:px-3 py-3 text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition flex items-center justify-center gap-1"
               aria-label={tp("back")}
             >
-              <span aria-hidden>←</span>
-              <span className="text-body-sm font-medium">{tp("back")}</span>
+              <span aria-hidden className="text-lg">←</span>
+              {/* Label hidden on narrow mobile so the row [back][continue][skip]
+                  doesn't get crushed at 375px. Arrow stays as the affordance. */}
+              <span className="hidden sm:inline text-body-sm font-medium">{tp("back")}</span>
             </button>
           )}
           <button

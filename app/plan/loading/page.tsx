@@ -370,7 +370,7 @@ function LoadingInner() {
             <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
               {tr("badge")}
             </p>
-            <h1 className="font-display font-bold text-display-lg text-[var(--text-primary)] leading-[1.05] mb-4 tracking-[-0.02em]">
+            <h1 className="font-display font-bold text-display-md sm:text-display-lg text-[var(--text-primary)] leading-[1.05] mb-4 tracking-[-0.02em]">
               {tr("headline", { destination: data.destination })}
             </h1>
             <p className="text-body-md text-[var(--text-secondary)] max-w-md mx-auto">
@@ -674,7 +674,7 @@ function LoadingInner() {
           <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
             {t("badge")}
           </p>
-          <h1 className="font-display font-bold text-display-lg text-[var(--text-primary)] tracking-[-0.02em]">
+          <h1 className="font-display font-bold text-display-md sm:text-display-lg text-[var(--text-primary)] tracking-[-0.02em]">
             {t("headline", { destination: data.destination })}
           </h1>
           <p className="text-body-md text-[var(--text-secondary)] mt-3 max-w-lg mx-auto">

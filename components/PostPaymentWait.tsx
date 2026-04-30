@@ -232,7 +232,7 @@ export default function PostPaymentWait({
         {/* Status pill row — paid badge on the left, elapsed time on
             the right. Concrete numbers so the user knows the system is
             tracking the wait, not frozen. */}
-        <div className="flex items-center justify-between mt-6 mb-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 mt-6 mb-3">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-soft)] text-[var(--accent-dark)] text-caption font-bold uppercase tracking-[0.14em]">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]" />
             {t("paidBadge")}

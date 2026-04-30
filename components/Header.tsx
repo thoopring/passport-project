@@ -77,7 +77,7 @@ export default function Header({ showCta = true }: HeaderProps) {
           {showCta && (
             <Link
               href="/plan/new"
-              className="px-3 py-2 bg-[var(--brand-primary)] text-white text-caption font-semibold rounded-md hover:opacity-90 transition whitespace-nowrap"
+              className="px-3 min-h-[44px] inline-flex items-center bg-[var(--brand-primary)] text-white text-caption font-semibold rounded-md hover:opacity-90 transition whitespace-nowrap"
               onClick={() => setMenuOpen(false)}
             >
               {t("cta")}
@@ -88,7 +88,7 @@ export default function Header({ showCta = true }: HeaderProps) {
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="w-10 h-10 inline-flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--surface-secondary)] rounded-md transition"
+            className="w-11 h-11 inline-flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--surface-secondary)] rounded-md transition"
           >
             {menuOpen ? (
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

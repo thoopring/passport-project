@@ -166,7 +166,7 @@ export default function PlanWizardStep1({
                     selectSuggestion(i);
                   }}
                   onMouseEnter={() => setActiveSuggestion(i)}
-                  className={`px-4 py-2.5 cursor-pointer flex items-baseline justify-between gap-3 ${
+                  className={`px-4 py-3 min-h-[44px] cursor-pointer flex items-center justify-between gap-3 ${
                     i === activeSuggestion
                       ? "bg-[var(--surface-secondary)]"
                       : "bg-white"

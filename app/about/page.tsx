@@ -41,7 +41,7 @@ export default async function AboutPage() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-6">
           {c.eyebrow}
         </p>
-        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-10 leading-[1.04]">
+        <h1 className="font-display text-display-md sm:text-display-lg text-[var(--text-primary)] mb-10 leading-[1.04]">
           {c.headline}
         </h1>
 

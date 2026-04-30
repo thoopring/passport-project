@@ -37,7 +37,7 @@ export default async function SamplesGalleryPage() {
           <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
             {t("badge")}
           </p>
-          <h1 className="font-display text-display-lg md:text-display-xl text-[var(--text-primary)] leading-[1.04] mb-4">
+          <h1 className="font-display text-display-md sm:text-display-lg md:text-display-xl text-[var(--text-primary)] leading-[1.04] mb-4">
             {t("headline")}
           </h1>
           <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mx-auto">

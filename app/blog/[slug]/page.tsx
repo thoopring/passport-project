@@ -78,7 +78,7 @@ export default async function BlogPost({
             <span className="text-caption text-[var(--text-muted)]">·</span>
             <span className="text-caption text-[var(--text-muted)]">{post.date}</span>
           </div>
-          <h1 className="font-display text-display-lg md:text-display-xl text-[var(--text-primary)] leading-[1.04] mb-4">
+          <h1 className="font-display text-display-md sm:text-display-lg md:text-display-xl text-[var(--text-primary)] leading-[1.04] mb-4">
             {post.title}
           </h1>
           <p className="text-body-lg text-[var(--text-secondary)]">{post.excerpt}</p>

@@ -35,7 +35,7 @@ export default async function BlogHome() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
           {t("eyebrow")}
         </p>
-        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-4 leading-[1.04]">
+        <h1 className="font-display text-display-md sm:text-display-lg text-[var(--text-primary)] mb-4 leading-[1.04]">
           {t("headline")}
         </h1>
         <p className="text-body-lg text-[var(--text-secondary)] mb-14">

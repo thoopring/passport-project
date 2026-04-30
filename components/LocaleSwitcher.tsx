@@ -81,7 +81,7 @@ export default function LocaleSwitcher() {
         disabled={pending}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-caption font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-primary)] transition disabled:opacity-50"
+        className="inline-flex items-center gap-1.5 px-2.5 min-h-[40px] sm:min-h-0 sm:py-1.5 rounded-full text-caption font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-primary)] transition disabled:opacity-50"
       >
         <svg
           width="14"

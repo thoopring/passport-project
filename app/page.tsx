@@ -130,7 +130,7 @@ export default async function Home() {
                   <Link
                     key={c.slug}
                     href={`/samples/${c.slug}`}
-                    className="inline-flex items-center px-3 py-1 rounded-full border border-[var(--border-light)] bg-[var(--surface-primary)] text-body-sm text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition"
+                    className="inline-flex items-center px-3 min-h-[40px] rounded-full border border-[var(--border-light)] bg-[var(--surface-primary)] text-body-sm text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition"
                   >
                     {c.label}
                   </Link>

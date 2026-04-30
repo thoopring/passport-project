@@ -27,7 +27,7 @@ export default async function RefundPage() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
           {c.eyebrow}
         </p>
-        <h1 className="font-display text-display-lg text-[var(--text-primary)] mb-3">
+        <h1 className="font-display text-display-md sm:text-display-lg text-[var(--text-primary)] mb-3">
           {c.headline}
         </h1>
         <p className="text-body-sm text-[var(--text-muted)] mb-10">{c.lastUpdated}</p>

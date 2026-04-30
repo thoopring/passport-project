@@ -46,7 +46,7 @@ export default async function PricingPage() {
         <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-4">
           {c.eyebrow}
         </p>
-        <h1 className="font-display text-display-lg text-[var(--text-primary)] leading-[1.06] mb-4">
+        <h1 className="font-display text-display-md sm:text-display-lg text-[var(--text-primary)] leading-[1.06] mb-4">
           {c.headline}
         </h1>
         <p className="text-body-lg text-[var(--text-secondary)] max-w-xl mb-12">
