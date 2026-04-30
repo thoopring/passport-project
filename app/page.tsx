@@ -224,6 +224,106 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ===== Why gliddy — thesis section =====
+          Three claim-first pillars positioned between samples gallery and the
+          Tokyo proof-preview. Implicit answer to "why not ChatGPT / Maps." Layla-lean
+          surface (warm paper bg, vermilion icon accents, ink type), no comparison
+          tables — just confident claims. */}
+      <section className="border-t border-[var(--border-subtle)] py-20 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-14 text-center">
+            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
+              {t("thesisEyebrow")}
+            </p>
+            <h2 className="font-display font-bold text-display-md text-[var(--text-primary)] tracking-[-0.02em]">
+              {t("thesisHeadline")}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+            {/* Pillar 1 — Verified shield */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <div className="w-12 h-12 rounded-full bg-[var(--brand-soft)] flex items-center justify-center mb-5 text-[var(--brand-primary)]">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M12 2L4 5v6c0 5 4 9 8 11 4-2 8-6 8-11V5l-8-3z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] mb-2 leading-tight">
+                {t("thesisPillar1Title")}
+              </h3>
+              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                {t("thesisPillar1Body")}
+              </p>
+            </div>
+
+            {/* Pillar 2 — Sequenced dots */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <div className="w-12 h-12 rounded-full bg-[var(--brand-soft)] flex items-center justify-center mb-5 text-[var(--brand-primary)]">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <circle cx="5" cy="12" r="2" />
+                  <circle cx="12" cy="12" r="2" />
+                  <circle cx="19" cy="12" r="2" />
+                  <line x1="7" y1="12" x2="10" y2="12" />
+                  <line x1="14" y1="12" x2="17" y2="12" />
+                </svg>
+              </div>
+              <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] mb-2 leading-tight">
+                {t("thesisPillar2Title")}
+              </h3>
+              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                {t("thesisPillar2Body")}
+              </p>
+            </div>
+
+            {/* Pillar 3 — Plane to bed */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <div className="w-12 h-12 rounded-full bg-[var(--brand-soft)] flex items-center justify-center mb-5 text-[var(--brand-primary)]">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M2 11h7l3-7h2l-1 7h6l3-2 1 1-3 4 3 4-1 1-3-2h-6l1 7h-2l-3-7H2z" />
+                </svg>
+              </div>
+              <h3 className="font-display font-bold text-[1.25rem] text-[var(--text-primary)] mb-2 leading-tight">
+                {t("thesisPillar3Title")}
+              </h3>
+              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                {t("thesisPillar3Body")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== Inline plan preview — real Tokyo content ===== */}
       {tokyo && day1 && (
         <section className="border-t border-[var(--border-subtle)] bg-[var(--surface-secondary)] py-24 px-4 sm:px-6">
