@@ -4,11 +4,13 @@ import { getTranslations } from "next-intl/server";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
 import PlanTimeline from "./PlanTimeline";
+import AffiliateLink from "./AffiliateLink";
 import Header from "./Header";
 import Footer from "./Footer";
 import type { TripPlan } from "../types/trip-plan";
 import { computeDayStats, computeStopBuffers, formatDuration } from "../lib/plan-stats";
 import { inferTransitMode, type TransitMode } from "../lib/transit-icons";
+import { buildAgodaUrl, buildKiwiTaxiUrl } from "../lib/affiliates";
 
 /**
  * Tiny inline icon for the transit hint above each stop. Five concrete
@@ -192,6 +194,24 @@ export default async function PlanView({
               <p className="text-body-sm text-[var(--text-secondary)] mt-3 leading-relaxed">
                 {plan.hotel.rationale}
               </p>
+              {/* Inline affiliate CTA — Agoda deep-link to the recommended
+                  hotel + city. Low-pressure: a small underlined link, not
+                  a button. User clicks if they want rates; otherwise it's
+                  invisible noise. Sponsored rel via AffiliateLink. */}
+              {(() => {
+                const link = buildAgodaUrl(plan.destination, plan.hotel.name);
+                return (
+                  <AffiliateLink
+                    href={link.url}
+                    category="plan_hotel_inline"
+                    label="agoda"
+                    className="inline-flex items-center gap-1.5 mt-4 text-body-sm text-[var(--brand-primary)] hover:text-[var(--brand-dark)] underline underline-offset-4 decoration-[var(--brand-primary)]/30 hover:decoration-[var(--brand-primary)] transition"
+                  >
+                    {link.label}
+                    <span aria-hidden>↗</span>
+                  </AffiliateLink>
+                );
+              })()}
             </div>
 
             <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6">
@@ -207,6 +227,23 @@ export default async function PlanView({
               <p className="text-body-sm text-[var(--text-secondary)] mt-3 leading-relaxed">
                 {plan.airportTransit.instructions}
               </p>
+              {/* Inline affiliate CTA — KiwiTaxi for users who'd rather
+                  pre-book a fixed-price taxi than navigate the local
+                  transit instructions above. Same low-pressure pattern. */}
+              {(() => {
+                const link = buildKiwiTaxiUrl();
+                return (
+                  <AffiliateLink
+                    href={link.url}
+                    category="plan_transit_inline"
+                    label="kiwitaxi"
+                    className="inline-flex items-center gap-1.5 mt-4 text-body-sm text-[var(--brand-primary)] hover:text-[var(--brand-dark)] underline underline-offset-4 decoration-[var(--brand-primary)]/30 hover:decoration-[var(--brand-primary)] transition"
+                  >
+                    {link.label}
+                    <span aria-hidden>↗</span>
+                  </AffiliateLink>
+                );
+              })()}
             </div>
           </div>
 

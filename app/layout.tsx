@@ -96,7 +96,25 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: { google: "R31CCusp43HzLDTuTSiA9NnWNWi4KI2wGd4fKTEnF6I" },
+  verification: {
+    google: "R31CCusp43HzLDTuTSiA9NnWNWi4KI2wGd4fKTEnF6I",
+    // Bing Webmaster + Naver Search Advisor verification meta tags. Set
+    // BING_SITE_VERIFICATION and NAVER_SITE_VERIFICATION in Vercel env
+    // after registering the site at:
+    //   - https://www.bing.com/webmasters
+    //   - https://searchadvisor.naver.com
+    // Each platform offers meta-tag, HTML-file, or DNS-TXT verification.
+    // Pick meta-tag and paste the content value via env so re-verifying
+    // doesn't require a code redeploy.
+    other: {
+      ...(process.env.BING_SITE_VERIFICATION
+        ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+        : {}),
+      ...(process.env.NAVER_SITE_VERIFICATION
+        ? { "naver-site-verification": process.env.NAVER_SITE_VERIFICATION }
+        : {}),
+    },
+  },
   other: { "agd-partner-manual-verification": "" },
 };
 
