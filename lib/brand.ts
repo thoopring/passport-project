@@ -18,7 +18,7 @@ export const BRAND = {
   longDescription:
     "Tell us your destination and budget, and we'll design a trip for you. Day-by-day itinerary with hotel, airport transit, restaurants, and a route map.",
   /** Support email — shown everywhere users might need help. */
-  supportEmail: "hello@checkvisamap.com",
+  supportEmail: "gliddy@checkvisamap.com",
   /** The operational domain users visit — unchanged during rebrand. */
   domain: "checkvisamap.com",
   siteUrl: "https://checkvisamap.com",

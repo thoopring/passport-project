@@ -109,7 +109,7 @@ const organizationSchema = {
   description: SITE_DESCRIPTION,
   contactPoint: {
     "@type": "ContactPoint",
-    email: "hello@checkvisamap.com",
+    email: "gliddy@checkvisamap.com",
     contactType: "customer service",
   },
 };
