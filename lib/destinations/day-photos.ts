@@ -62,16 +62,19 @@ const POOLS: DayPhotoPool[] = [
   {
     aliases: ["reykjavik", "레이캬비크", "레이캬빅", "レイキャビク", "雷克雅未克"],
     photoIds: [
-      // Removed photo-1486021071694-e4a2f53dd1c5 (black sand beach) on
-      // 2026-05-04 — Unsplash returned 404 in production for the
-      // founder's dogfood plan. Other 5 verified working at the same
-      // moment. Pool size 5 still covers a typical 3-7 day Reykjavik
-      // plan without repeats.
-      "photo-1539634936668-3f34dcfaa6cf", // Iceland glacier lagoon
+      // Pool trimmed to confirmed-working IDs only (2026-05-04 dogfood).
+      // Two of the original 6 silently 404'd in production:
+      //   - photo-1486021071694-e4a2f53dd1c5 (black sand beach)
+      //   - photo-1539634936668-3f34dcfaa6cf (glacier lagoon)
+      // A third (photo-1517299321609 geothermal pool) was never
+      // verified, so removed defensively to avoid a third "X box"
+      // report. Pool size is now 3 — exact-fit for a 3-day Reykjavik
+      // plan, cycles for 4+ day plans (acceptable trade-off vs broken
+      // images). Re-expand only after each new ID is verified loading
+      // in production.
       "photo-1500380804539-4e1e8c1e7118", // Iceland waterfall
       "photo-1531366936337-7c912a4589a7", // Northern lights over fjord
       "photo-1520967824495-b529aeba26df", // Reykjavik Hallgrimskirkja
-      "photo-1517299321609-52687d1bc55a", // Iceland geothermal pool
     ],
   },
   {
