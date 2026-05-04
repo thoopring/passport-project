@@ -147,6 +147,7 @@ async function generateAndDeliver(planId: string): Promise<void> {
       planId,
       destination: plan.request.destination,
       locale: plan.request.locale,
+      travelerType: plan.request.travelerType,
     });
   } catch (err) {
     const reason = err instanceof Error ? err.message : String(err);

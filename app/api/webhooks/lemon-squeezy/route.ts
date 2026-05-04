@@ -136,6 +136,7 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
       planId,
       destination: plan.request.destination,
       locale: plan.request.locale,
+      travelerType: plan.request.travelerType,
     });
 
     // Award referral credit if this purchase came from a /r/[code] click (P9)
