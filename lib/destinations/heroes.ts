@@ -20,8 +20,15 @@
  */
 
 export interface DestinationHero {
-  /** Unsplash photo ID (no leading slash). Used by the URL builder. */
+  /** Unsplash photo ID (no leading slash). Fallback when localFile is
+   *  not yet self-hosted. Used by the URL builder. */
   unsplashId: string;
+  /** When present, points to a self-hosted JPEG under
+   *  /public/destinations/{localFile}. Takes precedence over Unsplash —
+   *  removes the silent-swap risk for migrated destinations. Path is
+   *  RELATIVE (e.g. "reykjavik/hero.jpg"); the resolver prepends
+   *  "/destinations/". */
+  localFile?: string;
   /** All accepted spellings for this destination. Lowercased ASCII or
    *  verbatim CJK. Lookup is case-insensitive. */
   aliases: string[];
@@ -95,6 +102,7 @@ const HEROES: DestinationHero[] = [
   },
   {
     unsplashId: "photo-1531168556467-80aace0d0144",
+    localFile: "reykjavik/hero.jpg",
     aliases: [
       "reykjavik",
       "레이캬비크",
@@ -238,6 +246,10 @@ const HEROES: DestinationHero[] = [
  * Returns null when the destination isn't in the curated catalog — the
  * caller should render its layout WITHOUT a hero image rather than
  * picking a generic stand-in. Wrong photo > no photo.
+ *
+ * Local-first: when an entry has a localFile, returns the path under
+ * /destinations/ (Vercel CDN, never breaks). Otherwise falls back to
+ * the Unsplash URL builder.
  */
 export function getDestinationHeroUrl(
   destination: string,
@@ -247,6 +259,7 @@ export function getDestinationHeroUrl(
   const norm = destination.toLowerCase().trim();
   for (const entry of HEROES) {
     if (entry.aliases.some((a) => a.toLowerCase() === norm)) {
+      if (entry.localFile) return `/destinations/${entry.localFile}`;
       return unsplashHeroUrl(entry.unsplashId, width);
     }
   }

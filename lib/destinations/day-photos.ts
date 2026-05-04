@@ -34,6 +34,11 @@ interface DayPhotoPool {
   aliases: string[];
   /** Unsplash photo IDs. 5+ recommended so a long plan has variety. */
   photoIds: string[];
+  /** When present, parallel array of self-hosted JPEG paths under
+   *  /public/destinations/. Length must match photoIds. Picker uses
+   *  these in preference to the Unsplash URLs — same shuffle order,
+   *  same stability, no silent-swap risk. */
+  localFiles?: string[];
 }
 
 const POOLS: DayPhotoPool[] = [
@@ -62,19 +67,18 @@ const POOLS: DayPhotoPool[] = [
   {
     aliases: ["reykjavik", "레이캬비크", "레이캬빅", "レイキャビク", "雷克雅未克"],
     photoIds: [
-      // Pool trimmed to confirmed-working IDs only (2026-05-04 dogfood).
-      // Two of the original 6 silently 404'd in production:
-      //   - photo-1486021071694-e4a2f53dd1c5 (black sand beach)
-      //   - photo-1539634936668-3f34dcfaa6cf (glacier lagoon)
-      // A third (photo-1517299321609 geothermal pool) was never
-      // verified, so removed defensively to avoid a third "X box"
-      // report. Pool size is now 3 — exact-fit for a 3-day Reykjavik
-      // plan, cycles for 4+ day plans (acceptable trade-off vs broken
-      // images). Re-expand only after each new ID is verified loading
-      // in production.
+      // Self-hosted (2026-05-04). Same 3 confirmed IDs that worked in
+      // dogfood — now mirrored to /public/destinations/reykjavik/ so
+      // Unsplash silent-swaps no longer affect us. photoIds kept here
+      // as the originating sources for attribution / future reference.
       "photo-1500380804539-4e1e8c1e7118", // Iceland waterfall
       "photo-1531366936337-7c912a4589a7", // Northern lights over fjord
       "photo-1520967824495-b529aeba26df", // Reykjavik Hallgrimskirkja
+    ],
+    localFiles: [
+      "reykjavik/day-1.jpg",
+      "reykjavik/day-2.jpg",
+      "reykjavik/day-3.jpg",
     ],
   },
   {
@@ -122,6 +126,12 @@ function hashString(s: string): number {
  * array when the destination isn't in the catalog — caller should
  * skip the photo block entirely rather than fall back to a generic
  * stand-in.
+ *
+ * Local-first: when the matched pool has localFiles, returns paths
+ * under /destinations/ (Vercel CDN, immune to Unsplash drift). Falls
+ * back to building Unsplash CDN URLs from photoIds otherwise. The
+ * shuffle works on indexes so site/PDF render the SAME photo on the
+ * same day regardless of which source the pool uses.
  */
 export function pickDayPhotos(
   destination: string,
@@ -133,19 +143,27 @@ export function pickDayPhotos(
   const pool = POOLS.find((p) => p.aliases.some((a) => a.toLowerCase() === norm));
   if (!pool) return [];
 
+  // Build the source array — local paths preferred, Unsplash URLs
+  // otherwise. Both are full URLs/paths the renderer can use directly.
+  const useLocal =
+    pool.localFiles && pool.localFiles.length === pool.photoIds.length;
+  const sources = useLocal
+    ? pool.localFiles!.map((f) => `/destinations/${f}`)
+    : pool.photoIds.map((id) => dayPhotoUrl(id));
+
   const rng = mulberry32(hashString(seed));
-  const ids = [...pool.photoIds];
+  const arr = [...sources];
   // Fisher-Yates with seeded RNG.
-  for (let i = ids.length - 1; i > 0; i--) {
+  for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
-    [ids[i], ids[j]] = [ids[j], ids[i]];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   // Cycle the pool when there are more days than photos so a 7-day
   // plan with 6 candidate photos still gets a Day 7 photo (one repeat
   // is acceptable; ZERO photo on Day 7 would look broken).
   const result: string[] = [];
   for (let i = 0; i < dayCount; i++) {
-    result.push(dayPhotoUrl(ids[i % ids.length]));
+    result.push(arr[i % arr.length]);
   }
   return result;
 }

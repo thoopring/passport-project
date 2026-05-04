@@ -48,7 +48,18 @@ export async function GET(
   // open with the same emotional anchor. Cold-start destinations (not in
   // the catalog) skip the hero — clean text-led cover instead of a wrong
   // generic photo.
-  const heroImageUrl = getDestinationHeroUrl(record.plan.destination) ?? undefined;
+  // The hero/day-photo resolvers return either full Unsplash URLs OR
+  // self-hosted local paths ("/destinations/..."). react-pdf's <Image>
+  // can't resolve relative paths (no host context), so we prefix local
+  // paths with the public site URL — same CDN the in-browser <Image>
+  // serves them from, just absolutized for the cross-context fetch.
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://checkvisamap.com";
+  const absolutize = (u: string | null | undefined): string | undefined => {
+    if (!u) return undefined;
+    return u.startsWith("/") ? `${baseUrl}${u}` : u;
+  };
+
+  const heroImageUrl = absolutize(getDestinationHeroUrl(record.plan.destination));
 
   // Per-day destination photos — same seeded picker the site uses, so
   // site/PDF render the same photo on the same day. Empty array for
@@ -57,7 +68,7 @@ export async function GET(
     record.plan.destination,
     record.plan.days.length,
     id,
-  );
+  ).map((u) => absolutize(u)!);
 
   // Cover-page strings — localized server-side because react-pdf can't
   // call useTranslations.

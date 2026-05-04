@@ -203,7 +203,14 @@ export async function sendPlanReadyEmail(args: PlanReadyArgs): Promise<void> {
   // Hero photo from the same destination catalog the site/PDF use.
   // Skipped when the destination isn't in the curated set so the email
   // doesn't show a broken image (better: clean text-only header).
-  const heroUrl = getDestinationHeroUrl(args.destination, 1200);
+  // Email <img src> needs ABSOLUTE URLs — relative paths don't resolve
+  // in a mail client. The catalog returns "/destinations/..." for
+  // self-hosted entries; we prefix with the public site URL so the
+  // mail client fetches from the same Vercel CDN the site uses.
+  const rawHeroUrl = getDestinationHeroUrl(args.destination, 1200);
+  const heroUrl = rawHeroUrl?.startsWith("/")
+    ? `${baseUrl}${rawHeroUrl}`
+    : rawHeroUrl;
 
   const subject = copy.subject(args.destination);
 
