@@ -5,6 +5,7 @@ import { getPlan } from "../../../../../lib/plans";
 import { PlanDocument } from "../../../../../lib/pdf/PlanDocument";
 import { buildOverviewMapUrl, buildDayMapUrl } from "../../../../../lib/map";
 import { getDestinationHeroUrl } from "../../../../../lib/destinations/heroes";
+import { pickDayPhotos } from "../../../../../lib/destinations/day-photos";
 import type { Locale } from "../../../../../i18n/locales";
 
 export const runtime = "nodejs";
@@ -48,6 +49,15 @@ export async function GET(
   // the catalog) skip the hero — clean text-led cover instead of a wrong
   // generic photo.
   const heroImageUrl = getDestinationHeroUrl(record.plan.destination) ?? undefined;
+
+  // Per-day destination photos — same seeded picker the site uses, so
+  // site/PDF render the same photo on the same day. Empty array for
+  // destinations not in the catalog; PDF skips photo block per day.
+  const dayPhotoUrls = pickDayPhotos(
+    record.plan.destination,
+    record.plan.days.length,
+    id,
+  );
 
   // Cover-page strings — localized server-side because react-pdf can't
   // call useTranslations.
@@ -95,6 +105,7 @@ export async function GET(
       mapImageUrl={mapImageUrl}
       heroImageUrl={heroImageUrl}
       dayMapUrls={dayMapUrls}
+      dayPhotoUrls={dayPhotoUrls}
       locale={planLocale}
       triviaLabel={labelT("triviaLabel")}
       triviaSeed={id}

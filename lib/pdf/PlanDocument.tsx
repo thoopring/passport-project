@@ -255,6 +255,17 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 14,
   },
+  dayPhotoImg: {
+    /* Per-day destination photo — emotional anchor at top of each day
+       page, sits above the functional mini-map. Wider than tall to
+       feel like a magazine spread rather than a square thumbnail. */
+    width: "100%",
+    height: 220,
+    objectFit: "cover",
+    borderRadius: 6,
+    marginTop: 8,
+    marginBottom: 8,
+  },
   pill: {
     backgroundColor: colors.brand,
     color: "#fff",
@@ -307,6 +318,11 @@ interface Props {
    *  must equal plan.days.length when supplied; missing entries skip the
    *  map for that day instead of misaligning. */
   dayMapUrls?: string[];
+  /** Per-day destination photos from lib/destinations/day-photos. Same
+   *  seeded picker the site uses, so site/PDF for one plan show the
+   *  same photo on the same day. Empty entry = skip the photo for that
+   *  day (cold-start destinations or pool exhaustion). */
+  dayPhotoUrls?: string[];
   /** Locale for trivia content selection. Defaults to "en" — the PDF
    *  was previously English-only because pickTrivia didn't take a locale,
    *  which broke the language consistency of every non-English plan. */
@@ -342,6 +358,7 @@ export function PlanDocument({
   mapImageUrl,
   heroImageUrl,
   dayMapUrls,
+  dayPhotoUrls,
   locale = "en",
   triviaLabel = "Did you know?",
   triviaSeed,
@@ -475,6 +492,7 @@ export function PlanDocument({
       {plan.days.map((day, dayIdx) => {
         const triviaForDay = triviaPool[dayIdx];
         const dayMapUrl = dayMapUrls?.[dayIdx];
+        const dayPhotoUrl = dayPhotoUrls?.[dayIdx];
 
         return (
           <Page key={day.dayNumber} size="A4" style={styles.page}>
@@ -485,6 +503,11 @@ export function PlanDocument({
               <Text style={styles.h1}>{day.theme}</Text>
               <Text style={styles.muted}>{day.summary}</Text>
             </View>
+
+            {/* Per-day destination photo — emotional anchor before the
+                functional content. Skipped when the destination isn't
+                in lib/destinations/day-photos catalog. */}
+            {dayPhotoUrl && <Image src={dayPhotoUrl} style={styles.dayPhotoImg} />}
 
             {/* Day mini-map — tight zoom on this day's stops + hotel anchor.
                 Solves the airport-far-from-city problem the overview map

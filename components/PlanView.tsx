@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "../i18n/locales";
 import { seededPickTrivia } from "../lib/trivia";
 import { getDestinationHeroUrl } from "../lib/destinations/heroes";
+import { pickDayPhotos } from "../lib/destinations/day-photos";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
 import PlanTimeline from "./PlanTimeline";
@@ -166,6 +167,16 @@ export default async function PlanView({
      than a generic stand-in (wrong photo > no photo). */
   const resolvedHeroImage =
     heroImage ?? getDestinationHeroUrl(plan.destination) ?? undefined;
+  /* Per-day photos from the destination catalog. Same deterministic
+     seeding approach as the trivia pool so the same plan always shows
+     the same photo on Day N across site, PDF, and re-renders. Empty
+     array for cold-start destinations — caller checks length before
+     rendering. */
+  const dayPhotos = pickDayPhotos(
+    plan.destination,
+    plan.days.length,
+    triviaSeed ?? `${plan.destination}-${plan.durationDays}`,
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
@@ -467,6 +478,26 @@ export default async function PlanView({
                         </span>
                       </>
                     )}
+                  </div>
+                )}
+
+                {/* Per-day photo — destination-flavored emotional anchor
+                    above the functional mini-map. Lands first so the eye
+                    reads photo → map → stops (mood, then orientation,
+                    then plan). Mobile: 16:10 aspect at full card width.
+                    Lazy-loaded to keep mobile LCP off the per-day photo
+                    queue. Skipped when the destination isn't in the
+                    catalog (lib/destinations/day-photos.ts). */}
+                {dayPhotos[dayIdx] && (
+                  <div className="mt-4 rounded-[10px] overflow-hidden bg-[var(--surface-secondary)]">
+                    <img
+                      src={dayPhotos[dayIdx]}
+                      alt={`${plan.destination} day ${day.dayNumber}`}
+                      loading="lazy"
+                      className="w-full h-auto block aspect-[16/10] object-cover"
+                      width={900}
+                      height={563}
+                    />
                   </div>
                 )}
 
