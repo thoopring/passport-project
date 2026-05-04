@@ -49,6 +49,46 @@ export async function GET(
   // generic photo.
   const heroImageUrl = getDestinationHeroUrl(record.plan.destination) ?? undefined;
 
+  // Cover-page strings — localized server-side because react-pdf can't
+  // call useTranslations.
+  // Traveler-aware tagline mirrors the in-browser plan view so the
+  // keepsake echoes the buyer's wizard inputs ("crafted for the two
+  // of you" / "두 분을 위해 다듬은 플랜"). Falls back to default when
+  // travelerType is missing or unmapped.
+  const travelerType =
+    (record.request as { travelerType?: string })?.travelerType;
+  const travelerKey =
+    travelerType === "solo"
+      ? "solo"
+      : travelerType === "couple"
+        ? "couple"
+        : travelerType === "family-with-kids"
+          ? "family"
+          : travelerType === "group-of-friends"
+            ? "friends"
+            : travelerType === "senior"
+              ? "senior"
+              : "default";
+  const craftedForLine = labelT(`craftedFor.${travelerKey}`);
+  const subtitleLine = labelT("itineraryHeader", {
+    days: record.plan.durationDays,
+    country: record.plan.destinationCountry,
+  });
+  const overviewHeader = labelT("yourTripPlan");
+
+  // Localized "Generated DD MMM YYYY" footer for the cover. Uses the
+  // record's created_at when available so the date reflects when the
+  // plan was actually generated, not when the user re-downloaded it.
+  // Falls back to today if created_at is missing.
+  const generatedDate = record.created_at
+    ? new Date(record.created_at)
+    : new Date();
+  const generatedAtLine = generatedDate.toLocaleDateString(planLocale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   const buffer = await renderToBuffer(
     <PlanDocument
       plan={record.plan}
@@ -58,6 +98,10 @@ export async function GET(
       locale={planLocale}
       triviaLabel={labelT("triviaLabel")}
       triviaSeed={id}
+      craftedForLine={craftedForLine}
+      generatedAtLine={generatedAtLine}
+      subtitleLine={subtitleLine}
+      overviewHeader={overviewHeader}
     />
   );
 

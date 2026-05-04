@@ -181,6 +181,72 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 16,
   },
+  /* ─── Cover page (poster mood) ────────────────────────────────────── */
+  coverPage: {
+    /* Full-bleed cover — no padding so the hero photo fills edge-to-edge.
+       Text block sits below in its own padded container. */
+    padding: 0,
+    fontFamily: "Pretendard",
+    color: colors.text,
+    backgroundColor: colors.bg,
+  },
+  coverHero: {
+    /* ~55% of A4 height (842pt total → ~460pt). Big enough to feel like
+       a poster, small enough to leave room for the text block below
+       without forcing a second page. */
+    width: "100%",
+    height: 460,
+    objectFit: "cover",
+  },
+  coverHeroFallback: {
+    /* When no hero photo is available (cold-start destination), show a
+       cream fill panel of the same height so the cover layout doesn't
+       collapse. Brand stays text-led. */
+    width: "100%",
+    height: 460,
+    backgroundColor: colors.light,
+  },
+  coverText: {
+    padding: "32 48",
+  },
+  coverBrand: {
+    fontSize: 11,
+    color: colors.brand,
+    fontFamily: "Pretendard-Bold",
+    letterSpacing: 2,
+    textTransform: "uppercase",
+    marginBottom: 16,
+  },
+  coverDestination: {
+    /* Larger than the in-flow h1 because the cover is the hero moment.
+       Korean place names like "레이캬비크" still fit; longer city names
+       fall back to wrapping which is fine on a poster. */
+    fontSize: 56,
+    fontFamily: "Pretendard-Bold",
+    color: colors.text,
+    lineHeight: 1.05,
+    marginBottom: 12,
+  },
+  coverSubtitle: {
+    fontSize: 16,
+    color: colors.muted,
+    marginBottom: 24,
+  },
+  coverTagline: {
+    /* Italic-not-available with Pretendard/NotoSans CJK fallback, so we
+       lean on color (coral) + size (medium) for the personalized voice. */
+    fontSize: 14,
+    color: colors.brand,
+    fontFamily: "Pretendard-Bold",
+    marginBottom: 24,
+  },
+  coverFooter: {
+    fontSize: 9,
+    color: colors.muted,
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginTop: "auto",
+  },
   dayMapImg: {
     width: "100%",
     height: 200,
@@ -255,6 +321,20 @@ interface Props {
    *  Without a seed, falls back to destination + duration so the document
    *  is at least stable across regenerations of identical input. */
   triviaSeed?: string;
+  /** Localized "Crafted for the two of you" tagline. Same copy thread the
+   *  in-browser plan view shows under the destination h1. The route
+   *  handler resolves the locale + travelerType lookup and passes the
+   *  finished string here. */
+  craftedForLine?: string;
+  /** Pre-formatted "Generated DD MMM YYYY" line shown at the bottom of
+   *  the cover page. The route handler formats with the user's locale
+   *  so a Korean reader sees "2026년 5월 4일" and a French reader sees
+   *  "4 mai 2026". */
+  generatedAtLine?: string;
+  /** Localized "n-day itinerary · Country" subtitle. */
+  subtitleLine?: string;
+  /** Localized "Trip overview" header used on page 2. */
+  overviewHeader?: string;
 }
 
 export function PlanDocument({
@@ -265,6 +345,10 @@ export function PlanDocument({
   locale = "en",
   triviaLabel = "Did you know?",
   triviaSeed,
+  craftedForLine,
+  generatedAtLine,
+  subtitleLine,
+  overviewHeader = "Trip overview",
 }: Props) {
   // Hoist trivia selection out of the per-day loop. The earlier pattern
   // called pickTrivia inside the loop and used dayIdx % length as the
@@ -284,19 +368,41 @@ export function PlanDocument({
       author="gliddy"
       subject="Personalized trip itinerary"
     >
-      {/* Cover */}
+      {/* ─── Cover page (poster) ───────────────────────────────────────
+          Big hero photo + destination + traveler tagline + generation
+          date. Single visual moment the customer encounters when they
+          open the PDF. No detail, no map — just emotional anchor.
+          Page 2 picks up the practical orientation. */}
+      <Page size="A4" style={styles.coverPage}>
+        {heroImageUrl ? (
+          <Image src={heroImageUrl} style={styles.coverHero} />
+        ) : (
+          <View style={styles.coverHeroFallback} />
+        )}
+        <View style={styles.coverText}>
+          <Text style={styles.coverBrand}>gliddy · Trip Plan</Text>
+          <Text style={styles.coverDestination}>{plan.destination}</Text>
+          <Text style={styles.coverSubtitle}>
+            {subtitleLine ??
+              `${plan.durationDays}-day itinerary · ${plan.destinationCountry}`}
+          </Text>
+          {craftedForLine && (
+            <Text style={styles.coverTagline}>{craftedForLine}</Text>
+          )}
+          {generatedAtLine && (
+            <Text style={styles.coverFooter}>{generatedAtLine}</Text>
+          )}
+        </View>
+      </Page>
+
+      {/* ─── Page 2: Orientation ─────────────────────────────────────── */}
       <Page size="A4" style={styles.page}>
-        {/* Hero photo at the very top — first thing the customer sees
-            when they open the PDF. Same source the in-browser plan view
-            uses (lib/destinations/heroes), so the keepsake and the site
-            share the same emotional anchor. Skipped when the destination
-            isn't in the curated catalog. */}
-        {heroImageUrl && <Image src={heroImageUrl} style={styles.heroImg} />}
         <View style={styles.header}>
-          <Text style={styles.brand}>gliddy · Trip Plan</Text>
+          <Text style={styles.brand}>{overviewHeader}</Text>
           <Text style={styles.h1}>{plan.destination}</Text>
           <Text style={styles.muted}>
-            {plan.durationDays}-day itinerary · {plan.destinationCountry}
+            {subtitleLine ??
+              `${plan.durationDays}-day itinerary · ${plan.destinationCountry}`}
           </Text>
         </View>
 
