@@ -297,6 +297,52 @@ export default async function PlanView({
             </div>
           </div>
 
+          {/* Trip essentials — currency, language, emergency. Site
+              previously hid these even though the schema and the PDF
+              already had them, so paying customers had to download the
+              PDF to see practical arrival info. The PDF still renders
+              the same block on the cover; this card is parity. Skipped
+              entirely if none of the three fields are populated. */}
+          {(plan.currencyTip || plan.languageTip || plan.emergencyNumber) && (
+            <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-6">
+              <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-4">
+                {t("tripEssentials")}
+              </p>
+              <dl className="space-y-3">
+                {plan.currencyTip && (
+                  <div className="flex flex-col sm:flex-row sm:gap-4">
+                    <dt className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] font-semibold sm:w-28 sm:shrink-0 sm:pt-1">
+                      {t("currency")}
+                    </dt>
+                    <dd className="text-body-sm text-[var(--text-secondary)] leading-relaxed flex-1">
+                      {plan.currencyTip}
+                    </dd>
+                  </div>
+                )}
+                {plan.languageTip && (
+                  <div className="flex flex-col sm:flex-row sm:gap-4">
+                    <dt className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] font-semibold sm:w-28 sm:shrink-0 sm:pt-1">
+                      {t("language")}
+                    </dt>
+                    <dd className="text-body-sm text-[var(--text-secondary)] leading-relaxed flex-1">
+                      {plan.languageTip}
+                    </dd>
+                  </div>
+                )}
+                {plan.emergencyNumber && (
+                  <div className="flex flex-col sm:flex-row sm:gap-4">
+                    <dt className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] font-semibold sm:w-28 sm:shrink-0 sm:pt-1">
+                      {t("emergency")}
+                    </dt>
+                    <dd className="text-body-sm font-semibold text-[var(--text-primary)] tabular-nums">
+                      {plan.emergencyNumber}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          )}
+
           {/* Day-jump strip — sticky on desktop, hidden on mobile.
               Anchors map to id={`day-${dayNumber}`} on each day card below. */}
           <PlanTimeline days={plan.days} />
