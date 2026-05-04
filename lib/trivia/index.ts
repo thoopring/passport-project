@@ -1056,3 +1056,50 @@ export function pickTrivia(
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, Math.min(count, pool.length));
 }
+
+/**
+ * Mulberry32 — small, fast deterministic PRNG. Same seed → same sequence.
+ * Used so the trivia order for a given plan is stable across the site
+ * render, the PDF render, and every regeneration. Without this, a user
+ * sees one fact on the site, a different fact in the PDF, then a third
+ * fact on a re-download — confusing and breaks the "this is the same plan"
+ * promise.
+ */
+function mulberry32(seed: number) {
+  return function () {
+    let t = (seed += 0x6d2b79f5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function hashString(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+  }
+  return h;
+}
+
+/**
+ * Pick N distinct trivia entries deterministically based on a seed string
+ * (e.g. plan UUID). Same seed always returns the same shuffled slice, so
+ * the site and the PDF show identical trivia for the same plan.
+ */
+export function seededPickTrivia(
+  country: string,
+  locale: Locale,
+  count: number,
+  seed: string,
+): string[] {
+  const pool = getTriviaForCountry(country, locale);
+  const rng = mulberry32(hashString(seed));
+  const arr = [...pool];
+  // Fisher-Yates with the seeded RNG.
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, Math.min(count, arr.length));
+}

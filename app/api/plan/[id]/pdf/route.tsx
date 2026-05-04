@@ -48,6 +48,7 @@ export async function GET(
       dayMapUrls={dayMapUrls}
       locale={planLocale}
       triviaLabel={labelT("triviaLabel")}
+      triviaSeed={id}
     />
   );
 

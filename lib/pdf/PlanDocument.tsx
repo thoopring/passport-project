@@ -12,7 +12,7 @@ import fsSync from "node:fs";
 import pathLib from "node:path";
 import type { TripPlan } from "../../types/trip-plan";
 import type { Locale } from "../../i18n/locales";
-import { pickTrivia } from "../trivia";
+import { seededPickTrivia } from "../trivia";
 
 // Noto Sans CJK KR — full CJK coverage (Korean + Japanese + Chinese
 // Unified Ideographs, 20,976 Han chars + 11,172 Hangul). Pretendard covered
@@ -200,6 +200,12 @@ interface Props {
    *  in from the route handler since react-pdf can't access the i18n
    *  client hooks. */
   triviaLabel?: string;
+  /** Stable seed for the trivia shuffle. Plan UUID for paid plans, sample
+   *  slug for samples. Same seed → same trivia order, so the site and the
+   *  PDF for one plan show the same fact on Day 1, the same on Day 2, etc.
+   *  Without a seed, falls back to destination + duration so the document
+   *  is at least stable across regenerations of identical input. */
+  triviaSeed?: string;
 }
 
 export function PlanDocument({
@@ -208,7 +214,20 @@ export function PlanDocument({
   dayMapUrls,
   locale = "en",
   triviaLabel = "Did you know?",
+  triviaSeed,
 }: Props) {
+  // Hoist trivia selection out of the per-day loop. The earlier pattern
+  // called pickTrivia inside the loop and used dayIdx % length as the
+  // index, but pickTrivia uses Math.random so each call returned a freshly
+  // shuffled pool — meaning Day 1 / Day 2 / Day 3 could (and did) all
+  // surface the same fact by luck of the shuffle. Hoisting + seedeing
+  // gives N distinct facts in stable order for the same plan.
+  const triviaPool = seededPickTrivia(
+    plan.destinationCountry,
+    locale,
+    plan.days.length,
+    triviaSeed ?? `${plan.destination}-${plan.durationDays}`,
+  );
   return (
     <Document
       title={`${plan.destination} trip plan`}
@@ -292,12 +311,7 @@ export function PlanDocument({
 
       {/* Days */}
       {plan.days.map((day, dayIdx) => {
-        // Pick a deterministic-ish trivia fact per day so the same plan
-        // renders the same facts on every download. We use day index modulo
-        // the available pool, after picking a shuffled set of facts for the
-        // country.
-        const triviaPool = pickTrivia(plan.destinationCountry, locale, plan.days.length + 2);
-        const triviaForDay = triviaPool[dayIdx % triviaPool.length];
+        const triviaForDay = triviaPool[dayIdx];
         const dayMapUrl = dayMapUrls?.[dayIdx];
 
         return (

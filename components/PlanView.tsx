@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import type { Locale } from "../i18n/locales";
+import { seededPickTrivia } from "../lib/trivia";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
 import PlanTimeline from "./PlanTimeline";
@@ -93,6 +95,10 @@ interface PlanViewProps {
   /** Cached Mapbox Directions polylines from the plan record. When provided,
    *  PlanMap renders walking-aware route segments instead of straight lines. */
   routePolylines?: import("../types/trip-plan").RoutePolylineSegment[] | (import("../types/trip-plan").RoutePolylineSegment | null)[] | null;
+  /** Stable seed for the per-day trivia shuffle. Plan UUID for paid plans,
+   *  sample slug for samples. Both site and PDF use this seed so the trivia
+   *  facts shown on a given day match across surfaces. */
+  triviaSeed?: string;
 }
 
 export default async function PlanView({
@@ -103,10 +109,21 @@ export default async function PlanView({
   backLink,
   heroImage,
   routePolylines,
+  triviaSeed,
 }: PlanViewProps) {
   const t = await getTranslations("plan");
+  const locale = (await getLocale()) as Locale;
   const resolvedHeaderLabel = headerLabel ?? t("yourTripPlan");
   const resolvedBackLink = backLink ?? { href: "/", label: t("back") };
+  /* One trivia fact per day, deterministic per plan. The seed defaults to
+     destination + duration when no plan-specific seed is provided so a
+     re-render of the same content lands the same facts. */
+  const triviaPool = seededPickTrivia(
+    plan.destinationCountry,
+    locale,
+    plan.days.length,
+    triviaSeed ?? `${plan.destination}-${plan.durationDays}`,
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
@@ -266,9 +283,10 @@ export default async function PlanView({
               already shows everything; the site should match. The user
               paid for the depth — show it. Mobile trades the slightly
               longer scroll for confidence-on-arrival. */}
-          {plan.days.map((day) => {
+          {plan.days.map((day, dayIdx) => {
             const stats = computeDayStats(day);
             const buffers = computeStopBuffers(day);
+            const triviaForDay = triviaPool[dayIdx];
             const hasStats =
               stats.activeMinutes > 0 ||
               stats.transitMinutes > 0 ||
@@ -436,6 +454,22 @@ export default async function PlanView({
                       })}
                     </ol>
                   </div>
+
+                  {/* "Did you know?" trivia callout — one fact per day,
+                      seeded by planId so the site and the PDF show the
+                      same facts in the same order. Same fact-pool the
+                      wait screen uses, so the wait→plan handoff feels
+                      continuous in spirit. */}
+                  {triviaForDay && (
+                    <div className="mt-5 rounded-[10px] border border-[var(--border-light)] bg-[var(--surface-secondary)] px-4 py-3">
+                      <p className="text-caption uppercase tracking-[0.14em] text-[var(--brand-primary)] font-bold mb-1">
+                        {t("triviaLabel")}
+                      </p>
+                      <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                        {triviaForDay}
+                      </p>
+                    </div>
+                  )}
               </div>
             );
           })}

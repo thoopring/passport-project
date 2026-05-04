@@ -114,6 +114,7 @@ export default async function SamplePlanPage({ params }: PageProps) {
       bottomCta={cta}
       backLink={{ href: "/samples", label: t("backToGallery") }}
       heroImage={sample.heroImage}
+      triviaSeed={sample.slug}
     />
   );
 }
