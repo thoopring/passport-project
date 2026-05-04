@@ -10,6 +10,7 @@ import Footer from "./Footer";
 import type { TripPlan } from "../types/trip-plan";
 import { computeDayStats, computeStopBuffers, formatDuration } from "../lib/plan-stats";
 import { inferTransitMode, type TransitMode } from "../lib/transit-icons";
+import { buildDayMapUrl } from "../lib/map";
 import {
   buildAgodaUrl,
   buildAmazonSearchUrl,
@@ -328,6 +329,28 @@ export default async function PlanView({
                     )}
                   </div>
                 )}
+
+                {/* Per-day mini-map — same URL the PDF uses, so site +
+                    PDF show identical day-scoped routes. Static image
+                    so the page doesn't initialize multiple Mapbox GL
+                    canvases for a 5-day plan. Tight zoom because the
+                    auto-fit clusters around the day's anchor neighborhood. */}
+                {(() => {
+                  const dayMapUrl = buildDayMapUrl(day, plan.hotel, 700, 240);
+                  if (!dayMapUrl) return null;
+                  return (
+                    <div className="mt-4 rounded-[10px] overflow-hidden border border-[var(--border-light)] bg-[var(--surface-secondary)]">
+                      <img
+                        src={dayMapUrl}
+                        alt={`Day ${day.dayNumber} route map`}
+                        loading="lazy"
+                        className="w-full h-auto block"
+                        width={700}
+                        height={240}
+                      />
+                    </div>
+                  );
+                })()}
 
                 <div className="mt-4 pt-4 border-t border-[var(--border-subtle)]">
                     {/* Hotel-departure anchor — derived from first stop time
