@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -19,6 +20,69 @@ export const dynamic = "force-dynamic";
 interface PageProps {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ paid?: string }>;
+}
+
+/**
+ * Per-plan share metadata — drives the title / description and
+ * OpenGraph / Twitter card preview on KakaoTalk, iMessage, Slack,
+ * Twitter, etc. Pairs with opengraph-image.tsx (the rendered card
+ * with destination + Day 1 stops).
+ *
+ * Privacy: paid plan UUIDs are unguessable access tokens, so anyone
+ * with the link is meant to see it (social-share intent). But search
+ * engines must NOT index the URL — robots noindex/nofollow blocks
+ * crawl of leaked links and keeps purchased plans out of public
+ * search results.
+ *
+ * Non-complete plans (paid / generating / failed / draft) fall back
+ * to a generic gliddy card so the wait page itself or an aborted
+ * draft never leaks destination details before the plan resolves.
+ */
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  let record: Awaited<ReturnType<typeof getPlan>> | null = null;
+  try {
+    record = await getPlan(id);
+  } catch {
+    /* DB hiccup — fall through to generic card */
+  }
+
+  const generic: Metadata = {
+    title: "Your trip plan · gliddy",
+    description:
+      "An AI-built day-by-day trip plan with hotel, airport transit, and a route map. Delivered by gliddy.",
+    robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  };
+
+  if (!record || record.status !== "complete" || !record.plan) {
+    return generic;
+  }
+
+  const tp = record.plan;
+  const title = `${tp.destination} · ${tp.durationDays}-day plan`;
+  // Truncate the overview for description to ~200 chars; OG and Twitter
+  // both clip around there, and we want the cut to land on a word boundary.
+  const desc =
+    tp.overview && tp.overview.length > 200
+      ? `${tp.overview.slice(0, 197).replace(/\s+\S*$/, "")}…`
+      : tp.overview;
+
+  return {
+    title: `${title} · gliddy`,
+    description: desc,
+    robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+    openGraph: {
+      title,
+      description: desc,
+      type: "article",
+      siteName: "gliddy",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: desc,
+    },
+  };
 }
 
 export default async function PlanPage({ params, searchParams }: PageProps) {

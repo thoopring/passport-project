@@ -31,6 +31,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: sample.tagline,
       url: `https://checkvisamap.com/samples/${slug}`,
       type: "article",
+      siteName: "gliddy",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: sample.tagline,
     },
   };
 }
