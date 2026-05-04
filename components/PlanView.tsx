@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "../i18n/locales";
 import { seededPickTrivia } from "../lib/trivia";
+import { getDestinationHeroUrl } from "../lib/destinations/heroes";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
 import PlanTimeline from "./PlanTimeline";
@@ -124,24 +125,50 @@ export default async function PlanView({
     plan.days.length,
     triviaSeed ?? `${plan.destination}-${plan.durationDays}`,
   );
+  /* Resolve a destination hero photo. Samples already pass heroImage
+     directly; paid plans fall back to the curated destination catalog
+     so the post-payment first impression starts on a cinematic photo
+     instead of a wall of text. Cold-start destinations (not in the
+     catalog) render without a hero — clean text-only header rather
+     than a generic stand-in (wrong photo > no photo). */
+  const resolvedHeroImage =
+    heroImage ?? getDestinationHeroUrl(plan.destination) ?? undefined;
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <Header />
 
       <main className="flex-1">
-        {/* Destination hero photo (samples only) */}
-        {heroImage && (
-          <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 pt-8">
-            <div className="relative aspect-[21/9] rounded-[12px] overflow-hidden bg-[var(--surface-secondary)]">
+        {/* Destination hero photo. Mobile: edge-to-edge full-bleed at
+            16:11 so the destination lands as the first visual anchor.
+            Desktop: contained 21:9 cinematic letterbox inside the page
+            grid. Both bleed past the wrapper padding via negative
+            margin tricks. */}
+        {resolvedHeroImage && (
+          <div className="w-full">
+            {/* Mobile (full-bleed) */}
+            <div className="block sm:hidden relative w-full aspect-[16/11] bg-[var(--surface-secondary)] overflow-hidden">
               <Image
-                src={heroImage}
+                src={resolvedHeroImage}
                 alt={`${plan.destination} — ${plan.durationDays}-day itinerary`}
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 1040px"
+                sizes="100vw"
                 className="object-cover"
               />
+            </div>
+            {/* Desktop (contained letterbox) */}
+            <div className="hidden sm:block max-w-5xl mx-auto w-full px-4 sm:px-6 pt-8">
+              <div className="relative aspect-[21/9] rounded-[12px] overflow-hidden bg-[var(--surface-secondary)]">
+                <Image
+                  src={resolvedHeroImage}
+                  alt={`${plan.destination} — ${plan.durationDays}-day itinerary`}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 1040px"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         )}

@@ -1,0 +1,254 @@
+/**
+ * Destination → hero photo lookup for paid plan rendering.
+ *
+ * Source-of-truth for the cinematic photo that lands at the top of every
+ * /plan/[id] view and the cover of every PDF. The site's emotional
+ * arrival moment.
+ *
+ * Two tiers:
+ *   - Tier A (13 cities): verified Unsplash IDs — same set already used by
+ *     the live samples gallery, so they've been visually checked and
+ *     confirmed not silently swapped by Unsplash.
+ *   - Tier B (17 cities): candidate Unsplash IDs for popular destinations
+ *     the AI generator may produce plans for. Less battle-tested than
+ *     Tier A; if Unsplash silently swaps an image to something off-brand,
+ *     swap the ID inline. Cold-start fallback (no hero) handles a broken
+ *     image gracefully — the plan view still renders cleanly without it.
+ *
+ * Aliases let Claude return the destination name in the user's locale
+ * ("도쿄", "東京", "东京", "Tokyo") and still resolve to the same entry.
+ */
+
+export interface DestinationHero {
+  /** Unsplash photo ID (no leading slash). Used by the URL builder. */
+  unsplashId: string;
+  /** All accepted spellings for this destination. Lowercased ASCII or
+   *  verbatim CJK. Lookup is case-insensitive. */
+  aliases: string[];
+  /** One-line note about what's in the photo so swaps stay on-brand. */
+  shotNote: string;
+}
+
+/** Build a 1600px Unsplash image URL with sensible quality and crop. */
+export function unsplashHeroUrl(id: string, width = 1600): string {
+  return `https://images.unsplash.com/${id}?w=${width}&q=80&auto=format&fit=crop`;
+}
+
+const HEROES: DestinationHero[] = [
+  // ─── Tier A (verified — live in samples gallery) ───────────────────────
+  {
+    unsplashId: "photo-1542051841857-5f90071e7989",
+    aliases: ["tokyo", "도쿄", "東京", "东京"],
+    shotNote: "Shibuya scramble at twilight — neon, motion, iconic Tokyo.",
+  },
+  {
+    unsplashId: "photo-1590559899731-a382839e5549",
+    aliases: ["osaka", "오사카", "大阪"],
+    shotNote: "Tsutenkaku Tower at twilight, framed by Shinsekai shop signs.",
+  },
+  {
+    unsplashId: "photo-1517154421773-0529f29ea451",
+    aliases: ["seoul", "서울", "ソウル", "首尔", "séoul"],
+    shotNote: "Seoul cityscape with N Seoul Tower at twilight.",
+  },
+  {
+    unsplashId: "photo-1470004914212-05527e49370b",
+    aliases: ["taipei", "타이베이", "台北", "타이뻬이"],
+    shotNote: "Jiufen tea house alley with red lanterns at dusk.",
+  },
+  {
+    unsplashId: "photo-1508009603885-50cf7c579365",
+    aliases: ["bangkok", "방콕", "バンコク", "曼谷"],
+    shotNote: "Wat Arun temple at golden hour against the river.",
+  },
+  {
+    unsplashId: "photo-1528127269322-539801943592",
+    aliases: ["hanoi", "하노이", "ハノイ", "河内", "hanoï"],
+    shotNote: "Halong Bay limestone karsts in emerald water.",
+  },
+  {
+    unsplashId: "photo-1573790387438-4da905039392",
+    aliases: ["bali", "발리", "バリ", "巴厘", "巴厘岛", "denpasar", "ubud"],
+    shotNote: "Tegallalang rice terraces under bright sunlight.",
+  },
+  {
+    unsplashId: "photo-1499856871958-5b9627545d1a",
+    aliases: ["paris", "파리", "パリ", "巴黎"],
+    shotNote: "Eiffel Tower from Trocadéro at golden hour.",
+  },
+  {
+    unsplashId: "photo-1513635269975-59663e0ac1ad",
+    aliases: ["london", "런던", "ロンドン", "伦敦", "londres"],
+    shotNote: "Tower Bridge with double-decker red bus crossing.",
+  },
+  {
+    unsplashId: "photo-1496442226666-8d4d0e62e6e9",
+    aliases: [
+      "new york",
+      "new york city",
+      "nyc",
+      "뉴욕",
+      "ニューヨーク",
+      "纽约",
+    ],
+    shotNote: "Brooklyn Bridge with Manhattan skyline at sunset.",
+  },
+  {
+    unsplashId: "photo-1531168556467-80aace0d0144",
+    aliases: [
+      "reykjavik",
+      "레이캬비크",
+      "레이캬빅",
+      "レイキャビク",
+      "雷克雅未克",
+    ],
+    shotNote: "Fjaðrárgljúfur canyon — mossy basalt walls + glacial river.",
+  },
+  {
+    unsplashId: "photo-1526392060635-9d6019884377",
+    aliases: ["cusco", "쿠스코", "クスコ", "库斯科"],
+    shotNote: "Machu Picchu emerging from morning fog over the Andes.",
+  },
+  {
+    unsplashId: "photo-1512453979798-5ea266f8880c",
+    aliases: ["dubai", "두바이", "ドバイ", "迪拜", "dubaï"],
+    shotNote: "Burj Khalifa skyline at sunset.",
+  },
+
+  // ─── Tier B (candidate — verify before each new locale launch) ─────────
+  {
+    unsplashId: "photo-1545569341-9eb8b30979d9",
+    aliases: ["kyoto", "교토", "京都"],
+    shotNote: "Fushimi Inari torii gate tunnel.",
+  },
+  {
+    unsplashId: "photo-1525625293386-3f8f99389edd",
+    aliases: ["singapore", "싱가포르", "シンガポール", "新加坡", "singapour"],
+    shotNote: "Marina Bay Sands skyline at twilight.",
+  },
+  {
+    unsplashId: "photo-1536599018102-9f803c140fc1",
+    aliases: [
+      "hong kong",
+      "hongkong",
+      "홍콩",
+      "ホンコン",
+      "香港",
+    ],
+    shotNote: "Victoria Harbour skyline at night.",
+  },
+  {
+    unsplashId: "photo-1525874684015-58379d421a52",
+    aliases: ["rome", "로마", "ローマ", "罗马"],
+    shotNote: "Colosseum at golden hour.",
+  },
+  {
+    unsplashId: "photo-1583422409516-2895a77efded",
+    aliases: [
+      "barcelona",
+      "바르셀로나",
+      "バルセロナ",
+      "巴塞罗那",
+      "barcelone",
+    ],
+    shotNote: "Park Güell mosaic terrace overlooking the city.",
+  },
+  {
+    unsplashId: "photo-1534351590666-13e3e96c5017",
+    aliases: ["amsterdam", "암스테르담", "アムステルダム", "阿姆斯特丹"],
+    shotNote: "Canal houses lining the Singel.",
+  },
+  {
+    unsplashId: "photo-1560969184-10fe8719e047",
+    aliases: ["berlin", "베를린", "ベルリン", "柏林"],
+    shotNote: "Brandenburg Gate at dusk.",
+  },
+  {
+    unsplashId: "photo-1516550893923-42d28e5677af",
+    aliases: ["vienna", "비엔나", "빈", "ウィーン", "维也纳", "vienne"],
+    shotNote: "Schönbrunn Palace gardens.",
+  },
+  {
+    unsplashId: "photo-1541849546-216549ae216d",
+    aliases: ["prague", "프라하", "プラハ", "布拉格"],
+    shotNote: "Charles Bridge at sunrise with mist.",
+  },
+  {
+    unsplashId: "photo-1524231757912-21f4fe3a7200",
+    aliases: ["istanbul", "이스탄불", "イスタンブール", "伊斯坦布尔"],
+    shotNote: "Hagia Sophia at golden hour.",
+  },
+  {
+    unsplashId: "photo-1506973035872-a4ec16b8e8d9",
+    aliases: ["sydney", "시드니", "シドニー", "悉尼", "sydney"],
+    shotNote: "Sydney Opera House from the harbour.",
+  },
+  {
+    unsplashId: "photo-1501594907352-04cda38ebc29",
+    aliases: [
+      "san francisco",
+      "샌프란시스코",
+      "サンフランシスコ",
+      "旧金山",
+    ],
+    shotNote: "Golden Gate Bridge in fog.",
+  },
+  {
+    unsplashId: "photo-1605833556294-ea5c7a74f57d",
+    aliases: [
+      "los angeles",
+      "la",
+      "로스앤젤레스",
+      "ロサンゼルス",
+      "洛杉矶",
+    ],
+    shotNote: "LA skyline with palm trees at golden hour.",
+  },
+  {
+    unsplashId: "photo-1518105779142-d975f22f1b0a",
+    aliases: [
+      "mexico city",
+      "ciudad de méxico",
+      "멕시코시티",
+      "メキシコシティ",
+      "墨西哥城",
+      "mexico",
+    ],
+    shotNote: "Palacio de Bellas Artes from above.",
+  },
+  {
+    unsplashId: "photo-1513735492246-483525079686",
+    aliases: ["lisbon", "리스본", "リスボン", "里斯本", "lisbonne"],
+    shotNote: "Yellow tram on tile-covered street.",
+  },
+  {
+    unsplashId: "photo-1539020140153-e479b8c61e30",
+    aliases: ["marrakech", "마라케시", "マラケシュ", "马拉喀什"],
+    shotNote: "Jemaa el-Fna square at sunset.",
+  },
+  {
+    unsplashId: "photo-1539037116277-4db20889f2d4",
+    aliases: ["madrid", "마드리드", "マドリード", "马德里"],
+    shotNote: "Plaza Mayor under late afternoon light.",
+  },
+];
+
+/**
+ * Resolve a destination string (in any of 5 locales) to a hero photo URL.
+ * Returns null when the destination isn't in the curated catalog — the
+ * caller should render its layout WITHOUT a hero image rather than
+ * picking a generic stand-in. Wrong photo > no photo.
+ */
+export function getDestinationHeroUrl(
+  destination: string,
+  width = 1600,
+): string | null {
+  if (!destination) return null;
+  const norm = destination.toLowerCase().trim();
+  for (const entry of HEROES) {
+    if (entry.aliases.some((a) => a.toLowerCase() === norm)) {
+      return unsplashHeroUrl(entry.unsplashId, width);
+    }
+  }
+  return null;
+}

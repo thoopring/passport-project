@@ -142,6 +142,16 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginVertical: 10,
   },
+  heroImg: {
+    /* Cinematic letterbox above the destination title. Width fills the
+       page, height tuned so the cover stays single-page on A4 even with
+       a long overview paragraph. */
+    width: "100%",
+    height: 200,
+    objectFit: "cover",
+    borderRadius: 6,
+    marginBottom: 16,
+  },
   dayMapImg: {
     width: "100%",
     height: 200,
@@ -187,6 +197,12 @@ interface Props {
   /** Overview map for the cover page. City-zoomed, transit (airport) stops
    *  excluded so the bounds don't blow out to a 70-km square. */
   mapImageUrl?: string;
+  /** Cinematic destination hero photo at the top of the cover. Same source
+   *  the site uses (lib/destinations/heroes), so the offline keepsake
+   *  starts with the same emotional anchor as the in-browser plan view.
+   *  Falls back gracefully when the destination is not in the catalog —
+   *  the cover stays clean and text-led. */
+  heroImageUrl?: string;
   /** Per-day mini-maps (one entry per `plan.days`, in order). Each is a
    *  tight zoom on that day's stops + the hotel as an anchor pin. Length
    *  must equal plan.days.length when supplied; missing entries skip the
@@ -211,6 +227,7 @@ interface Props {
 export function PlanDocument({
   plan,
   mapImageUrl,
+  heroImageUrl,
   dayMapUrls,
   locale = "en",
   triviaLabel = "Did you know?",
@@ -236,6 +253,12 @@ export function PlanDocument({
     >
       {/* Cover */}
       <Page size="A4" style={styles.page}>
+        {/* Hero photo at the very top — first thing the customer sees
+            when they open the PDF. Same source the in-browser plan view
+            uses (lib/destinations/heroes), so the keepsake and the site
+            share the same emotional anchor. Skipped when the destination
+            isn't in the curated catalog. */}
+        {heroImageUrl && <Image src={heroImageUrl} style={styles.heroImg} />}
         <View style={styles.header}>
           <Text style={styles.brand}>gliddy · Trip Plan</Text>
           <Text style={styles.h1}>{plan.destination}</Text>

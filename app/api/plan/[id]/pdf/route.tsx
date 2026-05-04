@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { getPlan } from "../../../../../lib/plans";
 import { PlanDocument } from "../../../../../lib/pdf/PlanDocument";
 import { buildOverviewMapUrl, buildDayMapUrl } from "../../../../../lib/map";
+import { getDestinationHeroUrl } from "../../../../../lib/destinations/heroes";
 import type { Locale } from "../../../../../i18n/locales";
 
 export const runtime = "nodejs";
@@ -41,10 +42,18 @@ export async function GET(
   const planLocale = (record.request.locale ?? "en") as Locale;
   const labelT = await getTranslations({ locale: planLocale, namespace: "plan" });
 
+  // Cinematic destination photo at the top of the cover. Same catalog
+  // the in-browser plan view uses, so the offline PDF and the live site
+  // open with the same emotional anchor. Cold-start destinations (not in
+  // the catalog) skip the hero — clean text-led cover instead of a wrong
+  // generic photo.
+  const heroImageUrl = getDestinationHeroUrl(record.plan.destination) ?? undefined;
+
   const buffer = await renderToBuffer(
     <PlanDocument
       plan={record.plan}
       mapImageUrl={mapImageUrl}
+      heroImageUrl={heroImageUrl}
       dayMapUrls={dayMapUrls}
       locale={planLocale}
       triviaLabel={labelT("triviaLabel")}
