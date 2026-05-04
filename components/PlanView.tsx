@@ -548,7 +548,10 @@ export default async function PlanView({
           })}
 
           {/* Tips */}
-          {(plan.generalTips?.length || plan.packingTips?.length || plan.budgetEstimate) && (
+          {(plan.generalTips?.length ||
+            plan.packingTips?.length ||
+            plan.budgetEstimate ||
+            plan.bestSeasonNote) && (
             <div className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] p-6 mb-6">
               <p className="text-caption uppercase font-semibold text-[var(--text-muted)] tracking-[0.14em] mb-4">
                 {t("practicalInfo")}
@@ -558,6 +561,16 @@ export default async function PlanView({
                   <span className="font-semibold text-[var(--text-primary)]">{t("budget")}: </span>
                   <span className="text-[var(--text-secondary)]">{plan.budgetEstimate}</span>
                 </p>
+              )}
+              {plan.bestSeasonNote && (
+                <div className="mb-3">
+                  <p className="font-semibold text-body-sm text-[var(--text-primary)] mb-1">
+                    {t("bestSeason")}
+                  </p>
+                  <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                    {plan.bestSeasonNote}
+                  </p>
+                </div>
               )}
               {plan.packingTips?.length ? (
                 <div className="mb-3">

@@ -426,7 +426,10 @@ export function PlanDocument({
       })}
 
       {/* Tips page (optional) */}
-      {(plan.packingTips?.length || plan.generalTips?.length || plan.budgetEstimate) && (
+      {(plan.packingTips?.length ||
+        plan.generalTips?.length ||
+        plan.budgetEstimate ||
+        plan.bestSeasonNote) && (
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
             <Text style={styles.brand}>Practical info</Text>
@@ -437,6 +440,13 @@ export function PlanDocument({
             <>
               <Text style={styles.h2}>Budget</Text>
               <Text style={styles.body}>{plan.budgetEstimate}</Text>
+            </>
+          )}
+
+          {plan.bestSeasonNote && (
+            <>
+              <Text style={styles.h2}>Best season</Text>
+              <Text style={styles.body}>{plan.bestSeasonNote}</Text>
             </>
           )}
 
