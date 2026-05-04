@@ -256,15 +256,15 @@ export default async function PlanView({
               Anchors map to id={`day-${dayNumber}`} on each day card below. */}
           <PlanTimeline days={plan.days} />
 
-          {/* Days — collapsible on mobile, fully expanded on desktop.
-              Each day is a <details> element so mobile readers see Day 1
-              expanded as a rich first impression, then Days 2+ collapsed
-              as scannable theme summaries until tapped. Desktop forces
-              all bodies open via CSS in globals.css (.day-card rules) so
-              data-density still wins on wider screens. The summary
-              element renders the day header (theme + summary line +
-              compact stat ribbon) so the user can decide whether to
-              expand without opening the day. */}
+          {/* Days — fully expanded by default on every viewport.
+              Earlier iteration wrapped each day in a <details> with
+              Day 1 open and Day 2+ collapsed for mobile readability.
+              That hid 2/3 of the paid plan's content on first view, and
+              browser print captured the collapsed state so the printable
+              site lost Day 2-N stops entirely. The PDF deliverable
+              already shows everything; the site should match. The user
+              paid for the depth — show it. Mobile trades the slightly
+              longer scroll for confidence-on-arrival. */}
           {plan.days.map((day) => {
             const stats = computeDayStats(day);
             const buffers = computeStopBuffers(day);
@@ -274,86 +274,62 @@ export default async function PlanView({
               stats.mealCount > 0 ||
               stats.budgetUSD > 0;
             return (
-              <details
+              <div
                 key={day.dayNumber}
                 id={`day-${day.dayNumber}`}
-                open={day.dayNumber === 1}
-                className="day-card bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] mb-4 scroll-mt-24 overflow-hidden"
+                className="bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-[10px] mb-4 scroll-mt-24 p-6"
               >
-                <summary className="block p-6 sm:pb-4 select-none">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
-                        {t("day")} {day.dayNumber}
-                      </p>
-                      <h2 className="font-display text-[1.5rem] sm:text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
-                        {day.theme}
-                      </h2>
-                    </div>
-                    <span
-                      className="day-chevron shrink-0 mt-1 inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]"
-                      aria-hidden
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
-                    </span>
-                  </div>
-                  <p className="text-body-sm text-[var(--text-secondary)] mt-3 leading-relaxed">
-                    {day.summary}
+                <div className="mb-3">
+                  <p className="text-caption uppercase font-semibold text-[var(--brand-primary)] tracking-[0.18em]">
+                    {t("day")} {day.dayNumber}
                   </p>
-                  {/* Compact stat ribbon — visible inside the summary so
-                      collapsed days still communicate scope at a glance. */}
-                  {hasStats && (
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-[var(--text-muted)] mt-3">
-                      {stats.activeMinutes > 0 && (
-                        <span className="font-semibold text-[var(--text-primary)]">
-                          {t("dayTotalActivity", {
-                            duration: formatDuration(stats.activeMinutes),
+                  <h2 className="font-display text-[1.5rem] sm:text-[1.75rem] text-[var(--text-primary)] leading-tight mt-1">
+                    {day.theme}
+                  </h2>
+                </div>
+                <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                  {day.summary}
+                </p>
+                {/* Stat ribbon — at-a-glance day scope. */}
+                {hasStats && (
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-[var(--text-muted)] mt-3">
+                    {stats.activeMinutes > 0 && (
+                      <span className="font-semibold text-[var(--text-primary)]">
+                        {t("dayTotalActivity", {
+                          duration: formatDuration(stats.activeMinutes),
+                        })}
+                      </span>
+                    )}
+                    {stats.transitMinutes > 0 && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>
+                          {t("dayTotalTransit", {
+                            duration: formatDuration(stats.transitMinutes),
                           })}
                         </span>
-                      )}
-                      {stats.transitMinutes > 0 && (
-                        <>
-                          <span aria-hidden>·</span>
-                          <span>
-                            {t("dayTotalTransit", {
-                              duration: formatDuration(stats.transitMinutes),
-                            })}
-                          </span>
-                        </>
-                      )}
-                      {stats.mealCount > 0 && (
-                        <>
-                          <span aria-hidden>·</span>
-                          <span>{t("dayTotalMeals", { count: stats.mealCount })}</span>
-                        </>
-                      )}
-                      {stats.budgetUSD > 0 && (
-                        <>
-                          <span aria-hidden>·</span>
-                          <span>
-                            {t("dayTotalBudget", {
-                              amount: Math.round(stats.budgetUSD),
-                            })}
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  )}
-                </summary>
+                      </>
+                    )}
+                    {stats.mealCount > 0 && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>{t("dayTotalMeals", { count: stats.mealCount })}</span>
+                      </>
+                    )}
+                    {stats.budgetUSD > 0 && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>
+                          {t("dayTotalBudget", {
+                            amount: Math.round(stats.budgetUSD),
+                          })}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
 
-                <div className="day-card-body px-6 pb-6">
-                  <div className="pt-4 border-t border-[var(--border-subtle)]">
+                <div className="mt-4 pt-4 border-t border-[var(--border-subtle)]">
                     {/* Hotel-departure anchor — derived from first stop time
                         minus implied walk-from-hotel. Skipped if unparseable. */}
                     {stats.hotelStartTime && (
@@ -437,8 +413,7 @@ export default async function PlanView({
                       })}
                     </ol>
                   </div>
-                </div>
-              </details>
+              </div>
             );
           })}
 

@@ -136,46 +136,6 @@ body {
   font-feature-settings: "ss01", "ss02";
 }
 
-/* ========== Collapsible Day Cards (mobile-only) ==========
-   Each day card on the plan detail page is wrapped in a <details> element
-   so mobile readers can collapse Days 2+ and skim the trip arc by theme
-   instead of scrolling through 24+ stops in one continuous wall. Day 1
-   stays open by default so the first impression is rich. Desktop force-
-   shows all content (data-density wins on wider screens). */
-
-/* Hide the native details disclosure marker on every viewport. */
-details.day-card > summary {
-  list-style: none;
-  cursor: pointer;
-}
-details.day-card > summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Chevron rotates when the day is open. */
-details.day-card[open] > summary .day-chevron {
-  transform: rotate(180deg);
-}
-details.day-card > summary .day-chevron {
-  transition: transform 0.2s ease;
-}
-
-/* Desktop: force all day content visible regardless of [open] state and
-   strip the interactive cues from the summary. The override on
-   .day-card-body wins because user CSS sits above the user-agent rule
-   that hides closed-details children via display: none. */
-@media (min-width: 640px) {
-  details.day-card > .day-card-body {
-    display: block !important;
-  }
-  details.day-card > summary {
-    cursor: default;
-  }
-  details.day-card > summary .day-chevron {
-    display: none;
-  }
-}
-
 /* ========== Prose ========== */
 .prose h1,
 .prose h2,
