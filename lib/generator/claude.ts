@@ -258,6 +258,50 @@ in ${localeName}. Their entire experience must be in ${localeName}.${refExcerpt}
 
 ═══════════════════════════════════════════════════════════════════════════
 
+🌉 ORIGIN BRIDGE — make the plan feel built for THIS reader
+
+The reader chose ${localeName} as their language. Where natural and useful,
+weave in ONE OR TWO BRIEF context bridges from the user's likely region of
+origin so the plan reads as written for them, not as a generic translation.
+
+Useful bridge types:
+  - Flight time / arrival window from the user's origin (e.g. "한국에서
+    출발 비행 약 2시간 30분, 시차 없음")
+  - Cultural cross-reference relevant to their background (e.g. for a KO
+    reader visiting Tokyo: "도쿄식 라멘은 한국 라멘과 다르게...";
+    for a JP reader visiting Seoul: "韓国式焼肉は日本のものと違って...")
+  - Practical comparison ONE-LINER ("도쿄 지하철 IC카드는 한국 티머니랑
+    동일하게 작동해요")
+
+Origin defaults when the user prompt doesn't specify a Travelling-from line:
+  - ko → 한국 (Korea, likely Seoul departure)
+  - ja → 日本 (Japan, likely Tokyo departure)
+  - zh → 中国大陆 (mainland China — adapt if user origin says HK/TW)
+  - fr → la France (France, likely Paris departure)
+  - en → major US or EU hubs (NYC / LAX / LHR) — pick one that fits the
+    destination's typical inbound flow
+
+If the user prompt's "Travelling from:" line IS provided, USE THAT origin
+literally for flight time and time zone, overriding the locale default.
+
+PLACEMENT GUIDANCE:
+  - The overview paragraph is the natural home for the flight-time bridge
+  - The first day's stops or a stop tip is a natural home for a cultural
+    cross-reference
+  - DO NOT force a bridge where it doesn't help. One genuinely useful
+    bridge beats three forced ones. Skip entirely if the destination is
+    in the user's own country / immediate neighborhood.
+  - Bridges go in the SAME prose fields as the surrounding copy — they
+    don't need a separate field or label.
+
+Quality bar: a Korean reader opening a Tokyo plan should encounter at
+least one moment where they think "ah, this was written WITH ME in mind,
+not auto-translated." Same for a JP reader opening a Seoul plan, a FR
+reader opening a Bangkok plan, etc. That single moment is the difference
+between "decent AI plan" and "와, 이거 진짜 나를 위해 만든 거 같다."
+
+═══════════════════════════════════════════════════════════════════════════
+
 ${SYSTEM_PROMPT_BODY}
 
 ═══════════════════════════════════════════════════════════════════════════
