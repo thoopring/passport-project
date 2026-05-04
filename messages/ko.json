@@ -302,6 +302,14 @@
     "airportToHotel": "공항 → 숙소",
     "day": "Day",
     "tripEssentials": "여행 핵심 정보",
+    "craftedFor": {
+      "default": "당신을 위해 다듬은 플랜",
+      "solo": "혼자만의 페이스에 맞춘 플랜",
+      "couple": "두 분을 위해 다듬은 플랜",
+      "family": "온 가족을 위해 조율된 플랜",
+      "friends": "친구들과 함께하기 좋게 짠 플랜",
+      "senior": "여유롭게 즐길 수 있도록 다듬은 플랜"
+    },
     "currency": "통화",
     "language": "언어",
     "emergency": "긴급",

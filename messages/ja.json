@@ -302,6 +302,14 @@
     "airportToHotel": "空港 → 宿泊先",
     "day": "Day",
     "tripEssentials": "旅の基本情報",
+    "craftedFor": {
+      "default": "あなたのために仕立てた旅程",
+      "solo": "ひとり旅のペースに合わせた旅程",
+      "couple": "おふたりのために仕立てた旅程",
+      "family": "ご家族みんなに合わせて整えた旅程",
+      "friends": "仲間と過ごす時間にフィットした旅程",
+      "senior": "ゆったり歩めるよう調整した旅程"
+    },
     "currency": "通貨",
     "language": "言語",
     "emergency": "緊急時",

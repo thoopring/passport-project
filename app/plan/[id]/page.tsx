@@ -136,6 +136,9 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
         downloadHref={`/api/plan/${id}/pdf`}
         routePolylines={record.route_polylines ?? undefined}
         triviaSeed={id}
+        travelerType={
+          (record.request as { travelerType?: string })?.travelerType
+        }
         bottomCta={
           <div className="space-y-4">
             <SavePlanCta planEmail={record.email} planId={id} />

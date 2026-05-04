@@ -302,6 +302,14 @@
     "airportToHotel": "Airport → Stay",
     "day": "Day",
     "tripEssentials": "Trip essentials",
+    "craftedFor": {
+      "default": "Crafted for you",
+      "solo": "Built around your solo pace",
+      "couple": "Crafted for the two of you",
+      "family": "Tuned for the whole family",
+      "friends": "Made for the group",
+      "senior": "Paced gently — every step easy"
+    },
     "currency": "Currency",
     "language": "Language",
     "emergency": "Emergency",

@@ -302,6 +302,14 @@
     "airportToHotel": "Aéroport → Hébergement",
     "day": "Jour",
     "tripEssentials": "Essentiels du voyage",
+    "craftedFor": {
+      "default": "Conçu pour vous",
+      "solo": "Construit autour de votre rythme solo",
+      "couple": "Pensé pour vous deux",
+      "family": "Calibré pour toute la famille",
+      "friends": "Pour le groupe, ensemble",
+      "senior": "Au rythme tranquille, chaque pas facile"
+    },
     "currency": "Devise",
     "language": "Langue",
     "emergency": "Urgences",

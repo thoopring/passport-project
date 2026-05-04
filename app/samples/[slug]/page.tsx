@@ -107,6 +107,25 @@ export default async function SamplePlanPage({ params }: PageProps) {
     </div>
   );
 
+  // Map the sample's human-readable audience string ("Couple · Midrange",
+  // "Family with kids · Midrange", "Solo · Foodie") to the canonical
+  // traveler type the wizard uses. Lets the sample page render the same
+  // craftedFor tagline as a paid plan, so a /samples/tokyo-4d-couple
+  // visitor sees "Crafted for the two of you" instead of the generic
+  // default. Order matters — check more-specific phrases first.
+  const audienceLower = sample.audience.toLowerCase();
+  const sampleTravelerType = audienceLower.includes("family")
+    ? "family-with-kids"
+    : audienceLower.includes("friends") || audienceLower.includes("group")
+      ? "group-of-friends"
+      : audienceLower.includes("senior")
+        ? "senior"
+        : audienceLower.includes("couple")
+          ? "couple"
+          : audienceLower.includes("solo")
+            ? "solo"
+            : undefined;
+
   return (
     <PlanView
       plan={sample.plan}
@@ -115,6 +134,7 @@ export default async function SamplePlanPage({ params }: PageProps) {
       backLink={{ href: "/samples", label: t("backToGallery") }}
       heroImage={sample.heroImage}
       triviaSeed={sample.slug}
+      travelerType={sampleTravelerType}
     />
   );
 }

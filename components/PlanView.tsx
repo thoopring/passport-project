@@ -100,6 +100,38 @@ interface PlanViewProps {
    *  sample slug for samples. Both site and PDF use this seed so the trivia
    *  facts shown on a given day match across surfaces. */
   triviaSeed?: string;
+  /** TripPlan request.travelerType — drives the personalized
+   *  `craftedFor.*` tagline below the destination h1. The wait screen
+   *  already names the traveler context ("crafting the special moments
+   *  you'll share"); the plan view echoes it in completion form
+   *  ("crafted for the two of you") so the buyer sees their inputs
+   *  reflected in the final document. */
+  travelerType?: string;
+}
+
+/**
+ * Map a TripPlan request.travelerType to the i18n key suffix for the
+ * personalized "craftedFor" tagline. Mirrors the wait screen's
+ * travelerHeadlineKey so the same input (couple / family-with-kids /
+ * group-of-friends / etc.) lands on the same emotional copy thread —
+ * wait screen "crafting…" → plan view "crafted." Returns "default"
+ * when the value is missing or unmapped (forward-compat).
+ */
+function travelerKeyFor(travelerType?: string): string {
+  switch (travelerType) {
+    case "solo":
+      return "solo";
+    case "couple":
+      return "couple";
+    case "family-with-kids":
+      return "family";
+    case "group-of-friends":
+      return "friends";
+    case "senior":
+      return "senior";
+    default:
+      return "default";
+  }
 }
 
 export default async function PlanView({
@@ -111,6 +143,7 @@ export default async function PlanView({
   heroImage,
   routePolylines,
   triviaSeed,
+  travelerType,
 }: PlanViewProps) {
   const t = await getTranslations("plan");
   const locale = (await getLocale()) as Locale;
@@ -189,6 +222,22 @@ export default async function PlanView({
                 </h1>
                 <p className="text-body-md text-[var(--text-secondary)] mt-3">
                   {t("itineraryHeader", { days: plan.durationDays, country: plan.destinationCountry })}
+                </p>
+                {/* Traveler-aware tagline. The buyer entered their traveler
+                    context (solo / couple / family-with-kids / group-of-
+                    friends / senior) at wizard time; the wait screen
+                    promised "crafting…" copy that named that context.
+                    Echoing it here in completion form ("crafted for the
+                    two of you" / "두 분을 위해 다듬은 플랜") closes the
+                    loop — the customer sees their own inputs reflected
+                    in the final document, not a generic deliverable.
+                    Italic Fraunces in coral for warmth without competing
+                    with the destination h1. */}
+                <p
+                  className="font-fraunces italic text-body-md text-[var(--brand-primary)] mt-2"
+                  style={{ fontFeatureSettings: '"ss01", "ss02"' }}
+                >
+                  {t(`craftedFor.${travelerKeyFor(travelerType)}`)}
                 </p>
                 {downloadHref && (
                   <a

@@ -302,6 +302,14 @@
     "airportToHotel": "机场 → 住宿",
     "day": "Day",
     "tripEssentials": "旅行要点",
+    "craftedFor": {
+      "default": "为您量身打造的行程",
+      "solo": "贴合您独自旅行的节奏",
+      "couple": "为两位精心安排的行程",
+      "family": "为全家人调整的行程",
+      "friends": "贴合朋友同行的安排",
+      "senior": "舒缓步调,每一步都轻松"
+    },
     "currency": "货币",
     "language": "语言",
     "emergency": "紧急",
