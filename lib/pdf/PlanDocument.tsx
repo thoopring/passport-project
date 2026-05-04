@@ -51,13 +51,38 @@ Font.register({
  *   - General tips and packing list at the end
  */
 
+/**
+ * Brand-aligned PDF palette — mirrors globals.css design tokens so the
+ * offline keepsake reads as the same product as the in-browser plan.
+ *
+ * Earlier palette was an unrelated forest-green + amber stack
+ * (`#1a4d2e` / `#ff9f1c`) inherited from a P14a draft and never
+ * reconciled when the site shipped its warm-paper + coral aesthetic.
+ * Side-by-side with the live site, the PDF read like a different
+ * company's print template.
+ *
+ * Changes mapped to the in-browser tokens:
+ *   brand   → --brand-primary (coral, the gliddy signature)
+ *   accent  → --accent-primary (sky blue, secondary cue for tips)
+ *   text    → --text-primary
+ *   muted   → --text-secondary
+ *   light   → --surface-secondary (cream card background)
+ *   border  → --border-light
+ *   bg      → --background (warm paper page surface)
+ *
+ * Map polyline colors (lib/map.ts) intentionally NOT touched here —
+ * Mapbox static images use their own palette decisions, and a coral
+ * polyline on a city map reads as warning/danger. Map color polish is
+ * a separate workstream.
+ */
 const colors = {
-  brand: "#1a4d2e",
-  accent: "#ff9f1c",
-  text: "#1a1a1a",
-  muted: "#666666",
-  light: "#f5f5f0",
-  border: "#e5e5e0",
+  brand: "#FF6B6B",
+  accent: "#4DA8DA",
+  text: "#161615",
+  muted: "#5A5751",
+  light: "#FBF7EE",
+  border: "#EDE6D6",
+  bg: "#FFFCF7",
 };
 
 const styles = StyleSheet.create({
@@ -66,7 +91,7 @@ const styles = StyleSheet.create({
     fontFamily: "Pretendard",
     fontSize: 11,
     color: colors.text,
-    backgroundColor: "#FFFBF0",
+    backgroundColor: colors.bg,
   },
   header: {
     borderBottom: `1.5pt solid ${colors.brand}`,
@@ -81,7 +106,11 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   h1: {
-    fontSize: 26,
+    /* Bumped from 26 → 32 pt so the destination title lands as a
+       confident first-page anchor. Matches the in-browser display
+       hierarchy where the h1 is intentionally large + bold. Korean
+       cities like "레이캬비크" stay single-line at this size. */
+    fontSize: 32,
     fontFamily: "Pretendard-Bold",
     marginTop: 6,
     color: colors.text,
@@ -170,8 +199,12 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   triviaCard: {
-    backgroundColor: "#fff7e6",
-    border: `0.5pt solid ${colors.accent}`,
+    /* Subtle card matching the in-browser trivia callout: cream
+       surface + thin gray border. Earlier amber-on-orange combo
+       pulled too much attention and didn't read as gliddy. The label
+       below carries the brand color (coral); the card stays calm. */
+    backgroundColor: colors.light,
+    border: `0.5pt solid ${colors.border}`,
     borderRadius: 6,
     padding: 10,
     marginTop: 14,
@@ -179,7 +212,7 @@ const styles = StyleSheet.create({
   triviaLabel: {
     fontSize: 9,
     fontFamily: "Pretendard-Bold",
-    color: colors.accent,
+    color: colors.brand,
     textTransform: "uppercase",
     letterSpacing: 0.5,
     marginBottom: 4,
