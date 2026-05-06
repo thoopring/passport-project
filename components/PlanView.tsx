@@ -5,6 +5,12 @@ import type { Locale } from "../i18n/locales";
 import { seededPickTrivia } from "../lib/trivia";
 import { getDestinationHeroUrl } from "../lib/destinations/heroes";
 import { pickDayPhotos } from "../lib/destinations/day-photos";
+import { readDestinationPhotos } from "../lib/destinations/auto-fetch";
+import {
+  photographerProfileUrl,
+  unsplashHomeUrl,
+  renderableImageUrl,
+} from "../lib/unsplash";
 import PlanMap from "./PlanMap";
 import PlanAffiliateBar from "./PlanAffiliateBar";
 import PlanTimeline from "./PlanTimeline";
@@ -162,21 +168,62 @@ export default async function PlanView({
   /* Resolve a destination hero photo. Samples already pass heroImage
      directly; paid plans fall back to the curated destination catalog
      so the post-payment first impression starts on a cinematic photo
-     instead of a wall of text. Cold-start destinations (not in the
-     catalog) render without a hero — clean text-only header rather
-     than a generic stand-in (wrong photo > no photo). */
+     instead of a wall of text. Cold-start destinations get filled via
+     the Unsplash cache (lib/destinations/auto-fetch). When neither
+     catalog nor cache has a photo, the layout renders without a hero
+     — clean text-only header rather than a generic stand-in. */
+  const catalogHero = getDestinationHeroUrl(plan.destination);
+  const cachedPhotos = catalogHero
+    ? null
+    : await readDestinationPhotos(plan.destination);
+  const autoHero = cachedPhotos?.hero ?? null;
   const resolvedHeroImage =
-    heroImage ?? getDestinationHeroUrl(plan.destination) ?? undefined;
-  /* Per-day photos from the destination catalog. Same deterministic
-     seeding approach as the trivia pool so the same plan always shows
-     the same photo on Day N across site, PDF, and re-renders. Empty
-     array for cold-start destinations — caller checks length before
-     rendering. */
-  const dayPhotos = pickDayPhotos(
+    heroImage ??
+    catalogHero ??
+    (autoHero ? renderableImageUrl(autoHero.url, 1600) : undefined);
+
+  /* Per-day photos: catalog first, Unsplash cache second. Catalog uses
+     deterministic seeding so the same plan always shows the same photo
+     on Day N. Cache photos are stable too (cached entry doesn't change
+     for a given destination once written). */
+  const catalogDayPhotos = pickDayPhotos(
     plan.destination,
     plan.days.length,
     triviaSeed ?? `${plan.destination}-${plan.durationDays}`,
   );
+  /* Build a parallel array of photo objects (with attribution) per day
+     so the renderer below can show the right caption. Catalog photos
+     have no attribution data yet (license-self-host path); auto photos
+     carry the photographer + Unsplash link required by the API
+     guidelines. */
+  type DayPhoto = {
+    url: string;
+    attribution: { name: string; profileUrl: string; photoLink: string } | null;
+  };
+  const dayPhotos: (DayPhoto | null)[] = plan.days.map((_, idx) => {
+    if (catalogDayPhotos[idx]) {
+      return { url: catalogDayPhotos[idx], attribution: null };
+    }
+    const cachedDay = cachedPhotos?.days[idx];
+    if (cachedDay) {
+      return {
+        url: renderableImageUrl(cachedDay.url, 900),
+        attribution: {
+          name: cachedDay.photographerName,
+          profileUrl: photographerProfileUrl(cachedDay.photographerUsername),
+          photoLink: cachedDay.photoLink,
+        },
+      };
+    }
+    return null;
+  });
+  const heroAttribution = autoHero
+    ? {
+        name: autoHero.photographerName,
+        profileUrl: photographerProfileUrl(autoHero.photographerUsername),
+        photoLink: autoHero.photoLink,
+      }
+    : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
@@ -214,6 +261,33 @@ export default async function PlanView({
                 />
               </div>
             </div>
+            {/* Photographer attribution — required by Unsplash Production
+                API guidelines for any photo sourced via /search/photos.
+                Renders only when the photo came from the cache (auto
+                hero); curated catalog photos skip this caption since
+                they're acquired under the License path. */}
+            {heroAttribution && (
+              <p className="max-w-5xl mx-auto px-4 sm:px-6 mt-2 text-caption text-[var(--text-muted)]">
+                {t("photoBy")}{" "}
+                <a
+                  href={heroAttribution.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-[var(--text-primary)]"
+                >
+                  {heroAttribution.name}
+                </a>{" "}
+                {t("photoOn")}{" "}
+                <a
+                  href={unsplashHomeUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-[var(--text-primary)]"
+                >
+                  Unsplash
+                </a>
+              </p>
+            )}
           </div>
         )}
 
@@ -482,23 +556,47 @@ export default async function PlanView({
                 )}
 
                 {/* Per-day photo — destination-flavored emotional anchor
-                    above the functional mini-map. Lands first so the eye
-                    reads photo → map → stops (mood, then orientation,
-                    then plan). Mobile: 16:10 aspect at full card width.
-                    Lazy-loaded to keep mobile LCP off the per-day photo
-                    queue. Skipped when the destination isn't in the
-                    catalog (lib/destinations/day-photos.ts). */}
+                    above the functional mini-map. Catalog first, then
+                    Unsplash auto-fetch cache. Skipped entirely when
+                    neither has coverage. Attribution caption renders
+                    below ONLY for cache-sourced photos (Unsplash API
+                    guidelines); catalog photos sit captionless under
+                    the License-self-host path. */}
                 {dayPhotos[dayIdx] && (
-                  <div className="mt-4 rounded-[10px] overflow-hidden bg-[var(--surface-secondary)]">
-                    <img
-                      src={dayPhotos[dayIdx]}
-                      alt={`${plan.destination} day ${day.dayNumber}`}
-                      loading="lazy"
-                      className="w-full h-auto block aspect-[16/10] object-cover"
-                      width={900}
-                      height={563}
-                    />
-                  </div>
+                  <>
+                    <div className="mt-4 rounded-[10px] overflow-hidden bg-[var(--surface-secondary)]">
+                      <img
+                        src={dayPhotos[dayIdx]!.url}
+                        alt={`${plan.destination} day ${day.dayNumber}`}
+                        loading="lazy"
+                        className="w-full h-auto block aspect-[16/10] object-cover"
+                        width={900}
+                        height={563}
+                      />
+                    </div>
+                    {dayPhotos[dayIdx]!.attribution && (
+                      <p className="mt-1.5 text-caption text-[var(--text-muted)]">
+                        {t("photoBy")}{" "}
+                        <a
+                          href={dayPhotos[dayIdx]!.attribution!.profileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:text-[var(--text-primary)]"
+                        >
+                          {dayPhotos[dayIdx]!.attribution!.name}
+                        </a>{" "}
+                        {t("photoOn")}{" "}
+                        <a
+                          href={unsplashHomeUrl()}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:text-[var(--text-primary)]"
+                        >
+                          Unsplash
+                        </a>
+                      </p>
+                    )}
+                  </>
                 )}
 
                 {/* Per-day mini-map — same URL the PDF uses, so site +

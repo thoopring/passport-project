@@ -302,6 +302,8 @@
     "airportToHotel": "Aéroport → Hébergement",
     "day": "Jour",
     "tripEssentials": "Essentiels du voyage",
+    "photoBy": "Photo de",
+    "photoOn": "sur",
     "craftedFor": {
       "default": "Conçu pour vous",
       "solo": "Construit autour de votre rythme solo",

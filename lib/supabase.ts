@@ -33,3 +33,4 @@ export function getSupabaseAdmin(): SupabaseClient {
 }
 
 export const PLANS_TABLE = "plans";
+export const DESTINATION_PHOTO_CACHE_TABLE = "destination_photo_cache";

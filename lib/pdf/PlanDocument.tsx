@@ -264,7 +264,15 @@ const styles = StyleSheet.create({
     objectFit: "cover",
     borderRadius: 6,
     marginTop: 8,
-    marginBottom: 8,
+    marginBottom: 4,
+  },
+  attributionCaption: {
+    /* Photographer attribution for Unsplash-sourced photos. Required by
+       the API guidelines whenever a search result is rendered. Sized
+       small + muted so it doesn't fight with the plan content. */
+    fontSize: 8,
+    color: colors.muted,
+    marginBottom: 10,
   },
   pill: {
     backgroundColor: colors.brand,
@@ -323,6 +331,14 @@ interface Props {
    *  same photo on the same day. Empty entry = skip the photo for that
    *  day (cold-start destinations or pool exhaustion). */
   dayPhotoUrls?: string[];
+  /** Attribution caption for the hero photo when sourced from Unsplash
+   *  via the cold-start cache. Required by Unsplash Production API
+   *  guidelines. Catalog (License-self-host) heroes pass undefined. */
+  heroAttributionLine?: string;
+  /** Per-day attribution captions, parallel to dayPhotoUrls. Empty
+   *  string for days where the photo came from the License-self-host
+   *  catalog (no caption needed). */
+  dayAttributionLines?: string[];
   /** Locale for trivia content selection. Defaults to "en" — the PDF
    *  was previously English-only because pickTrivia didn't take a locale,
    *  which broke the language consistency of every non-English plan. */
@@ -359,6 +375,8 @@ export function PlanDocument({
   heroImageUrl,
   dayMapUrls,
   dayPhotoUrls,
+  heroAttributionLine,
+  dayAttributionLines,
   locale = "en",
   triviaLabel = "Did you know?",
   triviaSeed,
@@ -405,6 +423,9 @@ export function PlanDocument({
           </Text>
           {craftedForLine && (
             <Text style={styles.coverTagline}>{craftedForLine}</Text>
+          )}
+          {heroAttributionLine && (
+            <Text style={styles.attributionCaption}>{heroAttributionLine}</Text>
           )}
           {generatedAtLine && (
             <Text style={styles.coverFooter}>{generatedAtLine}</Text>
@@ -493,6 +514,7 @@ export function PlanDocument({
         const triviaForDay = triviaPool[dayIdx];
         const dayMapUrl = dayMapUrls?.[dayIdx];
         const dayPhotoUrl = dayPhotoUrls?.[dayIdx];
+        const dayAttributionLine = dayAttributionLines?.[dayIdx];
 
         return (
           <Page key={day.dayNumber} size="A4" style={styles.page}>
@@ -505,9 +527,14 @@ export function PlanDocument({
             </View>
 
             {/* Per-day destination photo — emotional anchor before the
-                functional content. Skipped when the destination isn't
-                in lib/destinations/day-photos catalog. */}
+                functional content. Skipped when neither catalog nor
+                cache covers this destination. Attribution caption
+                renders directly underneath when the photo came from
+                the Unsplash cache (API-fetched), per API guidelines. */}
             {dayPhotoUrl && <Image src={dayPhotoUrl} style={styles.dayPhotoImg} />}
+            {dayPhotoUrl && dayAttributionLine && (
+              <Text style={styles.attributionCaption}>{dayAttributionLine}</Text>
+            )}
 
             {/* Day mini-map — tight zoom on this day's stops + hotel anchor.
                 Solves the airport-far-from-city problem the overview map

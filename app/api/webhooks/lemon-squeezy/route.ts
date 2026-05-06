@@ -11,6 +11,7 @@ import {
 import { generateTripPlan } from "../../../../lib/generator/claude";
 import { computeRoutePolylines } from "../../../../lib/mapbox-directions";
 import { sendPlanReadyEmail, sendReferralCreditEarnedEmail } from "../../../../lib/email";
+import { ensureDestinationPhotos } from "../../../../lib/destinations/auto-fetch";
 import { awardCredit, getRecentPlanLocale } from "../../../../lib/referrals";
 import type { PlanLocale } from "../../../../types/trip-plan";
 
@@ -129,6 +130,21 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
       await savePlanRoutePolylines(planId, polylines);
     } catch (err) {
       console.warn("[webhook] polyline computation failed (non-fatal)", { planId, err });
+    }
+
+    // Cold-start photo fetch — for destinations not in the curated
+    // /public/destinations catalog. Searches Unsplash, caches result.
+    // Non-fatal; plan still ships if Unsplash is unavailable.
+    try {
+      await ensureDestinationPhotos(
+        generated.destination,
+        generated.days.length,
+      );
+    } catch (err) {
+      console.warn("[webhook] cold-start photo fetch failed (non-fatal)", {
+        planId,
+        err,
+      });
     }
 
     await sendPlanReadyEmail({

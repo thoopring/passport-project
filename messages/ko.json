@@ -302,6 +302,8 @@
     "airportToHotel": "공항 → 숙소",
     "day": "Day",
     "tripEssentials": "여행 핵심 정보",
+    "photoBy": "사진:",
+    "photoOn": "·",
     "craftedFor": {
       "default": "당신을 위해 다듬은 플랜",
       "solo": "혼자만의 페이스에 맞춘 플랜",

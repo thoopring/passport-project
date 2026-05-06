@@ -6,6 +6,8 @@ import { PlanDocument } from "../../../../../lib/pdf/PlanDocument";
 import { buildOverviewMapUrl, buildDayMapUrl } from "../../../../../lib/map";
 import { getDestinationHeroUrl } from "../../../../../lib/destinations/heroes";
 import { pickDayPhotos } from "../../../../../lib/destinations/day-photos";
+import { readDestinationPhotos } from "../../../../../lib/destinations/auto-fetch";
+import { renderableImageUrl } from "../../../../../lib/unsplash";
 import type { Locale } from "../../../../../i18n/locales";
 
 export const runtime = "nodejs";
@@ -59,16 +61,45 @@ export async function GET(
     return u.startsWith("/") ? `${baseUrl}${u}` : u;
   };
 
-  const heroImageUrl = absolutize(getDestinationHeroUrl(record.plan.destination));
+  // Catalog first, Unsplash auto-fetch cache second. Same fallback
+  // chain as the site's PlanView; mirrors the in-browser experience.
+  const catalogHero = getDestinationHeroUrl(record.plan.destination);
+  const cachedPhotos = catalogHero
+    ? null
+    : await readDestinationPhotos(record.plan.destination);
+  const autoHero = cachedPhotos?.hero ?? null;
+  const heroImageUrl = catalogHero
+    ? absolutize(catalogHero)
+    : autoHero
+      ? renderableImageUrl(autoHero.url, 1600)
+      : undefined;
+  const heroAttributionLine = autoHero
+    ? `Photo: ${autoHero.photographerName} / Unsplash`
+    : undefined;
 
-  // Per-day destination photos — same seeded picker the site uses, so
-  // site/PDF render the same photo on the same day. Empty array for
-  // destinations not in the catalog; PDF skips photo block per day.
-  const dayPhotoUrls = pickDayPhotos(
+  // Per-day photos with the same fallback chain.
+  const catalogDayPhotos = pickDayPhotos(
     record.plan.destination,
     record.plan.days.length,
     id,
-  ).map((u) => absolutize(u)!);
+  );
+  const dayPhotoUrls: string[] = record.plan.days.map((_, idx) => {
+    if (catalogDayPhotos[idx]) return absolutize(catalogDayPhotos[idx])!;
+    const cachedDay = cachedPhotos?.days[idx];
+    if (cachedDay) return renderableImageUrl(cachedDay.url, 900);
+    return "";
+  });
+  // Parallel array of attribution captions per day (empty string when no
+  // attribution needed — catalog photos or no photo). PDF render shows
+  // the caption below the image when non-empty.
+  const dayAttributionLines: string[] = record.plan.days.map((_, idx) => {
+    if (catalogDayPhotos[idx]) return "";
+    const cachedDay = cachedPhotos?.days[idx];
+    if (cachedDay) {
+      return `Photo: ${cachedDay.photographerName} / Unsplash`;
+    }
+    return "";
+  });
 
   // Cover-page strings — localized server-side because react-pdf can't
   // call useTranslations.
@@ -115,8 +146,10 @@ export async function GET(
       plan={record.plan}
       mapImageUrl={mapImageUrl}
       heroImageUrl={heroImageUrl}
+      heroAttributionLine={heroAttributionLine}
       dayMapUrls={dayMapUrls}
       dayPhotoUrls={dayPhotoUrls}
+      dayAttributionLines={dayAttributionLines}
       locale={planLocale}
       triviaLabel={labelT("triviaLabel")}
       triviaSeed={id}

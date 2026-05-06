@@ -302,6 +302,8 @@
     "airportToHotel": "空港 → 宿泊先",
     "day": "Day",
     "tripEssentials": "旅の基本情報",
+    "photoBy": "写真:",
+    "photoOn": "·",
     "craftedFor": {
       "default": "あなたのために仕立てた旅程",
       "solo": "ひとり旅のペースに合わせた旅程",

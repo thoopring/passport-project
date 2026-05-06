@@ -1,6 +1,12 @@
 import { Resend } from "resend";
 import type { PlanLocale } from "../types/trip-plan";
 import { getDestinationHeroUrl } from "./destinations/heroes";
+import { readDestinationPhotos } from "./destinations/auto-fetch";
+import {
+  photographerProfileUrl,
+  unsplashHomeUrl,
+  renderableImageUrl,
+} from "./unsplash";
 
 /**
  * Email delivery via Resend.
@@ -200,17 +206,32 @@ export async function sendPlanReadyEmail(args: PlanReadyArgs): Promise<void> {
   const travelerKey = travelerKeyFor(args.travelerType);
   const taglineText = copy.craftedFor[travelerKey];
 
-  // Hero photo from the same destination catalog the site/PDF use.
-  // Skipped when the destination isn't in the curated set so the email
-  // doesn't show a broken image (better: clean text-only header).
-  // Email <img src> needs ABSOLUTE URLs — relative paths don't resolve
-  // in a mail client. The catalog returns "/destinations/..." for
-  // self-hosted entries; we prefix with the public site URL so the
-  // mail client fetches from the same Vercel CDN the site uses.
-  const rawHeroUrl = getDestinationHeroUrl(args.destination, 1200);
-  const heroUrl = rawHeroUrl?.startsWith("/")
-    ? `${baseUrl}${rawHeroUrl}`
-    : rawHeroUrl;
+  // Hero photo: catalog first, Unsplash auto-fetch cache second. Same
+  // fallback chain as site/PDF. Email <img src> needs ABSOLUTE URLs —
+  // relative paths don't resolve in a mail client. The catalog returns
+  // "/destinations/..." for self-hosted entries; we prefix with the
+  // public site URL so the mail client fetches from the same Vercel
+  // CDN the site uses. Cache returns absolute Unsplash CDN URLs (no
+  // prefix needed).
+  let heroUrl: string | undefined;
+  let heroAttribution:
+    | { name: string; profileUrl: string }
+    | undefined;
+  const catalogHero = getDestinationHeroUrl(args.destination, 1200);
+  if (catalogHero) {
+    heroUrl = catalogHero.startsWith("/")
+      ? `${baseUrl}${catalogHero}`
+      : catalogHero;
+  } else {
+    const cached = await readDestinationPhotos(args.destination);
+    if (cached?.hero) {
+      heroUrl = renderableImageUrl(cached.hero.url, 1200);
+      heroAttribution = {
+        name: cached.hero.photographerName,
+        profileUrl: photographerProfileUrl(cached.hero.photographerUsername),
+      };
+    }
+  }
 
   const subject = copy.subject(args.destination);
 
@@ -260,7 +281,17 @@ export async function sendPlanReadyEmail(args: PlanReadyArgs): Promise<void> {
             <td style="padding:0;">
               <img src="${heroUrl}" alt="${escapeHtml(args.destination)}" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;" />
             </td>
+          </tr>${
+            heroAttribution
+              ? `
+          <!-- Photographer attribution (Unsplash API guideline) -->
+          <tr>
+            <td style="padding:6px 28px 0;font-size:11px;color:${TOKEN.muted};">
+              Photo by <a href="${heroAttribution.profileUrl}" style="color:${TOKEN.muted};text-decoration:underline;">${escapeHtml(heroAttribution.name)}</a> on <a href="${unsplashHomeUrl()}" style="color:${TOKEN.muted};text-decoration:underline;">Unsplash</a>
+            </td>
           </tr>`
+              : ""
+          }`
               : ""
           }
           <!-- Content -->

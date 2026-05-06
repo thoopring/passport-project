@@ -5,6 +5,7 @@ import { consumePlanCredit, REFERRAL_COOKIE } from "../../../lib/referrals";
 import { validatePromoCode, redeemPromoCode } from "../../../lib/promo";
 import { generateTripPlan } from "../../../lib/generator/claude";
 import { sendPlanReadyEmail } from "../../../lib/email";
+import { ensureDestinationPhotos } from "../../../lib/destinations/auto-fetch";
 
 // Promo path runs the full generator pipeline inside this route via
 // after(). Founder direction (2026-04-30): quality > speed. With
@@ -141,6 +142,19 @@ async function generateAndDeliver(planId: string): Promise<void> {
     await setPlanGenerating(planId);
     const generated = await generateTripPlan(plan.request);
     await savePlanResult(planId, generated);
+
+    // Cold-start photo fetch (same logic as webhook). Non-fatal.
+    try {
+      await ensureDestinationPhotos(
+        generated.destination,
+        generated.days.length,
+      );
+    } catch (err) {
+      console.warn("[checkout-credit] cold-start photo fetch failed", {
+        planId,
+        err,
+      });
+    }
 
     await sendPlanReadyEmail({
       to: plan.email,

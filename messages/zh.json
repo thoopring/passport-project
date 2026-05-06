@@ -302,6 +302,8 @@
     "airportToHotel": "机场 → 住宿",
     "day": "Day",
     "tripEssentials": "旅行要点",
+    "photoBy": "摄影:",
+    "photoOn": "·",
     "craftedFor": {
       "default": "为您量身打造的行程",
       "solo": "贴合您独自旅行的节奏",
