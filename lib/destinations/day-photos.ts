@@ -45,23 +45,38 @@ const POOLS: DayPhotoPool[] = [
   {
     aliases: ["tokyo", "도쿄", "東京", "东京"],
     photoIds: [
+      // 2 dropped via 2026-05-06 migration HEAD-check (photo-1551353777
+      // Tokyo Tower red, photo-1505765050516 Shinjuku alley). Pool
+      // size now 4 — sufficient for 3-4 day Tokyo plans, cycles for 5+.
       "photo-1480796927426-f609979314bd", // Tokyo street with cherry blossoms
       "photo-1503899036084-c55cdd92da26", // Tokyo crossing
       "photo-1493976040374-85c8e12f0c0e", // Tokyo neon alley
       "photo-1554797589-7241bb691973", // Senso-ji at dusk
-      "photo-1551353777-9bcc7ba2c0c2", // Tokyo Tower red
-      "photo-1505765050516-f72dcac9c60a", // Shinjuku alley with lanterns
+    ],
+    localFiles: [
+      "tokyo/day-1.jpg",
+      "tokyo/day-2.jpg",
+      "tokyo/day-3.jpg",
+      "tokyo/day-4.jpg",
     ],
   },
   {
     aliases: ["paris", "파리", "パリ", "巴黎"],
     photoIds: [
+      // 1 dropped (photo-1431915525049 Notre Dame) on 2026-05-06.
+      // Surviving 5 photos renamed contiguously day-1..day-5 on disk.
       "photo-1502602898657-3e91760cbb34", // Eiffel Tower from afar
       "photo-1431274172761-fca41d930114", // Louvre pyramid
       "photo-1520939817895-060bdaf4fe1b", // Paris café terrace
-      "photo-1431915525049-e493bb586d3e", // Notre Dame
       "photo-1522093007474-d86e9bf7ba6f", // Montmartre stairs
       "photo-1546412414-e1885259563a", // Seine bridge at golden hour
+    ],
+    localFiles: [
+      "paris/day-1.jpg",
+      "paris/day-2.jpg",
+      "paris/day-3.jpg",
+      "paris/day-4.jpg",
+      "paris/day-5.jpg",
     ],
   },
   {
@@ -84,12 +99,18 @@ const POOLS: DayPhotoPool[] = [
   {
     aliases: ["bali", "발리", "バリ", "巴厘", "巴厘岛", "ubud", "denpasar"],
     photoIds: [
+      // 2 dropped (photo-1518509562904 Uluwatu, photo-1604567935069
+      // surfer at sunset) on 2026-05-06. Surviving 4 renamed contiguously.
       "photo-1537996194471-e657df975ab4", // Bali rice terrace
-      "photo-1518509562904-e7ef99cddc85", // Uluwatu cliff temple
       "photo-1577717903315-1691ae25ab3f", // Bali beach with parasols
       "photo-1519482816300-1490fdf2c2bd", // Bali jungle pool
       "photo-1604999333679-b86d54738315", // Tanah Lot temple
-      "photo-1604567935069-65eaf4d33e4f", // Bali surfer at sunset
+    ],
+    localFiles: [
+      "bali/day-1.jpg",
+      "bali/day-2.jpg",
+      "bali/day-3.jpg",
+      "bali/day-4.jpg",
     ],
   },
 ];
