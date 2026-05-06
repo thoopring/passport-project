@@ -173,9 +173,11 @@ export default async function PlanView({
      catalog nor cache has a photo, the layout renders without a hero
      — clean text-only header rather than a generic stand-in. */
   const catalogHero = getDestinationHeroUrl(plan.destination);
-  const cachedPhotos = catalogHero
-    ? null
-    : await readDestinationPhotos(plan.destination);
+  // Always read the cache — a destination can be in the hero catalog
+  // (e.g. Singapore) but still need cold-start day photos. Gating the
+  // cache read on catalogHero === null means day photos never load for
+  // those mixed-coverage cities. Cheap query, returns null on miss.
+  const cachedPhotos = await readDestinationPhotos(plan.destination);
   const autoHero = cachedPhotos?.hero ?? null;
   const resolvedHeroImage =
     heroImage ??

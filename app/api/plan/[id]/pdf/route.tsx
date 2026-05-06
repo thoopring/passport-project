@@ -63,10 +63,11 @@ export async function GET(
 
   // Catalog first, Unsplash auto-fetch cache second. Same fallback
   // chain as the site's PlanView; mirrors the in-browser experience.
+  // Always read the cache: a destination can be in the hero catalog
+  // but still need cold-start day photos (e.g. Singapore — hero yes,
+  // day photos no). Gating cache lookup on hero presence loses those.
   const catalogHero = getDestinationHeroUrl(record.plan.destination);
-  const cachedPhotos = catalogHero
-    ? null
-    : await readDestinationPhotos(record.plan.destination);
+  const cachedPhotos = await readDestinationPhotos(record.plan.destination);
   const autoHero = cachedPhotos?.hero ?? null;
   const heroImageUrl = catalogHero
     ? absolutize(catalogHero)
