@@ -55,6 +55,8 @@ public/[0-9][0-9].png
 # User-shared sample PDFs for diagnostics — not production artifacts
 docs/*.pdf
 app/*.pdf
+gliddy-*.pdf
+/*.pdf
 
 # scripts/fetch-destination-photos.mjs writes a JSON report — byproduct
 scripts/fetch-report.json
