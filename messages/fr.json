@@ -108,7 +108,7 @@
       "budget": "Petit budget",
       "budgetHint": "Auberges, street food, transports en commun",
       "midrange": "Moyen",
-      "midrangeHint": "4 étoiles, restaurants",
+      "midrangeHint": "3–4 étoiles, restaurants",
       "luxury": "Luxe",
       "luxuryHint": "5 étoiles, gastronomie"
     },
@@ -133,7 +133,7 @@
       "budgetBudget": "Petit budget",
       "budgetBudgetHint": "Auberges, street food, transports",
       "budgetMidrange": "Moyen",
-      "budgetMidrangeHint": "4 étoiles, restaurants",
+      "budgetMidrangeHint": "3–4 étoiles, restaurants",
       "budgetLuxury": "Luxe",
       "budgetLuxuryHint": "5 étoiles, gastronomie",
       "submit": "Planifier mon voyage"
@@ -154,6 +154,14 @@
       "payAgainButton": "Réessayer le paiement",
       "sampleButton": "Voir un exemple",
       "newTabNote": "Le paiement s'ouvre dans un nouvel onglet — gardez celui-ci ouvert",
+      "redirectNote": "Vous allez être redirigé·e vers le paiement sécurisé",
+      "trust": {
+        "eyebrow": "Pourquoi gliddy, pas GPT",
+        "routes": "Distances et temps de trajet réels — GPT ne sait pas faire",
+        "places": "Hôtels et restos avec horaires exacts — pas d'invention",
+        "keepsake": "Une carte et un PDF à garder pour toujours",
+        "guarantee": "Pas convaincu·e ? Remboursement 100% · une refonte gratuite"
+      },
       "startOver": "Recommencer",
       "edit": "Modifier",
       "cancel": "Annuler",
@@ -329,6 +337,15 @@
     "generatingSubtitle": "La génération prend généralement 5 à 10 minutes. On vous enverra le lien par e-mail dès que c'est prêt — vous pouvez fermer cet onglet.",
     "generatingRefresh": "Actualiser",
     "paymentReceived": "Paiement reçu",
+    "regenerate": {
+      "headline": "Quelque chose à changer ?",
+      "subtitle": "On le refait une fois, gratuitement. Dites-nous quoi ajuster.",
+      "placeholder": "ex. Jour 2 trop touristique, plutôt des adresses locales. Quartier de l'hôtel trop bruyant, préfère plus calme.",
+      "oneTimeNote": "Une refonte gratuite · nouveau plan en 5–10 minutes",
+      "submit": "Utiliser ma refonte gratuite",
+      "submitting": "Lancement de la refonte…",
+      "alreadyUsed": "Vous avez déjà utilisé la refonte gratuite de ce plan. Écrivez à gliddy@checkvisamap.com si vous avez besoin d'une autre révision."
+    },
     "wait": {
       "paidBadge": "Paiement reçu",
       "headline": "On prépare votre plan de voyage",

@@ -108,7 +108,7 @@
       "budget": "Budget",
       "budgetHint": "Hostels, street food, transit",
       "midrange": "Mid-range",
-      "midrangeHint": "4-star, sit-down meals",
+      "midrangeHint": "3–4 star, sit-down meals",
       "luxury": "Luxury",
       "luxuryHint": "5-star, fine dining"
     },
@@ -133,7 +133,7 @@
       "budgetBudget": "Budget",
       "budgetBudgetHint": "Hostels, street food, transit",
       "budgetMidrange": "Mid-range",
-      "budgetMidrangeHint": "4-star, sit-down meals",
+      "budgetMidrangeHint": "3–4 star, sit-down meals",
       "budgetLuxury": "Luxury",
       "budgetLuxuryHint": "5-star, fine dining",
       "submit": "Plan my trip"
@@ -154,6 +154,14 @@
       "payAgainButton": "Retry checkout",
       "sampleButton": "See a sample first",
       "newTabNote": "Checkout opens in a new tab — keep this one open",
+      "redirectNote": "You'll be redirected to a secure checkout next",
+      "trust": {
+        "eyebrow": "Why gliddy, not GPT",
+        "routes": "Real distances + travel times — GPT can't compute these",
+        "places": "Real hotels + restaurants with hours — no hallucinations",
+        "keepsake": "Map + PDF you can keep forever",
+        "guarantee": "Don't love it? 100% refund · one free re-do"
+      },
       "startOver": "Start over",
       "edit": "Edit",
       "cancel": "Cancel",
@@ -329,6 +337,15 @@
     "generatingSubtitle": "Plans usually take 5-10 minutes. We'll email the link as soon as it's ready — feel free to close this tab.",
     "generatingRefresh": "Refresh",
     "paymentReceived": "Payment received",
+    "regenerate": {
+      "headline": "Anything you'd change?",
+      "subtitle": "We'll re-do your plan once, free. Tell us what to fix.",
+      "placeholder": "e.g. Day 2 felt too touristy — focus on local-only spots. Hotel area was too loud, prefer somewhere quieter.",
+      "oneTimeNote": "One free re-do · new plan arrives in 5–10 minutes",
+      "submit": "Use my free re-do",
+      "submitting": "Starting re-do…",
+      "alreadyUsed": "You've already used this plan's free re-do. Email gliddy@checkvisamap.com if you need another revision."
+    },
     "wait": {
       "paidBadge": "Payment received",
       "headline": "We're building your trip plan",

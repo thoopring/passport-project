@@ -108,7 +108,7 @@
       "budget": "经济",
       "budgetHint": "青旅、街边小吃、公共交通",
       "midrange": "中档",
-      "midrangeHint": "四星酒店、餐厅",
+      "midrangeHint": "三~四星酒店、餐厅",
       "luxury": "豪华",
       "luxuryHint": "五星酒店、精致餐饮"
     },
@@ -133,7 +133,7 @@
       "budgetBudget": "经济",
       "budgetBudgetHint": "青旅、街边小吃、公共交通",
       "budgetMidrange": "中档",
-      "budgetMidrangeHint": "四星酒店、餐厅",
+      "budgetMidrangeHint": "三~四星酒店、餐厅",
       "budgetLuxury": "豪华",
       "budgetLuxuryHint": "五星酒店、精致餐饮",
       "submit": "规划我的行程"
@@ -154,6 +154,14 @@
       "payAgainButton": "重新支付",
       "sampleButton": "先看看示例",
       "newTabNote": "支付将在新标签页打开 · 请保留当前标签页",
+      "redirectNote": "下一步将跳转至安全支付页面",
+      "trust": {
+        "eyebrow": "为什么选gliddy而不是GPT?",
+        "routes": "按实际距离与路线时间排程 (GPT做不到)",
+        "places": "酒店餐厅准确地址与营业时间 (绝不胡编)",
+        "keepsake": "地图加PDF, 永久保存",
+        "guarantee": "不满意? 100%退款 · 1次免费重做"
+      },
       "startOver": "重新开始",
       "edit": "修改",
       "cancel": "取消",
@@ -329,6 +337,15 @@
     "generatingSubtitle": "生成计划通常需要 5-10 分钟。准备好后我们会通过邮件发送链接,您可以关闭此标签页。",
     "generatingRefresh": "刷新",
     "paymentReceived": "已收到付款",
+    "regenerate": {
+      "headline": "有想要调整的地方吗?",
+      "subtitle": "免费帮您重做一次。告诉我们要改哪里。",
+      "placeholder": "例如: Day 2 太偏游客了, 希望以本地人去的餐厅为主。酒店区域太吵, 希望换个安静些的地方。",
+      "oneTimeNote": "1次免费 · 5-10分钟新行程送达",
+      "submit": "使用免费重做",
+      "submitting": "正在重做…",
+      "alreadyUsed": "本行程的免费重做已使用过。如需进一步修改, 请发送邮件至 gliddy@checkvisamap.com。"
+    },
     "wait": {
       "paidBadge": "已收到付款",
       "headline": "正在为您生成行程",

@@ -8,6 +8,7 @@ import PostPaymentWait from "../../../components/PostPaymentWait";
 import type { ShowcaseSample } from "../../../components/WaitSampleShowcase";
 import ShareReferralCard from "../../../components/ShareReferralCard";
 import SavePlanCta from "../../../components/SavePlanCta";
+import RegenerateForm from "../../../components/RegenerateForm";
 import CheckoutCompletedTracker from "../../../components/CheckoutCompletedTracker";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -206,6 +207,10 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
         bottomCta={
           <div className="space-y-4">
             <SavePlanCta planEmail={record.email} planId={id} />
+            <RegenerateForm
+              planId={id}
+              regenUsed={Boolean(record.regen_used)}
+            />
             {shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
           </div>
         }

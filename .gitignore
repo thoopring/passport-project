@@ -58,5 +58,11 @@ app/*.pdf
 gliddy-*.pdf
 /*.pdf
 
+# Diagnostic dumps the founder drops at repo root for shared analysis
+# (PostHog CSV exports, screenshots) — keep them out of history
+/*.csv
+/screencapture*.png
+/export-*.csv
+
 # scripts/fetch-destination-photos.mjs writes a JSON report — byproduct
 scripts/fetch-report.json

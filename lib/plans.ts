@@ -151,6 +151,45 @@ function sanitizeFailureReason(reason: string): string {
   return "Plan generation failed. A refund will be issued automatically.";
 }
 
+/**
+ * Atomically consume the plan's single free re-do allowance.
+ *
+ * Returns the updated PlanRecord on success, or null if the regen was
+ * NOT consumed because:
+ *   - regen_used was already true (someone clicked twice / race), or
+ *   - status was not 'complete' (plan still generating, or failed)
+ *
+ * Caller treats null as "tell the user this plan can't be regenerated
+ * right now". The atomic .eq() filters guarantee no double-consume even
+ * under concurrent submission.
+ *
+ * Side effects on success: regen_used → true, regen_feedback stored,
+ * status flipped back to 'generating' so the existing /plan/[id] page
+ * routes to the wait UI without any extra wiring.
+ */
+export async function consumeRegen(
+  id: string,
+  feedback: string,
+): Promise<PlanRecord | null> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from(PLANS_TABLE)
+    .update({
+      regen_used: true,
+      regen_feedback: feedback,
+      status: "generating" as PlanStatus,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .eq("regen_used", false)
+    .eq("status", "complete")
+    .select()
+    .maybeSingle();
+
+  if (error) throw new Error(`consumeRegen failed: ${error.message}`);
+  return (data as PlanRecord | null) ?? null;
+}
+
 export async function setPlanFailed(id: string, reason: string): Promise<void> {
   const supabase = getSupabaseAdmin();
   const safeReason = sanitizeFailureReason(reason);

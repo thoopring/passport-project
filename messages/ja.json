@@ -108,7 +108,7 @@
       "budget": "節約",
       "budgetHint": "ホステル、屋台、公共交通",
       "midrange": "ミドル",
-      "midrangeHint": "4つ星、レストラン",
+      "midrangeHint": "3〜4つ星、レストラン",
       "luxury": "ラグジュアリー",
       "luxuryHint": "5つ星、ファインダイニング"
     },
@@ -133,7 +133,7 @@
       "budgetBudget": "節約",
       "budgetBudgetHint": "ホステル、屋台、公共交通",
       "budgetMidrange": "ミドル",
-      "budgetMidrangeHint": "4つ星、レストラン",
+      "budgetMidrangeHint": "3〜4つ星、レストラン",
       "budgetLuxury": "ラグジュアリー",
       "budgetLuxuryHint": "5つ星、ファインダイニング",
       "submit": "旅程を作る"
@@ -154,6 +154,14 @@
       "payAgainButton": "決済をやり直す",
       "sampleButton": "まずサンプルを見る",
       "newTabNote": "決済は新しいタブで開きます · このタブはそのままで大丈夫",
+      "redirectNote": "次の画面で安全な決済ページに移動します",
+      "trust": {
+        "eyebrow": "なぜGPTでなくgliddy?",
+        "routes": "実際の距離・移動時間を計算した動線 (GPTにはできません)",
+        "places": "ホテル・お店の正確な場所と営業時間 (幻覚なし)",
+        "keepsake": "地図とPDFで永久保存",
+        "guarantee": "気に入らなければ100%返金 · 1回無料で再生成"
+      },
       "startOver": "最初からやり直す",
       "edit": "変更",
       "cancel": "キャンセル",
@@ -329,6 +337,15 @@
     "generatingSubtitle": "プラン作成には通常5〜10分かかります。完成し次第メールでリンクをお送りしますので、タブは閉じても大丈夫です。",
     "generatingRefresh": "更新",
     "paymentReceived": "決済完了",
+    "regenerate": {
+      "headline": "気になる部分はありますか?",
+      "subtitle": "1回無料で再作成します。どこを変えたいか教えてください。",
+      "placeholder": "例: Day 2が観光地寄りすぎ。ローカル向けのお店中心に変えてほしい。ホテルはもう少し静かなエリアが希望。",
+      "oneTimeNote": "1回無料 · 5〜10分で新しいプラン到着",
+      "submit": "無料の再作成を使う",
+      "submitting": "再作成を開始中…",
+      "alreadyUsed": "このプランの無料再作成はすでに使用済みです。さらに修正が必要な場合は gliddy@checkvisamap.com までご連絡ください。"
+    },
     "wait": {
       "paidBadge": "決済完了",
       "headline": "旅程を作成中です",

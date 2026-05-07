@@ -296,6 +296,14 @@ export interface PlanRecord {
   /** Cached Mapbox Directions polylines, one per consecutive stop-pair.
    *  Migration 0004 introduces this column; pre-migration plans return null. */
   route_polylines: (RoutePolylineSegment | null)[] | null;
+  /** True when this plan has used its single free re-do. Migration 0006
+   *  adds this column; pre-migration plans return null/undefined here.
+   *  Defaults to false on new rows. */
+  regen_used?: boolean | null;
+  /** Free-text user feedback that drove the most recent regenerate.
+   *  Appended to the prompt as "what should change" guidance. Migration
+   *  0006 introduces this column. */
+  regen_feedback?: string | null;
   created_at: string;
   updated_at: string;
 }

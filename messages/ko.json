@@ -108,7 +108,7 @@
       "budget": "알뜰",
       "budgetHint": "호스텔, 길거리 음식, 대중교통",
       "midrange": "중간",
-      "midrangeHint": "4성급, 일반 식당",
+      "midrangeHint": "3~4성급, 일반 식당",
       "luxury": "럭셔리",
       "luxuryHint": "5성급, 파인 다이닝"
     },
@@ -133,7 +133,7 @@
       "budgetBudget": "알뜰",
       "budgetBudgetHint": "호스텔, 길거리 음식, 대중교통",
       "budgetMidrange": "중간",
-      "budgetMidrangeHint": "4성급, 일반 식당",
+      "budgetMidrangeHint": "3~4성급, 일반 식당",
       "budgetLuxury": "럭셔리",
       "budgetLuxuryHint": "5성급, 파인 다이닝",
       "submit": "내 여행 계획 만들기"
@@ -161,6 +161,14 @@
       "payAgainButton": "결제 다시 시도",
       "sampleButton": "샘플 먼저 보기",
       "newTabNote": "결제는 새 창에서 열려요 · 이 창은 그대로 두셔도 돼요",
+      "redirectNote": "다음 화면에서 안전한 결제 페이지로 이동해요",
+      "trust": {
+        "eyebrow": "왜 GPT 대신 gliddy?",
+        "routes": "실제 거리·이동시간 계산한 동선 — GPT는 못 함",
+        "places": "호텔·식당 정확한 위치·영업시간 — 지어내지 않아요",
+        "keepsake": "지도 + PDF로 받아 평생 보관",
+        "guarantee": "맘에 안 들면 100% 환불 · 1회 무료 수정 보장"
+      },
       "startOver": "처음부터 다시 시작",
       "edit": "변경",
       "cancel": "취소",
@@ -329,6 +337,15 @@
     "generatingSubtitle": "플랜 만드는 데 보통 5-10분 정도 걸려요. 완성되는 대로 이메일로 링크 보내드리니 탭 닫으셔도 괜찮아요.",
     "generatingRefresh": "새로고침",
     "paymentReceived": "결제 완료",
+    "regenerate": {
+      "headline": "마음에 안 드는 부분이 있으세요?",
+      "subtitle": "한 번 무료로 다시 짜드릴게요. 어떤 부분을 바꾸고 싶은지 적어주세요.",
+      "placeholder": "예: Day 2가 너무 관광지 위주예요. 현지인이 가는 식당 위주로 바꿔주세요. 호텔은 좀 더 조용한 동네면 좋겠어요.",
+      "oneTimeNote": "1회 무료 · 5-10분 안에 새 플랜 도착",
+      "submit": "1회 무료 수정 사용",
+      "submitting": "수정 시작 중...",
+      "alreadyUsed": "이 플랜은 이미 무료 수정을 사용하셨어요. 추가 수정이 필요하면 gliddy@checkvisamap.com 으로 메일 주세요."
+    },
     "wait": {
       "paidBadge": "결제 완료",
       "headline": "여행 플랜을 만들고 있어요",

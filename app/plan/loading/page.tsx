@@ -330,15 +330,16 @@ function LoadingInner() {
         return;
       }
 
-      // Standard LS flow — open checkout in a new tab. Keep the current
-      // page so the user has context (review summary + fallback link
-      // if the popup is blocked).
+      // Standard LS flow — same-tab redirect to the LemonSqueezy hosted
+      // checkout. Mobile Safari + Android Chrome aggressively block
+      // window.open() calls that happen after an awaited fetch (the
+      // "user gesture" attribution is broken by the await). Empirical
+      // funnel data 2026-05-07: 7 mobile users reached this point and 0
+      // ever saw the LS page because the popup was blocked silently.
+      // Same-tab redirect avoids that class of bug entirely. After
+      // payment, LS redirects back to /plan/[id] so context is restored.
       setCheckoutUrl(url);
-      const win = window.open(url, "_blank", "noopener,noreferrer");
-      if (!win) {
-        setPopupBlocked(true);
-      }
-      setSubmitting(false);
+      window.location.href = url;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setSubmitting(false);
@@ -627,6 +628,39 @@ function LoadingInner() {
             </div>
           )}
 
+          {/* Trust + differentiation block — addresses 0% conversion
+              feedback (#9, #13, #14, #15): "GPT랑 비슷할 듯", "맘에 안
+              들면 또 결제?", "검증 못 한 risk". Four concrete promises
+              right above the CTA: what makes this not-GPT + what
+              happens if it's not good. Keep it tight; long bullets
+              dilute trust signals. */}
+          <div className="mb-6 rounded-[12px] border border-[var(--border-subtle)] bg-[var(--surface-secondary)] p-5">
+            <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">
+              {tr("trust.eyebrow")}
+            </p>
+            <ul className="space-y-2.5">
+              {(["routes", "places", "keepsake", "guarantee"] as const).map((k) => (
+                <li key={k} className="flex items-start gap-2.5 text-body-sm text-[var(--text-primary)]">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-[var(--brand-primary)] shrink-0 mt-0.5"
+                    aria-hidden
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{tr(`trust.${k}`)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3">
             <button
@@ -649,7 +683,7 @@ function LoadingInner() {
           </div>
 
           <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] text-center mt-6">
-            {tr("newTabNote")}
+            {tr("redirectNote")}
           </p>
 
           <div className="text-center mt-4">
