@@ -349,6 +349,14 @@
       "submitting": "수정 시작 중...",
       "alreadyUsed": "이 플랜은 이미 무료 수정을 사용하셨어요. 추가 수정이 필요하면 gliddy@checkvisamap.com 으로 메일 주세요."
     },
+    "communityListing": {
+      "headline": "이 플랜을 갤러리에 공개할까요?",
+      "subtitle": "다른 여행자가 본인 도쿄·파리·방콕 일정 어떻게 짰는지 출발 전에 둘러볼 수 있는 갤러리예요.",
+      "toggleLabel": "갤러리 공개 토글",
+      "privacyHidden": "이메일·정확한 날짜·예약한 호텔 이름은 안 보여요",
+      "privacyShown": "도시·일정·동선·관심사·예산대만 보여요",
+      "comingSoon": "갤러리 곧 출시 — 지금 옵트인하면 첫 사례로 소개해 드려요"
+    },
     "wait": {
       "paidBadge": "결제 완료",
       "headline": "여행 플랜을 만들고 있어요",

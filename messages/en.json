@@ -349,6 +349,14 @@
       "submitting": "Starting re-do…",
       "alreadyUsed": "You've already used this plan's free re-do. Email gliddy@checkvisamap.com if you need another revision."
     },
+    "communityListing": {
+      "headline": "Share this plan in the gallery?",
+      "subtitle": "A spot where other travelers can browse how someone did Tokyo, Paris, or Bangkok before they plan their own trip.",
+      "toggleLabel": "Toggle gallery visibility",
+      "privacyHidden": "Your email, exact dates, and booked hotel name stay private",
+      "privacyShown": "Destination, day-by-day, route, interests, and budget tier are shown",
+      "comingSoon": "Gallery launching soon — opt in now and you'll be among the first plans we feature"
+    },
     "wait": {
       "paidBadge": "Payment received",
       "headline": "We're building your trip plan",

@@ -9,6 +9,7 @@ import type { ShowcaseSample } from "../../../components/WaitSampleShowcase";
 import ShareReferralCard from "../../../components/ShareReferralCard";
 import SavePlanCta from "../../../components/SavePlanCta";
 import RegenerateForm from "../../../components/RegenerateForm";
+import PublicListingToggle from "../../../components/PublicListingToggle";
 import CheckoutCompletedTracker from "../../../components/CheckoutCompletedTracker";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -210,6 +211,10 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
             <RegenerateForm
               planId={id}
               regenUsed={Boolean(record.regen_used)}
+            />
+            <PublicListingToggle
+              planId={id}
+              initialPublicListed={Boolean(record.public_listed)}
             />
             {shareUrl ? <ShareReferralCard shareUrl={shareUrl} /> : null}
           </div>

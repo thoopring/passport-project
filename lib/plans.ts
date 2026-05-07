@@ -190,6 +190,31 @@ export async function consumeRegen(
   return (data as PlanRecord | null) ?? null;
 }
 
+/**
+ * Toggle the buyer's opt-in to publish their plan in the public
+ * community gallery (Phase 0 of the community-sharing plan, see
+ * docs/COMMUNITY-SHARING-PLAN.md).
+ *
+ * No status check — buyers can flip this any time, before/after
+ * generation, on / off / on. The /community gallery filter handles
+ * pulling only completed + opted-in plans.
+ */
+export async function setPlanPublicListed(
+  id: string,
+  publicListed: boolean,
+): Promise<void> {
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase
+    .from(PLANS_TABLE)
+    .update({
+      public_listed: publicListed,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id);
+
+  if (error) throw new Error(`setPlanPublicListed failed: ${error.message}`);
+}
+
 export async function setPlanFailed(id: string, reason: string): Promise<void> {
   const supabase = getSupabaseAdmin();
   const safeReason = sanitizeFailureReason(reason);

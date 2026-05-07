@@ -349,6 +349,14 @@
       "submitting": "Lancement de la refonte…",
       "alreadyUsed": "Vous avez déjà utilisé la refonte gratuite de ce plan. Écrivez à gliddy@checkvisamap.com si vous avez besoin d'une autre révision."
     },
+    "communityListing": {
+      "headline": "Publier ce plan dans la galerie ?",
+      "subtitle": "Une galerie où d'autres voyageurs voient comment quelqu'un a fait Tokyo, Paris ou Bangkok avant de préparer leur voyage.",
+      "toggleLabel": "Basculer la visibilité de la galerie",
+      "privacyHidden": "Votre e-mail, dates exactes et nom d'hôtel réservé restent privés",
+      "privacyShown": "Destination, programme jour par jour, itinéraire, centres d'intérêt et budget sont affichés",
+      "comingSoon": "Galerie bientôt en ligne — opt-in maintenant pour faire partie des premiers plans présentés"
+    },
     "wait": {
       "paidBadge": "Paiement reçu",
       "headline": "On prépare votre plan de voyage",

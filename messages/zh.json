@@ -349,6 +349,14 @@
       "submitting": "正在重做…",
       "alreadyUsed": "本行程的免费重做已使用过。如需进一步修改, 请发送邮件至 gliddy@checkvisamap.com。"
     },
+    "communityListing": {
+      "headline": "把这份行程公开到画廊?",
+      "subtitle": "一个画廊, 让其他旅行者在自己规划前先看看别人是怎么走东京、巴黎、曼谷的。",
+      "toggleLabel": "画廊公开开关",
+      "privacyHidden": "邮箱、确切日期、已订酒店名称都不会显示",
+      "privacyShown": "只展示目的地、每日行程、路线、兴趣和预算档位",
+      "comingSoon": "画廊即将上线 — 现在加入将成为首批展示的行程"
+    },
     "wait": {
       "paidBadge": "已收到付款",
       "headline": "正在为您生成行程",

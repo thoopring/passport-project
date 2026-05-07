@@ -349,6 +349,14 @@
       "submitting": "再作成を開始中…",
       "alreadyUsed": "このプランの無料再作成はすでに使用済みです。さらに修正が必要な場合は gliddy@checkvisamap.com までご連絡ください。"
     },
+    "communityListing": {
+      "headline": "このプランをギャラリーに公開しますか?",
+      "subtitle": "他の旅行者が東京・パリ・バンコクをどう回ったか、自分の計画前に見られるギャラリーです。",
+      "toggleLabel": "ギャラリー公開トグル",
+      "privacyHidden": "メールアドレス・正確な日付・予約したホテル名は非公開",
+      "privacyShown": "目的地・日程・動線・興味・予算帯のみ表示",
+      "comingSoon": "ギャラリーは近日公開 — 今オプトインすれば最初の掲載プランとして紹介します"
+    },
     "wait": {
       "paidBadge": "決済完了",
       "headline": "旅程を作成中です",

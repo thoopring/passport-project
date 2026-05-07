@@ -304,6 +304,10 @@ export interface PlanRecord {
    *  Appended to the prompt as "what should change" guidance. Migration
    *  0006 introduces this column. */
   regen_feedback?: string | null;
+  /** Buyer opted into the public community gallery. Default false.
+   *  Migration 0007 introduces this column. Plans with public_listed
+   *  true get rendered (with PII stripped) on /community in Phase 1. */
+  public_listed?: boolean | null;
   created_at: string;
   updated_at: string;
 }
