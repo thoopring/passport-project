@@ -666,13 +666,19 @@ function LoadingInner() {
               "see sample" button. Founder feedback after 0% conversion:
               "결제하고 싶은 디자인이 아니야. 막 누르고 싶게 해줘."
               Now: coral brand color, full-width, larger tap target
-              (py-4 = 56px on mobile, exceeds 44px iOS minimum),
-              embedded $4 anchor + arrow, subtle shadow that lifts the
-              button off the surface. Active scale provides haptic feel
-              on tap. Microcopy below the button reinforces speed +
-              guarantee. Secondary "see sample" demoted to a quiet
-              text link so the visual hierarchy points at one obvious
-              next action. */}
+              (py-4 = 56px on mobile, exceeds 44px iOS minimum), subtle
+              shadow that lifts the button off the surface. Active scale
+              provides haptic feel on tap.
+              Price is INTENTIONALLY hidden everywhere outside /pricing
+              and /terms (founder direction 2026-05-07): showing $4
+              before the LS checkout page gives the buyer time to
+              evaluate "is it worth $4 to me?" — exactly the moment we
+              lose them. By the time they see the dollar amount on the
+              LS page, they've already psychologically committed by
+              walking through the wizard. So the CTA only says "Build
+              my plan", not "Build my plan · $4". Secondary "see
+              sample" demoted to a quiet text link so the visual
+              hierarchy points at one obvious next action. */}
           <div className="flex flex-col gap-3">
             <button
               type="button"
@@ -687,13 +693,7 @@ function LoadingInner() {
                     ? tr("payAgainButton")
                     : tr("payButton")}
               </span>
-              {!submitting && (
-                <>
-                  <span aria-hidden className="opacity-70">·</span>
-                  <span className="font-bold tabular-nums">$4</span>
-                  <span aria-hidden className="ml-0.5">→</span>
-                </>
-              )}
+              {!submitting && <span aria-hidden className="ml-0.5">→</span>}
             </button>
 
             <p className="text-caption text-center text-[var(--text-muted)]">

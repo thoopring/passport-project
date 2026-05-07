@@ -42,7 +42,7 @@
     "tagline": "AI trip plans",
     "pitch": "A traveled-in plan, ready before you pack.",
     "cta": "Plan my trip",
-    "ctaHint": "$4 · delivered by email + PDF",
+    "ctaHint": "Delivered by email + PDF",
     "groupProduct": "Product",
     "groupAbout": "About",
     "groupLegal": "Legal",
@@ -161,7 +161,7 @@
         "routes": "Your route, drawn on a real map",
         "places": "Real spots — nothing invented, nothing closed",
         "keepsake": "Airport → hotel → meals, no gaps",
-        "guarantee": "Don't love it? Free re-do or refund — your $4 is safe"
+        "guarantee": "Don't love it? Free re-do or refund — you're covered"
       },
       "startOver": "Start over",
       "edit": "Edit",

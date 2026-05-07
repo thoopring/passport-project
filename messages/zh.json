@@ -42,7 +42,7 @@
     "tagline": "AI 行程规划",
     "pitch": "像旅行过的人写的行程,打包前就送到手中。",
     "cta": "规划我的行程",
-    "ctaHint": "$4 · 邮件 + PDF 送达",
+    "ctaHint": "邮件 + PDF 送达",
     "groupProduct": "产品",
     "groupAbout": "关于",
     "groupLegal": "法律",
@@ -161,7 +161,7 @@
         "routes": "地图上画出真实的行程路线",
         "places": "不会推荐已关门的店 — 坐标和营业时间都核实过",
         "keepsake": "机场到酒店到餐厅, 衔接顺畅无空档",
-        "guarantee": "不满意? 1次免费重做 + 退款 — 4美元零风险"
+        "guarantee": "不满意? 1次免费重做 + 退款 — 零风险"
       },
       "startOver": "重新开始",
       "edit": "修改",

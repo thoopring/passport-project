@@ -42,7 +42,7 @@
     "tagline": "Plans de voyage IA",
     "pitch": "Un plan vécu, prêt avant que vous fassiez vos valises.",
     "cta": "Planifier mon voyage",
-    "ctaHint": "$4 · livré par email + PDF",
+    "ctaHint": "Livré par email + PDF",
     "groupProduct": "Produit",
     "groupAbout": "À propos",
     "groupLegal": "Mentions légales",
@@ -161,7 +161,7 @@
         "routes": "Votre itinéraire dessiné sur une vraie carte",
         "places": "De vraies adresses — rien d'inventé, rien de fermé",
         "keepsake": "De l'aéroport au resto, sans accroc",
-        "guarantee": "Pas convaincu·e ? Refonte gratuite ou remboursement — vos 4$ sont protégés"
+        "guarantee": "Pas convaincu·e ? Refonte gratuite ou remboursement — vous êtes couvert·e"
       },
       "startOver": "Recommencer",
       "edit": "Modifier",
