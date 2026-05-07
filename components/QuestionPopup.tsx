@@ -90,11 +90,22 @@ export default function QuestionPopup({
     [question.type, textValue],
   );
 
+  // Sentinel value: when a chip option uses this value AND is selected,
+  // the popup reveals a free-text input below the chips. Submit returns
+  // the typed text (not the sentinel) so downstream code never sees
+  // "__custom" — only the actual user input. Used by the wizard's
+  // arrival-time question so users can type "14:30 NRT" instead of
+  // picking a 4-hour bucket.
+  const CUSTOM_VALUE = "__custom";
+  const isCustomMode = singleValue === CUSTOM_VALUE;
+
   const canSubmit = (() => {
     if (question.optional) return true;
     switch (question.type) {
       case "single-chip":
-        return singleValue !== null;
+        if (singleValue === null) return false;
+        if (isCustomMode) return textValue.trim().length > 0;
+        return true;
       case "multi-chip":
         return multiValue.length >= (question.minSelections ?? 1);
       case "number":
@@ -116,7 +127,10 @@ export default function QuestionPopup({
   const submit = () => {
     switch (question.type) {
       case "single-chip":
-        onAnswer(singleValue);
+        // When the custom-input chip is selected, return the typed
+        // text instead of the sentinel. Falls back to the chip value
+        // for all normal selections.
+        onAnswer(isCustomMode ? textValue.trim() : singleValue);
         break;
       case "multi-chip":
         onAnswer(multiValue);
@@ -168,21 +182,34 @@ export default function QuestionPopup({
 
         <div className="mt-5">
           {question.type === "single-chip" && question.options && (
-            <div className="grid grid-cols-2 gap-2">
-              {question.options.map((opt) => (
-                <button
-                  key={opt.value}
-                  type="button"
-                  onClick={() => setSingleValue(opt.value)}
-                  className={chipClass(singleValue === opt.value)}
-                >
-                  <span className="font-semibold text-body-sm block">{opt.label}</span>
-                  {opt.hint && (
-                    <span className="block text-caption opacity-70 mt-0.5">{opt.hint}</span>
-                  )}
-                </button>
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-2 gap-2">
+                {question.options.map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setSingleValue(opt.value)}
+                    className={chipClass(singleValue === opt.value)}
+                  >
+                    <span className="font-semibold text-body-sm block">{opt.label}</span>
+                    {opt.hint && (
+                      <span className="block text-caption opacity-70 mt-0.5">{opt.hint}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+              {isCustomMode && (
+                <input
+                  type="text"
+                  value={textValue}
+                  onChange={(e) => setTextValue(e.target.value)}
+                  placeholder={question.placeholder}
+                  maxLength={160}
+                  autoFocus
+                  className={`${inputClass} mt-3`}
+                />
+              )}
+            </>
           )}
 
           {question.type === "multi-chip" && question.options && (

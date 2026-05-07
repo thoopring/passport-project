@@ -155,12 +155,13 @@
       "sampleButton": "See a sample first",
       "newTabNote": "Checkout opens in a new tab — keep this one open",
       "redirectNote": "You'll be redirected to a secure checkout next",
+      "ctaMicrocopy": "Email + PDF in 5–10 min · 100% refund guaranteed",
       "trust": {
-        "eyebrow": "Why gliddy, not GPT",
-        "routes": "Real distances + travel times — GPT can't compute these",
-        "places": "Real hotels + restaurants with hours — no hallucinations",
-        "keepsake": "Map + PDF you can keep forever",
-        "guarantee": "Don't love it? 100% refund · one free re-do"
+        "eyebrow": "Why people pick gliddy over GPT",
+        "routes": "Your route, drawn on a real map",
+        "places": "Real spots — nothing invented, nothing closed",
+        "keepsake": "Airport → hotel → meals, no gaps",
+        "guarantee": "Don't love it? Free re-do or refund — your $4 is safe"
       },
       "startOver": "Start over",
       "edit": "Edit",
@@ -234,7 +235,9 @@
         "morning": "Morning (9 AM – 12 PM)",
         "afternoon": "Afternoon (12 – 5 PM)",
         "evening": "Evening (5 – 10 PM)",
-        "lateNight": "Late night (after 10 PM)"
+        "lateNight": "Late night (after 10 PM)",
+        "custom": "Type my time",
+        "customPlaceholder": "e.g. 14:30 NRT, or May 1 2:30 PM"
       },
       "hotel": {
         "title": "Already booked a place to stay? (optional)",

@@ -661,28 +661,55 @@ function LoadingInner() {
             </ul>
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3">
+          {/* Primary CTA — conversion-optimized redesign 2026-05-07.
+              Was: dark gray rectangle equal-weight with the secondary
+              "see sample" button. Founder feedback after 0% conversion:
+              "결제하고 싶은 디자인이 아니야. 막 누르고 싶게 해줘."
+              Now: coral brand color, full-width, larger tap target
+              (py-4 = 56px on mobile, exceeds 44px iOS minimum),
+              embedded $4 anchor + arrow, subtle shadow that lifts the
+              button off the surface. Active scale provides haptic feel
+              on tap. Microcopy below the button reinforces speed +
+              guarantee. Secondary "see sample" demoted to a quiet
+              text link so the visual hierarchy points at one obvious
+              next action. */}
+          <div className="flex flex-col gap-3">
             <button
               type="button"
               onClick={handlePay}
               disabled={submitting}
-              className="flex-1 px-6 py-3.5 bg-[#1A1A1A] text-white font-medium rounded-md hover:bg-black transition disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+              className="w-full px-6 py-4 bg-[var(--brand-primary)] text-white font-semibold text-body-lg rounded-xl hover:bg-[var(--brand-dark)] active:scale-[0.98] transition-all shadow-[0_4px_14px_rgba(255,107,107,0.35)] hover:shadow-[0_6px_20px_rgba(255,107,107,0.45)] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none inline-flex items-center justify-center gap-2"
             >
-              {submitting ? "…" : checkoutUrl ? tr("payAgainButton") : tr("payButton")}
-              {!submitting && <span aria-hidden>→</span>}
+              <span>
+                {submitting
+                  ? "…"
+                  : checkoutUrl
+                    ? tr("payAgainButton")
+                    : tr("payButton")}
+              </span>
+              {!submitting && (
+                <>
+                  <span aria-hidden className="opacity-70">·</span>
+                  <span className="font-bold tabular-nums">$4</span>
+                  <span aria-hidden className="ml-0.5">→</span>
+                </>
+              )}
             </button>
+
+            <p className="text-caption text-center text-[var(--text-muted)]">
+              {tr("ctaMicrocopy")}
+            </p>
+
             <button
               type="button"
               onClick={handleSeeSample}
-              className="flex-1 sm:flex-none px-6 py-3.5 bg-transparent text-[var(--text-primary)] font-medium rounded-md border border-[var(--border-light)] hover:border-[var(--text-secondary)] transition inline-flex items-center justify-center gap-2"
+              className="text-body-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] underline underline-offset-4 decoration-[var(--border-light)] hover:decoration-[var(--text-secondary)] transition self-center mt-1"
             >
               {tr("sampleButton")}
-              <span aria-hidden>→</span>
             </button>
           </div>
 
-          <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] text-center mt-6">
+          <p className="text-caption text-[var(--text-muted)] text-center mt-6">
             {tr("redirectNote")}
           </p>
 
@@ -1215,12 +1242,19 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     subtitle: tp("flightArrival.subtitle"),
     type: "single-chip",
     optional: true,
+    placeholder: tp("flightArrival.customPlaceholder"),
     options: [
       { value: "early-morning", label: tp("flightArrival.earlyMorning") },
       { value: "morning", label: tp("flightArrival.morning") },
       { value: "afternoon", label: tp("flightArrival.afternoon") },
       { value: "evening", label: tp("flightArrival.evening") },
       { value: "late-night", label: tp("flightArrival.lateNight") },
+      // Sentinel value — when picked, QuestionPopup reveals a free-
+      // text input. Lets users type "14:30 NRT 도착" instead of
+      // bucketing into a 4-hour period. The free-text is submitted
+      // verbatim (Claude already parses natural language for this
+      // field — flightArrival schema is z.string().max(160)).
+      { value: "__custom", label: tp("flightArrival.custom") },
     ],
   });
 

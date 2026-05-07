@@ -155,12 +155,13 @@
       "sampleButton": "先看看示例",
       "newTabNote": "支付将在新标签页打开 · 请保留当前标签页",
       "redirectNote": "下一步将跳转至安全支付页面",
+      "ctaMicrocopy": "邮件 + PDF在5-10分钟内送达 · 100%退款保证",
       "trust": {
-        "eyebrow": "为什么选gliddy而不是GPT?",
-        "routes": "按实际距离与路线时间排程 (GPT做不到)",
-        "places": "酒店餐厅准确地址与营业时间 (绝不胡编)",
-        "keepsake": "地图加PDF, 永久保存",
-        "guarantee": "不满意? 100%退款 · 1次免费重做"
+        "eyebrow": "为什么大家选gliddy而不是GPT",
+        "routes": "地图上画出真实的行程路线",
+        "places": "不会推荐已关门的店 — 坐标和营业时间都核实过",
+        "keepsake": "机场到酒店到餐厅, 衔接顺畅无空档",
+        "guarantee": "不满意? 1次免费重做 + 退款 — 4美元零风险"
       },
       "startOver": "重新开始",
       "edit": "修改",
@@ -234,7 +235,9 @@
         "morning": "上午(9 点 ~ 12 点)",
         "afternoon": "下午(12 点 ~ 5 点)",
         "evening": "傍晚(5 点 ~ 10 点)",
-        "lateNight": "深夜(10 点之后)"
+        "lateNight": "深夜(10 点之后)",
+        "custom": "自己输入",
+        "customPlaceholder": "例如: 14:30 NRT 抵达, 或 5月1日下午2点30分"
       },
       "hotel": {
         "title": "已经订好住宿了吗?(可选)",

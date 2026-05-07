@@ -155,12 +155,13 @@
       "sampleButton": "Voir un exemple",
       "newTabNote": "Le paiement s'ouvre dans un nouvel onglet — gardez celui-ci ouvert",
       "redirectNote": "Vous allez être redirigé·e vers le paiement sécurisé",
+      "ctaMicrocopy": "E-mail + PDF en 5–10 min · Remboursement 100% garanti",
       "trust": {
-        "eyebrow": "Pourquoi gliddy, pas GPT",
-        "routes": "Distances et temps de trajet réels — GPT ne sait pas faire",
-        "places": "Hôtels et restos avec horaires exacts — pas d'invention",
-        "keepsake": "Une carte et un PDF à garder pour toujours",
-        "guarantee": "Pas convaincu·e ? Remboursement 100% · une refonte gratuite"
+        "eyebrow": "Pourquoi gliddy plutôt que GPT",
+        "routes": "Votre itinéraire dessiné sur une vraie carte",
+        "places": "De vraies adresses — rien d'inventé, rien de fermé",
+        "keepsake": "De l'aéroport au resto, sans accroc",
+        "guarantee": "Pas convaincu·e ? Refonte gratuite ou remboursement — vos 4$ sont protégés"
       },
       "startOver": "Recommencer",
       "edit": "Modifier",
@@ -234,7 +235,9 @@
         "morning": "Matin (9h – 12h)",
         "afternoon": "Après-midi (12h – 17h)",
         "evening": "Soir (17h – 22h)",
-        "lateNight": "Nuit (après 22h)"
+        "lateNight": "Nuit (après 22h)",
+        "custom": "Saisir mon heure",
+        "customPlaceholder": "ex. 14:30 NRT, ou 1er mai 14h30"
       },
       "hotel": {
         "title": "Hébergement déjà réservé ? (facultatif)",

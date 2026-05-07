@@ -155,12 +155,13 @@
       "sampleButton": "まずサンプルを見る",
       "newTabNote": "決済は新しいタブで開きます · このタブはそのままで大丈夫",
       "redirectNote": "次の画面で安全な決済ページに移動します",
+      "ctaMicrocopy": "メールとPDFで5〜10分以内に到着 · 100%返金保証",
       "trust": {
-        "eyebrow": "なぜGPTでなくgliddy?",
-        "routes": "実際の距離・移動時間を計算した動線 (GPTにはできません)",
-        "places": "ホテル・お店の正確な場所と営業時間 (幻覚なし)",
-        "keepsake": "地図とPDFで永久保存",
-        "guarantee": "気に入らなければ100%返金 · 1回無料で再生成"
+        "eyebrow": "GPTでなくgliddyを選ぶ4つの理由",
+        "routes": "地図に本物の動線が描かれます",
+        "places": "閉店した店は送りません — 座標と営業時間を実証",
+        "keepsake": "空港・ホテル・食事まで切れ目なく",
+        "guarantee": "気に入らなければ無料で再作成 · 返金で4ドル完全保護"
       },
       "startOver": "最初からやり直す",
       "edit": "変更",
@@ -234,7 +235,9 @@
         "morning": "午前(9時〜12時)",
         "afternoon": "午後(12時〜17時)",
         "evening": "夕方(17時〜22時)",
-        "lateNight": "深夜(22時以降)"
+        "lateNight": "深夜(22時以降)",
+        "custom": "直接入力",
+        "customPlaceholder": "例: 14:30 NRT 到着、または 5/1 14時30分"
       },
       "hotel": {
         "title": "宿泊先はご予約済みですか?(任意)",
