@@ -42,6 +42,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+/**
+ * Map a stop type to the most specific schema.org Place subtype Google
+ * recognises. Falls back to generic Place for transit/rest where there
+ * isn't a great schema match.
+ */
+function stopSchemaType(stopType: string): string {
+  switch (stopType) {
+    case "meal":
+      return "FoodEstablishment";
+    case "shopping":
+      return "Store";
+    case "sight":
+      return "TouristAttraction";
+    case "activity":
+      return "TouristAttraction";
+    default:
+      return "Place"; // transit, rest
+  }
+}
+
 export default async function SamplePlanPage({ params }: PageProps) {
   const { slug } = await params;
   const locale = (await getLocale()) as Locale;
@@ -50,6 +70,107 @@ export default async function SamplePlanPage({ params }: PageProps) {
   const sample = await getSampleLocalized(slug, locale);
   if (!sample) notFound();
   const t = await getTranslations("samples");
+
+  // Structured data for Google rich results. Two complementary schemas
+  // unified under @graph so they share IDs cleanly:
+  //   - Article: lets the page surface in news/discover surfaces and
+  //     gives Google the article-style metadata (publisher, image,
+  //     datePublished) it expects for editorial content.
+  //   - TouristTrip: schema.org/TouristTrip is the canonical type for
+  //     a travel itinerary. Every day becomes an ItemList of stops
+  //     (TouristAttraction / FoodEstablishment / Store / Place subtype
+  //     by stop kind). Hotel becomes the trip's accommodation. With
+  //     this in place "Tokyo 4 day itinerary" search can pull this
+  //     page into a rich travel result with stops, photo, and route.
+  const baseUrl = "https://checkvisamap.com";
+  const pageUrl = `${baseUrl}/samples/${slug}`;
+  const heroImageUrl = sample.heroImage
+    ? sample.heroImage.startsWith("http")
+      ? sample.heroImage
+      : `${baseUrl}${sample.heroImage}`
+    : `${baseUrl}/og-image.png`;
+  const articleTitle = `${sample.plan.destination} sample plan — ${sample.plan.durationDays} days`;
+
+  const sampleJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${pageUrl}#article`,
+        headline: articleTitle,
+        description: sample.tagline,
+        image: heroImageUrl,
+        author: {
+          "@type": "Organization",
+          name: "gliddy",
+          url: baseUrl,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "gliddy",
+          logo: {
+            "@type": "ImageObject",
+            url: `${baseUrl}/icon.png`,
+          },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+        inLanguage: locale,
+      },
+      {
+        "@type": "TouristTrip",
+        "@id": `${pageUrl}#trip`,
+        name: articleTitle,
+        description: sample.tagline,
+        touristType: sample.audience,
+        provider: { "@type": "Organization", name: "gliddy", url: baseUrl },
+        subjectOf: { "@id": `${pageUrl}#article` },
+        ...(sample.plan.hotel
+          ? {
+              accommodation: {
+                "@type": "Hotel",
+                name: sample.plan.hotel.name,
+                address: sample.plan.hotel.address,
+                ...(sample.plan.hotel.coords
+                  ? {
+                      geo: {
+                        "@type": "GeoCoordinates",
+                        latitude: sample.plan.hotel.coords[1],
+                        longitude: sample.plan.hotel.coords[0],
+                      },
+                    }
+                  : {}),
+              },
+            }
+          : {}),
+        itinerary: sample.plan.days.map((day) => ({
+          "@type": "ItemList",
+          name: `Day ${day.dayNumber}: ${day.theme}`,
+          description: day.summary,
+          numberOfItems: day.stops.length,
+          itemListOrder: "https://schema.org/ItemListOrderAscending",
+          itemListElement: day.stops.map((stop, idx) => ({
+            "@type": "ListItem",
+            position: idx + 1,
+            item: {
+              "@type": stopSchemaType(stop.type),
+              name: stop.name,
+              description: stop.description,
+              ...(stop.address ? { address: stop.address } : {}),
+              ...(stop.coords
+                ? {
+                    geo: {
+                      "@type": "GeoCoordinates",
+                      latitude: stop.coords[1],
+                      longitude: stop.coords[0],
+                    },
+                  }
+                : {}),
+            },
+          })),
+        })),
+      },
+    ],
+  };
 
   const cta = (
     <div className="relative overflow-hidden bg-[var(--text-primary)] text-[var(--background)] rounded-3xl p-10 sm:p-14 text-center isolate">
@@ -134,14 +255,20 @@ export default async function SamplePlanPage({ params }: PageProps) {
             : undefined;
 
   return (
-    <PlanView
-      plan={sample.plan}
-      headerLabel={t("sampleHeader")}
-      bottomCta={cta}
-      backLink={{ href: "/samples", label: t("backToGallery") }}
-      heroImage={sample.heroImage}
-      triviaSeed={sample.slug}
-      travelerType={sampleTravelerType}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sampleJsonLd) }}
+      />
+      <PlanView
+        plan={sample.plan}
+        headerLabel={t("sampleHeader")}
+        bottomCta={cta}
+        backLink={{ href: "/samples", label: t("backToGallery") }}
+        heroImage={sample.heroImage}
+        triviaSeed={sample.slug}
+        travelerType={sampleTravelerType}
+      />
+    </>
   );
 }
