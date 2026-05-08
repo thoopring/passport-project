@@ -66,6 +66,28 @@ Effort: 2-3 days.
 
 When to start: as soon as 5 buyers have opted in. Don't launch with an empty grid.
 
+### SEO prep ALREADY DONE (2026-05-08)
+
+Sitemap helper + integration is pre-wired so Phase 1 can ship without
+touching SEO infrastructure:
+
+- `lib/community/listed-plans.ts` — `listPublicPlans()` queries Supabase
+  for completed plans with `public_listed=true`. Already wired into
+  `app/sitemap.ts`.
+- Sitemap inclusion is feature-flagged behind
+  `process.env.COMMUNITY_GALLERY_ENABLED === "true"` so the prep
+  doesn't emit 404 URLs during the gating period.
+- When Phase 1 ships:
+  1. Build `/community` and `/community/[id]` pages.
+  2. Set `COMMUNITY_GALLERY_ENABLED=true` in Vercel env.
+  3. Sitemap automatically picks up `/community` + every public
+     plan's `/community/[id]`, with hreflang siblings via
+     `sitemapAlternates()`.
+  4. No sitemap.ts edit needed at Phase 1 ship time.
+
+This is "Task 5" in the 2026-05-08 SEO sprint — the sitemap is ready
+to recognise community URLs the moment they exist.
+
 ## Phase 2 — Engagement signals (GATED on 20+ public plans)
 
 Add:

@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { BLOG_POSTS } from "./blog/data";
 import { SAMPLE_PLANS } from "../lib/samples";
 import { SITE_URL, sitemapAlternates } from "../lib/i18n/seo";
+import { listPublicPlans } from "../lib/community/listed-plans";
 
 /**
  * Sitemap with multi-locale hreflang annotations.
@@ -21,7 +22,7 @@ import { SITE_URL, sitemapAlternates } from "../lib/i18n/seo";
  * Phase 1 community gallery (/community + /community/[id]) will be
  * added here when it ships — see docs/COMMUNITY-SHARING-PLAN.md.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   // Each entry is the language-neutral path; sitemapAlternates() expands
@@ -66,5 +67,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticRoutes, ...sampleRoutes, ...blogRoutes];
+  // Phase 1 community gallery (docs/COMMUNITY-SHARING-PLAN.md). Until
+  // /community and /community/[id] routes ship, the listing call returns
+  // empty (no plans yet have public_listed=true) AND we'd be linking to
+  // 404 routes anyway, so we feature-flag the inclusion behind
+  // process.env.COMMUNITY_GALLERY_ENABLED. Set that env var to "true"
+  // when Phase 1 ships and the routes exist; the helper itself is
+  // already wired and will start emitting URLs immediately. Keeping
+  // this gated avoids a sitemap full of 404s during the gating period.
+  let communityRoutes: MetadataRoute.Sitemap = [];
+  if (process.env.COMMUNITY_GALLERY_ENABLED === "true") {
+    try {
+      const listed = await listPublicPlans();
+      communityRoutes = [
+        {
+          url: `${SITE_URL}/community`,
+          lastModified: now,
+          changeFrequency: "daily",
+          priority: 0.75,
+          alternates: sitemapAlternates("/community"),
+        },
+        ...listed.map((plan) => ({
+          url: `${SITE_URL}/community/${plan.id}`,
+          lastModified: new Date(plan.updatedAt),
+          changeFrequency: "weekly" as const,
+          priority: 0.7,
+          alternates: sitemapAlternates(`/community/${plan.id}`),
+        })),
+      ];
+    } catch (err) {
+      console.warn("[sitemap] community routes skipped (non-fatal)", err);
+    }
+  }
+
+  return [...staticRoutes, ...sampleRoutes, ...blogRoutes, ...communityRoutes];
 }
