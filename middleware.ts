@@ -1,19 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Geo-IP locale suggestion middleware (P5).
+ * Two-stage middleware:
  *
- * Reads the visitor's country from Vercel Edge (`x-vercel-ip-country` header
- * or `request.geo.country`), and if their country maps to a non-English
- * supported locale, sets a SUGGEST_LOCALE cookie that the client-side
- * LocaleSuggestionBanner picks up to ask "한국어로 보시겠어요?".
+ *   STAGE 1 — Locale-prefix URL routing (SEO).
+ *   When a request comes in for /ko/, /ja/, /zh/, or /fr/ paths, set
+ *   the NEXT_LOCALE cookie and rewrite the URL to strip the prefix.
+ *   The existing root-level page (e.g. app/about/page.tsx) then renders
+ *   in the chosen locale via i18n/request.ts (which reads the cookie).
+ *   Browser URL stays at /ko/about because rewrite() doesn't change
+ *   the visible URL — Google indexes /ko/about as the Korean version.
+ *
+ *   English (default locale) stays unprefixed at root paths. So
+ *   /about is English, /ko/about is Korean. Only one URL per locale,
+ *   no redirect chains, and existing English URLs that Google has
+ *   already indexed don't 301 anywhere.
+ *
+ *   STAGE 2 — Geo-IP locale suggestion (P5).
+ *   On a no-cookie first visit, infer locale from x-vercel-ip-country
+ *   and set NEXT_LOCALE so a Korean visitor lands on Korean content
+ *   even at /. This stage runs only when stage 1 didn't fire.
  *
  * RULES:
- *   - Never auto-redirect. Always ask first (Req 4 explicit).
- *   - Don't suggest if user already set NEXT_LOCALE.
- *   - Don't re-suggest if user previously dismissed (SUGGEST_DISMISSED cookie).
- *   - Skip the API routes and static assets — banner only matters on pages.
+ *   - Stage 1 is server-side rewrite, not redirect — preserves the
+ *     prefixed URL for SEO indexing.
+ *   - Stage 2 never auto-redirects, only sets cookie. The user's manual
+ *     LocaleSwitcher choice (which goes through stage 1) always wins
+ *     because they get a real prefixed URL the cookie matches.
+ *   - Skip API routes, static assets, and private plan/[id] UUIDs.
  */
+
+const SUPPORTED_PREFIX_LOCALES = ["ko", "ja", "zh", "fr"] as const;
 
 const COUNTRY_TO_LOCALE: Record<string, string> = {
   KR: "ko",
@@ -33,6 +50,57 @@ const COUNTRY_TO_LOCALE: Record<string, string> = {
 };
 
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // ─── STAGE 1: locale-prefix URL routing ───
+  // Detect /ko/, /ja/, /zh/, /fr/ at the start of the path.
+  const segments = pathname.split("/");
+  const maybeLocale = segments[1] ?? "";
+  if (
+    (SUPPORTED_PREFIX_LOCALES as readonly string[]).includes(maybeLocale)
+  ) {
+    // Strip the locale prefix to get the underlying app route.
+    const remainder = "/" + segments.slice(2).join("/");
+    const finalPath = remainder === "/" ? "/" : remainder.replace(/\/$/, "");
+
+    // Don't apply locale routing to private/UUID surfaces. /ko/plan/[id]
+    // would just confuse the renderer without adding SEO value (those
+    // pages are robots-disallowed). /ko/api/* would route the API call
+    // through a locale shell it doesn't need. /ko/r/* is just a redirect.
+    const skip =
+      finalPath.startsWith("/api/") ||
+      finalPath.startsWith("/_next/") ||
+      finalPath.startsWith("/plan/") ||
+      finalPath.startsWith("/r/");
+
+    if (skip) {
+      // Just rewrite without setting cookie — these aren't user-facing
+      // SEO surfaces, and we don't want to silently flip locale based
+      // on what was just an accidentally-prefixed URL.
+      const url = request.nextUrl.clone();
+      url.pathname = finalPath;
+      return NextResponse.rewrite(url);
+    }
+
+    const url = request.nextUrl.clone();
+    url.pathname = finalPath;
+    const rewritten = NextResponse.rewrite(url);
+    // Cookie persists the locale for subsequent navigations within the
+    // session. Subsequent visits to unprefixed URLs (e.g. user clicks
+    // an internal link to /samples) will still render in this locale
+    // because i18n/request.ts reads the cookie. URL bar shows /samples
+    // (not /ko/samples) on those navigations — acceptable for now;
+    // proper LocalizedLink wrapper to maintain prefix is a deferred
+    // follow-up.
+    rewritten.cookies.set("NEXT_LOCALE", maybeLocale, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: "lax",
+    });
+    return rewritten;
+  }
+
+  // ─── STAGE 2: geo-IP locale suggestion ───
   const response = NextResponse.next();
 
   // User already chose a locale — cookie wins, nothing to do.

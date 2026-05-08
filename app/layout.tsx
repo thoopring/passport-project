@@ -84,7 +84,21 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [`${SITE_URL}/og-image.png`],
   },
-  alternates: { canonical: SITE_URL },
+  alternates: {
+    canonical: SITE_URL,
+    // hreflang signals — every supported locale's home URL plus an
+    // x-default fallback. Without this Google indexes only one locale
+    // and ignores the other 4 even though middleware serves them at
+    // /ko/, /ja/, /zh/, /fr/. See lib/i18n/seo.ts for path conventions.
+    languages: {
+      en: SITE_URL,
+      ko: `${SITE_URL}/ko`,
+      ja: `${SITE_URL}/ja`,
+      zh: `${SITE_URL}/zh`,
+      fr: `${SITE_URL}/fr`,
+      "x-default": SITE_URL,
+    },
+  },
   robots: {
     index: true,
     follow: true,

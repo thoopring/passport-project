@@ -5,6 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { listSamplesLocalized } from "../../lib/samples";
+import { localizedAlternates } from "../../lib/i18n/seo";
 import type { Locale } from "../../i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `${t("metaTitle")} — gliddy`,
     description: t("metaDescription"),
-    alternates: { canonical: "https://checkvisamap.com/samples" },
+    alternates: localizedAlternates("/samples"),
     openGraph: {
       title: `${t("metaTitle")} — gliddy`,
       description: t("metaDescription"),

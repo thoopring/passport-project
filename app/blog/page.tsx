@@ -4,13 +4,14 @@ import { getTranslations } from "next-intl/server";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { BLOG_POSTS } from "./data";
+import { localizedAlternates } from "../../lib/i18n/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("blog");
   return {
     title: t("eyebrow"),
     description: t("subtitle"),
-    alternates: { canonical: "https://checkvisamap.com/blog" },
+    alternates: localizedAlternates("/blog"),
     openGraph: {
       title: `${t("eyebrow")} | gliddy`,
       description: t("subtitle"),

@@ -4,6 +4,7 @@ import { getLocale } from "next-intl/server";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { PRICING_CONTENT } from "./content";
+import { localizedAlternates } from "../../lib/i18n/seo";
 import type { Locale } from "../../i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: c.metaTitle,
     description: c.metaDescription,
-    alternates: { canonical: "https://checkvisamap.com/pricing" },
+    alternates: localizedAlternates("/pricing"),
   };
 }
 

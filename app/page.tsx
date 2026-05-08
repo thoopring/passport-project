@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import HomeWizard from "../components/HomeWizard";
 import PlanMap from "../components/PlanMap";
 import { HOME_HERO_IMAGES, getSampleLocalized, listSamplesLocalized } from "../lib/samples";
+import { localizedAlternates } from "../lib/i18n/seo";
 import type { Locale } from "../i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -14,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "https://checkvisamap.com" },
+    alternates: localizedAlternates("/"),
   };
 }
 

@@ -67,9 +67,31 @@ export default function LocaleSwitcher() {
       setOpen(false);
       return;
     }
+    // Cookie + URL navigation. Cookie is the legacy path (i18n/request.ts
+    // reads it), URL is the SEO path (middleware sees the locale prefix
+    // and serves the right language). Both must agree on the new locale
+    // so the navigation lands on a page rendering the chosen language
+    // even before the cookie round-trips.
     document.cookie = `NEXT_LOCALE=${loc}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+
+    // Build the locale-prefixed URL for the current path. Strip the
+    // existing locale prefix first (in case we're already on /ko/foo
+    // switching to ja, target should be /ja/foo not /ja/ko/foo).
+    const SUPPORTED_PREFIXES = ["/ko", "/ja", "/zh", "/fr"];
+    let path = window.location.pathname;
+    for (const prefix of SUPPORTED_PREFIXES) {
+      if (path === prefix || path.startsWith(`${prefix}/`)) {
+        path = path.slice(prefix.length) || "/";
+        break;
+      }
+    }
+    const target =
+      loc === "en"
+        ? `${path}${window.location.search}`
+        : `/${loc}${path === "/" ? "" : path}${window.location.search}`;
+
     startTransition(() => {
-      window.location.reload();
+      window.location.href = target;
     });
   };
 

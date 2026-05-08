@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import PlanView from "../../../components/PlanView";
 import { getSample, getSampleLocalized, listSamples } from "../../../lib/samples";
+import { localizedAlternates } from "../../../lib/i18n/seo";
 import type { Locale } from "../../../i18n/locales";
 
 interface PageProps {
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${title} · gliddy`,
     description: sample.tagline,
-    alternates: { canonical: `https://checkvisamap.com/samples/${slug}` },
+    alternates: localizedAlternates(`/samples/${slug}`),
     openGraph: {
       title,
       description: sample.tagline,

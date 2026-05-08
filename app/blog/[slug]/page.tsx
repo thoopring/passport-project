@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { BLOG_POSTS } from "../data";
+import { localizedAlternates } from "../../../lib/i18n/seo";
 
 export async function generateStaticParams() {
   return Object.keys(BLOG_POSTS).map((slug) => ({ slug }));
@@ -22,7 +23,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: url },
+    alternates: localizedAlternates(`/blog/${slug}`),
     openGraph: {
       title: post.title,
       description: post.excerpt,
