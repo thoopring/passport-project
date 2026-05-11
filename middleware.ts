@@ -82,16 +82,31 @@ export function middleware(request: NextRequest) {
       return NextResponse.rewrite(url);
     }
 
+    // Propagate the locale to the downstream handler via a request
+    // header AND set a response cookie. Both matter:
+    //
+    //   x-gliddy-locale header → i18n/request.ts reads it on THIS
+    //     request via next/headers, so the FIRST visit to /ko/blog
+    //     renders Korean immediately. Without this header, the
+    //     response-side cookie isn't visible to the same request
+    //     (cookies are set on the response, but i18n/request.ts
+    //     reads from request.cookies — empty on first hit). Symptom
+    //     before the fix: Google crawls /ko/blog, sees English
+    //     content, marks /ko/blog as duplicate of /blog → refuses
+    //     to index any locale variant. Confirmed via GSC 2026-05-11.
+    //
+    //   NEXT_LOCALE cookie → persists locale for subsequent
+    //     navigations within the session (user clicks internal Link
+    //     to /samples — cookie keeps content in chosen language even
+    //     though URL drops the prefix).
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-gliddy-locale", maybeLocale);
+
     const url = request.nextUrl.clone();
     url.pathname = finalPath;
-    const rewritten = NextResponse.rewrite(url);
-    // Cookie persists the locale for subsequent navigations within the
-    // session. Subsequent visits to unprefixed URLs (e.g. user clicks
-    // an internal link to /samples) will still render in this locale
-    // because i18n/request.ts reads the cookie. URL bar shows /samples
-    // (not /ko/samples) on those navigations — acceptable for now;
-    // proper LocalizedLink wrapper to maintain prefix is a deferred
-    // follow-up.
+    const rewritten = NextResponse.rewrite(url, {
+      request: { headers: requestHeaders },
+    });
     rewritten.cookies.set("NEXT_LOCALE", maybeLocale, {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
