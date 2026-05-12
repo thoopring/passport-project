@@ -17,18 +17,104 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/**
+ * Product structured data — fix shipped 2026-05-13 after GSC flagged
+ * four merchant-listing issues on this page:
+ *
+ *   CRITICAL — image field missing. Resolved with a Product-page hero
+ *   image array (logo + dynamic OG card). Without this field the
+ *   merchant listing wouldn't surface in Google search at all.
+ *
+ *   Non-critical:
+ *     - shippingDetails missing — added as zero-cost worldwide
+ *       instant delivery (0 handling, 0 transit days) since we're a
+ *       digital product with no shipment. Google's merchant validator
+ *       still wants the field even when its values are trivial.
+ *     - hasMerchantReturnPolicy missing — points at our /refund page
+ *       with a 14-day free-return window. Mirrors the actual policy
+ *       in PRICING_CONTENT and /refund.
+ *     - Global identifier missing (gtin/brand) — added brand=gliddy
+ *       and sku="gliddy-trip-plan" so Google has a stable product ID
+ *       without needing a real GTIN (we're not a CPG).
+ *
+ * GSC will re-validate within a few days. If it still flags anything
+ * after this fix, the next move is to remove the Product schema
+ * entirely — we're not really a comparison-shopping merchant; the
+ * value of being eligible for merchant listings is questionable for
+ * a single-tier $4 digital service. Keep this until we see whether
+ * it's actually generating SERP impressions.
+ */
 const offerSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: "gliddy trip plan",
   description:
     "Personalized, AI-generated trip plan delivered as a mobile-responsive web link plus a downloadable PDF.",
+  image: [
+    "https://checkvisamap.com/logo.png",
+    "https://checkvisamap.com/opengraph-image",
+  ],
+  brand: {
+    "@type": "Brand",
+    name: "gliddy",
+  },
+  sku: "gliddy-trip-plan",
   offers: {
     "@type": "Offer",
     price: "4.00",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     url: "https://checkvisamap.com/plan/new",
+    seller: {
+      "@type": "Organization",
+      name: "gliddy",
+      url: "https://checkvisamap.com",
+    },
+    // Digital delivery — no shipment, no handling, no transit.
+    // Required by Google's merchant-listing validator even though
+    // values are trivial. Worldwide coverage signaled by an empty
+    // DefinedRegion (no addressCountry == "any region").
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingRate: {
+        "@type": "MonetaryAmount",
+        value: "0",
+        currency: "USD",
+      },
+      shippingDestination: {
+        "@type": "DefinedRegion",
+      },
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime",
+        handlingTime: {
+          "@type": "QuantitativeValue",
+          minValue: 0,
+          maxValue: 0,
+          unitCode: "DAY",
+        },
+        transitTime: {
+          "@type": "QuantitativeValue",
+          minValue: 0,
+          maxValue: 0,
+          unitCode: "DAY",
+        },
+      },
+    },
+    // Return policy — points at /refund where the actual terms live.
+    // 14-day window is a generous default; the page itself describes
+    // the founder-friendly "if you don't love it, email and we'll
+    // refund" policy in plain language. Schema is the structured
+    // mirror Google needs for the rich-result eligibility.
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      applicableCountry: "US",
+      returnPolicyCategory:
+        "https://schema.org/MerchantReturnFiniteReturnWindow",
+      merchantReturnDays: 14,
+      returnFees: "https://schema.org/FreeReturn",
+      returnMethod: "https://schema.org/ReturnByMail",
+      url: "https://checkvisamap.com/refund",
+    },
   },
 };
 
