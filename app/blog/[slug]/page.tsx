@@ -20,6 +20,7 @@ export async function generateMetadata({
   if (!post) return { title: "Post not found" };
 
   const url = `https://checkvisamap.com/blog/${slug}`;
+  const description = post.seoDescription ?? post.excerpt;
   // Pin the post's hero photo as og:image when one is set so Pinterest /
   // Reddit / X show the travel photo rather than the site-wide OG card.
   const ogImages = post.heroImage
@@ -27,11 +28,11 @@ export async function generateMetadata({
     : undefined;
   return {
     title: post.title,
-    description: post.excerpt,
+    description,
     alternates: localizedAlternates(`/blog/${slug}`),
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       url,
       type: "article",
       publishedTime: post.date,
@@ -41,7 +42,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.excerpt,
+      description,
       ...(post.heroImage ? { images: [post.heroImage] } : {}),
     },
   };

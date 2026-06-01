@@ -6,6 +6,8 @@ export interface BlogPost {
   category: string;
   /** Optional hero image used as og:image on the post's detail page. */
   heroImage?: string;
+  /** Short search-optimised description (~150–160 chars, keyword-first). Falls back to excerpt when absent. */
+  seoDescription?: string;
 }
 
 // Unsplash photo URL builder — same pattern as lib/samples/index.ts.
