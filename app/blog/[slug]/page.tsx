@@ -20,19 +20,31 @@ export async function generateMetadata({
   if (!post) return { title: "Post not found" };
 
   const url = `https://checkvisamap.com/blog/${slug}`;
+  const description = post.seoDescription ?? post.excerpt;
+  // Pin the post's hero photo as og:image when one is set so Pinterest /
+  // Reddit / X show the travel photo rather than the site-wide OG card.
+  const ogImages = post.heroImage
+    ? [{ url: post.heroImage, width: 1600, height: 1067, alt: post.title }]
+    : undefined;
   return {
     title: post.title,
-    description: post.excerpt,
+    description,
     alternates: localizedAlternates(`/blog/${slug}`),
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       url,
       type: "article",
       publishedTime: post.date,
       siteName: "gliddy",
+      ...(ogImages ? { images: ogImages } : {}),
     },
-    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      ...(post.heroImage ? { images: [post.heroImage] } : {}),
+    },
   };
 }
 

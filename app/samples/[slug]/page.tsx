@@ -23,6 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!sample) return {};
 
   const title = `${sample.plan.destination} sample plan — ${sample.plan.durationDays} days`;
+  // og:image is supplied by the file-based opengraph-image.tsx in this
+  // route segment — Next.js auto-attaches it. Do not set images here or
+  // we'd override the designed dynamic card with a raw photo.
   return {
     title: `${title} · gliddy`,
     description: sample.tagline,
