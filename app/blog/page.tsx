@@ -7,14 +7,16 @@ import { BLOG_POSTS } from "./data";
 import { localizedAlternates } from "../../lib/i18n/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("blog");
+  const title = "Travel Planning Tips & Destination Guides";
+  const description =
+    "Practical travel planning tips, destination guides, and field notes to help you plan a better trip — from the gliddy team.";
   return {
-    title: t("eyebrow"),
-    description: t("subtitle"),
+    title,
+    description,
     alternates: localizedAlternates("/blog"),
     openGraph: {
-      title: `${t("eyebrow")} | gliddy`,
-      description: t("subtitle"),
+      title: `${title} | gliddy`,
+      description,
       url: "https://checkvisamap.com/blog",
       type: "website",
       siteName: "gliddy",
