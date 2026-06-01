@@ -14,6 +14,58 @@ const UNSPLASH = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
 
 export const BLOG_POSTS: Record<string, BlogPost> = {
+  "3-days-paris-with-kids": {
+    title: "3 Days in Paris with Kids: A Practical Itinerary That Actually Works",
+    date: "2026-06-01",
+    category: "Destination Guides",
+    excerpt:
+      "Paris with children is genuinely doable — if you stop trying to do everything. Here's an honest three-day plan built around how kids actually behave, including what to expect on the Bateaux Mouches and how to survive the Louvre.",
+    content: `
+<p>Paris has a reputation for being difficult with kids, and honestly, some of that reputation is earned. The cobblestones eat strollers, the museums are enormous, and a toddler standing in a two-hour queue for the Eiffel Tower is nobody's idea of a vacation. But three days, planned well, can be quietly wonderful. The city rewards people who slow down — and kids force you to slow down.</p>
+
+<p>This itinerary is built around one rule: pick fewer things and actually enjoy them.</p>
+
+<h2>Day 1 — Trocadéro, the Seine, and Your First Real Meal</h2>
+
+<p>Skip the Eiffel Tower queue on day one. Instead, walk to the Trocadéro esplanade across the river. It's free, there's no line, and you get the photograph everyone wants. Kids can run around on the wide plaza while you decompress from travel. Save the tower itself for the evening on day two or three if you want — the lit-up version is worth it — but it doesn't need to anchor your whole first day.</p>
+
+<p>In the afternoon, take the Seine river cruise. The main operator, Bateaux Mouches, departs from Pont de l'Alma (Alma-Marceau metro, line 9). The standard sightseeing cruise runs about 70 minutes and covers Notre-Dame, the Louvre, the Orsay, and both riverbanks. Adults pay around €15, children under 12 around €6. Sitting on the upper open-air deck is the right call in decent weather; kids stay engaged watching the city go past in a way they rarely do in a museum.</p>
+
+<p>A few honest notes on Bateaux Mouches: it is the most tourist-heavy of the Seine cruise operators — large boats, recorded commentary in eight languages, gift shop on the dock. If that bothers you, Vedettes du Pont Neuf (departing from Île de la Cité, a smaller boat) has a quieter feel. But for families, the size of the Bateaux Mouches fleet actually helps: more departures, easier to find seats, better bathroom access. Skip the evening dinner cruise with young kids — it starts late, costs significantly more, and the dress code expectation is stressful when you're already managing tired children.</p>
+
+<p>For dinner, head toward the Marais. Rue des Rosiers has good falafel (L'As du Fallafel, if the queue isn't too long), and the streets are interesting enough to walk off dinner before bed.</p>
+
+<h2>Day 2 — The Louvre, Done Right</h2>
+
+<p>Go early. The Louvre opens at 9am and the first hour is noticeably calmer. Book tickets online the night before — the queues at the pyramid entrance on a summer day are brutal, and the online lane bypasses most of them.</p>
+
+<p>With kids, two to three hours is the ceiling. Pick a route and stick to it: the Egyptian antiquities wing (genuinely exciting for children — mummies, giant statues, hieroglyphs), the medieval moat visible through the basement-level glass floor, and the Mona Lisa if you want it, though the crowd around it is dense and the painting smaller than expected. Don't try to do the whole museum. The Louvre is essentially a small city — treating it as one is how families end up exhausted and resentful by noon.</p>
+
+<p>Afternoon: walk to the Jardin du Luxembourg. The Marionnettes du Luxembourg puppet theatre runs weekend afternoon shows (check the schedule; it's cheap and surreally French). The pond in the center has wooden sailboats to rent — children push them with a stick, which is a low-tech pleasure that hasn't changed in about a century. There's a good playground near the south end of the garden.</p>
+
+<p>Dinner on Rue Mouffetard, a market street with cheap crêpe stands and bistros that don't mind children. It's tourist-adjacent but not exhausting about it.</p>
+
+<h2>Day 3 — Montmartre Before the Crowds</h2>
+
+<p>Get to Montmartre early. By 10am the hill is filling with tour groups; by noon the main square around the artists is genuinely hard to move through. At 8:30 or 9am, it's calm and the views from the steps of Sacré-Cœur are unobstructed. The basilica itself is free and relatively quick — twenty minutes is enough for most kids.</p>
+
+<p>Take the funicular up (one metro ticket each direction — it runs on the same system) and walk down. The walk down through the residential back streets is more interesting than the tourist-facing main path. Stop at a boulangerie for breakfast on the hill; pain au chocolat purchased from an actual Montmartre bakery is one of those things children will remember.</p>
+
+<p>If you're flying home that day, head to your airport by early afternoon — Charles de Gaulle's RER B connection from the city center takes about 45 minutes but the line runs infrequently and security queues are unpredictable. Don't cut it close.</p>
+
+<h2>A Few Practical Notes</h2>
+
+<ul>
+  <li><strong>Museum entry:</strong> French national museums (Louvre, Orsay, Rodin) are free for all visitors under 18. Bring a passport or ID for the kids.</li>
+  <li><strong>Transport:</strong> A Paris Visite pass covering zones 1–3 covers all metro, RER, and bus within central Paris. Buy it at any metro station or the airport.</li>
+  <li><strong>Strollers:</strong> Fine on main boulevards, difficult on cobblestone side streets in Montmartre and Le Marais. A lightweight umbrella stroller survives better than a large frame.</li>
+  <li><strong>Timing:</strong> July and August are the busiest months by a significant margin. Late April, May, or September offers cooler weather, shorter queues, and the same open restaurants and attractions.</li>
+</ul>
+
+<p>If you want a structured day-by-day plan tailored to your kids' specific ages, <a href="/">gliddy</a> builds personalized itineraries that account for things like nap schedules, walking distance, and whether your eight-year-old is actually interested in Impressionism. Three days in Paris is enough time to feel like you've been somewhere, if you're not trying to prove you've been everywhere.</p>
+`,
+  },
+
   "tokyo-itinerary-how-many-days": {
     title: "Tokyo Itinerary: How Many Days Do You Really Need?",
     date: "2026-05-01",
