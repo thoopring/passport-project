@@ -152,6 +152,11 @@ function LoadingInner() {
     }
   }, [data.destination, router]);
 
+  useEffect(() => {
+    if (reviewReady) trackLegacy("review_viewed", { event_category: "trip_planner", event_label: data.destination, locale });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reviewReady]);
+
   // Build queue dynamically — depends on current data so adapts as user answers
   const questions = buildQuestionQueue(data, tp);
 
@@ -233,6 +238,7 @@ function LoadingInner() {
     setSubmitting(true);
     setError(null);
     setPopupBlocked(false);
+    trackLegacy("pay_clicked", { event_category: "trip_planner", event_label: data.destination, locale });
     try {
       if (
         !data.travelerType ||
