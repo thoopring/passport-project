@@ -99,6 +99,15 @@ export type AnalyticsEvents = {
     plan_id: string;
     type: "referral_credit" | "promo";
   };
+  preview_locked_view: {
+    locale: string;
+    destination: string;
+    duration_days: number;
+  };
+  checkout_click: {
+    locale: string;
+    destination: string;
+  };
 };
 
 function emit<K extends keyof AnalyticsEvents>(name: K, props: AnalyticsEvents[K]) {
@@ -133,6 +142,8 @@ export const analytics = {
   accountVisit: (props: AnalyticsEvents["account_visit"]) => emit("account_visit", props),
   referralShared: (props: AnalyticsEvents["referral_shared"]) => emit("referral_shared", props),
   creditUsed: (props: AnalyticsEvents["credit_used"]) => emit("credit_used", props),
+  previewLockedView: (props: AnalyticsEvents["preview_locked_view"]) => emit("preview_locked_view", props),
+  checkoutClick: (props: AnalyticsEvents["checkout_click"]) => emit("checkout_click", props),
 };
 
 /**
