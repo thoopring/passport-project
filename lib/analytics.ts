@@ -67,6 +67,13 @@ export type AnalyticsEvents = {
     destination?: string;
     source: "home" | "wizard_page";
   };
+  schedule_created: {
+    locale: string;
+    plan_id: string;
+    destination: string;
+    traveler_type?: string;
+    days?: number;
+  };
   checkout_started: {
     locale: string;
     destination: string;
@@ -119,6 +126,7 @@ export const analytics = {
     }
   },
   wizardStarted: (props: AnalyticsEvents["wizard_started"]) => emit("wizard_started", props),
+  scheduleCreated: (props: AnalyticsEvents["schedule_created"]) => emit("schedule_created", props),
   checkoutStarted: (props: AnalyticsEvents["checkout_started"]) => emit("checkout_started", props),
   checkoutCompleted: (props: AnalyticsEvents["checkout_completed"]) => emit("checkout_completed", props),
   accountSignup: (props: AnalyticsEvents["account_signup"]) => emit("account_signup", props),

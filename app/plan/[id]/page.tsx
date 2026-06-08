@@ -11,6 +11,7 @@ import SavePlanCta from "../../../components/SavePlanCta";
 import RegenerateForm from "../../../components/RegenerateForm";
 import PublicListingToggle from "../../../components/PublicListingToggle";
 import CheckoutCompletedTracker from "../../../components/CheckoutCompletedTracker";
+import ScheduleCreatedTracker from "../../../components/ScheduleCreatedTracker";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { getOrCreateReferralCode } from "../../../lib/referrals";
@@ -190,12 +191,23 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
     console.error("getOrCreateReferralCode failed (non-fatal)", err);
   }
 
+  const requestMeta = record.request as {
+    travelerType?: string;
+    days?: number;
+  } | null;
+
   return (
     <>
       <CheckoutCompletedTracker
         planId={id}
         destination={record.plan.destination}
         paymentId={record.payment_id}
+      />
+      <ScheduleCreatedTracker
+        planId={id}
+        destination={record.plan.destination}
+        travelerType={requestMeta?.travelerType}
+        days={requestMeta?.days ?? record.plan.durationDays}
       />
       <PlanView
         plan={record.plan}
