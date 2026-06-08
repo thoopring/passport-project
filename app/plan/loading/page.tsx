@@ -576,6 +576,65 @@ function LoadingInner() {
             </label>
           </div>
 
+          {/* Locked route preview — blurred skeleton signals content exists (functional paywall).
+              Day count capped at 3 for DOM weight; fade implies more below. */}
+          <div className="mb-6 rounded-[14px] border border-[var(--border-light)] bg-white overflow-hidden">
+            <div className="p-5 sm:p-6">
+              <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">
+                {tr("lockedRoute.eyebrow", { durationDays: data.durationDays, destination: data.destination })}
+              </p>
+              <div className="relative">
+                <div
+                  className="filter blur-[6px] select-none pointer-events-none opacity-70"
+                  aria-hidden
+                >
+                  {Array.from({ length: Math.min(data.durationDays, 3) }).map((_, dayIdx) => (
+                    <div key={dayIdx} className="relative pl-5 mb-5 last:mb-0">
+                      <div className="absolute left-1.5 top-5 bottom-0 w-px bg-[var(--border-subtle)]" />
+                      <p className="text-body-sm font-semibold text-[var(--text-primary)] mb-2.5">
+                        Day {dayIdx + 1}
+                      </p>
+                      {(
+                        [["75%", "60%"], ["85%", "50%"], ["65%", "70%"]] as const
+                      ).map(([w1, w2], stopIdx) => (
+                        <div key={stopIdx} className="flex items-start gap-2 mb-2.5 last:mb-0">
+                          <div className="w-2 h-2 rounded-full bg-[var(--surface-secondary)] shrink-0 mt-1" />
+                          <div className="flex-1 space-y-1.5">
+                            <div className="h-2.5 rounded-full bg-[var(--surface-secondary)]" style={{ width: w1 }} />
+                            <div className="h-2 rounded-full bg-[var(--surface-secondary)]" style={{ width: w2 }} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white pointer-events-none" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-[var(--border-light)] shadow-soft">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-[var(--text-secondary)]"
+                      aria-hidden
+                    >
+                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <span className="text-body-sm font-medium text-[var(--text-primary)]">
+                      {tr("lockedRoute.lockLabel")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Checkout opened confirmation */}
           {checkoutUrl && (
             <div className="bg-[var(--lavender-soft)] border border-[var(--lavender)] rounded-[12px] p-5 mb-6">
@@ -665,6 +724,17 @@ function LoadingInner() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Loss-aversion band — $4 framed as value (keep forever), not a gate.
+              Price appears here only, not in the CTA button (founder direction 2026-05-07). */}
+          <div className="rounded-[12px] border border-[var(--brand-primary)]/20 bg-[var(--brand-soft)] px-5 py-4 mb-2">
+            <p className="text-body-sm text-[var(--text-primary)] leading-snug font-medium">
+              {tr("lossAversion.line1")}
+            </p>
+            <p className="text-body-sm font-semibold text-[var(--brand-dark)] mt-1">
+              {tr("lossAversion.line2")}
+            </p>
           </div>
 
           {/* Primary CTA — conversion-optimized redesign 2026-05-07.

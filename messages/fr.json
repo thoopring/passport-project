@@ -180,6 +180,14 @@
       "referralBanner": {
         "title": "Réduction parrainage appliquée",
         "subtitle": "-25 % automatique au paiement"
+      },
+      "lockedRoute": {
+        "eyebrow": "{durationDays} jours · itinéraire {destination}",
+        "lockLabel": "Itinéraire complet · ordre optimal après paiement"
+      },
+      "lossAversion": {
+        "line1": "L'itinéraire que vous venez de créer disparaît dès que vous fermez.",
+        "line2": "Gardez-le pour toujours + export PDF pour 4 $."
       }
     },
     "loading": {

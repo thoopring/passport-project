@@ -180,6 +180,14 @@
       "referralBanner": {
         "title": "Referral discount applied",
         "subtitle": "25% off auto-applies at checkout"
+      },
+      "lockedRoute": {
+        "eyebrow": "{durationDays}-day · {destination} route",
+        "lockLabel": "Full route · optimal order unlocks after checkout"
+      },
+      "lossAversion": {
+        "line1": "The route you just built disappears the moment you close this.",
+        "line2": "Keep it forever + export PDF for $4."
       }
     },
     "loading": {

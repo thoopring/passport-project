@@ -180,6 +180,14 @@
       "referralBanner": {
         "title": "紹介クーポン自動適用",
         "subtitle": "決済時に25%オフが入ります"
+      },
+      "lockedRoute": {
+        "eyebrow": "{durationDays}日間 · {destination} 動線",
+        "lockLabel": "全動線・最適順序は決済後に公開"
+      },
+      "lossAversion": {
+        "line1": "今つくった動線は、閉じた瞬間に消えます。",
+        "line2": "$4で永久保存＋PDF書き出し。"
       }
     },
     "loading": {

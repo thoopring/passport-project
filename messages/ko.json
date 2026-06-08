@@ -187,6 +187,14 @@
       "referralBanner": {
         "title": "추천 쿠폰 자동 적용",
         "subtitle": "결제 시 25% 할인이 들어가요"
+      },
+      "lockedRoute": {
+        "eyebrow": "{durationDays}일 · {destination} 동선",
+        "lockLabel": "전체 동선 · 최적 순서는 결제 후 공개"
+      },
+      "lossAversion": {
+        "line1": "지금 만든 동선, 결제 안 하면 닫는 순간 사라집니다.",
+        "line2": "$4로 영구 저장 + PDF 내보내기."
       }
     },
     "popup": {

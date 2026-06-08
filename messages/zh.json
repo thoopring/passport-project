@@ -180,6 +180,14 @@
       "referralBanner": {
         "title": "推荐折扣已自动应用",
         "subtitle": "结账时自动减 25%"
+      },
+      "lockedRoute": {
+        "eyebrow": "{durationDays}天 · {destination} 动线",
+        "lockLabel": "完整动线 · 最佳顺序付款后解锁"
+      },
+      "lossAversion": {
+        "line1": "你刚规划的动线，关掉页面就会消失。",
+        "line2": "$4 永久保存 ＋ 导出 PDF。"
       }
     },
     "loading": {
