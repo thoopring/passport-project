@@ -153,7 +153,10 @@ function LoadingInner() {
   }, [data.destination, router]);
 
   useEffect(() => {
-    if (reviewReady) trackLegacy("review_viewed", { event_category: "trip_planner", event_label: data.destination, locale });
+    if (reviewReady) {
+      trackLegacy("review_viewed", { event_category: "trip_planner", event_label: data.destination, locale });
+      analytics.previewLockedView({ locale, destination: data.destination, duration_days: data.durationDays });
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reviewReady]);
 
@@ -238,6 +241,7 @@ function LoadingInner() {
     setSubmitting(true);
     setError(null);
     setPopupBlocked(false);
+    analytics.checkoutClick({ locale, destination: data.destination });
     trackLegacy("pay_clicked", { event_category: "trip_planner", event_label: data.destination, locale });
     try {
       if (
