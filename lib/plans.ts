@@ -51,9 +51,18 @@ export async function getPlan(id: string): Promise<PlanRecord | null> {
   return (data as PlanRecord | null) ?? null;
 }
 
-export async function markPlanPaid(id: string, paymentId: string): Promise<void> {
+/**
+ * Atomically claim a draft plan as paid.
+ *
+ * The .eq("status", "draft") filter makes this a conditional claim: only
+ * one caller can flip draft → paid. Returns true if this call won the
+ * claim (a row was updated), false if the plan was already past draft
+ * (LS webhook retry / concurrent promo redeem). Callers use the boolean
+ * to dedupe generation without a separate read-then-write guard.
+ */
+export async function markPlanPaid(id: string, paymentId: string): Promise<boolean> {
   const supabase = getSupabaseAdmin();
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from(PLANS_TABLE)
     .update({
       status: "paid" as PlanStatus,
@@ -61,9 +70,13 @@ export async function markPlanPaid(id: string, paymentId: string): Promise<void>
       paid_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     })
-    .eq("id", id);
+    .eq("id", id)
+    .eq("status", "draft")
+    .select()
+    .maybeSingle();
 
   if (error) throw new Error(`markPlanPaid failed: ${error.message}`);
+  return data != null;
 }
 
 export async function setPlanGenerating(id: string): Promise<void> {
