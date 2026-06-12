@@ -121,11 +121,31 @@ const offerSchema = {
 export default async function PricingPage() {
   const locale = (await getLocale()) as Locale;
   const c = PRICING_CONTENT[locale] ?? PRICING_CONTENT.en;
+  // FAQPage schema — serialized from the SAME localized FAQ the page
+  // renders below, so the structured data always matches the visible
+  // copy. The page renders one locale per request, so this carries only
+  // the current locale's Q&A (not a merge of all five).
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: c.faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: a,
+      },
+    })),
+  };
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(offerSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Header />
 

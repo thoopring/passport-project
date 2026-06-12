@@ -91,7 +91,7 @@ export default async function SamplePlanPage({ params }: PageProps) {
     ? sample.heroImage.startsWith("http")
       ? sample.heroImage
       : `${baseUrl}${sample.heroImage}`
-    : `${baseUrl}/og-image.png`;
+    : `${baseUrl}/opengraph-image`;
   const articleTitle = `${sample.plan.destination} sample plan — ${sample.plan.durationDays} days`;
 
   const sampleJsonLd = {

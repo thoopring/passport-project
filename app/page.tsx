@@ -19,6 +19,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// SoftwareApplication schema for the home page — describes gliddy as a
+// web travel app. Price is deliberately omitted (offers): the $4 figure
+// lives only on /pricing per founder policy, so we don't expose it in
+// home-page structured data.
+const softwareApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "gliddy",
+  applicationCategory: "TravelApplication",
+  operatingSystem: "Web",
+  url: "https://checkvisamap.com",
+  description:
+    "Tell gliddy where you're going and it designs the trip for you — day-by-day itinerary, a hotel pick matched to your airport, restaurants, and a route map. No subscription, no account.",
+};
+
 export default async function Home() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
@@ -45,6 +60,10 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+      />
       <Header showCta={false} />
 
       {/* ===== Hero — trust signals + chat input on left, quatrefoil photo on right.

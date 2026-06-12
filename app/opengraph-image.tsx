@@ -10,7 +10,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "#FAFAFA",
+          background: "#F5EFE4",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -18,7 +18,7 @@ export default async function Image() {
           alignItems: "center",
           justifyContent: "center",
           fontFamily: "sans-serif",
-          color: "#0A0A0A",
+          color: "#141517",
           padding: "60px",
           position: "relative",
         }}
@@ -45,7 +45,7 @@ export default async function Image() {
             lineHeight: 1,
             letterSpacing: "-0.04em",
             marginBottom: 28,
-            color: "#0A0A0A",
+            color: "#141517",
           }}
         >
           gliddy
