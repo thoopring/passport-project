@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "gliddy — AI trip plans, sorted";
+export const alt =
+  "gliddy — A real day-by-day trip plan. $4. No subscription.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -52,15 +53,16 @@ export default async function Image() {
         </div>
         <div
           style={{
-            fontSize: 36,
-            color: "#525252",
+            fontSize: 44,
+            fontWeight: 700,
+            color: "#141517",
             textAlign: "center",
-            maxWidth: 900,
-            lineHeight: 1.35,
+            maxWidth: 1000,
+            lineHeight: 1.3,
             marginBottom: 40,
           }}
         >
-          Your next trip, sorted. Day-by-day itinerary, hotel pick, route map.
+          A real day-by-day trip plan. $4. No subscription.
         </div>
         <div
           style={{
@@ -72,7 +74,7 @@ export default async function Image() {
             fontWeight: 600,
           }}
         >
-          One plan, no subscription
+          AI itinerary in your inbox in 5–10 min
         </div>
       </div>
     ),
