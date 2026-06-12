@@ -96,20 +96,20 @@ async function generateAndDeliver(planId: string, paymentId: string): Promise<vo
   try {
     // Idempotency guard: LS retries webhooks on timeout/non-2xx responses,
     // and any duplicate delivery would otherwise fire a second Claude call
-    // and overwrite the plan. Skip if the plan already passed the draft
-    // gate (paid/generating/complete/failed/refunded). Only 'draft' should
-    // be promoted to 'paid' here.
-    const existing = await getPlan(planId);
-    if (!existing) throw new Error(`Plan ${planId} not found`);
-    if (existing.status !== "draft") {
+    // and overwrite the plan. markPlanPaid is an atomic draft → paid claim:
+    // only the first caller wins (returns true). A false return means the
+    // plan already passed the draft gate, so we skip the rest of the
+    // pipeline. Distinguish a missing plan from a duplicate by reading once.
+    const claimed = await markPlanPaid(planId, paymentId);
+    if (!claimed) {
+      const existing = await getPlan(planId);
+      if (!existing) throw new Error(`Plan ${planId} not found`);
       console.warn("[webhook] duplicate delivery — skipping", {
         planId,
         currentStatus: existing.status,
       });
       return;
     }
-
-    await markPlanPaid(planId, paymentId);
 
     const plan = await getPlan(planId);
     if (!plan) throw new Error(`Plan ${planId} not found after payment`);

@@ -71,7 +71,13 @@ export async function POST(req: NextRequest) {
       if (promo && promo.discount_type === "free") {
         const redeemed = await redeemPromoCode(plan.request.promoCode);
         if (redeemed) {
-          await markPlanPaid(planId, `promo:${plan.request.promoCode}`);
+          const claimed = await markPlanPaid(planId, `promo:${plan.request.promoCode}`);
+          if (!claimed) {
+            return NextResponse.json(
+              { error: `Plan is in '${plan.status}' state, cannot pay again` },
+              { status: 409 }
+            );
+          }
           // Run generation after the response is sent. A bare
           // fire-and-forget Promise gets killed by Vercel as soon as the
           // serverless isolate returns — same trap the webhook route
