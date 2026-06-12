@@ -65,24 +65,21 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    // Other supported locales served at /ko, /ja, /zh, /fr — signal them
+    // to crawlers so the right localized card surfaces per market.
+    alternateLocale: ["ko_KR", "ja_JP", "zh_CN", "fr_FR"],
     url: SITE_URL,
     siteName: "gliddy",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: `${SITE_URL}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "gliddy — AI trip plans, sorted",
-      },
-    ],
+    // og:image is auto-injected from app/opengraph-image.tsx (the file
+    // convention) — no explicit URL here so it can't drift to a 404.
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [`${SITE_URL}/og-image.png`],
+    // twitter:image likewise comes from app/opengraph-image.tsx.
   },
   alternates: {
     canonical: SITE_URL,
@@ -151,6 +148,17 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "gliddy",
   url: SITE_URL,
+  // SearchAction points at the real wizard entry — /plan/new reads the
+  // `dest` query param (app/plan/new/page.tsx) and prefills step 1. No
+  // fake search endpoint; this is the live, working path.
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/plan/new?dest={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default async function RootLayout({

@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "gliddy — AI trip plans, sorted";
+export const alt =
+  "gliddy — A real day-by-day trip plan. $4. No subscription.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -10,7 +11,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "#FAFAFA",
+          background: "#F5EFE4",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -18,7 +19,7 @@ export default async function Image() {
           alignItems: "center",
           justifyContent: "center",
           fontFamily: "sans-serif",
-          color: "#0A0A0A",
+          color: "#141517",
           padding: "60px",
           position: "relative",
         }}
@@ -45,22 +46,23 @@ export default async function Image() {
             lineHeight: 1,
             letterSpacing: "-0.04em",
             marginBottom: 28,
-            color: "#0A0A0A",
+            color: "#141517",
           }}
         >
           gliddy
         </div>
         <div
           style={{
-            fontSize: 36,
-            color: "#525252",
+            fontSize: 44,
+            fontWeight: 700,
+            color: "#141517",
             textAlign: "center",
-            maxWidth: 900,
-            lineHeight: 1.35,
+            maxWidth: 1000,
+            lineHeight: 1.3,
             marginBottom: 40,
           }}
         >
-          Your next trip, sorted. Day-by-day itinerary, hotel pick, route map.
+          A real day-by-day trip plan. $4. No subscription.
         </div>
         <div
           style={{
@@ -72,7 +74,7 @@ export default async function Image() {
             fontWeight: 600,
           }}
         >
-          One plan, no subscription
+          AI itinerary in your inbox in 5–10 min
         </div>
       </div>
     ),
