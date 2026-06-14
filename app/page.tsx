@@ -203,6 +203,25 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ===== Trust strip — directly below the hero =====
+           Quiet confidence bar: invites the visitor to inspect a real,
+           finished plan before committing to the wizard. Reuses the Tokyo
+           sample. No price copy anywhere (founder $4-hidden policy). */}
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--surface-secondary)] px-4 sm:px-6 py-5">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-center">
+          <span className="text-body-sm text-[var(--text-secondary)]">
+            {t("trustStripText")}
+          </span>
+          <Link
+            href="/samples/tokyo-4d-couple"
+            className="inline-flex items-center gap-1.5 text-body-sm font-semibold text-[var(--brand-primary)] hover:text-[var(--brand-dark)] underline underline-offset-4 decoration-[var(--brand-primary)]/30 hover:decoration-[var(--brand-primary)] transition"
+          >
+            {t("trustStripCta")}
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
       {/* ===== Sample cards =====
           Mobile: first card is a hero-sized "featured" card (photo +
           overlay caption + Day-1 preview block below) and the remaining

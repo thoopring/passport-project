@@ -7,6 +7,7 @@ import type { BudgetTier } from "../../../types/trip-plan";
 import { analytics } from "../../../lib/analytics";
 import { searchCities, getCityDisplayCountry, getCityDisplayName } from "../../../lib/cities";
 import type { Locale } from "../../../i18n/locales";
+import EmailCaptureGate from "../../../components/EmailCaptureGate";
 
 interface PlanWizardStep1Props {
   defaultDestination: string;
@@ -52,6 +53,10 @@ export default function PlanWizardStep1({
   const [pickedFromCatalog, setPickedFromCatalog] = useState<boolean>(
     Boolean(defaultDestination) && Boolean(defaultCountry),
   );
+  // Email is captured full-screen between Step 1 and the loading screen. We
+  // stash the built query string and reveal the gate; the actual redirect to
+  // /plan/loading happens once the email is provided.
+  const [pendingQuery, setPendingQuery] = useState<string | null>(null);
   const destInputRef = useRef<HTMLInputElement>(null);
 
   const suggestions = useMemo(
@@ -100,8 +105,21 @@ export default function PlanWizardStep1({
       source: "wizard_page",
     });
 
-    router.push(`/plan/loading?${params.toString()}`);
+    setPendingQuery(params.toString());
   };
+
+  if (pendingQuery !== null) {
+    return (
+      <EmailCaptureGate
+        onSubmit={(email) => {
+          const params = new URLSearchParams(pendingQuery);
+          params.set("email", email);
+          router.push(`/plan/loading?${params.toString()}`);
+        }}
+        onBack={() => setPendingQuery(null)}
+      />
+    );
+  }
 
   return (
     <form

@@ -18,7 +18,8 @@ export interface QuestionDef {
     | "date"
     | "email"
     | "number+text"
-    | "airport";
+    | "airport"
+    | "composite";
   /** For chip types. */
   options?: { value: string; label: string; hint?: string }[];
   /** For multi-chip — max selections allowed. */
@@ -32,6 +33,12 @@ export interface QuestionDef {
   /** For number+text combo (e.g. children + ages). */
   numberLabel?: string;
   textLabel?: string;
+  /** Secondary placeholder for the composite's text sub-input. */
+  textPlaceholder?: string;
+  /** Pre-selected chip value (composite) — seeds the traveler chip when the
+   *  type was already collected upstream but a sub-input (adults) still
+   *  needs to be asked. */
+  initialValue?: string;
 }
 
 interface QuestionPopupProps {
@@ -75,7 +82,9 @@ export default function QuestionPopup({
     if (questionNumber === Math.ceil(totalQuestions / 2)) return tp("progressHalfway");
     return tp("progressOf", { current: questionNumber, total: totalQuestions });
   })();
-  const [singleValue, setSingleValue] = useState<string | null>(null);
+  const [singleValue, setSingleValue] = useState<string | null>(
+    question.type === "composite" ? (question.initialValue ?? null) : null,
+  );
   const [multiValue, setMultiValue] = useState<string[]>([]);
   const [numberValue, setNumberValue] = useState<number | "">("");
   const [textValue, setTextValue] = useState("");
@@ -99,9 +108,21 @@ export default function QuestionPopup({
   const CUSTOM_VALUE = "__custom";
   const isCustomMode = singleValue === CUSTOM_VALUE;
 
+  // Composite (traveler type) shows an adults sub-input for every group
+  // larger than a solo/couple — mirrors the old standalone-adults-popup
+  // condition so the count is collected for friends/family/senior alike.
+  const compositeNeedsAdults =
+    singleValue !== null && !["solo", "couple"].includes(singleValue);
+  const compositeHasChildren = singleValue === "family-with-kids";
+
   const canSubmit = (() => {
     if (question.optional) return true;
     switch (question.type) {
+      case "composite":
+        if (singleValue === null) return false;
+        if (compositeNeedsAdults)
+          return typeof numberValue === "number" && numberValue > 0;
+        return true;
       case "single-chip":
         if (singleValue === null) return false;
         if (isCustomMode) return textValue.trim().length > 0;
@@ -126,6 +147,19 @@ export default function QuestionPopup({
 
   const submit = () => {
     switch (question.type) {
+      case "composite":
+        // Single answer object carrying traveler type + (optional) adults
+        // count + (optional, family-only) children ages. Empty children =
+        // "no kids" — applyAnswer reuses the existing no-kids derivation.
+        onAnswer({
+          travelerType: singleValue,
+          adults:
+            compositeNeedsAdults && typeof numberValue === "number"
+              ? numberValue
+              : undefined,
+          childrenDetail: compositeHasChildren ? textValue.trim() || undefined : undefined,
+        });
+        break;
       case "single-chip":
         // When the custom-input chip is selected, return the typed
         // text instead of the sentinel. Falls back to the chip value
@@ -181,6 +215,56 @@ export default function QuestionPopup({
         )}
 
         <div className="mt-5">
+          {question.type === "composite" && question.options && (
+            <>
+              <div className="grid grid-cols-2 gap-2">
+                {question.options.map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setSingleValue(opt.value)}
+                    className={chipClass(singleValue === opt.value)}
+                  >
+                    <span className="font-semibold text-body-sm block">{opt.label}</span>
+                    {opt.hint && (
+                      <span className="block text-caption opacity-70 mt-0.5">{opt.hint}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+              {compositeNeedsAdults && (
+                <div className="mt-4">
+                  <label className="text-caption font-semibold text-[var(--text-secondary)] mb-1.5 block">
+                    {question.numberLabel}
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={numberValue}
+                    onChange={(e) => setNumberValue(parseInt(e.target.value, 10) || "")}
+                    placeholder={question.placeholder}
+                    className={inputClass}
+                    autoFocus
+                  />
+                </div>
+              )}
+              {compositeHasChildren && (
+                <div className="mt-3">
+                  <label className="text-caption font-semibold text-[var(--text-secondary)] mb-1.5 block">
+                    {question.textLabel}
+                  </label>
+                  <input
+                    type="text"
+                    value={textValue}
+                    onChange={(e) => setTextValue(e.target.value)}
+                    placeholder={question.textPlaceholder}
+                    className={inputClass}
+                  />
+                </div>
+              )}
+            </>
+          )}
+
           {question.type === "single-chip" && question.options && (
             <>
               <div className="grid grid-cols-2 gap-2">

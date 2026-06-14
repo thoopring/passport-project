@@ -7,6 +7,7 @@ import { analytics, trackLegacy } from "../../../lib/analytics";
 import LaborIllusionLog from "../../../components/LaborIllusionLog";
 import TravelTrivia from "../../../components/TravelTrivia";
 import QuestionPopup, { type QuestionDef } from "../../../components/QuestionPopup";
+import { searchAirports } from "../../../lib/airports";
 import type {
   TravelerType,
   Interest,
@@ -49,6 +50,9 @@ type EditableField =
   | "budgetTier"
   | "interests"
   | "mustVisit"
+  | "arrivalAirport"
+  | "flightArrival"
+  | "hotel"
   | "email";
 
 // gtag/dataLayer types are declared in lib/analytics.ts
@@ -83,15 +87,29 @@ function LoadingInner() {
         : undefined;
     // Pre-set adults count for solo/couple so the popup queue doesn't need to ask
     const adults = travelerType === "solo" ? 1 : travelerType === "couple" ? 2 : undefined;
+    const dest = searchParams.get("dest") ?? "";
+    // Auto-default the arrival airport from the destination instead of asking
+    // a popup — searchAirports matches city/alias across locales, so "Tokyo",
+    // "도쿄", "東京" all resolve to the representative airport (NRT). Unmatched
+    // destinations leave this unset and buildQuestionQueue falls back to the
+    // airport popup.
+    const arrivalAirport = searchAirports(dest, 1)[0]?.code;
     return {
-      destination: searchParams.get("dest") ?? "",
-      destinationCountry: searchParams.get("country") ?? searchParams.get("dest") ?? "",
+      destination: dest,
+      destinationCountry: searchParams.get("country") ?? dest,
       durationDays: parseInt(searchParams.get("days") ?? "5", 10) || 5,
       budgetTier: (searchParams.get("budget") as BudgetTier) || "midrange",
       travelerType,
       travelStyle,
       mustVisit: searchParams.get("mustVisit") ?? undefined,
       adults,
+      arrivalAirport,
+      // Default "recommend a hotel" — empty/false matches the generator's
+      // existing recommend-one behavior. Editable on the review screen.
+      hotelBooked: false,
+      // Email is now captured up front (full-screen, before this screen) so we
+      // hold it from the URL instead of asking at the end of the popup queue.
+      email: searchParams.get("email") ?? undefined,
       promoCode: searchParams.get("promo") ?? undefined,
     };
   });
@@ -175,7 +193,10 @@ function LoadingInner() {
     if (!nextQuestion) return;
     // Already showing this exact question? Don't reschedule.
     if (activeQuestion?.id === nextQuestion.id) return;
-    const delay = answerStack.length === 0 ? 2500 : 3500;
+    // First popup waits 2.5s (the labor-illusion needs a beat to register);
+    // after that, 1.0s between popups — the user has already seen "working"
+    // and the old 3.5s gap was the main driver of the ~30s perceived wait.
+    const delay = answerStack.length === 0 ? 2500 : 1000;
     const timer = setTimeout(() => {
       setActiveQuestion(nextQuestion);
     }, delay);
@@ -369,6 +390,7 @@ function LoadingInner() {
     const budget = th(`budget.${data.budgetTier}`);
     const interestLabels =
       data.interests?.map((i) => tp(`interests.${i}`)).join(" · ") ?? "";
+    const flightArrivalText = flightArrivalLabel(data.flightArrival, tp);
 
     return (
       <div className="min-h-screen bg-[var(--background)] py-16 px-4 sm:px-6">
@@ -532,26 +554,92 @@ function LoadingInner() {
               />
             </EditableRow>
 
-            {data.email && (
-              <EditableRow
-                label={tr("summaryEmail")}
-                value={data.email}
-                editing={editingField === "email"}
-                onEdit={() => setEditingField("email")}
-                onCancel={() => setEditingField(null)}
-                editLabel={tr("edit")}
-                cancelLabel={tr("cancel")}
-              >
-                <EmailEditor
-                  initial={data.email}
-                  onSave={(v) => {
-                    setData((p) => ({ ...p, email: v }));
-                    setEditingField(null);
-                  }}
-                  saveLabel={tr("save")}
-                />
-              </EditableRow>
-            )}
+            <EditableRow
+              label={tr("summaryAirport")}
+              value={data.arrivalAirport || tr("airportEmpty")}
+              valueMuted={!data.arrivalAirport}
+              editing={editingField === "arrivalAirport"}
+              onEdit={() => setEditingField("arrivalAirport")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <AirportEditor
+                initial={data.arrivalAirport ?? ""}
+                onSave={(code) => {
+                  setData((p) => ({ ...p, arrivalAirport: code }));
+                  setEditingField(null);
+                }}
+                saveLabel={tr("save")}
+                placeholder={tp("airport.placeholder")}
+              />
+            </EditableRow>
+
+            <EditableRow
+              label={tr("summaryFlightArrival")}
+              value={flightArrivalText || tr("flightArrivalEmpty")}
+              valueMuted={!flightArrivalText}
+              editing={editingField === "flightArrival"}
+              onEdit={() => setEditingField("flightArrival")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <FlightArrivalEditor
+                initial={data.flightArrival}
+                onSave={(v) => {
+                  setData((p) => ({ ...p, flightArrival: v }));
+                  setEditingField(null);
+                }}
+                tp={tp}
+                clearLabel={tr("flightArrivalEmpty")}
+              />
+            </EditableRow>
+
+            <EditableRow
+              label={tr("summaryHotel")}
+              value={data.hotelName || tr("hotelRecommend")}
+              valueMuted={!data.hotelName}
+              editing={editingField === "hotel"}
+              onEdit={() => setEditingField("hotel")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <HotelEditor
+                initial={data.hotelName ?? ""}
+                onSave={(name) => {
+                  setData((p) =>
+                    name
+                      ? { ...p, hotelName: name, hotelBooked: true }
+                      : { ...p, hotelName: undefined, hotelBooked: false },
+                  );
+                  setEditingField(null);
+                }}
+                saveLabel={tr("save")}
+                placeholder={tp("hotel.placeholder")}
+              />
+            </EditableRow>
+
+            <EditableRow
+              label={tr("summaryEmail")}
+              value={data.email || tr("emailEmpty")}
+              valueMuted={!data.email}
+              editing={editingField === "email"}
+              onEdit={() => setEditingField("email")}
+              onCancel={() => setEditingField(null)}
+              editLabel={tr("edit")}
+              cancelLabel={tr("cancel")}
+            >
+              <EmailEditor
+                initial={data.email ?? ""}
+                onSave={(v) => {
+                  setData((p) => ({ ...p, email: v }));
+                  setEditingField(null);
+                }}
+                saveLabel={tr("save")}
+              />
+            </EditableRow>
           </div>
 
           {/* Extra notes field */}
@@ -1226,6 +1314,158 @@ function EmailEditor({
   );
 }
 
+// Arrival airport editor — compact autocomplete mirroring the popup's airport
+// input. Submits the IATA code (what the generator's prompt expects).
+function AirportEditor({
+  initial,
+  onSave,
+  saveLabel,
+  placeholder,
+}: {
+  initial: string;
+  onSave: (code: string) => void;
+  saveLabel: string;
+  placeholder: string;
+}) {
+  const [v, setV] = useState(initial);
+  const [focused, setFocused] = useState(false);
+  const suggestions = searchAirports(v, 6);
+  return (
+    <div className="space-y-2">
+      <div className="relative">
+        <input
+          type="text"
+          value={v}
+          onChange={(e) => setV(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setTimeout(() => setFocused(false), 120)}
+          placeholder={placeholder}
+          autoComplete="off"
+          className="w-full px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+        />
+        {focused && suggestions.length > 0 && (
+          <ul
+            role="listbox"
+            className="absolute left-0 right-0 top-full mt-1 z-10 bg-white border border-[var(--border-light)] rounded-md shadow-lg overflow-hidden max-h-60 overflow-y-auto"
+          >
+            {suggestions.map((a) => (
+              <li
+                key={a.code}
+                role="option"
+                aria-selected={a.code === v}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setV(a.code);
+                  setFocused(false);
+                }}
+                className="px-3 py-2.5 cursor-pointer flex items-center justify-between gap-3 hover:bg-[var(--surface-secondary)]"
+              >
+                <span className="flex items-center gap-2 min-w-0">
+                  <span className="text-caption font-bold text-[var(--brand-primary)] tabular-nums shrink-0">
+                    {a.code}
+                  </span>
+                  <span className="text-body-sm text-[var(--text-primary)] truncate">{a.name}</span>
+                </span>
+                <span className="text-caption text-[var(--text-muted)] shrink-0">{a.city}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <SaveButton onClick={() => onSave(v.trim())} disabled={!v.trim()} label={saveLabel} />
+    </div>
+  );
+}
+
+const FLIGHT_ARRIVAL_CHIPS: { value: string; key: string }[] = [
+  { value: "early-morning", key: "earlyMorning" },
+  { value: "morning", key: "morning" },
+  { value: "afternoon", key: "afternoon" },
+  { value: "evening", key: "evening" },
+  { value: "late-night", key: "lateNight" },
+];
+
+function FlightArrivalEditor({
+  initial,
+  onSave,
+  tp,
+  clearLabel,
+}: {
+  initial: string | undefined;
+  onSave: (v: string | undefined) => void;
+  tp: (key: string) => string;
+  clearLabel: string;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <button
+        type="button"
+        onClick={() => onSave(undefined)}
+        className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+          !initial
+            ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+            : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+        }`}
+      >
+        {clearLabel}
+      </button>
+      {FLIGHT_ARRIVAL_CHIPS.map((c) => (
+        <button
+          key={c.value}
+          type="button"
+          onClick={() => onSave(c.value)}
+          className={`px-3 py-1.5 rounded-full text-body-sm border transition ${
+            initial === c.value
+              ? "bg-[var(--lavender-soft)] border-[var(--lavender)] text-[var(--text-primary)]"
+              : "bg-white border-[var(--border-light)] text-[var(--text-secondary)]"
+          }`}
+        >
+          {tp(`flightArrival.${c.key}`)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// Hotel editor — empty = recommend one (hotelBooked=false), non-empty = anchor.
+function HotelEditor({
+  initial,
+  onSave,
+  saveLabel,
+  placeholder,
+}: {
+  initial: string;
+  onSave: (name: string) => void;
+  saveLabel: string;
+  placeholder: string;
+}) {
+  const [v, setV] = useState(initial);
+  return (
+    <div className="space-y-2">
+      <input
+        type="text"
+        value={v}
+        onChange={(e) => setV(e.target.value)}
+        placeholder={placeholder}
+        className="w-full px-3 py-2 bg-white border border-[var(--border-light)] rounded-md text-body-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+      />
+      <SaveButton onClick={() => onSave(v.trim())} label={saveLabel} />
+    </div>
+  );
+}
+
+// Map a stored flight-arrival value (period sentinel or free text) to a
+// human label for the review row. Unknown values (custom free text) pass
+// through verbatim.
+function flightArrivalLabel(
+  value: string | undefined,
+  tp: (key: string) => string,
+): string | null {
+  if (!value) return null;
+  const match = FLIGHT_ARRIVAL_CHIPS.find((c) => c.value === value);
+  return match ? tp(`flightArrival.${match.key}`) : value;
+}
+
 // Map enum → short translation key used in wizard.popup.travelerType namespace.
 function travelerTypeShortKey(t: TravelerType): string {
   if (t === "solo") return "solo";
@@ -1253,12 +1493,25 @@ type Translator = (key: string) => string;
 function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
   const queue: QuestionDef[] = [];
 
-  // Skip travelerType popup if home wizard already collected it.
-  if (!data.travelerType) {
+  // Traveler type — the single most plan-shaping question, folded into one
+  // composite popup that also collects the adults count (friends/family/
+  // senior) and, for families, kids' ages. Shown when the type is unknown,
+  // OR when it was collected upstream (home wizard) but the adults count
+  // for a multi-person group still isn't set.
+  const needsAdults =
+    !!data.travelerType &&
+    !["solo", "couple"].includes(data.travelerType) &&
+    !data.adults;
+  if (!data.travelerType || needsAdults) {
     queue.push({
       id: "travelerType",
       title: tp("travelerType.title"),
-      type: "single-chip",
+      type: "composite",
+      initialValue: data.travelerType,
+      numberLabel: tp("travelerType.adultsLabel"),
+      placeholder: tp("adults.placeholder"),
+      textLabel: tp("travelerType.childrenLabel"),
+      textPlaceholder: tp("children.placeholder"),
       options: [
         { value: "solo", label: tp("travelerType.solo"), hint: tp("travelerType.soloHint") },
         { value: "couple", label: tp("travelerType.couple"), hint: tp("travelerType.coupleHint") },
@@ -1269,81 +1522,19 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     });
   }
 
-  // Ask adults count for group/family travelers (solo/couple are auto-set).
-  if (
-    data.travelerType &&
-    !["solo", "couple"].includes(data.travelerType) &&
-    !data.adults
-  ) {
+  // Airport, arrival window, and hotel are no longer popups — they default
+  // (airport from the destination, arrival unset, hotel = recommend) and are
+  // editable on the review screen. Only fall back to the airport popup when
+  // the destination didn't resolve to a known airport.
+  if (!data.arrivalAirport) {
     queue.push({
-      id: "adults",
-      title: tp("adults.title"),
-      type: "number",
-      placeholder: tp("adults.placeholder"),
+      id: "airport",
+      title: tp("airport.title"),
+      subtitle: tp("airport.subtitle"),
+      type: "airport",
+      placeholder: tp("airport.placeholder"),
     });
   }
-
-  if (data.travelerType === "family-with-kids") {
-    // Optional — "family" can mean adult-only family (parents + adult kids,
-    // siblings, multi-gen without young kids). Skip = no children on the
-    // trip; generator skips kid-friendly constraints. Stroller need is
-    // derived from child ages (≤4) inside applyAnswer.
-    queue.push({
-      id: "children",
-      title: tp("children.title"),
-      subtitle: tp("children.subtitle"),
-      type: "number+text",
-      numberLabel: tp("children.numberLabel"),
-      textLabel: tp("children.textLabel"),
-      placeholder: tp("children.placeholder"),
-      optional: true,
-    });
-  }
-
-  queue.push({
-    id: "airport",
-    title: tp("airport.title"),
-    subtitle: tp("airport.subtitle"),
-    type: "airport",
-    placeholder: tp("airport.placeholder"),
-  });
-
-  // Arrival period (chip) — replaces precise time entry. Hotel matching and
-  // first-day pacing only need the arrival window, not the exact minute.
-  // flightDeparture removed entirely — generator assumes a standard mid-day
-  // checkout for the last day's pacing, which has been good enough.
-  queue.push({
-    id: "flightArrival",
-    title: tp("flightArrival.title"),
-    subtitle: tp("flightArrival.subtitle"),
-    type: "single-chip",
-    optional: true,
-    placeholder: tp("flightArrival.customPlaceholder"),
-    options: [
-      { value: "early-morning", label: tp("flightArrival.earlyMorning") },
-      { value: "morning", label: tp("flightArrival.morning") },
-      { value: "afternoon", label: tp("flightArrival.afternoon") },
-      { value: "evening", label: tp("flightArrival.evening") },
-      { value: "late-night", label: tp("flightArrival.lateNight") },
-      // Sentinel value — when picked, QuestionPopup reveals a free-
-      // text input. Lets users type "14:30 NRT 도착" instead of
-      // bucketing into a 4-hour period. The free-text is submitted
-      // verbatim (Claude already parses natural language for this
-      // field — flightArrival schema is z.string().max(160)).
-      { value: "__custom", label: tp("flightArrival.custom") },
-    ],
-  });
-
-  // Optional hotel — single input replaces the previous yes/no + name pair.
-  // Empty = recommend; non-empty = anchor the plan to this hotel.
-  queue.push({
-    id: "hotel",
-    title: tp("hotel.title"),
-    subtitle: tp("hotel.subtitle"),
-    type: "text",
-    placeholder: tp("hotel.placeholder"),
-    optional: true,
-  });
 
   queue.push({
     id: "interests",
@@ -1377,26 +1568,46 @@ function buildQuestionQueue(data: WizardData, tp: Translator): QuestionDef[] {
     ],
   });
 
-  queue.push({
-    id: "email",
-    title: tp("email.title"),
-    subtitle: tp("email.subtitle"),
-    type: "email",
-    placeholder: tp("email.placeholder"),
-  });
-
+  // Email is captured up front (full-screen, before the loading screen), so
+  // there's no longer an email popup at the tail of the queue.
   return queue;
 }
 
 function applyAnswer(prev: WizardData, q: QuestionDef, value: unknown): WizardData {
   switch (q.id) {
     case "travelerType": {
-      const t = value as TravelerType;
-      return {
-        ...prev,
-        travelerType: t,
-        adults: t === "solo" ? 1 : t === "couple" ? 2 : prev.adults,
+      // Composite answer: traveler type + (group/family/senior) adults count +
+      // (family-only) kids' ages on one line. Solo/couple auto-fill adults.
+      const v = value as {
+        travelerType: TravelerType;
+        adults?: number;
+        childrenDetail?: string;
       };
+      const t = v.travelerType;
+      const adults = t === "solo" ? 1 : t === "couple" ? 2 : v.adults ?? prev.adults;
+      if (t === "family-with-kids") {
+        const detail = (v.childrenDetail ?? "").trim();
+        // Empty = no kids on this trip (reuses the prior skip=no-kids path):
+        // adult-only families (siblings, multi-gen, adult kids) are common.
+        if (!detail) {
+          return { ...prev, travelerType: t, adults, children: 0, childrenAges: undefined, hasInfant: false, strollerNeeded: false };
+        }
+        const ages = detail
+          .split(",")
+          .map((s) => parseInt(s.trim(), 10))
+          .filter((n) => !Number.isNaN(n));
+        return {
+          ...prev,
+          travelerType: t,
+          adults,
+          children: ages.length,
+          childrenAges: ages.length ? ages : undefined,
+          hasInfant: ages.some((a) => a <= 2),
+          strollerNeeded: ages.some((a) => a <= 4),
+        };
+      }
+      // Non-family — clear any stale kid data from a prior answer.
+      return { ...prev, travelerType: t, adults, children: 0, childrenAges: undefined, hasInfant: false, strollerNeeded: false };
     }
     case "adults":
       return { ...prev, adults: value as number };

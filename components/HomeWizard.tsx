@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { searchCities, getCityDisplayName, getCityDisplayCountry } from "../lib/cities";
 import { analytics } from "../lib/analytics";
 import type { Locale } from "../i18n/locales";
+import EmailCaptureGate from "./EmailCaptureGate";
 
 type StepKey =
   | "destination"
@@ -67,6 +68,9 @@ export default function HomeWizard() {
   const [animating, setAnimating] = useState(false);
   const [customDays, setCustomDays] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
+  // Holds the built query string while the full-screen email gate is shown.
+  // The redirect to /plan/loading fires once the email is captured.
+  const [pendingQuery, setPendingQuery] = useState<string | null>(null);
   // Autocomplete UI state for the destination step
   const [destFocused, setDestFocused] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState(0);
@@ -123,7 +127,9 @@ export default function HomeWizard() {
       source: "home",
     });
 
-    router.push(`/plan/loading?${params.toString()}`);
+    // Capture the delivery email full-screen before sending the user into the
+    // loading screen. The redirect happens in the gate's onSubmit.
+    setPendingQuery(params.toString());
   }
 
   // Summary of previously-answered steps
@@ -136,6 +142,22 @@ export default function HomeWizard() {
   if (stepIdx > 3 && answers.budget)
     summaryParts.push(t(`budget.${answers.budget}`));
   const summary = summaryParts.join(" · ");
+
+  if (pendingQuery !== null) {
+    return (
+      <EmailCaptureGate
+        onSubmit={(email) => {
+          const params = new URLSearchParams(pendingQuery);
+          params.set("email", email);
+          router.push(`/plan/loading?${params.toString()}`);
+        }}
+        onBack={() => {
+          setPendingQuery(null);
+          setSubmitting(false);
+        }}
+      />
+    );
+  }
 
   return (
     <div>
