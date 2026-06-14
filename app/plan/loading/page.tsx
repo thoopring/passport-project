@@ -815,7 +815,8 @@ function LoadingInner() {
           </div>
 
           {/* Loss-aversion band — $4 framed as value (keep forever), not a gate.
-              Price appears here only, not in the CTA button (founder direction 2026-05-07). */}
+              Price also shows on the CTA button below: CEO lifted the 2026-05-07
+              "hide price" rule and approved $4 exposure (CEO direction 2026-06-15). */}
           <div className="rounded-[12px] border border-[var(--brand-primary)]/20 bg-[var(--brand-soft)] px-5 py-4 mb-2">
             <p className="text-body-sm text-[var(--text-primary)] leading-snug font-medium">
               {tr("lossAversion.line1")}
@@ -833,16 +834,13 @@ function LoadingInner() {
               (py-4 = 56px on mobile, exceeds 44px iOS minimum), subtle
               shadow that lifts the button off the surface. Active scale
               provides haptic feel on tap.
-              Price is INTENTIONALLY hidden everywhere outside /pricing
-              and /terms (founder direction 2026-05-07): showing $4
-              before the LS checkout page gives the buyer time to
-              evaluate "is it worth $4 to me?" — exactly the moment we
-              lose them. By the time they see the dollar amount on the
-              LS page, they've already psychologically committed by
-              walking through the wizard. So the CTA only says "Build
-              my plan", not "Build my plan · $4". Secondary "see
-              sample" demoted to a quiet text link so the visual
-              hierarchy points at one obvious next action. */}
+              Price is now shown ON the CTA (e.g. "Build my plan · $4"):
+              the 2026-05-07 "hide price" rule was reversed by the CEO,
+              who approved $4 exposure on the review→checkout flow
+              (CEO direction 2026-06-15). The amount lives in the
+              `payButton` i18n string per locale. Secondary "see
+              sample" stays a quiet text link so the visual hierarchy
+              points at one obvious next action. */}
           <div className="flex flex-col gap-3">
             <button
               type="button"
