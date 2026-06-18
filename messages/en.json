@@ -39,7 +39,7 @@
     "emptyCta": "Plan a trip"
   },
   "footer": {
-    "tagline": "AI trip plans",
+    "tagline": "Day-by-day trip plans",
     "pitch": "A traveled-in plan, ready before you pack.",
     "cta": "Plan my trip",
     "ctaHint": "Delivered by email + PDF",
@@ -57,7 +57,7 @@
     "linkRefund": "Refund Policy",
     "linkDisclaimer": "Disclaimer",
     "copyright": "© 2026 gliddy",
-    "disclaimer": "Plans are AI-generated starting points. Verify details before travel."
+    "disclaimer": "Plans are a starting point — verify details before you travel."
   },
   "affiliate": {
     "toolkitFor": "Travel toolkit for {destination}",
@@ -401,7 +401,7 @@
         "premiumGem": "Found a hidden gem and weaving it into the route. This is going to be good.",
         "premiumFinal": "Final touches now. Worth the wait — promise."
       },
-      "aiWorking": "AI working",
+      "aiWorking": "Building your plan",
       "log": {
         "crossRef": "Cross-referencing 18 travel guides for {destination}…",
         "indexRest": "Indexing 240 restaurants in central {destination}…",
@@ -457,6 +457,11 @@
     "heroHeadline1": "Your next trip,",
     "heroHeadlineEm": "sorted.",
     "heroSubtitle": "Tell us your destination. We design the itinerary, recommend the hotel, plot the route — and deliver one travel-ready plan, built around you.",
+    "heroPriceLead": "Your full itinerary —",
+    "heroPriceAmount": "$4",
+    "heroPriceUnit": "once",
+    "heroPriceCompareStrike": "not $13/mo",
+    "heroPriceNote": "One payment · no subscription · no account · yours to keep",
     "heroStatSpeed": "Map included",
     "heroStatRating": "Refund guaranteed",
     "heroStatNoAccount": "No account",
@@ -468,7 +473,7 @@
     "thesisEyebrow": "Why gliddy",
     "thesisHeadline": "What makes a gliddy plan different",
     "thesisPillar1Title": "Real places, no hallucinations",
-    "thesisPillar1Body": "Every restaurant, hotel, and stop comes from a hand-checked place library. No closed venues, no addresses the AI made up.",
+    "thesisPillar1Body": "Every restaurant, hotel, and stop comes from a hand-checked place library. No closed venues, no addresses a chatbot made up.",
     "thesisPillar2Title": "A real timetable, not pins on a map",
     "thesisPillar2Body": "9 AM landmark, 10:30 café, 8-minute walk to lunch. A perfectly timed day where every transit minute is accounted for.",
     "thesisPillar3Title": "The right hotel for your arrival airport",

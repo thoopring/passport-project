@@ -39,7 +39,7 @@
     "emptyCta": "여행 계획하기"
   },
   "footer": {
-    "tagline": "AI 여행 플랜",
+    "tagline": "하루하루 짜주는 여행 플랜",
     "pitch": "다녀온 사람이 짠 듯한 플랜, 짐 싸기 전에 도착해요.",
     "cta": "내 여행 계획하기",
     "ctaHint": "이메일 + PDF로 도착",
@@ -57,7 +57,7 @@
     "linkRefund": "환불 정책",
     "linkDisclaimer": "면책 조항",
     "copyright": "© 2026 gliddy",
-    "disclaimer": "AI가 만드는 출발점이에요. 출발 전 세부 사항을 직접 확인해주세요."
+    "disclaimer": "플랜은 출발점이에요. 출발 전 세부 사항을 직접 확인해주세요."
   },
   "affiliate": {
     "toolkitFor": "{destination} 여행 도구",
@@ -401,7 +401,7 @@
         "premiumGem": "흥미로운 숨은 명소를 발견했어요. 일정에 자연스럽게 녹여내는 중이에요.",
         "premiumFinal": "마지막 손길을 더하는 중이에요. 기다리신 만큼 좋을 거예요 — 약속."
       },
-      "aiWorking": "AI 작업 중",
+      "aiWorking": "플랜 만드는 중",
       "log": {
         "crossRef": "{destination} 여행 가이드 18권을 교차 참조 중…",
         "indexRest": "{destination} 시내 식당 240곳 인덱싱 중…",
@@ -457,6 +457,11 @@
     "heroHeadline1": "다음 여행,",
     "heroHeadlineEm": "정리됐어요.",
     "heroSubtitle": "어디 가시는지 알려주세요. 일정을 설계하고, 호텔을 골라드리고, 동선을 그려 — 들고 떠날 수 있는 한 권의 여행 플랜으로 정리해드려요.",
+    "heroPriceLead": "전체 여행 일정,",
+    "heroPriceAmount": "$4",
+    "heroPriceUnit": "한 번 결제",
+    "heroPriceCompareStrike": "월 $13 구독 아님",
+    "heroPriceNote": "한 번 결제 · 구독 없음 · 계정 불필요 · 평생 소장",
     "heroStatSpeed": "지도 포함",
     "heroStatRating": "환불 보장",
     "heroStatNoAccount": "회원가입 불요",
@@ -467,8 +472,8 @@
     "samplesSwipeHint": "옆으로 넘겨보기",
     "thesisEyebrow": "왜 gliddy인가",
     "thesisHeadline": "gliddy 플랜은 뭐가 다를까요",
-    "thesisPillar1Title": "AI가 지어낸 가짜 장소는 없어요",
-    "thesisPillar1Body": "식당, 호텔, 모든 코스가 사람이 직접 검수한 장소 라이브러리에서 와요. 폐업한 가게나 AI가 만들어낸 주소는 없어요.",
+    "thesisPillar1Title": "챗봇이 지어낸 가짜 장소는 없어요",
+    "thesisPillar1Body": "식당, 호텔, 모든 코스가 사람이 직접 검수한 장소 라이브러리에서 와요. 폐업한 가게나 챗봇이 지어낸 주소는 없어요.",
     "thesisPillar2Title": "지도 위 핀 모음이 아닌, 진짜 '시간표'",
     "thesisPillar2Body": "9시 명소, 10시 30분 카페, 도보 8분 점심. 이동 시간까지 치밀하게 계산된 완벽한 하루 동선을 그려드려요.",
     "thesisPillar3Title": "도착 공항에 맞춘 최적의 숙소",

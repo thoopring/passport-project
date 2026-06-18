@@ -39,7 +39,7 @@
     "emptyCta": "规划行程"
   },
   "footer": {
-    "tagline": "AI 行程规划",
+    "tagline": "逐日行程规划",
     "pitch": "像旅行过的人写的行程,打包前就送到手中。",
     "cta": "规划我的行程",
     "ctaHint": "邮件 + PDF 送达",
@@ -57,7 +57,7 @@
     "linkRefund": "退款政策",
     "linkDisclaimer": "免责声明",
     "copyright": "© 2026 gliddy",
-    "disclaimer": "行程为 AI 生成的起点 — 出发前请核对细节。"
+    "disclaimer": "行程是一个起点 — 出发前请核对细节。"
   },
   "affiliate": {
     "toolkitFor": "{destination} 旅行工具",
@@ -191,7 +191,7 @@
       }
     },
     "loading": {
-      "badge": "AI 正在分析您的旅行",
+      "badge": "正在分析您的旅行",
       "headline": "正在生成 {destination} 行程",
       "subtitle": "我们正在交叉比对数千条数据。请在等待时回答几个简短问题,以便量身定制。",
       "redirecting": "正在跳转到安全结账页面…",
@@ -401,7 +401,7 @@
         "premiumGem": "发现了一个隐藏的好去处,正自然地融入您的行程中。",
         "premiumFinal": "正在做最后的润色 — 值得等待,我们保证。"
       },
-      "aiWorking": "AI 工作中",
+      "aiWorking": "正在生成行程",
       "log": {
         "crossRef": "正在交叉参考 {destination} 的 18 本旅行指南…",
         "indexRest": "正在索引 {destination} 市中心 240 家餐厅…",
@@ -457,6 +457,11 @@
     "heroHeadline1": "下一段旅程,",
     "heroHeadlineEm": "搞定了。",
     "heroSubtitle": "告诉我们目的地。我们设计行程、推荐酒店、规划路线 —— 做成一份能带着上路的完整行程交给您。",
+    "heroPriceLead": "完整行程，",
+    "heroPriceAmount": "$4",
+    "heroPriceUnit": "一次性",
+    "heroPriceCompareStrike": "而非每月$13订阅",
+    "heroPriceNote": "一次付费 · 无需订阅 · 无需账户 · 永久保存",
     "heroStatSpeed": "含路线地图",
     "heroStatRating": "退款保证",
     "heroStatNoAccount": "无需账号",
@@ -468,7 +473,7 @@
     "thesisEyebrow": "为什么选 gliddy",
     "thesisHeadline": "gliddy 行程的不同之处",
     "thesisPillar1Title": "真实地点,绝不虚构",
-    "thesisPillar1Body": "每一家餐厅、酒店、每一个景点都来自我们人工核实的地点库。没有已关门的店,也没有 AI 编造的地址。",
+    "thesisPillar1Body": "每一家餐厅、酒店、每一个景点都来自我们人工核实的地点库。没有已关门的店,也没有聊天机器人编造的地址。",
     "thesisPillar2Title": "不是地图上的图钉,而是真正的「时间表」",
     "thesisPillar2Body": "9 点景点,10:30 咖啡,步行 8 分钟到午餐。连交通时间都精心计算,为您打造完美的一天路线。",
     "thesisPillar3Title": "为您的抵达机场量身挑选的最佳酒店",

@@ -39,7 +39,7 @@
     "emptyCta": "Planifier un voyage"
   },
   "footer": {
-    "tagline": "Plans de voyage IA",
+    "tagline": "Plans de voyage jour par jour",
     "pitch": "Un plan vécu, prêt avant que vous fassiez vos valises.",
     "cta": "Planifier mon voyage",
     "ctaHint": "Livré par email + PDF",
@@ -57,7 +57,7 @@
     "linkRefund": "Politique de remboursement",
     "linkDisclaimer": "Avertissement",
     "copyright": "© 2026 gliddy",
-    "disclaimer": "Les plans sont générés par IA — vérifiez les détails avant de partir."
+    "disclaimer": "Les plans sont un point de départ — vérifiez les détails avant de partir."
   },
   "affiliate": {
     "toolkitFor": "Boîte à outils voyage pour {destination}",
@@ -401,7 +401,7 @@
         "premiumGem": "On a trouvé une pépite cachée et on l'intègre dans l'itinéraire. Ça va être bien.",
         "premiumFinal": "Touches finales en cours. Ça vaut l'attente — promis."
       },
-      "aiWorking": "IA au travail",
+      "aiWorking": "Création de votre plan",
       "log": {
         "crossRef": "Recoupement de 18 guides de voyage pour {destination}…",
         "indexRest": "Indexation de 240 restaurants au centre de {destination}…",
@@ -457,6 +457,11 @@
     "heroHeadline1": "Votre prochain voyage,",
     "heroHeadlineEm": "ficelé.",
     "heroSubtitle": "Donnez-nous votre destination. Nous composons l'itinéraire, choisissons l'hôtel, traçons la route — et vous remettons un plan complet, prêt à voyager.",
+    "heroPriceLead": "Votre itinéraire complet,",
+    "heroPriceAmount": "$4",
+    "heroPriceUnit": "une seule fois",
+    "heroPriceCompareStrike": "pas $13/mois",
+    "heroPriceNote": "Paiement unique · sans abonnement · sans compte · à vous pour toujours",
     "heroStatSpeed": "Carte incluse",
     "heroStatRating": "Remboursement garanti",
     "heroStatNoAccount": "Sans compte",
@@ -468,7 +473,7 @@
     "thesisEyebrow": "Pourquoi gliddy",
     "thesisHeadline": "Ce qui distingue un plan gliddy",
     "thesisPillar1Title": "Vrais lieux, sans inventions",
-    "thesisPillar1Body": "Chaque restaurant, hôtel et étape vient d'une bibliothèque de lieux vérifiée à la main. Aucun établissement fermé, aucune adresse inventée par l'IA.",
+    "thesisPillar1Body": "Chaque restaurant, hôtel et étape vient d'une bibliothèque de lieux vérifiée à la main. Aucun établissement fermé, aucune adresse inventée par un chatbot.",
     "thesisPillar2Title": "Pas une carte d'épingles, un vrai emploi du temps",
     "thesisPillar2Body": "Site à 9h, café à 10h30, déjeuner à 8 minutes à pied. Une journée chronométrée à la minute près où chaque transit est calculé.",
     "thesisPillar3Title": "L'hôtel idéal pour votre aéroport d'arrivée",

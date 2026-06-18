@@ -117,6 +117,30 @@ export default async function HomeHeroB() {
               ))}
             </ul>
 
+            {/* Price wedge — the B-spec core: what you pay, large, on the
+                first screen. $4 once, set against the $13/mo subscriptions
+                (Wanderlog/Layla). De-risks the buy before the CTA so a
+                rational buyer can decide without scrolling. */}
+            <div className="mt-8">
+              <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-1.5">
+                {t("heroPriceLead")}
+              </p>
+              <div className="flex items-baseline gap-2.5 flex-wrap">
+                <span className="font-fraunces font-semibold text-[3rem] sm:text-[3.4rem] leading-none tracking-[-0.03em] text-[var(--text-primary)]">
+                  {t("heroPriceAmount")}
+                </span>
+                <span className="font-fraunces italic text-body-lg text-[var(--brand-primary)]">
+                  {t("heroPriceUnit")}
+                </span>
+                <span className="text-body-sm text-[var(--text-muted)] line-through decoration-1">
+                  {t("heroPriceCompareStrike")}
+                </span>
+              </div>
+              <p className="text-caption text-[var(--text-muted)] mt-2">
+                {t("heroPriceNote")}
+              </p>
+            </div>
+
             {/* Primary CTA — the wizard on a solid card, on paper (no glass). */}
             <div className="mt-8 max-w-lg rounded-[18px] bg-white p-3 sm:p-3.5 shadow-[0_18px_44px_-22px_rgba(0,0,0,0.30)] ring-1 ring-[var(--border-subtle)]">
               <HomeWizard />
