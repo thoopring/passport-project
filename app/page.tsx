@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import HomeWizard from "../components/HomeWizard";
+import HomeHeroB from "../components/HomeHeroB";
 import PlanMap from "../components/PlanMap";
-import { HOME_HERO_IMAGES, getSampleLocalized, listSamplesLocalized } from "../lib/samples";
+import { getSampleLocalized, listSamplesLocalized } from "../lib/samples";
 import { localizedAlternates } from "../lib/i18n/seo";
 import type { Locale } from "../i18n/locales";
 
@@ -66,142 +66,7 @@ export default async function Home() {
       />
       <Header showCta={false} />
 
-      {/* ===== Hero — trust signals + chat input on left, quatrefoil photo on right.
-           Variant E direction (live chip + stat chips + sample links) blended with the
-           current airy travel feel (cross-fade quatrefoil photo + simple HomeWizard
-           input). No $4 in the hero per founder direction.
-
-           Mobile-tuned: headline drops from 44px to 36px so the Korean
-           "정리됐어요." flourish doesn't crowd a 375px viewport, the
-           quatrefoil photo caps at 320px so it doesn't dominate, and the
-           sample-destination chips wrap as discrete pills instead of a
-           dot-separated run-on line that breaks ugly at narrow widths.
-
-           3rd-pass mobile: photo bleeds edge-to-edge on mobile (full
-           viewport width via -mx negation) so the brand opens with a
-           strong travel-mood image instead of a constrained card. Desktop
-           keeps the quatrefoil intact in the right column. ===== */}
-      <section className="px-4 sm:px-6 pt-12 sm:pt-24 pb-16 sm:pb-32">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-8 sm:gap-12 lg:gap-16 items-center">
-          <div className="order-2 lg:order-1">
-            {/* Live status chip — pulsing dot signals an active product without
-                claiming a fake stat. */}
-            <div className="inline-flex items-center gap-2 mb-5 sm:mb-6 px-3 py-1.5 rounded-full bg-[var(--accent-soft)] border border-[var(--accent-primary)]/20">
-              <span className="relative flex w-2 h-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-primary)] opacity-50"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-primary)]"></span>
-              </span>
-              <span className="text-caption font-semibold text-[var(--accent-dark)] tracking-[0.05em]">
-                {t("heroLiveChip")}
-              </span>
-            </div>
-
-            <h1 className="font-fraunces font-semibold text-[2.25rem] sm:text-[3.5rem] lg:text-[4rem] text-[var(--text-primary)] leading-[1.05] sm:leading-[1.0] tracking-[-0.022em] mb-5 sm:mb-6">
-              {t("heroHeadline1")}
-              <br />
-              {/* The hero EM is THE flourish moment — italic Fraunces with
-                  swash stylistic alternates (ss03) gives the headline a
-                  hand-set editorial flourish, more anticipation than the
-                  earlier flat colored text. */}
-              <em
-                className="italic font-medium text-[var(--brand-primary)] tracking-[-0.025em]"
-                style={{ fontFeatureSettings: '"ss01", "ss02", "ss03"' }}
-              >
-                {t("heroHeadlineEm")}
-              </em>
-            </h1>
-            <p className="text-body-md sm:text-body-lg text-[var(--text-secondary)] max-w-md mb-6 sm:mb-8">
-              {t("heroSubtitle")}
-            </p>
-
-            <div className="max-w-lg">
-              <HomeWizard />
-            </div>
-
-            {/* Trust-signal chip strip — subtle pills replacing the plain text badge. */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-5 sm:mt-6">
-              {[
-                t("heroStatSpeed"),
-                t("heroStatRating"),
-                t("heroStatNoAccount"),
-                t("heroStatOffline"),
-              ].map((label) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full border border-[var(--border-light)] bg-[var(--surface-primary)] text-caption font-medium text-[var(--text-secondary)]"
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-
-            {/* Inline sample destinations — switched from a "·"-separated text
-                run to a pill row. The text version wrapped ugly on mobile
-                (city break mid-line, dots stranded on their own line); pills
-                each get their own pill width and wrap cleanly. */}
-            <div className="mt-5">
-              <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-2">
-                {t("heroTrySample")}
-              </p>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {[
-                  { slug: "tokyo-4d-couple", label: "Tokyo" },
-                  { slug: "paris-3d-family", label: "Paris" },
-                  { slug: "bali-5d-couple", label: "Bali" },
-                  { slug: "reykjavik-4d-couple", label: "Reykjavik" },
-                  { slug: "cusco-5d-couple", label: "Cusco" },
-                  { slug: "dubai-4d-couple", label: "Dubai" },
-                ].map((c) => (
-                  <Link
-                    key={c.slug}
-                    href={`/samples/${c.slug}`}
-                    className="inline-flex items-center px-3 min-h-[40px] rounded-full border border-[var(--border-light)] bg-[var(--surface-primary)] text-body-sm text-[var(--text-secondary)] hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] transition"
-                  >
-                    {c.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2 -mx-4 sm:mx-0">
-            {/* Mobile: full-bleed rectangular photo with vermilion accent
-                rule above (breaks the centered-card monotony). Desktop:
-                preserve the original quatrefoil shape in the right column.
-                Two layers, mobile-vs-desktop swapped via class visibility. */}
-            <div className="block sm:hidden">
-              <div className="relative w-full aspect-[16/11] bg-[var(--surface-secondary)] overflow-hidden">
-                {HOME_HERO_IMAGES.map((src, i) => (
-                  <Image
-                    key={src}
-                    src={src}
-                    alt="Travel inspiration"
-                    fill
-                    priority={i === 0}
-                    sizes="100vw"
-                    className={`object-cover absolute inset-0 hero-fade-${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="hidden sm:block">
-              <div className="quatrefoil relative w-full aspect-square max-w-[320px] sm:max-w-[440px] lg:max-w-[520px] mx-auto bg-[var(--surface-secondary)] overflow-hidden">
-                {HOME_HERO_IMAGES.map((src, i) => (
-                  <Image
-                    key={src}
-                    src={src}
-                    alt="Travel inspiration"
-                    fill
-                    priority={i === 0}
-                    sizes="(max-width: 1024px) 440px, 520px"
-                    className={`object-cover absolute inset-0 hero-fade-${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeHeroB />
 
       {/* ===== Sample cards =====
           Mobile: first card is a hero-sized "featured" card (photo +
