@@ -458,9 +458,9 @@
     "metaTitle": "Your next trip, sorted",
     "metaDescription": "Tell us where you're going. We design the itinerary, pick the hotel, and map the route — handed back as a real plan you'll travel with. No subscription, no account required.",
     "heroLiveChip": "Live · plans being built right now",
-    "heroHeadline1": "Your next trip,",
-    "heroHeadlineEm": "sorted.",
-    "heroSubtitle": "Tell us your destination. We design the itinerary, recommend the hotel, plot the route — and deliver one travel-ready plan, built around you.",
+    "heroHeadline1": "Where are you",
+    "heroHeadlineEm": "going next?",
+    "heroSubtitle": "Picture the place. Type it in. gliddy hands you the whole trip — day by day, hour by hour — so the only thing left to do is go.",
     "heroStatSpeed": "Map included",
     "heroStatRating": "Refund guaranteed",
     "heroStatNoAccount": "No account",
@@ -489,7 +489,17 @@
     "previewCtaButton": "Read the full Tokyo plan",
     "previewSecondaryPrefix": "Or see",
     "previewSecondaryLink": "all sample plans",
-    "previewSecondarySuffix": "."
+    "previewSecondarySuffix": ".",
+    "convResultEyebrow": "See a piece, free",
+    "convResultHeadline": "Your first day, before you pay",
+    "convResultBody": "Day 1 appears right away — real opening times, walking distances, and where to eat between stops. You decide before you spend a cent.",
+    "convResultCta": "See a real plan",
+    "convAnchorEyebrow": "A trip-planning consult runs $50+",
+    "convAnchorHeadline": "The same plan, $4.",
+    "convAnchorBody": "A trip-planning consult with a person runs $50+, and subscription apps charge $13/month to rent the same thing. One full gliddy plan is $4 — paid once.",
+    "convAnchorNote": "$4 once — not a subscription. No account.",
+    "convRefundHeadline": "Not useful? Full refund.",
+    "convRefundBody": "No account, no card kept on file. If the plan isn't useful, you get every cent back."
   },
   "account": {
     "login": {

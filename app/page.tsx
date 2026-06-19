@@ -611,6 +611,68 @@ export default async function Home() {
         </section>
       )}
 
+      {/* ===== Conversion band — Wanderlust confirmed conversion devices =====
+          Three levers, in funnel order, placed after the real-plan preview:
+          (A) result-preview reassurance — "you've just seen a real plan",
+          (B) human-alternative price anchor, (C) risk removal / refund.
+          $4 is permitted here (anchor/pricing context) but never in the hero,
+          per founder policy. Confirmed copy from 지평's Wanderlust conversion
+          design (design/gliddy_hero_concepts_20260619/02_wanderlust_conversion.html). */}
+      <section className="bg-[var(--surface-secondary)] border-t border-[var(--border-subtle)] py-16 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          {/* A — result preview reassurance (ties back to the preview above) */}
+          <div className="text-center mb-12 sm:mb-14">
+            <p className="text-caption uppercase tracking-[0.18em] text-[var(--brand-primary)] font-bold mb-3">
+              {t("convResultEyebrow")}
+            </p>
+            <h2 className="font-display font-bold text-display-md text-[var(--text-primary)] tracking-[-0.02em] mb-3">
+              {t("convResultHeadline")}
+            </h2>
+            <p className="text-body-md text-[var(--text-secondary)] max-w-xl mx-auto mb-6">
+              {t("convResultBody")}
+            </p>
+            <Link
+              href="/samples/tokyo-4d-couple"
+              className="inline-flex items-center gap-2 text-body-md font-semibold text-[var(--brand-primary)] underline underline-offset-4 hover:text-[var(--text-primary)] transition"
+            >
+              {t("convResultCta")}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          {/* B + C — price anchor + refund, side by side */}
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* B — human-alternative price anchor */}
+            <div className="bg-white border border-[var(--border-subtle)] rounded-[14px] p-7">
+              <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">
+                {t("convAnchorEyebrow")}
+              </p>
+              <h3 className="font-display font-bold text-[1.75rem] text-[var(--text-primary)] tracking-[-0.02em] mb-3 leading-tight">
+                {t("convAnchorHeadline")}
+              </h3>
+              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                {t("convAnchorBody")}
+              </p>
+              <p className="text-caption font-semibold text-[var(--text-primary)]">
+                {t("convAnchorNote")}
+              </p>
+            </div>
+            {/* C — refund / risk removal (reuses heroStatRating as the eyebrow) */}
+            <div className="bg-white border border-[var(--border-subtle)] rounded-[14px] p-7">
+              <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">
+                {t("heroStatRating")}
+              </p>
+              <h3 className="font-display font-bold text-[1.75rem] text-[var(--text-primary)] tracking-[-0.02em] mb-3 leading-tight">
+                {t("convRefundHeadline")}
+              </h3>
+              <p className="text-body-sm text-[var(--text-secondary)] leading-relaxed">
+                {t("convRefundBody")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

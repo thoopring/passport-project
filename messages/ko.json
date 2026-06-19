@@ -458,9 +458,9 @@
     "metaTitle": "다음 여행, 정리됐어요",
     "metaDescription": "어디 가시는지만 알려주세요. 호텔, 공항 이동, 동선과 지도까지 — 진짜 들고 떠날 수 있는 한 권의 플랜으로 돌려드려요. 구독도 가입도 없어요.",
     "heroLiveChip": "라이브 · 지금도 플랜이 만들어지고 있어요",
-    "heroHeadline1": "다음 여행,",
-    "heroHeadlineEm": "정리됐어요.",
-    "heroSubtitle": "어디 가시는지 알려주세요. 일정을 설계하고, 호텔을 골라드리고, 동선을 그려 — 들고 떠날 수 있는 한 권의 여행 플랜으로 정리해드려요.",
+    "heroHeadline1": "__needsTranslation: Where are you",
+    "heroHeadlineEm": "__needsTranslation: going next?",
+    "heroSubtitle": "__needsTranslation: Picture the place. Type it in. gliddy hands you the whole trip — day by day, hour by hour — so the only thing left to do is go.",
     "heroStatSpeed": "지도 포함",
     "heroStatRating": "환불 보장",
     "heroStatNoAccount": "회원가입 불요",
@@ -489,7 +489,17 @@
     "previewCtaButton": "도쿄 플랜 전체 보기",
     "previewSecondaryPrefix": "또는",
     "previewSecondaryLink": "다른 샘플",
-    "previewSecondarySuffix": "도 둘러보세요."
+    "previewSecondarySuffix": "도 둘러보세요.",
+    "convResultEyebrow": "__needsTranslation: See a piece, free",
+    "convResultHeadline": "__needsTranslation: Your first day, before you pay",
+    "convResultBody": "__needsTranslation: Day 1 appears right away — real opening times, walking distances, and where to eat between stops. You decide before you spend a cent.",
+    "convResultCta": "__needsTranslation: See a real plan",
+    "convAnchorEyebrow": "__needsTranslation: A trip-planning consult runs $50+",
+    "convAnchorHeadline": "__needsTranslation: The same plan, $4.",
+    "convAnchorBody": "__needsTranslation: A trip-planning consult with a person runs $50+, and subscription apps charge $13/month to rent the same thing. One full gliddy plan is $4 — paid once.",
+    "convAnchorNote": "__needsTranslation: $4 once — not a subscription. No account.",
+    "convRefundHeadline": "__needsTranslation: Not useful? Full refund.",
+    "convRefundBody": "__needsTranslation: No account, no card kept on file. If the plan isn't useful, you get every cent back."
   },
   "account": {
     "login": {

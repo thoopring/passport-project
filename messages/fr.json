@@ -458,9 +458,9 @@
     "metaTitle": "Votre prochain voyage, ficelé",
     "metaDescription": "Dites-nous où vous allez. On compose l'itinéraire, on choisit l'hôtel, on cartographie la route — un vrai plan que vous emportez avec vous. Sans abonnement, sans compte.",
     "heroLiveChip": "En direct · des plans se créent en ce moment",
-    "heroHeadline1": "Votre prochain voyage,",
-    "heroHeadlineEm": "ficelé.",
-    "heroSubtitle": "Donnez-nous votre destination. Nous composons l'itinéraire, choisissons l'hôtel, traçons la route — et vous remettons un plan complet, prêt à voyager.",
+    "heroHeadline1": "__needsTranslation: Where are you",
+    "heroHeadlineEm": "__needsTranslation: going next?",
+    "heroSubtitle": "__needsTranslation: Picture the place. Type it in. gliddy hands you the whole trip — day by day, hour by hour — so the only thing left to do is go.",
     "heroStatSpeed": "Carte incluse",
     "heroStatRating": "Remboursement garanti",
     "heroStatNoAccount": "Sans compte",
@@ -489,7 +489,17 @@
     "previewCtaButton": "Lire le plan Tokyo en entier",
     "previewSecondaryPrefix": "Ou voir",
     "previewSecondaryLink": "tous les exemples",
-    "previewSecondarySuffix": "."
+    "previewSecondarySuffix": ".",
+    "convResultEyebrow": "__needsTranslation: See a piece, free",
+    "convResultHeadline": "__needsTranslation: Your first day, before you pay",
+    "convResultBody": "__needsTranslation: Day 1 appears right away — real opening times, walking distances, and where to eat between stops. You decide before you spend a cent.",
+    "convResultCta": "__needsTranslation: See a real plan",
+    "convAnchorEyebrow": "__needsTranslation: A trip-planning consult runs $50+",
+    "convAnchorHeadline": "__needsTranslation: The same plan, $4.",
+    "convAnchorBody": "__needsTranslation: A trip-planning consult with a person runs $50+, and subscription apps charge $13/month to rent the same thing. One full gliddy plan is $4 — paid once.",
+    "convAnchorNote": "__needsTranslation: $4 once — not a subscription. No account.",
+    "convRefundHeadline": "__needsTranslation: Not useful? Full refund.",
+    "convRefundBody": "__needsTranslation: No account, no card kept on file. If the plan isn't useful, you get every cent back."
   },
   "account": {
     "login": {

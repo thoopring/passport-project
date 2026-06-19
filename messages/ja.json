@@ -458,9 +458,9 @@
     "metaTitle": "次の旅、整いました",
     "metaDescription": "行き先を教えてください。ホテル、空港アクセス、ルート、地図まで——本当に持って出かけられる、一冊の旅程に仕立ててお届けします。サブスクなし、登録不要。",
     "heroLiveChip": "ライブ · 今この瞬間もプランが生成中",
-    "heroHeadline1": "次の旅、",
-    "heroHeadlineEm": "整いました。",
-    "heroSubtitle": "行き先を教えてください。日程を設計し、ホテルを選び、動線を引いて——持って出かけられる、一冊の旅程に仕立ててお届けします。",
+    "heroHeadline1": "__needsTranslation: Where are you",
+    "heroHeadlineEm": "__needsTranslation: going next?",
+    "heroSubtitle": "__needsTranslation: Picture the place. Type it in. gliddy hands you the whole trip — day by day, hour by hour — so the only thing left to do is go.",
     "heroStatSpeed": "地図付き",
     "heroStatRating": "返金保証",
     "heroStatNoAccount": "登録不要",
@@ -489,7 +489,17 @@
     "previewCtaButton": "東京プランを最後まで読む",
     "previewSecondaryPrefix": "または",
     "previewSecondaryLink": "他のサンプル",
-    "previewSecondarySuffix": "もどうぞ。"
+    "previewSecondarySuffix": "もどうぞ。",
+    "convResultEyebrow": "__needsTranslation: See a piece, free",
+    "convResultHeadline": "__needsTranslation: Your first day, before you pay",
+    "convResultBody": "__needsTranslation: Day 1 appears right away — real opening times, walking distances, and where to eat between stops. You decide before you spend a cent.",
+    "convResultCta": "__needsTranslation: See a real plan",
+    "convAnchorEyebrow": "__needsTranslation: A trip-planning consult runs $50+",
+    "convAnchorHeadline": "__needsTranslation: The same plan, $4.",
+    "convAnchorBody": "__needsTranslation: A trip-planning consult with a person runs $50+, and subscription apps charge $13/month to rent the same thing. One full gliddy plan is $4 — paid once.",
+    "convAnchorNote": "__needsTranslation: $4 once — not a subscription. No account.",
+    "convRefundHeadline": "__needsTranslation: Not useful? Full refund.",
+    "convRefundBody": "__needsTranslation: No account, no card kept on file. If the plan isn't useful, you get every cent back."
   },
   "account": {
     "login": {
