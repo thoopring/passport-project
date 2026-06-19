@@ -196,6 +196,57 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ===== Destinations — desire (Wanderlust §A2–A5) =====
+          Editorial 4-card grid that fires travel desire *before* the
+          conversion-proof Sample cards below (do not merge the two —
+          this is emotional pull, that is proof). Self-hosted /dest/*.webp
+          at 4:5; @2x master so next/image stays crisp at every density.
+          Bottom scrim + city label; each card anchors to #pricing. */}
+      <section className="border-t border-[var(--border-subtle)] py-16 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10 sm:mb-12 text-center">
+            <p className="text-caption uppercase tracking-[0.18em] text-[var(--text-muted)] mb-3">
+              {t("destEyebrow")}
+            </p>
+            <h2 className="font-display font-bold text-display-md text-[var(--text-primary)] tracking-[-0.02em]">
+              {t("destHeadline")}
+            </h2>
+            <p className="mt-4 text-body text-[var(--text-secondary)] max-w-2xl mx-auto">
+              {t("destSubtitle")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {[
+              { n: "01", city: t("dest01City"), note: t("dest01Note") },
+              { n: "02", city: t("dest02City"), note: t("dest02Note") },
+              { n: "03", city: t("dest03City"), note: t("dest03Note") },
+              { n: "04", city: t("dest04City"), note: t("dest04Note") },
+            ].map((d) => (
+              <Link
+                key={d.n}
+                href="#pricing"
+                className="group relative block aspect-[4/5] rounded-[14px] overflow-hidden border border-[var(--border-subtle)] bg-[var(--surface-secondary)]"
+              >
+                <Image
+                  src={`/dest/dest-${d.n}@2x.webp`}
+                  alt={d.city}
+                  fill
+                  sizes="(max-width: 880px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-12">
+                  <h3 className="font-display font-bold text-[1.5rem] leading-[1.05] text-white tracking-[-0.02em]">
+                    {d.city}
+                  </h3>
+                  <p className="text-body-sm text-white/80 mt-1">{d.note}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== Sample cards =====
           Mobile: first card is a hero-sized "featured" card (photo +
           overlay caption + Day-1 preview block below) and the remaining
