@@ -150,6 +150,10 @@
       "summaryInterests": "兴趣",
       "summaryMustVisit": "必去地点",
       "summaryEmail": "邮箱",
+      "priceAnchor": {
+        "strike": "找人定制逐日行程,通常要$150以上。",
+        "ours": "同样的深度,为你量身打造——只要$4。"
+      },
       "payButton": "生成行程 · $4",
       "payAgainButton": "重新支付",
       "sampleButton": "先看看示例",
@@ -454,9 +458,9 @@
     "metaTitle": "下一段旅程,搞定了",
     "metaDescription": "告诉我们目的地。酒店、机场接送、路线和地图—— 我们做成一份真能带着上路的完整行程交给您。无订阅,无需账号。",
     "heroLiveChip": "实时 · 此刻也在生成新行程",
-    "heroHeadline1": "下一段旅程,",
-    "heroHeadlineEm": "搞定了。",
-    "heroSubtitle": "告诉我们目的地。我们设计行程、推荐酒店、规划路线 —— 做成一份能带着上路的完整行程交给您。",
+    "heroHeadline1": "下一站",
+    "heroHeadlineEm": "去哪儿？",
+    "heroSubtitle": "想好目的地，输入进来。gliddy 为你安排好整趟行程 — 精确到每一天、每一小时。你只需出发。",
     "heroStatSpeed": "含路线地图",
     "heroStatRating": "退款保证",
     "heroStatNoAccount": "无需账号",
@@ -485,7 +489,17 @@
     "previewCtaButton": "阅读完整东京计划",
     "previewSecondaryPrefix": "或者看",
     "previewSecondaryLink": "更多样例",
-    "previewSecondarySuffix": "。"
+    "previewSecondarySuffix": "。",
+    "convResultEyebrow": "免费看一部分",
+    "convResultHeadline": "付款前，先看第一天",
+    "convResultBody": "第一天的行程立刻呈现 — 真实的营业时间、步行距离，还有各站之间的吃饭去处。花一分钱之前，你自己先决定。",
+    "convResultCta": "查看真实行程",
+    "convAnchorEyebrow": "找人做行程规划要 $50 起",
+    "convAnchorHeadline": "同样的行程，$4。",
+    "convAnchorBody": "找人做行程规划要 $50 起，订阅类 App 把同样的东西按每月 $13 租给你。gliddy 一份完整行程只要 $4 — 一次付清。",
+    "convAnchorNote": "$4 一次 — 不是订阅。无需账户。",
+    "convRefundHeadline": "不好用？全额退款。",
+    "convRefundBody": "无需账户，不留存银行卡。如果行程没用，每一分钱都退给你。"
   },
   "account": {
     "login": {

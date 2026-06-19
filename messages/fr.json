@@ -150,6 +150,10 @@
       "summaryInterests": "Centres d'intérêt",
       "summaryMustVisit": "Incontournables",
       "summaryEmail": "E-mail",
+      "priceAnchor": {
+        "strike": "Un planificateur facture 150 $ et plus pour un itinéraire sur-mesure, jour par jour.",
+        "ours": "La même profondeur, pensée pour vous — 4 $."
+      },
       "payButton": "Créer mon plan · $4",
       "payAgainButton": "Réessayer le paiement",
       "sampleButton": "Voir un exemple",
@@ -454,9 +458,9 @@
     "metaTitle": "Votre prochain voyage, ficelé",
     "metaDescription": "Dites-nous où vous allez. On compose l'itinéraire, on choisit l'hôtel, on cartographie la route — un vrai plan que vous emportez avec vous. Sans abonnement, sans compte.",
     "heroLiveChip": "En direct · des plans se créent en ce moment",
-    "heroHeadline1": "Votre prochain voyage,",
-    "heroHeadlineEm": "ficelé.",
-    "heroSubtitle": "Donnez-nous votre destination. Nous composons l'itinéraire, choisissons l'hôtel, traçons la route — et vous remettons un plan complet, prêt à voyager.",
+    "heroHeadline1": "Quelle est votre",
+    "heroHeadlineEm": "prochaine destination ?",
+    "heroSubtitle": "Imaginez l'endroit. Tapez-le. gliddy vous remet tout le voyage — jour par jour, heure par heure — il ne vous reste plus qu'à partir.",
     "heroStatSpeed": "Carte incluse",
     "heroStatRating": "Remboursement garanti",
     "heroStatNoAccount": "Sans compte",
@@ -485,7 +489,17 @@
     "previewCtaButton": "Lire le plan Tokyo en entier",
     "previewSecondaryPrefix": "Ou voir",
     "previewSecondaryLink": "tous les exemples",
-    "previewSecondarySuffix": "."
+    "previewSecondarySuffix": ".",
+    "convResultEyebrow": "Un aperçu, gratuit",
+    "convResultHeadline": "Votre première journée, avant de payer",
+    "convResultBody": "Le jour 1 s'affiche immédiatement — horaires réels, distances à pied, et où manger entre deux étapes. Vous décidez avant de dépenser un centime.",
+    "convResultCta": "Voir un vrai plan",
+    "convAnchorEyebrow": "Un conseil en voyage coûte plus de $50",
+    "convAnchorHeadline": "Le même plan, $4.",
+    "convAnchorBody": "Un conseil en planification de voyage avec une personne coûte plus de $50, et les applis par abonnement facturent $13/mois pour louer la même chose. Un plan gliddy complet, c'est $4 — payé une seule fois.",
+    "convAnchorNote": "$4 une fois — pas d'abonnement. Sans compte.",
+    "convRefundHeadline": "Pas utile ? Remboursé.",
+    "convRefundBody": "Aucun compte, aucune carte conservée. Si le plan n'est pas utile, vous récupérez chaque centime."
   },
   "account": {
     "login": {

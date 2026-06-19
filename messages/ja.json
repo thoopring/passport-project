@@ -150,6 +150,10 @@
       "summaryInterests": "興味",
       "summaryMustVisit": "絶対行きたい場所",
       "summaryEmail": "メール",
+      "priceAnchor": {
+        "strike": "旅行プランの作成代行は通常$150以上。",
+        "ours": "同じ密度を、あなた仕様で——$4。"
+      },
       "payButton": "プランを作る · $4",
       "payAgainButton": "決済をやり直す",
       "sampleButton": "まずサンプルを見る",
@@ -454,9 +458,9 @@
     "metaTitle": "次の旅、整いました",
     "metaDescription": "行き先を教えてください。ホテル、空港アクセス、ルート、地図まで——本当に持って出かけられる、一冊の旅程に仕立ててお届けします。サブスクなし、登録不要。",
     "heroLiveChip": "ライブ · 今この瞬間もプランが生成中",
-    "heroHeadline1": "次の旅、",
-    "heroHeadlineEm": "整いました。",
-    "heroSubtitle": "行き先を教えてください。日程を設計し、ホテルを選び、動線を引いて——持って出かけられる、一冊の旅程に仕立ててお届けします。",
+    "heroHeadline1": "次の旅は",
+    "heroHeadlineEm": "どこへ？",
+    "heroSubtitle": "行きたい場所を思い浮かべて、入力するだけ。gliddyが旅程をまるごと組み立てます — 1日ごと、1時間ごとに。あとは出発するだけ。",
     "heroStatSpeed": "地図付き",
     "heroStatRating": "返金保証",
     "heroStatNoAccount": "登録不要",
@@ -485,7 +489,17 @@
     "previewCtaButton": "東京プランを最後まで読む",
     "previewSecondaryPrefix": "または",
     "previewSecondaryLink": "他のサンプル",
-    "previewSecondarySuffix": "もどうぞ。"
+    "previewSecondarySuffix": "もどうぞ。",
+    "convResultEyebrow": "一部を無料で確認",
+    "convResultHeadline": "支払う前に見る、初日のプラン",
+    "convResultBody": "1日目はすぐに表示されます — 実際の営業時間、徒歩の距離、立ち寄り先の間の食事場所まで。1円も使う前に、自分で確かめて決められます。",
+    "convResultCta": "実際のプランを見る",
+    "convAnchorEyebrow": "旅行プランの相談は$50以上",
+    "convAnchorHeadline": "同じプランが、$4。",
+    "convAnchorBody": "人に頼む旅行相談は$50以上、サブスクアプリは同じものを月$13で貸し出します。gliddyの完全プランは$4 — 一度きりの支払いで。",
+    "convAnchorNote": "$4一度きり — サブスクではありません。アカウント不要。",
+    "convRefundHeadline": "役に立たない？全額返金。",
+    "convRefundBody": "アカウントも、カード登録もなし。プランが役に立たなければ、全額そのままお返しします。"
   },
   "account": {
     "login": {

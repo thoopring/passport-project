@@ -157,6 +157,10 @@
       "summaryInterests": "관심사",
       "summaryMustVisit": "꼭 가고 싶은 곳",
       "summaryEmail": "이메일",
+      "priceAnchor": {
+        "strike": "맞춤 일정 대행은 보통 $150 이상이에요.",
+        "ours": "같은 수준을 나한테 맞춰서 — 단돈 $4."
+      },
       "payButton": "내 여행 계획하기 · $4",
       "payAgainButton": "결제 다시 시도",
       "sampleButton": "샘플 먼저 보기",
@@ -454,9 +458,9 @@
     "metaTitle": "다음 여행, 정리됐어요",
     "metaDescription": "어디 가시는지만 알려주세요. 호텔, 공항 이동, 동선과 지도까지 — 진짜 들고 떠날 수 있는 한 권의 플랜으로 돌려드려요. 구독도 가입도 없어요.",
     "heroLiveChip": "라이브 · 지금도 플랜이 만들어지고 있어요",
-    "heroHeadline1": "다음 여행,",
-    "heroHeadlineEm": "정리됐어요.",
-    "heroSubtitle": "어디 가시는지 알려주세요. 일정을 설계하고, 호텔을 골라드리고, 동선을 그려 — 들고 떠날 수 있는 한 권의 여행 플랜으로 정리해드려요.",
+    "heroHeadline1": "다음 여행지는",
+    "heroHeadlineEm": "어디인가요?",
+    "heroSubtitle": "가고 싶은 곳을 떠올리세요. 입력만 하면 gliddy가 일정 전체를 짜드립니다 — 하루하루, 시간 단위까지. 이제 남은 건 떠나는 것뿐입니다.",
     "heroStatSpeed": "지도 포함",
     "heroStatRating": "환불 보장",
     "heroStatNoAccount": "회원가입 불요",
@@ -485,7 +489,17 @@
     "previewCtaButton": "도쿄 플랜 전체 보기",
     "previewSecondaryPrefix": "또는",
     "previewSecondaryLink": "다른 샘플",
-    "previewSecondarySuffix": "도 둘러보세요."
+    "previewSecondarySuffix": "도 둘러보세요.",
+    "convResultEyebrow": "일부 미리보기, 무료",
+    "convResultHeadline": "결제 전에 보는 첫째 날",
+    "convResultBody": "1일차 일정이 바로 나타납니다 — 실제 운영시간, 도보 거리, 코스 사이 맛집까지. 한 푼 쓰기 전에 직접 확인하고 결정하세요.",
+    "convResultCta": "실제 일정 보기",
+    "convAnchorEyebrow": "여행 컨설팅은 $50 이상",
+    "convAnchorHeadline": "같은 일정, $4.",
+    "convAnchorBody": "사람에게 받는 여행 컨설팅은 $50 이상, 구독 앱은 같은 걸 빌려주는 데 월 $13을 받습니다. gliddy 일정 하나는 $4 — 한 번만 결제하면 끝.",
+    "convAnchorNote": "$4 단 한 번 — 구독 아님. 계정 불필요.",
+    "convRefundHeadline": "별로면? 전액 환불.",
+    "convRefundBody": "계정도, 카드 등록도 없습니다. 일정이 쓸모없다면 한 푼도 빠짐없이 돌려드립니다."
   },
   "account": {
     "login": {
