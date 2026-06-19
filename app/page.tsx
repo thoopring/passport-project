@@ -86,13 +86,24 @@ export default async function Home() {
         {/* Full-bleed self-hosted photo — sense of place, bottom darker for scrim.
             center 38% crop per spec §3. */}
         <Image
-          src="/destinations/kyoto/hero.jpg"
+          src="/hero/wanderlust-hero.webp"
           alt="Travel inspiration"
           fill
           priority
           sizes="100vw"
           className="object-cover"
           style={{ objectPosition: "center 38%" }}
+        />
+        {/* Nav scrim (manifest §2) — the Wanderlust hero's top is a bright
+            sunset sky, which blows out the white nav glyphs. A dedicated
+            top-only gradient (ink 0.35 → transparent by 24%) keeps the nav
+            legible without darkening the full frame. */}
+        <div
+          className="absolute inset-x-0 top-0 h-[24%]"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(20,17,14,0.35) 0%, rgba(20,17,14,0) 100%)",
+          }}
         />
         {/* Ink scrim — top + bottom darker, middle light (spec §3) so the
             bottom-anchored text stays legible without an AI-cliché color wash. */}
