@@ -150,6 +150,10 @@
       "summaryInterests": "Interests",
       "summaryMustVisit": "Must visit",
       "summaryEmail": "Email",
+      "priceAnchor": {
+        "strike": "A travel planner charges $150+ for a custom day-by-day itinerary.",
+        "ours": "Same depth, built around you — $4."
+      },
       "payButton": "Build my plan · $4",
       "payAgainButton": "Retry checkout",
       "sampleButton": "See a sample first",

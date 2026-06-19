@@ -150,6 +150,10 @@
       "summaryInterests": "Centres d'intérêt",
       "summaryMustVisit": "Incontournables",
       "summaryEmail": "E-mail",
+      "priceAnchor": {
+        "strike": "Un planificateur facture 150 $ et plus pour un itinéraire sur-mesure, jour par jour.",
+        "ours": "La même profondeur, pensée pour vous — 4 $."
+      },
       "payButton": "Créer mon plan · $4",
       "payAgainButton": "Réessayer le paiement",
       "sampleButton": "Voir un exemple",

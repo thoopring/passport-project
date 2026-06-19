@@ -150,6 +150,10 @@
       "summaryInterests": "興味",
       "summaryMustVisit": "絶対行きたい場所",
       "summaryEmail": "メール",
+      "priceAnchor": {
+        "strike": "旅行プランの作成代行は通常$150以上。",
+        "ours": "同じ密度を、あなた仕様で——$4。"
+      },
       "payButton": "プランを作る · $4",
       "payAgainButton": "決済をやり直す",
       "sampleButton": "まずサンプルを見る",

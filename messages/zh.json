@@ -150,6 +150,10 @@
       "summaryInterests": "兴趣",
       "summaryMustVisit": "必去地点",
       "summaryEmail": "邮箱",
+      "priceAnchor": {
+        "strike": "找人定制逐日行程,通常要$150以上。",
+        "ours": "同样的深度,为你量身打造——只要$4。"
+      },
       "payButton": "生成行程 · $4",
       "payAgainButton": "重新支付",
       "sampleButton": "先看看示例",

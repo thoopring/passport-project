@@ -726,6 +726,17 @@ function LoadingInner() {
             </ul>
           </div>
 
+          {/* Human-alternative price anchor — a travel planner charges $150+, ours is $4.
+              Sits right above loss-aversion so value is framed before the keep-it pitch. */}
+          <div className="px-1 mb-2">
+            <p className="text-body-sm text-[var(--text-muted)] leading-snug line-through decoration-[var(--text-muted)]/50">
+              {tr("priceAnchor.strike")}
+            </p>
+            <p className="text-body-sm font-semibold text-[var(--brand-dark)] mt-0.5">
+              {tr("priceAnchor.ours")}
+            </p>
+          </div>
+
           {/* Loss-aversion band — $4 framed as value (keep forever), not a gate.
               Price appears here only, not in the CTA button (founder direction 2026-05-07). */}
           <div className="rounded-[12px] border border-[var(--brand-primary)]/20 bg-[var(--brand-soft)] px-5 py-4 mb-2">

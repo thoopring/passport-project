@@ -157,6 +157,10 @@
       "summaryInterests": "관심사",
       "summaryMustVisit": "꼭 가고 싶은 곳",
       "summaryEmail": "이메일",
+      "priceAnchor": {
+        "strike": "맞춤 일정 대행은 보통 $150 이상이에요.",
+        "ours": "같은 수준을 나한테 맞춰서 — 단돈 $4."
+      },
       "payButton": "내 여행 계획하기 · $4",
       "payAgainButton": "결제 다시 시도",
       "sampleButton": "샘플 먼저 보기",
