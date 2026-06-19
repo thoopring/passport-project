@@ -56,8 +56,40 @@ export async function getActiveLocale(): Promise<Locale> {
   return DEFAULT_LOCALE;
 }
 
+/**
+ * Strip the `__needsTranslation:` slot marker from message values so it can
+ * NEVER leak to the rendered page. Locale files (ko/ja/zh/fr) carry untranslated
+ * keys as `"__needsTranslation: <English fallback>"` until a human localizes them
+ * (see docs i18n contract). The marker is an authoring signal, not display text —
+ * if a key is still a slot, we render the English fallback instead of the marker.
+ * Recursive + future-proof: any key marked this way degrades to clean English.
+ */
+const NEEDS_TRANSLATION_PREFIX = "__needsTranslation:";
+
+function stripTranslationMarkers<T>(value: T): T {
+  if (typeof value === "string") {
+    return (
+      value.startsWith(NEEDS_TRANSLATION_PREFIX)
+        ? value.slice(NEEDS_TRANSLATION_PREFIX.length).trim()
+        : value
+    ) as T;
+  }
+  if (Array.isArray(value)) {
+    return value.map(stripTranslationMarkers) as T;
+  }
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) {
+      out[k] = stripTranslationMarkers(v);
+    }
+    return out as T;
+  }
+  return value;
+}
+
 export default getRequestConfig(async () => {
   const locale = await getActiveLocale();
-  const messages = (await import(`../messages/${locale}.json`)).default;
+  const raw = (await import(`../messages/${locale}.json`)).default;
+  const messages = stripTranslationMarkers(raw);
   return { locale, messages };
 });
