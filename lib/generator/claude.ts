@@ -28,8 +28,14 @@ import { generateScaffold } from "./scaffold";
  * Required env: ANTHROPIC_API_KEY
  */
 
-const MODEL = "claude-sonnet-4-5";
-// Sonnet 4.5 ceiling. Founder direction (2026-04-30 launch testing):
+// Executor model — the model that actually writes the day-by-day itinerary.
+// Founder direction (2026-06-20): run the itinerary generation on Opus 4.8
+// for quality. The scaffold (lib/generator/scaffold.ts) is also Opus 4.8.
+const MODEL = "claude-opus-4-8";
+// Route-optimizer model — a trivial JSON-array reorder, NOT itinerary prose.
+// Keep it on a cheap tier so we don't burn Opus tokens on a 200-token reorder.
+const ROUTE_OPT_MODEL = "claude-haiku-4-5-20251001";
+// Output ceiling. Founder direction (2026-04-30 launch testing):
 // quality over speed. Korean and Japanese prose burn tokens fast (~2
 // chars/token vs English's 4), and a packed-pace 7-day plan with rich
 // editorial descriptions can pass 30k tokens easily. 64k is the
@@ -635,7 +641,7 @@ markdown, no explanation. Length must equal the number of input stops.`;
   // mis-firing on this small call.
   const response = await anthropic.messages
     .stream({
-      model: MODEL,
+      model: ROUTE_OPT_MODEL,
       max_tokens: 200,
       messages: [{ role: "user", content: prompt }],
     })

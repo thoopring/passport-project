@@ -20,7 +20,7 @@ import { PlanRequest, Scaffold, ScaffoldSchema } from "../../types/trip-plan";
  * Required env: ANTHROPIC_API_KEY
  */
 
-const SCAFFOLD_MODEL = "claude-opus-4-7";
+const SCAFFOLD_MODEL = "claude-opus-4-8";
 const SCAFFOLD_MAX_TOKENS = 3000;
 // Hard ceiling. Past this we abandon and let Sonnet run alone — keeps the
 // total pipeline under Vercel's 300s wall even when Opus is unusually slow.
