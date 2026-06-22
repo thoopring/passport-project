@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { analytics, trackLegacy } from "../../../lib/analytics";
@@ -14,6 +14,7 @@ import type {
   Pace,
   TravelStyle,
 } from "../../../types/trip-plan";
+import type { DayOneTeaser } from "../../../lib/generator/teaser";
 
 interface WizardData {
   destination: string;
@@ -52,6 +53,49 @@ type EditableField =
   | "email";
 
 // gtag/dataLayer types are declared in lib/analytics.ts
+
+/**
+ * Build the PlanRequest-shaped payload from collected wizard data. Shared by
+ * the checkout submit (POST /api/plan/draft) and the pre-checkout Day-1 teaser
+ * (POST /api/plan/teaser) so both send an identical request. Returns null when
+ * a required field is still missing — callers treat null as "not ready".
+ */
+function planPayload(data: WizardData) {
+  if (
+    !data.travelerType ||
+    !data.adults ||
+    !data.arrivalAirport ||
+    !data.interests?.length ||
+    !data.pace ||
+    !data.email
+  ) {
+    return null;
+  }
+  return {
+    destination: data.destination,
+    destinationCountry: data.destinationCountry || data.destination,
+    durationDays: data.durationDays,
+    arrivalAirport: data.arrivalAirport,
+    flightArrival: data.flightArrival,
+    flightDeparture: data.flightDeparture,
+    travelerType: data.travelerType,
+    travelStyle: data.travelStyle,
+    mustVisit: data.mustVisit,
+    adults: data.adults,
+    children: data.children ?? 0,
+    childrenAges: data.childrenAges,
+    strollerNeeded: data.strollerNeeded,
+    hasInfant: data.childrenAges?.some((a) => a <= 2),
+    hotelBooked: data.hotelBooked,
+    hotelName: data.hotelName,
+    interests: data.interests,
+    budgetTier: data.budgetTier,
+    pace: data.pace,
+    email: data.email,
+    notes: data.notes,
+    promoCode: data.promoCode,
+  };
+}
 
 function LoadingInner() {
   const router = useRouter();
@@ -127,6 +171,42 @@ function LoadingInner() {
   // Draft planId after checkout submission — needed for the BroadcastChannel
   // listener so we only redirect on messages matching our plan.
   const [draftPlanId, setDraftPlanId] = useState<string | null>(null);
+
+  // Pre-checkout "real Day 1" preview. Generated on the fly when the review
+  // screen first shows. Day 1 renders fully (free); Days 2..N stay blurred
+  // until checkout. On any failure we fall back to the static locked-route
+  // placeholder, so the teaser never blocks the buyer from paying.
+  const [teaser, setTeaser] = useState<DayOneTeaser | null>(null);
+  const [teaserLoading, setTeaserLoading] = useState(false);
+  const [teaserError, setTeaserError] = useState(false);
+  // One-shot guard — the teaser is a paid AI call; fire it once per review,
+  // not on every data-edit re-render.
+  const teaserFiredRef = useRef(false);
+
+  // Fire the Day-1 teaser when the review screen first appears. We read `data`
+  // at call time (it's complete by reviewReady — all popups answered), and the
+  // ref guard keeps later edits from re-triggering the call.
+  useEffect(() => {
+    if (!reviewReady || teaserFiredRef.current) return;
+    const payload = planPayload(data);
+    if (!payload) return; // missing required fields — skip, fall back to static
+    teaserFiredRef.current = true;
+    setTeaserLoading(true);
+    setTeaserError(false);
+    fetch("/api/plan/teaser", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error("teaser failed");
+        return res.json();
+      })
+      .then((json) => setTeaser(json as DayOneTeaser))
+      .catch(() => setTeaserError(true))
+      .finally(() => setTeaserLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reviewReady]);
 
   // Listen for the "paid" broadcast from the checkout/wait tab. When the new
   // tab (/plan/[id]?paid=1) mounts, it posts to this channel; we redirect the
@@ -251,30 +331,7 @@ function LoadingInner() {
         throw new Error("Some answers are missing — please refresh and try again.");
       }
 
-      const payload = {
-        destination: data.destination,
-        destinationCountry: data.destinationCountry || data.destination,
-        durationDays: data.durationDays,
-        arrivalAirport: data.arrivalAirport,
-        flightArrival: data.flightArrival,
-        flightDeparture: data.flightDeparture,
-        travelerType: data.travelerType,
-        travelStyle: data.travelStyle,
-        mustVisit: data.mustVisit,
-        adults: data.adults,
-        children: data.children ?? 0,
-        childrenAges: data.childrenAges,
-        strollerNeeded: data.strollerNeeded,
-        hasInfant: data.childrenAges?.some((a) => a <= 2),
-        hotelBooked: data.hotelBooked,
-        hotelName: data.hotelName,
-        interests: data.interests,
-        budgetTier: data.budgetTier,
-        pace: data.pace,
-        email: data.email,
-        notes: data.notes,
-        promoCode: data.promoCode,
-      };
+      const payload = planPayload(data);
 
       const draftRes = await fetch("/api/plan/draft", {
         method: "POST",
@@ -576,64 +633,19 @@ function LoadingInner() {
             </label>
           </div>
 
-          {/* Locked route preview — blurred skeleton signals content exists (functional paywall).
-              Day count capped at 3 for DOM weight; fade implies more below. */}
-          <div className="mb-6 rounded-[14px] border border-[var(--border-light)] bg-white overflow-hidden">
-            <div className="p-5 sm:p-6">
-              <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">
-                {tr("lockedRoute.eyebrow", { durationDays: data.durationDays, destination: data.destination })}
-              </p>
-              <div className="relative">
-                <div
-                  className="filter blur-[6px] select-none pointer-events-none opacity-70"
-                  aria-hidden
-                >
-                  {Array.from({ length: Math.min(data.durationDays, 3) }).map((_, dayIdx) => (
-                    <div key={dayIdx} className="relative pl-5 mb-5 last:mb-0">
-                      <div className="absolute left-1.5 top-5 bottom-0 w-px bg-[var(--border-subtle)]" />
-                      <p className="text-body-sm font-semibold text-[var(--text-primary)] mb-2.5">
-                        Day {dayIdx + 1}
-                      </p>
-                      {(
-                        [["75%", "60%"], ["85%", "50%"], ["65%", "70%"]] as const
-                      ).map(([w1, w2], stopIdx) => (
-                        <div key={stopIdx} className="flex items-start gap-2 mb-2.5 last:mb-0">
-                          <div className="w-2 h-2 rounded-full bg-[var(--surface-secondary)] shrink-0 mt-1" />
-                          <div className="flex-1 space-y-1.5">
-                            <div className="h-2.5 rounded-full bg-[var(--surface-secondary)]" style={{ width: w1 }} />
-                            <div className="h-2 rounded-full bg-[var(--surface-secondary)]" style={{ width: w2 }} />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white pointer-events-none" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-[var(--border-light)] shadow-soft">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-[var(--text-secondary)]"
-                      aria-hidden
-                    >
-                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                    <span className="text-body-sm font-medium text-[var(--text-primary)]">
-                      {tr("lockedRoute.lockLabel")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Pre-checkout preview — a REAL, AI-generated Day 1 from the
+              buyer's actual inputs renders in full (free); Days 2..N stay
+              blurred until checkout. Replaces the old fake skeleton: showing a
+              genuine first day converts far better than a placeholder. Falls
+              back to the static locked-route block on teaser failure. */}
+          <DayOnePreview
+            teaser={teaser}
+            loading={teaserLoading}
+            failed={teaserError}
+            durationDays={data.durationDays}
+            destination={data.destination}
+            tr={tr}
+          />
 
           {/* Checkout opened confirmation */}
           {checkoutUrl && (
@@ -1252,6 +1264,200 @@ export default function LoadingPage() {
     <Suspense fallback={<div className="min-h-screen" />}>
       <LoadingInner />
     </Suspense>
+  );
+}
+
+// ─────────────────────────────────────────
+// Pre-checkout Day-1 preview (blur unlock)
+// ─────────────────────────────────────────
+
+type ReviewTranslator = (
+  key: string,
+  values?: Record<string, string | number>,
+) => string;
+
+function LockIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  );
+}
+
+/**
+ * Renders the pre-checkout preview. Three states:
+ *   - loading: the real Day 1 is generating — shimmer + "writing your Day 1".
+ *   - success: Day 1 shown in full + Days 2..N blurred behind the unlock CTA.
+ *   - failed/none: static locked-route placeholder so checkout is never blocked.
+ *
+ * The unlock copy is deliberately plain and results-focused per founder
+ * direction — "plan like everyone already does — smarter" — no shame framing.
+ */
+function DayOnePreview({
+  teaser,
+  loading,
+  failed,
+  durationDays,
+  destination,
+  tr,
+}: {
+  teaser: DayOneTeaser | null;
+  loading: boolean;
+  failed: boolean;
+  durationDays: number;
+  destination: string;
+  tr: ReviewTranslator;
+}) {
+  // Locked days are Day 2..N — capped at 4 rendered cards for DOM weight.
+  const lockedDays =
+    durationDays > 1
+      ? Array.from({ length: Math.min(durationDays - 1, 4) }, (_, i) => i + 2)
+      : [];
+
+  return (
+    <div className="mb-6 rounded-[14px] border border-[var(--border-light)] bg-white overflow-hidden">
+      <div className="p-5 sm:p-6">
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <p className="text-caption uppercase tracking-[0.14em] text-[var(--text-muted)]">
+            {tr("preview.eyebrow")}
+          </p>
+          {teaser && !loading && (
+            <span className="inline-flex items-center gap-1.5 text-caption font-semibold text-[var(--brand-dark)] bg-[var(--brand-soft)] px-2.5 py-1 rounded-full">
+              {tr("preview.day1Badge")}
+            </span>
+          )}
+        </div>
+
+        {/* Loading — the real Day 1 is being written */}
+        {loading && (
+          <div>
+            <p className="text-body-sm font-medium text-[var(--text-primary)] mb-1">
+              {tr("preview.building")}
+            </p>
+            <p className="text-caption text-[var(--text-muted)] mb-4">
+              {tr("preview.buildingSub", { destination })}
+            </p>
+            <div className="space-y-3" aria-hidden>
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="h-3 w-10 rounded bg-[var(--surface-secondary)] animate-pulse shrink-0" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3 rounded bg-[var(--surface-secondary)] animate-pulse" style={{ width: "55%" }} />
+                    <div className="h-2.5 rounded bg-[var(--surface-secondary)] animate-pulse" style={{ width: "85%" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Success — real Day 1 in full */}
+        {!loading && teaser && (
+          <div>
+            <p className="text-body-md font-semibold text-[var(--text-primary)]">
+              {tr("preview.day1Title")} · {teaser.day1.theme}
+            </p>
+            {teaser.hotelArea && (
+              <p className="text-caption text-[var(--text-muted)] mb-3">
+                {tr("preview.aroundHotel", {
+                  hotel: teaser.hotelName ?? teaser.hotelArea,
+                })}
+              </p>
+            )}
+            <ol className="relative pl-5 mt-3">
+              <div className="absolute left-1.5 top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
+              {teaser.day1.stops.map((stop) => (
+                <li key={stop.order} className="relative mb-4 last:mb-0">
+                  <div className="absolute -left-[14px] top-1 w-2.5 h-2.5 rounded-full bg-[var(--brand-primary)]" />
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-caption font-semibold tabular-nums text-[var(--brand-dark)] shrink-0">
+                      {stop.time}
+                    </span>
+                    <span className="text-body-sm font-semibold text-[var(--text-primary)]">
+                      {stop.name}
+                    </span>
+                  </div>
+                  <p className="text-body-sm text-[var(--text-secondary)] mt-0.5 leading-snug">
+                    {stop.description}
+                  </p>
+                  {stop.transitFromPrev && (
+                    <p className="text-caption text-[var(--text-muted)] mt-1">
+                      {stop.transitFromPrev}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        {/* Locked days 2..N — blurred, behind the unlock CTA. Shown for the
+            success case AND the failure fallback (failure just skips Day 1). */}
+        {!loading && lockedDays.length > 0 && (
+          <div className="relative mt-5">
+            <div
+              className="filter blur-[6px] select-none pointer-events-none opacity-70"
+              aria-hidden
+            >
+              {lockedDays.map((dayNum) => (
+                <div key={dayNum} className="relative pl-5 mb-5 last:mb-0">
+                  <div className="absolute left-1.5 top-5 bottom-0 w-px bg-[var(--border-subtle)]" />
+                  <p className="text-body-sm font-semibold text-[var(--text-primary)] mb-2.5">
+                    {tr("preview.lockedDay", { n: dayNum })}
+                  </p>
+                  {([["75%", "60%"], ["85%", "50%"], ["65%", "70%"]] as const).map(
+                    ([w1, w2], stopIdx) => (
+                      <div key={stopIdx} className="flex items-start gap-2 mb-2.5 last:mb-0">
+                        <div className="w-2 h-2 rounded-full bg-[var(--surface-secondary)] shrink-0 mt-1" />
+                        <div className="flex-1 space-y-1.5">
+                          <div className="h-2.5 rounded-full bg-[var(--surface-secondary)]" style={{ width: w1 }} />
+                          <div className="h-2 rounded-full bg-[var(--surface-secondary)]" style={{ width: w2 }} />
+                        </div>
+                      </div>
+                    ),
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white pointer-events-none" />
+            <div className="absolute inset-0 flex items-center justify-center px-4">
+              <div className="text-center max-w-xs">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[var(--border-light)] shadow-soft mb-3">
+                  <LockIcon className="text-[var(--text-secondary)]" />
+                  <span className="text-body-sm font-semibold text-[var(--text-primary)]">
+                    {tr("preview.unlockCta")}
+                  </span>
+                </div>
+                <p className="text-caption text-[var(--text-secondary)] bg-white/80 rounded-md px-2 py-1">
+                  {tr("preview.unlockSub", { durationDays })}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Single-day trip — no locked days to show, but still anchor the
+            unlock message under a real Day 1. */}
+        {!loading && lockedDays.length === 0 && (teaser || failed) && (
+          <p className="text-caption text-[var(--text-secondary)] mt-4 flex items-center gap-2">
+            <LockIcon className="text-[var(--text-muted)] shrink-0" />
+            {tr("preview.unlockSub", { durationDays })}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
 

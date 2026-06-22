@@ -199,6 +199,17 @@
       "lossAversion": {
         "line1": "지금 만든 동선, 결제 안 하면 닫는 순간 사라집니다.",
         "line2": "$4로 영구 저장 + PDF 내보내기."
+      },
+      "preview": {
+        "eyebrow": "맛보기 — Day 1은 무료",
+        "day1Badge": "Day 1 · 완성",
+        "building": "진짜 Day 1을 작성하는 중…",
+        "buildingSub": "{destination}의 실제 장소·시간·동선을 짜고 있어요. 약 15초.",
+        "day1Title": "Day 1",
+        "aroundHotel": "{hotel} 중심으로 구성",
+        "lockedDay": "Day {n}",
+        "unlockCta": "남들 다 하는 여행 계획, 더 똑똑하게",
+        "unlockSub": "Day 1은 진짜고 무료예요. 결제하면 전체 {durationDays}일 일정과 동선 지도, 오프라인 PDF가 열립니다."
       }
     },
     "popup": {
