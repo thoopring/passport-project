@@ -288,11 +288,18 @@ function LoadingInner() {
       const { id } = await draftRes.json();
       setDraftPlanId(id);
 
-      trackLegacy("plan_draft_created", {
-        event_category: "trip_planner",
-        event_label: data.destination,
-        locale,
-      });
+      trackLegacy(
+        "plan_draft_created",
+        {
+          event_category: "trip_planner",
+          event_label: data.destination,
+          locale,
+        },
+        // send_instantly: this funnel ends in a hard window.location.href
+        // navigation that destroys the page before PostHog's ~3s batch flushes.
+        // Regression introduced by 0820998 (same-tab redirect); flush now.
+        { send_instantly: true },
+      );
 
       const checkoutRes = await fetch("/api/checkout", {
         method: "POST",
@@ -305,25 +312,37 @@ function LoadingInner() {
       }
       const { url, bypassedLS } = await checkoutRes.json();
 
-      analytics.checkoutStarted({
-        locale,
-        destination: data.destination,
-        promo: data.promoCode,
-        value: 4,
-        currency: "USD",
-      });
+      // send_instantly on all three: handlePay ends in a hard
+      // window.location.href navigation (see below) that kills the page
+      // before PostHog's batch timer flushes. Regression from 0820998.
+      analytics.checkoutStarted(
+        {
+          locale,
+          destination: data.destination,
+          promo: data.promoCode,
+          value: 4,
+          currency: "USD",
+        },
+        { send_instantly: true },
+      );
       if (data.promoCode) {
-        analytics.creditUsed({
-          locale,
-          plan_id: id,
-          type: "promo",
-        });
+        analytics.creditUsed(
+          {
+            locale,
+            plan_id: id,
+            type: "promo",
+          },
+          { send_instantly: true },
+        );
       } else if (hasReferralCoupon) {
-        analytics.creditUsed({
-          locale,
-          plan_id: id,
-          type: "referral_credit",
-        });
+        analytics.creditUsed(
+          {
+            locale,
+            plan_id: id,
+            type: "referral_credit",
+          },
+          { send_instantly: true },
+        );
       }
 
       if (bypassedLS) {

@@ -86,6 +86,8 @@ export type AnalyticsEvents = {
     plan_id: string;
     destination: string;
     method: "lemon_squeezy" | "credit" | "promo";
+    value?: number;
+    currency?: string;
   };
   account_signup: { locale: string };
   account_visit: { locale: string; has_plans: boolean; credits: number };
@@ -101,13 +103,26 @@ export type AnalyticsEvents = {
   };
 };
 
-function emit<K extends keyof AnalyticsEvents>(name: K, props: AnalyticsEvents[K]) {
+/**
+ * Narrow passthrough for PostHog's per-capture options. The only one we use is
+ * `send_instantly`, which flushes the event synchronously instead of batching
+ * it on PostHog's ~3s timer. Critical right before a hard navigation
+ * (`window.location.href`) that would otherwise destroy the page before the
+ * batch flushes — see app/plan/loading/page.tsx handlePay().
+ */
+type CaptureOptions = { send_instantly?: boolean };
+
+function emit<K extends keyof AnalyticsEvents>(
+  name: K,
+  props: AnalyticsEvents[K],
+  options?: CaptureOptions,
+) {
   if (typeof window === "undefined") return;
   if (typeof window.gtag === "function") {
     window.gtag("event", name, props as Record<string, unknown>);
   }
   if (posthogReady) {
-    posthog.capture(name, props as Record<string, unknown>);
+    posthog.capture(name, props as Record<string, unknown>, options);
   }
 }
 
@@ -127,24 +142,30 @@ export const analytics = {
   },
   wizardStarted: (props: AnalyticsEvents["wizard_started"]) => emit("wizard_started", props),
   scheduleCreated: (props: AnalyticsEvents["schedule_created"]) => emit("schedule_created", props),
-  checkoutStarted: (props: AnalyticsEvents["checkout_started"]) => emit("checkout_started", props),
+  checkoutStarted: (props: AnalyticsEvents["checkout_started"], options?: CaptureOptions) =>
+    emit("checkout_started", props, options),
   checkoutCompleted: (props: AnalyticsEvents["checkout_completed"]) => emit("checkout_completed", props),
   accountSignup: (props: AnalyticsEvents["account_signup"]) => emit("account_signup", props),
   accountVisit: (props: AnalyticsEvents["account_visit"]) => emit("account_visit", props),
   referralShared: (props: AnalyticsEvents["referral_shared"]) => emit("referral_shared", props),
-  creditUsed: (props: AnalyticsEvents["credit_used"]) => emit("credit_used", props),
+  creditUsed: (props: AnalyticsEvents["credit_used"], options?: CaptureOptions) =>
+    emit("credit_used", props, options),
 };
 
 /**
  * Legacy escape hatch for events that predate this wrapper (affiliate_click,
  * plan_draft_created). Goes through GA4+PostHog but with no schema validation.
  */
-export function trackLegacy(name: string, props: Record<string, unknown>) {
+export function trackLegacy(
+  name: string,
+  props: Record<string, unknown>,
+  options?: CaptureOptions,
+) {
   if (typeof window === "undefined") return;
   if (typeof window.gtag === "function") {
     window.gtag("event", name, props);
   }
   if (posthogReady) {
-    posthog.capture(name, props);
+    posthog.capture(name, props, options);
   }
 }
