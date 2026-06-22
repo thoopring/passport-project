@@ -41,6 +41,10 @@ export default function CheckoutCompletedTracker({
       plan_id: planId,
       destination,
       method,
+      // Revenue attribution: $4 plan. Credit/promo redemptions collected $0
+      // from the buyer, so only a real LS purchase carries booked revenue.
+      value: method === "lemon_squeezy" ? 4 : 0,
+      currency: "USD",
     });
     try {
       window.localStorage.setItem(storageKey, new Date().toISOString());
