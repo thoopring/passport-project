@@ -192,6 +192,17 @@
       "lossAversion": {
         "line1": "L'itinéraire que vous venez de créer disparaît dès que vous fermez.",
         "line2": "Gardez-le pour toujours + export PDF pour 4 $."
+      },
+      "preview": {
+        "eyebrow": "Un avant-goût — Jour 1 offert",
+        "day1Badge": "Jour 1 · prêt",
+        "building": "Rédaction de votre vrai Jour 1…",
+        "buildingSub": "On rassemble les vrais lieux, horaires et l'itinéraire pour {destination}. Environ 15 secondes.",
+        "day1Title": "Jour 1",
+        "aroundHotel": "Construit autour de {hotel}",
+        "lockedDay": "Jour {n}",
+        "unlockCta": "Planifiez comme tout le monde — en plus malin",
+        "unlockSub": "Le Jour 1 est réel et gratuit. Débloquez les {durationDays} jours, la carte de l'itinéraire et votre PDF hors ligne au paiement."
       }
     },
     "loading": {

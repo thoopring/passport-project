@@ -192,6 +192,17 @@
       "lossAversion": {
         "line1": "The route you just built disappears the moment you close this.",
         "line2": "Keep it forever + export PDF for $4."
+      },
+      "preview": {
+        "eyebrow": "A real taste — Day 1 on us",
+        "day1Badge": "Day 1 · ready",
+        "building": "Writing your real Day 1…",
+        "buildingSub": "Pulling real spots, times, and routing for {destination}. About 15 seconds.",
+        "day1Title": "Day 1",
+        "aroundHotel": "Built around {hotel}",
+        "lockedDay": "Day {n}",
+        "unlockCta": "Plan like everyone already does — smarter",
+        "unlockSub": "Day 1 is real and free. Unlock all {durationDays} days, the route map, and your offline PDF at checkout."
       }
     },
     "loading": {

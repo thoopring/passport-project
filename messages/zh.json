@@ -192,6 +192,17 @@
       "lossAversion": {
         "line1": "你刚规划的动线，关掉页面就会消失。",
         "line2": "$4 永久保存 ＋ 导出 PDF。"
+      },
+      "preview": {
+        "eyebrow": "先尝一口 — Day 1 免费",
+        "day1Badge": "Day 1 · 已就绪",
+        "building": "正在为你撰写真实的 Day 1…",
+        "buildingSub": "正在整理 {destination} 的真实地点、时间和动线。约 15 秒。",
+        "day1Title": "Day 1",
+        "aroundHotel": "围绕 {hotel} 规划",
+        "lockedDay": "Day {n}",
+        "unlockCta": "像所有人一样规划旅行 — 但更聪明",
+        "unlockSub": "Day 1 是真实且免费的。付款即可解锁全部 {durationDays} 天行程、动线地图和离线 PDF。"
       }
     },
     "loading": {

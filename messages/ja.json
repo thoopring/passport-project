@@ -192,6 +192,17 @@
       "lossAversion": {
         "line1": "今つくった動線は、閉じた瞬間に消えます。",
         "line2": "$4で永久保存＋PDF書き出し。"
+      },
+      "preview": {
+        "eyebrow": "お試し — Day 1は無料",
+        "day1Badge": "Day 1 · 完成",
+        "building": "本物のDay 1を作成中…",
+        "buildingSub": "{destination}の実際のスポット・時間・動線を組んでいます。約15秒。",
+        "day1Title": "Day 1",
+        "aroundHotel": "{hotel}を拠点に構成",
+        "lockedDay": "Day {n}",
+        "unlockCta": "みんながやってる旅行計画を、もっと賢く",
+        "unlockSub": "Day 1は本物で無料です。決済すると全{durationDays}日間の行程・動線マップ・オフラインPDFが解放されます。"
       }
     },
     "loading": {
