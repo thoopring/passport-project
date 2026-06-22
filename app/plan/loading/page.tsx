@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { analytics, trackLegacy } from "../../../lib/analytics";
@@ -127,6 +127,9 @@ function LoadingInner() {
   // Draft planId after checkout submission — needed for the BroadcastChannel
   // listener so we only redirect on messages matching our plan.
   const [draftPlanId, setDraftPlanId] = useState<string | null>(null);
+  // Guards the `schedule_created` funnel marker so it fires once per preview,
+  // not on every reviewReady toggle (handleBack can flip it false→true again).
+  const previewFiredRef = useRef(false);
 
   // Listen for the "paid" broadcast from the checkout/wait tab. When the new
   // tab (/plan/[id]?paid=1) mounts, it posts to this channel; we redirect the
@@ -153,7 +156,29 @@ function LoadingInner() {
   }, [data.destination, router]);
 
   useEffect(() => {
-    if (reviewReady) trackLegacy("review_viewed", { event_category: "trip_planner", event_label: data.destination, locale });
+    if (!reviewReady) return;
+    trackLegacy("review_viewed", { event_category: "trip_planner", event_label: data.destination, locale });
+    // Typed funnel stage for "preview reached" (③ 미리보기). The
+    // ScheduleCreatedTracker only mounts on the PAID /plan/[id] completed page,
+    // so after the 2026-05-07 review-screen rework — which moved the preview
+    // (blurred locked route) into THIS screen — unpaid users (the entire top of
+    // the funnel) never triggered schedule_created. Fire it here, once per
+    // preview, using a client-side preview id (the real draft id only exists
+    // after the user clicks pay in handlePay).
+    if (!previewFiredRef.current) {
+      previewFiredRef.current = true;
+      const previewId =
+        typeof crypto !== "undefined" && crypto.randomUUID
+          ? `preview-${crypto.randomUUID()}`
+          : `preview-${Date.now()}`;
+      analytics.scheduleCreated({
+        locale,
+        plan_id: previewId,
+        destination: data.destination,
+        traveler_type: data.travelerType,
+        days: data.durationDays,
+      });
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reviewReady]);
 
