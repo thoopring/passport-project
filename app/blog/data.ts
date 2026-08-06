@@ -16,6 +16,64 @@ const UNSPLASH = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
 
 export const BLOG_POSTS: Record<string, BlogPost> = {
+  "3-days-paris-kids-family-itinerary": {
+    title: "3 Days in Paris with Kids: Family Itinerary + Visa/ETIAS Checklist",
+    date: "2026-06-03",
+    category: "Destination Guides",
+    excerpt:
+      "A realistic, day-by-day Paris itinerary built around actual kid tolerances — plus an honest ETIAS checklist so entry-document stress doesn't follow you to the Eiffel Tower.",
+    content: `
+<p>Paris with kids is absolutely doable — but the version that works looks different from the adult version. Museums are shorter. Walks are punctuated by crêpe breaks. And the Eiffel Tower is genuinely magical for a seven-year-old in a way it hasn't been for most adults in years. The trick is building a schedule around real energy levels rather than a bucket list.</p>
+
+<p>Below is a three-day itinerary that's been stress-tested against nap schedules, stroller logistics, and the specific tragedy of a child melting down inside the Louvre. It also includes the 2026 visa and ETIAS situation for non-EU families, because getting that wrong before you leave costs more than any bad museum choice.</p>
+
+<h2>Day 1: Champ de Mars, Eiffel Tower, Bateaux Mouches</h2>
+
+<p>Start at the Champ de Mars, not the tower. Grab breakfast from a nearby boulangerie and eat on the grass with the Eiffel Tower in front of you. This is free, low-pressure, and genuinely one of the best moments in Paris — kids run around, you drink coffee, nobody's in a queue yet.</p>
+
+<p>For the tower itself: book summit tickets online at least two weeks ahead. Walk-up queues in June and July regularly exceed two hours, which is untenable with children. The summit is worth it once, but if budget is a concern, the second floor gives 80% of the view at a lower price and with shorter lift waits.</p>
+
+<p>In the evening, take the <strong>Bateaux Mouches</strong> river cruise. Depart from Pont de l'Alma (a short walk from the tower). The standard one-hour cruise covers Notre-Dame, the Louvre waterfront, and the Île Saint-Louis. Kids tend to love it — you're moving, there's something to look at, and it's one of the few Paris experiences that doesn't require anyone to stand still. The dinner cruise costs roughly three times more and adds very little for families; the daytime or sunset departure is the better call.</p>
+
+<h2>Day 2: A Tactical Louvre Visit + Afternoon in the Gardens</h2>
+
+<p>The honest take on the Louvre with kids: going for everything is a mistake. The museum has 35,000 objects and will outlast any child's patience. Pick three rooms — Winged Victory of Samothrace, Mona Lisa (brace for crowds), and the Egyptian Antiquities wing, which tends to genuinely interest children ages five and up. Two hours in, leave while morale is still high.</p>
+
+<p>Pre-book timed entry. Wednesday and Friday evenings are less crowded if your schedule allows. The Paris Museum Pass includes the Louvre but only pays off financially if you're hitting four or more major sites — for a three-day family trip focused on outdoor time, it rarely pencils out.</p>
+
+<p>After lunch, walk through the Tuileries Garden. There's a classic wooden carousel near the Rue de Rivoli entrance that costs a couple of euros per ride and reliably rescues tired legs. End the afternoon in the Jardin du Luxembourg — the puppet theater (Guignol) runs Wednesday, Saturday, and Sunday at roughly 3pm, no French required, and children who've never seen a Punch-and-Judy-style show are usually captivated.</p>
+
+<h2>Day 3: Montmartre in the Morning, Slower Afternoon</h2>
+
+<p>Montmartre is best before 11am when the tourist density is lower and the light on Sacré-Cœur is sharp. One logistics note: the main approach up the hill via the stone staircases is not stroller-friendly. The funicular railway (covered by a standard Metro ticket) runs up the east side of the hill and is the practical choice with wheels or tired legs.</p>
+
+<p>The neighborhood itself — Place du Tertre, the vineyard, the quieter streets north of the basilica — rewards slow walking more than any checklist. Artists still set up easels on the square; kids can watch without pressure to buy.</p>
+
+<p>For the afternoon, resist the urge to stack more monuments. A session at Parc de la Villette on the northeast edge of the city is a better final-day move: free entry, a large outdoor playground, a dedicated children's science museum (Cité des Enfants, ticketed), and enough space to actually decompress before a travel day.</p>
+
+<h2>Visa & ETIAS Checklist for 2026</h2>
+
+<p>France is in the Schengen Area. Whether your family needs a visa or just ETIAS depends on passport nationality:</p>
+
+<ul>
+  <li><strong>Schengen visa required:</strong> Many Asian, African, and South American passport holders need to apply at a French consulate well in advance — processing times vary by country and are often 3–6 weeks in peak season.</li>
+  <li><strong>ETIAS (not yet launched, expected late 2026):</strong> If you hold a passport currently visa-exempt for Schengen (US, UK, Canada, Australia, etc.), ETIAS will eventually apply — a pre-travel authorization similar to ESTA. As of mid-2026, implementation is still delayed; check official EU sources before applying to any third-party site charging facilitation fees.</li>
+  <li><strong>UK passport holders post-Brexit:</strong> No Schengen visa required for stays under 90 days, but ETIAS will apply once live. You may also face passport stamp checks; ensure your passport has at least six months' validity.</li>
+  <li><strong>Children's documents:</strong> Minors traveling with only one parent often need a notarized parental consent letter — requirements vary by country. Check your departure country's rules, not just France's.</li>
+</ul>
+
+<p>You can check which documents apply to your specific passport on <a href="/">checkvisamap</a>, which walks through Schengen entry requirements by nationality and flags what's actually required for your trip dates.</p>
+
+<h2>A Few Practical Notes</h2>
+
+<p>Metro travel with a stroller is manageable on some lines and genuinely painful on others — many central stations have no lifts. Lines 1 and 14 are fully accessible; most others are not. Budget extra time or use taxis for stroller-heavy days.</p>
+
+<p>If you want a day-by-day plan built around your kids' ages and your specific hotel location, <a href="/">gliddy</a> builds personalized itineraries that account for things like travel time between sites, which matters more with children than most generic plans acknowledge.</p>
+
+<p>Paris works well for families precisely because it rewards slowing down. The city doesn't require you to see everything to feel like you've been there — a morning on the Champ de Mars, a river cruise at dusk, and a functional crêpe-to-meltdown ratio will carry you through three days with good memories on both sides of the trip.</p>
+`,
+  },
+
   "tokyo-itinerary-how-many-days": {
     title: "Tokyo Itinerary: How Many Days Do You Really Need?",
     date: "2026-05-01",
