@@ -11,7 +11,7 @@ import type { Locale } from "../../i18n/locales";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("samples");
   return {
-    title: `${t("metaTitle")} — gliddy`,
+    title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: localizedAlternates("/samples"),
     openGraph: {
@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t("metaDescription"),
       url: "https://checkvisamap.com/samples",
       type: "website",
+      images: ["/opengraph-image"],
     },
   };
 }

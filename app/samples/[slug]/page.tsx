@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // route segment — Next.js auto-attaches it. Do not set images here or
   // we'd override the designed dynamic card with a raw photo.
   return {
-    title: `${title} · gliddy`,
+    title,
     description: sample.tagline,
     alternates: localizedAlternates(`/samples/${slug}`),
     openGraph: {

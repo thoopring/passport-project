@@ -5,7 +5,7 @@ import Footer from "../../../components/Footer";
 import PlanWizardStep1 from "./PlanWizardStep1";
 
 export const metadata: Metadata = {
-  title: "Build your trip plan — gliddy",
+  title: "Build your trip plan",
   description:
     "Tell us about your trip and get a personalized day-by-day itinerary with hotel pick, airport transit, restaurants, and a route map. Mobile web link + PDF.",
   alternates: { canonical: "https://checkvisamap.com/plan/new" },
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Personalized day-by-day itinerary with map, hotel, restaurants. Mobile web link + PDF.",
     url: "https://checkvisamap.com/plan/new",
     type: "website",
+    images: ["/opengraph-image"],
   },
 };
 
