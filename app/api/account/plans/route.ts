@@ -12,7 +12,9 @@ export const runtime = "nodejs";
  * via the Authorization header; we verify it against Supabase Auth (using
  * the public anon key + getUser) and then fetch plans matching their email.
  *
- * No RLS — service-role admin client filters by the verified email.
+ * The service-role admin client filters by the verified email. RLS is on for
+ * every public table (migration 0008) with no policies; service_role bypasses
+ * it, so this route is the only path to a user's rows.
  */
 export async function GET(req: NextRequest) {
   const auth = req.headers.get("authorization");
