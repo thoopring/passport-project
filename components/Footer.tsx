@@ -125,14 +125,14 @@ export default function Footer() {
           <div className="mt-10 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row justify-between gap-3">
             <p className="text-caption text-[var(--text-muted)]">
               {t("copyright")} · gliddy@checkvisamap.com ·{" "}
-              {/* Studio credit. Intentionally dofollow (no rel) — DANU
-                  Technologies is the studio behind gliddy, not a paid
-                  placement. Untranslated: the studio name is a proper noun. */}
+              {/* Studio credit. Intentionally dofollow (no rel) — Danorie is
+                  the studio behind gliddy, not a paid placement. Untranslated:
+                  the studio name is a proper noun. */}
               <a
-                href="https://trafficpumplab.com"
+                href="https://danorie.com"
                 className="hover:text-[var(--brand-primary)] transition"
               >
-                Made by DANU Technologies
+                Made by Danorie
               </a>
             </p>
             <p className="text-caption text-[var(--text-muted)] sm:max-w-md sm:text-right">
