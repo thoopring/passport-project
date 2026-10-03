@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const sample = getSample(slug);
   if (!sample) return {};
 
-  const title = `${sample.plan.destination} sample plan — ${sample.plan.durationDays} days`;
+  const title = `${sample.plan.destination} ${sample.plan.durationDays}-Day Itinerary`;
   // og:image is supplied by the file-based opengraph-image.tsx in this
   // route segment — Next.js auto-attaches it. Do not set images here or
   // we'd override the designed dynamic card with a raw photo.
@@ -92,7 +92,7 @@ export default async function SamplePlanPage({ params }: PageProps) {
       ? sample.heroImage
       : `${baseUrl}${sample.heroImage}`
     : `${baseUrl}/opengraph-image`;
-  const articleTitle = `${sample.plan.destination} sample plan — ${sample.plan.durationDays} days`;
+  const articleTitle = `${sample.plan.destination} ${sample.plan.durationDays}-Day Itinerary`;
 
   const sampleJsonLd = {
     "@context": "https://schema.org",
